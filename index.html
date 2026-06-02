@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>미국 주별 급여 실수령액 계산기</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="min-h-screen bg-slate-100 px-4 py-8 sm:py-12">
+  <main class="mx-auto max-w-5xl">
+    <section class="grid gap-6 lg:grid-cols-2 lg:items-center">
+      
+      <div class="space-y-5">
+        <span class="inline-flex rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-700">
+          Salary Paycheck Calculator
+        </span>
+
+        <h1 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
+          미국 주별 월급 실수령액 계산기
+        </h1>
+
+        <p class="text-base leading-7 text-slate-600 sm:text-lg">
+          연봉과 거주 주를 입력하면 Federal Tax와 State Tax 평균치를 기준으로
+          예상 월 실수령액을 간단하게 계산할 수 있습니다.
+        </p>
+
+        <div class="grid grid-cols-3 gap-3 pt-2">
+          <div class="rounded-2xl bg-white p-4 shadow-sm">
+            <p class="text-xs text-slate-500">Federal Tax</p>
+            <p class="mt-1 font-bold text-slate-900">자동 계산</p>
+          </div>
+          <div class="rounded-2xl bg-white p-4 shadow-sm">
+            <p class="text-xs text-slate-500">State Tax</p>
+            <p class="mt-1 font-bold text-slate-900">주별 적용</p>
+          </div>
+          <div class="rounded-2xl bg-white p-4 shadow-sm">
+            <p class="text-xs text-slate-500">Result</p>
+            <p class="mt-1 font-bold text-slate-900">월 실수령액</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="rounded-3xl bg-white p-5 shadow-xl ring-1 ring-slate-200 sm:p-8">
+        <div class="mb-6">
+          <h2 class="text-2xl font-bold text-slate-900">
+            Paycheck Calculator
+          </h2>
+          <p class="mt-2 text-sm text-slate-500">
+            Annual salary와 State를 선택해 주세요.
+          </p>
+        </div>
+
+        <div class="space-y-5">
+          <div>
+            <label for="salary" class="mb-2 block text-sm font-semibold text-slate-700">
+              Annual Salary
+            </label>
+            <div class="relative">
+              <span class="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
+                $
+              </span>
+              <input
+                type="number"
+                id="salary"
+                inputmode="decimal"
+                placeholder="80,000"
+                class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-8 pr-4 text-lg font-semibold text-slate-900 outline-none transition focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-100"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label for="state" class="mb-2 block text-sm font-semibold text-slate-700">
+              State
+            </label>
+            <select
+              id="state"
+              class="w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-4 text-base font-medium text-slate-900 outline-none transition focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-100"
+            >
+              <option value="">Select your state</option>
+              <option value="0">Alaska - No State Income Tax</option>
+              <option value="0">Florida - No State Income Tax</option>
+              <option value="0">Nevada - No State Income Tax</option>
+              <option value="0">New Hampshire - No State Income Tax</option>
+              <option value="0">South Dakota - No State Income Tax</option>
+              <option value="0">Tennessee - No State Income Tax</option>
+              <option value="0">Texas - No State Income Tax</option>
+              <option value="0">Washington - No State Income Tax</option>
+              <option value="0">Wyoming - No State Income Tax</option>
+              <option value="0.02">Arizona - Avg 2%</option>
+              <option value="0.03">Indiana - Avg 3%</option>
+              <option value="0.035">Pennsylvania - Avg 3.5%</option>
+              <option value="0.04">Colorado - Avg 4%</option>
+              <option value="0.045">Ohio - Avg 4.5%</option>
+              <option value="0.05">Illinois - Avg 5%</option>
+              <option value="0.055">Virginia - Avg 5.5%</option>
+              <option value="0.06">Georgia - Avg 6%</option>
+              <option value="0.065">North Carolina - Avg 6.5%</option>
+              <option value="0.07">New York - Avg 7%</option>
+              <option value="0.075">New Jersey - Avg 7.5%</option>
+              <option value="0.08">California - Avg 8%</option>
+              <option value="0.085">Oregon - Avg 8.5%</option>
+              <option value="0.09">Hawaii - Avg 9%</option>
+            </select>
+          </div>
+
+          <button
+            onclick="calculatePaycheck()"
+            class="w-full rounded-2xl bg-blue-600 px-5 py-4 text-base font-bold text-white shadow-lg shadow-blue-600/20 transition hover:bg-blue-700 active:scale-[0.99]"
+          >
+            Calculate Monthly Take-Home Pay
+          </button>
+        </div>
+
+        <div
+          id="result"
+          class="mt-6 hidden rounded-3xl border border-blue-100 bg-gradient-to-br from-blue-50 to-slate-50 p-5"
+        ></div>
+
+        <p class="mt-5 text-xs leading-5 text-slate-500">
+          ※ This calculator uses simplified average tax rates. It does not include
+          Social Security, Medicare, 401(k), insurance, local taxes, deductions, or filing status.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    function calculatePaycheck() {
+      const salaryInput = document.getElementById("salary");
+      const stateInput = document.getElementById("state");
+      const resultBox = document.getElementById("result");
+
+      const salary = parseFloat(salaryInput.value);
+      const stateTaxRate = parseFloat(stateInput.value);
+
+      if (isNaN(salary) || salary <= 0) {
+        alert("Please enter a valid annual salary.");
+        salaryInput.focus();
+        return;
+      }
+
+      if (isNaN(stateTaxRate)) {
+        alert("Please select a state.");
+        stateInput.focus();
+        return;
+      }
+
+      let federalTaxRate;
+
+      if (salary <= 30000) {
+        federalTaxRate = 0.10;
+      } else if (salary <= 60000) {
+        federalTaxRate = 0.12;
+      } else if (salary <= 100000) {
+        federalTaxRate = 0.18;
+      } else if (salary <= 180000) {
+        federalTaxRate = 0.22;
+      } else {
+        federalTaxRate = 0.28;
+      }
+
+      const federalTax = salary * federalTaxRate;
+      const stateTax = salary * stateTaxRate;
+      const annualTakeHome = salary - federalTax - stateTax;
+      const monthlyTakeHome = annualTakeHome / 12;
+
+      const money = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+        maximumFractionDigits: 2
+      });
+
+      resultBox.classList.remove("hidden");
+
+      resultBox.innerHTML = `
+        <p class="text-sm font-semibold uppercase tracking-wide text-blue-700">
+          Estimated Monthly Take-Home Pay
+        </p>
+
+        <p class="mt-2 text-4xl font-extrabold tracking-tight text-slate-900">
+          ${money.format(monthlyTakeHome)}
+        </p>
+
+        <div class="mt-5 grid gap-3 sm:grid-cols-2">
+          <div class="rounded-2xl bg-white p-4 shadow-sm">
+            <p class="text-xs text-slate-500">Annual Salary</p>
+            <p class="mt-1 text-lg font-bold text-slate-900">${money.format(salary)}</p>
+          </div>
+
+          <div class="rounded-2xl bg-white p-4 shadow-sm">
+            <p class="text-xs text-slate-500">Annual Take-Home</p>
+            <p class="mt-1 text-lg font-bold text-slate-900">${money.format(annualTakeHome)}</p>
+          </div>
+
+          <div class="rounded-2xl bg-white p-4 shadow-sm">
+            <p class="text-xs text-slate-500">Federal Tax</p>
+            <p class="mt-1 text-lg font-bold text-red-600">-${money.format(federalTax)}</p>
+          </div>
+
+          <div class="rounded-2xl bg-white p-4 shadow-sm">
+            <p class="text-xs text-slate-500">State Tax</p>
+            <p class="mt-1 text-lg font-bold text-red-600">-${money.format(stateTax)}</p>
+          </div>
+        </div>
+      `;
+    }
+  </script>
+</body>
+</html>
