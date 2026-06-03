@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick US Mortgage Calculator</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans m-0 p-0">
+
+    <div class="max-w-2xl mx-auto px-4 py-12">
+        <header class="text-center mb-10">
+            <a href="/" class="text-sm font-semibold text-blue-600 hover:underline">&larr; Back to Home</a>
+            <h1 class="text-3xl font-extrabold text-slate-900 tracking-tight mt-3">Mortgage Calculator</h1>
+            <p class="text-slate-500 mt-2 text-sm">Estimate your monthly home loan payments</p>
+        </header>
+
+        <main class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-100">
+            <div class="space-y-5">
+                <div>
+                    <label class="block text-sm font-semibold text-slate-700 mb-2">Home Price ($)</label>
+                    <input type="number" id="homePrice" placeholder="e.g. 400000" class="w-full p-3.5 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-slate-700 mb-2">Down Payment ($)</label>
+                    <input type="number" id="downPayment" placeholder="e.g. 80000" class="w-full p-3.5 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg">
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-2">Interest Rate (%)</label>
+                        <input type="number" id="interestRate" step="0.1" placeholder="e.g. 6.5" class="w-full p-3.5 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-base">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-2">Loan Term</label>
+                        <select id="loanTerm" class="w-full p-3.5 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-base bg-white">
+                            <option value="30">30-Year Fixed</option>
+                            <option value="15">15-Year Fixed</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button onclick="calculateMortgage()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-4 rounded-xl transition duration-200 cursor-pointer text-lg shadow-sm shadow-blue-200">
+                    Calculate Payment
+                </button>
+            </div>
+
+            <div id="resultBox" class="mt-8 p-5 bg-blue-50/50 rounded-xl border border-blue-100/80 hidden">
+                <h3 class="text-lg font-bold text-blue-900 mb-2">Estimated Monthly Payment</h3>
+                <div class="text-3xl font-black text-emerald-600 mb-4" id="monthlyPayment"></div>
+                <div class="space-y-2 text-sm text-slate-600 border-t border-blue-100 pt-3">
+                    <div class="flex justify-between"><span>Total Loan Amount:</span><span id="totalLoan" class="font-medium text-slate-900"></span></div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="mt-8 text-center px-4">
+            <p class="text-[11px] text-slate-400 leading-relaxed max-w-lg mx-auto">
+                <strong>Disclaimer:</strong> This calculator is for informational purposes only. Actual mortgage rates and payments may vary based on credit score, insurance, taxes, and lender fees.
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        function calculateMortgage() {
+            const homePrice = parseFloat(document.getElementById('homePrice').value);
+            const downPayment = parseFloat(document.getElementById('downPayment').value) || 0;
+            const annualRate = parseFloat(document.getElementById('interestRate').value);
+            const termYears = parseInt(document.getElementById('loanTerm').value);
+
+            if (!homePrice || !annualRate || homePrice <= downPayment) {
+                alert('Please enter valid amounts. Home price must be greater than down payment.');
+                return;
+            }
+
+            const loanAmount = homePrice - downPayment;
+            const monthlyRate = (annualRate / 100) / 12;
+            const totalPayments = termYears * 12;
+
+            let monthlyPayment = 0;
+            if (monthlyRate === 0) {
+                monthlyPayment = loanAmount / totalPayments;
+            } else {
+                monthlyPayment = loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, totalPayments)) / (Math.pow(1 + monthlyRate, totalPayments) - 1);
+            }
+
+            document.getElementById('totalLoan').innerText = '$' + loanAmount.toLocaleString();
+            document.getElementById('monthlyPayment').innerText = '$' + monthlyPayment.toLocaleString(undefined, {maximumFractionDigits:2});
+            document.getElementById('resultBox').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
