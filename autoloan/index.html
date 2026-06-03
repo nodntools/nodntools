@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Auto Loan Payment Calculator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="min-h-screen bg-slate-100 px-4 py-8 sm:py-12">
+  <main class="mx-auto max-w-5xl">
+
+    <!-- Google AdSense Responsive Ad - Top -->
+    <div class="mb-8 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white text-sm text-slate-400">
+      AdSense Responsive Ad Area - Top
+    </div>
+
+    <section class="grid gap-6 lg:grid-cols-2">
+
+      <div class="space-y-5 lg:sticky lg:top-10 lg:self-start">
+        <span class="inline-flex rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-700">
+          Auto Loan Calculator
+        </span>
+
+        <h1 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
+          Car Loan Payment Calculator
+        </h1>
+
+        <p class="text-base leading-7 text-slate-600 sm:text-lg">
+          Estimate your monthly car payment based on vehicle price, down payment,
+          trade-in value, interest rate, loan term, and sales tax.
+        </p>
+      </div>
+
+      <div class="rounded-3xl bg-white p-5 shadow-xl ring-1 ring-slate-200 sm:p-8">
+        <div class="mb-6">
+          <h2 class="text-2xl font-bold text-slate-900">Auto Loan Calculator</h2>
+          <p class="mt-2 text-sm text-slate-500">
+            Calculate your estimated monthly vehicle loan payment.
+          </p>
+        </div>
+
+        <div class="space-y-5">
+          <div>
+            <label for="vehiclePrice" class="mb-2 block text-sm font-semibold text-slate-700">
+              Vehicle Price
+            </label>
+            <div class="relative">
+              <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">$</span>
+              <input id="vehiclePrice" type="number" inputmode="decimal" placeholder="35000"
+                class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-8 pr-4 text-lg font-semibold text-slate-900 outline-none focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-100" />
+            </div>
+          </div>
+
+          <div>
+            <label for="downPayment" class="mb-2 block text-sm font-semibold text-slate-700">
+              Down Payment
+            </label>
+            <div class="relative">
+              <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">$</span>
+              <input id="downPayment" type="number" inputmode="decimal" placeholder="5000"
+                class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-8 pr-4 text-lg font-semibold text-slate-900 outline-none focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-100" />
+            </div>
+          </div>
+
+          <div>
+            <label for="tradeInValue" class="mb-2 block text-sm font-semibold text-slate-700">
+              Trade-In Value
+            </label>
+            <div class="relative">
+              <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">$</span>
+              <input id="tradeInValue" type="number" inputmode="decimal" placeholder="0"
+                class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-8 pr-4 text-lg font-semibold text-slate-900 outline-none focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-100" />
+            </div>
+          </div>
+
+          <div>
+            <label for="salesTaxRate" class="mb-2 block text-sm font-semibold text-slate-700">
+              Sales Tax Rate
+            </label>
+            <div class="relative">
+              <input id="salesTaxRate" type="number" step="0.01" inputmode="decimal" placeholder="8.5"
+                class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-4 pr-10 text-lg font-semibold text-slate-900 outline-none focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-100" />
+              <span class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400">%</span>
+            </div>
+          </div>
+
+          <div>
+            <label for="interestRate" class="mb-2 block text-sm font-semibold text-slate-700">
+              Annual Interest Rate
+            </label>
+            <div class="relative">
+              <input id="interestRate" type="number" step="0.01" inputmode="decimal" placeholder="6.99"
+                class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-4 pr-10 text-lg font-semibold text-slate-900 outline-none focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-100" />
+              <span class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400">%</span>
+            </div>
+          </div>
+
+          <div>
+            <label for="loanTerm" class="mb-2 block text-sm font-semibold text-slate-700">
+              Loan Term
+            </label>
+            <select id="loanTerm"
+              class="w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-4 text-base font-medium text-slate-900 outline-none focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-100">
+              <option value="36">36 Months</option>
+              <option value="48">48 Months</option>
+              <option value="60" selected>60 Months</option>
+              <option value="72">72 Months</option>
+              <option value="84">84 Months</option>
+              <option value="96">96 Months</option>
+            </select>
+          </div>
+
+          <button onclick="calculateAutoLoan()"
+            class="w-full rounded-2xl bg-blue-600 px-5 py-4 text-base font-bold text-white shadow-lg shadow-blue-600/20 transition hover:bg-blue-700 active:scale-[0.99]">
+            Calculate Monthly Payment
+          </button>
+        </div>
+
+        <div id="result"
+          class="mt-6 hidden rounded-3xl border border-blue-100 bg-gradient-to-br from-blue-50 to-slate-50 p-5">
+        </div>
+
+        <!-- Google AdSense Responsive Ad - Below Result -->
+        <div class="mt-6 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-slate-50 text-sm text-slate-400">
+          AdSense Responsive Ad Area - Below Result
+        </div>
+
+<section class="mt-12 bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-100 space-y-6 text-sm leading-relaxed text-slate-600">
+            <h2 class="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
+                <span class="w-1.5 h-5 bg-blue-600 rounded-full"></span> Smart Strategies for Budgeting Your Auto Loan
+            </h2>
+            <p>
+                Financing a vehicle is a major commitment that directly impacts your monthly disposable income. Whether you are eyeing a brand-new electric vehicle or a reliable pre-owned car, running the numbers beforehand helps you negotiate with confidence at the dealership. Here is how auto loan components work together.
+            </p>
+
+            <hr class="border-slate-100" />
+
+            <div>
+                <h3 class="font-bold text-slate-800 text-base mb-1">1. Purchase Price vs. Total Loan Amount</h3>
+                <p>
+                    The sticker price on the window is rarely the final amount you finance. Your total auto loan amount represents the vehicle purchase price, plus local sales taxes, dealership documentation fees, and registration costs, minus your upfront down payment and any trade-in equity you bring to the table.
+                </p>
+            </div>
+
+            <div>
+                <h3 class="font-bold text-slate-800 text-base mb-1">2. Understanding Your APR (Interest Rate)</h3>
+                <p>
+                    The Annual Percentage Rate (APR) dictates how much the bank charges you to borrow the money. Car loan rates are highly dependent on your credit score, the loan term, and whether the vehicle is new or used (new vehicles typically feature lower APRs). Even a 1% or 2% difference in your interest rate can save or cost you hundreds of dollars over the lifetime of the loan.
+                </p>
+            </div>
+
+            <div>
+                <h3 class="font-bold text-slate-800 text-base mb-1">3. Finding the Right Loan Term Length</h3>
+                <p>
+                    Auto loans are structured in monthly intervals, typically ranging from 36 to 84 months:
+                </p>
+                <ul class="list-disc list-inside mt-2 space-y-1 pl-2">
+                    <li><strong class="text-slate-700">Shorter Terms (36 - 60 Months):</strong> Require higher monthly payments, but you build equity in the car rapidly and pay a fraction of the interest cost overall.</li>
+                    <li><strong class="text-slate-700">Longer Terms (72 - 84 Months):</strong> Artificially lower your monthly obligation to make expensive cars seem affordable. However, you risk falling "upside-down" on your loan, where you owe more than the depreciating vehicle is actually worth.</li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="font-bold text-slate-800 text-base mb-1">4. The Golden 20/4/10 Rule for Car Buying</h3>
+                <p>
+                    To keep your financial health in check, many experts recommend following the 20/4/10 baseline: make a minimum <span class="font-medium text-slate-900">20% down payment</span>, limit the financing term to no more than <span class="font-medium text-slate-900">4 years (48 months)</span>, and ensure your total transportation costs (loan payment, insurance, fuel) do not consume more than <span class="font-medium text-slate-900">10% of your gross income</span>.
+                </p>
+            </div>
+        </section>
+
+        <p class="mt-5 text-xs leading-5 text-slate-500">
+          Disclaimer: This calculator is for general educational and informational purposes only.
+          It provides an estimate and should not be considered auto financing, legal, tax, or financial advice.
+          Actual loan payments may vary depending on lender terms, credit score, taxes, fees, rebates,
+          dealer charges, insurance, registration costs, and other personal circumstances.
+        </p>
+      </div>
+    </section>
+
+    <!-- Google AdSense Responsive Ad - Bottom -->
+    <div class="mt-8 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white text-sm text-slate-400">
+      AdSense Responsive Ad Area - Bottom
+    </div>
+
+  </main>
+
+  <script>
+    function calculateAutoLoan() {
+      const vehiclePriceInput = document.getElementById("vehiclePrice");
+      const downPaymentInput = document.getElementById("downPayment");
+      const tradeInValueInput = document.getElementById("tradeInValue");
+      const salesTaxRateInput = document.getElementById("salesTaxRate");
+      const interestRateInput = document.getElementById("interestRate");
+      const loanTermInput = document.getElementById("loanTerm");
+      const resultBox = document.getElementById("result");
+
+      const vehiclePrice = parseFloat(vehiclePriceInput.value);
+      const downPayment = parseFloat(downPaymentInput.value) || 0;
+      const tradeInValue = parseFloat(tradeInValueInput.value) || 0;
+      const salesTaxRate = parseFloat(salesTaxRateInput.value) || 0;
+      const annualInterestRate = parseFloat(interestRateInput.value);
+      const loanTermMonths = parseInt(loanTermInput.value);
+
+      if (isNaN(vehiclePrice) || vehiclePrice <= 0) {
+        alert("Please enter a valid vehicle price.");
+        vehiclePriceInput.focus();
+        return;
+      }
+
+      if (downPayment < 0 || tradeInValue < 0) {
+        alert("Down payment and trade-in value cannot be negative.");
+        return;
+      }
+
+      if (downPayment + tradeInValue >= vehiclePrice) {
+        alert("Down payment plus trade-in value must be less than the vehicle price.");
+        return;
+      }
+
+      if (isNaN(annualInterestRate) || annualInterestRate < 0) {
+        alert("Please enter a valid annual interest rate.");
+        interestRateInput.focus();
+        return;
+      }
+
+      const taxableVehiclePrice = Math.max(0, vehiclePrice - tradeInValue);
+      const salesTax = taxableVehiclePrice * (salesTaxRate / 100);
+      const loanAmount = vehiclePrice + salesTax - downPayment - tradeInValue;
+
+      const monthlyInterestRate = annualInterestRate / 100 / 12;
+
+      let monthlyPayment;
+
+      if (monthlyInterestRate === 0) {
+        monthlyPayment = loanAmount / loanTermMonths;
+      } else {
+        monthlyPayment =
+          loanAmount *
+          (monthlyInterestRate * Math.pow(1 + monthlyInterestRate, loanTermMonths)) /
+          (Math.pow(1 + monthlyInterestRate, loanTermMonths) - 1);
+      }
+
+      const totalPayment = monthlyPayment * loanTermMonths;
+      const totalInterest = totalPayment - loanAmount;
+      const totalCost = totalPayment + downPayment + tradeInValue;
+
+      const money = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+        maximumFractionDigits: 2
+      });
+
+      resultBox.classList.remove("hidden");
+
+      resultBox.innerHTML = `
+        <p class="text-sm font-semibold uppercase tracking-wide text-blue-700">
+          Estimated Monthly Auto Loan Payment
+        </p>
+
+        <p class="mt-2 text-4xl font-extrabold tracking-tight text-slate-900">
+          ${money.format(monthlyPayment)}
+        </p>
+
+        <p class="mt-2 text-sm text-slate-500">
+          Principal and interest estimate
+        </p>
+
+        <div class="mt-5 grid gap-3 sm:grid-cols-2">
+          <div class="rounded-2xl bg-white p-4 shadow-sm">
+            <p class="text-xs text-slate-500">Vehicle Price</p>
+            <p class="mt-1 text-lg font-bold text-slate-900">${money.format(vehiclePrice)}</p>
+          </div>
+
+          <div class="rounded-2xl bg-white p-4 shadow-sm">
+            <p class="text-xs text-slate-500">Estimated Sales Tax</p>
+            <p class="mt-1 text-lg font-bold text-slate-900">${money.format(salesTax)}</p>
+          </div>
+
+          <div class="rounded-2xl bg-white p-4 shadow-sm">
+            <p class="text-xs text-slate-500">Down Payment</p>
+            <p class="mt-1 text-lg font-bold text-slate-900">${money.format(downPayment)}</p>
+          </div>
+
+          <div class="rounded-2xl bg-white p-4 shadow-sm">
+            <p class="text-xs text-slate-500">Trade-In Value</p>
+            <p class="mt-1 text-lg font-bold text-slate-900">${money.format(tradeInValue)}</p>
+          </div>
+
+          <div class="rounded-2xl bg-white p-4 shadow-sm">
+            <p class="text-xs text-slate-500">Loan Amount</p>
+            <p class="mt-1 text-lg font-bold text-slate-900">${money.format(loanAmount)}</p>
+          </div>
+
+          <div class="rounded-2xl bg-white p-4 shadow-sm">
+            <p class="text-xs text-slate-500">Loan Term</p>
+            <p class="mt-1 text-lg font-bold text-slate-900">${loanTermMonths} Months</p>
+          </div>
+
+          <div class="rounded-2xl bg-white p-4 shadow-sm">
+            <p class="text-xs text-slate-500">Interest Rate</p>
+            <p class="mt-1 text-lg font-bold text-slate-900">${annualInterestRate.toFixed(2)}%</p>
+          </div>
+
+          <div class="rounded-2xl bg-white p-4 shadow-sm">
+            <p class="text-xs text-slate-500">Total Interest</p>
+            <p class="mt-1 text-lg font-bold text-red-600">${money.format(totalInterest)}</p>
+          </div>
+        </div>
+
+        <div class="mt-4 rounded-2xl bg-white p-4 text-sm text-slate-600 shadow-sm">
+          Total estimated loan payments:
+          <strong>${money.format(totalPayment)}</strong><br>
+          Estimated total vehicle cost including down payment and trade-in:
+          <strong>${money.format(totalCost)}</strong>
+        </div>
+      `;
+    }
+  </script>
+</body>
+</html>
