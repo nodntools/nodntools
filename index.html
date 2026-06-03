@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
+    <!-- 구글 서치콘솔 인증 태그 유지 -->
     <meta name="google-site-verification" content="4GnYZSUq78SepRFVCtFrAe-b6bbFiw54Mprte9evMX0" />
     
-    <title>SmartWebTools - Free Online Calculators & Utilities</title>
+    <title>NodnWebTools - Free Online Calculators & Utilities</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style>
         *, *::before, *::after { box-sizing: border-box; }
@@ -15,15 +16,17 @@
 <body class="bg-slate-50 text-slate-800 font-sans m-0 p-0">
 
     <div class="max-w-4xl mx-auto px-4 py-16">
+        <!-- 메인 헤더 (NodnWebTools 브랜드 반영) -->
         <header class="text-center mb-8">
             <h1 class="text-4xl font-extrabold text-slate-900 tracking-tight sm:text-5xl">
-                Smart<span class="text-blue-600">WebTools</span>
+                Nodn<span class="text-blue-600">WebTools</span>
             </h1>
             <p class="text-slate-500 mt-3 text-lg max-w-md mx-auto leading-relaxed">
                 Fast, free, and accurate web utilities designed to make your daily calculations frictionless.
             </p>
         </header>
 
+        <!-- 🔍 실시간 검색창 섹션 -->
         <div class="max-w-md mx-auto mb-12">
             <div class="relative shadow-sm rounded-2xl">
                 <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
@@ -37,10 +40,12 @@
             <p id="noResult" class="text-center text-slate-400 text-sm mt-6 hidden">No calculators found matching your search.</p>
         </div>
 
+        <!-- [애드센스 광고 자리 1: 상단 배너] -->
         <div class="w-full bg-slate-200 h-24 flex items-center justify-center text-xs text-slate-400 rounded-2xl mb-12 border border-dashed border-slate-300">
             [ADSENSE TOP BANNER PLACEHOLDER]
         </div>
 
+        <!-- 계산기 메뉴판 -->
         <main>
             <h2 class="text-xl font-bold text-slate-900 mb-6 flex items-center gap-2">
                 <span class="w-1.5 h-5 bg-blue-600 rounded-full"></span> Featured Calculators
@@ -48,6 +53,7 @@
             
             <div id="toolsGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 
+                <!-- 카드로 된 메뉴 1: 미국 급여 계산기 -->
                 <a href="/paycheckus" class="tool-card group bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:border-blue-500/50 hover:shadow-md hover:shadow-blue-500/5 transition-all duration-200 flex flex-col justify-between">
                     <div>
                         <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 mb-4 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-200">
@@ -63,6 +69,7 @@
                     </div>
                 </a>
 
+                <!-- 카드로 된 메뉴 2: 모기지 계산기 -->
                 <a href="/mortgage" class="tool-card group bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:border-blue-500/50 hover:shadow-md hover:shadow-blue-500/5 transition-all duration-200 flex flex-col justify-between">
                     <div>
                         <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 mb-4 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-200">
@@ -81,17 +88,19 @@
             </div>
         </main>
 
+        <!-- [애드센스 광고 자리 2: 하단 배너] -->
         <div class="w-full bg-slate-200 h-24 flex items-center justify-center text-xs text-slate-400 rounded-2xl mt-16 border border-dashed border-slate-300">
             [ADSENSE BOTTOM BANNER PLACEHOLDER]
         </div>
 
+        <!-- 하단 푸터 (NodnWebTools 저작권 반영) -->
         <footer class="mt-16 text-center border-t border-slate-200 pt-8 space-y-3">
             <div class="flex justify-center gap-4 text-xs font-medium text-slate-500">
                 <a href="/privacy.html" class="hover:text-blue-600 hover:underline">Privacy Policy</a>
                 <span>&bull;</span>
                 <a href="/terms.html" class="hover:text-blue-600 hover:underline">Terms of Service</a>
             </div>
-            <p class="text-xs text-slate-400">&copy; 2026 SmartWebTools. All rights reserved.</p>
+            <p class="text-xs text-slate-400">&copy; 2026 NodnWebTools. All rights reserved.</p>
         </footer>
     </div>
 
@@ -103,20 +112,17 @@
             let hasVisibleCard = false;
 
             for (let i = 0; i < cards.length; i++) {
-                // 카드 내부의 타이틀(h3)과 설명문(p) 텍스트를 추출합니다.
                 const title = cards[i].querySelector('.tool-title').innerText.toLowerCase();
                 const desc = cards[i].querySelector('p').innerText.toLowerCase();
 
-                // 유저가 입력한 글자가 타이틀이나 설명에 포함되어 있는지 검사합니다.
                 if (title.includes(filter) || desc.includes(filter)) {
-                    cards[i].style.display = ""; // 있으면 보여주고
+                    cards[i].style.display = "";
                     hasVisibleCard = true;
                 } else {
-                    cards[i].style.display = "none"; // 없으면 숨깁니다
+                    cards[i].style.display = "none";
                 }
             }
 
-            // 검색 결과가 하나도 없으면 안내 메시지를 띄웁니다.
             const noResultMsg = document.getElementById('noResult');
             if (hasVisibleCard) {
                 noResultMsg.classList.add('hidden');
