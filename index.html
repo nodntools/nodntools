@@ -15,7 +15,7 @@
 <body class="bg-slate-50 text-slate-800 font-sans m-0 p-0">
 
     <div class="max-w-4xl mx-auto px-4 py-16">
-        <header class="text-center mb-12">
+        <header class="text-center mb-8">
             <h1 class="text-4xl font-extrabold text-slate-900 tracking-tight sm:text-5xl">
                 Smart<span class="text-blue-600">WebTools</span>
             </h1>
@@ -23,6 +23,19 @@
                 Fast, free, and accurate web utilities designed to make your daily calculations frictionless.
             </p>
         </header>
+
+        <div class="max-w-md mx-auto mb-12">
+            <div class="relative shadow-sm rounded-2xl">
+                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.603 10.601Z" />
+                    </svg>
+                </div>
+                <input type="text" id="searchInput" onkeyup="filterTools()" placeholder="Search calculators (e.g., tax, mortgage)..." 
+                       class="w-full pl-11 pr-4 py-4 bg-white border border-slate-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-base placeholder-slate-400 transition-all">
+            </div>
+            <p id="noResult" class="text-center text-slate-400 text-sm mt-6 hidden">No calculators found matching your search.</p>
+        </div>
 
         <div class="w-full bg-slate-200 h-24 flex items-center justify-center text-xs text-slate-400 rounded-2xl mb-12 border border-dashed border-slate-300">
             [ADSENSE TOP BANNER PLACEHOLDER]
@@ -33,16 +46,16 @@
                 <span class="w-1.5 h-5 bg-blue-600 rounded-full"></span> Featured Calculators
             </h2>
             
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div id="toolsGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 
-                <a href="/paycheckus" class="group bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:border-blue-500/50 hover:shadow-md hover:shadow-blue-500/5 transition-all duration-200 flex flex-col justify-between">
+                <a href="/paycheckus" class="tool-card group bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:border-blue-500/50 hover:shadow-md hover:shadow-blue-500/5 transition-all duration-200 flex flex-col justify-between">
                     <div>
                         <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 mb-4 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-200">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.854-1.106-2.24 0-3.093 1.125-.859 2.947-.859 4.072 0l.544.415M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                             </svg>
                         </div>
-                        <h3 class="text-lg font-bold text-slate-900 mb-1 group-hover:text-blue-600 transition-colors duration-200">US Paycheck Calculator</h3>
+                        <h3 class="tool-title text-lg font-bold text-slate-900 mb-1 group-hover:text-blue-600 transition-colors duration-200">US Paycheck Calculator</h3>
                         <p class="text-slate-500 text-sm leading-relaxed">Estimate your monthly take-home pay after federal, state, and FICA taxes based on 2026 tax brackets.</p>
                     </div>
                     <div class="mt-4 text-blue-600 text-sm font-semibold flex items-center gap-1 group-hover:translate-x-1 transition-transform duration-200">
@@ -50,14 +63,14 @@
                     </div>
                 </a>
 
-                <a href="/mortgage" class="group bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:border-blue-500/50 hover:shadow-md hover:shadow-blue-500/5 transition-all duration-200 flex flex-col justify-between">
+                <a href="/mortgage" class="tool-card group bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:border-blue-500/50 hover:shadow-md hover:shadow-blue-500/5 transition-all duration-200 flex flex-col justify-between">
                     <div>
                         <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 mb-4 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-200">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
                             </svg>
                         </div>
-                        <h3 class="text-lg font-bold text-slate-900 mb-1 group-hover:text-blue-600 transition-colors duration-200">Mortgage Calculator</h3>
+                        <h3 class="tool-title text-lg font-bold text-slate-900 mb-1 group-hover:text-blue-600 transition-colors duration-200">Mortgage Calculator</h3>
                         <p class="text-slate-500 text-sm leading-relaxed">Calculate your monthly home loan payments, including interest rates and loan terms smoothly.</p>
                     </div>
                     <div class="mt-4 text-blue-600 text-sm font-semibold flex items-center gap-1 group-hover:translate-x-1 transition-transform duration-200">
@@ -77,5 +90,35 @@
         </footer>
     </div>
 
+    <script>
+        function filterTools() {
+            const input = document.getElementById('searchInput');
+            const filter = input.value.toLowerCase();
+            const cards = document.getElementsByClassName('tool-card');
+            let hasVisibleCard = false;
+
+            for (let i = 0; i < cards.length; i++) {
+                // 카드 내부의 타이틀(h3)과 설명문(p) 텍스트를 추출합니다.
+                const title = cards[i].querySelector('.tool-title').innerText.toLowerCase();
+                const desc = cards[i].querySelector('p').innerText.toLowerCase();
+
+                // 유저가 입력한 글자가 타이틀이나 설명에 포함되어 있는지 검사합니다.
+                if (title.includes(filter) || desc.includes(filter)) {
+                    cards[i].style.display = ""; // 있으면 보여주고
+                    hasVisibleCard = true;
+                } else {
+                    cards[i].style.display = "none"; // 없으면 숨깁니다
+                }
+            }
+
+            // 검색 결과가 하나도 없으면 안내 메시지를 띄웁니다.
+            const noResultMsg = document.getElementById('noResult');
+            if (hasVisibleCard) {
+                noResultMsg.classList.add('hidden');
+            } else {
+                noResultMsg.classList.remove('hidden');
+            }
+        }
+    </script>
 </body>
 </html>
