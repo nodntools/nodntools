@@ -1,97 +1,266 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quick US Mortgage Calculator</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <style>
-        *, *::before, *::after { box-sizing: border-box; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mortgage Payment Calculator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans m-0 p-0">
 
-    <div class="max-w-2xl mx-auto px-4 py-12">
-        <header class="text-center mb-10">
-            <a href="/" class="text-sm font-semibold text-blue-600 hover:underline">&larr; Back to Home</a>
-            <h1 class="text-3xl font-extrabold text-slate-900 tracking-tight mt-3">Mortgage Calculator</h1>
-            <p class="text-slate-500 mt-2 text-sm">Estimate your monthly home loan payments</p>
-        </header>
+<body class="min-h-screen bg-slate-100 px-4 py-8 sm:py-12">
+  <main class="mx-auto max-w-5xl">
 
-        <main class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-100">
-            <div class="space-y-5">
-                <div>
-                    <label class="block text-sm font-semibold text-slate-700 mb-2">Home Price ($)</label>
-                    <input type="number" id="homePrice" placeholder="e.g. 400000" class="w-full p-3.5 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg">
-                </div>
-
-                <div>
-                    <label class="block text-sm font-semibold text-slate-700 mb-2">Down Payment ($)</label>
-                    <input type="number" id="downPayment" placeholder="e.g. 80000" class="w-full p-3.5 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg">
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-sm font-semibold text-slate-700 mb-2">Interest Rate (%)</label>
-                        <input type="number" id="interestRate" step="0.1" placeholder="e.g. 6.5" class="w-full p-3.5 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-base">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-semibold text-slate-700 mb-2">Loan Term</label>
-                        <select id="loanTerm" class="w-full p-3.5 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-base bg-white">
-                            <option value="30">30-Year Fixed</option>
-                            <option value="15">15-Year Fixed</option>
-                        </select>
-                    </div>
-                </div>
-
-                <button onclick="calculateMortgage()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-4 rounded-xl transition duration-200 cursor-pointer text-lg shadow-sm shadow-blue-200">
-                    Calculate Payment
-                </button>
-            </div>
-
-            <div id="resultBox" class="mt-8 p-5 bg-blue-50/50 rounded-xl border border-blue-100/80 hidden">
-                <h3 class="text-lg font-bold text-blue-900 mb-2">Estimated Monthly Payment</h3>
-                <div class="text-3xl font-black text-emerald-600 mb-4" id="monthlyPayment"></div>
-                <div class="space-y-2 text-sm text-slate-600 border-t border-blue-100 pt-3">
-                    <div class="flex justify-between"><span>Total Loan Amount:</span><span id="totalLoan" class="font-medium text-slate-900"></span></div>
-                </div>
-            </div>
-        </main>
-
-        <footer class="mt-8 text-center px-4">
-            <p class="text-[11px] text-slate-400 leading-relaxed max-w-lg mx-auto">
-                <strong>Disclaimer:</strong> This calculator is for informational purposes only. Actual mortgage rates and payments may vary based on credit score, insurance, taxes, and lender fees.
-            </p>
-        </footer>
+    <!-- Google AdSense Responsive Ad - Top -->
+    <div class="mb-8 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white text-sm text-slate-400">
+      AdSense Responsive Ad Area - Top
     </div>
 
-    <script>
-        function calculateMortgage() {
-            const homePrice = parseFloat(document.getElementById('homePrice').value);
-            const downPayment = parseFloat(document.getElementById('downPayment').value) || 0;
-            const annualRate = parseFloat(document.getElementById('interestRate').value);
-            const termYears = parseInt(document.getElementById('loanTerm').value);
+    <section class="grid gap-6 lg:grid-cols-2 lg:items-center">
+      <div class="space-y-5">
+        <span class="inline-flex rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-700">
+          Mortgage Payment Calculator
+        </span>
 
-            if (!homePrice || !annualRate || homePrice <= downPayment) {
-                alert('Please enter valid amounts. Home price must be greater than down payment.');
-                return;
-            }
+        <h1 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
+          Monthly Mortgage Payment Calculator
+        </h1>
 
-            const loanAmount = homePrice - downPayment;
-            const monthlyRate = (annualRate / 100) / 12;
-            const totalPayments = termYears * 12;
+        <p class="text-base leading-7 text-slate-600 sm:text-lg">
+          Estimate your monthly mortgage payment by entering the home price, down payment,
+          interest rate, and loan term.
+        </p>
+      </div>
 
-            let monthlyPayment = 0;
-            if (monthlyRate === 0) {
-                monthlyPayment = loanAmount / totalPayments;
-            } else {
-                monthlyPayment = loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, totalPayments)) / (Math.pow(1 + monthlyRate, totalPayments) - 1);
-            }
+      <div class="rounded-3xl bg-white p-5 shadow-xl ring-1 ring-slate-200 sm:p-8">
+        <div class="mb-6">
+          <h2 class="text-2xl font-bold text-slate-900">Mortgage Calculator</h2>
+          <p class="mt-2 text-sm text-slate-500">
+            Calculate your estimated monthly principal and interest payment.
+          </p>
+        </div>
 
-            document.getElementById('totalLoan').innerText = '$' + loanAmount.toLocaleString();
-            document.getElementById('monthlyPayment').innerText = '$' + monthlyPayment.toLocaleString(undefined, {maximumFractionDigits:2});
-            document.getElementById('resultBox').classList.remove('hidden');
-        }
-    </script>
+        <div class="space-y-5">
+          <div>
+            <label for="homePrice" class="mb-2 block text-sm font-semibold text-slate-700">
+              Home Price
+            </label>
+            <div class="relative">
+              <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">$</span>
+              <input
+                type="number"
+                id="homePrice"
+                placeholder="500000"
+                inputmode="decimal"
+                class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-8 pr-4 text-lg font-semibold text-slate-900 outline-none transition focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-100"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label for="downPayment" class="mb-2 block text-sm font-semibold text-slate-700">
+              Down Payment
+            </label>
+            <div class="relative">
+              <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">$</span>
+              <input
+                type="number"
+                id="downPayment"
+                placeholder="100000"
+                inputmode="decimal"
+                class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-8 pr-4 text-lg font-semibold text-slate-900 outline-none transition focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-100"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label for="interestRate" class="mb-2 block text-sm font-semibold text-slate-700">
+              Annual Interest Rate
+            </label>
+            <div class="relative">
+              <input
+                type="number"
+                id="interestRate"
+                placeholder="6.5"
+                step="0.01"
+                inputmode="decimal"
+                class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-4 pr-10 text-lg font-semibold text-slate-900 outline-none transition focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-100"
+              />
+              <span class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400">%</span>
+            </div>
+          </div>
+
+          <div>
+            <label for="loanTerm" class="mb-2 block text-sm font-semibold text-slate-700">
+              Loan Term
+            </label>
+            <select
+              id="loanTerm"
+              class="w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-4 text-base font-medium text-slate-900 outline-none transition focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-100"
+            >
+              <option value="30">30 Years</option>
+              <option value="25">25 Years</option>
+              <option value="20">20 Years</option>
+              <option value="15">15 Years</option>
+              <option value="10">10 Years</option>
+            </select>
+          </div>
+
+          <button
+            onclick="calculateMortgage()"
+            class="w-full rounded-2xl bg-blue-600 px-5 py-4 text-base font-bold text-white shadow-lg shadow-blue-600/20 transition hover:bg-blue-700 active:scale-[0.99]"
+          >
+            Calculate Monthly Payment
+          </button>
+        </div>
+
+        <div
+          id="result"
+          class="mt-6 hidden rounded-3xl border border-blue-100 bg-gradient-to-br from-blue-50 to-slate-50 p-5"
+        ></div>
+
+        <!-- Google AdSense Responsive Ad - Below Result -->
+        <div class="mt-6 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-slate-50 text-sm text-slate-400">
+          AdSense Responsive Ad Area - Below Result
+        </div>
+
+        <p class="mt-5 text-xs leading-5 text-slate-500">
+          Disclaimer: This calculator is for general educational and informational purposes only.
+          It provides an estimate and should not be considered mortgage, legal, financial, or tax advice.
+          Actual mortgage payments may vary depending on lender terms, property taxes, insurance,
+          HOA fees, mortgage insurance, closing costs, credit score, location, and other personal circumstances.
+          Please consult a qualified mortgage professional before making financial decisions.
+        </p>
+      </div>
+    </section>
+
+    <!-- Google AdSense Responsive Ad - Bottom -->
+    <div class="mt-8 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white text-sm text-slate-400">
+      AdSense Responsive Ad Area - Bottom
+    </div>
+
+  </main>
+
+  <script>
+    function calculateMortgage() {
+      const homePriceInput = document.getElementById("homePrice");
+      const downPaymentInput = document.getElementById("downPayment");
+      const interestRateInput = document.getElementById("interestRate");
+      const loanTermInput = document.getElementById("loanTerm");
+      const resultBox = document.getElementById("result");
+
+      const homePrice = parseFloat(homePriceInput.value);
+      const downPayment = parseFloat(downPaymentInput.value);
+      const annualInterestRate = parseFloat(interestRateInput.value);
+      const loanTermYears = parseInt(loanTermInput.value);
+
+      if (isNaN(homePrice) || homePrice <= 0) {
+        alert("Please enter a valid home price.");
+        homePriceInput.focus();
+        return;
+      }
+
+      if (isNaN(downPayment) || downPayment < 0) {
+        alert("Please enter a valid down payment.");
+        downPaymentInput.focus();
+        return;
+      }
+
+      if (downPayment >= homePrice) {
+        alert("Down payment must be less than the home price.");
+        downPaymentInput.focus();
+        return;
+      }
+
+      if (isNaN(annualInterestRate) || annualInterestRate < 0) {
+        alert("Please enter a valid annual interest rate.");
+        interestRateInput.focus();
+        return;
+      }
+
+      const loanAmount = homePrice - downPayment;
+      const monthlyInterestRate = annualInterestRate / 100 / 12;
+      const numberOfPayments = loanTermYears * 12;
+
+      let monthlyPayment;
+
+      if (monthlyInterestRate === 0) {
+        monthlyPayment = loanAmount / numberOfPayments;
+      } else {
+        monthlyPayment =
+          loanAmount *
+          (monthlyInterestRate * Math.pow(1 + monthlyInterestRate, numberOfPayments)) /
+          (Math.pow(1 + monthlyInterestRate, numberOfPayments) - 1);
+      }
+
+      const totalPayment = monthlyPayment * numberOfPayments;
+      const totalInterest = totalPayment - loanAmount;
+      const downPaymentPercent = downPayment / homePrice;
+
+      const money = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+        maximumFractionDigits: 2
+      });
+
+      const percent = new Intl.NumberFormat("en-US", {
+        style: "percent",
+        maximumFractionDigits: 2
+      });
+
+      resultBox.classList.remove("hidden");
+
+      resultBox.innerHTML = `
+        <p class="text-sm font-semibold uppercase tracking-wide text-blue-700">
+          Estimated Monthly Mortgage Payment
+        </p>
+
+        <p class="mt-2 text-4xl font-extrabold tracking-tight text-slate-900">
+          ${money.format(monthlyPayment)}
+        </p>
+
+        <p class="mt-2 text-sm text-slate-500">
+          Principal and interest only
+        </p>
+
+        <div class="mt-5 grid gap-3 sm:grid-cols-2">
+          <div class="rounded-2xl bg-white p-4 shadow-sm">
+            <p class="text-xs text-slate-500">Home Price</p>
+            <p class="mt-1 text-lg font-bold text-slate-900">${money.format(homePrice)}</p>
+          </div>
+
+          <div class="rounded-2xl bg-white p-4 shadow-sm">
+            <p class="text-xs text-slate-500">Down Payment</p>
+            <p class="mt-1 text-lg font-bold text-slate-900">${money.format(downPayment)}</p>
+            <p class="mt-1 text-xs text-slate-500">${percent.format(downPaymentPercent)} of home price</p>
+          </div>
+
+          <div class="rounded-2xl bg-white p-4 shadow-sm">
+            <p class="text-xs text-slate-500">Loan Amount</p>
+            <p class="mt-1 text-lg font-bold text-slate-900">${money.format(loanAmount)}</p>
+          </div>
+
+          <div class="rounded-2xl bg-white p-4 shadow-sm">
+            <p class="text-xs text-slate-500">Loan Term</p>
+            <p class="mt-1 text-lg font-bold text-slate-900">${loanTermYears} Years</p>
+          </div>
+
+          <div class="rounded-2xl bg-white p-4 shadow-sm">
+            <p class="text-xs text-slate-500">Interest Rate</p>
+            <p class="mt-1 text-lg font-bold text-slate-900">${annualInterestRate.toFixed(2)}%</p>
+          </div>
+
+          <div class="rounded-2xl bg-white p-4 shadow-sm">
+            <p class="text-xs text-slate-500">Total Interest</p>
+            <p class="mt-1 text-lg font-bold text-red-600">${money.format(totalInterest)}</p>
+          </div>
+        </div>
+
+        <div class="mt-4 rounded-2xl bg-white p-4 text-sm text-slate-600 shadow-sm">
+          Total estimated payment over ${loanTermYears} years:
+          <strong>${money.format(totalPayment)}</strong>
+        </div>
+      `;
+    }
+  </script>
 </body>
 </html>
