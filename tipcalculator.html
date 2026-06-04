@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Tip Calculator | NodnWebTools</title>
+
+  <meta
+    name="description"
+    content="Use the free NodnWebTools Tip Calculator to calculate total tip, total bill with tip, and amount per person. Learn tipping etiquette in North America, standard restaurant tips, how much to tip, splitting the bill with friends, and gratuity vs tip."
+  />
+  <meta
+    name="keywords"
+    content="tip calculator, restaurant tip calculator, standard tip for restaurant, tipping etiquette in North America, how much to tip, splitting the bill with friends, gratuity vs tip, Canada tip calculator, US tip calculator, NodnWebTools"
+  />
+  <meta name="author" content="NodnWebTools" />
+  <meta name="robots" content="index, follow" />
+
+  <meta property="og:title" content="Tip Calculator | NodnWebTools" />
+  <meta
+    property="og:description"
+    content="Calculate total tip, total bill with tip, and amount per person with a clean real-time tip calculator."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://nodnwebtools.com/tipcalculator.html" />
+  <meta property="og:site_name" content="NodnWebTools" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Tip Calculator" />
+  <meta
+    name="twitter:description"
+    content="A free tip calculator for restaurants, travel, and everyday tipping in North America."
+  />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="min-h-screen bg-slate-100 px-4 py-8 sm:py-12">
+  <main class="mx-auto max-w-5xl">
+
+    <!-- Google AdSense Responsive Ad - Top -->
+    <div class="mb-8 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white text-sm text-slate-400">
+      AdSense Responsive Ad Area - Top
+    </div>
+
+    <section class="grid gap-6 lg:grid-cols-2">
+
+      <div class="rounded-3xl bg-white p-5 shadow-xl ring-1 ring-slate-200 sm:p-8 lg:sticky lg:top-10 lg:self-start">
+        <div class="mb-6">
+          <span class="inline-flex rounded-full bg-amber-100 px-4 py-2 text-sm font-semibold text-amber-700">
+            Tip Calculator
+          </span>
+
+          <h1 class="mt-5 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+            Calculate Your Tip Instantly
+          </h1>
+
+          <p class="mt-3 text-base leading-7 text-slate-600">
+            Enter your bill amount, choose a tip percentage, and split the total with friends or family.
+            The result updates automatically as you adjust the numbers.
+          </p>
+        </div>
+
+        <div class="space-y-5">
+          <div>
+            <label for="billAmount" class="mb-2 block text-sm font-semibold text-slate-700">
+              Bill Amount
+            </label>
+
+            <div class="relative">
+              <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">$</span>
+              <input
+                type="number"
+                id="billAmount"
+                inputmode="decimal"
+                min="0"
+                step="0.01"
+                value="100"
+                placeholder="100.00"
+                class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-8 pr-4 text-lg font-semibold text-slate-900 outline-none transition focus:border-amber-500 focus:bg-white focus:ring-4 focus:ring-amber-100"
+              />
+            </div>
+          </div>
+
+          <div>
+            <div class="mb-2 flex items-center justify-between gap-3">
+              <label for="tipSlider" class="block text-sm font-semibold text-slate-700">
+                Tip Percentage
+              </label>
+
+              <span id="tipBadge" class="rounded-full bg-amber-50 px-3 py-1 text-xs font-semibold text-amber-700">
+                18%
+              </span>
+            </div>
+
+            <div class="grid grid-cols-3 gap-3">
+              <button
+                type="button"
+                data-tip="15"
+                class="quick-tip rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-bold text-amber-700 transition hover:bg-amber-100 active:scale-[0.99]"
+              >
+                15%
+              </button>
+
+              <button
+                type="button"
+                data-tip="18"
+                class="quick-tip rounded-2xl border border-amber-500 bg-amber-500 px-4 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-amber-600 active:scale-[0.99]"
+              >
+                18%
+              </button>
+
+              <button
+                type="button"
+                data-tip="20"
+                class="quick-tip rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-bold text-amber-700 transition hover:bg-amber-100 active:scale-[0.99]"
+              >
+                20%
+              </button>
+            </div>
+
+            <input
+              type="range"
+              id="tipSlider"
+              min="0"
+              max="35"
+              step="1"
+              value="18"
+              class="mt-5 w-full accent-amber-500"
+            />
+
+            <div class="mt-3 relative">
+              <input
+                type="number"
+                id="tipPercentage"
+                inputmode="decimal"
+                min="0"
+                step="1"
+                value="18"
+                placeholder="18"
+                class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-4 pr-10 text-lg font-semibold text-slate-900 outline-none transition focus:border-amber-500 focus:bg-white focus:ring-4 focus:ring-amber-100"
+              />
+              <span class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400">%</span>
+            </div>
+
+            <div class="mt-2 flex justify-between text-xs text-slate-400">
+              <span>0%</span>
+              <span>35%</span>
+            </div>
+          </div>
+
+          <div>
+            <label for="numberOfPeople" class="mb-2 block text-sm font-semibold text-slate-700">
+              Number of People
+            </label>
+
+            <input
+              type="number"
+              id="numberOfPeople"
+              inputmode="numeric"
+              min="1"
+              step="1"
+              value="1"
+              placeholder="1"
+              class="w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-4 text-lg font-semibold text-slate-900 outline-none transition focus:border-amber-500 focus:bg-white focus:ring-4 focus:ring-amber-100"
+            />
+          </div>
+
+          <div class="rounded-2xl bg-amber-50 p-4 text-sm leading-6 text-slate-600">
+            In many North American restaurants, 15% to 20% is commonly used as a standard tip range,
+            depending on service quality, location, and dining style.
+          </div>
+        </div>
+      </div>
+
+      <div class="space-y-6">
+        <div class="rounded-3xl bg-white p-5 shadow-xl ring-1 ring-slate-200 sm:p-8">
+          <div class="mb-6">
+            <h2 class="text-2xl font-bold text-slate-900">
+              Estimated Tip Result
+            </h2>
+
+            <p class="mt-2 text-sm text-slate-500">
+              Results update automatically as you enter the bill amount, tip percentage, or number of people.
+            </p>
+          </div>
+
+          <div id="result" class="rounded-3xl border border-amber-100 bg-gradient-to-br from-amber-50 via-orange-50 to-slate-50 p-5">
+            <p class="text-sm font-semibold uppercase tracking-wide text-amber-700">
+              Amount Per Person
+            </p>
+
+            <p id="amountPerPerson" class="mt-2 text-4xl font-extrabold tracking-tight text-slate-900">
+              $0.00
+            </p>
+
+            <div class="mt-5 grid gap-3 sm:grid-cols-2">
+              <div class="rounded-2xl bg-white p-4 shadow-sm">
+                <p class="text-xs text-slate-500">Bill Amount</p>
+                <p id="displayBillAmount" class="mt-1 text-lg font-bold text-slate-900">$0.00</p>
+              </div>
+
+              <div class="rounded-2xl bg-white p-4 shadow-sm">
+                <p class="text-xs text-slate-500">Tip Percentage</p>
+                <p id="displayTipPercentage" class="mt-1 text-lg font-bold text-slate-900">0%</p>
+              </div>
+
+              <div class="rounded-2xl bg-white p-4 shadow-sm">
+                <p class="text-xs text-slate-500">Total Tip</p>
+                <p id="displayTotalTip" class="mt-1 text-lg font-bold text-amber-700">$0.00</p>
+              </div>
+
+              <div class="rounded-2xl bg-white p-4 shadow-sm">
+                <p class="text-xs text-slate-500">People Splitting</p>
+                <p id="displayPeople" class="mt-1 text-lg font-bold text-slate-900">1 Person</p>
+              </div>
+            </div>
+
+            <div class="mt-4 rounded-2xl bg-white p-4 text-sm leading-6 text-slate-600 shadow-sm">
+              Total bill with tip:
+              <strong id="displayTotalBill">$0.00</strong>
+            </div>
+          </div>
+
+          <!-- Google AdSense Responsive Ad - Below Result -->
+          <div class="mt-6 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-slate-50 text-sm text-slate-400">
+            AdSense Responsive Ad Area - Below Result
+          </div>
+
+          <p class="mt-5 text-xs leading-5 text-slate-500">
+            Disclaimer: This calculator is for general informational and convenience purposes only.
+            Actual tipping expectations may vary by country, city, business type, service quality, receipt settings,
+            automatic gratuity policies, taxes, and local customs. Always review your receipt before paying.
+          </p>
+        </div>
+
+        <section class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-8">
+          <span class="inline-flex rounded-full bg-amber-100 px-4 py-2 text-sm font-semibold text-amber-700">
+            North America Tipping Guide
+          </span>
+
+          <h2 class="mt-5 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
+            Tipping Etiquette: How Much to Tip in North America?
+          </h2>
+
+          <div class="mt-5 space-y-5 text-sm leading-7 text-slate-600">
+            <p>
+              Tipping is a normal part of dining, travel, and everyday service culture across the United States
+              and Canada. If you are wondering <strong class="font-semibold text-slate-800">how much to tip</strong>,
+              a helpful starting point is to look at the type of service, the quality of the experience, and whether
+              any service charge has already been added to the bill.
+            </p>
+
+            <p>
+              For many sit-down restaurants, the
+              <strong class="font-semibold text-slate-800">standard tip for restaurant</strong> service is often around
+              15% to 20% before tax, with 18% commonly used as a middle-ground option. Some diners tip more for excellent
+              service, large groups, or special requests, while a lower tip may be used when service was limited or below expectations.
+            </p>
+
+            <p>
+              Understanding <strong class="font-semibold text-slate-800">tipping etiquette in North America</strong>
+              can make travel and daily life feel much smoother. At restaurants, cafés, bars, hair salons, taxis,
+              rideshare services, hotels, and delivery services, tipping customs can vary. A quick coffee may only involve
+              a small optional tip, while a full-service dinner, haircut, or taxi ride may involve a percentage-based tip.
+            </p>
+
+            <p>
+              When dining as a group, <strong class="font-semibold text-slate-800">splitting the bill with friends</strong>
+              is easier when everyone agrees on the tip percentage before paying. If one person pays the full check, this
+              calculator can help estimate the total bill with tip and the amount per person. For a smoother experience,
+              confirm whether the group wants to split evenly or pay based on individual orders.
+            </p>
+
+            <p>
+              It is also important to understand <strong class="font-semibold text-slate-800">gratuity vs tip</strong>.
+              A tip is usually an optional amount added by the customer, while gratuity may refer to a service charge that
+              is automatically included on the receipt, especially for large parties, banquets, cruises, or certain tourist areas.
+              If automatic gratuity is already included, you may not need to add another full tip unless you want to reward
+              exceptional service.
+            </p>
+
+            <p>
+              This Tip Calculator from NodnWebTools is designed for quick everyday use at restaurants, bars, salons,
+              taxis, delivery orders, and group meals. Use it before checkout to estimate the total tip, total bill,
+              and fair per-person amount in seconds.
+            </p>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <!-- Google AdSense Responsive Ad - Bottom -->
+    <div class="mt-8 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white text-sm text-slate-400">
+      AdSense Responsive Ad Area - Bottom
+    </div>
+
+  </main>
+
+  <script>
+    const billAmountInput = document.getElementById("billAmount");
+    const tipSlider = document.getElementById("tipSlider");
+    const tipPercentageInput = document.getElementById("tipPercentage");
+    const numberOfPeopleInput = document.getElementById("numberOfPeople");
+    const tipBadge = document.getElementById("tipBadge");
+    const quickTipButtons = document.querySelectorAll(".quick-tip");
+
+    const amountPerPersonEl = document.getElementById("amountPerPerson");
+    const displayBillAmountEl = document.getElementById("displayBillAmount");
+    const displayTipPercentageEl = document.getElementById("displayTipPercentage");
+    const displayTotalTipEl = document.getElementById("displayTotalTip");
+    const displayPeopleEl = document.getElementById("displayPeople");
+    const displayTotalBillEl = document.getElementById("displayTotalBill");
+
+    function formatCurrency(value) {
+      return new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      }).format(value);
+    }
+
+    function formatNumber(value, decimals = 0) {
+      return new Intl.NumberFormat("en-US", {
+        minimumFractionDigits: decimals,
+        maximumFractionDigits: decimals
+      }).format(value);
+    }
+
+    function sanitizeNumber(value, fallback = 0) {
+      const number = parseFloat(value);
+      return isNaN(number) || number < 0 ? fallback : number;
+    }
+
+    function sanitizePeople(value) {
+      const number = parseInt(value, 10);
+      return isNaN(number) || number < 1 ? 1 : number;
+    }
+
+    function updateQuickTipButtonStyles(activeTip) {
+      quickTipButtons.forEach(function(button) {
+        const buttonTip = parseFloat(button.dataset.tip);
+
+        if (buttonTip === activeTip) {
+          button.className = "quick-tip rounded-2xl border border-amber-500 bg-amber-500 px-4 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-amber-600 active:scale-[0.99]";
+        } else {
+          button.className = "quick-tip rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-bold text-amber-700 transition hover:bg-amber-100 active:scale-[0.99]";
+        }
+      });
+    }
+
+    function syncTipFromSlider() {
+      tipPercentageInput.value = tipSlider.value;
+      calculateTip();
+    }
+
+    function syncTipFromInput() {
+      const tipValue = sanitizeNumber(tipPercentageInput.value);
+
+      if (tipValue <= 35) {
+        tipSlider.value = tipValue;
+      } else {
+        tipSlider.value = 35;
+      }
+
+      calculateTip();
+    }
+
+    function setQuickTip(value) {
+      tipPercentageInput.value = value;
+      tipSlider.value = value;
+      calculateTip();
+    }
+
+    function calculateTip() {
+      const billAmount = sanitizeNumber(billAmountInput.value);
+      const tipPercentage = sanitizeNumber(tipPercentageInput.value);
+      const numberOfPeople = sanitizePeople(numberOfPeopleInput.value);
+
+      const totalTip = billAmount * (tipPercentage / 100);
+      const totalBillWithTip = billAmount + totalTip;
+      const amountPerPerson = totalBillWithTip / numberOfPeople;
+
+      tipBadge.textContent = formatNumber(tipPercentage, tipPercentage % 1 === 0 ? 0 : 2) + "%";
+
+      amountPerPersonEl.textContent = formatCurrency(amountPerPerson);
+      displayBillAmountEl.textContent = formatCurrency(billAmount);
+      displayTipPercentageEl.textContent = formatNumber(tipPercentage, tipPercentage % 1 === 0 ? 0 : 2) + "%";
+      displayTotalTipEl.textContent = formatCurrency(totalTip);
+      displayPeopleEl.textContent = formatNumber(numberOfPeople, 0) + (numberOfPeople === 1 ? " Person" : " People");
+      displayTotalBillEl.textContent = formatCurrency(totalBillWithTip);
+
+      updateQuickTipButtonStyles(tipPercentage);
+    }
+
+    billAmountInput.addEventListener("input", calculateTip);
+    tipSlider.addEventListener("input", syncTipFromSlider);
+    tipPercentageInput.addEventListener("input", syncTipFromInput);
+    numberOfPeopleInput.addEventListener("input", calculateTip);
+
+    quickTipButtons.forEach(function(button) {
+      button.addEventListener("click", function() {
+        setQuickTip(parseFloat(button.dataset.tip));
+      });
+    });
+
+    calculateTip();
+  </script>
+</body>
+</html>
