@@ -9,7 +9,7 @@ const pages = [
     { relPath: '', title: 'NodnWebTools Home Dashboard', desc: 'Access all free online calculators including mortgage, paycheck, and auto loan tools.' },
     { relPath: 'paycheckus', title: 'US Paycheck Calculator (2026 Tax Brackets)', desc: 'Estimate your monthly take-home pay after federal, state, and FICA taxes.' },
     { relPath: 'mortgage', title: 'Mortgage Calculator with Interest & Amortization', desc: 'Calculate your monthly home loan payments, interest rates, and loan terms easily.' },
-    { relPath: 'autoloan.html', title: 'Auto Loan Calculator - Vehicle Budgeting Tool', desc: 'Estimate your monthly car payments, total interest costs, and overall vehicle budget.' }
+    { relPath: 'autoloan', title: 'Auto Loan Calculator - Vehicle Budgeting Tool', desc: 'Estimate your monthly car payments, total interest costs, and overall vehicle budget.' }
 ];
 
 const currentDate = new Date().toUTCString();
