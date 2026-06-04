@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Compound Interest Calculator | NodnWebTools</title>
+
+  <meta
+    name="description"
+    content="Use the free NodnWebTools Compound Interest Calculator to estimate future value, total contributions, and total interest earned. Learn how compound interest works, the compound interest formula, the power of compounding, high-yield savings accounts, and retirement savings planning."
+  />
+  <meta
+    name="keywords"
+    content="compound interest calculator, how compound interest works, compound interest formula, power of compounding, high-yield savings account, retirement savings calculator, future value calculator, investment growth calculator, NodnWebTools"
+  />
+  <meta name="author" content="NodnWebTools" />
+  <meta name="robots" content="index, follow" />
+
+  <meta property="og:title" content="Compound Interest Calculator | NodnWebTools" />
+  <meta
+    property="og:description"
+    content="Estimate total future value, contributions, and interest earned with a clean real-time compound interest calculator."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://nodnwebtools.com/compound.html" />
+  <meta property="og:site_name" content="NodnWebTools" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Compound Interest Calculator" />
+  <meta
+    name="twitter:description"
+    content="A free compound interest calculator for long-term investing, savings growth, and retirement planning."
+  />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="min-h-screen bg-slate-100 px-4 py-8 sm:py-12">
+  <main class="mx-auto max-w-5xl">
+
+    <!-- Google AdSense Responsive Ad - Top -->
+    <div class="mb-8 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white text-sm text-slate-400">
+      AdSense Responsive Ad Area - Top
+    </div>
+
+    <section class="grid gap-6 lg:grid-cols-2">
+
+      <div class="rounded-3xl bg-white p-5 shadow-xl ring-1 ring-slate-200 sm:p-8 lg:sticky lg:top-10 lg:self-start">
+        <div class="mb-6">
+          <span class="inline-flex rounded-full bg-violet-100 px-4 py-2 text-sm font-semibold text-violet-700">
+            Compound Interest Calculator
+          </span>
+
+          <h1 class="mt-5 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+            Estimate Your Future Investment Growth
+          </h1>
+
+          <p class="mt-3 text-base leading-7 text-slate-600">
+            Enter your initial investment, monthly contribution, estimated interest rate, investment term,
+            and compounding frequency to project your long-term savings growth.
+          </p>
+        </div>
+
+        <div class="space-y-5">
+          <div>
+            <label for="initialInvestment" class="mb-2 block text-sm font-semibold text-slate-700">
+              Initial Investment
+            </label>
+
+            <div class="relative">
+              <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">$</span>
+              <input
+                type="number"
+                id="initialInvestment"
+                inputmode="decimal"
+                min="0"
+                step="100"
+                value="10000"
+                placeholder="10000"
+                class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-8 pr-4 text-lg font-semibold text-slate-900 outline-none transition focus:border-violet-500 focus:bg-white focus:ring-4 focus:ring-violet-100"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label for="monthlyContribution" class="mb-2 block text-sm font-semibold text-slate-700">
+              Monthly Contribution
+            </label>
+
+            <div class="relative">
+              <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">$</span>
+              <input
+                type="number"
+                id="monthlyContribution"
+                inputmode="decimal"
+                min="0"
+                step="25"
+                value="300"
+                placeholder="300"
+                class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-8 pr-4 text-lg font-semibold text-slate-900 outline-none transition focus:border-violet-500 focus:bg-white focus:ring-4 focus:ring-violet-100"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label for="interestRate" class="mb-2 block text-sm font-semibold text-slate-700">
+              Estimated Interest Rate
+            </label>
+
+            <div class="relative">
+              <input
+                type="number"
+                id="interestRate"
+                inputmode="decimal"
+                min="0"
+                step="0.01"
+                value="7"
+                placeholder="7"
+                class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-4 pr-10 text-lg font-semibold text-slate-900 outline-none transition focus:border-violet-500 focus:bg-white focus:ring-4 focus:ring-violet-100"
+              />
+              <span class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400">%</span>
+            </div>
+          </div>
+
+          <div>
+            <div class="mb-2 flex items-center justify-between gap-3">
+              <label for="investmentYears" class="block text-sm font-semibold text-slate-700">
+                Length of Time
+              </label>
+              <span id="yearsBadge" class="rounded-full bg-violet-50 px-3 py-1 text-xs font-semibold text-violet-700">
+                20 Years
+              </span>
+            </div>
+
+            <input
+              type="range"
+              id="yearsSlider"
+              min="1"
+              max="50"
+              step="1"
+              value="20"
+              class="w-full accent-violet-600"
+            />
+
+            <div class="mt-3 relative">
+              <input
+                type="number"
+                id="investmentYears"
+                inputmode="numeric"
+                min="1"
+                max="100"
+                step="1"
+                value="20"
+                placeholder="20"
+                class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-4 pr-20 text-lg font-semibold text-slate-900 outline-none transition focus:border-violet-500 focus:bg-white focus:ring-4 focus:ring-violet-100"
+              />
+              <span class="absolute right-4 top-1/2 -translate-y-1/2 text-sm font-medium text-slate-400">
+                Years
+              </span>
+            </div>
+
+            <div class="mt-2 flex justify-between text-xs text-slate-400">
+              <span>1 year</span>
+              <span>50 years</span>
+            </div>
+          </div>
+
+          <div>
+            <label for="compoundFrequency" class="mb-2 block text-sm font-semibold text-slate-700">
+              Compounding Frequency
+            </label>
+
+            <select
+              id="compoundFrequency"
+              class="w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-4 text-base font-medium text-slate-900 outline-none transition focus:border-violet-500 focus:bg-white focus:ring-4 focus:ring-violet-100"
+            >
+              <option value="12" selected>Monthly</option>
+              <option value="4">Quarterly</option>
+              <option value="1">Annually</option>
+            </select>
+          </div>
+
+          <div class="rounded-2xl bg-violet-50 p-4 text-sm leading-6 text-slate-600">
+            This calculator assumes regular monthly contributions and an estimated annual return.
+            Actual investment results may vary due to fees, taxes, market performance, and contribution timing.
+          </div>
+        </div>
+      </div>
+
+      <div class="space-y-6">
+        <div class="rounded-3xl bg-white p-5 shadow-xl ring-1 ring-slate-200 sm:p-8">
+          <div class="mb-6">
+            <h2 class="text-2xl font-bold text-slate-900">
+              Estimated Compound Growth
+            </h2>
+
+            <p class="mt-2 text-sm text-slate-500">
+              Results update automatically as you change your savings and investment assumptions.
+            </p>
+          </div>
+
+          <div id="result" class="rounded-3xl border border-violet-100 bg-gradient-to-br from-violet-50 via-indigo-50 to-slate-50 p-5">
+            <p class="text-sm font-semibold uppercase tracking-wide text-violet-700">
+              Total Future Value
+            </p>
+
+            <p id="futureValue" class="mt-2 text-4xl font-extrabold tracking-tight text-slate-900">
+              $0.00
+            </p>
+
+            <div class="mt-5 grid gap-3 sm:grid-cols-2">
+              <div class="rounded-2xl bg-white p-4 shadow-sm">
+                <p class="text-xs text-slate-500">Initial Investment</p>
+                <p id="displayInitialInvestment" class="mt-1 text-lg font-bold text-slate-900">$0.00</p>
+              </div>
+
+              <div class="rounded-2xl bg-white p-4 shadow-sm">
+                <p class="text-xs text-slate-500">Monthly Contribution</p>
+                <p id="displayMonthlyContribution" class="mt-1 text-lg font-bold text-slate-900">$0.00</p>
+              </div>
+
+              <div class="rounded-2xl bg-white p-4 shadow-sm">
+                <p class="text-xs text-slate-500">Total Contributions</p>
+                <p id="displayTotalContributions" class="mt-1 text-lg font-bold text-slate-900">$0.00</p>
+              </div>
+
+              <div class="rounded-2xl bg-white p-4 shadow-sm">
+                <p class="text-xs text-slate-500">Total Interest Earned</p>
+                <p id="displayTotalInterest" class="mt-1 text-lg font-bold text-violet-700">$0.00</p>
+              </div>
+            </div>
+
+            <div class="mt-4 rounded-2xl bg-white p-4 text-sm leading-6 text-slate-600 shadow-sm">
+              Investment term:
+              <strong id="displayInvestmentTerm">0 Years</strong>
+              · Compounding:
+              <strong id="displayFrequency">Monthly</strong>
+            </div>
+          </div>
+
+          <!-- Google AdSense Responsive Ad - Below Result -->
+          <div class="mt-6 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-slate-50 text-sm text-slate-400">
+            AdSense Responsive Ad Area - Below Result
+          </div>
+
+          <p class="mt-5 text-xs leading-5 text-slate-500">
+            Disclaimer: This calculator is for general educational and informational purposes only.
+            It provides a simplified estimate and should not be considered investment, financial, tax, legal,
+            or retirement advice. Actual results may vary due to market volatility, contribution timing, taxes,
+            fees, inflation, withdrawals, interest rate changes, and other risks. Please consult a qualified
+            financial professional before making investment or savings decisions.
+          </p>
+        </div>
+
+        <section class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-8">
+          <span class="inline-flex rounded-full bg-violet-100 px-4 py-2 text-sm font-semibold text-violet-700">
+            Wealth Building Guide
+          </span>
+
+          <h2 class="mt-5 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
+            The Power of Compound Interest: Grow Your Wealth Over Time
+          </h2>
+
+          <div class="mt-5 space-y-5 text-sm leading-7 text-slate-600">
+            <p>
+              Compound interest is one of the most important concepts in long-term saving and investing.
+              If you are wondering <strong class="font-semibold text-slate-800">how compound interest works</strong>,
+              the simple explanation is that your money earns returns, and then those returns can begin earning
+              additional returns of their own. Over time, this creates a snowball effect that may help your balance
+              grow faster than it would with simple interest.
+            </p>
+
+            <p>
+              The basic <strong class="font-semibold text-slate-800">compound interest formula</strong> is often written as
+              A = P(1 + r/n)^(nt), where A is the future value, P is the principal, r is the annual interest rate,
+              n is the number of compounding periods per year, and t is the number of years. This calculator also
+              includes monthly contributions, which makes it more practical for real-life savings plans, investment
+              accounts, and retirement planning.
+            </p>
+
+            <p>
+              The real <strong class="font-semibold text-slate-800">power of compounding</strong> comes from time.
+              Starting earlier can matter more than trying to invest a much larger amount later. A person who contributes
+              consistently for decades may benefit from both regular deposits and the growth of previously earned interest.
+              Even small monthly contributions can become meaningful when they are invested or saved over a long period.
+            </p>
+
+            <p>
+              Compound growth is not limited to the stock market. A
+              <strong class="font-semibold text-slate-800">high-yield savings account</strong> may use compounding to help
+              cash savings grow more efficiently than a traditional low-interest account, especially when interest rates are
+              higher. While savings accounts are generally more stable than market investments, the expected return is usually
+              lower than long-term stock or retirement portfolios.
+            </p>
+
+            <p>
+              Many people use a <strong class="font-semibold text-slate-800">retirement savings calculator</strong> to estimate
+              how today’s contributions may grow by the time they stop working. The same principle applies to retirement accounts,
+              education savings, emergency funds, and long-term investment goals. The earlier you begin, the more time your money
+              has to compound.
+            </p>
+
+            <p>
+              This Compound Interest Calculator from NodnWebTools is designed to help beginners visualize future value,
+              total contributions, and total interest earned. Use it to test different interest rates, timelines, and monthly
+              contribution amounts so you can build a smarter long-term savings strategy.
+            </p>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <!-- Google AdSense Responsive Ad - Bottom -->
+    <div class="mt-8 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white text-sm text-slate-400">
+      AdSense Responsive Ad Area - Bottom
+    </div>
+
+  </main>
+
+  <script>
+    const initialInvestmentInput = document.getElementById("initialInvestment");
+    const monthlyContributionInput = document.getElementById("monthlyContribution");
+    const interestRateInput = document.getElementById("interestRate");
+    const yearsSlider = document.getElementById("yearsSlider");
+    const investmentYearsInput = document.getElementById("investmentYears");
+    const yearsBadge = document.getElementById("yearsBadge");
+    const compoundFrequencySelect = document.getElementById("compoundFrequency");
+
+    const futureValueEl = document.getElementById("futureValue");
+    const displayInitialInvestmentEl = document.getElementById("displayInitialInvestment");
+    const displayMonthlyContributionEl = document.getElementById("displayMonthlyContribution");
+    const displayTotalContributionsEl = document.getElementById("displayTotalContributions");
+    const displayTotalInterestEl = document.getElementById("displayTotalInterest");
+    const displayInvestmentTermEl = document.getElementById("displayInvestmentTerm");
+    const displayFrequencyEl = document.getElementById("displayFrequency");
+
+    function formatCurrency(value) {
+      return new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      }).format(value);
+    }
+
+    function formatNumber(value, decimals = 0) {
+      return new Intl.NumberFormat("en-US", {
+        minimumFractionDigits: decimals,
+        maximumFractionDigits: decimals
+      }).format(value);
+    }
+
+    function sanitizeNumber(value, fallback = 0) {
+      const number = parseFloat(value);
+      return isNaN(number) || number < 0 ? fallback : number;
+    }
+
+    function getFrequencyLabel(value) {
+      if (value === "12") return "Monthly";
+      if (value === "4") return "Quarterly";
+      if (value === "1") return "Annually";
+      return "Monthly";
+    }
+
+    function syncYearsFromSlider() {
+      investmentYearsInput.value = yearsSlider.value;
+      calculateCompoundInterest();
+    }
+
+    function syncYearsFromInput() {
+      let years = parseInt(investmentYearsInput.value, 10);
+
+      if (isNaN(years) || years < 1) {
+        years = 1;
+      }
+
+      const sliderMin = parseInt(yearsSlider.min, 10);
+      const sliderMax = parseInt(yearsSlider.max, 10);
+
+      yearsSlider.value = Math.min(Math.max(years, sliderMin), sliderMax);
+      calculateCompoundInterest();
+    }
+
+    function calculateCompoundInterest() {
+      const principal = sanitizeNumber(initialInvestmentInput.value);
+      const monthlyContribution = sanitizeNumber(monthlyContributionInput.value);
+      const annualRate = sanitizeNumber(interestRateInput.value) / 100;
+      const years = Math.max(1, parseInt(investmentYearsInput.value, 10) || 1);
+      const compoundFrequency = parseInt(compoundFrequencySelect.value, 10);
+
+      const totalMonths = years * 12;
+      const periodicRate = annualRate / compoundFrequency;
+      const totalPeriods = years * compoundFrequency;
+
+      let futureValueOfPrincipal = 0;
+      let futureValueOfContributions = 0;
+
+      if (annualRate === 0) {
+        futureValueOfPrincipal = principal;
+        futureValueOfContributions = monthlyContribution * totalMonths;
+      } else {
+        futureValueOfPrincipal = principal * Math.pow(1 + periodicRate, totalPeriods);
+
+        for (let month = 1; month <= totalMonths; month++) {
+          const yearsRemaining = (totalMonths - month) / 12;
+          const periodsRemaining = yearsRemaining * compoundFrequency;
+          futureValueOfContributions += monthlyContribution * Math.pow(1 + periodicRate, periodsRemaining);
+        }
+      }
+
+      const totalFutureValue = futureValueOfPrincipal + futureValueOfContributions;
+      const totalContributions = principal + monthlyContribution * totalMonths;
+      const totalInterestEarned = totalFutureValue - totalContributions;
+
+      yearsBadge.textContent = formatNumber(years, 0) + (years === 1 ? " Year" : " Years");
+
+      futureValueEl.textContent = formatCurrency(totalFutureValue);
+      displayInitialInvestmentEl.textContent = formatCurrency(principal);
+      displayMonthlyContributionEl.textContent = formatCurrency(monthlyContribution);
+      displayTotalContributionsEl.textContent = formatCurrency(totalContributions);
+      displayTotalInterestEl.textContent = formatCurrency(totalInterestEarned);
+      displayInvestmentTermEl.textContent = formatNumber(years, 0) + (years === 1 ? " Year" : " Years");
+      displayFrequencyEl.textContent = getFrequencyLabel(compoundFrequencySelect.value);
+    }
+
+    initialInvestmentInput.addEventListener("input", calculateCompoundInterest);
+    monthlyContributionInput.addEventListener("input", calculateCompoundInterest);
+    interestRateInput.addEventListener("input", calculateCompoundInterest);
+    yearsSlider.addEventListener("input", syncYearsFromSlider);
+    investmentYearsInput.addEventListener("input", syncYearsFromInput);
+    compoundFrequencySelect.addEventListener("change", calculateCompoundInterest);
+
+    calculateCompoundInterest();
+  </script>
+</body>
+</html>
