@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Salary to Hourly Converter | NodnWebTools</title>
+
+  <meta
+    name="description"
+    content="Use the free NodnWebTools Salary to Hourly Converter to convert annual, monthly, weekly, or hourly pay into equivalent salary and wage amounts. Learn how to convert salary to hourly rate, compare job offers, and understand what 50k a year is how much an hour."
+  />
+  <meta
+    name="keywords"
+    content="salary to hourly calculator, convert salary to hourly rate, 50k a year is how much an hour, yearly to hourly wage converter, annual salary comparison, hourly wage calculator, salary converter, job offer comparison, NodnWebTools"
+  />
+  <meta name="author" content="NodnWebTools" />
+  <meta name="robots" content="index, follow" />
+
+  <meta property="og:title" content="Salary to Hourly Converter | NodnWebTools" />
+  <meta
+    property="og:description"
+    content="Convert annual salary, monthly salary, weekly pay, or hourly wage into equivalent pay periods with a clean real-time calculator."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://nodnwebtools.com/salary-to-hourly.html" />
+  <meta property="og:site_name" content="NodnWebTools" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Salary to Hourly Converter" />
+  <meta
+    name="twitter:description"
+    content="A free salary to hourly calculator for comparing annual, monthly, weekly, and hourly pay."
+  />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="min-h-screen bg-slate-100 px-4 py-8 sm:py-12">
+  <main class="mx-auto max-w-5xl">
+
+    <!-- Google AdSense Responsive Ad - Top -->
+    <div class="mb-8 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white text-sm text-slate-400">
+      AdSense Responsive Ad Area - Top
+    </div>
+
+    <section class="grid gap-6 lg:grid-cols-2">
+
+      <div class="rounded-3xl bg-white p-5 shadow-xl ring-1 ring-slate-200 sm:p-8 lg:sticky lg:top-10 lg:self-start">
+        <div class="mb-6">
+          <span class="inline-flex rounded-full bg-teal-100 px-4 py-2 text-sm font-semibold text-teal-700">
+            Salary to Hourly Converter
+          </span>
+
+          <h1 class="mt-5 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+            Convert Salary to Hourly, Monthly, Weekly, or Annual Pay
+          </h1>
+
+          <p class="mt-3 text-base leading-7 text-slate-600">
+            Enter any pay amount, choose whether it is annual, monthly, weekly, or hourly,
+            and instantly convert it into equivalent pay periods.
+          </p>
+        </div>
+
+        <div class="space-y-5">
+          <div>
+            <label for="amountInput" class="mb-2 block text-sm font-semibold text-slate-700">
+              Enter Amount
+            </label>
+
+            <div class="relative">
+              <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">$</span>
+              <input
+                type="number"
+                id="amountInput"
+                inputmode="decimal"
+                min="0"
+                step="0.01"
+                value="50000"
+                placeholder="50000"
+                class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-8 pr-4 text-lg font-semibold text-slate-900 outline-none transition focus:border-teal-500 focus:bg-white focus:ring-4 focus:ring-teal-100"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label class="mb-2 block text-sm font-semibold text-slate-700">
+              Pay Type
+            </label>
+
+            <div class="grid grid-cols-2 gap-2 rounded-2xl bg-slate-100 p-1 sm:grid-cols-4">
+              <button
+                type="button"
+                data-pay-type="annual"
+                class="pay-type-tab rounded-xl bg-teal-600 px-3 py-3 text-sm font-bold text-white shadow-sm transition active:scale-[0.99]"
+              >
+                Annual
+              </button>
+
+              <button
+                type="button"
+                data-pay-type="monthly"
+                class="pay-type-tab rounded-xl px-3 py-3 text-sm font-bold text-slate-600 transition hover:bg-white active:scale-[0.99]"
+              >
+                Monthly
+              </button>
+
+              <button
+                type="button"
+                data-pay-type="weekly"
+                class="pay-type-tab rounded-xl px-3 py-3 text-sm font-bold text-slate-600 transition hover:bg-white active:scale-[0.99]"
+              >
+                Weekly
+              </button>
+
+              <button
+                type="button"
+                data-pay-type="hourly"
+                class="pay-type-tab rounded-xl px-3 py-3 text-sm font-bold text-slate-600 transition hover:bg-white active:scale-[0.99]"
+              >
+                Hourly
+              </button>
+            </div>
+          </div>
+
+          <div>
+            <label for="hoursPerWeek" class="mb-2 block text-sm font-semibold text-slate-700">
+              Hours Worked Per Week
+            </label>
+
+            <div class="relative">
+              <input
+                type="number"
+                id="hoursPerWeek"
+                inputmode="decimal"
+                min="1"
+                step="0.5"
+                value="40"
+                placeholder="40"
+                class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-4 pr-20 text-lg font-semibold text-slate-900 outline-none transition focus:border-teal-500 focus:bg-white focus:ring-4 focus:ring-teal-100"
+              />
+              <span class="absolute right-4 top-1/2 -translate-y-1/2 text-sm font-medium text-slate-400">
+                Hours
+              </span>
+            </div>
+
+            <p class="mt-2 text-xs leading-5 text-slate-500">
+              The common full-time assumption is 40 hours per week, or 2,080 work hours per year.
+            </p>
+          </div>
+
+          <div class="rounded-2xl bg-teal-50 p-4 text-sm leading-6 text-slate-600">
+            Use this converter to compare job offers, freelance rates, salary negotiations,
+            and hourly wage expectations more clearly.
+          </div>
+        </div>
+      </div>
+
+      <div class="space-y-6">
+        <div class="rounded-3xl bg-white p-5 shadow-xl ring-1 ring-slate-200 sm:p-8">
+          <div class="mb-6">
+            <h2 class="text-2xl font-bold text-slate-900">
+              Pay Conversion Result
+            </h2>
+
+            <p class="mt-2 text-sm text-slate-500">
+              Results update automatically as you change amount, pay type, or weekly hours.
+            </p>
+          </div>
+
+          <div id="result" class="rounded-3xl border border-teal-100 bg-gradient-to-br from-teal-50 via-emerald-50 to-slate-50 p-5">
+            <p class="text-sm font-semibold uppercase tracking-wide text-teal-700">
+              Equivalent Hourly Wage
+            </p>
+
+            <p id="hourlyResult" class="mt-2 text-4xl font-extrabold tracking-tight text-slate-900">
+              $0.00/hr
+            </p>
+
+            <p id="summarySentence" class="mt-3 text-sm leading-6 text-slate-600">
+              Based on 40 hours per week and 52 weeks per year.
+            </p>
+
+            <div class="mt-5 grid gap-3 sm:grid-cols-2">
+              <div class="rounded-2xl bg-white p-4 shadow-sm">
+                <p class="text-xs text-slate-500">Equivalent Annual Salary</p>
+                <p id="annualSalary" class="mt-1 text-lg font-bold text-slate-900">$0.00</p>
+              </div>
+
+              <div class="rounded-2xl bg-white p-4 shadow-sm">
+                <p class="text-xs text-slate-500">Equivalent Monthly Salary</p>
+                <p id="monthlySalary" class="mt-1 text-lg font-bold text-slate-900">$0.00</p>
+              </div>
+
+              <div class="rounded-2xl bg-white p-4 shadow-sm">
+                <p class="text-xs text-slate-500">Equivalent Weekly Salary</p>
+                <p id="weeklySalary" class="mt-1 text-lg font-bold text-slate-900">$0.00</p>
+              </div>
+
+              <div class="rounded-2xl bg-white p-4 shadow-sm">
+                <p class="text-xs text-slate-500">Equivalent Hourly Wage</p>
+                <p id="hourlyWage" class="mt-1 text-lg font-bold text-teal-700">$0.00/hr</p>
+              </div>
+            </div>
+
+            <div class="mt-5 grid gap-3 sm:grid-cols-2">
+              <div class="rounded-3xl border border-teal-100 bg-white p-5 shadow-sm">
+                <p class="text-xs font-semibold uppercase tracking-wide text-teal-700">
+                  Work Hours Per Year
+                </p>
+                <p id="annualHours" class="mt-2 text-3xl font-extrabold text-slate-900">
+                  0
+                </p>
+                <p class="mt-2 text-xs leading-5 text-slate-500">
+                  Weekly hours × 52 weeks.
+                </p>
+              </div>
+
+              <div class="rounded-3xl border border-emerald-100 bg-white p-5 shadow-sm">
+                <p class="text-xs font-semibold uppercase tracking-wide text-emerald-700">
+                  Pay Type Entered
+                </p>
+                <p id="enteredPayType" class="mt-2 text-3xl font-extrabold text-slate-900">
+                  Annual
+                </p>
+                <p class="mt-2 text-xs leading-5 text-slate-500">
+                  Converted into all major pay periods.
+                </p>
+              </div>
+            </div>
+
+            <div class="mt-4 rounded-2xl bg-white p-4 text-sm leading-6 text-slate-600 shadow-sm">
+              Conversion basis:
+              <strong id="conversionBasis">40 hours/week × 52 weeks = 2,080 hours/year</strong>
+            </div>
+          </div>
+
+          <!-- Google AdSense Responsive Ad - Below Result -->
+          <div class="mt-6 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-slate-50 text-sm text-slate-400">
+            AdSense Responsive Ad Area - Below Result
+          </div>
+
+          <p class="mt-5 text-xs leading-5 text-slate-500">
+            Disclaimer: This calculator is for general educational, career planning, and pay comparison purposes only.
+            It does not include taxes, overtime, bonuses, commissions, benefits, paid time off, unpaid leave, payroll deductions,
+            shift premiums, employer contributions, or local labor rules. Always review the full compensation package before accepting a job offer.
+          </p>
+        </div>
+
+        <section class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-8">
+          <span class="inline-flex rounded-full bg-teal-100 px-4 py-2 text-sm font-semibold text-teal-700">
+            Career Pay Guide
+          </span>
+
+          <h2 class="mt-5 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
+            Salary vs. Hourly: How to Easily Convert and Compare Job Offers
+          </h2>
+
+          <div class="mt-5 space-y-5 text-sm leading-7 text-slate-600">
+            <p>
+              A <strong class="font-semibold text-slate-800">salary to hourly calculator</strong>
+              helps job seekers, freelancers, and employees compare compensation in a clearer way. Annual salary sounds simple,
+              but it can be difficult to compare with hourly pay unless you know how many hours you actually work each week.
+              A higher salary may not always be better if it requires long unpaid hours.
+            </p>
+
+            <p>
+              To <strong class="font-semibold text-slate-800">convert salary to hourly rate</strong>,
+              many people use the standard full-time assumption of 2,080 hours per year. That comes from 40 hours per week
+              multiplied by 52 weeks. For example, a $50,000 annual salary divided by 2,080 hours equals about $24.04 per hour.
+            </p>
+
+            <div class="overflow-hidden rounded-2xl border border-slate-200">
+              <table class="w-full text-left text-sm">
+                <thead class="bg-slate-100 text-slate-700">
+                  <tr>
+                    <th class="px-4 py-3 font-bold">Annual Salary</th>
+                    <th class="px-4 py-3 font-bold">Hourly Estimate</th>
+                    <th class="px-4 py-3 font-bold">Assumption</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200 bg-white">
+                  <tr>
+                    <td class="px-4 py-3 font-semibold text-slate-800">$50,000</td>
+                    <td class="px-4 py-3">$24.04/hr</td>
+                    <td class="px-4 py-3">40 hours/week</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-semibold text-slate-800">$70,000</td>
+                    <td class="px-4 py-3">$33.65/hr</td>
+                    <td class="px-4 py-3">40 hours/week</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-semibold text-slate-800">$100,000</td>
+                    <td class="px-4 py-3">$48.08/hr</td>
+                    <td class="px-4 py-3">40 hours/week</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <p>
+              One of the most common searches is
+              <strong class="font-semibold text-slate-800">50k a year is how much an hour</strong>.
+              Using the 2,080-hour method, $50k a year is about $24.04 per hour before taxes. But if the job regularly requires
+              50 or 60 hours per week, the effective hourly rate becomes lower. That is why a
+              <strong class="font-semibold text-slate-800">yearly to hourly wage converter</strong>
+              is useful before accepting a new role.
+            </p>
+
+            <p>
+              <strong class="font-semibold text-slate-800">Annual salary comparison</strong>
+              should include more than base pay. Paid time off, health insurance, retirement contributions, bonuses, stock options,
+              flexible work arrangements, overtime eligibility, commute time, and job stability can all change the real value of a
+              compensation package. A lower salary with strong benefits may sometimes be worth more than a higher salary with fewer protections.
+            </p>
+
+            <div class="rounded-2xl bg-teal-50 p-5">
+              <h3 class="font-bold text-slate-900">
+                Job offer comparison checklist
+              </h3>
+              <ul class="mt-3 space-y-2">
+                <li>
+                  <strong class="text-slate-800">Compare hourly equivalents</strong> using realistic weekly hours.
+                </li>
+                <li>
+                  <strong class="text-slate-800">Check paid time off</strong> because vacation and holidays affect true hourly value.
+                </li>
+                <li>
+                  <strong class="text-slate-800">Include benefits</strong> such as health insurance, retirement match, and bonuses.
+                </li>
+                <li>
+                  <strong class="text-slate-800">Consider unpaid overtime</strong> if a salaried role expects long hours.
+                </li>
+              </ul>
+            </div>
+
+            <p>
+              This Salary to Hourly Converter from NodnWebTools is designed to help you compare job offers, negotiate salary,
+              price freelance work, and understand what your pay means across annual, monthly, weekly, and hourly formats.
+            </p>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <!-- Google AdSense Responsive Ad - Bottom -->
+    <div class="mt-8 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white text-sm text-slate-400">
+      AdSense Responsive Ad Area - Bottom
+    </div>
+
+  </main>
+
+  <script>
+    const amountInput = document.getElementById("amountInput");
+    const hoursPerWeekInput = document.getElementById("hoursPerWeek");
+    const payTypeTabs = document.querySelectorAll(".pay-type-tab");
+
+    const hourlyResultEl = document.getElementById("hourlyResult");
+    const summarySentenceEl = document.getElementById("summarySentence");
+    const annualSalaryEl = document.getElementById("annualSalary");
+    const monthlySalaryEl = document.getElementById("monthlySalary");
+    const weeklySalaryEl = document.getElementById("weeklySalary");
+    const hourlyWageEl = document.getElementById("hourlyWage");
+    const annualHoursEl = document.getElementById("annualHours");
+    const enteredPayTypeEl = document.getElementById("enteredPayType");
+    const conversionBasisEl = document.getElementById("conversionBasis");
+
+    let selectedPayType = "annual";
+
+    function formatCurrency(value) {
+      return new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      }).format(value);
+    }
+
+    function formatNumber(value, decimals = 0) {
+      return new Intl.NumberFormat("en-US", {
+        minimumFractionDigits: decimals,
+        maximumFractionDigits: decimals
+      }).format(value);
+    }
+
+    function sanitizeNumber(value, fallback = 0) {
+      const number = parseFloat(value);
+      return isNaN(number) || number < 0 ? fallback : number;
+    }
+
+    function getPayTypeLabel(type) {
+      if (type === "annual") return "Annual";
+      if (type === "monthly") return "Monthly";
+      if (type === "weekly") return "Weekly";
+      if (type === "hourly") return "Hourly";
+      return "Annual";
+    }
+
+    function updatePayTypeTabs() {
+      payTypeTabs.forEach(function(tab) {
+        if (tab.dataset.payType === selectedPayType) {
+          tab.className = "pay-type-tab rounded-xl bg-teal-600 px-3 py-3 text-sm font-bold text-white shadow-sm transition active:scale-[0.99]";
+        } else {
+          tab.className = "pay-type-tab rounded-xl px-3 py-3 text-sm font-bold text-slate-600 transition hover:bg-white active:scale-[0.99]";
+        }
+      });
+    }
+
+    function calculateSalaryConversion() {
+      const amount = sanitizeNumber(amountInput.value);
+      const hoursPerWeek = Math.max(1, sanitizeNumber(hoursPerWeekInput.value, 40));
+      const annualWorkHours = hoursPerWeek * 52;
+
+      let annualSalary = 0;
+
+      if (selectedPayType === "annual") {
+        annualSalary = amount;
+      } else if (selectedPayType === "monthly") {
+        annualSalary = amount * 12;
+      } else if (selectedPayType === "weekly") {
+        annualSalary = amount * 52;
+      } else if (selectedPayType === "hourly") {
+        annualSalary = amount * annualWorkHours;
+      }
+
+      const monthlySalary = annualSalary / 12;
+      const weeklySalary = annualSalary / 52;
+      const hourlyWage = annualWorkHours > 0 ? annualSalary / annualWorkHours : 0;
+
+      hourlyResultEl.textContent = formatCurrency(hourlyWage) + "/hr";
+      summarySentenceEl.textContent =
+        "Based on " +
+        formatNumber(hoursPerWeek, hoursPerWeek % 1 === 0 ? 0 : 1) +
+        " hours per week and 52 weeks per year.";
+
+      annualSalaryEl.textContent = formatCurrency(annualSalary);
+      monthlySalaryEl.textContent = formatCurrency(monthlySalary);
+      weeklySalaryEl.textContent = formatCurrency(weeklySalary);
+      hourlyWageEl.textContent = formatCurrency(hourlyWage) + "/hr";
+      annualHoursEl.textContent = formatNumber(annualWorkHours, annualWorkHours % 1 === 0 ? 0 : 1);
+      enteredPayTypeEl.textContent = getPayTypeLabel(selectedPayType);
+      conversionBasisEl.textContent =
+        formatNumber(hoursPerWeek, hoursPerWeek % 1 === 0 ? 0 : 1) +
+        " hours/week × 52 weeks = " +
+        formatNumber(annualWorkHours, annualWorkHours % 1 === 0 ? 0 : 1) +
+        " hours/year";
+    }
+
+    payTypeTabs.forEach(function(tab) {
+      tab.addEventListener("click", function() {
+        selectedPayType = tab.dataset.payType;
+        updatePayTypeTabs();
+        calculateSalaryConversion();
+      });
+    });
+
+    amountInput.addEventListener("input", calculateSalaryConversion);
+    hoursPerWeekInput.addEventListener("input", calculateSalaryConversion);
+
+    updatePayTypeTabs();
+    calculateSalaryConversion();
+  </script>
+</body>
+</html>

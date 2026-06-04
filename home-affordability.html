@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Home Affordability Calculator | NodnWebTools</title>
+
+  <meta
+    name="description"
+    content="Use the free NodnWebTools Home Affordability Calculator to estimate how much house you can afford based on annual income, monthly debt payments, down payment, interest rate, and debt-to-income ratio. Learn the 28/36 rule for home buying, mortgage debt to income ratio, and maximum home purchase price."
+  />
+  <meta
+    name="keywords"
+    content="home affordability calculator, how much house can I afford, mortgage debt to income ratio, 28/36 rule for home buying, maximum home purchase price, affordable home price calculator, mortgage affordability calculator, NodnWebTools"
+  />
+  <meta name="author" content="NodnWebTools" />
+  <meta name="robots" content="index, follow" />
+
+  <meta property="og:title" content="Home Affordability Calculator | NodnWebTools" />
+  <meta
+    property="og:description"
+    content="Estimate your affordable home price, monthly mortgage payment, and DTI ratio using income, debt, down payment, and interest rate."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://nodnwebtools.com/home-affordability.html" />
+  <meta property="og:site_name" content="NodnWebTools" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Home Affordability Calculator" />
+  <meta
+    name="twitter:description"
+    content="A free home affordability calculator for estimating how much house you can afford using DTI and mortgage assumptions."
+  />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="min-h-screen bg-slate-100 px-4 py-8 sm:py-12">
+  <main class="mx-auto max-w-5xl">
+
+    <!-- Google AdSense Responsive Ad - Top -->
+    <div class="mb-8 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white text-sm text-slate-400">
+      AdSense Responsive Ad Area - Top
+    </div>
+
+    <section class="grid gap-6 lg:grid-cols-2">
+
+      <div class="rounded-3xl bg-white p-5 shadow-xl ring-1 ring-slate-200 sm:p-8 lg:sticky lg:top-10 lg:self-start">
+        <div class="mb-6">
+          <span class="inline-flex rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-700">
+            Home Affordability Calculator
+          </span>
+
+          <h1 class="mt-5 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+            Estimate How Much House You Can Afford
+          </h1>
+
+          <p class="mt-3 text-base leading-7 text-slate-600">
+            Enter your income, monthly debts, down payment, and mortgage rate to estimate a realistic home price range
+            based on common debt-to-income guidelines.
+          </p>
+        </div>
+
+        <div class="space-y-5">
+          <div>
+            <label for="annualIncome" class="mb-2 block text-sm font-semibold text-slate-700">
+              Annual Income
+            </label>
+
+            <div class="relative">
+              <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">$</span>
+              <input
+                type="number"
+                id="annualIncome"
+                inputmode="decimal"
+                min="0"
+                step="1000"
+                value="100000"
+                placeholder="100000"
+                class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-8 pr-4 text-lg font-semibold text-slate-900 outline-none transition focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-100"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label for="monthlyDebt" class="mb-2 block text-sm font-semibold text-slate-700">
+              Monthly Debt Payments
+            </label>
+
+            <div class="relative">
+              <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">$</span>
+              <input
+                type="number"
+                id="monthlyDebt"
+                inputmode="decimal"
+                min="0"
+                step="50"
+                value="500"
+                placeholder="500"
+                class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-8 pr-4 text-lg font-semibold text-slate-900 outline-none transition focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-100"
+              />
+            </div>
+
+            <p class="mt-2 text-xs leading-5 text-slate-500">
+              Include student loans, credit cards, auto loans, personal loans, and other recurring debt payments.
+            </p>
+          </div>
+
+          <div>
+            <label for="downPayment" class="mb-2 block text-sm font-semibold text-slate-700">
+              Down Payment
+            </label>
+
+            <div class="relative">
+              <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">$</span>
+              <input
+                type="number"
+                id="downPayment"
+                inputmode="decimal"
+                min="0"
+                step="1000"
+                value="80000"
+                placeholder="80000"
+                class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-8 pr-4 text-lg font-semibold text-slate-900 outline-none transition focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-100"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label for="interestRate" class="mb-2 block text-sm font-semibold text-slate-700">
+              Mortgage Interest Rate
+            </label>
+
+            <div class="relative">
+              <input
+                type="number"
+                id="interestRate"
+                inputmode="decimal"
+                min="0"
+                step="0.01"
+                value="6.5"
+                placeholder="6.5"
+                class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-4 pr-10 text-lg font-semibold text-slate-900 outline-none transition focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-100"
+              />
+              <span class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400">%</span>
+            </div>
+
+            <p class="mt-2 text-xs leading-5 text-slate-500">
+              This calculator assumes a 30-year fixed mortgage and estimates principal and interest only.
+            </p>
+          </div>
+
+          <div class="rounded-2xl bg-blue-50 p-4 text-sm leading-6 text-slate-600">
+            The estimate uses conservative, balanced, and aggressive affordability scenarios based on common DTI guidelines.
+          </div>
+        </div>
+      </div>
+
+      <div class="space-y-6">
+        <div class="rounded-3xl bg-white p-5 shadow-xl ring-1 ring-slate-200 sm:p-8">
+          <div class="mb-6">
+            <h2 class="text-2xl font-bold text-slate-900">
+              Home Affordability Result
+            </h2>
+
+            <p class="mt-2 text-sm text-slate-500">
+              Results update automatically as you adjust income, debts, down payment, or mortgage rate.
+            </p>
+          </div>
+
+          <div id="result" class="rounded-3xl border border-blue-100 bg-gradient-to-br from-blue-50 via-slate-50 to-slate-100 p-5">
+            <p class="text-sm font-semibold uppercase tracking-wide text-blue-700">
+              Balanced Affordable Home Price
+            </p>
+
+            <p id="balancedHomePrice" class="mt-2 text-4xl font-extrabold tracking-tight text-slate-900">
+              $0.00
+            </p>
+
+            <p class="mt-3 text-sm leading-6 text-slate-600">
+              Based on a balanced 28/36-style debt-to-income approach.
+            </p>
+
+            <div class="mt-5 grid gap-3">
+              <div class="rounded-3xl border border-emerald-100 bg-white p-5 shadow-sm">
+                <div class="flex items-center justify-between gap-4">
+                  <div>
+                    <p class="text-xs font-semibold uppercase tracking-wide text-emerald-700">Conservative</p>
+                    <p id="conservativeHomePrice" class="mt-1 text-2xl font-extrabold text-slate-900">$0.00</p>
+                  </div>
+                  <span class="rounded-full bg-emerald-100 px-3 py-1 text-xs font-bold text-emerald-700">25/33 DTI</span>
+                </div>
+              </div>
+
+              <div class="rounded-3xl border border-blue-100 bg-white p-5 shadow-sm">
+                <div class="flex items-center justify-between gap-4">
+                  <div>
+                    <p class="text-xs font-semibold uppercase tracking-wide text-blue-700">Balanced</p>
+                    <p id="balancedHomePriceCard" class="mt-1 text-2xl font-extrabold text-slate-900">$0.00</p>
+                  </div>
+                  <span class="rounded-full bg-blue-100 px-3 py-1 text-xs font-bold text-blue-700">28/36 DTI</span>
+                </div>
+              </div>
+
+              <div class="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
+                <div class="flex items-center justify-between gap-4">
+                  <div>
+                    <p class="text-xs font-semibold uppercase tracking-wide text-slate-700">Aggressive</p>
+                    <p id="aggressiveHomePrice" class="mt-1 text-2xl font-extrabold text-slate-900">$0.00</p>
+                  </div>
+                  <span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-bold text-slate-700">31/43 DTI</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-5 grid gap-3 sm:grid-cols-2">
+              <div class="rounded-2xl bg-white p-4 shadow-sm">
+                <p class="text-xs text-slate-500">Estimated Monthly Mortgage Payment</p>
+                <p id="monthlyMortgagePayment" class="mt-1 text-lg font-bold text-slate-900">$0.00</p>
+              </div>
+
+              <div class="rounded-2xl bg-white p-4 shadow-sm">
+                <p class="text-xs text-slate-500">Total DTI Ratio</p>
+                <p id="dtiRatio" class="mt-1 text-lg font-bold text-slate-900">0.00%</p>
+              </div>
+
+              <div class="rounded-2xl bg-white p-4 shadow-sm">
+                <p class="text-xs text-slate-500">Gross Monthly Income</p>
+                <p id="grossMonthlyIncome" class="mt-1 text-lg font-bold text-slate-900">$0.00</p>
+              </div>
+
+              <div class="rounded-2xl bg-white p-4 shadow-sm">
+                <p class="text-xs text-slate-500">Monthly Debt Payments</p>
+                <p id="displayMonthlyDebt" class="mt-1 text-lg font-bold text-slate-900">$0.00</p>
+              </div>
+            </div>
+
+            <div class="mt-4 rounded-2xl bg-white p-4 text-sm leading-6 text-slate-600 shadow-sm">
+              Affordability status:
+              <strong id="affordabilityStatus">Not calculated</strong><br />
+              Loan term assumption:
+              <strong>30-year fixed mortgage</strong>
+            </div>
+          </div>
+
+          <!-- Google AdSense Responsive Ad - Below Result -->
+          <div class="mt-6 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-slate-50 text-sm text-slate-400">
+            AdSense Responsive Ad Area - Below Result
+          </div>
+
+          <p class="mt-5 text-xs leading-5 text-slate-500">
+            Disclaimer: This calculator is for general educational and planning purposes only.
+            It provides simplified estimates and should not be considered mortgage, legal, tax, real estate, or financial advice.
+            Actual affordability may vary based on property taxes, homeowners insurance, HOA fees, PMI, credit score,
+            lender underwriting, local rules, closing costs, income type, assets, loan program, and market conditions.
+            Please consult a qualified mortgage professional before making home-buying decisions.
+          </p>
+        </div>
+
+        <section class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-8">
+          <span class="inline-flex rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-700">
+            Mortgage Affordability Guide
+          </span>
+
+          <h2 class="mt-5 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
+            Home Affordability: How Much House Can You Honestly Afford?
+          </h2>
+
+          <div class="mt-5 space-y-5 text-sm leading-7 text-slate-600">
+            <p>
+              One of the most common questions buyers ask is
+              <strong class="font-semibold text-slate-800">how much house can I afford</strong>.
+              The answer is not based only on income or the size of your down payment. Lenders usually look at your full
+              financial picture, including monthly debts, mortgage payment, credit profile, cash reserves, and the stability
+              of your income.
+            </p>
+
+            <p>
+              A <strong class="font-semibold text-slate-800">home affordability calculator</strong>
+              can help estimate a reasonable price range before you start touring homes. This matters because the maximum
+              amount a lender may approve is not always the amount you should comfortably spend. A realistic budget should
+              leave room for repairs, utilities, furniture, maintenance, savings, insurance, property taxes, and unexpected life events.
+            </p>
+
+            <p>
+              The <strong class="font-semibold text-slate-800">28/36 rule for home buying</strong>
+              is a popular guideline used to evaluate affordability. The first number means your monthly housing payment should
+              ideally stay around 28% or less of your gross monthly income. The second number means your total monthly debt payments,
+              including housing, student loans, credit cards, auto loans, and other debts, should generally stay around 36% or less
+              of gross monthly income.
+            </p>
+
+            <p>
+              This is why the <strong class="font-semibold text-slate-800">mortgage debt to income ratio</strong>
+              is so important. A borrower with a high income but large monthly debt payments may qualify for less than expected.
+              On the other hand, a buyer with moderate income and very little debt may have stronger borrowing capacity. DTI does
+              not measure everything, but it gives lenders a quick view of how much of your monthly income is already committed.
+            </p>
+
+            <div class="overflow-hidden rounded-2xl border border-slate-200">
+              <table class="w-full text-left text-sm">
+                <thead class="bg-slate-100 text-slate-700">
+                  <tr>
+                    <th class="px-4 py-3 font-bold">Affordability Level</th>
+                    <th class="px-4 py-3 font-bold">Housing Ratio</th>
+                    <th class="px-4 py-3 font-bold">Total DTI Ratio</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200 bg-white">
+                  <tr>
+                    <td class="px-4 py-3 font-semibold text-slate-800">Conservative</td>
+                    <td class="px-4 py-3">25%</td>
+                    <td class="px-4 py-3">33%</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-semibold text-slate-800">Balanced</td>
+                    <td class="px-4 py-3">28%</td>
+                    <td class="px-4 py-3">36%</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-semibold text-slate-800">Aggressive</td>
+                    <td class="px-4 py-3">31%</td>
+                    <td class="px-4 py-3">43%</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <p>
+              Your down payment also affects your
+              <strong class="font-semibold text-slate-800">maximum home purchase price</strong>.
+              A larger down payment may reduce the loan amount, lower monthly payments, improve lender confidence, and sometimes
+              help avoid private mortgage insurance. However, using all available cash for the down payment can be risky if it
+              leaves you without emergency savings or repair reserves after closing.
+            </p>
+
+            <p>
+              A smart home-buying budget starts with the monthly payment, not just the sale price. Buyers should estimate principal
+              and interest, property taxes, homeowners insurance, HOA dues, utilities, maintenance, and possible mortgage insurance.
+              A home that looks affordable based on the mortgage alone may feel expensive once real ownership costs are included.
+            </p>
+
+            <p>
+              This Home Affordability Calculator from NodnWebTools is designed to help buyers compare conservative, balanced,
+              and aggressive purchase price ranges before speaking with a lender. Use it as an early planning tool, then get a
+              full pre-approval and personalized mortgage estimate from a qualified professional.
+            </p>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <!-- Google AdSense Responsive Ad - Bottom -->
+    <div class="mt-8 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white text-sm text-slate-400">
+      AdSense Responsive Ad Area - Bottom
+    </div>
+
+  </main>
+
+  <script>
+    const annualIncomeInput = document.getElementById("annualIncome");
+    const monthlyDebtInput = document.getElementById("monthlyDebt");
+    const downPaymentInput = document.getElementById("downPayment");
+    const interestRateInput = document.getElementById("interestRate");
+
+    const balancedHomePriceEl = document.getElementById("balancedHomePrice");
+    const conservativeHomePriceEl = document.getElementById("conservativeHomePrice");
+    const balancedHomePriceCardEl = document.getElementById("balancedHomePriceCard");
+    const aggressiveHomePriceEl = document.getElementById("aggressiveHomePrice");
+    const monthlyMortgagePaymentEl = document.getElementById("monthlyMortgagePayment");
+    const dtiRatioEl = document.getElementById("dtiRatio");
+    const grossMonthlyIncomeEl = document.getElementById("grossMonthlyIncome");
+    const displayMonthlyDebtEl = document.getElementById("displayMonthlyDebt");
+    const affordabilityStatusEl = document.getElementById("affordabilityStatus");
+
+    const LOAN_TERM_YEARS = 30;
+    const LOAN_TERM_MONTHS = LOAN_TERM_YEARS * 12;
+
+    function formatCurrency(value) {
+      return new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      }).format(value);
+    }
+
+    function formatNumber(value, decimals = 2) {
+      return new Intl.NumberFormat("en-US", {
+        minimumFractionDigits: decimals,
+        maximumFractionDigits: decimals
+      }).format(value);
+    }
+
+    function formatPercent(value, decimals = 2) {
+      return formatNumber(value, decimals) + "%";
+    }
+
+    function sanitizeNumber(value, fallback = 0) {
+      const number = parseFloat(value);
+      return isNaN(number) || number < 0 ? fallback : number;
+    }
+
+    function calculateLoanPrincipalFromPayment(monthlyPayment, annualInterestRate) {
+      const monthlyRate = annualInterestRate / 100 / 12;
+
+      if (monthlyPayment <= 0) {
+        return 0;
+      }
+
+      if (monthlyRate === 0) {
+        return monthlyPayment * LOAN_TERM_MONTHS;
+      }
+
+      return monthlyPayment * ((Math.pow(1 + monthlyRate, LOAN_TERM_MONTHS) - 1) / (monthlyRate * Math.pow(1 + monthlyRate, LOAN_TERM_MONTHS)));
+    }
+
+    function calculateMonthlyPaymentFromPrincipal(principal, annualInterestRate) {
+      const monthlyRate = annualInterestRate / 100 / 12;
+
+      if (principal <= 0) {
+        return 0;
+      }
+
+      if (monthlyRate === 0) {
+        return principal / LOAN_TERM_MONTHS;
+      }
+
+      return principal *
+        (monthlyRate * Math.pow(1 + monthlyRate, LOAN_TERM_MONTHS)) /
+        (Math.pow(1 + monthlyRate, LOAN_TERM_MONTHS) - 1);
+    }
+
+    function calculateScenarioHomePrice(grossMonthlyIncome, monthlyDebt, downPayment, interestRate, frontEndRatio, backEndRatio) {
+      const housingLimitByIncome = grossMonthlyIncome * frontEndRatio;
+      const housingLimitByTotalDebt = Math.max(0, grossMonthlyIncome * backEndRatio - monthlyDebt);
+      const affordableMonthlyHousing = Math.min(housingLimitByIncome, housingLimitByTotalDebt);
+
+      const loanPrincipal = calculateLoanPrincipalFromPayment(affordableMonthlyHousing, interestRate);
+      const homePrice = loanPrincipal + downPayment;
+
+      return {
+        monthlyHousing: affordableMonthlyHousing,
+        loanPrincipal: loanPrincipal,
+        homePrice: homePrice
+      };
+    }
+
+    function calculateHomeAffordability() {
+      const annualIncome = sanitizeNumber(annualIncomeInput.value);
+      const monthlyDebt = sanitizeNumber(monthlyDebtInput.value);
+      const downPayment = sanitizeNumber(downPaymentInput.value);
+      const interestRate = sanitizeNumber(interestRateInput.value);
+
+      const grossMonthlyIncome = annualIncome / 12;
+
+      const conservative = calculateScenarioHomePrice(grossMonthlyIncome, monthlyDebt, downPayment, interestRate, 0.25, 0.33);
+      const balanced = calculateScenarioHomePrice(grossMonthlyIncome, monthlyDebt, downPayment, interestRate, 0.28, 0.36);
+      const aggressive = calculateScenarioHomePrice(grossMonthlyIncome, monthlyDebt, downPayment, interestRate, 0.31, 0.43);
+
+      const balancedLoanAmount = Math.max(0, balanced.homePrice - downPayment);
+      const estimatedMonthlyMortgagePayment = calculateMonthlyPaymentFromPrincipal(balancedLoanAmount, interestRate);
+
+      const totalDti = grossMonthlyIncome > 0
+        ? ((estimatedMonthlyMortgagePayment + monthlyDebt) / grossMonthlyIncome) * 100
+        : 0;
+
+      let statusText = "Not calculated";
+      let statusClass = "font-bold text-slate-700";
+
+      if (grossMonthlyIncome <= 0) {
+        statusText = "Enter income to calculate affordability.";
+      } else if (totalDti <= 36) {
+        statusText = "Balanced range: generally within common 28/36 affordability guidelines.";
+        statusClass = "font-bold text-emerald-700";
+      } else if (totalDti <= 43) {
+        statusText = "Aggressive range: may be possible, but budget pressure could be higher.";
+        statusClass = "font-bold text-amber-700";
+      } else {
+        statusText = "High DTI: this may be above a comfortable affordability range.";
+        statusClass = "font-bold text-red-600";
+      }
+
+      balancedHomePriceEl.textContent = formatCurrency(balanced.homePrice);
+      conservativeHomePriceEl.textContent = formatCurrency(conservative.homePrice);
+      balancedHomePriceCardEl.textContent = formatCurrency(balanced.homePrice);
+      aggressiveHomePriceEl.textContent = formatCurrency(aggressive.homePrice);
+      monthlyMortgagePaymentEl.textContent = formatCurrency(estimatedMonthlyMortgagePayment);
+      dtiRatioEl.textContent = formatPercent(totalDti);
+      grossMonthlyIncomeEl.textContent = formatCurrency(grossMonthlyIncome);
+      displayMonthlyDebtEl.textContent = formatCurrency(monthlyDebt);
+      affordabilityStatusEl.textContent = statusText;
+      affordabilityStatusEl.className = statusClass;
+
+      if (totalDti > 43) {
+        dtiRatioEl.className = "mt-1 text-lg font-bold text-red-600";
+      } else if (totalDti > 36) {
+        dtiRatioEl.className = "mt-1 text-lg font-bold text-amber-600";
+      } else {
+        dtiRatioEl.className = "mt-1 text-lg font-bold text-emerald-700";
+      }
+    }
+
+    annualIncomeInput.addEventListener("input", calculateHomeAffordability);
+    monthlyDebtInput.addEventListener("input", calculateHomeAffordability);
+    downPaymentInput.addEventListener("input", calculateHomeAffordability);
+    interestRateInput.addEventListener("input", calculateHomeAffordability);
+
+    calculateHomeAffordability();
+  </script>
+</body>
+</html>
