@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Time Cost Calculator | NodnWebTools</title>
+
+  <meta
+    name="description"
+    content="Use the free NodnWebTools Time Cost Calculator to convert any purchase price into hours of work required. Learn how to calculate price in hours worked, understand the money is time philosophy, stop impulse buying, and discover the real cost of things."
+  />
+  <meta
+    name="keywords"
+    content="time cost calculator, calculate price in hours worked, money is time philosophy, how to stop impulse buying, real cost of things, minimalist spending tips, work hours calculator, price in work hours, NodnWebTools"
+  />
+  <meta name="author" content="NodnWebTools" />
+  <meta name="robots" content="index, follow" />
+
+  <meta property="og:title" content="Time Cost Calculator | NodnWebTools" />
+  <meta
+    property="og:description"
+    content="Convert a purchase price into the number of work hours and workdays required to afford it."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://nodnwebtools.com/time-cost.html" />
+  <meta property="og:site_name" content="NodnWebTools" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Time Cost Calculator" />
+  <meta
+    name="twitter:description"
+    content="A minimalist spending calculator that shows how many hours of your life a purchase really costs."
+  />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="min-h-screen bg-slate-100 px-4 py-8 sm:py-12">
+  <main class="mx-auto max-w-5xl">
+
+    <!-- Google AdSense Responsive Ad - Top -->
+    <div class="mb-8 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white text-sm text-slate-400">
+      AdSense Responsive Ad Area - Top
+    </div>
+
+    <section class="grid gap-6 lg:grid-cols-2">
+
+      <div class="rounded-3xl bg-white p-5 shadow-xl ring-1 ring-slate-200 sm:p-8 lg:sticky lg:top-10 lg:self-start">
+        <div class="mb-6">
+          <span class="inline-flex rounded-full bg-indigo-100 px-4 py-2 text-sm font-semibold text-indigo-700">
+            Time Cost Calculator
+          </span>
+
+          <h1 class="mt-5 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+            Convert Any Purchase into Hours of Work
+          </h1>
+
+          <p class="mt-3 text-base leading-7 text-slate-600">
+            Enter your real hourly wage and the price of an item to see how much of your working life
+            that purchase actually costs.
+          </p>
+        </div>
+
+        <div class="space-y-5">
+          <div>
+            <label for="hourlyWage" class="mb-2 block text-sm font-semibold text-slate-700">
+              Your Hourly Wage
+            </label>
+
+            <div class="relative">
+              <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">$</span>
+              <input
+                type="number"
+                id="hourlyWage"
+                inputmode="decimal"
+                min="0"
+                step="0.01"
+                value="25"
+                placeholder="25.00"
+                class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-8 pr-4 text-lg font-semibold text-slate-900 outline-none transition focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-100"
+              />
+            </div>
+
+            <p class="mt-2 text-xs leading-5 text-slate-500">
+              Use your after-tax hourly wage for a more realistic result.
+            </p>
+          </div>
+
+          <div>
+            <label for="itemPrice" class="mb-2 block text-sm font-semibold text-slate-700">
+              Price of Item or Service
+            </label>
+
+            <div class="relative">
+              <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">$</span>
+              <input
+                type="number"
+                id="itemPrice"
+                inputmode="decimal"
+                min="0"
+                step="0.01"
+                value="120"
+                placeholder="120.00"
+                class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-8 pr-4 text-lg font-semibold text-slate-900 outline-none transition focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-100"
+              />
+            </div>
+
+            <p class="mt-2 text-xs leading-5 text-slate-500">
+              Try entering the price of a gadget, clothing item, subscription, dinner, vacation upgrade, or impulse purchase.
+            </p>
+          </div>
+
+          <div class="rounded-2xl bg-indigo-50 p-4 text-sm leading-6 text-slate-600">
+            This tool reframes spending as time. Instead of asking “Can I afford it?”, ask
+            “Is this worth the hours of life I must trade for it?”
+          </div>
+        </div>
+      </div>
+
+      <div class="space-y-6">
+        <div class="rounded-3xl bg-white p-5 shadow-xl ring-1 ring-slate-200 sm:p-8">
+          <div class="mb-6">
+            <h2 class="text-2xl font-bold text-slate-900">
+              Time Cost Result
+            </h2>
+
+            <p class="mt-2 text-sm text-slate-500">
+              Results update automatically as you change your wage or item price.
+            </p>
+          </div>
+
+          <div id="result" class="rounded-3xl border border-indigo-100 bg-gradient-to-br from-indigo-50 via-slate-50 to-blue-50 p-5">
+            <p class="text-sm font-semibold uppercase tracking-wide text-indigo-700">
+              Hours of Work Required
+            </p>
+
+            <p id="hoursRequired" class="mt-2 text-5xl font-extrabold tracking-tight text-indigo-700">
+              0.00 Hours
+            </p>
+
+            <p id="workSentence" class="mt-3 text-base leading-7 text-slate-700">
+              You need to work 0.00 hours to afford this item.
+            </p>
+
+            <div class="mt-5 grid gap-3 sm:grid-cols-2">
+              <div class="rounded-2xl bg-white p-4 shadow-sm">
+                <p class="text-xs text-slate-500">Hourly Wage</p>
+                <p id="displayHourlyWage" class="mt-1 text-lg font-bold text-slate-900">$0.00</p>
+              </div>
+
+              <div class="rounded-2xl bg-white p-4 shadow-sm">
+                <p class="text-xs text-slate-500">Item Price</p>
+                <p id="displayItemPrice" class="mt-1 text-lg font-bold text-slate-900">$0.00</p>
+              </div>
+
+              <div class="rounded-2xl bg-white p-4 shadow-sm">
+                <p class="text-xs text-slate-500">Minutes of Work</p>
+                <p id="displayMinutesRequired" class="mt-1 text-lg font-bold text-slate-900">0 Minutes</p>
+              </div>
+
+              <div class="rounded-2xl bg-white p-4 shadow-sm">
+                <p class="text-xs text-slate-500">Days of Work</p>
+                <p id="displayDaysRequired" class="mt-1 text-lg font-bold text-slate-900">0.00 Days</p>
+              </div>
+            </div>
+
+            <div class="mt-5 rounded-3xl border border-indigo-100 bg-white p-5 shadow-sm">
+              <p class="text-xs font-semibold uppercase tracking-wide text-indigo-700">
+                Minimalist Reality Check
+              </p>
+
+              <p id="realityCheck" class="mt-3 text-lg font-bold leading-7 text-slate-900">
+                Is this item really worth 0.00 hours of your life?
+              </p>
+
+              <p class="mt-2 text-sm leading-6 text-slate-500">
+                The point is not to feel guilty. The point is to spend intentionally.
+              </p>
+            </div>
+
+            <div class="mt-4 rounded-2xl bg-white p-4 text-sm leading-6 text-slate-600 shadow-sm">
+              Workday assumption:
+              <strong>8 hours per day</strong>.
+              For a more realistic result, use after-tax hourly pay.
+            </div>
+          </div>
+
+          <!-- Google AdSense Responsive Ad - Below Result -->
+          <div class="mt-6 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-slate-50 text-sm text-slate-400">
+            AdSense Responsive Ad Area - Below Result
+          </div>
+
+          <p class="mt-5 text-xs leading-5 text-slate-500">
+            Disclaimer: This calculator is for general educational and personal budgeting purposes only.
+            It provides simplified estimates and should not be considered financial, tax, legal, employment, or investment advice.
+            Actual purchasing power may vary depending on taxes, benefits, overtime, commute time, unpaid labor, debt payments,
+            living expenses, and personal circumstances.
+          </p>
+        </div>
+
+        <section class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-8">
+          <span class="inline-flex rounded-full bg-indigo-100 px-4 py-2 text-sm font-semibold text-indigo-700">
+            Minimalist Spending Guide
+          </span>
+
+          <h2 class="mt-5 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
+            Money is Time: The Real Cost of Your Shopping Habits
+          </h2>
+
+          <div class="mt-5 space-y-5 text-sm leading-7 text-slate-600">
+            <p>
+              The <strong class="font-semibold text-slate-800">money is time philosophy</strong> appears in many forms,
+              from minimalist living to classic reflections like Henry David Thoreau’s <em>Walden</em>. The core idea is
+              powerful: when you buy something, you are not only spending money. You are spending the hours of life it took
+              to earn that money.
+            </p>
+
+            <p>
+              A Time Cost Calculator helps you
+              <strong class="font-semibold text-slate-800">calculate price in hours worked</strong>.
+              A $200 item may feel abstract, but if your real hourly wage is $25 after tax, that purchase costs 8 hours
+              of work. Once spending is translated into time, the
+              <strong class="font-semibold text-slate-800">real cost of things</strong>
+              becomes easier to understand.
+            </p>
+
+            <p>
+              This is especially useful if you want to learn
+              <strong class="font-semibold text-slate-800">how to stop impulse buying</strong>.
+              Impulse purchases often happen because the emotional reward is immediate while the cost feels distant.
+              Converting the price into work hours creates a pause. It gives your rational brain enough time to ask
+              whether the item is truly worth a morning, a full workday, or even several days of effort.
+            </p>
+
+            <div class="rounded-2xl bg-slate-50 p-5">
+              <h3 class="font-bold text-slate-900">
+                Ask these 3 questions before buying
+              </h3>
+
+              <ul class="mt-3 space-y-3">
+                <li>
+                  <strong class="text-slate-800">1. Would I trade this many hours of my life for this item?</strong>
+                </li>
+                <li>
+                  <strong class="text-slate-800">2. Will I still value this purchase 30 days from now?</strong>
+                </li>
+                <li>
+                  <strong class="text-slate-800">3. Is there a cheaper, simpler, or more meaningful alternative?</strong>
+                </li>
+              </ul>
+            </div>
+
+            <p>
+              One of the most practical
+              <strong class="font-semibold text-slate-800">minimalist spending tips</strong>
+              is to use a waiting period. For small purchases, wait 24 hours. For expensive purchases, wait 7 to 30 days.
+              If you still want the item after the waiting period and it fits your budget, the purchase is more likely to be
+              intentional rather than emotional.
+            </p>
+
+            <p>
+              Minimalism does not mean never buying anything. It means buying with clarity. Some purchases save time,
+              improve health, deepen relationships, or support meaningful goals. Others simply add clutter, maintenance,
+              debt, and stress. When you measure purchases in work hours, you begin to see which ones deserve your limited time.
+            </p>
+
+            <p>
+              This Time Cost Calculator from NodnWebTools is designed to help you make calmer, smarter spending decisions.
+              Use it before buying gadgets, clothes, subscriptions, upgrades, furniture, or luxury items. The goal is not
+              deprivation. The goal is freedom: spending your money and your time on what genuinely matters.
+            </p>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <!-- Google AdSense Responsive Ad - Bottom -->
+    <div class="mt-8 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white text-sm text-slate-400">
+      AdSense Responsive Ad Area - Bottom
+    </div>
+
+  </main>
+
+  <script>
+    const hourlyWageInput = document.getElementById("hourlyWage");
+    const itemPriceInput = document.getElementById("itemPrice");
+
+    const hoursRequiredEl = document.getElementById("hoursRequired");
+    const workSentenceEl = document.getElementById("workSentence");
+    const displayHourlyWageEl = document.getElementById("displayHourlyWage");
+    const displayItemPriceEl = document.getElementById("displayItemPrice");
+    const displayMinutesRequiredEl = document.getElementById("displayMinutesRequired");
+    const displayDaysRequiredEl = document.getElementById("displayDaysRequired");
+    const realityCheckEl = document.getElementById("realityCheck");
+
+    function formatCurrency(value) {
+      return new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      }).format(value);
+    }
+
+    function formatNumber(value, decimals = 2) {
+      return new Intl.NumberFormat("en-US", {
+        minimumFractionDigits: decimals,
+        maximumFractionDigits: decimals
+      }).format(value);
+    }
+
+    function sanitizeNumber(value, fallback = 0) {
+      const number = parseFloat(value);
+      return isNaN(number) || number < 0 ? fallback : number;
+    }
+
+    function calculateTimeCost() {
+      const hourlyWage = sanitizeNumber(hourlyWageInput.value);
+      const itemPrice = sanitizeNumber(itemPriceInput.value);
+
+      let hoursRequired = 0;
+      let minutesRequired = 0;
+      let daysRequired = 0;
+
+      if (hourlyWage > 0 && itemPrice > 0) {
+        hoursRequired = itemPrice / hourlyWage;
+        minutesRequired = hoursRequired * 60;
+        daysRequired = hoursRequired / 8;
+      }
+
+      const hourLabel = Math.abs(hoursRequired - 1) < 0.005 ? "hour" : "hours";
+      const dayLabel = Math.abs(daysRequired - 1) < 0.005 ? "day" : "days";
+
+      hoursRequiredEl.textContent = formatNumber(hoursRequired, 2) + " " + (hoursRequired === 1 ? "Hour" : "Hours");
+      workSentenceEl.innerHTML = "You need to work <strong>" + formatNumber(hoursRequired, 2) + " " + hourLabel + "</strong> to afford this item.";
+      displayHourlyWageEl.textContent = formatCurrency(hourlyWage);
+      displayItemPriceEl.textContent = formatCurrency(itemPrice);
+      displayMinutesRequiredEl.textContent = formatNumber(minutesRequired, 0) + (Math.round(minutesRequired) === 1 ? " Minute" : " Minutes");
+      displayDaysRequiredEl.textContent = formatNumber(daysRequired, 2) + " " + dayLabel;
+
+      realityCheckEl.textContent = "Is this item really worth " + formatNumber(hoursRequired, 2) + " " + hourLabel + " of your life?";
+    }
+
+    hourlyWageInput.addEventListener("input", calculateTimeCost);
+    itemPriceInput.addEventListener("input", calculateTimeCost);
+
+    calculateTimeCost();
+  </script>
+</body>
+</html>
