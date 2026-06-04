@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>ROI Calculator | NodnWebTools</title>
+
+  <meta
+    name="description"
+    content="Use the free NodnWebTools ROI Calculator to calculate total gain, return on investment percentage, and annualized ROI. Learn how to calculate ROI, the return on investment formula, good ROI for stocks, annualized ROI, and real estate ROI."
+  />
+  <meta
+    name="keywords"
+    content="ROI calculator, return on investment calculator, how to calculate ROI, return on investment formula, good ROI for stocks, annualized ROI calculator, real estate ROI, investment return calculator, NodnWebTools"
+  />
+  <meta name="author" content="NodnWebTools" />
+  <meta name="robots" content="index, follow" />
+
+  <meta property="og:title" content="ROI Calculator | NodnWebTools" />
+  <meta
+    property="og:description"
+    content="Calculate total gain, ROI percentage, and annualized ROI with a clean real-time investment return calculator."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://nodnwebtools.com/roi.html" />
+  <meta property="og:site_name" content="NodnWebTools" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="ROI Calculator" />
+  <meta
+    name="twitter:description"
+    content="A free ROI calculator for measuring investment returns, total gain, and annualized ROI."
+  />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="min-h-screen bg-slate-100 px-4 py-8 sm:py-12">
+  <main class="mx-auto max-w-5xl">
+
+    <!-- Google AdSense Responsive Ad - Top -->
+    <div class="mb-8 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white text-sm text-slate-400">
+      AdSense Responsive Ad Area - Top
+    </div>
+
+    <section class="grid gap-6 lg:grid-cols-2">
+
+      <div class="rounded-3xl bg-white p-5 shadow-xl ring-1 ring-slate-200 sm:p-8 lg:sticky lg:top-10 lg:self-start">
+        <div class="mb-6">
+          <span class="inline-flex rounded-full bg-emerald-100 px-4 py-2 text-sm font-semibold text-emerald-700">
+            ROI Calculator
+          </span>
+
+          <h1 class="mt-5 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+            Calculate Your Investment Return
+          </h1>
+
+          <p class="mt-3 text-base leading-7 text-slate-600">
+            Enter your initial investment, final return amount, and optional investment term to estimate
+            total gain, ROI percentage, and annualized ROI.
+          </p>
+        </div>
+
+        <div class="space-y-5">
+          <div>
+            <label for="amountInvested" class="mb-2 block text-sm font-semibold text-slate-700">
+              Amount Invested
+            </label>
+
+            <div class="relative">
+              <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">$</span>
+              <input
+                type="number"
+                id="amountInvested"
+                inputmode="decimal"
+                min="0"
+                step="100"
+                value="10000"
+                placeholder="10000"
+                class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-8 pr-4 text-lg font-semibold text-slate-900 outline-none transition focus:border-emerald-500 focus:bg-white focus:ring-4 focus:ring-emerald-100"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label for="amountReturned" class="mb-2 block text-sm font-semibold text-slate-700">
+              Amount Returned
+            </label>
+
+            <div class="relative">
+              <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">$</span>
+              <input
+                type="number"
+                id="amountReturned"
+                inputmode="decimal"
+                min="0"
+                step="100"
+                value="12500"
+                placeholder="12500"
+                class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-8 pr-4 text-lg font-semibold text-slate-900 outline-none transition focus:border-emerald-500 focus:bg-white focus:ring-4 focus:ring-emerald-100"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label for="investmentTerm" class="mb-2 block text-sm font-semibold text-slate-700">
+              Investment Term <span class="font-normal text-slate-400">(Optional)</span>
+            </label>
+
+            <div class="relative">
+              <input
+                type="number"
+                id="investmentTerm"
+                inputmode="decimal"
+                min="0"
+                step="0.1"
+                value="3"
+                placeholder="3"
+                class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-4 pr-20 text-lg font-semibold text-slate-900 outline-none transition focus:border-emerald-500 focus:bg-white focus:ring-4 focus:ring-emerald-100"
+              />
+              <span class="absolute right-4 top-1/2 -translate-y-1/2 text-sm font-medium text-slate-400">
+                Years
+              </span>
+            </div>
+          </div>
+
+          <div class="rounded-2xl bg-emerald-50 p-4 text-sm leading-6 text-slate-600">
+            ROI measures how much profit or loss an investment generated compared with the original amount invested.
+            Annualized ROI helps compare investments with different holding periods.
+          </div>
+        </div>
+      </div>
+
+      <div class="space-y-6">
+        <div class="rounded-3xl bg-white p-5 shadow-xl ring-1 ring-slate-200 sm:p-8">
+          <div class="mb-6">
+            <h2 class="text-2xl font-bold text-slate-900">
+              Estimated ROI Result
+            </h2>
+
+            <p class="mt-2 text-sm text-slate-500">
+              Results update automatically as you adjust your investment values.
+            </p>
+          </div>
+
+          <div id="result" class="rounded-3xl border border-emerald-100 bg-gradient-to-br from-emerald-50 via-green-50 to-slate-50 p-5">
+            <p class="text-sm font-semibold uppercase tracking-wide text-emerald-700">
+              Return on Investment
+            </p>
+
+            <p id="roiPercent" class="mt-2 text-4xl font-extrabold tracking-tight text-slate-900">
+              0.00%
+            </p>
+
+            <div class="mt-5 grid gap-3 sm:grid-cols-2">
+              <div class="rounded-2xl bg-white p-4 shadow-sm">
+                <p class="text-xs text-slate-500">Amount Invested</p>
+                <p id="displayAmountInvested" class="mt-1 text-lg font-bold text-slate-900">$0.00</p>
+              </div>
+
+              <div class="rounded-2xl bg-white p-4 shadow-sm">
+                <p class="text-xs text-slate-500">Amount Returned</p>
+                <p id="displayAmountReturned" class="mt-1 text-lg font-bold text-slate-900">$0.00</p>
+              </div>
+
+              <div class="rounded-2xl bg-white p-4 shadow-sm">
+                <p class="text-xs text-slate-500">Total Gain</p>
+                <p id="displayTotalGain" class="mt-1 text-lg font-bold text-emerald-700">$0.00</p>
+              </div>
+
+              <div class="rounded-2xl bg-white p-4 shadow-sm">
+                <p class="text-xs text-slate-500">Investment Term</p>
+                <p id="displayInvestmentTerm" class="mt-1 text-lg font-bold text-slate-900">Not entered</p>
+              </div>
+            </div>
+
+            <div id="annualizedBox" class="mt-4 rounded-2xl bg-white p-4 text-sm leading-6 text-slate-600 shadow-sm">
+              Annualized ROI:
+              <strong id="displayAnnualizedROI">Not calculated</strong>
+            </div>
+          </div>
+
+          <!-- Google AdSense Responsive Ad - Below Result -->
+          <div class="mt-6 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-slate-50 text-sm text-slate-400">
+            AdSense Responsive Ad Area - Below Result
+          </div>
+
+          <p class="mt-5 text-xs leading-5 text-slate-500">
+            Disclaimer: This calculator is for general educational and informational purposes only.
+            It provides a simplified estimate and should not be considered investment, financial, tax, legal,
+            or professional advice. Actual returns may vary due to market volatility, fees, taxes, inflation,
+            timing, liquidity, currency exchange, and other risks. Please consult a qualified financial professional
+            before making investment decisions.
+          </p>
+        </div>
+
+        <section class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-8">
+          <span class="inline-flex rounded-full bg-emerald-100 px-4 py-2 text-sm font-semibold text-emerald-700">
+            Investment Guide
+          </span>
+
+          <h2 class="mt-5 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
+            Understanding ROI: How to Measure Investment Success
+          </h2>
+
+          <div class="mt-5 space-y-5 text-sm leading-7 text-slate-600">
+            <p>
+              Return on Investment, commonly called ROI, is one of the simplest ways to measure whether an investment
+              produced a profit or loss. If you are learning <strong class="font-semibold text-slate-800">how to calculate ROI</strong>,
+              the basic idea is to compare the money you gained with the money you originally invested. A positive ROI means
+              the investment increased in value, while a negative ROI means the investment lost money.
+            </p>
+
+            <p>
+              The standard <strong class="font-semibold text-slate-800">return on investment formula</strong> is:
+              ROI = (Amount Returned - Amount Invested) / Amount Invested × 100. For example, if you invested $10,000
+              and later received $12,500, your total gain would be $2,500 and your ROI would be 25%. This formula is useful
+              for comparing stocks, small business projects, marketing campaigns, rental properties, and many other investments.
+            </p>
+
+            <p>
+              Investors often ask what counts as a <strong class="font-semibold text-slate-800">good ROI for stocks</strong>.
+              The answer depends on the time period, risk level, fees, taxes, and market conditions. A stock investment that
+              earns 10% in one year may look attractive, but the same 10% return over ten years would be much less impressive.
+              This is why it is important to compare returns against benchmarks, inflation, and the risk you accepted.
+            </p>
+
+            <p>
+              ROI is also widely used in property analysis. <strong class="font-semibold text-slate-800">Real estate ROI</strong>
+              may include rental income, property appreciation, renovation costs, mortgage interest, property taxes, insurance,
+              repairs, vacancy, and selling costs. A rental property may appear profitable based only on appreciation, but the
+              true return can change once ongoing expenses and transaction costs are included.
+            </p>
+
+            <p>
+              When comparing short-term and long-term investments, an
+              <strong class="font-semibold text-slate-800">annualized ROI calculator</strong> can provide a more accurate view.
+              Annualized ROI converts a total return into an average yearly rate, making it easier to compare a six-month trade,
+              a three-year stock position, and a ten-year real estate investment. This matters because time changes the meaning
+              of a return. A 30% gain in one year is very different from a 30% gain over ten years.
+            </p>
+
+            <p>
+              This ROI Calculator from NodnWebTools is designed to help investors quickly estimate total gain, ROI percentage,
+              and annualized ROI. Use it as a starting point for investment analysis, then consider taxes, fees, inflation,
+              and risk before making any final financial decision.
+            </p>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <!-- Google AdSense Responsive Ad - Bottom -->
+    <div class="mt-8 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white text-sm text-slate-400">
+      AdSense Responsive Ad Area - Bottom
+    </div>
+
+  </main>
+
+  <script>
+    const amountInvestedInput = document.getElementById("amountInvested");
+    const amountReturnedInput = document.getElementById("amountReturned");
+    const investmentTermInput = document.getElementById("investmentTerm");
+
+    const roiPercentEl = document.getElementById("roiPercent");
+    const displayAmountInvestedEl = document.getElementById("displayAmountInvested");
+    const displayAmountReturnedEl = document.getElementById("displayAmountReturned");
+    const displayTotalGainEl = document.getElementById("displayTotalGain");
+    const displayInvestmentTermEl = document.getElementById("displayInvestmentTerm");
+    const displayAnnualizedROIEl = document.getElementById("displayAnnualizedROI");
+    const annualizedBoxEl = document.getElementById("annualizedBox");
+
+    function formatCurrency(value) {
+      return new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      }).format(value);
+    }
+
+    function formatNumber(value, decimals = 2) {
+      return new Intl.NumberFormat("en-US", {
+        minimumFractionDigits: decimals,
+        maximumFractionDigits: decimals
+      }).format(value);
+    }
+
+    function formatPercent(value) {
+      return formatNumber(value, 2) + "%";
+    }
+
+    function sanitizeNumber(value, fallback = 0) {
+      const number = parseFloat(value);
+      return isNaN(number) || number < 0 ? fallback : number;
+    }
+
+    function calculateROI() {
+      const amountInvested = sanitizeNumber(amountInvestedInput.value);
+      const amountReturned = sanitizeNumber(amountReturnedInput.value);
+      const investmentTerm = sanitizeNumber(investmentTermInput.value);
+
+      let totalGain = 0;
+      let roi = 0;
+      let annualizedROI = null;
+
+      if (amountInvested > 0) {
+        totalGain = amountReturned - amountInvested;
+        roi = (totalGain / amountInvested) * 100;
+
+        if (investmentTerm > 0 && amountReturned > 0) {
+          annualizedROI = (Math.pow(amountReturned / amountInvested, 1 / investmentTerm) - 1) * 100;
+        }
+      }
+
+      roiPercentEl.textContent = formatPercent(roi);
+      displayAmountInvestedEl.textContent = formatCurrency(amountInvested);
+      displayAmountReturnedEl.textContent = formatCurrency(amountReturned);
+      displayTotalGainEl.textContent = formatCurrency(totalGain);
+      displayInvestmentTermEl.textContent = investmentTerm > 0
+        ? formatNumber(investmentTerm, investmentTerm % 1 === 0 ? 0 : 1) + " Years"
+        : "Not entered";
+
+      if (annualizedROI !== null && isFinite(annualizedROI)) {
+        displayAnnualizedROIEl.textContent = formatPercent(annualizedROI);
+        annualizedBoxEl.classList.remove("hidden");
+      } else {
+        displayAnnualizedROIEl.textContent = "Not calculated";
+      }
+
+      if (totalGain < 0) {
+        displayTotalGainEl.className = "mt-1 text-lg font-bold text-red-600";
+      } else {
+        displayTotalGainEl.className = "mt-1 text-lg font-bold text-emerald-700";
+      }
+
+      if (roi < 0) {
+        roiPercentEl.className = "mt-2 text-4xl font-extrabold tracking-tight text-red-600";
+      } else {
+        roiPercentEl.className = "mt-2 text-4xl font-extrabold tracking-tight text-slate-900";
+      }
+    }
+
+    amountInvestedInput.addEventListener("input", calculateROI);
+    amountReturnedInput.addEventListener("input", calculateROI);
+    investmentTermInput.addEventListener("input", calculateROI);
+
+    calculateROI();
+  </script>
+</body>
+</html>
