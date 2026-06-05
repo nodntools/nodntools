@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
 
   <title>Online Text Case Converter | Change Upper, Lower, Camel, Snake Case Free - NodnWebTools</title>
 
@@ -53,52 +53,58 @@
       }
     }
   </script>
+  <style>
+    html, body { width: 100%; overflow-x: hidden; }
+    * { box-sizing: border-box; }
+    textarea, input, select, button { max-width: 100%; }
+    .adsbygoogle { max-width: 100%; overflow: hidden; }
+  </style>
 </head>
 
-<body class="min-h-screen bg-slate-100 px-4 py-8 sm:py-12">
-  <main class="mx-auto max-w-5xl">
+<body class="min-h-screen bg-slate-100 px-3 py-5 sm:px-4 sm:py-8 lg:py-12">
+  <main class="mx-auto w-full max-w-5xl overflow-hidden">
 
-    <div class="mb-8 text-center">
+    <div class="mb-5 text-center sm:mb-8">
       <a
         href="https://nodntools.com"
         class="inline-block transition hover:opacity-80"
         aria-label="NodnWebTools Home"
       >
-        <div class="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
+        <div class="text-xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
           Nodn<span class="text-blue-600">WebTools</span>
         </div>
       </a>
     </div>
 
-    <div class="mb-8 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white text-sm text-slate-400">
+    <div class="mb-5 flex min-h-[72px] w-full items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white px-3 text-center text-xs text-slate-400 sm:mb-8 sm:min-h-[90px] sm:text-sm">
       AdSense Responsive Ad Area - Top
     </div>
 
-    <section class="grid gap-6 lg:grid-cols-12">
+    <section class="grid grid-cols-1 gap-5 lg:grid-cols-12 lg:gap-6">
 
-      <div class="rounded-3xl bg-white p-5 shadow-xl ring-1 ring-slate-200 sm:p-8 lg:col-span-5 space-y-5 lg:sticky lg:top-10 lg:self-start">
+      <div class="space-y-5 rounded-3xl bg-white p-4 shadow-xl ring-1 ring-slate-200 sm:p-8 lg:sticky lg:top-10 lg:col-span-5 lg:self-start">
         <div>
           <span class="inline-flex rounded-full bg-brand-50 px-4 py-2 text-sm font-semibold text-brand-700">
             Text Utility
           </span>
 
-          <h1 class="mt-5 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+          <h1 class="mt-5 text-2xl font-bold tracking-tight text-slate-900 sm:text-4xl">
             Text Case Converter
           </h1>
 
-          <p class="mt-3 text-base leading-7 text-slate-600">
+          <p class="mt-3 text-sm leading-6 text-slate-600 sm:text-base sm:leading-7">
             Transform raw strings and text segments into varied architectural programming cases or typography configurations instantly.
           </p>
         </div>
 
         <div>
-          <div class="flex justify-between items-center mb-2">
+          <div class="mb-2 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
             <label for="sourceText" class="text-sm font-semibold text-slate-700">Source English Text</label>
             <button id="clearBtn" class="text-xs font-semibold text-slate-500 hover:text-red-600 bg-slate-100 hover:bg-slate-200 px-3 py-1.5 rounded-xl transition">
               Clear Input
             </button>
           </div>
-          <textarea id="sourceText" rows="10" placeholder="Type or paste your text blocks here to see real-time format changes..." class="w-full rounded-2xl border border-slate-300 bg-slate-50 p-4 font-mono text-xs text-slate-900 shadow-inner outline-none transition focus:border-brand-600 focus:bg-white focus:ring-4 focus:ring-brand-100 resize-none leading-5"></textarea>
+          <textarea id="sourceText" rows="8" placeholder="Type or paste your text blocks here to see real-time format changes..." class="w-full min-h-[190px] rounded-2xl border border-slate-300 bg-slate-50 p-3 font-mono text-sm leading-6 text-slate-900 shadow-inner outline-none transition focus:border-brand-600 focus:bg-white focus:ring-4 focus:ring-brand-100 sm:min-h-[260px] sm:p-4 sm:text-xs sm:leading-5"></textarea>
         </div>
 
         <div class="rounded-2xl bg-slate-100 p-4 text-sm leading-6 text-slate-600">
@@ -106,66 +112,66 @@
         </div>
       </div>
 
-      <div class="lg:col-span-7 space-y-6">
-        <div class="rounded-3xl bg-white p-5 shadow-xl ring-1 ring-slate-200 sm:p-8">
+      <div class="space-y-5 lg:col-span-7 lg:space-y-6">
+        <div class="rounded-3xl bg-white p-4 shadow-xl ring-1 ring-slate-200 sm:p-8">
           <div class="mb-6">
-            <h2 class="text-2xl font-bold text-slate-900">Transformation Grids</h2>
-            <p class="mt-2 text-sm text-slate-500">Review generated outcomes and copy blocks into clipboard storage boards below.</p>
+            <h2 class="text-xl font-bold text-slate-900 sm:text-2xl">Transformation Grids</h2>
+            <p class="mt-2 text-sm leading-6 text-slate-500">Review generated outcomes and copy blocks into clipboard storage boards below.</p>
           </div>
 
           <div class="space-y-4">
             
             <div class="rounded-2xl border border-slate-200 bg-slate-50/50 p-4 flex flex-col space-y-2 relative group">
-              <div class="flex justify-between items-center select-none">
-                <span class="text-xs font-bold text-slate-400 uppercase tracking-widest">1. UPPERCASE</span>
-                <button data-target="outUppercase" class="copy-trigger text-xs font-semibold text-brand-700 bg-brand-50 hover:bg-brand-100 px-3 py-1.5 rounded-xl transition shadow-sm active:scale-95">Copy</button>
+              <div class="flex flex-col gap-2 select-none sm:flex-row sm:items-center sm:justify-between">
+                <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400 sm:text-xs sm:tracking-widest">1. UPPERCASE</span>
+                <button data-target="outUppercase" class="copy-trigger w-full rounded-xl bg-brand-50 px-3 py-2 text-xs font-semibold text-brand-700 shadow-sm transition hover:bg-brand-100 active:scale-95 sm:w-auto sm:py-1.5">Copy</button>
               </div>
-              <textarea id="outUppercase" readonly placeholder="UPPERCASE DATA OUTFLOW" class="w-full h-12 bg-white rounded-xl border border-slate-200 p-3 font-mono text-xs text-slate-800 outline-none resize-none shadow-sm truncate"></textarea>
+              <textarea id="outUppercase" readonly placeholder="UPPERCASE DATA OUTFLOW" class="h-16 w-full rounded-xl border border-slate-200 bg-white p-3 font-mono text-xs leading-5 text-slate-800 shadow-sm outline-none sm:h-12"></textarea>
             </div>
 
             <div class="rounded-2xl border border-slate-200 bg-slate-50/50 p-4 flex flex-col space-y-2 relative group">
-              <div class="flex justify-between items-center select-none">
-                <span class="text-xs font-bold text-slate-400 uppercase tracking-widest">2. lowercase</span>
-                <button data-target="outLowercase" class="copy-trigger text-xs font-semibold text-brand-700 bg-brand-50 hover:bg-brand-100 px-3 py-1.5 rounded-xl transition shadow-sm active:scale-95">Copy</button>
+              <div class="flex flex-col gap-2 select-none sm:flex-row sm:items-center sm:justify-between">
+                <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400 sm:text-xs sm:tracking-widest">2. lowercase</span>
+                <button data-target="outLowercase" class="copy-trigger w-full rounded-xl bg-brand-50 px-3 py-2 text-xs font-semibold text-brand-700 shadow-sm transition hover:bg-brand-100 active:scale-95 sm:w-auto sm:py-1.5">Copy</button>
               </div>
-              <textarea id="outLowercase" readonly placeholder="lowercase data outflow" class="w-full h-12 bg-white rounded-xl border border-slate-200 p-3 font-mono text-xs text-slate-800 outline-none resize-none shadow-sm truncate"></textarea>
+              <textarea id="outLowercase" readonly placeholder="lowercase data outflow" class="h-16 w-full rounded-xl border border-slate-200 bg-white p-3 font-mono text-xs leading-5 text-slate-800 shadow-sm outline-none sm:h-12"></textarea>
             </div>
 
             <div class="rounded-2xl border border-slate-200 bg-slate-50/50 p-4 flex flex-col space-y-2 relative group">
-              <div class="flex justify-between items-center select-none">
-                <span class="text-xs font-bold text-slate-400 uppercase tracking-widest">3. Title Case</span>
-                <button data-target="outTitlecase" class="copy-trigger text-xs font-semibold text-brand-700 bg-brand-50 hover:bg-brand-100 px-3 py-1.5 rounded-xl transition shadow-sm active:scale-95">Copy</button>
+              <div class="flex flex-col gap-2 select-none sm:flex-row sm:items-center sm:justify-between">
+                <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400 sm:text-xs sm:tracking-widest">3. Title Case</span>
+                <button data-target="outTitlecase" class="copy-trigger w-full rounded-xl bg-brand-50 px-3 py-2 text-xs font-semibold text-brand-700 shadow-sm transition hover:bg-brand-100 active:scale-95 sm:w-auto sm:py-1.5">Copy</button>
               </div>
-              <textarea id="outTitlecase" readonly placeholder="Title Case Data Outflow" class="w-full h-12 bg-white rounded-xl border border-slate-200 p-3 font-mono text-xs text-slate-800 outline-none resize-none shadow-sm truncate"></textarea>
+              <textarea id="outTitlecase" readonly placeholder="Title Case Data Outflow" class="h-16 w-full rounded-xl border border-slate-200 bg-white p-3 font-mono text-xs leading-5 text-slate-800 shadow-sm outline-none sm:h-12"></textarea>
             </div>
 
             <div class="rounded-2xl border border-slate-200 bg-slate-50/50 p-4 flex flex-col space-y-2 relative group">
-              <div class="flex justify-between items-center select-none">
-                <span class="text-xs font-bold text-slate-400 uppercase tracking-widest">4. camelCase (Variables)</span>
-                <button data-target="outCamelcase" class="copy-trigger text-xs font-semibold text-brand-700 bg-brand-50 hover:bg-brand-100 px-3 py-1.5 rounded-xl transition shadow-sm active:scale-95">Copy</button>
+              <div class="flex flex-col gap-2 select-none sm:flex-row sm:items-center sm:justify-between">
+                <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400 sm:text-xs sm:tracking-widest">4. camelCase (Variables)</span>
+                <button data-target="outCamelcase" class="copy-trigger w-full rounded-xl bg-brand-50 px-3 py-2 text-xs font-semibold text-brand-700 shadow-sm transition hover:bg-brand-100 active:scale-95 sm:w-auto sm:py-1.5">Copy</button>
               </div>
-              <textarea id="outCamelcase" readonly placeholder="camelCaseDataOutflow" class="w-full h-12 bg-white rounded-xl border border-slate-200 p-3 font-mono text-xs text-slate-800 outline-none resize-none shadow-sm truncate"></textarea>
+              <textarea id="outCamelcase" readonly placeholder="camelCaseDataOutflow" class="h-16 w-full rounded-xl border border-slate-200 bg-white p-3 font-mono text-xs leading-5 text-slate-800 shadow-sm outline-none sm:h-12"></textarea>
             </div>
 
             <div class="rounded-2xl border border-slate-200 bg-slate-50/50 p-4 flex flex-col space-y-2 relative group">
-              <div class="flex justify-between items-center select-none">
-                <span class="text-xs font-bold text-slate-400 uppercase tracking-widest">5. snake_case (Databases)</span>
-                <button data-target="outSnakecase" class="copy-trigger text-xs font-semibold text-brand-700 bg-brand-50 hover:bg-brand-100 px-3 py-1.5 rounded-xl transition shadow-sm active:scale-95">Copy</button>
+              <div class="flex flex-col gap-2 select-none sm:flex-row sm:items-center sm:justify-between">
+                <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400 sm:text-xs sm:tracking-widest">5. snake_case (Databases)</span>
+                <button data-target="outSnakecase" class="copy-trigger w-full rounded-xl bg-brand-50 px-3 py-2 text-xs font-semibold text-brand-700 shadow-sm transition hover:bg-brand-100 active:scale-95 sm:w-auto sm:py-1.5">Copy</button>
               </div>
-              <textarea id="outSnakecase" readonly placeholder="snake_case_data_outflow" class="w-full h-12 bg-white rounded-xl border border-slate-200 p-3 font-mono text-xs text-slate-800 outline-none resize-none shadow-sm truncate"></textarea>
+              <textarea id="outSnakecase" readonly placeholder="snake_case_data_outflow" class="h-16 w-full rounded-xl border border-slate-200 bg-white p-3 font-mono text-xs leading-5 text-slate-800 shadow-sm outline-none sm:h-12"></textarea>
             </div>
 
           </div>
 
-          <div id="copyToast" class="fixed bottom-6 right-6 bg-slate-900 text-white text-xs font-bold px-4 py-2.5 rounded-xl shadow-xl pointer-events-none opacity-0 translate-y-2 transition-all duration-300 z-50 flex items-center space-x-2">
+          <div id="copyToast" class="fixed inset-x-3 bottom-4 z-50 flex translate-y-2 items-center justify-center space-x-2 rounded-xl bg-slate-900 px-4 py-2.5 text-xs font-bold text-white opacity-0 shadow-xl transition-all duration-300 pointer-events-none sm:inset-x-auto sm:right-6 sm:bottom-6">
             <svg class="w-4 h-4 text-brand-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
             <span>String copied to clipboard!</span>
           </div>
 
-          <div class="mt-6 flex min-h-[250px] flex-col items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-slate-50 text-sm text-slate-400 p-4">
+          <div class="mt-6 flex min-h-[180px] w-full flex-col items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-3 text-center text-xs text-slate-400 sm:min-h-[250px] sm:p-4 sm:text-sm">
             <span class="text-[10px] font-bold text-slate-300 uppercase tracking-widest mb-2">Advertisement</span>
             <ins class="adsbygoogle"
-                 style="display:block; width:100%; min-height:200px;"
+                 style="display:block; width:100%; min-height:160px;"
                  data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
                  data-ad-slot="YYYYYYYYYY"
                  data-ad-format="rectangle, vertical"
@@ -175,18 +181,18 @@
             </script>
           </div>
 
-          <div class="mt-5 rounded-2xl bg-slate-100 p-4 text-xs leading-5 text-slate-500">
+          <div class="mt-5 rounded-2xl bg-slate-100 p-3 text-xs leading-5 text-slate-500 sm:p-4">
             <span class="block font-bold text-slate-700 mb-1">Disclaimer & Legal Notice:</span>
             This tool is provided on an "as is" and "as available" basis without warranties of any kind. Character remapping algorithms execute 100% inside the user's localized browser application memory container; NodnWebTools never receives, tracks, targets, archives, or logs your text inputs. The operator holds exclusive responsibility to parse structural character sets before code implementation tasks. NodnWebTools, its core authors, and technical partners disclaim all liability for accidental text data deformation, parsing failures, regex omissions, or downstream database integration issues resulting from compiling strings.
           </div>
         </div>
 
-        <section class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-8">
+        <section class="rounded-3xl bg-white p-4 shadow-sm ring-1 ring-slate-200 sm:p-8">
           <span class="inline-flex rounded-full bg-slate-200 px-4 py-2 text-sm font-semibold text-slate-800">
             Typography Architecture Guide
           </span>
 
-          <h2 class="mt-5 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
+          <h2 class="mt-5 text-xl font-bold tracking-tight text-slate-900 sm:text-3xl">
             Character Case Formatting: Aligning Syntax Rules for Software Operations
           </h2>
 
@@ -219,7 +225,7 @@
       </div>
     </section>
 
-    <div class="mt-8 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white text-sm text-slate-400">
+    <div class="mt-6 flex min-h-[72px] w-full items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white px-3 text-center text-xs text-slate-400 sm:mt-8 sm:min-h-[90px] sm:text-sm">
       AdSense Responsive Ad Area - Bottom
     </div>
 
