@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Universal Image Converter | Free Online Photo Format Tool - NodnWebTools</title>
+
+  <meta
+    name="description"
+    content="Use the free NodnWebTools Image Converter to seamlessly convert photo formats completely in your browser. Convert PNG to JPG instantly, WebP to PNG, adjust image quality, and download securely with our file conversion guide."
+  />
+  <meta
+    name="keywords"
+    content="online image converter tool, convert png to jpg instantly, webp to png converter, photo format changer, secure file converter, convert image online, NodnWebTools"
+  />
+  <meta name="author" content="NodnWebTools" />
+  <meta name="robots" content="index, follow" />
+
+  <meta property="og:title" content="Universal Image Converter | NodnWebTools" />
+  <meta
+    property="og:description"
+    content="Seamlessly convert images between PNG, JPG, and WebP formats instantly and securely inside your browser."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://nodntools.com/image-converter.html" />
+  <meta property="og:site_name" content="NodnWebTools" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Universal Image Converter" />
+  <meta
+    name="twitter:description"
+    content="A secure, client-side online photo file converter tool for instant format modifications."
+  />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f0fdf4',
+              100: '#dcfce7',
+              200: '#bbf7d0',
+              500: '#22c55e',
+              600: '#16a34a',
+              700: '#15803d',
+              800: '#166534',
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="min-h-screen bg-slate-100 px-4 py-8 sm:py-12">
+  <main class="mx-auto max-w-5xl">
+
+    <!-- NodnWebTools Official Logo Header -->
+    <div class="mb-8 text-center">
+      <a
+        href="https://nodntools.com"
+        class="inline-block transition hover:opacity-80"
+        aria-label="NodnWebTools Home"
+      >
+        <div class="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
+          Nodn<span class="text-blue-600">WebTools</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- Google AdSense Responsive Ad - Top -->
+    <div class="mb-8 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white text-sm text-slate-400">
+      AdSense Responsive Ad Area - Top
+    </div>
+
+    <section class="grid gap-6 lg:grid-cols-2">
+
+      <!-- Left Panel: File Input & Configuration -->
+      <div class="rounded-3xl bg-white p-5 shadow-xl ring-1 ring-slate-200 sm:p-8 lg:sticky lg:top-10 lg:self-start">
+        <div class="mb-6">
+          <span class="inline-flex rounded-full bg-brand-50 px-4 py-2 text-sm font-semibold text-brand-700">
+            File Utility
+          </span>
+
+          <h1 class="mt-5 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+            Universal Image Converter
+          </h1>
+
+          <p class="mt-3 text-base leading-7 text-slate-600">
+            Convert image formats securely in real-time. Files are processed entirely on your device and are never uploaded to any server.
+          </p>
+        </div>
+
+        <div class="space-y-5">
+          <!-- File Drop Zone Input -->
+          <div>
+            <label class="mb-2 block text-sm font-semibold text-slate-700">Select Image File</label>
+            <div id="dropZone" class="relative flex flex-col items-center justify-center rounded-2xl border-2 border-dashed border-slate-300 bg-slate-50 p-6 text-center transition hover:bg-slate-100/70 cursor-pointer">
+              <input type="file" id="fileInput" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer" />
+              <svg class="mx-auto h-12 w-12 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+              <p class="mt-2 text-sm font-medium text-slate-700" id="fileInputLabel">
+                Click to browse or drag & drop image here
+              </p>
+              <p class="mt-1 text-xs text-slate-400">Supports PNG, JPG, JPEG, WEBP, GIF, BMP</p>
+            </div>
+          </div>
+
+          <!-- Conversion Target Form Controls -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="targetFormat" class="mb-2 block text-sm font-semibold text-slate-700">Convert To</label>
+              <select id="targetFormat" class="w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-4 text-base font-medium text-slate-900 outline-none transition focus:border-brand-600 focus:bg-white focus:ring-4 focus:ring-brand-100 cursor-pointer">
+                <option value="image/jpeg">JPEG (.jpg)</option>
+                <option value="image/png" selected>PNG (.png)</option>
+                <option value="image/webp">WebP (.webp)</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="imageQuality" class="mb-2 block text-sm font-semibold text-slate-700">
+                Quality: <span id="qualityDisplay">90%</span>
+              </label>
+              <div class="flex h-[58px] items-center rounded-2xl border border-slate-300 bg-slate-50 px-4">
+                <input type="range" id="imageQuality" min="10" max="100" value="90" class="w-full accent-brand-600 cursor-pointer" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Action Core Processing Trigger Button -->
+          <button id="convertBtn" class="w-full rounded-2xl bg-brand-600 py-4 text-center text-base font-bold text-white shadow-md hover:bg-brand-700 active:scale-[0.99] transition-all disabled:opacity-50 disabled:pointer-events-none" disabled>
+            Convert Image Format
+          </button>
+
+          <div class="rounded-2xl bg-slate-100 p-4 text-sm leading-6 text-slate-600">
+            Processing runs client-side inside standard hardware graphics blocks. Your personal multimedia data remains 100% confidential.
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Panel: Conversion Results & Preview Screen -->
+      <div class="space-y-6">
+        <div class="rounded-3xl bg-white p-5 shadow-xl ring-1 ring-slate-200 sm:p-8">
+          <div class="mb-6">
+            <h2 class="text-2xl font-bold text-slate-900">Conversion Output</h2>
+            <p class="mt-2 text-sm text-slate-500">Upload a file to preview the source and trigger modifications.</p>
+          </div>
+
+          <div id="resultPlaceholder" class="rounded-3xl border border-slate-200 bg-gradient-to-br from-slate-50 via-zinc-50 to-green-50/20 p-6 text-center text-slate-400">
+            Please choose a valid input image from the left dashboard menu to populate interactive analytics.
+          </div>
+
+          <!-- Output Node Panel (Hidden until file selected) -->
+          <div id="resultContent" class="hidden rounded-3xl border border-slate-200 bg-gradient-to-br from-slate-50 via-zinc-50 to-green-50/20 p-5">
+            <p class="text-sm font-semibold uppercase tracking-wide text-slate-700">Image Preview</p>
+            
+            <!-- Real Image Display Frame -->
+            <div class="mt-4 flex max-h-[260px] justify-center overflow-hidden rounded-2xl border border-slate-200 bg-slate-200 shadow-inner">
+              <img id="previewImage" src="" alt="Source preview" class="object-contain max-w-full h-auto" />
+            </div>
+
+            <!-- Summary File Analytics Grid -->
+            <div class="mt-5 grid gap-3 sm:grid-cols-2">
+              <div class="rounded-2xl bg-white p-4 shadow-sm border border-slate-100">
+                <p class="text-xs text-slate-500">Source Name</p>
+                <p id="displayFileName" class="mt-1 text-sm font-bold text-slate-900 truncate">Image.png</p>
+              </div>
+
+              <div class="rounded-2xl bg-white p-4 shadow-sm border border-slate-100">
+                <p class="text-xs text-slate-500">Original File Size</p>
+                <p id="displayFileSize" class="mt-1 text-sm font-bold text-slate-900">0 KB</p>
+              </div>
+            </div>
+
+            <!-- Downstream Export Action Layer -->
+            <div class="mt-5" id="downloadArea">
+              <a id="downloadBtn" href="#" download="converted-image" class="inline-flex w-full items-center justify-center space-x-2 rounded-2xl bg-slate-900 py-4 text-center text-base font-bold text-white shadow-md hover:bg-slate-800 transition-all">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+                <span>Download Converted File</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Google AdSense Responsive Ad - Below Result -->
+          <div class="mt-6 flex min-h-[250px] flex-col items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-slate-50 text-sm text-slate-400 p-4">
+            <span class="text-[10px] font-bold text-slate-300 uppercase tracking-widest mb-2">Advertisement</span>
+            <ins class="adsbygoogle"
+                 style="display:block; width:100%; min-height:200px;"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                 data-ad-slot="YYYYYYYYYY"
+                 data-ad-format="rectangle, vertical"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+          </div>
+
+          <!-- Legal Disclaimer Panel (Restored to previous slate gray theme, text made highly robust) -->
+          <div class="mt-5 rounded-2xl bg-slate-100 p-4 text-xs leading-5 text-slate-500">
+            <span class="block font-bold text-slate-700 mb-1">Disclaimer & Legal Notice:</span>
+            This tool is provided on an "as is" and "as available" basis without warranties of any kind. All image data stream operations are processed 100% locally inside the client user's browser canvas pipeline; NodnWebTools never receives, tracks, transmits, or logs your media content. The user assumes absolute responsibility to manually review file outcome integrity prior to commercial or personal utilization. NodnWebTools, its developers, and affiliates expressly disclaim all liability for data loss, generation bugs, formatting mismatches, or any legal claims, damages, and consequences emerging from downloaded output data.
+          </div>
+        </div>
+
+        <!-- SEO Informational Segment Card -->
+        <section class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-8">
+          <span class="inline-flex rounded-full bg-slate-200 px-4 py-2 text-sm font-semibold text-slate-800">
+            File Conversion Guide
+          </span>
+
+          <h2 class="mt-5 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
+            Universal Image Conversion: Secure Client-Side Format Adjustments
+          </h2>
+
+          <div class="mt-5 space-y-5 text-sm leading-7 text-slate-600">
+            <p>
+              In contemporary digital ecosystems, managing optimized media assets requires a streamlined 
+              <strong class="font-semibold text-slate-800">online image converter tool</strong>. Whether you are constructing a lightweight portfolio website or filling paperwork demands, handling raw files often causes systemic friction. Different channels mandate varying compression standards. 
+            </p>
+
+            <p>
+              Using our secure web toolkit, you can <strong class="font-semibold text-slate-800">convert PNG to JPG instantly</strong> to slash file sizes without wrecking underlying graphic integrity. Conversely, developers frequently utilize a modern <strong class="font-semibold text-slate-800">WebP to PNG converter</strong> to reverse compress web assets into losslessly structured formats for advanced design editing suites. 
+            </p>
+
+            <h3 class="text-lg font-bold text-slate-900 pt-2">How to Use This Practical Photo Format Changer</h3>
+            <p>
+              Traditional online converters force you to upload sensitive files to remote server hardware, risking personal data leaks. This app completely subverts that pipeline by utilizing local canvas instances:
+            </p>
+
+            <ul class="list-disc pl-5 space-y-2 text-slate-600">
+              <li><strong>Load Content:</strong> Click the drop-zone interface element to open a file or drag the target item directly onto the active control space.</li>
+              <li><strong>Configure Targets:</strong> Set your compression quality boundaries and establish the requested file extension format container.</li>
+              <li><strong>Save Locally:</strong> Fire the converter engine and download the fully repackaged binary array payload straight to your downloads directory.</li>
+            </ul>
+
+            <p>
+              By utilizing this client-side <strong class="font-semibold text-slate-800">measurement and file guide</strong>, you can safely and efficiently scale your design work streams without data leaks.
+            </p>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <!-- Google AdSense Responsive Ad - Bottom -->
+    <div class="mt-8 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white text-sm text-slate-400">
+      AdSense Responsive Ad Area - Bottom
+    </div>
+
+  </main>
+
+  <!-- JavaScript Core Engine -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const fileInput = document.getElementById("fileInput");
+      const dropZone = document.getElementById("dropZone");
+      const fileInputLabel = document.getElementById("fileInputLabel");
+      const targetFormatSelect = document.getElementById("targetFormat");
+      const imageQualitySlider = document.getElementById("imageQuality");
+      const qualityDisplay = document.getElementById("qualityDisplay");
+      const convertBtn = document.getElementById("convertBtn");
+
+      const resultPlaceholder = document.getElementById("resultPlaceholder");
+      const resultContent = document.getElementById("resultContent");
+      const previewImage = document.getElementById("previewImage");
+      const displayFileName = document.getElementById("displayFileName");
+      const displayFileSize = document.getElementById("displayFileSize");
+      const downloadBtn = document.getElementById("downloadBtn");
+
+      let loadedFileObject = null;
+      let loadedImageElement = null;
+
+      // Handle Quality Slider UI Sync
+      imageQualitySlider.addEventListener("input", (e) => {
+        qualityDisplay.textContent = `${e.target.value}%`;
+      });
+
+      // Drag and Drop Event Interceptors
+      ["dragenter", "dragover"].forEach(eventName => {
+        dropZone.addEventListener(eventName, (e) => {
+          e.preventDefault();
+          dropZone.classList.add("bg-slate-100", "border-brand-600");
+        }, false);
+      });
+
+      ["dragleave", "drop"].forEach(eventName => {
+        dropZone.addEventListener(eventName, (e) => {
+          e.preventDefault();
+          dropZone.classList.remove("bg-slate-100", "border-brand-600");
+        }, false);
+      });
+
+      dropZone.addEventListener("drop", (e) => {
+        const dt = e.dataTransfer;
+        const files = dt.files;
+        if (files.length > 0 && files[0].type.startsWith("image/")) {
+          processIncomingFile(files[0]);
+        }
+      });
+
+      fileInput.addEventListener("change", (e) => {
+        if (e.target.files.length > 0) {
+          processIncomingFile(e.target.files[0]);
+        }
+      });
+
+      function formatBytes(bytes, decimals = 2) {
+        if (bytes === 0) return '0 Bytes';
+        const k = 1024;
+        const dm = decimals < 0 ? 0 : decimals;
+        const sizes = ['Bytes', 'KB', 'MB'];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+      }
+
+      function processIncomingFile(file) {
+        loadedFileObject = file;
+        fileInputLabel.textContent = `${file.name} loaded successfully`;
+        displayFileName.textContent = file.name;
+        displayFileSize.textContent = formatBytes(file.size);
+
+        const reader = new FileReader();
+        reader.onload = function(event) {
+          loadedImageElement = new Image();
+          loadedImageElement.onload = function() {
+            previewImage.src = event.target.result;
+            
+            // Switch Panels Visibility States cleanly
+            resultPlaceholder.classList.add("hidden");
+            resultContent.classList.remove("hidden");
+            convertBtn.disabled = false;
+          };
+          loadedImageElement.src = event.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+
+      // Execution Engine Core: Canvas Mapping Routine
+      convertBtn.addEventListener("click", () => {
+        if (!loadedImageElement || !loadedFileObject) return;
+
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
+
+        // Maintain precise source graphic aspect dimensional nodes
+        canvas.width = loadedImageElement.naturalWidth;
+        canvas.height = loadedImageElement.naturalHeight;
+
+        // Draw image onto virtual background layer
+        ctx.drawImage(loadedImageElement, 0, 0);
+
+        const chosenMime = targetFormatSelect.value;
+        const qualitySetting = parseFloat(imageQualitySlider.value) / 100;
+
+        // Convert the virtual canvas data matrix into downloadable blob array links
+        const dataUrl = canvas.toDataURL(chosenMime, qualitySetting);
+        
+        // Formulate smart file download naming extension strings
+        const originalNameStr = loadedFileObject.name.substring(0, loadedFileObject.name.lastIndexOf('.')) || loadedFileObject.name;
+        const targetExt = chosenMime === "image/jpeg" ? "jpg" : chosenMime.split("/")[1];
+        
+        downloadBtn.href = dataUrl;
+        downloadBtn.setAttribute("download", `${originalNameStr}_converted.${targetExt}`);
+        
+        // Notify complete and focus visual layout onto download element action block
+        downloadBtn.scrollIntoView({ behavior: 'smooth' });
+        
+        // Add subtle feedback color flash onto button
+        convertBtn.classList.remove("bg-brand-600");
+        convertBtn.classList.add("bg-slate-700");
+        convertBtn.textContent = "Conversion Complete! (See Download Below)";
+        
+        setTimeout(() => {
+          convertBtn.classList.remove("bg-slate-700");
+          convertBtn.classList.add("bg-brand-600");
+          convertBtn.textContent = "Convert Image Format";
+        }, 2500);
+      });
+    });
+  </script>
+
+  <!-- Google AdSense Main Library -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+</body>
+</html>
