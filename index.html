@@ -45,20 +45,24 @@
             </div>
         </div>
 
-        <div class="flex flex-wrap justify-center items-center gap-2 mb-10 max-w-xl mx-auto">
-            <button onclick="setCategory('all')" id="cat-all" class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold bg-blue-600 text-white shadow-xs transition-all cursor-pointer">
-                All Tools
-            </button>
-            <button onclick="setCategory('finance')" id="cat-finance" class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 transition-all cursor-pointer">
-                Personal Finance
-            </button>
-            <button onclick="setCategory('business')" id="cat-business" class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 transition-all cursor-pointer">
-                Business
-            </button>
-            <button onclick="setCategory('life')" id="cat-life" class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 transition-all cursor-pointer">
-                Health & Life
-            </button>
-        </div>
+       <div class="flex flex-wrap justify-center items-center gap-2 mb-10 max-w-xl mx-auto">
+    <button onclick="setCategory('all')" id="cat-all" class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold bg-blue-600 text-white shadow-xs transition-all cursor-pointer">
+        All Tools
+    </button>
+    <button onclick="setCategory('finance')" id="cat-finance" class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 transition-all cursor-pointer">
+        Personal Finance
+    </button>
+    <button onclick="setCategory('business')" id="cat-business" class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 transition-all cursor-pointer">
+        Business
+    </button>
+    <button onclick="setCategory('life')" id="cat-life" class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 transition-all cursor-pointer">
+        Health & Life
+    </button>
+    
+    <button onclick="setCategory('utility')" id="cat-utility" class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 transition-all cursor-pointer">
+        Utilities
+    </button>
+</div>
 
         <p id="noResult" class="text-center text-slate-400 text-sm mb-8 hidden">No calculators found matching your search or filter.</p>
 
@@ -73,7 +77,22 @@
             
             <div id="toolsGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12">
 
-                <a href="/paycheckus" data-category="finance" class="tool-card group bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:border-blue-500/50 hover:shadow-md hover:shadow-blue-500/5 transition-all duration-200 flex flex-col justify-between">
+	<a href="/unit-converter" data-category="utility" class="tool-card group bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:border-violet-500/50 hover:shadow-md hover:shadow-violet-500/5 transition-all duration-200 flex flex-col justify-between">
+    <div>
+        <div class="w-12 h-12 bg-violet-50 rounded-xl flex items-center justify-center text-violet-600 mb-4 group-hover:bg-violet-600 group-hover:text-white transition-colors duration-200">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21 3-16.5m0 0L21 12M3 4.5 21 12m0 0L16.5 21" />
+            </svg>
+        </div>
+        <h3 class="tool-title text-lg font-bold text-slate-900 mb-1 group-hover:text-violet-600 transition-colors duration-200">Unit Converter</h3>
+        <p class="text-slate-500 text-sm leading-relaxed">Convert between metric and imperial systems instantly. Supports length, weight, volume, and temperature.</p>
+    </div>
+    <div class="mt-4 text-violet-600 text-sm font-semibold flex items-center gap-1 group-hover:translate-x-1 transition-transform duration-200">
+        Launch Tool &rarr;
+    </div>
+</a>              
+
+	  <a href="/paycheckus" data-category="finance" class="tool-card group bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:border-blue-500/50 hover:shadow-md hover:shadow-blue-500/5 transition-all duration-200 flex flex-col justify-between">
                     <div>
                         <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 mb-4 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-200">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
