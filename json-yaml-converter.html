@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Online JSON to YAML Converter | Free Data Formatting Tool - NodnWebTools</title>
+
+  <meta
+    name="description"
+    content="Use the free NodnWebTools JSON to YAML Converter to seamlessly transform JSON objects into clean YAML configurations and vice versa instantly. 100% secure client-side conversion."
+  />
+  <meta
+    name="keywords"
+    content="json to yaml, yaml to json, online yaml converter, json parser, yaml formatter, free data converter, developer tools, nodntools, NodnWebTools"
+  />
+  <meta name="author" content="NodnWebTools" />
+  <meta name="robots" content="index, follow" />
+
+  <meta property="og:title" content="Online JSON to YAML Converter | NodnWebTools" />
+  <meta
+    property="og:description"
+    content="Convert JSON objects to clean YAML configurations or transform YAML data back into formatted JSON instantly and securely in your browser."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://nodntools.com/json-yaml-converter.html" />
+  <meta property="og:site_name" content="NodnWebTools" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Online JSON to YAML Converter" />
+  <meta
+    name="twitter:description"
+    content="A secure, client-side online data transformation utility for fast developer configuration conversions."
+  />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#ecfeff',
+              100: '#cffafe',
+              200: '#a5f3fc',
+              500: '#06b6d4',
+              600: '#0891b2',
+              700: '#0e7490',
+              800: '#155e75',
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="min-h-screen bg-slate-900 text-slate-100 px-4 py-8 sm:py-12 font-sans">
+  <main class="mx-auto max-w-6xl">
+
+    <div class="mb-8 text-center">
+      <a
+        href="https://nodntools.com"
+        class="inline-block transition hover:opacity-80"
+        aria-label="NodnWebTools Home"
+      >
+        <div class="text-2xl font-extrabold tracking-tight text-white sm:text-3xl">
+          Nodn<span class="text-cyan-400">WebTools</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="mb-8 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-700 bg-slate-800 text-sm text-slate-500">
+      AdSense Responsive Ad Area - Top
+    </div>
+
+    <div class="mb-6 flex rounded-2xl bg-slate-800 p-1.5 shadow-inner max-w-md mx-auto ring-1 ring-slate-700">
+      <button id="tabJsonToYaml" class="w-full rounded-xl py-2.5 text-center text-sm font-bold transition-all text-cyan-900 bg-cyan-400 shadow-sm">
+        JSON ➔ YAML
+      </button>
+      <button id="tabYamlToJson" class="w-full rounded-xl py-2.5 text-center text-sm font-bold transition-all text-slate-400 hover:text-slate-200">
+        YAML ➔ JSON
+      </button>
+    </div>
+
+    <section class="grid gap-6 lg:grid-cols-2">
+
+      <div class="rounded-3xl bg-slate-800 p-5 shadow-xl ring-1 ring-slate-700 sm:p-6 flex flex-col space-y-4">
+        <div class="flex flex-wrap justify-between items-center gap-2 select-none">
+          <div class="flex items-center space-x-2">
+            <span class="inline-flex rounded-full bg-cyan-500/10 px-3 py-1 text-xs font-semibold text-cyan-400 ring-1 ring-cyan-500/30">
+              Input Payload
+            </span>
+            <h2 id="inputLabel" class="text-sm font-bold text-slate-300">Raw JSON Structure</h2>
+          </div>
+          
+          <div class="flex items-center space-x-1.5">
+            <button id="pasteBtn" class="text-xs font-semibold text-slate-300 hover:text-white bg-slate-700 hover:bg-slate-600 px-3 py-1.5 rounded-xl transition">
+              Paste
+            </button>
+            <button id="clearBtn" class="text-xs font-semibold text-slate-400 hover:text-red-400 bg-slate-700/50 hover:bg-slate-700 px-3 py-1.5 rounded-xl transition">
+              Clear
+            </button>
+          </div>
+        </div>
+
+        <div class="flex-1 min-h-[350px] lg:min-h-[450px] flex flex-col">
+          <textarea id="inputText" placeholder="Paste your structured JSON objects here..." class="w-full flex-1 rounded-2xl border border-slate-700 bg-slate-950 p-4 font-mono text-xs text-slate-200 shadow-inner outline-none transition focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 resize-none leading-5"></textarea>
+        </div>
+      </div>
+
+      <div class="rounded-3xl bg-slate-800 p-5 shadow-xl ring-1 ring-slate-700 sm:p-6 flex flex-col space-y-4">
+        <div class="flex flex-wrap justify-between items-center gap-2 select-none">
+          <div class="flex items-center space-x-2">
+            <span class="inline-flex rounded-full bg-slate-700 px-3 py-1 text-xs font-semibold text-slate-300 ring-1 ring-slate-600">
+              Output Stream
+            </span>
+            <h2 id="outputLabel" class="text-sm font-bold text-slate-300">Compiled YAML Outflow</h2>
+          </div>
+          
+          <div class="flex items-center space-x-1.5 relative">
+            <button id="copyBtn" class="text-xs font-semibold text-slate-900 bg-cyan-400 hover:bg-cyan-300 px-3 py-1.5 rounded-xl transition shadow-sm font-bold active:scale-95">
+              Copy Result
+            </button>
+            <button id="downloadBtn" class="text-xs font-semibold text-slate-300 bg-slate-700 hover:bg-slate-600 border border-slate-600 px-3 py-1.5 rounded-xl transition shadow-sm active:scale-95">
+              Download File
+            </button>
+
+            <span id="copyToast" class="absolute bottom-full right-0 mb-2 bg-slate-950 text-cyan-400 text-xs px-2.5 py-1.5 rounded-xl opacity-0 scale-95 pointer-events-none transition-all duration-200 font-semibold shadow-md ring-1 ring-cyan-500/30 whitespace-nowrap">
+              Copied Successfully!
+            </span>
+          </div>
+        </div>
+
+        <div class="flex-1 min-h-[350px] lg:min-h-[450px] flex flex-col">
+          <textarea id="outputText" readonly placeholder="Calculated formats populate dynamically down here..." class="w-full flex-1 rounded-2xl border border-slate-700 bg-slate-950 p-4 font-mono text-xs text-slate-400 shadow-inner outline-none resize-none leading-5"></textarea>
+        </div>
+      </div>
+
+    </section>
+
+    <section class="mt-8 grid gap-6 lg:grid-cols-12">
+      
+      <div class="lg:col-span-7 space-y-6">
+        <section class="rounded-3xl bg-slate-800 p-6 shadow-sm ring-1 ring-slate-700 sm:p-8">
+          <span class="inline-flex rounded-full bg-slate-700 px-4 py-1.5 text-xs font-semibold text-slate-300 tracking-wide">
+            Data Architecture Blueprint
+          </span>
+
+          <h1 class="mt-4 text-2xl font-bold tracking-tight text-white sm:text-3xl">
+            JSON ↔ YAML Bidirectional Object Mapping Engine
+          </h1>
+
+          <div class="mt-4 space-y-4 text-sm leading-7 text-slate-400">
+            <p>
+              In decentralized deployment workflows and cloud microservices configurations, converting data payloads between strict formats relies heavily on deploying a client-side 
+              <strong class="font-semibold text-slate-200">online json to yaml converter</strong>. When devops architectures build environment parameters, parsing structural layout models dynamically streamlines pipeline deployment variables.
+            </p>
+
+            <p>
+              Utilizing our integrated, browser-bound <strong class="font-semibold text-slate-200">yaml to json formatting tool</strong> handles complex data token nesting layers easily. Conversely, software configurations rely on an automated <strong class="font-semibold text-slate-200">developer data object converter</strong> structure to adjust continuous integration manifests without server response latency.
+            </p>
+
+            <h3 class="text-base font-bold text-white pt-2">How Data Streams Process Securely Inside Local Scopes</h3>
+            <p>
+              Generic serialization tools route text parameters through cloud endpoint handlers, opening potential compliance vulnerabilities. This sandbox routine completely restricts thread execution to your local tab:
+            </p>
+
+            <ul class="list-disc pl-5 space-y-1.5 text-slate-400">
+              <li><strong>Real-time AST Compiling:</strong> The application monitors characters on input changes, compiling structured target tokens on the fly without trigger buttons.</li>
+              <li><strong>Safe Parsing Containment:</strong> The engine wraps serialization rules within strict try-catch handlers to catch structural exceptions instantly.</li>
+              <li><strong>Local Variable Processing:</strong> No text nodes ever stream to server storage arrays, ensuring corporate credentials, Kubernetes assets, and app keys stay fully protected.</li>
+            </ul>
+          </div>
+        </section>
+      </div>
+
+      <div class="lg:col-span-5 space-y-6">
+        <div class="flex min-h-[250px] flex-col items-center justify-center rounded-3xl border border-dashed border-slate-700 bg-slate-800 text-sm text-slate-500 p-4">
+          <span class="text-[10px] font-bold text-slate-600 uppercase tracking-widest mb-2">Advertisement</span>
+          <ins class="adsbygoogle"
+               style="display:block; width:100%; min-height:200px;"
+               data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+               data-ad-slot="YYYYYYYYYY"
+               data-ad-format="rectangle, vertical"
+               data-full-width-responsive="true"></ins>
+          <script>
+               (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
+        </div>
+
+        <div class="rounded-2xl bg-slate-800/60 border border-slate-700 p-4 text-xs leading-5 text-slate-500">
+          <span class="block font-bold text-slate-400 mb-1">Disclaimer & Legal Notice:</span>
+          This tool is provided on an "as is" and "as available" basis without warranties of any kind. Structural serialization configurations run 100% inside the client browser thread; NodnWebTools never mirrors, intercepts, stores, or logs your variable scripts. The operator carries absolute liability to review key spacing and formatting blocks before deployment. NodnWebTools, its technical operators, and affiliates disclaim all liability for distorted tokens, truncated parameters, formatting faults, or system infrastructure damage resulting from compiling strings.
+        </div>
+      </div>
+
+    </section>
+
+    <div class="mt-8 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-700 bg-slate-800 text-sm text-slate-500">
+      AdSense Responsive Ad Area - Bottom
+    </div>
+
+  </main>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Core Tab Interface Selectors
+      const tabJsonToYaml = document.getElementById("tabJsonToYaml");
+      const tabYamlToJson = document.getElementById("tabYamlToJson");
+      
+      const inputLabel = document.getElementById("inputLabel");
+      const outputLabel = document.getElementById("outputLabel");
+      const inputText = document.getElementById("inputText");
+      const outputText = document.getElementById("outputText");
+      
+      const pasteBtn = document.getElementById("pasteBtn");
+      const clearBtn = document.getElementById("clearBtn");
+      const copyBtn = document.getElementById("copyBtn");
+      const downloadBtn = document.getElementById("downloadBtn");
+      const copyToast = document.getElementById("copyToast");
+
+      // Global Engine Context Attribute (true = JSON to YAML, false = YAML to JSON)
+      let isJsonToYamlMode = true;
+
+      // Mode Navigation Tabs Controllers
+      tabJsonToYaml.addEventListener("click", () => {
+        if (isJsonToYamlMode) return;
+        isJsonToYamlMode = true;
+        toggleTabUi(tabJsonToYaml, tabYamlToJson);
+        updateInterfaceStrings("Raw JSON Structure", "Compiled YAML Outflow", "Paste your structured JSON objects here...");
+      });
+
+      tabYamlToJson.addEventListener("click", () => {
+        if (!isJsonToYamlMode) return;
+        isJsonToYamlMode = false;
+        toggleTabUi(tabYamlToJson, tabJsonToYaml);
+        updateInterfaceStrings("Raw YAML Configuration", "Compiled JSON Outflow", "Paste your structural YAML data blocks here...");
+      });
+
+      function toggleTabUi(activeTab, inactiveTab) {
+        activeTab.classList.add("bg-cyan-400", "text-cyan-900");
+        activeTab.classList.remove("text-slate-400", "hover:text-slate-200");
+        inactiveTab.classList.remove("bg-cyan-400", "text-cyan-900");
+        inactiveTab.classList.add("text-slate-400", "hover:text-slate-200");
+        inputText.value = "";
+        outputText.value = "";
+        resetOutputStyle();
+      }
+
+      function updateInterfaceStrings(inputLbl, outputLbl, inputPlh) {
+        inputLabel.textContent = inputLbl;
+        outputLabel.textContent = outputLbl;
+        inputText.placeholder = inputPlh;
+      }
+
+      // Real-time Event Processing Canvas Core
+      inputText.addEventListener("input", () => {
+        executeTransformationPipeline();
+      });
+
+      // Paste Data Inflow Trigger Utility
+      pasteBtn.addEventListener("click", async () => {
+        try {
+          const clipboardText = await navigator.clipboard.readText();
+          if (clipboardText) {
+            inputText.value = clipboardText;
+            executeTransformationPipeline();
+          }
+        } catch (err) {
+          console.error("Clipboard reading fault node: ", err);
+        }
+      });
+
+      // Clear Workspace Handler
+      clearBtn.addEventListener("click", () => {
+        inputText.value = "";
+        outputText.value = "";
+        resetOutputStyle();
+      });
+
+      // Core Compilation Switchboard System
+      function executeTransformationPipeline() {
+        const payloadData = inputText.value.trim();
+        if (payloadData === "") {
+          outputText.value = "";
+          resetOutputStyle();
+          return;
+        }
+
+        if (isJsonToYamlMode) {
+          processJsonToYaml(payloadData);
+        } else {
+          processYamlToJson(payloadData);
+        }
+      }
+
+      // 1. JSON to YAML Conversion Core Algorithm
+      function processJsonToYaml(rawJson) {
+        try {
+          const parsedObject = JSON.parse(rawJson);
+          
+          if (typeof parsedObject !== 'object' || parsedObject === null) {
+            showErrorState("Invalid JSON Format", "⚠️ Input JSON structure must resolve to an active object node or array configuration layer.");
+            return;
+          }
+
+          resetOutputStyle();
+          // Deploy js-yaml serialization dump configuration
+          outputText.value = jsyaml.dump(parsedObject, {
+            indent: 2,
+            lineWidth: -1, // Avoid unexpected text line cuts
+            noRefs: true
+          });
+        } catch (error) {
+          showErrorState("Invalid JSON Format", `Invalid JSON Format\n\n⚠️ Parsing Error: ${error.message}`);
+        }
+      }
+
+      // 2. YAML to JSON Conversion Core Algorithm
+      function processYamlToJson(rawYaml) {
+        try {
+          // Deploy js-yaml internal safe parsing loader
+          const parsedObject = jsyaml.load(rawYaml);
+          
+          if (parsedObject === undefined || parsedObject === null) {
+            showErrorState("Invalid YAML Format", "⚠️ Input YAML scripts could not compile into valid database tree tokens.");
+            return;
+          }
+
+          resetOutputStyle();
+          // Apply standard formatting tabs to JSON layout outputs
+          outputText.value = JSON.stringify(parsedObject, null, 2);
+        } catch (error) {
+          showErrorState("Invalid YAML Format", `Invalid YAML Format\n\n⚠️ Syntax Error: ${error.message}`);
+        }
+      }
+
+      // Validation Output Color Manipulation Engines
+      function showErrorState(headerMsg, errorLog) {
+        outputText.value = errorLog;
+        outputText.classList.remove("text-slate-400", "border-slate-700");
+        outputText.classList.add("text-red-400", "border-red-500/50", "bg-red-950/20");
+        outputLabel.textContent = headerMsg;
+        outputLabel.classList.add("text-red-400");
+      }
+
+      function resetOutputStyle() {
+        outputText.classList.remove("text-red-400", "border-red-500/50", "bg-red-950/20");
+        outputText.classList.add("text-slate-400", "border-slate-700");
+        outputLabel.classList.remove("text-red-400");
+        outputLabel.textContent = isJsonToYamlMode ? "Compiled YAML Outflow" : "Compiled JSON Outflow";
+      }
+
+      // Clipboard Copier Dispatched Layer
+      copyBtn.addEventListener("click", () => {
+        const textValue = outputText.value;
+        if (textValue === "" || outputLabel.classList.contains("text-red-400")) return;
+
+        navigator.clipboard.writeText(textValue).then(() => {
+          copyToast.classList.remove("opacity-0", "scale-95");
+          copyToast.classList.add("opacity-100", "scale-100");
+          setTimeout(() => {
+            copyToast.classList.remove("opacity-100", "scale-100");
+            copyToast.classList.add("opacity-0", "scale-95");
+          }, 1500);
+        }).catch(err => {
+          console.error("Clipboard routine fault node: ", err);
+        });
+      });
+
+      // Blob Storage Download Routine
+      downloadBtn.addEventListener("click", () => {
+        const fileContentText = outputText.value;
+        if (fileContentText === "" || outputLabel.classList.contains("text-red-400")) return;
+
+        const extension = isJsonToYamlMode ? "yaml" : "json";
+        const mimeType = isJsonToYamlMode ? "text/yaml" : "application/json";
+        
+        const blob = new Blob([fileContentText], { type: `${mimeType};charset=utf-8;` });
+        const localUrl = URL.createObjectURL(blob);
+        
+        const virtualAnchor = document.createElement("a");
+        virtualAnchor.href = localUrl;
+        virtualAnchor.download = `nodntools_config_${Date.now()}.${extension}`;
+        
+        document.body.appendChild(virtualAnchor);
+        virtualAnchor.click();
+        
+        document.body.removeChild(virtualAnchor);
+        URL.revokeObjectURL(localUrl);
+      });
+    });
+  </script>
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+</body>
+</html>
