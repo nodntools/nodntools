@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Universal Unit Converter | Online Metric to Imperial Tool - NodnWebTools</title>
+
+  <meta
+    name="description"
+    content="Use the free NodnWebTools Universal Unit Converter to seamlessly process metric to imperial conversion. Convert kg to lbs instantly, inches to centimeters, and more with our absolute measurement conversion guide."
+  />
+  <meta
+    name="keywords"
+    content="online unit converter tool, metric to imperial conversion, convert kg to lbs instantly, inches to centimeters calculator, measurement conversion guide, unit converter, NodnWebTools"
+  />
+  <meta name="author" content="NodnWebTools" />
+  <meta name="robots" content="index, follow" />
+
+  <meta property="og:title" content="Universal Unit Converter | NodnWebTools" />
+  <meta
+    property="og:description"
+    content="Seamlessly convert between metric and imperial systems for length, weight, volume, and temperature instantly."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://nodnwebtools.com/unit-converter.html" />
+  <meta property="og:site_name" content="NodnWebTools" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Universal Unit Converter" />
+  <meta
+    name="twitter:description"
+    content="A client-side high-fidelity online unit converter tool for instant measurement conversion."
+  />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f5f3ff',
+              100: '#ede9fe',
+              200: '#ddd6fe',
+              500: '#8b5cf6',
+              600: '#7c3aed',
+              700: '#6d28d9',
+              800: '#5b21b6',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* 스크롤바 숨김 처리 */
+    .scrollbar-none::-webkit-scrollbar { display: none; }
+    .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+</head>
+
+<body class="min-h-screen bg-slate-100 px-4 py-8 sm:py-12">
+  <main class="mx-auto max-w-5xl">
+
+    <div class="mb-8 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white text-sm text-slate-400">
+      AdSense Responsive Ad Area - Top
+    </div>
+
+    <section class="grid gap-6 lg:grid-cols-2">
+
+      <div class="rounded-3xl bg-white p-5 shadow-xl ring-1 ring-slate-200 sm:p-8 lg:sticky lg:top-10 lg:self-start">
+        <div class="mb-6">
+          <span class="inline-flex rounded-full bg-brand-50 px-4 py-2 text-sm font-semibold text-brand-700">
+            Unit Converter
+          </span>
+
+          <h1 class="mt-5 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+            Universal Measurement Converter
+          </h1>
+
+          <p class="mt-3 text-base leading-7 text-slate-600">
+            Select a category, enter the value, and immediately match parameters across global standards.
+          </p>
+        </div>
+
+        <div class="mb-6 flex border-b border-slate-200 bg-slate-50 p-1.5 rounded-2xl overflow-x-auto scrollbar-none" id="tabs-container">
+          <button onclick="switchCategory('length')" id="tab-length" class="flex-1 min-w-[85px] py-2.5 px-3 rounded-xl text-xs font-bold tracking-wider uppercase transition-all duration-200 flex items-center justify-center space-x-1 bg-white text-brand-700 shadow-sm border border-slate-200/50">
+            <span>Length</span>
+          </button>
+          <button onclick="switchCategory('weight')" id="tab-weight" class="flex-1 min-w-[85px] py-2.5 px-3 rounded-xl text-xs font-bold tracking-wider uppercase transition-all duration-200 flex items-center justify-center space-x-1 text-slate-500 hover:text-slate-800">
+            <span>Weight</span>
+          </button>
+          <button onclick="switchCategory('volume')" id="tab-volume" class="flex-1 min-w-[85px] py-2.5 px-3 rounded-xl text-xs font-bold tracking-wider uppercase transition-all duration-200 flex items-center justify-center space-x-1 text-slate-500 hover:text-slate-800">
+            <span>Volume</span>
+          </button>
+          <button onclick="switchCategory('temperature')" id="tab-temperature" class="flex-1 min-w-[85px] py-2.5 px-3 rounded-xl text-xs font-bold tracking-wider uppercase transition-all duration-200 flex items-center justify-center space-x-1 text-slate-500 hover:text-slate-800">
+            <span>Temp</span>
+          </button>
+        </div>
+
+        <div class="space-y-5">
+          <div>
+            <label for="inputValue" class="mb-2 block text-sm font-semibold text-slate-700">
+              Value to Convert
+            </label>
+            <div class="relative">
+              <input
+                type="number"
+                id="inputValue"
+                inputmode="decimal"
+                value="1"
+                placeholder="1.00"
+                class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 px-4 text-lg font-semibold text-slate-900 outline-none transition focus:border-brand-500 focus:bg-white focus:ring-4 focus:ring-brand-100"
+              />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="fromUnit" class="mb-2 block text-sm font-semibold text-slate-700">
+                From Unit
+              </label>
+              <select
+                id="fromUnit"
+                class="w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-4 text-base font-medium text-slate-900 outline-none transition focus:border-brand-500 focus:bg-white focus:ring-4 focus:ring-brand-100 cursor-pointer"
+              ></select>
+            </div>
+
+            <div>
+              <label for="toUnit" class="mb-2 block text-sm font-semibold text-slate-700">
+                To Unit
+              </label>
+              <select
+                id="toUnit"
+                class="w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-4 text-base font-medium text-slate-900 outline-none transition focus:border-brand-500 focus:bg-white focus:ring-4 focus:ring-brand-100 cursor-pointer"
+              ></select>
+            </div>
+          </div>
+
+          <div class="flex justify-end">
+            <button onclick="swapUnits()" class="px-4 py-2.5 text-xs font-bold text-slate-600 hover:text-brand-700 bg-slate-100 hover:bg-brand-50 rounded-xl transition-all flex items-center space-x-1.5">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
+              <span>Swap Units</span>
+            </button>
+          </div>
+
+          <div class="rounded-2xl bg-slate-100 p-4 text-sm leading-6 text-slate-600">
+            Calculations are completed securely in real-time within your web browser using modern high-fidelity mathematical coefficients.
+          </div>
+        </div>
+      </div>
+
+      <div class="space-y-6">
+        <div class="rounded-3xl bg-white p-5 shadow-xl ring-1 ring-slate-200 sm:p-8">
+          <div class="mb-6">
+            <h2 class="text-2xl font-bold text-slate-900">
+              Conversion Result
+            </h2>
+            <p class="mt-2 text-sm text-slate-500">
+              Results update automatically as you modify the entry inputs or target metrics.
+            </p>
+          </div>
+
+          <div id="result" class="rounded-3xl border border-slate-200 bg-gradient-to-br from-slate-50 via-zinc-50 to-purple-50/30 p-5">
+            <p class="text-sm font-semibold uppercase tracking-wide text-slate-700">
+              Converted Output
+            </p>
+
+            <p id="outputValue" class="mt-2 text-4xl font-extrabold tracking-tight text-brand-700">
+              0
+            </p>
+
+            <p id="summarySentence" class="mt-3 text-base leading-7 text-slate-700">
+              1 cm is approximately equal to 0.3937 in.
+            </p>
+
+            <div class="mt-5 grid gap-3 sm:grid-cols-2">
+              <div class="rounded-2xl bg-white p-4 shadow-sm border border-slate-100">
+                <p class="text-xs text-slate-500">Original Base Value</p>
+                <p id="displayOriginalVal" class="mt-1 text-lg font-bold text-slate-900">0</p>
+              </div>
+
+              <div class="rounded-2xl bg-white p-4 shadow-sm border border-slate-100">
+                <p class="text-xs text-slate-500">Current Category</p>
+                <p id="displayCategory" class="mt-1 text-lg font-bold text-brand-600 capitalize">Length</p>
+              </div>
+            </div>
+
+            <div class="mt-5">
+              <div class="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm w-full">
+                <p class="text-xs font-semibold uppercase tracking-wide text-slate-700 mb-3">
+                  Quick Conversion Matrix
+                </p>
+                <div id="quick-matrix-list" class="space-y-2">
+                  </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-6 flex min-h-[250px] flex-col items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-slate-50 text-sm text-slate-400 p-4">
+            <span class="text-[10px] font-bold text-slate-300 uppercase tracking-widest mb-2">Advertisement</span>
+            <ins class="adsbygoogle"
+                 style="display:block; width:100%; min-height:200px;"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                 data-ad-slot="YYYYYYYYYY"
+                 data-ad-format="rectangle, vertical"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+          </div>
+
+          <p class="mt-5 text-xs leading-5 text-slate-500">
+            Disclaimer: This conversion tool is intended for structural education and general informational pipelines. While equations deploy highly precise international coefficients, small fractional logic anomalies may arise during multi-staged floating computing routines.
+          </p>
+        </div>
+
+        <section class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-8">
+          <span class="inline-flex rounded-full bg-slate-200 px-4 py-2 text-sm font-semibold text-slate-800">
+            Measurement Conversion Guide
+          </span>
+
+          <h2 class="mt-5 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
+            Universal Unit Conversion: Bridging Metric and Imperial Systems
+          </h2>
+
+          <div class="mt-5 space-y-5 text-sm leading-7 text-slate-600">
+            <p>
+              Navigating global communication, international commerce, and accurate documentation requires a reliable 
+              <strong class="font-semibold text-slate-800">online unit converter tool</strong>. Historically, civilization has developed numerous ways to measure weight, distance, and volume. Today, the core challenge lies in seamlessly processing the 
+              <strong class="font-semibold text-slate-800">metric to imperial conversion</strong>. While the majority of countries rely on the International System of Units (SI) or the metric system (meters, grams, liters), the United States and a few other regions persistently utilize the British imperial system (inches, pounds, gallons).
+            </p>
+
+            <p>
+              This dual-standard reality often introduces unnecessary friction into international business logistics, academic engineering tasks, digital travel planning, or cross-border e-commerce. For instance, if you are analyzing raw materials imported from overseas, you might need to 
+              <strong class="font-semibold text-slate-800">convert kg to lbs instantly</strong> to understand domestic pricing structures or meet localized transportation safety regulations. Similarly, fashion manufacturing, carpentry projects, and electronic schematic designs rely heavily on an accurate, high-fidelity 
+              <strong class="font-semibold text-slate-800">inches to centimeters calculator</strong> to completely bypass costly dimensional calculation errors.
+            </p>
+
+            <h3 class="text-lg font-bold text-slate-900 pt-2">How to Use This Practical Measurement Conversion Guide</h3>
+            <p>
+              Manually working out mathematical conversion factors can be frustrating, especially when dealing with complex fractions or unconventional baselines like Fahrenheit and Celsius. This modern utility simplifies your technical workflow into a simple single-click process:
+            </p>
+
+            <ul class="list-disc pl-5 space-y-2 text-slate-600">
+              <li><strong>Select Your Category:</strong> Click through the top navigation options to choose between Length, Weight, Volume, or Temperature parameters.</li>
+              <li><strong>Define Parameters:</strong> Choose your original source parameters from the left menu drop-down and input your numeric value.</li>
+              <li><strong>Instant Analysis:</strong> Watch the system execute formulas instantly on every keystroke, complete with an updated multi-unit cross-reference grid.</li>
+            </ul>
+
+            <p>
+              By bookmarking this optimized <strong class="font-semibold text-slate-800">measurement conversion guide</strong>, you can confidently process international engineering schematics, recipe ratios, or global commercial inventories without errors.
+            </p>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <div class="mt-8 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white text-sm text-slate-400">
+      AdSense Responsive Ad Area - Bottom
+    </div>
+
+  </main>
+
+  <script>
+    const conversionData = {
+      length: {
+        units: {
+          'm': { name: 'Meter (m)', factor: 1 },
+          'cm': { name: 'Centimeter (cm)', factor: 0.01 },
+          'in': { name: 'Inch (in)', factor: 0.0254 },
+          'ft': { name: 'Foot (ft)', factor: 0.3048 },
+          'mi': { name: 'Mile (mi)', factor: 1609.344
