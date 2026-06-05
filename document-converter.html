@@ -58,16 +58,23 @@
     }
   </script>
   <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { width: 100%; overflow-x: hidden; }
+    input, textarea, button { max-width: 100%; }
+    .adsbygoogle { max-width: 100%; overflow: hidden; }
     /* Absolute A4 Aspect Ratio Simulation Mapping for Live Preview Grid */
     .a4-preview-box {
       aspect-ratio: 1 / 1.4142;
       width: 100%;
     }
+    @media (max-width: 420px) {
+      .a4-preview-box { aspect-ratio: auto; min-height: 420px; }
+    }
   </style>
 </head>
 
-<body class="min-h-screen bg-slate-100 px-4 py-8 sm:py-12">
-  <main class="mx-auto max-w-5xl">
+<body class="min-h-screen bg-slate-100 px-3 py-5 text-slate-900 sm:px-4 sm:py-8 lg:py-12 overflow-x-hidden">
+  <main class="mx-auto w-full max-w-5xl overflow-hidden">
 
     <div class="mb-8 text-center">
       <a
@@ -81,18 +88,18 @@
       </a>
     </div>
 
-    <div class="mb-8 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white text-sm text-slate-400">
+    <div class="mb-6 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white px-3 text-center text-sm text-slate-400 sm:mb-8">
       AdSense Responsive Ad Area - Top
     </div>
 
-    <section class="grid gap-6 lg:grid-cols-12">
+    <section class="grid grid-cols-1 gap-5 lg:grid-cols-12">
 
-      <div class="rounded-3xl bg-white p-5 shadow-xl ring-1 ring-slate-200 sm:p-6 lg:col-span-5 space-y-4">
+      <div class="rounded-3xl bg-white p-4 shadow-xl ring-1 ring-slate-200 sm:p-6 lg:col-span-5 space-y-4">
         <div>
           <span class="inline-flex rounded-full bg-brand-50 px-4 py-1.5 text-sm font-semibold text-brand-700">
             Office Utility
           </span>
-          <h1 class="mt-4 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
+          <h1 class="mt-4 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl break-words">
             Document Converter
           </h1>
           <p class="mt-2 text-xs leading-5 text-slate-600">
@@ -103,27 +110,27 @@
         <div class="space-y-3">
           <div>
             <label for="docTitle" class="text-xs font-bold text-slate-700 uppercase tracking-wider block mb-1">Document Title</label>
-            <input type="text" id="docTitle" value="Untitled Document" placeholder="Enter document heading title..." class="w-full rounded-xl border border-slate-300 bg-slate-50 p-3 text-sm font-semibold text-slate-900 shadow-inner outline-none transition focus:border-brand-600 focus:bg-white focus:ring-4 focus:ring-brand-100" />
+            <input type="text" id="docTitle" value="Untitled Document" placeholder="Enter document heading title..." class="w-full min-w-0 rounded-xl border border-slate-300 bg-slate-50 p-3 text-sm font-semibold text-slate-900 shadow-inner outline-none transition focus:border-brand-600 focus:bg-white focus:ring-4 focus:ring-brand-100" />
           </div>
 
           <div>
             <label for="docBody" class="text-xs font-bold text-slate-700 uppercase tracking-wider block mb-1">Body Text Content</label>
-            <textarea id="docBody" rows="14" placeholder="Type or paste your markdown text blocks here. Changes project into the layout board instantly..." class="w-full rounded-2xl border border-slate-300 bg-slate-50 p-4 font-mono text-xs text-slate-900 shadow-inner outline-none transition focus:border-brand-600 focus:bg-white focus:ring-4 focus:ring-brand-100 resize-none leading-5"></textarea>
+            <textarea id="docBody" rows="10" placeholder="Type or paste your markdown text blocks here. Changes project into the layout board instantly..." class="w-full min-h-[220px] rounded-2xl border border-slate-300 bg-slate-50 p-3 font-mono text-xs text-slate-900 shadow-inner outline-none transition focus:border-brand-600 focus:bg-white focus:ring-4 focus:ring-brand-100 resize-y leading-5 sm:min-h-[340px] sm:p-4"></textarea>
           </div>
 
-          <div class="flex justify-between items-center text-[11px] text-slate-400 font-medium">
+          <div class="flex flex-col gap-2 text-[11px] text-slate-400 font-medium min-[360px]:flex-row min-[360px]:items-center min-[360px]:justify-between">
             <span id="charCount">Characters: 0</span>
             <button id="clearWorkspaceBtn" class="text-slate-500 hover:text-brand-600 bg-slate-100 hover:bg-slate-200 px-2.5 py-1 rounded-lg transition font-semibold">Clear Canvas</button>
           </div>
         </div>
 
-        <div class="pt-2 grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <button id="exportPdfBtn" class="rounded-xl bg-brand-600 py-3.5 px-4 text-center text-xs font-bold text-white shadow-md hover:bg-brand-700 active:scale-[0.98] transition-all flex items-center justify-center space-x-1.5">
+        <div class="pt-2 grid grid-cols-1 gap-3 sm:grid-cols-2">
+          <button id="exportPdfBtn" class="w-full rounded-xl bg-brand-600 py-3.5 px-4 text-center text-xs font-bold text-white shadow-md hover:bg-brand-700 active:scale-[0.98] transition-all flex items-center justify-center gap-1.5">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
             <span>Export to PDF</span>
           </button>
           
-          <button id="exportWordBtn" class="rounded-xl bg-slate-900 py-3.5 px-4 text-center text-xs font-bold text-white shadow-md hover:bg-slate-800 active:scale-[0.98] transition-all flex items-center justify-center space-x-1.5">
+          <button id="exportWordBtn" class="w-full rounded-xl bg-slate-900 py-3.5 px-4 text-center text-xs font-bold text-white shadow-md hover:bg-slate-800 active:scale-[0.98] transition-all flex items-center justify-center gap-1.5">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
             <span>Export to Word</span>
           </button>
@@ -132,8 +139,8 @@
 
       <div class="lg:col-span-7 space-y-6">
         
-        <div class="rounded-3xl bg-white p-5 shadow-xl ring-1 ring-slate-200 sm:p-6">
-          <div class="mb-4 flex justify-between items-center select-none">
+        <div class="rounded-3xl bg-white p-4 shadow-xl ring-1 ring-slate-200 sm:p-6">
+          <div class="mb-4 flex flex-col gap-2 select-none sm:flex-row sm:items-center sm:justify-between">
             <div>
               <h2 class="text-lg font-bold text-slate-900">Live WYSIWYG Board</h2>
               <p class="text-[11px] text-slate-500">A4 Ratio simulated bounding grid box structure.</p>
@@ -141,17 +148,17 @@
             <span class="text-[10px] font-bold text-brand-700 bg-brand-50 px-2.5 py-1 rounded-lg uppercase tracking-wider">Local Render</span>
           </div>
 
-          <div class="border border-slate-300 rounded-2xl bg-slate-200 p-4 shadow-inner overflow-hidden">
-            <div id="printableArea" class="a4-preview-box bg-white shadow-md p-8 sm:p-12 text-slate-900 flex flex-col overflow-y-auto font-serif">
-              <h1 id="previewTitle" class="text-2xl font-bold border-b-2 border-slate-800 pb-3 mb-4 text-slate-900 font-sans break-all">Untitled Document</h1>
-              <div id="previewBody" class="text-sm leading-6 text-slate-800 whitespace-pre-wrap break-all flex-1">Your document content renders live right inside this zone layer...</div>
+          <div class="border border-slate-300 rounded-2xl bg-slate-200 p-2 shadow-inner overflow-x-auto sm:p-4">
+            <div id="printableArea" class="a4-preview-box min-w-[280px] max-h-[520px] bg-white shadow-md p-5 text-slate-900 flex flex-col overflow-y-auto font-serif sm:p-10 lg:p-12">
+              <h1 id="previewTitle" class="text-xl font-bold border-b-2 border-slate-800 pb-3 mb-4 text-slate-900 font-sans break-words sm:text-2xl">Untitled Document</h1>
+              <div id="previewBody" class="text-xs leading-6 text-slate-800 whitespace-pre-wrap break-words flex-1 sm:text-sm">Your document content renders live right inside this zone layer...</div>
             </div>
           </div>
 
-          <div class="mt-6 flex min-h-[250px] flex-col items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-slate-50 text-sm text-slate-400 p-4">
+          <div class="mt-6 flex min-h-[180px] flex-col items-center justify-center overflow-hidden rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-3 text-center text-sm text-slate-400 sm:min-h-[250px] sm:p-4">
             <span class="text-[10px] font-bold text-slate-300 uppercase tracking-widest mb-2">Advertisement</span>
             <ins class="adsbygoogle"
-                 style="display:block; width:100%; min-height:200px;"
+                 style="display:block; width:100%; min-height:160px; max-width:100%; overflow:hidden;"
                  data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
                  data-ad-slot="YYYYYYYYYY"
                  data-ad-format="rectangle, vertical"
@@ -167,7 +174,7 @@
           </div>
         </div>
 
-        <section class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-8">
+        <section class="rounded-3xl bg-white p-4 shadow-sm ring-1 ring-slate-200 sm:p-8">
           <span class="inline-flex rounded-full bg-slate-200 px-4 py-2 text-sm font-semibold text-slate-800">
             Export Mechanics Guide
           </span>
@@ -206,7 +213,7 @@
       </div>
     </section>
 
-    <div class="mt-8 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white text-sm text-slate-400">
+    <div class="mt-8 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white px-3 text-center text-sm text-slate-400">
       AdSense Responsive Ad Area - Bottom
     </div>
 
