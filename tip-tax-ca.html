@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="Canada Tip & Tax Calculator. Quickly calculate Canadian province sales tax, tip, and total payment amount for restaurants, cafés, salons, and local stores." />
+  <title>Canada Tip & Tax Calculator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#fff1f2',
+              100: '#ffe4e6',
+              500: '#f43f5e',
+              600: '#e11d48',
+              700: '#be123c',
+              900: '#881337'
+            }
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-rose-50 via-slate-50 to-white text-slate-900">
+  <main class="mx-auto flex min-h-screen w-full max-w-6xl flex-col px-4 py-5 sm:px-6 lg:px-8">
+    <header class="mb-5 text-center sm:mb-8">
+      <a href="https://nodntools.com" class="inline-block transition hover:opacity-80" aria-label="NodnWebTools Home">
+        <div class="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
+          Nodn<span class="text-rose-600">WebTools</span>
+        </div>
+      </a>
+      <div class="mt-4 inline-flex rounded-full bg-rose-100 px-4 py-2 text-xs font-bold uppercase tracking-wide text-rose-700">
+        Canada Tip & Tax Calculator
+      </div>
+      <h1 class="mt-4 text-3xl font-black tracking-tight text-slate-950 sm:text-5xl">
+        Fast Tip & Tax Calculator for Canada
+      </h1>
+      <p class="mx-auto mt-3 max-w-2xl text-sm leading-6 text-slate-600 sm:text-base">
+        Enter a pre-tax bill, choose your province, select a tip, and instantly preview the final total.
+      </p>
+    </header>
+
+    <section class="mb-5 flex min-h-[80px] items-center justify-center rounded-3xl border border-dashed border-slate-300 bg-white/80 text-sm text-slate-400 shadow-sm">
+      AdSense Responsive Ad Area - Top
+    </section>
+
+    <section class="grid flex-1 gap-5 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+      <section class="rounded-[2rem] border border-white bg-white p-4 shadow-xl shadow-rose-100/60 ring-1 ring-slate-200 sm:p-6 lg:sticky lg:top-6">
+        <div class="mb-5">
+          <h2 class="text-xl font-black text-slate-950">Bill Details</h2>
+          <p class="mt-1 text-sm text-slate-500">Designed for quick one-handed use on mobile.</p>
+        </div>
+
+        <div class="space-y-5">
+          <div>
+            <label for="billAmount" class="mb-2 block text-sm font-bold text-slate-700">Food / Service Amount</label>
+            <div class="relative">
+              <span class="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-2xl font-black text-slate-400">$</span>
+              <input id="billAmount" type="number" min="0" step="0.01" inputmode="decimal" placeholder="85.00" class="w-full rounded-3xl border border-slate-200 bg-slate-50 py-5 pl-10 pr-4 text-3xl font-black tracking-tight text-slate-950 outline-none transition focus:border-rose-500 focus:bg-white focus:ring-4 focus:ring-rose-100" />
+            </div>
+          </div>
+
+          <div>
+            <div class="mb-2 flex items-end justify-between gap-3">
+              <label class="block text-sm font-bold text-slate-700">Province / Territory</label>
+              <span id="selectedTaxLabel" class="text-xs font-bold text-rose-700">BC · 12%</span>
+            </div>
+            <div id="provinceGrid" class="grid grid-cols-4 gap-2 sm:grid-cols-5"></div>
+          </div>
+
+          <div>
+            <label class="mb-2 block text-sm font-bold text-slate-700">Tip</label>
+            <div class="grid grid-cols-3 gap-2">
+              <button type="button" data-tip="15" class="tip-btn rounded-2xl border border-slate-200 bg-white px-4 py-4 text-lg font-black text-slate-700 shadow-sm transition hover:border-rose-300">15%</button>
+              <button type="button" data-tip="18" class="tip-btn rounded-2xl border border-rose-500 bg-rose-600 px-4 py-4 text-lg font-black text-white shadow-lg shadow-rose-200 transition">18%</button>
+              <button type="button" data-tip="20" class="tip-btn rounded-2xl border border-slate-200 bg-white px-4 py-4 text-lg font-black text-slate-700 shadow-sm transition hover:border-rose-300">20%</button>
+            </div>
+            <div class="mt-2 relative">
+              <input id="customTip" type="number" min="0" step="0.1" inputmode="decimal" placeholder="Custom tip %" class="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 pr-10 text-base font-bold text-slate-900 outline-none transition focus:border-rose-500 focus:bg-white focus:ring-4 focus:ring-rose-100" />
+              <span class="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 font-bold text-slate-400">%</span>
+            </div>
+          </div>
+
+          <div>
+            <label class="mb-2 block text-sm font-bold text-slate-700">Tip Calculation Base</label>
+            <div class="grid grid-cols-2 rounded-3xl bg-slate-100 p-1">
+              <button id="preTaxBtn" type="button" class="rounded-2xl bg-white px-4 py-3 text-sm font-black text-rose-700 shadow-sm">Pre-tax</button>
+              <button id="postTaxBtn" type="button" class="rounded-2xl px-4 py-3 text-sm font-black text-slate-500">Post-tax</button>
+            </div>
+            <p class="mt-2 text-xs leading-5 text-slate-500">Pre-tax is common when tipping on the bill before sales tax. Post-tax calculates tip after tax is added.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="rounded-[2rem] bg-slate-950 p-4 text-white shadow-2xl shadow-slate-300 sm:p-6">
+        <div class="mb-5 flex items-start justify-between gap-4">
+          <div>
+            <p class="text-xs font-bold uppercase tracking-[0.2em] text-rose-300">Receipt Preview</p>
+            <h2 class="mt-2 text-2xl font-black sm:text-3xl">Final Payment Total</h2>
+          </div>
+          <div class="rounded-2xl bg-white/10 px-3 py-2 text-right ring-1 ring-white/10">
+            <p id="provinceName" class="text-sm font-black">British Columbia</p>
+            <p id="taxBreakdown" class="text-xs text-slate-300">GST 5% + PST 7%</p>
+          </div>
+        </div>
+
+        <div class="rounded-[1.6rem] bg-white p-5 text-slate-950 shadow-xl sm:p-6">
+          <div class="mb-5 border-b border-dashed border-slate-300 pb-5 text-center">
+            <p class="text-xs font-black uppercase tracking-[0.25em] text-slate-400">Canada Receipt</p>
+            <p class="mt-2 text-sm font-bold text-slate-500">Tax + Tip Estimate</p>
+          </div>
+
+          <div class="space-y-3 text-base">
+            <div class="flex items-center justify-between gap-4">
+              <span class="text-slate-500">Pre-tax amount</span>
+              <strong id="subtotalValue" class="font-black">$0.00</strong>
+            </div>
+            <div class="flex items-center justify-between gap-4">
+              <span id="taxLineLabel" class="text-slate-500">Tax total</span>
+              <strong id="taxValue" class="font-black">$0.00</strong>
+            </div>
+            <div class="flex items-center justify-between gap-4">
+              <span id="tipLineLabel" class="text-slate-500">Tip</span>
+              <strong id="tipValue" class="font-black">$0.00</strong>
+            </div>
+            <div class="my-4 border-t border-dashed border-slate-300"></div>
+            <div class="flex items-end justify-between gap-4">
+              <span class="text-lg font-black">Total</span>
+              <strong id="totalValue" class="text-4xl font-black tracking-tight text-rose-600 sm:text-5xl">$0.00</strong>
+            </div>
+          </div>
+
+          <div class="mt-6 rounded-2xl bg-rose-50 p-4 text-sm leading-6 text-rose-900">
+            <strong>Quick check:</strong> <span id="quickSummary">Enter an amount to calculate tax, tip, and total.</span>
+          </div>
+        </div>
+
+        <div class="mt-5 grid gap-3 sm:grid-cols-3">
+          <div class="rounded-3xl bg-white/10 p-4 ring-1 ring-white/10">
+            <p class="text-xs text-slate-300">Tax Rate</p>
+            <p id="taxRateCard" class="mt-1 text-2xl font-black">12.000%</p>
+          </div>
+          <div class="rounded-3xl bg-white/10 p-4 ring-1 ring-white/10">
+            <p class="text-xs text-slate-300">Tip Rate</p>
+            <p id="tipRateCard" class="mt-1 text-2xl font-black">18%</p>
+          </div>
+          <div class="rounded-3xl bg-white/10 p-4 ring-1 ring-white/10">
+            <p class="text-xs text-slate-300">Tip Base</p>
+            <p id="tipBaseCard" class="mt-1 text-2xl font-black">Pre-tax</p>
+          </div>
+        </div>
+
+        <section class="mt-5 flex min-h-[80px] items-center justify-center rounded-3xl border border-dashed border-white/20 bg-white/5 text-sm text-slate-400">
+          AdSense Responsive Ad Area - Result
+        </section>
+      </section>
+    </section>
+
+    <section class="mt-8 rounded-[2rem] border border-slate-200 bg-white p-5 text-sm leading-7 text-slate-600 shadow-sm sm:p-8">
+      <h2 class="text-xl font-black text-slate-950">How this Canada tip and tax calculator works</h2>
+      <p class="mt-3">This tool estimates a final payment by adding the selected province or territory sales tax and your chosen tip rate. For a simple restaurant or store estimate, enter the amount before tax, choose the province, and select whether the tip should be calculated on the pre-tax amount or the post-tax amount.</p>
+      <h3 class="mt-5 font-black text-slate-900">Tax rate data included</h3>
+      <p class="mt-2">The calculator includes GST/HST and provincial sales tax rates for Alberta, British Columbia, Manitoba, New Brunswick, Newfoundland and Labrador, Northwest Territories, Nova Scotia, Nunavut, Ontario, Prince Edward Island, Quebec, Saskatchewan, and Yukon.</p>
+      <p class="mt-4 text-xs leading-6 text-slate-500">Disclaimer: This calculator is for quick personal estimates only. Some items, food categories, liquor, delivery fees, exemptions, and local rules can be treated differently. Confirm the actual tax treatment on your receipt or with the business.</p>
+    </section>
+  </main>
+
+  <script>
+    const provinceTaxes = {
+      AB: { name: 'Alberta', gst: 0.05, pst: 0, hst: 0, label: 'GST 5%' },
+      BC: { name: 'British Columbia', gst: 0.05, pst: 0.07, hst: 0, label: 'GST 5% + PST 7%' },
+      MB: { name: 'Manitoba', gst: 0.05, pst: 0.07, hst: 0, label: 'GST 5% + RST 7%' },
+      NB: { name: 'New Brunswick', gst: 0, pst: 0, hst: 0.15, label: 'HST 15%' },
+      NL: { name: 'Newfoundland and Labrador', gst: 0, pst: 0, hst: 0.15, label: 'HST 15%' },
+      NT: { name: 'Northwest Territories', gst: 0.05, pst: 0, hst: 0, label: 'GST 5%' },
+      NS: { name: 'Nova Scotia', gst: 0, pst: 0, hst: 0.14, label: 'HST 14%' },
+      NU: { name: 'Nunavut', gst: 0.05, pst: 0, hst: 0, label: 'GST 5%' },
+      ON: { name: 'Ontario', gst: 0, pst: 0, hst: 0.13, label: 'HST 13%' },
+      PE: { name: 'Prince Edward Island', gst: 0, pst: 0, hst: 0.15, label: 'HST 15%' },
+      QC: { name: 'Quebec', gst: 0.05, pst: 0.09975, hst: 0, label: 'GST 5% + QST 9.975%' },
+      SK: { name: 'Saskatchewan', gst: 0.05, pst: 0.06, hst: 0, label: 'GST 5% + PST 6%' },
+      YT: { name: 'Yukon', gst: 0.05, pst: 0, hst: 0, label: 'GST 5%' }
+    };
+
+    const money = new Intl.NumberFormat('en-CA', { style: 'currency', currency: 'CAD', minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    const provinceGrid = document.getElementById('provinceGrid');
+    const billAmount = document.getElementById('billAmount');
+    const customTip = document.getElementById('customTip');
+    const tipButtons = Array.from(document.querySelectorAll('.tip-btn'));
+    const preTaxBtn = document.getElementById('preTaxBtn');
+    const postTaxBtn = document.getElementById('postTaxBtn');
+
+    let selectedProvince = 'BC';
+    let selectedTip = 18;
+    let tipBase = 'pre';
+
+    function totalTaxRate(province) {
+      const tax = provinceTaxes[province];
+      return tax.hst || (tax.gst + tax.pst);
+    }
+
+    function round2(value) {
+      return Math.round((Number(value) + Number.EPSILON) * 100) / 100;
+    }
+
+    function formatRate(rate) {
+      return (rate * 100).toFixed(rate % 0.01 === 0 ? 0 : 3).replace(/\.000$/, '') + '%';
+    }
+
+    function renderProvinceButtons() {
+      provinceGrid.innerHTML = Object.keys(provinceTaxes).map(code => {
+        const active = code === selectedProvince;
+        return `<button type="button" data-province="${code}" class="province-btn rounded-2xl px-3 py-3 text-sm font-black transition ${active ? 'bg-rose-600 text-white shadow-lg shadow-rose-200' : 'border border-slate-200 bg-white text-slate-700 shadow-sm hover:border-rose-300'}">${code}</button>`;
+      }).join('');
+
+      document.querySelectorAll('.province-btn').forEach(button => {
+        button.addEventListener('click', () => {
+          selectedProvince = button.dataset.province;
+          renderProvinceButtons();
+          calculate();
+        });
+      });
+    }
+
+    function updateTipButtons() {
+      tipButtons.forEach(button => {
+        const isActive = Number(button.dataset.tip) === selectedTip && customTip.value === '';
+        button.className = isActive
+          ? 'tip-btn rounded-2xl border border-rose-500 bg-rose-600 px-4 py-4 text-lg font-black text-white shadow-lg shadow-rose-200 transition'
+          : 'tip-btn rounded-2xl border border-slate-200 bg-white px-4 py-4 text-lg font-black text-slate-700 shadow-sm transition hover:border-rose-300';
+      });
+    }
+
+    function updateTipBaseButtons() {
+      const preActive = tipBase === 'pre';
+      preTaxBtn.className = preActive ? 'rounded-2xl bg-white px-4 py-3 text-sm font-black text-rose-700 shadow-sm' : 'rounded-2xl px-4 py-3 text-sm font-black text-slate-500';
+      postTaxBtn.className = !preActive ? 'rounded-2xl bg-white px-4 py-3 text-sm font-black text-rose-700 shadow-sm' : 'rounded-2xl px-4 py-3 text-sm font-black text-slate-500';
+    }
+
+    function calculate() {
+      const subtotal = Math.max(parseFloat(billAmount.value) || 0, 0);
+      const tax = provinceTaxes[selectedProvince];
+      const rate = totalTaxRate(selectedProvince);
+      const taxAmount = round2(subtotal * rate);
+      const afterTax = round2(subtotal + taxAmount);
+      const tipRate = Math.max(parseFloat(customTip.value || selectedTip) || 0, 0) / 100;
+      const baseForTip = tipBase === 'pre' ? subtotal : afterTax;
+      const tipAmount = round2(baseForTip * tipRate);
+      const total = round2(afterTax + tipAmount);
+
+      document.getElementById('selectedTaxLabel').textContent = `${selectedProvince} · ${formatRate(rate)}`;
+      document.getElementById('provinceName').textContent = tax.name;
+      document.getElementById('taxBreakdown').textContent = tax.label;
+      document.getElementById('subtotalValue').textContent = money.format(subtotal);
+      document.getElementById('taxValue').textContent = money.format(taxAmount);
+      document.getElementById('tipValue').textContent = money.format(tipAmount);
+      document.getElementById('totalValue').textContent = money.format(total);
+      document.getElementById('taxLineLabel').textContent = `Tax total (${tax.label})`;
+      document.getElementById('tipLineLabel').textContent = `Tip (${(tipRate * 100).toFixed(tipRate * 100 % 1 === 0 ? 0 : 1)}% · ${tipBase === 'pre' ? 'pre-tax' : 'post-tax'})`;
+      document.getElementById('taxRateCard').textContent = formatRate(rate);
+      document.getElementById('tipRateCard').textContent = `${(tipRate * 100).toFixed(tipRate * 100 % 1 === 0 ? 0 : 1)}%`;
+      document.getElementById('tipBaseCard').textContent = tipBase === 'pre' ? 'Pre-tax' : 'Post-tax';
+      document.getElementById('quickSummary').textContent = subtotal > 0
+        ? `${money.format(subtotal)} in ${selectedProvince} becomes ${money.format(total)} with ${money.format(taxAmount)} tax and ${money.format(tipAmount)} tip.`
+        : 'Enter an amount to calculate tax, tip, and total.';
+    }
+
+    tipButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        selectedTip = Number(button.dataset.tip);
+        customTip.value = '';
+        updateTipButtons();
+        calculate();
+      });
+    });
+
+    customTip.addEventListener('input', () => {
+      updateTipButtons();
+      calculate();
+    });
+
+    billAmount.addEventListener('input', calculate);
+    preTaxBtn.addEventListener('click', () => { tipBase = 'pre'; updateTipBaseButtons(); calculate(); });
+    postTaxBtn.addEventListener('click', () => { tipBase = 'post'; updateTipBaseButtons(); calculate(); });
+
+    renderProvinceButtons();
+    updateTipButtons();
+    updateTipBaseButtons();
+    calculate();
+  </script>
+</body>
+</html>
