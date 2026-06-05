@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Canada Mortgage & Stress Test Calculator | OSFI Compliant</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#fff1f2', 100: '#ffe4e6', 500: '#e11d48', 
+              600: '#be123c', 700: '#9f1239', 800: '#881337',
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="min-h-screen bg-slate-50 px-4 py-8">
+  <main class="mx-auto max-w-5xl">
+    <div class="mb-8 text-center">
+      <h1 class="text-3xl font-extrabold text-slate-900">Canada Mortgage <span class="text-brand-700">& Stress Test</span></h1>
+    </div>
+
+    <section class="grid gap-6 lg:grid-cols-12">
+      <div class="lg:col-span-7 rounded-3xl bg-white p-6 shadow-xl border border-slate-100 space-y-5">
+        <h2 class="text-xl font-bold text-slate-800 border-b pb-3">Financial Inputs</h2>
+        
+        <div>
+          <label class="block text-sm font-semibold text-slate-700">Home Price ($)</label>
+          <input type="number" id="homePrice" value="600000" class="w-full mt-1 p-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 outline-none" />
+        </div>
+        
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-semibold text-slate-700">Down Payment ($)</label>
+            <input type="number" id="downPayment" value="60000" class="w-full mt-1 p-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 outline-none" />
+          </div>
+          <div>
+            <label class="block text-sm font-semibold text-slate-700">Contract Rate (%)</label>
+            <input type="number" id="interestRate" step="0.1" value="4.5" class="w-full mt-1 p-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 outline-none" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-sm font-semibold text-slate-700">Annual Household Income ($)</label>
+          <input type="number" id="annualIncome" value="100000" class="w-full mt-1 p-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 outline-none" />
+        </div>
+
+        <div>
+          <label class="block text-sm font-semibold text-slate-700">Other Monthly Debts ($)</label>
+          <input type="number" id="otherDebts" value="200" class="w-full mt-1 p-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 outline-none" />
+        </div>
+        <p id="errorMsg" class="text-xs text-red-600 font-bold hidden"></p>
+      </div>
+
+      <div class="lg:col-span-5 space-y-6">
+        <div id="resultCard" class="rounded-3xl bg-white p-6 shadow-xl border-t-4 border-brand-700">
+          <div id="passBadge" class="hidden text-center py-4 rounded-xl bg-green-100 text-green-800 font-bold text-lg mb-4">PASS - 대출 가능성이 높습니다</div>
+          <div id="failBadge" class="hidden text-center py-4 rounded-xl bg-red-100 text-red-800 font-bold text-lg mb-4">FAIL - 부채 조절이 필요합니다</div>
+          
+          <div class="space-y-4">
+            <p class="text-sm">Qualifying Rate: <span id="qualRate" class="font-bold text-brand-700">-</span></p>
+            <div>
+              <label class="text-xs font-bold uppercase">GDS Ratio (<39%)</label>
+              <div class="w-full bg-slate-200 h-3 rounded-full mt-1"><div id="gdsBar" class="bg-brand-600 h-3 rounded-full" style="width: 0%"></div></div>
+              <span id="gdsVal" class="text-xs font-mono">0%</span>
+            </div>
+            <div>
+              <label class="text-xs font-bold uppercase">TDS Ratio (<44%)</label>
+              <div class="w-full bg-slate-200 h-3 rounded-full mt-1"><div id="tdsBar" class="bg-brand-600 h-3 rounded-full" style="width: 0%"></div></div>
+              <span id="tdsVal" class="text-xs font-mono">0%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const inputs = ['homePrice', 'downPayment', 'interestRate', 'annualIncome', 'otherDebts'];
+    
+    function calculate() {
+      const p = parseFloat(document.getElementById('homePrice').value);
+      const dp = parseFloat(document.getElementById('downPayment').value);
+      const ir = parseFloat(document.getElementById('interestRate').value) / 100;
+      const inc = parseFloat(document.getElementById('annualIncome').value);
+      const debts = parseFloat(document.getElementById('otherDebts').value);
+
+      // 1. 최소 다운페이먼트 검사
+      let minDp = p <= 500000 ? p * 0.05 : 25000 + (p - 500000) * 0.10;
+      if (dp < minDp) {
+        document.getElementById('errorMsg').textContent = "⚠️ 최소 다운페이먼트 규정 미달 (" + minDp.toLocaleString() + " 필요)";
+        document.getElementById('errorMsg').classList.remove('hidden');
+      } else {
+        document.getElementById('errorMsg').classList.add('hidden');
+      }
+
+      // 2. 스트레스 테스트 금리
+      const qualRate = Math.max(ir + 0.02, 0.0525);
+      document.getElementById('qualRate').textContent = (qualRate * 100).toFixed(2) + "%";
+
+      // 3. 모기지 월납입액 (간이 계산: 25년 상환)
+      const loan = p - dp;
+      const monthlyRate = qualRate / 12;
+      const n = 25 * 12;
+      const mPayment = loan * (monthlyRate * Math.pow(1 + monthlyRate, n)) / (Math.pow(1 + monthlyRate, n) - 1);
+
+      // 4. 비율 계산
+      const gds = (mPayment / (inc / 12)) * 100;
+      const tds = ((mPayment + debts) / (inc / 12)) * 100;
+
+      document.getElementById('gdsBar').style.width = Math.min(gds, 100) + "%";
+      document.getElementById('tdsBar').style.width = Math.min(tds, 100) + "%";
+      document.getElementById('gdsVal').textContent = gds.toFixed(1) + "%";
+      document.getElementById('tdsVal').textContent = tds.toFixed(1) + "%";
+
+      // 5. 판정
+      const isPass = gds < 39 && tds < 44;
+      document.getElementById('passBadge').classList.toggle('hidden', !isPass);
+      document.getElementById('failBadge').classList.toggle('hidden', isPass);
+    }
+
+    inputs.forEach(id => document.getElementById(id).addEventListener('input', calculate));
+    calculate();
+  </script>
+</body>
+</html>
