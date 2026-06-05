@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="google-site-verification" content="4GnYZSUq78SepRFVCtFrAe-b6bbFiw54Mprte9evMX0" />
+
+  <title>Online Canada Paycheck Calculator | Net Take-Home Pay - NodnWebTools</title>
+
+  <meta
+    name="description"
+    content="Use the free NodnWebTools Canada Paycheck Calculator to accurately estimate your net take-home pay after Federal Tax, Provincial Tax, CPP, and EI deductions."
+  />
+  <meta
+    name="keywords"
+    content="canada paycheck calculator, take home pay canada, bc tax calculator, ontario tax brackets, cpp ei deductions, payroll calculator canada, salary calculator, nodntools"
+  />
+  <meta name="author" content="NodnWebTools" />
+  <meta name="robots" content="index, follow" />
+
+  <meta property="og:title" content="Online Canada Paycheck Calculator | NodnWebTools" />
+  <meta
+    property="og:description"
+    content="Calculate your Canadian net income based on annual salary or hourly wages across British Columbia, Ontario, Alberta, and Quebec instantly."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://nodntools.com/canada-paycheck-calculator.html" />
+  <meta property="og:site_name" content="NodnWebTools" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Online Canada Paycheck Calculator" />
+  <meta
+    name="twitter:description"
+    content="Comprehensive browser-based tax computing tool aligning with Canadian progressive tax schedules."
+  />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            canada: {
+              50: '#fff5f5',
+              100: '#ffe3e3',
+              200: '#ffc9c9',
+              500: '#e03131',
+              600: '#c92a2a',
+              700: '#b02a2a',
+              800: '#962424',
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="min-h-screen bg-slate-100 px-4 py-8 sm:py-12 text-slate-800 font-sans">
+  <main class="mx-auto max-w-5xl">
+
+    <div class="mb-8 text-center select-none">
+      <a href="https://nodntools.com" class="inline-block transition hover:opacity-80" aria-label="NodnWebTools Home">
+        <div class="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
+          Nodn<span class="text-canada-600">WebTools</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="mb-8 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white text-sm text-slate-400">
+      AdSense Responsive Ad Area - Top
+    </div>
+
+    <section class="grid gap-6 lg:grid-cols-2 lg:items-start">
+      
+      <div class="space-y-6">
+        <div class="rounded-3xl bg-white p-5 shadow-xl ring-1 ring-slate-200 sm:p-8">
+          <span class="inline-flex rounded-full bg-canada-50 px-4 py-1.5 text-xs font-semibold text-canada-700 select-none">
+            Canadian Payroll Engine
+          </span>
+
+          <h1 class="mt-4 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
+            Canada Paycheck Calculator
+          </h1>
+          <p class="mt-2 text-sm text-slate-500">
+            Estimate tax parameters based on current progressive brackets.
+          </p>
+
+          <div class="mt-6 flex rounded-xl bg-slate-100 p-1 shadow-inner ring-1 ring-slate-200/60">
+            <button id="tabAnnual" class="w-full rounded-lg py-2 text-center text-xs font-bold transition-all text-white bg-canada-600 shadow-sm">
+              Annual Salary
+            </button>
+            <button id="tabHourly" class="w-full rounded-lg py-2 text-center text-xs font-bold transition-all text-slate-500 hover:text-slate-800">
+              Hourly Wage
+            </button>
+          </div>
+
+          <div class="mt-5 space-y-4">
+            
+            <div>
+              <label id="incomeLabel" for="incomeInput" class="mb-1.5 block text-xs font-bold text-slate-700 uppercase tracking-wide">
+                Annual Gross Salary
+              </label>
+              <div class="relative">
+                <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 font-medium">$</span>
+                <input
+                  type="number"
+                  id="incomeInput"
+                  inputmode="decimal"
+                  placeholder="85000"
+                  class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-3.5 pl-9 pr-4 text-base font-semibold text-slate-900 outline-none transition focus:border-canada-500 focus:bg-white focus:ring-4 focus:ring-canada-100"
+                />
+              </div>
+            </div>
+
+            <div id="hourlyFields" class="hidden grid grid-cols-2 gap-3 transition-all duration-200">
+              <div>
+                <label for="hoursPerWeek" class="mb-1.5 block text-xs font-bold text-slate-700 uppercase tracking-wide">Hours / Week</label>
+                <input type="number" id="hoursPerWeek" value="40" class="w-full rounded-2xl border border-slate-300 bg-slate-50 p-3 text-sm font-semibold text-slate-900 outline-none focus:border-canada-500 focus:bg-white" />
+              </div>
+              <div>
+                <label for="weeksPerYear" class="mb-1.5 block text-xs font-bold text-slate-700 uppercase tracking-wide">Weeks / Year</label>
+                <input type="number" id="weeksPerYear" value="52" class="w-full rounded-2xl border border-slate-300 bg-slate-50 p-3 text-sm font-semibold text-slate-900 outline-none focus:border-canada-500 focus:bg-white" />
+              </div>
+            </div>
+
+            <div>
+              <label for="provinceSelect" class="mb-1.5 block text-xs font-bold text-slate-700 uppercase tracking-wide">Province of Employment</label>
+              <select
+                id="provinceSelect"
+                class="w-full rounded-2xl border border-slate-300 bg-slate-50 px-3 py-3.5 text-sm font-medium text-slate-900 outline-none transition focus:border-canada-500 focus:bg-white focus:ring-4 focus:ring-canada-100"
+              >
+                <option value="BC" selected>British Columbia (BC)</option>
+                <option value="ON">Ontario (ON)</option>
+                <option value="AB">Alberta (AB)</option>
+                <option value="QC">Quebec (QC)</option>
+              </select>
+            </div>
+
+            <button
+              onclick="executeCanadianPayrollPipeline()"
+              class="w-full rounded-2xl bg-canada-600 py-4 text-sm font-bold text-white shadow-md shadow-canada-600/10 transition hover:bg-canada-700 active:scale-[0.99]"
+            >
+              Calculate Net Take-Home Pay
+            </button>
+          </div>
+        </div>
+
+        <section class="bg-white p-5 sm:p-8 rounded-3xl shadow-xl border border-slate-200/60 space-y-5 text-sm leading-relaxed text-slate-600">
+          <h2 class="text-lg font-bold text-slate-900 flex items-center gap-2 select-none">
+            <span class="w-1.5 h-5 bg-canada-500 rounded-full"></span> Understanding Canadian Statutory Payroll Deductions
+          </h2>
+          <p>
+            Navigating payroll systems across Canadian jurisdictions requires accounting for stacked tax models. When processing salaries, structural withholdings are subtracted at source to fund community structures and safety nets.
+          </p>
+
+          <hr class="border-slate-100" />
+
+          <div class="space-y-3">
+            <div>
+              <h3 class="font-bold text-slate-800 text-sm">1. Progressive Federal Income Tax Withholding</h3>
+              <p class="text-xs text-slate-500 mt-0.5">
+                The Canada Revenue Agency (CRA) enforces progressive indexing structures. Taxable income parameters scale through increasing percentage thresholds, ensuring earners contribute proportionally.
+              </p>
+            </div>
+            <div>
+              <h3 class="font-bold text-slate-800 text-sm">2. Provincial Territorial Variance Allocations</h3>
+              <p class="text-xs text-slate-500 mt-0.5">
+                Each province determines its independent system. For instance, British Columbia features a low base threshold, whereas Ontario applies targeted health surtaxes on high earners, changing net outcomes.
+              </p>
+            </div>
+            <div>
+              <h3 class="font-bold text-slate-800 text-sm">3. Canada Pension Plan (CPP) & Employment Insurance (EI)</h3>
+              <p class="text-xs text-slate-500 mt-0.5">
+                Statutory deductions have structural protection caps. Contribution rules enforce maximum yearly limits, meaning payroll deductions stop automatically once cumulative year-to-date earnings clear thresholds.
+              </p>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="space-y-6">
+        <div id="resultCard" class="hidden rounded-3xl bg-white p-5 shadow-xl ring-1 ring-slate-200 sm:p-8 transform transition-all duration-300 opacity-0 scale-95">
+          
+          <div class="flex justify-between items-center border-b border-slate-100 pb-4 select-none">
+            <div>
+              <p class="text-xs font-bold uppercase tracking-wider text-canada-600">Estimated Net Remuneration</p>
+              <h2 class="text-2xl font-black text-slate-900 mt-0.5">Net Take-Home Pay</h2>
+            </div>
+            <select id="frequencySelect" onchange="recalculateDisplayFrequency()" class="rounded-xl border border-slate-200 bg-slate-50 px-2.5 py-1.5 text-xs font-bold text-slate-700 outline-none focus:border-canada-500">
+              <option value="annual">Annual Breakdown</option>
+              <option value="monthly" selected>Monthly Inflow</option>
+              <option value="biweekly">Bi-Weekly (26 Pay)</option>
+            </select>
+          </div>
+
+          <div class="py-6 text-center rounded-2xl bg-gradient-to-br from-canada-50/60 to-slate-50 border border-canada-100/40 my-4">
+            <p id="netPayDisplay" class="text-4xl font-black tracking-tight text-slate-900">$0.00</p>
+            <p id="frequencyLabel" class="text-[11px] font-bold uppercase tracking-widest text-slate-400 mt-1">Calculated Net Per Month</p>
+          </div>
+
+          <div class="space-y-2.5 text-sm font-medium">
+            <div class="flex justify-between items-center p-2 rounded-xl bg-slate-50/50">
+              <span class="text-slate-500 text-xs">Gross Earnings Structure</span>
+              <span id="grossDisplay" class="text-slate-900 font-bold">$0.00</span>
+            </div>
+            <div class="flex justify-between items-center p-2 rounded-xl">
+              <span class="text-slate-500 text-xs">Federal Income Tax Withholding</span>
+              <span id="fedTaxDisplay" class="text-red-600 font-semibold">-$0.00</span>
+            </div>
+            <div class="flex justify-between items-center p-2 rounded-xl">
+              <span class="text-slate-500 text-xs">Provincial Income Tax Component</span>
+              <span id="provTaxDisplay" class="text-red-600 font-semibold">-$0.00</span>
+            </div>
+            <div class="flex justify-between items-center p-2 rounded-xl">
+              <span class="text-slate-500 text-xs">Canada Pension Plan (CPP)</span>
+              <span id="cppDisplay" class="text-red-600 font-semibold">-$0.00</span>
+            </div>
+            <div class="flex justify-between items-center p-2 rounded-xl border-b border-slate-100 pb-3">
+              <span class="text-slate-500 text-xs">Employment Insurance (EI)</span>
+              <span id="eiDisplay" class="text-red-600 font-semibold">-$0.00</span>
+            </div>
+            <div class="flex justify-between items-center p-2 rounded-xl bg-canada-50/30 text-xs">
+              <span class="text-slate-600 font-bold">Total Statutory Deductions</span>
+              <span id="totalDeductionsDisplay" class="text-slate-900 font-extrabold">$0.00</span>
+            </div>
+            <div class="flex justify-between items-center p-2 rounded-xl bg-slate-50 text-xs">
+              <span class="text-slate-500">Effective Aggregate Tax Rate</span>
+              <span id="effectiveRateDisplay" class="text-slate-700 font-mono font-bold">0.0%</span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="flex min-h-[250px] flex-col items-center justify-center rounded-3xl border border-dashed border-slate-300 bg-white text-sm text-slate-400 p-4">
+          <span class="text-[10px] font-bold text-slate-300 uppercase tracking-widest mb-2">Advertisement</span>
+          <ins class="adsbygoogle" style="display:block; width:100%; min-height:200px;" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="YYYYYYYYYY" data-ad-format="rectangle, vertical" data-full-width-responsive="true"></ins>
+          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+
+        <div class="rounded-2xl bg-slate-200/50 p-4 text-xs leading-5 text-slate-500 ring-1 ring-slate-200">
+          <span class="block font-bold text-slate-700 mb-1">Disclaimer & Legal Notice:</span>
+          This tool is provided on an "as is" and "as available" basis without warranties of any kind. Payroll tax simulation calculations handle data 100% locally within your client browser tab scope script arrays; NodnWebTools never tracks, caches, intercepts, logs, or transmits your private financial metrics. Calculated items represent approximations built on baseline standard assumptions (excluding tailored corporate benefits, specific RRSP pre-tax variables, basic personal amount credit variants, or specific provincial health premiums). Users assume full personal liability before making financial decisions.
+        </div>
+      </div>
+
+    </section>
+
+    <div class="mt-8 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white text-sm text-slate-400">
+      AdSense Responsive Ad Area - Bottom
+    </div>
+
+  </main>
+
+  <script>
+    // System UI Interface Selectors
+    const tabAnnual = document.getElementById("tabAnnual");
+    const tabHourly = document.getElementById("tabHourly");
+    const incomeLabel = document.getElementById("incomeLabel");
+    const incomeInput = document.getElementById("incomeInput");
+    const hourlyFields = document.getElementById("hourlyFields");
+    const hoursPerWeek = document.getElementById("hoursPerWeek");
+    const weeksPerYear = document.getElementById("weeksPerYear");
+    const provinceSelect = document.getElementById("provinceSelect");
+    
+    const resultCard = document.getElementById("resultCard");
+    const frequencySelect = document.getElementById("frequencySelect");
+    const netPayDisplay = document.getElementById("netPayDisplay");
+    const frequencyLabel = document.getElementById("frequencyLabel");
+    
+    const grossDisplay = document.getElementById("grossDisplay");
+    const fedTaxDisplay = document.getElementById("fedTaxDisplay");
+    const provTaxDisplay = document.getElementById("provTaxDisplay");
+    const cppDisplay = document.getElementById("cppDisplay");
+    const eiDisplay = document.getElementById("eiDisplay");
+    const totalDeductionsDisplay = document.getElementById("totalDeductionsDisplay");
+    const effectiveRateDisplay = document.getElementById("effectiveRateDisplay");
+
+    // Global App Configuration Variables Context
+    let isHourlyMode = false;
+    let globalCalculatedAnnualReport = null;
+
+    // Interface Toggle Tabs Event Routines
+    tabAnnual.addEventListener("click", () => {
+      if (!isHourlyMode) return;
+      isHourlyMode = false;
+      toggleInputTabUi(tabAnnual, tabHourly);
+      incomeLabel.textContent = "Annual Gross Salary";
+      incomeInput.placeholder = "85000";
+      hourlyFields.classList.add("hidden");
+    });
+
+    tabHourly.addEventListener("click", () => {
+      if (isHourlyMode) return;
+      isHourlyMode = true;
+      toggleInputTabUi(tabHourly, tabAnnual);
+      incomeLabel.textContent = "Hourly Base Wage Rate";
+      incomeInput.placeholder = "28.50";
+      hourlyFields.classList.remove("hidden");
+    });
+
+    function toggleInputTabUi(active, inactive) {
+      active.classList.add("bg-canada-600", "text-white");
+      active.classList.remove("text-slate-500", "hover:text-slate-800");
+      inactive.classList.remove("bg-canada-600", "text-white");
+      inactive.classList.add("text-slate-500", "hover:text-slate-800");
+    }
+
+    // Comprehensive Progressive Mathematical Progressive Tax Compiler Function
+    function compileProgressiveTaxValue(taxableIncome, bracketArray) {
+      let aggregatedTax = 0;
+      for (const bracket of bracketArray) {
+        if (taxableIncome > bracket.min) {
+          const taxableSegment = Math.min(taxableIncome, bracket.max) - bracket.min;
+          aggregatedTax += taxableSegment * bracket.rate;
+        }
+      }
+      return aggregatedTax;
+    }
+
+    // Main Calculation Pipeline Controller Orchestrator
+    function executeCanadianPayrollPipeline() {
+      const baseValue = parseFloat(incomeInput.value);
+      if (isNaN(baseValue) || baseValue <= 0) {
+        alert("Please enter a valid numeric gross income payment parameter entry.");
+        incomeInput.focus();
+        return;
+      }
+
+      // Calculate base total annual gross earnings variable context bound
+      let annualGrossEarnings = 0;
+      if (isHourlyMode) {
+        const structuralHours = parseFloat(hoursPerWeek.value) || 40;
+        const structuralWeeks = parseFloat(weeksPerYear.value) || 52;
+        annualGrossEarnings = baseValue * structuralHours * structuralWeeks;
+      } else {
+        annualGrossEarnings = baseValue;
+      }
+
+      const targetedProvinceKey = provinceSelect.value;
+
+      /*--- 1. Federal Income Tax Brackets Definition Structure ---*/
+      const federalBrackets = [
+        { min: 0, max: 55867, rate: 0.15 },
+        { min: 55867, max: 111733, rate: 0.205 },
+        { min: 111733, max: 173205, rate: 0.26 },
+        { min: 173205, max: 246752, rate: 0.29 },
+        { min: 246752, max: Infinity, rate: 0.33 }
+      ];
+      const totalCalculatedFederalTax = compileProgressiveTaxValue(annualGrossEarnings, federalBrackets);
+
+      /*--- 2. Provincial Income Tax Jurisdictional Brackets Definition Structure ---*/
+      let provincialBrackets = [];
+      if (targetedProvinceKey === "BC") {
+        provincialBrackets = [
+          { min: 0, max: 47937, rate: 0.0506 },
+          { min: 47937, max: 95875, rate: 0.077 },
+          { min: 95875, max: 110057, rate: 0.105 },
+          { min: 110057, max: 133664, rate: 0.1229 },
+          { min: 133664, max: 181412, rate: 0.147 },
+          { min: 181412, max: 252752, rate: 0.168 },
+          { min: 252752, max: Infinity, rate: 0.205 }
+        ];
+      } else if (targetedProvinceKey === "ON") {
+        provincialBrackets = [
+          { min: 0, max: 52446, rate: 0.0505 },
+          { min: 52446, max: 104894, rate: 0.0915 },
+          { min: 104894, max: 150000, rate: 0.1116 },
+          { min: 150000, max: 220000, rate: 0.1216 },
+          { min: 220000, max: Infinity, rate: 0.1316 }
+        ];
+      } else if (targetedProvinceKey === "AB") {
+        provincialBrackets = [
+          { min: 0, max: 148269, rate: 0.10 },
+          { min: 148269, max: 177922, rate: 0.12 },
+          { min: 177922, max: 237230, rate: 0.13 },
+          { min: 237230, max: 355845, rate: 0.14 },
+          { min: 355845, max: Infinity, rate: 0.15 }
+        ];
+      } else if (targetedProvinceKey === "QC") {
+        provincialBrackets = [
+          { min: 0, max: 51780, rate: 0.14 },
+          { min: 51780, max: 103545, rate: 0.19 },
+          { min: 103545, max: 126000, rate: 0.24 },
+          { min: 126000, max: Infinity, rate: 0.25.75 }
+        ];
+      }
+      const totalCalculatedProvincialTax = compileProgressiveTaxValue(annualGrossEarnings, provincialBrackets);
+
+      /*--- 3. Canada Pension Plan (CPP) Rule Logic Parameters Processing ---*/
+      const cppExemptionAmount = 3500;
+      const cppRate = 0.0595; // Composite rate base layers
+      const cppMaxContributionCap = 3867.50;
+      
+      let calculatedAnnualCpp = 0;
+      if (annualGrossEarnings > cppExemptionAmount) {
+        calculatedAnnualCpp = (annualGrossEarnings - cppExemptionAmount) * cppRate;
+        if (calculatedAnnualCpp > cppMaxContributionCap) {
+          calculatedAnnualCpp = cppMaxContributionCap;
+        }
+      }
+
+      /*--- 4. Employment Insurance (EI) Rule Logic Parameters Processing ---*/
+      const eiRate = 0.0166;
+      const eiMaxContributionCap = 1049.12;
+      
+      let calculatedAnnualEi = annualGrossEarnings * eiRate;
+      if (calculatedAnnualEi > eiMaxContributionCap) {
+        calculatedAnnualEi = eiMaxContributionCap;
+      }
+
+      // Roll up calculation configurations globally inside runtime contexts
+      const compositeDeductions = totalCalculatedFederalTax + totalCalculatedProvincialTax + calculatedAnnualCpp + calculatedAnnualEi;
+      const annualNetTakeHomePay = annualGrossEarnings - compositeDeductions;
+
+      globalCalculatedAnnualReport = {
+        gross: annualGrossEarnings,
+        federalTax: totalCalculatedFederalTax,
+        provincialTax: totalCalculatedProvincialTax,
+        cpp: calculatedAnnualCpp,
+        ei: calculatedAnnualEi,
+        deductions: compositeDeductions,
+        net: annualNetTakeHomePay
+      };
+
+      // Apply step animations UI changes
+      resultCard.classList.remove("hidden");
+      setTimeout(() => {
+        resultCard.classList.remove("opacity-0", "scale-95");
+        resultCard.classList.add("opacity-100", "scale-100");
+      }, 50);
+
+      recalculateDisplayFrequency();
+    }
+
+    // Dynamic Display Recalculation Core Layer Engine
+    function recalculateDisplayFrequency() {
+      if (!globalCalculatedAnnualReport) return;
+
+      const scaleFrequency = frequencySelect.value;
+      let dividerFactor = 1;
+      let targetLabelString = "Calculated Net Per Year";
+
+      if (scaleFrequency === "monthly") {
+        dividerFactor = 12;
+        targetLabelString = "Calculated Net Per Month";
+      } else if (scaleFrequency === "biweekly") {
+        dividerFactor = 26;
+        targetLabelString = "Calculated Net Per Bi-Weekly Pay";
+      } else if (scaleFrequency === "annual") {
+        dividerFactor = 1;
+        targetLabelString = "Calculated Net Total Annualized";
+      }
+
+      const currencyFormatter = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "CAD",
+        maximumFractionDigits: 2
+      });
+
+      const ratioPercentFormatter = new Intl.NumberFormat("en-US", {
+        style: "percent",
+        maximumFractionDigits: 2
+      });
+
+      // Distribute calculated assets scaled to target frequency
+      netPayDisplay.textContent = currencyFormatter.format(globalCalculatedAnnualReport.net / dividerFactor);
+      frequencyLabel.textContent = targetLabelString;
+
+      grossDisplay.textContent = currencyFormatter.format(globalCalculatedAnnualReport.gross / dividerFactor);
+      fedTaxDisplay.textContent = `-${currencyFormatter.format(globalCalculatedAnnualReport.federalTax / dividerFactor)}`;
+      provTaxDisplay.textContent = `-${currencyFormatter.format(globalCalculatedAnnualReport.provincialTax / dividerFactor)}`;
+      cppDisplay.textContent = `-${currencyFormatter.format(globalCalculatedAnnualReport.cpp / dividerFactor)}`;
+      eiDisplay.textContent = `-${currencyFormatter.format(globalCalculatedAnnualReport.ei / dividerFactor)}`;
+      
+      totalDeductionsDisplay.textContent = currencyFormatter.format(globalCalculatedAnnualReport.deductions / dividerFactor);
+      
+      const effectiveAggregateRatio = globalCalculatedAnnualReport.deductions / globalCalculatedAnnualReport.gross;
+      effectiveRateDisplay.textContent = ratioPercentFormatter.format(effectiveAggregateRatio);
+    }
+  </script>
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+</body>
+</html>
