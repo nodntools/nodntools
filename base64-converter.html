@@ -53,61 +53,85 @@
       }
     }
   </script>
+
+  <style>
+    html, body {
+      width: 100%;
+      overflow-x: hidden;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    textarea, input, button {
+      max-width: 100%;
+    }
+    .adsbygoogle {
+      display: block;
+      max-width: 100%;
+      overflow: hidden;
+    }
+    @media (max-width: 480px) {
+      .mobile-break {
+        flex-direction: column;
+        align-items: stretch;
+      }
+    }
+  </style>
 </head>
 
-<body class="min-h-screen bg-slate-100 px-4 py-8 sm:py-12">
-  <main class="mx-auto max-w-5xl">
+<body class="min-h-screen bg-slate-100 px-3 py-5 sm:px-4 sm:py-10">
+  <main class="mx-auto w-full max-w-5xl overflow-hidden">
 
-    <div class="mb-8 text-center">
+    <div class="mb-6 text-center sm:mb-8">
       <a
         href="https://nodntools.com"
         class="inline-block transition hover:opacity-80"
         aria-label="NodnWebTools Home"
       >
-        <div class="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
+        <div class="text-xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
           Nodn<span class="text-blue-600">WebTools</span>
         </div>
       </a>
     </div>
 
-    <div class="mb-8 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white text-sm text-slate-400">
+    <div class="mb-6 flex min-h-[72px] w-full items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white px-3 text-center text-xs text-slate-400 sm:mb-8 sm:min-h-[90px] sm:text-sm">
       AdSense Responsive Ad Area - Top
     </div>
 
-    <section class="grid gap-6 lg:grid-cols-2">
+    <section class="grid grid-cols-1 gap-5 lg:grid-cols-2 lg:gap-6">
 
-      <div class="rounded-3xl bg-white p-5 shadow-xl ring-1 ring-slate-200 sm:p-8 lg:sticky lg:top-10 lg:self-start">
+      <div class="rounded-3xl bg-white p-4 shadow-xl ring-1 ring-slate-200 sm:p-8 lg:sticky lg:top-10 lg:self-start">
         <div class="mb-6">
           <span class="inline-flex rounded-full bg-brand-50 px-4 py-2 text-sm font-semibold text-brand-700">
             Data Utility
           </span>
 
-          <h1 class="mt-5 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+          <h1 class="mt-5 text-2xl font-bold tracking-tight text-slate-900 sm:text-4xl">
             Base64 Encoder/Decoder
           </h1>
 
-          <p class="mt-3 text-base leading-7 text-slate-600">
+          <p class="mt-3 text-sm leading-6 text-slate-600 sm:text-base sm:leading-7">
             Convert plain text to Base64 strings or decode back instantly. Built-in UTF-8 safety controls ensure zero character corruption.
           </p>
         </div>
 
         <div class="space-y-5">
           <div>
-            <div class="flex justify-between items-center mb-2">
+            <div class="mb-2 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
               <label for="inputText" class="text-sm font-semibold text-slate-700">Input Data Block</label>
               <button id="clearBtn" class="text-xs font-semibold text-slate-500 hover:text-red-600 bg-slate-100 hover:bg-slate-200 px-3 py-1.5 rounded-xl transition active:scale-95">
                 Clear Input
               </button>
             </div>
-            <textarea id="inputText" rows="8" placeholder="Type or paste your data text / Base64 string here..." class="w-full rounded-2xl border border-slate-300 bg-slate-50 p-4 font-mono text-sm text-slate-900 shadow-inner outline-none transition focus:border-brand-600 focus:bg-white focus:ring-4 focus:ring-brand-100 resize-none"></textarea>
+            <textarea id="inputText" rows="7" placeholder="Type or paste your data text / Base64 string here..." class="w-full rounded-2xl border border-slate-300 bg-slate-50 p-3 font-mono text-xs text-slate-900 shadow-inner outline-none transition focus:border-brand-600 focus:bg-white focus:ring-4 focus:ring-brand-100 resize-none sm:p-4 sm:text-sm"></textarea>
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <button id="encodeBtn" class="w-full rounded-2xl bg-brand-600 py-4 text-center text-base font-bold text-white shadow-md hover:bg-brand-700 active:scale-[0.99] transition-all flex items-center justify-center space-x-2">
+          <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4">
+            <button id="encodeBtn" class="flex w-full items-center justify-center rounded-2xl bg-brand-600 px-3 py-3.5 text-center text-sm font-bold text-white shadow-md transition-all hover:bg-brand-700 active:scale-[0.99] sm:py-4 sm:text-base">
               <span>Encode Text ➔ Base64</span>
             </button>
             
-            <button id="decodeBtn" class="w-full rounded-2xl bg-slate-900 py-4 text-center text-base font-bold text-white shadow-md hover:bg-slate-800 active:scale-[0.99] transition-all flex items-center justify-center space-x-2">
+            <button id="decodeBtn" class="flex w-full items-center justify-center rounded-2xl bg-slate-900 px-3 py-3.5 text-center text-sm font-bold text-white shadow-md transition-all hover:bg-slate-800 active:scale-[0.99] sm:py-4 sm:text-base">
               <span>Decode Base64 ➔ Text</span>
             </button>
           </div>
@@ -118,15 +142,15 @@
         </div>
       </div>
 
-      <div class="space-y-6">
-        <div class="rounded-3xl bg-white p-5 shadow-xl ring-1 ring-slate-200 sm:p-8">
+      <div class="space-y-5 sm:space-y-6">
+        <div class="rounded-3xl bg-white p-4 shadow-xl ring-1 ring-slate-200 sm:p-8">
           <div class="mb-6">
-            <h2 class="text-2xl font-bold text-slate-900">Transformation Outcome</h2>
+            <h2 class="text-xl font-bold text-slate-900 sm:text-2xl">Transformation Outcome</h2>
             <p class="mt-2 text-sm text-slate-500">View real-time structured binary text mappings downstream.</p>
           </div>
 
-          <div class="rounded-3xl border border-slate-200 bg-gradient-to-br from-slate-50 via-zinc-50 to-amber-50/20 p-5">
-            <div class="flex justify-between items-center mb-3">
+          <div class="rounded-3xl border border-slate-200 bg-gradient-to-br from-slate-50 via-zinc-50 to-amber-50/20 p-4 sm:p-5">
+            <div class="mb-3 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
               <span class="text-sm font-semibold uppercase tracking-wide text-slate-700" id="outputLabel">Output Stream</span>
               
               <div class="relative flex items-center">
@@ -136,19 +160,19 @@
                   </svg>
                   <span>Copy Result</span>
                 </button>
-                <span id="copyToast" class="absolute bottom-full right-0 mb-2 bg-slate-900 text-white text-xs px-2.5 py-1 rounded-xl opacity-0 scale-95 pointer-events-none transition-all duration-200 font-semibold shadow-md whitespace-nowrap">
+                <span id="copyToast" class="absolute bottom-full right-0 mb-2 max-w-[70vw] whitespace-nowrap rounded-xl bg-slate-900 px-2.5 py-1 text-xs font-semibold text-white opacity-0 scale-95 pointer-events-none shadow-md transition-all duration-200">
                   Copied!
                 </span>
               </div>
             </div>
             
-            <textarea id="outputText" rows="10" readonly placeholder="Calculated output data array nodes will populate here..." class="w-full rounded-2xl border border-slate-200 bg-white p-4 font-mono text-sm text-slate-900 shadow-inner outline-none transition focus:ring-4 focus:ring-brand-100 resize-none"></textarea>
+            <textarea id="outputText" rows="8" readonly placeholder="Calculated output data array nodes will populate here..." class="w-full rounded-2xl border border-slate-200 bg-white p-3 font-mono text-xs text-slate-900 shadow-inner outline-none transition focus:ring-4 focus:ring-brand-100 resize-none sm:p-4 sm:text-sm lg:rows-10"></textarea>
           </div>
 
-          <div class="mt-6 flex min-h-[250px] flex-col items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-slate-50 text-sm text-slate-400 p-4">
+          <div class="mt-6 flex min-h-[170px] w-full flex-col items-center justify-center overflow-hidden rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-3 text-center text-xs text-slate-400 sm:min-h-[250px] sm:p-4 sm:text-sm">
             <span class="text-[10px] font-bold text-slate-300 uppercase tracking-widest mb-2">Advertisement</span>
             <ins class="adsbygoogle"
-                 style="display:block; width:100%; min-height:200px;"
+                 style="display:block; width:100%; max-width:100%; min-height:160px;"
                  data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
                  data-ad-slot="YYYYYYYYYY"
                  data-ad-format="rectangle, vertical"
@@ -164,7 +188,7 @@
           </div>
         </div>
 
-        <section class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-8">
+        <section class="rounded-3xl bg-white p-4 shadow-sm ring-1 ring-slate-200 sm:p-8">
           <span class="inline-flex rounded-full bg-slate-200 px-4 py-2 text-sm font-semibold text-slate-800">
             Data Formatting Guide
           </span>
@@ -202,7 +226,7 @@
       </div>
     </section>
 
-    <div class="mt-8 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white text-sm text-slate-400">
+    <div class="mt-6 flex min-h-[72px] w-full items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white px-3 text-center text-xs text-slate-400 sm:mt-8 sm:min-h-[90px] sm:text-sm">
       AdSense Responsive Ad Area - Bottom
     </div>
 
