@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Online Color Code Converter | HEX, RGB, HSL Real-Time Sync - NodnWebTools</title>
+
+  <meta
+    name="description"
+    content="Use the free NodnWebTools Color Code Converter to instantly transform and sync between HEX, RGB, and HSL formats. Features a rich client-side live preview and one-click copy functions."
+  />
+  <meta
+    name="keywords"
+    content="color code converter, hex to rgb, rgb to hsl, hsl to hex, online color picker, design palette tools, color string formatter, nodntools, NodnWebTools"
+  />
+  <meta name="author" content="NodnWebTools" />
+  <meta name="robots" content="index, follow" />
+
+  <meta property="og:title" content="Online Color Code Converter | NodnWebTools" />
+  <meta
+    property="og:description"
+    content="Convert and preview HEX, RGB, and HSL values instantly with a beautiful interface. 100% safe, client-side bidirectional matrix synchronization."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://nodntools.com/color-converter.html" />
+  <meta property="og:site_name" content="NodnWebTools" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Online Color Code Converter" />
+  <meta
+    name="twitter:description"
+    content="A high-fidelity client-side bidirectional color layout matching tool built for designers and frontend engineers."
+  />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="min-h-screen bg-slate-50 px-4 py-8 sm:py-12 text-slate-800 font-sans">
+  <main class="mx-auto max-w-5xl">
+
+    <div class="mb-8 text-center">
+      <a
+        href="https://nodntools.com"
+        class="inline-block transition hover:opacity-80"
+        aria-label="NodnWebTools Home"
+      >
+        <div class="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
+          Nodn<span class="text-blue-600">WebTools</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="mb-8 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white text-sm text-slate-400">
+      AdSense Responsive Ad Area - Top
+    </div>
+
+    <section class="grid gap-6 lg:grid-cols-12">
+
+      <div class="rounded-3xl bg-white p-5 shadow-xl ring-1 ring-slate-200 sm:p-8 lg:col-span-5 flex flex-col space-y-6">
+        <div>
+          <span class="inline-flex rounded-full bg-slate-100 px-4 py-2 text-sm font-semibold text-slate-700">
+            UI/UX Studio Utility
+          </span>
+
+          <h1 class="mt-5 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+            Color Converter
+          </h1>
+
+          <p class="mt-2 text-sm leading-6 text-slate-500">
+            Select, adjust, and map digital color channels seamlessly. Mathematical logic blocks synchronize all properties inside your local browser memory space instantly.
+          </p>
+        </div>
+
+        <div class="space-y-3">
+          <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest select-none">Color Canvas Space</label>
+          <div id="colorBoardDisplay" class="w-full h-44 rounded-2xl shadow-inner transition-all duration-300 relative flex items-center justify-center border border-slate-200/60" style="background-color: #3498db;">
+            <input type="color" id="nativeColorPicker" value="#3498db" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
+            <div class="bg-black/20 text-white backdrop-blur-sm text-xs px-3 py-1.5 rounded-full pointer-events-none font-medium tracking-wide">
+              Click Board to Open Color Picker
+            </div>
+          </div>
+        </div>
+
+        <div class="rounded-2xl bg-slate-50 border border-slate-100 p-4 text-xs leading-5 text-slate-500">
+          💡 <span class="font-semibold text-slate-700">Pro-Tip:</span> You can directly modify any text fields on the right panel and hit <kbd class="px-1 py-0.5 bg-white border border-slate-300 rounded shadow-sm font-mono font-bold">Enter</kbd> to update the color palette.
+        </div>
+      </div>
+
+      <div class="lg:col-span-7 space-y-6">
+        <div class="rounded-3xl bg-white p-5 shadow-xl ring-1 ring-slate-200 sm:p-8">
+          <div class="mb-6 select-none">
+            <h2 class="text-2xl font-bold text-slate-900">Translation Matrix</h2>
+            <p class="mt-1 text-sm text-slate-400">Bidirectional channel mapping endpoints.</p>
+          </div>
+
+          <div class="space-y-4">
+            
+            <div class="rounded-xl border border-slate-200 bg-slate-50/50 p-3.5 flex flex-col space-y-1.5 relative group">
+              <div class="flex justify-between items-center select-none">
+                <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">HEX Format</span>
+                <button data-target="fieldHex" class="copy-trigger text-xs font-bold text-blue-600 bg-blue-50 hover:bg-blue-100 px-3 py-1 rounded-lg transition active:scale-95">Copy</button>
+              </div>
+              <div class="relative">
+                <input type="text" id="fieldHex" value="#3498db" class="w-full bg-white rounded-xl border border-slate-200 p-2.5 font-mono text-xs text-slate-800 outline-none shadow-sm focus:border-slate-400 uppercase" placeholder="#FFFFFF" />
+              </div>
+            </div>
+
+            <div class="rounded-xl border border-slate-200 bg-slate-50/50 p-3.5 flex flex-col space-y-1.5 relative group">
+              <div class="flex justify-between items-center select-none">
+                <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">RGB Format</span>
+                <button data-target="fieldRgb" class="copy-trigger text-xs font-bold text-blue-600 bg-blue-50 hover:bg-blue-100 px-3 py-1 rounded-lg transition active:scale-95">Copy</button>
+              </div>
+              <div class="relative">
+                <input type="text" id="fieldRgb" value="rgb(52, 152, 219)" class="w-full bg-white rounded-xl border border-slate-200 p-2.5 font-mono text-xs text-slate-800 outline-none shadow-sm focus:border-slate-400" placeholder="rgb(255, 255, 255)" />
+              </div>
+            </div>
+
+            <div class="rounded-xl border border-slate-200 bg-slate-50/50 p-3.5 flex flex-col space-y-1.5 relative group">
+              <div class="flex justify-between items-center select-none">
+                <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">HSL Format</span>
+                <button data-target="fieldHsl" class="copy-trigger text-xs font-bold text-blue-600 bg-blue-50 hover:bg-blue-100 px-3 py-1 rounded-lg transition active:scale-95">Copy</button>
+              </div>
+              <div class="relative">
+                <input type="text" id="fieldHsl" value="hsl(204, 70%, 53%)" class="w-full bg-white rounded-xl border border-slate-200 p-2.5 font-mono text-xs text-slate-800 outline-none shadow-sm focus:border-slate-400" placeholder="hsl(0, 0%, 100%)" />
+              </div>
+            </div>
+
+          </div>
+
+          <div id="validationAlert" class="hidden mt-4 rounded-xl bg-red-50 border border-red-100 p-3.5 text-xs font-semibold text-red-600 leading-5"></div>
+
+          <div id="copyToast" class="fixed bottom-6 right-6 bg-slate-900 text-white text-xs font-bold px-4 py-2.5 rounded-xl shadow-xl pointer-events-none opacity-0 translate-y-2 transition-all duration-300 z-50 flex items-center space-x-2">
+            <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <span>Color string copied to clipboard!</span>
+          </div>
+
+          <div class="mt-6 flex min-h-[250px] flex-col items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-slate-50 text-sm text-slate-400 p-4">
+            <span class="text-[10px] font-bold text-slate-300 uppercase tracking-widest mb-2">Advertisement</span>
+            <ins class="adsbygoogle"
+                 style="display:block; width:100%; min-height:200px;"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                 data-ad-slot="YYYYYYYYYY"
+                 data-ad-format="rectangle, vertical"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+          </div>
+
+          <div class="mt-5 rounded-2xl bg-slate-100 p-4 text-xs leading-5 text-slate-500">
+            <span class="block font-bold text-slate-700 mb-1">Disclaimer & Legal Notice:</span>
+            This tool is provided on an "as is" and "as available" basis without warranties of any kind. Color spectrum processing algorithms compute 100% locally within your client sandbox tab space variables; NodnWebTools never captures, mirrors, tracks, or caches your chosen color data inputs. The user holds exclusive liability to confirm structural profile color alignment vectors before shipping files. NodnWebTools, its technical developers, and operational networks deny all legal liability for downstream rendering failures, parsing bugs, or production compilation issues caused by string data conversions.
+          </div>
+        </div>
+
+        <section class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-8">
+          <span class="inline-flex rounded-full bg-slate-200 px-4 py-2 text-sm font-semibold text-slate-800">
+            Color Theory Architecture
+          </span>
+
+          <h2 class="mt-5 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
+            Bidirectional Color Vector Mapping: Aligning Digital Display Parameters
+          </h2>
+
+          <div class="mt-5 space-y-5 text-sm leading-7 text-slate-600">
+            <p>
+              In production design pipelines and complex frontend stylesheet setups, translating color attributes between specialized systems relies heavily on deploying a client-bound 
+              <strong class="font-semibold text-slate-800">online color code converter</strong>. When engineering teams build modular interface configurations, manual calculations across floating parameters cause design regressions and risk breakdown exceptions.
+            </p>
+
+            <p>
+              Utilizing a standalone <strong class="font-semibold text-slate-800">hex to rgb formatting utility</strong> handles target conversion steps smoothly. Furthermore, utilizing a responsive <strong class="font-semibold text-slate-800">online document converter</strong> layout style for color tokens allows interface builders to align asset parameters securely inside local workspace tabs without hitting remote server paths.
+            </p>
+
+            <h3 class="text-lg font-bold text-slate-900 pt-2">How Native Color Spaces Transform Locally</h3>
+            <p>
+              Many conversion modules pass parameters down to external cloud servers, creating potential workflow gaps. Our optimized code restricts computation to your browser environment:
+            </p>
+
+            <ul class="list-disc pl-5 space-y-2 text-slate-600">
+              <li><strong>Hexadecimal Splitting:</strong> The logic splits strings into 8-bit channels, mapping base hex tokens into integer RGB numbers accurately.</li>
+              <li><strong>Mathematical HSL Vector Calculation:</strong> The tool isolates chroma values using maximum and minimum channel parameters, calculating precise angle degrees and color percentages.</li>
+              <li><strong>Bidirectional Synchronization:</strong> Input listeners match values across inputs, instantly updating the design canvas without manual recalculations.</li>
+            </ul>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <div class="mt-8 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white text-sm text-slate-400">
+      AdSense Responsive Ad Area - Bottom
+    </div>
+
+  </main>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Color Picker and Display Selectors
+      const nativeColorPicker = document.getElementById("nativeColorPicker");
+      const colorBoardDisplay = document.getElementById("colorBoardDisplay");
+      
+      // Text Field Interface Selectors
+      const fieldHex = document.getElementById("fieldHex");
+      const fieldRgb = document.getElementById("fieldRgb");
+      const fieldHsl = document.getElementById("fieldHsl");
+      
+      const validationAlert = document.getElementById("validationAlert");
+      const copyToast = document.getElementById("copyToast");
+      let toastTracker = null;
+
+      // Real-time listener for the color picker interface
+      nativeColorPicker.addEventListener("input", (e) => {
+        const selectedHex = e.target.value; // Returns clean standard #rrggbb format
+        synchronizeOutputsFromHex(selectedHex);
+      });
+
+      // Key Listener Bindings for Manual Value Form Input Overrides
+      [fieldHex, fieldRgb, fieldHsl].forEach(inputNode => {
+        inputNode.addEventListener("keydown", (e) => {
+          if (e.key === "Enter") {
+            processManualFieldInput(e.target);
+          }
+        });
+
+        inputNode.addEventListener("blur", (e) => {
+          processManualFieldInput(e.target);
+        });
+      });
+
+      // Core Dispatcher: Controls values updates when fields change manually
+      function processManualFieldInput(element) {
+        const valueStr = element.value.trim();
+        clearValidationError();
+
+        if (element.id === "fieldHex") {
+          // Validate Hexadecimal Input Profile Structure
+          const hexPattern = /^#?([a-fA-F0-9]{6})$/;
+          const matched = valueStr.match(hexPattern);
+          if (matched) {
+            const normalizedHex = matched[1].startsWith('#') ? matched[1] : `#${matched[1]}`;
+            synchronizeOutputsFromHex(normalizedHex);
+          } else {
+            showValidationError("⚠️ Hex Invalid: Please use standard hex notation strings (e.g., #3498DB or 3498db).");
+          }
+        } 
+        else if (element.id === "fieldRgb") {
+          // Validate RGB Form Input Components Array
+          const rgbPattern = /rgb\s*\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*\)/i;
+          const matched = valueStr.match(rgbPattern);
+          if (matched) {
+            const r = parseInt(matched[1]), g = parseInt(matched[2]), b = parseInt(matched[3]);
+            if (r <= 255 && g <= 255 && b <= 255) {
+              const compiledHex = rgbToHex(r, g, b);
+              synchronizeOutputsFromHex(compiledHex);
+            } else {
+              showValidationError("⚠️ RGB Channel Boundary: Integer channel bounds must scale between 0 and 255.");
+            }
+          } else {
+            showValidationError("⚠️ RGB Invalid: Please write valid color tokens (e.g., rgb(52, 152, 219)).");
+          }
+        } 
+        else if (element.id === "fieldHsl") {
+          // Validate HSL Form Input Components Array
+          const hslPattern = /hsl\s*\(\s*(\d{1,3})\s*,\s*(\d{1,3})%?\s*,\s*(\d{1,3})%?\s*\)/i;
+          const matched = valueStr.match(hslPattern);
+          if (matched) {
+            const h = parseInt(matched[1]), s = parseInt(matched[2]), l = parseInt(matched[3]);
+            if (h <= 360 && s <= 100 && l <= 100) {
+              const rgbObj = hslToRgb(h / 360, s / 100, l / 100);
+              const compiledHex = rgbToHex(rgbObj.r, rgbObj.g, rgbObj.b);
+              synchronizeOutputsFromHex(compiledHex);
+            } else {
+              showValidationError("⚠️ HSL Range Error: Hue must stay under 360, and Saturation/Lightness metrics must cap at 100%.");
+            }
+          } else {
+            showValidationError("⚠️ HSL Invalid: Please match standard formatting parameters (e.g., hsl(204, 70%, 53%)).");
+          }
+        }
+      }
+
+      // Main Alignment Engine: Syncs text representations based on a primary Hex input
+      function synchronizeOutputsFromHex(hex) {
+        // Update Board Previews and Native Picker values
+        colorBoardDisplay.style.backgroundColor = hex;
+        nativeColorPicker.value = hex;
+
+        // Set HEX Output Field Text
+        fieldHex.value = hex.toUpperCase();
+
+        // Convert to RGB space
+        const rgb = hexToRgb(hex);
+        fieldRgb.value = `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`;
+
+        // Convert to HSL space
+        const hsl = rgbToHsl(rgb.r, rgb.g, rgb.b);
+        fieldHsl.value = `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)`;
+      }
+
+      /* Core Color Translation Algorithms Matrix */
+
+      function hexToRgb(hex) {
+        const bigInt = parseInt(hex.replace('#', ''), 16);
+        return {
+          r: (bigInt >> 16) & 255,
+          g: (bigInt >> 8) & 255,
+          b: bigInt & 255
+        };
+      }
+
+      function rgbToHex(r, g, b) {
+        return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+      }
+
+      function rgbToHsl(r, g, b) {
+        r /= 255; g /= 255; b /= 255;
+        const max = Math.max(r, g, b), min = Math.min(r, g, b);
+        let h, s, l = (max + min) / 2;
+
+        if (max === min) {
+          h = s = 0; // Achromatic scale properties configuration
+        } else {
+          const d = max - min;
+          s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+          switch (max) {
+            case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+            case g: h = (b - r) / d + 2; break;
+            case b: h = (r - g) / d + 4; break;
+          }
+          h /= 6;
+        }
+
+        return {
+          h: Math.round(h * 360),
+          s: Math.round(s * 100),
+          l: Math.round(l * 100)
+        };
+      }
+
+      function hslToRgb(h, s, l) {
+        let r, g, b;
+        if (s === 0) {
+          r = g = b = l; // Achromatic scale handling parameters
+        } else {
+          const hue2rgb = (p, q, t) => {
+            if (t < 0) t += 1;
+            if (t > 1) t -= 1;
+            if (t < 1/6) return p + (q - p) * 6 * t;
+            if (t < 1/2) return q;
+            if (t < 2/3) return p + (q - p) * (2/3 - t) * 6;
+            return p;
+          };
+          const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+          const p = 2 * l - q;
+          r = hue2rgb(p, q, h + 1/3);
+          g = hue2rgb(p, q, h);
+          b = hue2rgb(p, q, h - 1/3);
+        }
+        return {
+          r: Math.round(r * 255),
+          g: Math.round(g * 255),
+          b: Math.round(b * 255)
+        };
+      }
+
+      // Universal Copy Dispatch Click Handler Loop
+      const copyButtons = document.querySelectorAll(".copy-trigger");
+      copyButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
+          const targetFieldId = btn.getAttribute("data-target");
+          const targetInput = document.getElementById(targetFieldId);
+
+          if (!targetInput || targetInput.value === "") return;
+
+          navigator.clipboard.writeText(targetInput.value)
+            .then(() => {
+              triggerToastPopup();
+            })
+            .catch(err => {
+              console.error("Clipboard routing exception error: ", err);
+            });
+        });
+      });
+
+      // UI/UX Interactive Mutators Feedback Triggers
+      function triggerToastPopup() {
+        if (toastTracker) clearTimeout(toastTracker);
+        copyToast.classList.remove("opacity-0", "translate-y-2");
+        copyToast.classList.add("opacity-100", "translate-y-0");
+        
+        toastTracker = setTimeout(() => {
+          copyToast.classList.remove("opacity-100", "translate-y-0");
+          copyToast.classList.add("opacity-0", "translate-y-2");
+        }, 1800);
+      }
+
+      function showValidationError(message) {
+        validationAlert.textContent = message;
+        validationAlert.classList.remove("hidden");
+      }
+
+      function clearValidationError() {
+        validationAlert.textContent = "";
+        validationAlert.classList.add("hidden");
+      }
+    });
+  </script>
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+</body>
+</html>
