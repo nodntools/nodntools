@@ -172,7 +172,7 @@
             </p>
 
             <p id="summarySentence" class="mt-3 text-base leading-7 text-slate-700">
-              1 cm is approximately equal to 0.3937 in.
+              Please enter a valid amount.
             </p>
 
             <div class="mt-5 grid gap-3 sm:grid-cols-2">
@@ -271,4 +271,202 @@
           'cm': { name: 'Centimeter (cm)', factor: 0.01 },
           'in': { name: 'Inch (in)', factor: 0.0254 },
           'ft': { name: 'Foot (ft)', factor: 0.3048 },
-          'mi': { name: 'Mile (mi)', factor: 1609.344
+          'mi': { name: 'Mile (mi)', factor: 1609.344 }
+        },
+        defaultFrom: 'cm',
+        defaultTo: 'in',
+        matrixUnits: ['m', 'cm', 'in', 'ft']
+      },
+      weight: {
+        units: {
+          'kg': { name: 'Kilogram (kg)', factor: 1 },
+          'g': { name: 'Gram (g)', factor: 0.001 },
+          'lb': { name: 'Pound (lb)', factor: 0.45359237 },
+          'oz': { name: 'Ounce (oz)', factor: 0.028349523 }
+        },
+        defaultFrom: 'kg',
+        defaultTo: 'lb',
+        matrixUnits: ['kg', 'g', 'lb', 'oz']
+      },
+      volume: {
+        units: {
+          'L': { name: 'Liter (L)', factor: 1 },
+          'mL': { name: 'Milliliter (mL)', factor: 0.001 },
+          'gal': { name: 'Gallon (gal)', factor: 3.785411784 },
+          'cup': { name: 'Cup (cup)', factor: 0.24 }
+        },
+        defaultFrom: 'L',
+        defaultTo: 'gal',
+        matrixUnits: ['L', 'mL', 'gal', 'cup']
+      },
+      temperature: {
+        units: {
+          'C': { name: 'Celsius (°C)' },
+          'F': { name: 'Fahrenheit (°F)' }
+        },
+        defaultFrom: 'C',
+        defaultTo: 'F',
+        matrixUnits: ['C', 'F']
+      }
+    };
+
+    let currentCategory = 'length';
+
+    // 전역 변수로 선언하되, DOMContentLoaded 이후에 할당
+    let inputValueInput;
+    let fromUnitSelect;
+    let toUnitSelect;
+    let outputValueEl;
+    let summarySentenceEl;
+    let displayOriginalValEl;
+    let displayCategoryEl;
+    let quickMatrixListEl;
+
+    function formatNumber(value, decimals = 4) {
+      if (value === 0) return "0";
+      let rounded = parseFloat(value.toFixed(decimals));
+      let parts = rounded.toString().split(".");
+      parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      return parts.join(".");
+    }
+
+    function sanitizeInput(value, fallback = 0) {
+      const number = parseFloat(value);
+      return isNaN(number) ? fallback : number;
+    }
+
+    function switchCategory(category) {
+      currentCategory = category;
+      
+      const tabs = ['length', 'weight', 'volume', 'temperature'];
+      tabs.forEach(t => {
+        const btn = document.getElementById(`tab-${t}`);
+        if (btn) {
+          if (t === category) {
+            btn.className = "flex-1 min-w-[85px] py-2.5 px-3 rounded-xl text-xs font-bold tracking-wider uppercase transition-all duration-200 flex items-center justify-center space-x-1 bg-white text-brand-700 shadow-sm border border-slate-200/50";
+          } else {
+            btn.className = "flex-1 min-w-[85px] py-2.5 px-3 rounded-xl text-xs font-bold tracking-wider uppercase transition-all duration-200 flex items-center justify-center space-x-1 text-slate-500 hover:text-slate-800";
+          }
+        }
+      });
+
+      if (displayCategoryEl) displayCategoryEl.textContent = category;
+      populateDropdowns(category);
+      calculateUnits();
+    }
+
+    function populateDropdowns(category) {
+      if (!fromUnitSelect || !toUnitSelect) return;
+
+      const catData = conversionData[category];
+      fromUnitSelect.innerHTML = '';
+      toUnitSelect.innerHTML = '';
+
+      Object.keys(catData.units).forEach(key => {
+        const optFrom = document.createElement('option');
+        optFrom.value = key;
+        optFrom.textContent = catData.units[key].name;
+        if(key === catData.defaultFrom) optFrom.selected = true;
+        fromUnitSelect.appendChild(optFrom);
+
+        const optTo = document.createElement('option');
+        optTo.value = key;
+        optTo.textContent = catData.units[key].name;
+        if(key === catData.defaultTo) optTo.selected = true;
+        toUnitSelect.appendChild(optTo);
+      });
+    }
+
+    function executeConversionLogic(value, from, to, category) {
+      if (from === to) return value;
+
+      if (category === 'temperature') {
+        if (from === 'C' && to === 'F') return (value * 9/5) + 32;
+        if (from === 'F' && to === 'C') return (value - 32) * 5/9;
+        return value;
+      } else {
+        const baseData = conversionData[category].units;
+        if (!baseData[from] || !baseData[to]) return value;
+        const valueInBase = value * baseData[from].factor;
+        return valueInBase / baseData[to].factor;
+      }
+    }
+
+    function calculateUnits() {
+      if (!inputValueInput || !fromUnitSelect || !toUnitSelect) return;
+
+      const rawValue = inputValueInput.value;
+      if (rawValue === '') {
+        outputValueEl.textContent = "0";
+        summarySentenceEl.textContent = "Please enter a value.";
+        displayOriginalValEl.textContent = "0";
+        generateMatrix(0, fromUnitSelect.value);
+        return;
+      }
+
+      const value = sanitizeInput(rawValue);
+      const fromUnit = fromUnitSelect.value;
+      const toUnit = toUnitSelect.value;
+
+      const result = executeConversionLogic(value, fromUnit, toUnit, currentCategory);
+      
+      outputValueEl.textContent = formatNumber(result);
+      displayOriginalValEl.textContent = formatNumber(value) + " " + fromUnit;
+      
+      const fromName = conversionData[currentCategory].units[fromUnit].name.split(' (')[0];
+      const toName = conversionData[currentCategory].units[toUnit].name.split(' (')[0];
+      summarySentenceEl.textContent = `${formatNumber(value)} ${fromUnit} (${fromName}) is approximately equal to ${formatNumber(result)} ${toUnit} (${toName}).`;
+
+      generateMatrix(value, fromUnit);
+    }
+
+    function generateMatrix(baseVal, baseUnit) {
+      if (!quickMatrixListEl) return;
+      quickMatrixListEl.innerHTML = '';
+      const catData = conversionData[currentCategory];
+
+      catData.matrixUnits.forEach(unitKey => {
+        let convertedValue = executeConversionLogic(baseVal, baseUnit, unitKey, currentCategory);
+        
+        const elementRow = document.createElement('div');
+        elementRow.className = "flex items-center justify-between bg-slate-50 px-3 py-2.5 rounded-xl border border-slate-200/50 text-xs font-medium";
+        
+        elementRow.innerHTML = `
+          <span class="text-slate-500 font-normal">In ${catData.units[unitKey].name.split(' (')[0]}</span>
+          <span class="text-slate-900 font-bold tracking-tight">${formatNumber(convertedValue)} <span class="text-brand-600 font-semibold">${unitKey}</span></span>
+        `;
+        quickMatrixListEl.appendChild(elementRow);
+      });
+    }
+
+    function swapUnits() {
+      if (!fromUnitSelect || !toUnitSelect) return;
+      const temp = fromUnitSelect.value;
+      fromUnitSelect.value = toUnitSelect.value;
+      toUnitSelect.value = temp;
+      calculateUnits();
+    }
+
+    // HTML 엘리먼트 로드가 완벽히 끝난 시점에 이벤트를 바인딩하도록 강제 안전 조치
+    document.addEventListener("DOMContentLoaded", () => {
+      inputValueInput = document.getElementById("inputValue");
+      fromUnitSelect = document.getElementById("fromUnit");
+      toUnitSelect = document.getElementById("toUnit");
+      outputValueEl = document.getElementById("outputValue");
+      summarySentenceEl = document.getElementById("summarySentence");
+      displayOriginalValEl = document.getElementById("displayOriginalVal");
+      displayCategoryEl = document.getElementById("displayCategory");
+      quickMatrixListEl = document.getElementById("quick-matrix-list");
+
+      inputValueInput.addEventListener("input", calculateUnits);
+      fromUnitSelect.addEventListener("change", calculateUnits);
+      toUnitSelect.addEventListener("change", calculateUnits);
+
+      // DOM 로드가 완료된 후에 초기 카테고리를 설정 및 연산 구동
+      switchCategory('length');
+    });
+  </script>
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+</body>
+</html>
