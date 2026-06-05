@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
 
   <title>Online Diff Checker | Compare Text Differences Instantly - NodnWebTools</title>
 
@@ -55,10 +55,38 @@
       }
     }
   </script>
+
+  <style>
+    html, body {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    textarea, input, button, select {
+      max-width: 100%;
+    }
+    .adsbygoogle {
+      display: block !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      overflow: hidden;
+    }
+    @media (max-width: 640px) {
+      textarea {
+        min-height: 220px;
+      }
+      #diffContent {
+        max-height: 360px;
+      }
+    }
+  </style>
 </head>
 
-<body class="min-h-screen bg-slate-100 px-4 py-8 sm:py-12">
-  <main class="mx-auto max-w-5xl">
+<body class="min-h-screen bg-slate-100 px-3 py-5 sm:px-4 sm:py-12">
+  <main class="mx-auto w-full max-w-5xl overflow-hidden">
 
     <div class="mb-8 text-center">
       <a
@@ -72,23 +100,23 @@
       </a>
     </div>
 
-    <div class="mb-8 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white text-sm text-slate-400">
+    <div class="mb-6 flex min-h-[80px] w-full items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white px-3 text-center text-xs text-slate-400 sm:mb-8 sm:min-h-[90px] sm:text-sm">
       AdSense Responsive Ad Area - Top
     </div>
 
     <section class="space-y-6">
       
-      <div class="rounded-3xl bg-white p-5 shadow-xl ring-1 ring-slate-200 sm:p-8">
+      <div class="rounded-3xl bg-white p-4 shadow-xl ring-1 ring-slate-200 sm:p-8">
         <div class="mb-6">
           <span class="inline-flex rounded-full bg-brand-50 px-4 py-2 text-sm font-semibold text-brand-700">
             Developer Utility
           </span>
 
-          <h1 class="mt-5 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+          <h1 class="mt-5 text-2xl font-bold tracking-tight text-slate-900 sm:text-4xl">
             Online Diff Checker
           </h1>
 
-          <p class="mt-3 text-base leading-7 text-slate-600">
+          <p class="mt-3 text-sm leading-6 text-slate-600 sm:text-base sm:leading-7">
             Compare two text segments or code layers to spot structural adjustments instantly. Processing executes 100% locally in your client runtime sandbox environment.
           </p>
         </div>
@@ -99,7 +127,7 @@
               <label for="originalText" class="text-sm font-semibold text-slate-700">Original Text (Source)</label>
               <button id="clearOriginalBtn" class="text-[11px] font-semibold text-slate-500 hover:text-red-600 bg-slate-100 hover:bg-slate-200 px-2.5 py-1 rounded-lg transition">Clear</button>
             </div>
-            <textarea id="originalText" rows="10" placeholder="Paste the baseline original source code or text here..." class="w-full rounded-2xl border border-slate-300 bg-slate-50 p-4 font-mono text-xs text-slate-900 shadow-inner outline-none transition focus:border-brand-600 focus:bg-white focus:ring-4 focus:ring-brand-100 resize-none"></textarea>
+            <textarea id="originalText" rows="10" placeholder="Paste the baseline original source code or text here..." class="w-full min-h-[220px] rounded-2xl border border-slate-300 bg-slate-50 p-3 font-mono text-xs leading-5 text-slate-900 shadow-inner outline-none transition focus:border-brand-600 focus:bg-white focus:ring-4 focus:ring-brand-100 resize-y sm:min-h-[260px] sm:p-4"></textarea>
           </div>
 
           <div>
@@ -107,24 +135,24 @@
               <label for="modifiedText" class="text-sm font-semibold text-slate-700">Modified Text (Target)</label>
               <button id="clearModifiedBtn" class="text-[11px] font-semibold text-slate-500 hover:text-red-600 bg-slate-100 hover:bg-slate-200 px-2.5 py-1 rounded-lg transition">Clear</button>
             </div>
-            <textarea id="modifiedText" rows="10" placeholder="Paste the updated modified text configuration here..." class="w-full rounded-2xl border border-slate-300 bg-slate-50 p-4 font-mono text-xs text-slate-900 shadow-inner outline-none transition focus:border-brand-600 focus:bg-white focus:ring-4 focus:ring-brand-100 resize-none"></textarea>
+            <textarea id="modifiedText" rows="10" placeholder="Paste the updated modified text configuration here..." class="w-full min-h-[220px] rounded-2xl border border-slate-300 bg-slate-50 p-3 font-mono text-xs leading-5 text-slate-900 shadow-inner outline-none transition focus:border-brand-600 focus:bg-white focus:ring-4 focus:ring-brand-100 resize-y sm:min-h-[260px] sm:p-4"></textarea>
           </div>
         </div>
 
-        <div class="mt-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div class="mt-5 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div class="text-xs leading-5 text-slate-500 max-w-md">
             Clicking compilation mapping analyzes tokens line-by-line. Your proprietary data metrics remain completely hidden from remote external cloud servers.
           </div>
-          <button id="compareBtn" class="w-full sm:w-auto rounded-2xl bg-brand-600 px-8 py-4 text-center text-base font-bold text-white shadow-md hover:bg-brand-700 active:scale-[0.99] transition-all whitespace-nowrap">
+          <button id="compareBtn" class="w-full rounded-2xl bg-brand-600 px-5 py-4 text-center text-sm font-bold text-white shadow-md transition-all hover:bg-brand-700 active:scale-[0.99] sm:w-auto sm:px-8 sm:text-base whitespace-normal sm:whitespace-nowrap">
             Find Differences (Diff)
           </button>
         </div>
       </div>
 
-      <div class="rounded-3xl bg-white p-5 shadow-xl ring-1 ring-slate-200 sm:p-8">
-        <div class="mb-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+      <div class="rounded-3xl bg-white p-4 shadow-xl ring-1 ring-slate-200 sm:p-8">
+        <div class="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <h2 class="text-2xl font-bold text-slate-900">Line Comparison Output</h2>
+            <h2 class="text-xl font-bold text-slate-900 sm:text-2xl">Line Comparison Output</h2>
             <p class="mt-1 text-sm text-slate-500">Color-coded mapping visualization metrics display down below.</p>
           </div>
           
@@ -140,22 +168,22 @@
           </div>
         </div>
 
-        <div id="diffPlaceholder" class="rounded-3xl border border-slate-200 bg-gradient-to-br from-slate-50 via-zinc-50 to-blue-50/20 p-8 text-center text-slate-400">
+        <div id="diffPlaceholder" class="rounded-3xl border border-slate-200 bg-gradient-to-br from-slate-50 via-zinc-50 to-blue-50/20 p-5 text-center text-sm text-slate-400 sm:p-8">
           Provide text blocks inside the source dashboards above and execute comparison mappings to compile results here.
         </div>
 
-        <div id="diffContainer" class="hidden rounded-2xl border border-slate-200 bg-slate-900 overflow-hidden font-mono text-xs sm:text-sm shadow-2xl">
-          <div class="bg-slate-800 px-4 py-2 border-b border-slate-700 flex justify-between items-center text-slate-400 text-xs select-none">
+        <div id="diffContainer" class="hidden w-full rounded-2xl border border-slate-200 bg-slate-900 overflow-hidden font-mono text-[11px] shadow-2xl sm:text-sm">
+          <div class="flex items-center justify-between gap-3 border-b border-slate-700 bg-slate-800 px-3 py-2 text-[11px] text-slate-400 select-none sm:px-4 sm:text-xs">
             <span>Terminal View Mode</span>
             <span>Lines Evaluated</span>
           </div>
-          <div id="diffContent" class="overflow-x-auto divide-y divide-slate-800/40 p-2 space-y-0.5 leading-6 text-slate-300 max-h-[500px]"></div>
+          <div id="diffContent" class="max-h-[360px] overflow-x-auto divide-y divide-slate-800/40 p-1.5 space-y-0.5 leading-5 text-slate-300 sm:max-h-[500px] sm:p-2 sm:leading-6"></div>
         </div>
 
-        <div class="mt-6 flex min-h-[250px] flex-col items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-slate-50 text-sm text-slate-400 p-4">
+        <div class="mt-6 flex min-h-[180px] w-full flex-col items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-3 text-center text-xs text-slate-400 sm:min-h-[250px] sm:p-4 sm:text-sm">
           <span class="text-[10px] font-bold text-slate-300 uppercase tracking-widest mb-2">Advertisement</span>
           <ins class="adsbygoogle"
-               style="display:block; width:100%; min-height:200px;"
+               style="display:block; width:100%; max-width:100%; min-height:160px;"
                data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
                data-ad-slot="YYYYYYYYYY"
                data-ad-format="rectangle, vertical"
@@ -165,18 +193,18 @@
             </script>
           </div>
 
-          <div class="mt-5 rounded-2xl bg-slate-100 p-4 text-xs leading-5 text-slate-500">
+          <div class="mt-5 rounded-2xl bg-slate-100 p-3 text-[11px] leading-5 text-slate-500 sm:p-4 sm:text-xs">
             <span class="block font-bold text-slate-700 mb-1">Disclaimer & Legal Notice:</span>
             This tool is provided on an "as is" and "as available" basis without warranties of any kind. Differential character tracking sequences execute 100% locally inside the user's browser rendering threads; NodnWebTools never mirrors, tracks, uploads, or leaks your payload source codes. The user carries full exclusive liability to manually double-check production code fidelity before engineering software release cycles. NodnWebTools, its core authors, and corporate affiliates reject all claims, financial damages, data deletions, or logical operational crashes arising from compiled outcomes.
           </div>
         </div>
 
-        <section class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-8">
+        <section class="rounded-3xl bg-white p-4 shadow-sm ring-1 ring-slate-200 sm:p-8">
           <span class="inline-flex rounded-full bg-slate-200 px-4 py-2 text-sm font-semibold text-slate-800">
             Structural Code Guide
           </span>
 
-          <h2 class="mt-5 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
+          <h2 class="mt-5 text-xl font-bold tracking-tight text-slate-900 sm:text-3xl">
             Line-by-Line Text Comparison: Accurate Code Change Audits
           </h2>
 
@@ -269,10 +297,10 @@
 
           lines.forEach((line) => {
             const lineRowElement = document.createElement("div");
-            lineRowElement.classList.add("px-4", "py-0.5", "whitespace-pre-wrap", "font-mono", "flex", "items-start");
+            lineRowElement.classList.add("px-2", "py-1", "whitespace-pre-wrap", "font-mono", "flex", "items-start", "gap-1", "sm:px-4", "sm:py-0.5");
 
             const prefixIndicator = document.createElement("span");
-            prefixIndicator.classList.add("inline-block", "w-6", "font-bold", "select-none", "opacity-60");
+            prefixIndicator.classList.add("inline-block", "w-4", "shrink-0", "font-bold", "select-none", "opacity-60", "sm:w-6");
 
             const textPayload = document.createElement("span");
             textPayload.classList.add("flex-1", "break-all");
