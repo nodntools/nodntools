@@ -3,228 +3,377 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NodnWebTools - Smart Web Utilities</title>
-    <!-- Tailwind CSS CDN -->
+    
+    <meta name="google-site-verification" content="4GnYZSUq78SepRFVCtFrAe-b6bbFiw54Mprte9evMX0" />
+    
+    <title>NodnWebTools - Free Online Calculators & Utilities</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style>
-        /* 부드러운 필터링 전환 효과 */
+        *, *::before, *::after { box-sizing: border-box; }
+        /* 카테고리 필터링 시 부드러운 카드 전환 효과 */
         .tool-card {
-            transition: all 0.3s ease-in-out;
+            transition: all 0.25s ease-in-out;
         }
-        .tool-card.hidden {
-            display: none;
+        .tool-card.hidden-by-filter {
+            display: none !important;
             opacity: 0;
-            transform: scale(0.95);
+            transform: scale(0.98);
         }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-900 font-sans antialiased min-h-screen flex flex-col">
+<body class="bg-slate-50 text-slate-800 font-sans m-0 p-0 min-h-screen flex flex-col">
 
-    <!-- 상단 헤더 -->
-    <header class="bg-white border-b border-slate-100 sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-            <a href="/" class="text-xl font-black tracking-tight text-slate-950 flex items-center gap-2">
-                <span class="bg-slate-900 text-white w-8 h-8 rounded-lg flex items-center justify-center font-mono">N</span>
-                NodnWebTools
-            </a>
-            <span class="text-xs font-medium bg-slate-100 text-slate-600 px-2.5 py-1 rounded-full">v2.1</span>
-        </div>
-    </header>
-
-    <!-- 메인 콘텐츠 영역 -->
-    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        
-        <!-- 히어로 타이틀 -->
-        <div class="text-center max-w-3xl mx-auto mb-12">
-            <h1 class="text-4xl font-extrabold text-slate-950 tracking-tight sm:text-5xl mb-4">
-                Free Smart Web Utilities
+    <div class="max-w-4xl mx-auto px-4 py-16 flex-grow w-full">
+        <header class="text-center mb-8">
+            <h1 class="text-4xl font-extrabold text-slate-900 tracking-tight sm:text-5xl">
+                Nodn<span class="text-blue-600">WebTools</span>
             </h1>
-            <p class="text-lg text-slate-500 leading-relaxed">
-                Simple, fast, and privacy-focused tools for your daily financial calculations, productivity boosts, and quick conversions.
+            <p class="text-slate-500 mt-3 text-lg max-w-md mx-auto leading-relaxed">
+                Fast, free, and accurate web utilities designed to make your daily calculations frictionless.
             </p>
+        </header>
+
+        <div class="max-w-md mx-auto mb-6">
+            <div class="relative shadow-sm rounded-2xl">
+                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.603 10.601Z" />
+                    </svg>
+                </div>
+                <input type="text" id="searchInput" onkeyup="filterTools()" placeholder="Search calculators (e.g., tax, mortgage)..."
+                        class="w-full pl-11 pr-4 py-4 bg-white border border-slate-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-base placeholder-slate-400 transition-all">
+            </div>
         </div>
 
-        <!-- 🔥 카테고리 필터 탭 메뉴 -->
-        <div class="flex flex-wrap justify-center items-center gap-2 mb-10">
-            <button onclick="filterCategory('all')" id="btn-all" class="filter-btn px-5 py-2 rounded-full text-sm font-semibold bg-slate-900 text-white shadow-sm transition-all duration-200 cursor-pointer">
+        <div class="flex flex-wrap justify-center items-center gap-2 mb-10 max-w-xl mx-auto">
+            <button onclick="setCategory('all')" id="cat-all" class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold bg-blue-600 text-white shadow-xs transition-all cursor-pointer">
                 All Tools
             </button>
-            <button onclick="filterCategory('finance')" id="btn-finance" class="filter-btn px-5 py-2 rounded-full text-sm font-semibold bg-white text-slate-600 border border-slate-200 hover:border-slate-300 hover:bg-slate-50 transition-all duration-200 cursor-pointer">
-                Finance
+            <button onclick="setCategory('finance')" id="cat-finance" class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 transition-all cursor-pointer">
+                Personal Finance
             </button>
-            <button onclick="filterCategory('productivity')" id="btn-productivity" class="filter-btn px-5 py-2 rounded-full text-sm font-semibold bg-white text-slate-600 border border-slate-200 hover:border-slate-300 hover:bg-slate-50 transition-all duration-200 cursor-pointer">
-                Productivity
+            <button onclick="setCategory('business')" id="cat-business" class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 transition-all cursor-pointer">
+                Business
             </button>
-            <button onclick="filterCategory('utility')" id="btn-utility" class="filter-btn px-5 py-2 rounded-full text-sm font-semibold bg-white text-slate-600 border border-slate-200 hover:border-slate-300 hover:bg-slate-50 transition-all duration-200 cursor-pointer">
-                Utility
+            <button onclick="setCategory('life')" id="cat-life" class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 transition-all cursor-pointer">
+                Health & Life
             </button>
         </div>
 
-        <!-- 툴 카드 그리드 레이아웃 -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="tools-grid">
+        <p id="noResult" class="text-center text-slate-400 text-sm mb-8 hidden">No calculators found matching your search or filter.</p>
 
-            <!-- 1. Paycheck Calculator -->
-            <a href="/paycheck" data-category="finance" class="tool-card group bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:border-blue-500/50 hover:shadow-md hover:shadow-blue-500/5 flex flex-col justify-between">
-                <div>
-                    <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 mb-4 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-200">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.854-1.106-2.33 0-3.188.541-.42 1.229-.615 1.917-.619m0 0a6.003 6.003 0 0 0-4.118 1.918M12 3.75V3m0 18v-.75" /></svg>
-                    </div>
-                    <h3 class="text-lg font-bold text-slate-900 mb-1 group-hover:text-blue-600 transition-colors duration-200">Paycheck Calculator</h3>
-                    <p class="text-slate-500 text-sm leading-relaxed">Calculate your take-home pay after federal, provincial, and local tax deductions instantly.</p>
-                </div>
-                <div class="mt-4 text-blue-600 text-sm font-semibold flex items-center gap-1 group-hover:translate-x-1 transition-transform duration-200">Launch Tool &rarr;</div>
-            </a>
-
-            <!-- 2. Side Hustle Tax Calculator -->
-            <a href="/side-hustle-tax" data-category="finance" class="tool-card group bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:border-emerald-500/50 hover:shadow-md hover:shadow-emerald-500/5 flex flex-col justify-between">
-                <div>
-                    <div class="w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center text-emerald-600 mb-4 group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-200">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M9 14.25l6-6m4.5-3.493V21a1.5 1.5 0 01-1.5 1.5H5.25A1.5 1.5 0 013 21V4.257c0-.83.67-1.5 1.5-1.5h13.5c.83 0 1.5.67 1.5 1.5z" /></svg>
-                    </div>
-                    <h3 class="text-lg font-bold text-slate-900 mb-1 group-hover:text-emerald-600 transition-colors duration-200">Side Hustle Tax Estimator</h3>
-                    <p class="text-slate-500 text-sm leading-relaxed">Estimate self-employment taxes and net income for your freelancing or side business ventures.</p>
-                </div>
-                <div class="mt-4 text-emerald-600 text-sm font-semibold flex items-center gap-1 group-hover:translate-x-1 transition-transform duration-200">Launch Tool &rarr;</div>
-            </a>
-
-            <!-- 3. Home Affordability Calculator -->
-            <a href="/home-affordability" data-category="finance" class="tool-card group bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:border-sky-500/50 hover:shadow-md hover:shadow-sky-500/5 flex flex-col justify-between">
-                <div>
-                    <div class="w-12 h-12 bg-sky-50 rounded-xl flex items-center justify-center text-sky-600 mb-4 group-hover:bg-sky-600 group-hover:text-white transition-colors duration-200">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Z" /></svg>
-                    </div>
-                    <h3 class="text-lg font-bold text-slate-900 mb-1 group-hover:text-sky-600 transition-colors duration-200">Home Affordability</h3>
-                    <p class="text-slate-500 text-sm leading-relaxed">Calculate exactly how much home you can afford based on your income, debts, and the 28/36 rule.</p>
-                </div>
-                <div class="mt-4 text-sky-600 text-sm font-semibold flex items-center gap-1 group-hover:translate-x-1 transition-transform duration-200">Launch Tool &rarr;</div>
-            </a>
-
-            <!-- 4. Latte Factor Calculator -->
-            <a href="/latte-factor" data-category="finance" class="tool-card group bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:border-amber-500/50 hover:shadow-md hover:shadow-amber-500/5 flex flex-col justify-between">
-                <div>
-                    <div class="w-12 h-12 bg-amber-50 rounded-xl flex items-center justify-center text-amber-600 mb-4 group-hover:bg-amber-600 group-hover:text-white transition-colors duration-200">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" /></svg>
-                    </div>
-                    <h3 class="text-lg font-bold text-slate-900 mb-1 group-hover:text-amber-600 transition-colors duration-200">Latte Factor Calculator</h3>
-                    <p class="text-slate-500 text-sm leading-relaxed">See how skipping small daily expenses can compound into a massive investment fortune over time.</p>
-                </div>
-                <div class="mt-4 text-amber-600 text-sm font-semibold flex items-center gap-1 group-hover:translate-x-1 transition-transform duration-200">Launch Tool &rarr;</div>
-            </a>
-
-            <!-- 5. Inflation Calculator -->
-            <a href="/inflation" data-category="finance" class="tool-card group bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:border-slate-500/50 hover:shadow-md hover:shadow-slate-500/5 flex flex-col justify-between">
-                <div>
-                    <div class="w-12 h-12 bg-slate-50 rounded-xl flex items-center justify-center text-slate-600 mb-4 group-hover:bg-slate-600 group-hover:text-white transition-colors duration-200">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.854-1.106-2.33 0-3.188.541-.42 1.229-.615 1.917-.619m0 0a6.003 6.003 0 0 0-4.118 1.918M12 3.75V3m0 18v-.75" /></svg>
-                    </div>
-                    <h3 class="text-lg font-bold text-slate-900 mb-1 group-hover:text-slate-600 transition-colors duration-200">Inflation Calculator</h3>
-                    <p class="text-slate-500 text-sm leading-relaxed">Calculate the buying power of your money over time and track historical cumulative inflation.</p>
-                </div>
-                <div class="mt-4 text-slate-600 text-sm font-semibold flex items-center gap-1 group-hover:translate-x-1 transition-transform duration-200">Launch Tool &rarr;</div>
-            </a>
-
-            <!-- 6. Time Cost Calculator -->
-            <a href="/time-cost" data-category="productivity" class="tool-card group bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:border-indigo-500/50 hover:shadow-md hover:shadow-indigo-500/5 flex flex-col justify-between">
-                <div>
-                    <div class="w-12 h-12 bg-indigo-50 rounded-xl flex items-center justify-center text-indigo-600 mb-4 group-hover:bg-indigo-600 group-hover:text-white transition-colors duration-200">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>
-                    </div>
-                    <h3 class="text-lg font-bold text-slate-900 mb-1 group-hover:text-indigo-600 transition-colors duration-200">Time Cost Calculator</h3>
-                    <p class="text-slate-500 text-sm leading-relaxed">Convert any purchase price into the actual hours of work required to afford it. Cure impulse buying.</p>
-                </div>
-                <div class="mt-4 text-indigo-600 text-sm font-semibold flex items-center gap-1 group-hover:translate-x-1 transition-transform duration-200">Launch Tool &rarr;</div>
-            </a>
-
-            <!-- 7. Overtime Calculator -->
-            <a href="/overtime" data-category="productivity" class="tool-card group bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:border-emerald-500/50 hover:shadow-md hover:shadow-emerald-500/5 flex flex-col justify-between">
-                <div>
-                    <div class="w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center text-emerald-600 mb-4 group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-200">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6M12 12h.008v.008H12V12Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0ZM12 18h.008v.008H12V18Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0ZM3.75 6h16.5M3.75 12h16.5M3.75 18h16.5" /></svg>
-                    </div>
-                    <h3 class="text-lg font-bold text-slate-900 mb-1 group-hover:text-emerald-600 transition-colors duration-200">Overtime Pay Calculator</h3>
-                    <p class="text-slate-500 text-sm leading-relaxed">Calculate your time-and-a-half or double-time wages accurately based on extra working hours.</p>
-                </div>
-                <div class="mt-4 text-emerald-600 text-sm font-semibold flex items-center gap-1 group-hover:translate-x-1 transition-transform duration-200">Launch Tool &rarr;</div>
-            </a>
-
-            <!-- 8. Salary to Hourly Converter -->
-            <a href="/salary-to-hourly" data-category="productivity" class="tool-card group bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:border-teal-500/50 hover:shadow-md hover:shadow-teal-500/5 flex flex-col justify-between">
-                <div>
-                    <div class="w-12 h-12 bg-teal-50 rounded-xl flex items-center justify-center text-teal-600 mb-4 group-hover:bg-teal-600 group-hover:text-white transition-colors duration-200">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.854-1.106-2.33 0-3.188.541-.42 1.229-.615 1.917-.619m0 0a6.003 6.003 0 0 0-4.118 1.918M12 3.75V3m0 18v-.75" /></svg>
-                    </div>
-                    <h3 class="text-lg font-bold text-slate-900 mb-1 group-hover:text-teal-600 transition-colors duration-200">Salary Converter</h3>
-                    <p class="text-slate-500 text-sm leading-relaxed">Convert annual salary to hourly wages, weekly rates, or monthly equivalents seamlessly.</p>
-                </div>
-                <div class="mt-4 text-teal-600 text-sm font-semibold flex items-center gap-1 group-hover:translate-x-1 transition-transform duration-200">Launch Tool &rarr;</div>
-            </a>
-
-            <!-- 9. Tip Calculator -->
-            <a href="/tip" data-category="utility" class="tool-card group bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:border-orange-500/50 hover:shadow-md hover:shadow-orange-500/5 flex flex-col justify-between">
-                <div>
-                    <div class="w-12 h-12 bg-orange-50 rounded-xl flex items-center justify-center text-orange-600 mb-4 group-hover:bg-orange-600 group-hover:text-white transition-colors duration-200">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 107.5 7.5h-7.5V6z" /><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5H21A7.5 7.5 0 0013.5 3v7.5z" /></svg>
-                    </div>
-                    <h3 class="text-lg font-bold text-slate-900 mb-1 group-hover:text-orange-600 transition-colors duration-200">Tip Calculator</h3>
-                    <p class="text-slate-500 text-sm leading-relaxed">Quickly split the bill, calculate tips, and find the exact total per person for dining out.</p>
-                </div>
-                <div class="mt-4 text-orange-600 text-sm font-semibold flex items-center gap-1 group-hover:translate-x-1 transition-transform duration-200">Launch Tool &rarr;</div>
-            </a>
-
-            <!-- 10. Universal Unit Converter -->
-            <a href="/unit-converter" data-category="utility" class="tool-card group bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:border-violet-500/50 hover:shadow-md hover:shadow-violet-500/5 flex flex-col justify-between">
-                <div>
-                    <div class="w-12 h-12 bg-violet-50 rounded-xl flex items-center justify-center text-violet-600 mb-4 group-hover:bg-violet-600 group-hover:text-white transition-colors duration-200">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21 3-16.5m0 0L21 12M3 4.5 21 12m0 0L16.5 21" /></svg>
-                    </div>
-                    <h3 class="text-lg font-bold text-slate-900 mb-1 group-hover:text-violet-600 transition-colors duration-200">Unit Converter</h3>
-                    <p class="text-slate-500 text-sm leading-relaxed">Convert between metric and imperial systems instantly. Supports length, weight, and volume.</p>
-                </div>
-                <div class="mt-4 text-violet-600 text-sm font-semibold flex items-center gap-1 group-hover:translate-x-1 transition-transform duration-200">Launch Tool &rarr;</div>
-            </a>
-
+        <div class="w-full bg-slate-200 h-24 flex items-center justify-center text-xs text-slate-400 rounded-2xl mb-12 border border-dashed border-slate-300">
+            [ADSENSE TOP BANNER PLACEHOLDER]
         </div>
-    </main>
 
-    <!-- 하단 푸터 -->
-    <footer class="bg-white border-t border-slate-100 py-6 mt-12">
-        <div class="max-w-7xl mx-auto px-4 text-center text-sm text-slate-400">
-            &copy; 2026 NodnWebTools. All rights reserved. Built for speed and accuracy.
+        <main>
+            <h2 class="text-xl font-bold text-slate-900 mb-6 flex items-center gap-2">
+                <span class="w-1.5 h-5 bg-blue-600 rounded-full"></span> Featured Calculators
+            </h2>
+            
+            <div id="toolsGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12">
+
+                <a href="/paycheckus" data-category="finance" class="tool-card group bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:border-blue-500/50 hover:shadow-md hover:shadow-blue-500/5 transition-all duration-200 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 mb-4 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-200">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.854-1.106-2.24 0-3.093 1.125-.859 2.947-.859 4.072 0l.544.415M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                            </svg>
+                        </div>
+                        <h3 class="tool-title text-lg font-bold text-slate-900 mb-1 group-hover:text-blue-600 transition-colors duration-200">US Paycheck Calculator</h3>
+                        <p class="text-slate-500 text-sm leading-relaxed">Estimate your monthly take-home pay after federal, state, and FICA taxes based on 2026 tax brackets.</p>
+                    </div>
+                    <div class="mt-4 text-blue-600 text-sm font-semibold flex items-center gap-1 group-hover:translate-x-1 transition-transform duration-200">Launch Tool &rarr;</div>
+                </a>
+
+                <a href="/mortgage" data-category="finance" class="tool-card group bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:border-blue-500/50 hover:shadow-md hover:shadow-blue-500/5 transition-all duration-200 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 mb-4 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-200">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+                            </svg>
+                        </div>
+                        <h3 class="tool-title text-lg font-bold text-slate-900 mb-1 group-hover:text-blue-600 transition-colors duration-200">Mortgage Calculator</h3>
+                        <p class="text-slate-500 text-sm leading-relaxed">Calculate your monthly home loan payments, including interest rates and loan terms smoothly.</p>
+                    </div>
+                    <div class="mt-4 text-blue-600 text-sm font-semibold flex items-center gap-1 group-hover:translate-x-1 transition-transform duration-200">Launch Tool &rarr;</div>
+                </a>
+
+                <a href="/autoloan" data-category="finance" class="tool-card group bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:border-blue-500/50 hover:shadow-md hover:shadow-blue-500/5 transition-all duration-200 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 mb-4 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-200">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124l-.304-4.879c-.097-1.551-1.385-2.747-2.942-2.747H5.118c-1.558 0-2.845 1.196-2.942 2.747l-.304 4.879C1.833 18.246 2.341 18.75 2.962 18.75H3.375m16.5 0V14.25m-18 0h18M6.75 12h.008v.008H6.75V12Zm0-3h.008v.008H6.75V9Zm3.375 3h.008v.008H10.125V12Zm0-3h.008v.008H10.125V9Zm3.375 3h.008v.008H13.5V12Zm0-3h.008v.008H13.5V9Zm3.375 3h.008v.008H16.875V12Zm0-3h.008v.008H16.875V9Z" />
+                            </svg>
+                        </div>
+                        <h3 class="tool-title text-lg font-bold text-slate-900 mb-1 group-hover:text-blue-600 transition-colors duration-200">Auto Loan Calculator</h3>
+                        <p class="text-slate-500 text-sm leading-relaxed">Estimate your monthly car payments, total interest costs, and overall vehicle budget seamlessly before hitting the dealership.</p>
+                    </div>
+                    <div class="mt-4 text-blue-600 text-sm font-semibold flex items-center gap-1 group-hover:translate-x-1 transition-transform duration-200">Launch Tool &rarr;</div>
+                </a>
+
+                <a href="/salestax.html" data-category="business" class="tool-card group bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:border-emerald-500/50 hover:shadow-md hover:shadow-emerald-500/5 transition-all duration-200 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center text-emerald-600 mb-4 group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-200">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0 1 15.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5h16.5M4.5 19.25V6.25m15 13V6.25M7.5 10.5h.008v.008H7.5V10.5Zm0 3h.008v.008H7.5v-.008Zm0 3h.008v.008H7.5v-.008Zm3.375-6h.008v.008h-.008V10.5Zm0 3h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Zm3.375-6h.008v.008h-.008V10.5Zm0 3h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Zm3.375-6h.008v.008h-.008V10.5Zm0 3h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Z" />
+                            </svg>
+                        </div>
+                        <h3 class="tool-title text-lg font-bold text-slate-900 mb-1 group-hover:text-emerald-600 transition-colors duration-200">US Sales Tax Calculator</h3>
+                        <p class="text-slate-500 text-sm leading-relaxed">Quickly calculate estimated sales taxes and final transaction totals across major US states and commercial jurisdictions.</p>
+                    </div>
+                    <div class="mt-4 text-emerald-600 text-sm font-semibold flex items-center gap-1 group-hover:translate-x-1 transition-transform duration-200">Launch Tool &rarr;</div>
+                </a>
+
+                <a href="/personalloan" data-category="finance" class="tool-card group bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:border-indigo-500/50 hover:shadow-md hover:shadow-indigo-500/5 transition-all duration-200 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 bg-indigo-50 rounded-xl flex items-center justify-center text-indigo-600 mb-4 group-hover:bg-indigo-600 group-hover:text-white transition-colors duration-200">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.854-1.106-2.33 0-3.188.541-.42 1.229-.615 1.917-.619m0 0a6.003 6.003 0 0 0-4.118 1.918M12 3.75V3m0 18v-.75" />
+                            </svg>
+                        </div>
+                        <h3 class="tool-title text-lg font-bold text-slate-900 mb-1 group-hover:text-indigo-600 transition-colors duration-200">Personal Loan Calculator</h3>
+                        <p class="text-slate-500 text-sm leading-relaxed">Calculate monthly payments, interest rates, and total repayment terms for personal or unsecured loans instantly.</p>
+                    </div>
+                    <div class="mt-4 text-indigo-600 text-sm font-semibold flex items-center gap-1 group-hover:translate-x-1 transition-transform duration-200">Launch Tool &rarr;</div>
+                </a>
+
+                <a href="/tipcalculator.html" data-category="life" class="tool-card group bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:border-amber-500/50 hover:shadow-md hover:shadow-amber-500/5 transition-all duration-200 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 bg-amber-50 rounded-xl flex items-center justify-center text-amber-600 mb-4 group-hover:bg-amber-600 group-hover:text-white transition-colors duration-200">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6M12 12h.008v.008H12V12Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0ZM12 18h.008v.008H12V18Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0ZM3.75 6h16.5M3.75 12h16.5M3.75 18h16.5" />
+                            </svg>
+                        </div>
+                        <h3 class="tool-title text-lg font-bold text-slate-900 mb-1 group-hover:text-amber-600 transition-colors duration-200">Tip Calculator</h3>
+                        <p class="text-slate-500 text-sm leading-relaxed">Easily split restaurant bills, calculate accurate tipping percentages, and determine individual shares seamlessly.</p>
+                    </div>
+                    <div class="mt-4 text-amber-600 text-sm font-semibold flex items-center gap-1 group-hover:translate-x-1 transition-transform duration-200">Launch Tool &rarr;</div>
+                </a>
+
+                <a href="/roi.html" data-category="business" class="tool-card group bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:border-emerald-500/50 hover:shadow-md hover:shadow-emerald-500/5 transition-all duration-200 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center text-emerald-600 mb-4 group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-200">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 0 5.814-5.518l2.74-8.74m0 0-3.393.337m3.393-.337-1.126 3.535M19 19.5c.414 0 .75-.336.75-.75s-.336-.75-.75-.75-.75.336-.75.75.336.75.75.75Zm-6 0c.414 0 .75-.336.75-.75s-.336-.75-.75-.75-.75.336-.75.75.336.75.75.75Zm-6 0c.414 0 .75-.336.75-.75s-.336-.75-.75-.75-.75.336-.75.75.336.75.75.75Z" />
+                            </svg>
+                        </div>
+                        <h3 class="tool-title text-lg font-bold text-slate-900 mb-1 group-hover:text-emerald-600 transition-colors duration-200">ROI Calculator</h3>
+                        <p class="text-slate-500 text-sm leading-relaxed">Measure your investment profitability and calculate annualized returns for stocks, real estate, or crypto.</p>
+                    </div>
+                    <div class="mt-4 text-emerald-600 text-sm font-semibold flex items-center gap-1 group-hover:translate-x-1 transition-transform duration-200">Launch Tool &rarr;</div>
+                </a>
+
+                <a href="/bmi.html" data-category="life" class="tool-card group bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:border-cyan-500/50 hover:shadow-md hover:shadow-cyan-500/5 transition-all duration-200 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 bg-cyan-50 rounded-xl flex items-center justify-center text-cyan-600 mb-4 group-hover:bg-cyan-600 group-hover:text-white transition-colors duration-200">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z" />
+                            </svg>
+                        </div>
+                        <h3 class="tool-title text-lg font-bold text-slate-900 mb-1 group-hover:text-cyan-600 transition-colors duration-200">BMI Calculator</h3>
+                        <p class="text-slate-500 text-sm leading-relaxed">Check your body mass index instantly with metric/imperial support and professional health charts.</p>
+                    </div>
+                    <div class="mt-4 text-cyan-600 text-sm font-semibold flex items-center gap-1 group-hover:translate-x-1 transition-transform duration-200">Launch Tool &rarr;</div>
+                </a>
+
+                <a href="/compound.html" data-category="finance" class="tool-card group bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:border-violet-500/50 hover:shadow-md hover:shadow-violet-500/5 transition-all duration-200 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 bg-violet-50 rounded-xl flex items-center justify-center text-violet-600 mb-4 group-hover:bg-violet-600 group-hover:text-white transition-colors duration-200">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-11.25M18 13V9M21 21V6M12 3v13.5M3 21h18M3 12h3.75M3 15h3.75M3 18h3.75" />
+                            </svg>
+                        </div>
+                        <h3 class="tool-title text-lg font-bold text-slate-900 mb-1 group-hover:text-violet-600 transition-colors duration-200">Compound Interest Calculator</h3>
+                        <p class="text-slate-500 text-sm leading-relaxed">Simulate the power of compounding. Calculate total future value, earned interest, and track your long-term savings.</p>
+                    </div>
+                    <div class="mt-4 text-violet-600 text-sm font-semibold flex items-center gap-1 group-hover:translate-x-1 transition-transform duration-200">Launch Tool &rarr;</div>
+                </a>
+
+                <a href="/margin.html" data-category="business" class="tool-card group bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:border-slate-500/50 hover:shadow-md hover:shadow-slate-500/5 transition-all duration-200 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 bg-slate-100 rounded-xl flex items-center justify-center text-slate-700 mb-4 group-hover:bg-slate-700 group-hover:text-white transition-colors duration-200">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 15.75V18m-3-3.675a3 3 0 0 0-3 3m13.5-3.675a3 3 0 0 1-3 3m-3-3.675a3 3 0 1 1-6 0m6 0a3 3 0 0 1-3-3m3 3.675a3 3 0 0 0 3-3m-3 3a3 3 0 0 0-3-3m-3 3a3 3 0 0 1-3-3m3 3a3 3 0 0 1 3-3M6.75 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm10.5 0a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />                            </svg>
+                        </div>
+                        <h3 class="tool-title text-lg font-bold text-slate-900 mb-1 group-hover:text-slate-700 transition-colors duration-200">Margin & Markup Calculator</h3>
+                        <p class="text-slate-500 text-sm leading-relaxed">Clearly distinguish between profit margin and markup. Essential pricing tool for business owners and online sellers.</p>
+                    </div>
+                    <div class="mt-4 text-slate-700 text-sm font-semibold flex items-center gap-1 group-hover:translate-x-1 transition-transform duration-200">Launch Tool &rarr;</div>
+                </a>
+
+                <a href="/discount.html" data-category="life" class="tool-card group bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:border-rose-500/50 hover:shadow-md hover:shadow-rose-500/5 transition-all duration-200 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 bg-rose-50 rounded-xl flex items-center justify-center text-rose-600 mb-4 group-hover:bg-rose-600 group-hover:text-white transition-colors duration-200">
+                            <svg xmlns="http://www.w3.org/2000/xl" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 0 0 3 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581a1.43 1.43 0 0 0 2.022 0l4.318-4.319a1.43 1.43 0 0 0 0-2.022L11.16 3.66a2.25 2.25 0 0 0-1.592-.659ZM7.5 9h.008v.008H7.5V9Z" />                            </svg>
+                        </div>
+                        <h3 class="tool-title text-lg font-bold text-slate-900 mb-1 group-hover:text-rose-600 transition-colors duration-200">Discount Calculator</h3>
+                        <p class="text-slate-500 text-sm leading-relaxed">Calculate final sale prices, stacked coupons, and exact tax margins instantly. Essential smart shopping utility.</p>
+                    </div>
+                    <div class="mt-4 text-rose-600 text-sm font-semibold flex items-center gap-1 group-hover:translate-x-1 transition-transform duration-200">Launch Tool &rarr;</div>
+                </a>
+
+                <a href="/time.html" data-category="life" class="tool-card group bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:border-fuchsia-500/50 hover:shadow-md hover:shadow-fuchsia-500/5 transition-all duration-200 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 bg-fuchsia-50 rounded-xl flex items-center justify-center text-fuchsia-600 mb-4 group-hover:bg-fuchsia-600 group-hover:text-white transition-colors duration-200">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />                            </svg>
+                        </div>
+                        <h3 class="tool-title text-lg font-bold text-slate-900 mb-1 group-hover:text-fuchsia-600 transition-colors duration-200">Time Calculator</h3>
+                        <p class="text-slate-500 text-sm leading-relaxed">Track hours worked, calculate elapsed time between logs, and convert hours to decimals for easy payroll.</p>
+                    </div>
+                    <div class="mt-4 text-fuchsia-600 text-sm font-semibold flex items-center gap-1 group-hover:translate-x-1 transition-transform duration-200">Launch Tool &rarr;</div>
+                </a>
+
+                <a href="/sidehustle-tax" data-category="finance" class="tool-card group bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:border-lime-500/50 hover:shadow-md hover:shadow-lime-500/5 transition-all duration-200 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 bg-lime-50 rounded-xl flex items-center justify-center text-lime-600 mb-4 group-hover:bg-lime-600 group-hover:text-white transition-colors duration-200">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.493 3h10.493m-10.493 3h10.493M3.75 6.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75A1.125 1.125 0 0 1 19.5 5.625v12.75c0 .621-.504 1.125-1.125 1.125H5.625A1.125 1.125 0 0 1 4.5 18.375V5.625c0-.621.504-1.125 1.125-1.125Z" />                            </svg>
+                        </div>
+                        <h3 class="tool-title text-lg font-bold text-slate-900 mb-1 group-hover:text-lime-600 transition-colors duration-200">Side Hustle Tax Calculator</h3>
+                        <p class="text-slate-500 text-sm leading-relaxed">Calculate 1099 self-employment taxes, business write-offs, and see your true sef-employed take-home pay.</p>
+                    </div>
+                    <div class="mt-4 text-lime-600 text-sm font-semibold flex items-center gap-1 group-hover:translate-x-1 transition-transform duration-200">Launch Tool &rarr;</div>
+                </a>
+
+                <a href="/subscription" data-category="life" class="tool-card group bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:border-orange-500/50 hover:shadow-md hover:shadow-orange-500/5 transition-all duration-200 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 bg-orange-50 rounded-xl flex items-center justify-center text-orange-600 mb-4 group-hover:bg-orange-600 group-hover:text-white transition-colors duration-200">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Z" />                            </svg>
+                        </div>
+                        <h3 class="tool-title text-lg font-bold text-slate-900 mb-1 group-hover:text-orange-600 transition-colors duration-200">Subscription Calculator</h3>
+                        <p class="text-slate-500 text-sm leading-relaxed">Track your streaming services, SaaS, and monthly memberships. Reveal the hidden annual costs of your subscriptions.</p>
+                    </div>
+                    <div class="mt-4 text-orange-600 text-sm font-semibold flex items-center gap-1 group-hover:translate-x-1 transition-transform duration-200">Launch Tool &rarr;</div>
+                </a>
+
+                <a href="/latte-factor" data-category="finance" class="tool-card group bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:border-amber-500/50 hover:shadow-md hover:shadow-amber-500/5 transition-all duration-200 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 bg-amber-50 rounded-xl flex items-center justify-center text-amber-600 mb-4 group-hover:bg-amber-600 group-hover:text-white transition-colors duration-200">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />                            </svg>
+                        </div>
+                        <h3 class="tool-title text-lg font-bold text-slate-900 mb-1 group-hover:text-amber-600 transition-colors duration-200">Latte Factor Calculator</h3>
+                        <p class="text-slate-500 text-sm leading-relaxed">See how skipping your daily coffee or small habits can compound into a massive investment fortune over time.</p>
+                    </div>
+                    <div class="mt-4 text-amber-600 text-sm font-semibold flex items-center gap-1 group-hover:translate-x-1 transition-transform duration-200">Launch Tool &rarr;</div>
+                </a>
+
+                <a href="/time-cost" data-category="life" class="tool-card group bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:border-indigo-500/50 hover:shadow-md hover:shadow-indigo-500/5 transition-all duration-200 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 bg-indigo-50 rounded-xl flex items-center justify-center text-indigo-600 mb-4 group-hover:bg-indigo-600 group-hover:text-white transition-colors duration-200">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />                            </svg>
+                        </div>
+                        <h3 class="tool-title text-lg font-bold text-slate-900 mb-1 group-hover:text-indigo-600 transition-colors duration-200">Time Cost Calculator</h3>
+                        <p class="text-slate-500 text-sm leading-relaxed">Convert any purchase price into the actual hours of work required to afford it. Cure impulse buying instantly.</p>
+                    </div>
+                    <div class="mt-4 text-indigo-600 text-sm font-semibold flex items-center gap-1 group-hover:translate-x-1 transition-transform duration-200">Launch Tool &rarr;</div>
+                </a>
+
+                <a href="/inflation" data-category="finance" class="tool-card group bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:border-slate-500/50 hover:shadow-md hover:shadow-slate-500/5 transition-all duration-200 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 bg-slate-50 rounded-xl flex items-center justify-center text-slate-600 mb-4 group-hover:bg-slate-600 group-hover:text-white transition-colors duration-200">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.854-1.106-2.33 0-3.188.541-.42 1.229-.615 1.917-.619m0 0a6.003 6.003 0 0 0-4.118 1.918M12 3.75V3m0 18v-.75" />                            </svg>
+                        </div>
+                        <h3 class="tool-title text-lg font-bold text-slate-900 mb-1 group-hover:text-slate-600 transition-colors duration-200">Inflation Calculator</h3>
+                        <p class="text-slate-500 text-sm leading-relaxed">Calculate the buying power of money over time and track historical cumulative inflation rates easily.</p>
+                    </div>
+                    <div class="mt-4 text-slate-600 text-sm font-semibold flex items-center gap-1 group-hover:translate-x-1 transition-transform duration-200">Launch Tool &rarr;</div>
+                </a>
+
+                <a href="/overtime" data-category="business" class="tool-card group bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:border-emerald-500/50 hover:shadow-md hover:shadow-emerald-500/5 transition-all duration-200 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center text-emerald-600 mb-4 group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-200">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6M12 12h.008v.008H12V12Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0ZM12 18h.008v.008H12V18Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0ZM3.75 6h16.5M3.75 12h16.5M3.75 18h16.5" />                            </svg>
+                        </div>
+                        <h3 class="tool-title text-lg font-bold text-slate-900 mb-1 group-hover:text-emerald-600 transition-colors duration-200">Overtime Pay Calculator</h3>
+                        <p class="text-slate-500 text-sm leading-relaxed">Calculate your time-and-a-half or double-time wages accurately based on extra working hours.</p>
+                    </div>
+                    <div class="mt-4 text-emerald-600 text-sm font-semibold flex items-center gap-1 group-hover:translate-x-1 transition-transform duration-200">Launch Tool &rarr;</div>
+                </a>
+
+            </div>
+        </main>
+
+        <div class="w-full bg-slate-200 h-24 flex items-center justify-center text-xs text-slate-400 rounded-2xl mb-12 border border-dashed border-slate-300">
+            [ADSENSE BOTTOM BANNER PLACEHOLDER]
+        </div>
+    </div>
+
+    <footer class="bg-white border-t border-slate-100 py-8 mt-auto">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <div class="flex justify-center gap-4 text-sm font-medium text-slate-500 mb-3">
+                <a href="/privacy" class="hover:text-slate-900 transition-colors">Privacy Policy</a>
+                <span class="text-slate-300">•</span>
+                <a href="/terms" class="hover:text-slate-900 transition-colors">Terms of Service</a>
+            </div>
+            <p class="text-xs text-slate-400">
+                &copy; 2026 NodnWebTools. All rights reserved. Built for speed and accuracy.
+            </p>
         </div>
     </footer>
 
-    <!-- 🔥 실시간 카테고리 필터링 스크립트 -->
     <script>
-        function filterCategory(category) {
-            // 1. 모든 카드 선택
-            const cards = document.querySelectorAll('.tool-card');
-            
-            // 2. 카드 필터링 처리
-            cards.forEach(card => {
-                if (category === 'all') {
-                    card.classList.remove('hidden');
-                } else {
-                    if (card.getAttribute('data-category') === category) {
-                        card.classList.remove('hidden');
-                    } else {
-                        card.classList.add('hidden');
-                    }
-                }
-            });
+        // 전역 상태 관리 변수
+        let currentCategory = 'all';
 
-            // 3. 버튼 활성화 UI 스타일 업데이트
+        // 1. 카테고리 선택 함수
+        function setCategory(category) {
+            currentCategory = category;
+            
+            // 탭 버튼 UI 스타일 업데이트
             const buttons = document.querySelectorAll('.filter-btn');
             buttons.forEach(btn => {
-                // 기존 활성화 스타일 제거 및 기본 스타일 추가
-                btn.classList.remove('bg-slate-900', 'text-white', 'shadow-sm');
+                btn.classList.remove('bg-blue-600', 'text-white', 'shadow-xs');
                 btn.classList.add('bg-white', 'text-slate-600', 'border', 'border-slate-200');
             });
 
-            // 선택된 현재 버튼만 블랙 스타일로 하이라이트
-            const activeBtn = document.getElementById(`btn-${category}`);
+            const activeBtn = document.getElementById(`cat-${category}`);
             if (activeBtn) {
                 activeBtn.classList.remove('bg-white', 'text-slate-600', 'border', 'border-slate-200');
-                activeBtn.classList.add('bg-slate-900', 'text-white', 'shadow-sm');
+                activeBtn.classList.add('bg-blue-600', 'text-white', 'shadow-xs');
+            }
+
+            // 필터 갱신을 위해 메인 필터링 함수 호출
+            filterTools();
+        }
+
+        // 2. 통합 검색 & 필터링 함수 (오리지널 filterTools 확장)
+        function filterTools() {
+            const input = document.getElementById('searchInput');
+            const filter = input.value.toLowerCase().trim();
+            const cards = document.querySelectorAll('.tool-card');
+            let visibleCount = 0;
+
+            cards.forEach(card => {
+                const title = card.querySelector('.tool-title').textContent.toLowerCase();
+                const desc = card.querySelector('p').textContent.toLowerCase();
+                const cardCategory = card.getAttribute('data-category');
+
+                // 조건 검사: 카테고리 매칭 여부 & 검색어 포함 여부
+                const matchesCategory = (currentCategory === 'all' || cardCategory === currentCategory);
+                const matchesSearch = (title.includes(filter) || desc.includes(filter));
+
+                if (matchesCategory && matchesSearch) {
+                    card.classList.remove('hidden-by-filter');
+                    visibleCount++;
+                } else {
+                    card.classList.add('hidden-by-filter');
+                }
+            });
+
+            // 결과 없음 메시지 핸들링
+            const noResult = document.getElementById('noResult');
+            if (visibleCount === 0) {
+                noResult.classList.remove('hidden');
+            } else {
+                noResult.classList.add('hidden');
             }
         }
     </script>
