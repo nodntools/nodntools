@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Online Diff Checker | Compare Text Differences Instantly - NodnWebTools</title>
+
+  <meta
+    name="description"
+    content="Use the free NodnWebTools Online Diff Checker to compare two text files or code snippets instantly. View structural line-by-line differences with secure, client-side highlights."
+  />
+  <meta
+    name="keywords"
+    content="online diff checker, text compare tool, code difference checker, line by line diff, secure text comparison, compare two files, NodnWebTools"
+  />
+  <meta name="author" content="NodnWebTools" />
+  <meta name="robots" content="index, follow" />
+
+  <meta property="og:title" content="Online Diff Checker | NodnWebTools" />
+  <meta
+    property="og:description"
+    content="Compare text or code snippets line-by-line instantly and securely inside your browser."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://nodntools.com/diff-checker.html" />
+  <meta property="og:site_name" content="NodnWebTools" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Online Diff Checker" />
+  <meta
+    name="twitter:description"
+    content="A secure, client-side online code and text difference comparison utility for developer workstreams."
+  />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jsdiff/5.2.0/diff.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              200: '#bfdbfe',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              800: '#1e40af',
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="min-h-screen bg-slate-100 px-4 py-8 sm:py-12">
+  <main class="mx-auto max-w-5xl">
+
+    <div class="mb-8 text-center">
+      <a
+        href="https://nodntools.com"
+        class="inline-block transition hover:opacity-80"
+        aria-label="NodnWebTools Home"
+      >
+        <div class="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
+          Nodn<span class="text-blue-600">WebTools</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="mb-8 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white text-sm text-slate-400">
+      AdSense Responsive Ad Area - Top
+    </div>
+
+    <section class="space-y-6">
+      
+      <div class="rounded-3xl bg-white p-5 shadow-xl ring-1 ring-slate-200 sm:p-8">
+        <div class="mb-6">
+          <span class="inline-flex rounded-full bg-brand-50 px-4 py-2 text-sm font-semibold text-brand-700">
+            Developer Utility
+          </span>
+
+          <h1 class="mt-5 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+            Online Diff Checker
+          </h1>
+
+          <p class="mt-3 text-base leading-7 text-slate-600">
+            Compare two text segments or code layers to spot structural adjustments instantly. Processing executes 100% locally in your client runtime sandbox environment.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <div class="flex justify-between items-center mb-2">
+              <label for="originalText" class="text-sm font-semibold text-slate-700">Original Text (Source)</label>
+              <button id="clearOriginalBtn" class="text-[11px] font-semibold text-slate-500 hover:text-red-600 bg-slate-100 hover:bg-slate-200 px-2.5 py-1 rounded-lg transition">Clear</button>
+            </div>
+            <textarea id="originalText" rows="10" placeholder="Paste the baseline original source code or text here..." class="w-full rounded-2xl border border-slate-300 bg-slate-50 p-4 font-mono text-xs text-slate-900 shadow-inner outline-none transition focus:border-brand-600 focus:bg-white focus:ring-4 focus:ring-brand-100 resize-none"></textarea>
+          </div>
+
+          <div>
+            <div class="flex justify-between items-center mb-2">
+              <label for="modifiedText" class="text-sm font-semibold text-slate-700">Modified Text (Target)</label>
+              <button id="clearModifiedBtn" class="text-[11px] font-semibold text-slate-500 hover:text-red-600 bg-slate-100 hover:bg-slate-200 px-2.5 py-1 rounded-lg transition">Clear</button>
+            </div>
+            <textarea id="modifiedText" rows="10" placeholder="Paste the updated modified text configuration here..." class="w-full rounded-2xl border border-slate-300 bg-slate-50 p-4 font-mono text-xs text-slate-900 shadow-inner outline-none transition focus:border-brand-600 focus:bg-white focus:ring-4 focus:ring-brand-100 resize-none"></textarea>
+          </div>
+        </div>
+
+        <div class="mt-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div class="text-xs leading-5 text-slate-500 max-w-md">
+            Clicking compilation mapping analyzes tokens line-by-line. Your proprietary data metrics remain completely hidden from remote external cloud servers.
+          </div>
+          <button id="compareBtn" class="w-full sm:w-auto rounded-2xl bg-brand-600 px-8 py-4 text-center text-base font-bold text-white shadow-md hover:bg-brand-700 active:scale-[0.99] transition-all whitespace-nowrap">
+            Find Differences (Diff)
+          </button>
+        </div>
+      </div>
+
+      <div class="rounded-3xl bg-white p-5 shadow-xl ring-1 ring-slate-200 sm:p-8">
+        <div class="mb-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+          <div>
+            <h2 class="text-2xl font-bold text-slate-900">Line Comparison Output</h2>
+            <p class="mt-1 text-sm text-slate-500">Color-coded mapping visualization metrics display down below.</p>
+          </div>
+          
+          <div class="flex flex-wrap gap-2 text-xs font-semibold">
+            <span class="flex items-center space-x-1.5 px-2.5 py-1.5 rounded-lg bg-red-100 border border-red-200 text-red-800">
+              <span class="w-2 h-2 rounded-full bg-red-500"></span>
+              <span>Removed</span>
+            </span>
+            <span class="flex items-center space-x-1.5 px-2.5 py-1.5 rounded-lg bg-green-100 border border-green-200 text-green-800">
+              <span class="w-2 h-2 rounded-full bg-green-500"></span>
+              <span>Added</span>
+            </span>
+          </div>
+        </div>
+
+        <div id="diffPlaceholder" class="rounded-3xl border border-slate-200 bg-gradient-to-br from-slate-50 via-zinc-50 to-blue-50/20 p-8 text-center text-slate-400">
+          Provide text blocks inside the source dashboards above and execute comparison mappings to compile results here.
+        </div>
+
+        <div id="diffContainer" class="hidden rounded-2xl border border-slate-200 bg-slate-900 overflow-hidden font-mono text-xs sm:text-sm shadow-2xl">
+          <div class="bg-slate-800 px-4 py-2 border-b border-slate-700 flex justify-between items-center text-slate-400 text-xs select-none">
+            <span>Terminal View Mode</span>
+            <span>Lines Evaluated</span>
+          </div>
+          <div id="diffContent" class="overflow-x-auto divide-y divide-slate-800/40 p-2 space-y-0.5 leading-6 text-slate-300 max-h-[500px]"></div>
+        </div>
+
+        <div class="mt-6 flex min-h-[250px] flex-col items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-slate-50 text-sm text-slate-400 p-4">
+          <span class="text-[10px] font-bold text-slate-300 uppercase tracking-widest mb-2">Advertisement</span>
+          <ins class="adsbygoogle"
+               style="display:block; width:100%; min-height:200px;"
+               data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+               data-ad-slot="YYYYYYYYYY"
+               data-ad-format="rectangle, vertical"
+               data-full-width-responsive="true"></ins>
+          <script>
+               (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
+        </div>
+
+        <div class="mt-5 rounded-2xl bg-slate-100 p-4 text-xs leading-5 text-slate-500">
+          <span class="block font-bold text-slate-700 mb-1">Disclaimer & Legal Notice:</span>
+          This tool is provided on an "as is" and "as available" basis without warranties of any kind. Differential character tracking sequences execute 100% locally inside the user's browser rendering threads; NodnWebTools never mirrors, tracks, uploads, or leaks your payload source codes. The user carries full exclusive liability to manually double-check production code fidelity before engineering software release cycles. NodnWebTools, its core authors, and corporate affiliates reject all claims, financial damages, data deletions, or logical operational crashes arising from compiled outcomes.
+        </div>
+      </div>
+
+      <section class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-8">
+        <span class="inline-flex rounded-full bg-slate-200 px-4 py-2 text-sm font-semibold text-slate-800">
+          Structural Code Guide
+        </span>
+
+        <h2 class="mt-5 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
+          Differential Engineering Token Mappings: Resolving Line Changes Securely
+        </h2>
+
+        <div class="mt-5 space-y-5 text-sm leading-7 text-slate-600">
+          <p>
+            In automated deployment
