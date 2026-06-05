@@ -2,10 +2,60 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="google-site-verification" content="4GnYZSUq78SepRFVCtFrAe-b6bbFiw54Mprte9evMX0" />
-  <title>2026 U.S. Salary Paycheck Calculator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+
+  <title>Online Web Audio Converter | Convert MP3, WAV, OGG Free - NodnWebTools</title>
+
+  <meta
+    name="description"
+    content="Use the free NodnWebTools Online Web Audio Converter to transform your audio files into MP3, WAV, or OGG format instantly using WebAssembly. 100% secure client-side audio encoding with zero server uploads."
+  />
+  <meta
+    name="keywords"
+    content="audio converter, online audio converter, convert to mp3, wav to mp3, m4a to mp3, ogg converter, webassembly ffmpeg, secure audio encoder, NodnWebTools, nodntools"
+  />
+  <meta name="author" content="NodnWebTools" />
+  <meta name="robots" content="index, follow" />
+
+  <meta property="og:title" content="Online Web Audio Converter | NodnWebTools" />
+  <meta
+    property="og:description"
+    content="Convert audio structures (.wav, .m4a, .ogg, .mp3) safely inside your browser viewport utilizing high-performance WebAssembly compilers."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://nodntools.com/audio-converter.html" />
+  <meta property="og:site_name" content="NodnWebTools" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Online Web Audio Converter" />
+  <meta
+    name="twitter:description"
+    content="A client-side decentralized Wasm multimedia compression tool for processing standard audio assets."
+  />
+
   <script src="https://cdn.tailwindcss.com"></script>
+  
+  <script src="https://unpkg.com/@ffmpeg/ffmpeg@0.11.6/dist/ffmpeg.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f5f3ff',
+              100: '#ede9fe',
+              200: '#ddd6fe',
+              500: '#8b5cf6',
+              600: '#7c3aed',
+              700: '#6d28d9',
+              800: '#5b21b6',
+            }
+          }
+        }
+      }
+    }
+  </script>
 </head>
 
 <body class="min-h-screen bg-slate-100 px-4 py-8 sm:py-12">
@@ -27,285 +77,330 @@
       AdSense Responsive Ad Area - Top
     </div>
 
-    <section class="grid gap-6 lg:grid-cols-2 lg:items-center">
-      <div class="space-y-5 lg:sticky lg:top-10 lg:self-start">
-        <span class="inline-flex rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-700">
-          2026 Salary Paycheck Calculator
-        </span>
+    <section class="grid gap-6 lg:grid-cols-12">
 
-        <h1 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
-          U.S. Monthly Take-Home Pay Calculator
-        </h1>
+      <div class="rounded-3xl bg-white p-5 shadow-xl ring-1 ring-slate-200 sm:p-8 lg:col-span-7 space-y-5">
+        <div>
+          <span class="inline-flex rounded-full bg-brand-50 px-4 py-2 text-sm font-semibold text-brand-700">
+            Wasm Media Utility
+          </span>
 
-        <p class="text-base leading-7 text-slate-600 sm:text-lg">
-          Enter your annual salary and select your state to estimate your monthly take-home pay after
-          2026 federal income tax and estimated state income tax.
-        </p>
-      </div>
+          <h1 class="mt-5 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+            Web Audio Converter
+          </h1>
 
-      <div class="rounded-3xl bg-white p-5 shadow-xl ring-1 ring-slate-200 sm:p-8">
-        <div class="mb-6">
-          <h2 class="text-2xl font-bold text-slate-900">Paycheck Calculator</h2>
-          <p class="mt-2 text-sm text-slate-500">
-            Based on 2026 Single federal tax brackets.
+          <p class="mt-3 text-base leading-7 text-slate-600">
+            Convert local sound recordings safely inside your system memory. Binary processing pipelines run 100% inside a high-speed isolated browser assembly engine sandbox.
           </p>
         </div>
 
-        <div class="space-y-5">
-          <div>
-            <label for="salary" class="mb-2 block text-sm font-semibold text-slate-700">
-              Annual Salary
-            </label>
-            <div class="relative">
-              <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">$</span>
-              <input
-                type="number"
-                id="salary"
-                inputmode="decimal"
-                placeholder="80000"
-                class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-8 pr-4 text-lg font-semibold text-slate-900 outline-none transition focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-100"
-              />
+        <div>
+          <label class="mb-2 block text-sm font-semibold text-slate-700">Upload Target Sound Track</label>
+          <div id="dropZone" class="relative flex flex-col items-center justify-center rounded-2xl border-2 border-dashed border-slate-300 bg-slate-50 p-6 sm:p-8 text-center transition hover:bg-slate-100/70 cursor-pointer select-none">
+            <input type="file" id="audioInput" accept="audio/*" class="absolute inset-0 opacity-0 cursor-pointer" />
+            
+            <svg class="mx-auto h-12 w-12 text-brand-500 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+            </svg>
+            <p class="mt-3 text-sm font-semibold text-slate-700 p-1 break-all" id="audioInputLabel">
+              Click to select or drop sound tracks here
+            </p>
+            <p class="mt-1 text-xs text-slate-400">Supports standard container forms (.wav, .m4a, .ogg, .mp3, etc.)</p>
+          </div>
+        </div>
+
+        <div id="mediaDashboard" class="hidden rounded-2xl bg-violet-50 border border-violet-200 p-4 sm:p-5 space-y-4 transition-all">
+          <div class="flex items-center space-x-2 text-brand-800 select-none">
+            <svg class="w-4 h-4 text-brand-600 shrink-0" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+            </svg>
+            <span class="text-xs font-bold uppercase tracking-wider">Audio Asset Loaded Safely</span>
+          </div>
+          
+          <div class="text-xs font-mono text-slate-700 space-y-1 sm:pl-6 border-b border-violet-100 pb-3">
+            <p class="truncate"><span class="font-bold text-slate-900">Track Name:</span> <span id="metaName">-</span></p>
+            <p><span>File Capacity Size:</span> <span id="metaSize">-</span></p>
+          </div>
+
+          <div class="sm:pl-6">
+            <label class="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2">Original Track Source Preview</label>
+            <audio id="audioPreview" controls class="w-full bg-white rounded-lg"></audio>
+          </div>
+        </div>
+
+        <div id="errorNotification" class="hidden rounded-2xl bg-red-50 border border-red-200 p-4 text-xs font-semibold text-red-600 leading-5"></div>
+      </div>
+
+      <div class="lg:col-span-5 space-y-6">
+        <div class="rounded-3xl bg-white p-5 shadow-xl ring-1 ring-slate-200 sm:p-8">
+          <div class="mb-5 select-none">
+            <h2 class="text-2xl font-bold text-slate-900">Transcode Matrix</h2>
+            <p class="mt-1 text-sm text-slate-500">Target codec target formatting layout loops.</p>
+          </div>
+
+          <div class="space-y-3 mb-6">
+            <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest select-none">Target Extension Format</label>
+            
+            <div class="grid grid-cols-3 gap-2">
+              <label class="flex flex-col items-center justify-center rounded-xl border border-slate-200 p-3 hover:bg-slate-50 cursor-pointer transition select-none text-center">
+                <input type="radio" name="codecTarget" value="mp3" checked class="w-3.5 h-3.5 text-brand-600 border-slate-300 focus:ring-brand-500 mb-1.5" />
+                <span class="text-xs font-bold text-slate-900">MP3</span>
+                <span class="text-[9px] text-slate-400 font-mono">audio/mp3</span>
+              </label>
+
+              <label class="flex flex-col items-center justify-center rounded-xl border border-slate-200 p-3 hover:bg-slate-50 cursor-pointer transition select-none text-center">
+                <input type="radio" name="codecTarget" value="wav" class="w-3.5 h-3.5 text-brand-600 border-slate-300 focus:ring-brand-500 mb-1.5" />
+                <span class="text-xs font-bold text-slate-900">WAV</span>
+                <span class="text-[9px] text-slate-400 font-mono">audio/wav</span>
+              </label>
+
+              <label class="flex flex-col items-center justify-center rounded-xl border border-slate-200 p-3 hover:bg-slate-50 cursor-pointer transition select-none text-center">
+                <input type="radio" name="codecTarget" value="ogg" class="w-3.5 h-3.5 text-brand-600 border-slate-300 focus:ring-brand-500 mb-1.5" />
+                <span class="text-xs font-bold text-slate-900">OGG</span>
+                <span class="text-[9px] text-slate-400 font-mono">audio/ogg</span>
+              </label>
             </div>
           </div>
 
-          <div>
-            <label for="state" class="mb-2 block text-sm font-semibold text-slate-700">
-              State
-            </label>
-            <select
-              id="state"
-              class="w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-4 text-base font-medium text-slate-900 outline-none transition focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-100"
-            >
-              <option value="">Select your state</option>
-              <option value="0">Alaska - No State Income Tax</option>
-              <option value="0">Florida - No State Income Tax</option>
-              <option value="0">Nevada - No State Income Tax</option>
-              <option value="0">New Hampshire - No State Income Tax</option>
-              <option value="0">South Dakota - No State Income Tax</option>
-              <option value="0">Tennessee - No State Income Tax</option>
-              <option value="0">Texas - No State Income Tax</option>
-              <option value="0">Washington - No State Income Tax</option>
-              <option value="0">Wyoming - No State Income Tax</option>
+          <button id="convertBtn" class="w-full rounded-2xl bg-brand-600 py-4 text-center text-base font-bold text-white shadow-md hover:bg-brand-700 active:scale-[0.99] transition-all flex items-center justify-center space-x-2">
+            <span>Convert & Download</span>
+          </button>
 
-              <option value="0.02">Arizona - Estimated 2%</option>
-              <option value="0.03">Indiana - Estimated 3%</option>
-              <option value="0.035">Pennsylvania - Estimated 3.5%</option>
-              <option value="0.04">Colorado - Estimated 4%</option>
-              <option value="0.045">Ohio - Estimated 4.5%</option>
-              <option value="0.05">Illinois - Estimated 5%</option>
-              <option value="0.055">Virginia - Estimated 5.5%</option>
-              <option value="0.06">Georgia - Estimated 6%</option>
-              <option value="0.065">North Carolina - Estimated 6.5%</option>
-              <option value="0.07">New York - Estimated 7%</option>
-              <option value="0.075">New Jersey - Estimated 7.5%</option>
-              <option value="0.08">California - Estimated 8%</option>
-              <option value="0.085">Oregon - Estimated 8.5%</option>
-              <option value="0.09">Hawaii - Estimated 9%</option>
-            </select>
+          <div class="mt-6 flex min-h-[250px] w-full flex-col items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-slate-50 text-sm text-slate-400 p-4">
+            <span class="text-[10px] font-bold text-slate-300 uppercase tracking-widest mb-2">Advertisement</span>
+            <ins class="adsbygoogle"
+                 style="display:block; width:100%; min-height:200px;"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                 data-ad-slot="YYYYYYYYYY"
+                 data-ad-format="rectangle, vertical"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
           </div>
 
-          <button
-            onclick="calculatePaycheck()"
-            class="w-full rounded-2xl bg-blue-600 px-5 py-4 text-base font-bold text-white shadow-lg shadow-blue-600/20 transition hover:bg-blue-700 active:scale-[0.99]"
-          >
-            Calculate Monthly Take-Home Pay
-          </button>
+          <div class="mt-5 rounded-2xl bg-slate-100 p-4 text-xs leading-5 text-slate-500">
+            <span class="block font-bold text-slate-700 mb-1">Disclaimer & Legal Notice:</span>
+            This tool is provided on an "as is" and "as available" basis without warranties of any kind. Audio bitstream re-encoding allocations run 100% inside client-bound browser WebAssembly runtime sandboxes; NodnWebTools never mirrors, stores, intercepts, caches, or logs your upload media resources. The operator carries absolute liability to review tracking fidelity metadata sets before deployment. NodnWebTools, its core developer affiliates, and operators disclaim all responsibility for broken frequencies, compressed loss nodes, or browser memory heap crashing faults arising from binary formatting.
+          </div>
         </div>
 
-        <div
-          id="result"
-          class="mt-6 hidden rounded-3xl border border-blue-100 bg-gradient-to-br from-blue-50 to-slate-50 p-5"
-        ></div>
+        <section class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-8">
+          <span class="inline-flex rounded-full bg-slate-200 px-4 py-2 text-sm font-semibold text-slate-800">
+            WebAssembly Encoding Guide
+          </span>
 
-        <div class="mt-6 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-slate-50 text-sm text-slate-400">
-          AdSense Responsive Ad Area - Below Result
-        </div>
+          <h2 class="mt-5 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
+            Decentralized Audio Transcoding
+          </h2>
 
-        <section class="mt-12 bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-100 space-y-6 text-sm leading-relaxed text-slate-600">
-            <h2 class="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
-                <span class="w-1.5 h-5 bg-blue-600 rounded-full"></span> Understanding Your US Paycheck Breakdown
-            </h2>
+          <div class="mt-5 space-y-5 text-sm leading-7 text-slate-600">
             <p>
-                Navigating your gross pay versus your actual take-home pay can be complex. When you receive your salary in the United States, several mandatory federal, state, and local deductions are made automatically. Here is a breakdown of what impacts your paycheck in 2026.
+              In secure digital asset infrastructure setups, re-encoding sound elements safely into alternate codecs relies heavily on implementing a decentralized 
+              <strong class="font-semibold text-slate-800">online audio converter</strong>. When sound engineers manipulate uncompressed master files, passing media data chunks across third-party remote network servers creates high compliance risk profiles and leaks copyright metadata layers.
             </p>
 
-            <hr class="border-slate-100" />
+            <p>
+              Utilizing a browser-bound WebAssembly <strong class="font-semibold text-slate-800">convert to mp3 platform</strong> isolates heavy signal rendering rules completely within local client memory frames. This layout allows content teams to invoke a flexible <strong class="font-semibold text-slate-800">online document converter</strong> framework layout style for binary processing, transforming media channels smoothly while protecting operational data privacy boundaries.
+            </p>
 
-            <div>
-                <h3 class="font-bold text-slate-800 text-base mb-1">1. Federal Income Tax (W-2)</h3>
-                <p>
-                    Federal income tax is a progressive tax levied by the IRS. The United States uses seven tax brackets (ranging from 10% to 37%) depending on your income level and filing status (Single, Married Filing Jointly, or Head of Household). Your employer estimates this withholding based on the information you provided on your Form W-4.
-                </p>
-            </div>
+            <h3 class="text-lg font-bold text-slate-900 pt-2">How Wasm-FFmpeg Handles Media Layers Locally</h3>
+            <p>
+              Generic media tracking converters pool client assets into remote computing servers, incurring processing latency overheads. This utility locks all decoding operations inside a local application runtime scope:
+            </p>
 
-            <div>
-                <h3 class="font-bold text-slate-800 text-base mb-1">2. FICA Taxes (Social Security & Medicare)</h3>
-                <p>
-                    The Federal Insurance Contributions Act (FICA) mandates two critical withholdings that every employee must contribute to:
-                </p>
-                <ul class="list-disc list-inside mt-2 space-y-1 pl-2">
-                    <li><strong class="text-slate-700">Social Security:</strong> Deducted at a flat rate of <span class="font-medium text-slate-900">6.2%</span> on income up to the annual wage base limit.</li>
-                    <li><strong class="text-slate-700">Medicare:</strong> Deducted at a flat rate of <span class="font-medium text-slate-900">1.45%</span>. High earners making over $200,000 may be subject to an Additional Medicare Tax of 0.9%.</li>
-                </ul>
-            </div>
-
-            <div>
-                <h3 class="font-bold text-slate-800 text-base mb-1">3. State and Local Income Taxes</h3>
-                <p>
-                    Depending on where you live and work, state income taxes may also apply. States like California and New York have progressive state tax brackets, while states like Texas, Florida, and Washington levy no state income tax at all, allowing workers to retain a larger portion of their take-home pay.
-                </p>
-            </div>
-
-            <div>
-                <h3 class="font-bold text-slate-800 text-base mb-1">4. How to Optimize Your Take-Home Pay</h3>
-                <p>
-                    If you want to adjust how much tax is taken out of your paycheck, you can submit a revised Form W-4 to your employer's HR department. Additionally, contributing to pre-tax accounts such as a traditional 401(k) or a Health Savings Account (HSA) lowers your taxable gross income, effectively reducing your overall tax burden.
-                </p>
-            </div>
+            <ul class="list-disc pl-5 space-y-2 text-slate-600">
+              <li><strong>Local File System Mapping:</strong> The core script mounts target media buffers into an internal virtual memory node, avoiding server API transmission hops entirely.</li>
+              <li><strong>Asynchronous Assembly Parsing:</strong> The software launches isolated compilation logic loops, adjusting bit rates and channels via client-side instruction sets.</li>
+              <li><strong>Absolute Source Privacy:</strong> Because conversion triggers skip external networks, proprietary corporate audios, vocal tracks, and secret legal briefs remain completely secure within the user's browser sandbox thread.</li>
+            </ul>
+          </div>
         </section>
-
-        <p class="mt-5 text-xs leading-5 text-slate-500">
-          Disclaimer: This calculator is for general educational and informational purposes only.
-          It provides an estimate based on simplified assumptions and should not be considered tax,
-          payroll, legal, or financial advice. Actual paycheck amounts may vary depending on filing
-          status, deductions, credits, pre-tax benefits, Social Security, Medicare, local taxes,
-          employer withholding rules, and other personal circumstances. Please consult a qualified
-          tax professional or payroll advisor before making financial decisions.
-        </p>
       </div>
     </section>
 
-    <div class="mt-8 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white text-sm text-slate-400">
+    <div class="mt-8 flex min-h-[90px] w-full items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white text-sm text-slate-400">
       AdSense Responsive Ad Area - Bottom
     </div>
 
   </main>
 
   <script>
-    function calculateFederalTax2026Single(annualSalary) {
-      const standardDeduction = 16100;
-      const taxableIncome = Math.max(0, annualSalary - standardDeduction);
+    document.addEventListener("DOMContentLoaded", () => {
+      const audioInput = document.getElementById("audioInput");
+      const dropZone = document.getElementById("dropZone");
+      const audioInputLabel = document.getElementById("audioInputLabel");
+      const mediaDashboard = document.getElementById("mediaDashboard");
+      const metaName = document.getElementById("metaName");
+      const metaSize = document.getElementById("metaSize");
+      const audioPreview = document.getElementById("audioPreview");
+      const errorNotification = document.getElementById("errorNotification");
+      const convertBtn = document.getElementById("convertBtn");
 
-      const brackets = [
-        { min: 0, max: 12400, rate: 0.10 },
-        { min: 12400, max: 50400, rate: 0.12 },
-        { min: 50400, max: 105700, rate: 0.22 },
-        { min: 105700, max: 201775, rate: 0.24 },
-        { min: 201775, max: 256225, rate: 0.32 },
-        { min: 256225, max: 640600, rate: 0.35 },
-        { min: 640600, max: Infinity, rate: 0.37 }
-      ];
+      let currentFileBlob = null;
+      let isEngineProcessing = false;
+      let ffmpegInstance = null;
 
-      let tax = 0;
+      function formatBytes(bytes) {
+        if (bytes === 0) return '0 Bytes';
+        const k = 1024;
+        const sizes = ['Bytes', 'KB', 'MB'];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+      }
 
-      for (const bracket of brackets) {
-        if (taxableIncome > bracket.min) {
-          const taxableAmountInBracket =
-            Math.min(taxableIncome, bracket.max) - bracket.min;
+      ["dragenter", "dragover"].forEach(eventName => {
+        dropZone.addEventListener(eventName, (e) => {
+          e.preventDefault();
+          dropZone.classList.add("bg-violet-50", "border-brand-600");
+        }, false);
+      });
 
-          tax += taxableAmountInBracket * bracket.rate;
+      ["dragleave", "drop"].forEach(eventName => {
+        dropZone.addEventListener(eventName, (e) => {
+          e.preventDefault();
+          dropZone.classList.remove("bg-violet-50", "border-brand-600");
+        }, false);
+      });
+
+      dropZone.addEventListener("drop", (e) => {
+        const dataTransfer = e.dataTransfer;
+        if (dataTransfer.files.length > 0) {
+          allocateIncomingAudioTrack(dataTransfer.files[0]);
+        }
+      });
+
+      audioInput.addEventListener("change", (e) => {
+        if (e.target.files.length > 0) {
+          allocateIncomingAudioTrack(e.target.files[0]);
+        }
+      });
+
+      function allocateIncomingAudioTrack(file) {
+        if (!file.type.startsWith("audio/")) {
+          const fallbackExtension = file.name.substring(file.name.lastIndexOf('.')).toLowerCase();
+          const validExtensions = ['.mp3', '.wav', '.ogg', '.m4a', '.flac', '.aac', '.wma'];
+          if (!validExtensions.includes(fallbackExtension)) {
+            showErrorState("⚠️ Media Format Error: The uploaded file does not map to a supported audio track model layout.");
+            return;
+          }
+        }
+
+        clearErrorState();
+        currentFileBlob = file;
+
+        metaName.textContent = file.name;
+        metaSize.textContent = formatBytes(file.size);
+        audioInputLabel.textContent = `${file.name} loaded`;
+
+        const streamUrl = URL.createObjectURL(file);
+        audioPreview.src = streamUrl;
+        mediaDashboard.classList.remove("hidden");
+      }
+
+      convertBtn.addEventListener("click", async () => {
+        if (isEngineProcessing) return;
+        if (!currentFileBlob) {
+          showErrorState("⚠️ Missing Asset: Please upload an audio track target asset before executing conversion loops.");
+          return;
+        }
+
+        clearErrorState();
+        switchLoadingState(true);
+
+        try {
+          if (!ffmpegInstance) {
+            const { createFFmpeg } = FFmpeg;
+            ffmpegInstance = createFFmpeg({ 
+              log: false,
+              corePath: 'https://unpkg.com/@ffmpeg/core@0.11.0/dist/ffmpeg-core.js'
+            });
+          }
+
+          if (!ffmpegInstance.isLoaded()) {
+            audioInputLabel.textContent = "Loading WebAssembly core layers...";
+            await ffmpegInstance.load();
+          }
+
+          const originalName = currentFileBlob.name;
+          const inputExt = originalName.substring(originalName.lastIndexOf('.')).toLowerCase();
+          const targetCodec = document.querySelector('input[name="codecTarget"]:checked').value;
+          
+          const virtualInputName = `input_source${inputExt}`;
+          const virtualOutputName = `output_compiled.${targetCodec}`;
+
+          const fileDataBuffer = await currentFileBlob.arrayBuffer();
+          ffmpegInstance.FS('writeFile', virtualInputName, new Uint8Array(fileDataBuffer));
+
+          audioInputLabel.textContent = "Processing audio signals in sandbox...";
+          await ffmpegInstance.run('-i', virtualInputName, virtualOutputName);
+
+          const binaryResultData = ffmpegInstance.FS('readFile', virtualOutputName);
+          
+          ffmpegInstance.FS('unlink', virtualInputName);
+          ffmpegInstance.FS('unlink', virtualOutputName);
+
+          const compiledMimeType = `audio/${targetCodec}`;
+          const resultBlob = new Blob([binaryResultData.buffer], { type: compiledMimeType });
+          const localBlobDownloadUrl = URL.createObjectURL(resultBlob);
+
+          const clientBaseName = originalName.substring(0, originalName.lastIndexOf('.')) || originalName;
+          const safeTitleName = clientBaseName.toLowerCase().replace(/[^a-z0-9_-]/gi, '_');
+
+          const virtualAnchor = document.createElement("a");
+          virtualAnchor.href = localBlobDownloadUrl;
+          virtualAnchor.download = `${safeTitleName}_converted.${targetCodec}`;
+          
+          document.body.appendChild(virtualAnchor);
+          virtualAnchor.click();
+
+          document.body.removeChild(virtualAnchor);
+          URL.revokeObjectURL(localBlobDownloadUrl);
+          
+          audioInputLabel.textContent = "Conversion task completed successfully.";
+        } catch (error) {
+          console.error("Wasm Engine Fault node: ", error);
+          showErrorState(`⚠️ System Transcode Fault: WebAssembly kernel failed to re-encode the audio matrix block. Check file formatting layouts.`);
+        } finally {
+          switchLoadingState(false);
+        }
+      });
+
+      function switchLoadingState(isLoading) {
+        isEngineProcessing = isLoading;
+        if (isLoading) {
+          convertBtn.disabled = true;
+          convertBtn.classList.remove("bg-brand-600", "hover:bg-brand-700");
+          convertBtn.classList.add("bg-slate-400", "cursor-wait");
+          convertBtn.innerHTML = `
+            <svg class="animate-spin h-5 w-5 text-white" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            <span>Wasm Encoding Signal...</span>
+          `;
+        } else {
+          convertBtn.disabled = false;
+          convertBtn.classList.remove("bg-slate-400", "cursor-wait");
+          convertBtn.classList.add("bg-brand-600", "hover:bg-brand-700");
+          convertBtn.innerHTML = `<span>Convert & Download</span>`;
         }
       }
 
-      return {
-        taxableIncome,
-        federalTax: tax,
-        standardDeduction
-      };
-    }
-
-    function calculatePaycheck() {
-      const salaryInput = document.getElementById("salary");
-      const stateInput = document.getElementById("state");
-      const resultBox = document.getElementById("result");
-
-      const salary = parseFloat(salaryInput.value);
-      const stateTaxRate = parseFloat(stateInput.value);
-
-      if (isNaN(salary) || salary <= 0) {
-        alert("Please enter a valid annual salary.");
-        salaryInput.focus();
-        return;
+      // 모바일 디바이스 알림 오버플로우 방지 처리
+      function showErrorState(msg) {
+        errorNotification.textContent = msg;
+        errorNotification.classList.remove("hidden");
       }
 
-      if (isNaN(stateTaxRate)) {
-        alert("Please select a state.");
-        stateInput.focus();
-        return;
+      // 상태 초기화 핸들러
+      function clearErrorState() {
+        errorNotification.textContent = "";
+        errorNotification.classList.add("hidden");
       }
-
-      const federal = calculateFederalTax2026Single(salary);
-
-      const stateTax = salary * stateTaxRate;
-      const annualTakeHome = salary - federal.federalTax - stateTax;
-      const monthlyTakeHome = annualTakeHome / 12;
-
-      const effectiveFederalRate = federal.federalTax / salary;
-      const totalEstimatedTax = federal.federalTax + stateTax;
-      const totalEffectiveTaxRate = totalEstimatedTax / salary;
-
-      const money = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-        maximumFractionDigits: 2
-      });
-
-      const percent = new Intl.NumberFormat("en-US", {
-        style: "percent",
-        maximumFractionDigits: 2
-      });
-
-      resultBox.classList.remove("hidden");
-
-      resultBox.innerHTML = `
-        <p class="text-sm font-semibold uppercase tracking-wide text-blue-700">
-          Estimated Monthly Take-Home Pay
-        </p>
-
-        <p class="mt-2 text-4xl font-extrabold tracking-tight text-slate-900">
-          ${money.format(monthlyTakeHome)}
-        </p>
-
-        <div class="mt-5 grid gap-3 sm:grid-cols-2">
-          <div class="rounded-2xl bg-white p-4 shadow-sm">
-            <p class="text-xs text-slate-500">Annual Salary</p>
-            <p class="mt-1 text-lg font-bold text-slate-900">${money.format(salary)}</p>
-          </div>
-
-          <div class="rounded-2xl bg-white p-4 shadow-sm">
-            <p class="text-xs text-slate-500">Taxable Income After Standard Deduction</p>
-            <p class="mt-1 text-lg font-bold text-slate-900">${money.format(federal.taxableIncome)}</p>
-          </div>
-
-          <div class="rounded-2xl bg-white p-4 shadow-sm">
-            <p class="text-xs text-slate-500">2026 Single Standard Deduction</p>
-            <p class="mt-1 text-lg font-bold text-slate-900">${money.format(federal.standardDeduction)}</p>
-          </div>
-
-          <div class="rounded-2xl bg-white p-4 shadow-sm">
-            <p class="text-xs text-slate-500">Annual Take-Home Pay</p>
-            <p class="mt-1 text-lg font-bold text-slate-900">${money.format(annualTakeHome)}</p>
-          </div>
-
-          <div class="rounded-2xl bg-white p-4 shadow-sm">
-            <p class="text-xs text-slate-500">Federal Income Tax</p>
-            <p class="mt-1 text-lg font-bold text-red-600">-${money.format(federal.federalTax)}</p>
-            <p class="mt-1 text-xs text-slate-500">Effective federal rate: ${percent.format(effectiveFederalRate)}</p>
-          </div>
-
-          <div class="rounded-2xl bg-white p-4 shadow-sm">
-            <p class="text-xs text-slate-500">Estimated State Income Tax</p>
-            <p class="mt-1 text-lg font-bold text-red-600">-${money.format(stateTax)}</p>
-            <p class="mt-1 text-xs text-slate-500">Estimated state rate: ${percent.format(stateTaxRate)}</p>
-          </div>
-        </div>
-
-        <div class="mt-4 rounded-2xl bg-white p-4 text-sm text-slate-600 shadow-sm">
-          Total estimated tax: <strong>${money.format(totalEstimatedTax)}</strong>
-          · Total effective tax rate: <strong>${percent.format(totalEffectiveTaxRate)}</strong>
-        </div>
-      `;
-    }
+    });
   </script>
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
 </body>
 </html>
