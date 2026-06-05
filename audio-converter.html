@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
 
   <title>Online Web Audio Converter | Convert MP3, WAV, OGG Free - NodnWebTools</title>
 
@@ -58,10 +58,10 @@
   </script>
 </head>
 
-<body class="min-h-screen bg-slate-100 px-4 py-8 sm:py-12">
+<body class="min-h-screen bg-slate-100 px-3 py-6 sm:px-4 sm:py-12">
   <main class="mx-auto max-w-5xl">
 
-    <div class="mb-8 text-center">
+    <div class="mb-6 text-center sm:mb-8">
       <a
         href="https://nodntools.com"
         class="inline-block transition hover:opacity-80"
@@ -73,43 +73,45 @@
       </a>
     </div>
 
-    <div class="mb-8 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white text-sm text-slate-400">
+    <div class="mb-6 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white p-2 text-center text-xs sm:text-sm text-slate-400 sm:mb-8">
       AdSense Responsive Ad Area - Top
     </div>
 
     <section class="grid gap-6 lg:grid-cols-12">
 
-      <div class="rounded-3xl bg-white p-5 shadow-xl ring-1 ring-slate-200 sm:p-8 lg:col-span-7 space-y-5">
+      <!-- Left Input Panel -->
+      <div class="rounded-3xl bg-white p-4 shadow-xl ring-1 ring-slate-200 sm:p-8 lg:col-span-7 space-y-5">
         <div>
-          <span class="inline-flex rounded-full bg-brand-50 px-4 py-2 text-sm font-semibold text-brand-700">
+          <span class="inline-flex rounded-full bg-brand-50 px-3 py-1.5 text-xs sm:text-sm font-semibold text-brand-700">
             Wasm Media Utility
           </span>
 
-          <h1 class="mt-5 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+          <h1 class="mt-4 text-2xl font-bold tracking-tight text-slate-900 sm:mt-5 sm:text-4xl">
             Web Audio Converter
           </h1>
 
-          <p class="mt-3 text-base leading-7 text-slate-600">
+          <p class="mt-2 text-sm leading-6 text-slate-600 sm:mt-3 sm:text-base sm:leading-7">
             Convert local sound recordings safely inside your system memory. Binary processing pipelines run 100% inside a high-speed isolated browser assembly engine sandbox.
           </p>
         </div>
 
         <div>
           <label class="mb-2 block text-sm font-semibold text-slate-700">Upload Target Sound Track</label>
-          <div id="dropZone" class="relative flex flex-col items-center justify-center rounded-2xl border-2 border-dashed border-slate-300 bg-slate-50 p-8 text-center transition hover:bg-slate-100/70 cursor-pointer select-none">
+          <div id="dropZone" class="relative flex flex-col items-center justify-center rounded-2xl border-2 border-dashed border-slate-300 bg-slate-50 p-6 sm:p-8 text-center transition hover:bg-slate-100/70 cursor-pointer select-none">
             <input type="file" id="audioInput" accept="audio/*" class="absolute inset-0 opacity-0 cursor-pointer" />
             
-            <svg class="mx-auto h-12 w-12 text-brand-500 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="mx-auto h-10 w-10 sm:h-12 sm:w-12 text-brand-500 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
             </svg>
-            <p class="mt-3 text-sm font-semibold text-slate-700" id="audioInputLabel">
+            <p class="mt-3 text-xs sm:text-sm font-semibold text-slate-700" id="audioInputLabel">
               Click to select or drop sound tracks here
             </p>
-            <p class="mt-1 text-xs text-slate-400">Supports standard container forms (.wav, .m4a, .ogg, .mp3, etc.)</p>
+            <p class="mt-1 text-[11px] sm:text-xs text-slate-400">Supports standard container forms (.wav, .m4a, .ogg, .mp3, etc.)</p>
           </div>
         </div>
 
-        <div id="mediaDashboard" class="hidden rounded-2xl bg-violet-50 border border-violet-200 p-5 space-y-4 transition-all">
+        <!-- Loaded Media Dashboard (Mobile Fixed Width Breakdown) -->
+        <div id="mediaDashboard" class="hidden rounded-2xl bg-violet-50 border border-violet-200 p-4 sm:p-5 space-y-4 transition-all">
           <div class="flex items-center space-x-2 text-brand-800 select-none">
             <svg class="w-4 h-4 text-brand-600 shrink-0" fill="currentColor" viewBox="0 0 24 24">
               <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
@@ -117,84 +119,95 @@
             <span class="text-xs font-bold uppercase tracking-wider">Audio Asset Loaded Safely</span>
           </div>
           
-          <div class="text-xs font-mono text-slate-700 space-y-1 pl-6 border-b border-violet-100 pb-3">
-            <p class="truncate"><span class="font-bold text-slate-900">Track Name:</span> <span id="metaName">-</span></p>
-            <p><span>File Capacity Size:</span> <span id="metaSize">-</span></p>
+          <div class="text-xs font-mono text-slate-700 space-y-1 sm:pl-6 border-b border-violet-100 pb-3 max-w-full overflow-hidden">
+            <p class="truncate w-full block"><span class="font-bold text-slate-900">Track:</span> <span id="metaName" class="break-all">-</span></p>
+            <p><span>Size:</span> <span id="metaSize">-</span></p>
           </div>
 
-          <div class="pl-6">
-            <label class="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2">Original Track Source Preview</label>
-            <audio id="audioPreview" controls class="w-full bg-white rounded-lg"></audio>
+          <div class="sm:pl-6 w-full">
+            <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2">Original Track Source Preview</label>
+            <audio id="audioPreview" controls class="w-full bg-white rounded-lg block outline-none"></audio>
           </div>
         </div>
 
-        <div id="errorNotification" class="hidden rounded-2xl bg-red-50 border border-red-200 p-4 text-xs font-semibold text-red-600 leading-5"></div>
+        <div id="errorNotification" class="hidden rounded-2xl bg-red-50 border border-red-200 p-4 text-xs font-semibold text-red-600 leading-5 break-all"></div>
       </div>
 
+      <!-- Right Control Panel -->
       <div class="lg:col-span-5 space-y-6">
-        <div class="rounded-3xl bg-white p-5 shadow-xl ring-1 ring-slate-200 sm:p-8">
+        <div class="rounded-3xl bg-white p-4 shadow-xl ring-1 ring-slate-200 sm:p-8">
           <div class="mb-5 select-none">
-            <h2 class="text-2xl font-bold text-slate-900">Transcode Matrix</h2>
-            <p class="mt-1 text-sm text-slate-500">Target codec target formatting layout loops.</p>
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900">Transcode Matrix</h2>
+            <p class="mt-1 text-xs sm:text-sm text-slate-500">Target codec target formatting layout loops.</p>
           </div>
 
           <div class="space-y-3 mb-6">
-            <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest select-none">Target Extension Format</label>
+            <label class="block text-[11px] font-bold text-slate-400 uppercase tracking-widest select-none">Target Extension Format</label>
             
-            <div class="grid grid-cols-3 gap-2">
-              <label class="flex flex-col items-center justify-center rounded-xl border border-slate-200 p-3 hover:bg-slate-50 cursor-pointer transition select-none text-center">
-                <input type="radio" name="codecTarget" value="mp3" checked class="w-3.5 h-3.5 text-brand-600 border-slate-300 focus:ring-brand-500 mb-1.5" />
-                <span class="text-xs font-bold text-slate-900">MP3</span>
-                <span class="text-[9px] text-slate-400 font-mono">audio/mp3</span>
+            <!-- Mobile Single Column, Tablet/Desktop 3 Columns Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+              <label class="flex flex-row sm:flex-col items-center justify-start sm:justify-center rounded-xl border border-slate-200 p-3 hover:bg-slate-50 cursor-pointer transition select-none text-left sm:text-center gap-3 sm:gap-0">
+                <input type="radio" name="codecTarget" value="mp3" checked class="w-4 h-4 sm:w-3.5 sm:h-3.5 text-brand-600 border-slate-300 focus:ring-brand-500 sm:mb-1.5 shrink-0" />
+                <div class="flex flex-col sm:items-center">
+                  <span class="text-xs font-bold text-slate-900">MP3</span>
+                  <span class="text-[9px] text-slate-400 font-mono">audio/mp3</span>
+                </div>
               </label>
 
-              <label class="flex flex-col items-center justify-center rounded-xl border border-slate-200 p-3 hover:bg-slate-50 cursor-pointer transition select-none text-center">
-                <input type="radio" name="codecTarget" value="wav" class="w-3.5 h-3.5 text-brand-600 border-slate-300 focus:ring-brand-500 mb-1.5" />
-                <span class="text-xs font-bold text-slate-900">WAV</span>
-                <span class="text-[9px] text-slate-400 font-mono">audio/wav</span>
+              <label class="flex flex-row sm:flex-col items-center justify-start sm:justify-center rounded-xl border border-slate-200 p-3 hover:bg-slate-50 cursor-pointer transition select-none text-left sm:text-center gap-3 sm:gap-0">
+                <input type="radio" name="codecTarget" value="wav" class="w-4 h-4 sm:w-3.5 sm:h-3.5 text-brand-600 border-slate-300 focus:ring-brand-500 sm:mb-1.5 shrink-0" />
+                <div class="flex flex-col sm:items-center">
+                  <span class="text-xs font-bold text-slate-900">WAV</span>
+                  <span class="text-[9px] text-slate-400 font-mono">audio/wav</span>
+                </div>
               </label>
 
-              <label class="flex flex-col items-center justify-center rounded-xl border border-slate-200 p-3 hover:bg-slate-50 cursor-pointer transition select-none text-center">
-                <input type="radio" name="codecTarget" value="ogg" class="w-3.5 h-3.5 text-brand-600 border-slate-300 focus:ring-brand-500 mb-1.5" />
-                <span class="text-xs font-bold text-slate-900">OGG</span>
-                <span class="text-[9px] text-slate-400 font-mono">audio/ogg</span>
+              <label class="flex flex-row sm:flex-col items-center justify-start sm:justify-center rounded-xl border border-slate-200 p-3 hover:bg-slate-50 cursor-pointer transition select-none text-left sm:text-center gap-3 sm:gap-0">
+                <input type="radio" name="codecTarget" value="ogg" class="w-4 h-4 sm:w-3.5 sm:h-3.5 text-brand-600 border-slate-300 focus:ring-brand-500 sm:mb-1.5 shrink-0" />
+                <div class="flex flex-col sm:items-center">
+                  <span class="text-xs font-bold text-slate-900">OGG</span>
+                  <span class="text-[9px] text-slate-400 font-mono">audio/ogg</span>
+                </div>
               </label>
             </div>
           </div>
 
-          <button id="convertBtn" class="w-full rounded-2xl bg-brand-600 py-4 text-center text-base font-bold text-white shadow-md hover:bg-brand-700 active:scale-[0.99] transition-all flex items-center justify-center space-x-2">
+          <button id="convertBtn" class="w-full rounded-2xl bg-brand-600 py-3.5 sm:py-4 text-center text-sm sm:text-base font-bold text-white shadow-md hover:bg-brand-700 active:scale-[0.99] transition-all flex items-center justify-center space-x-2">
             <span>Convert & Download</span>
           </button>
 
-          <div class="mt-6 flex min-h-[250px] flex-col items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-slate-50 text-sm text-slate-400 p-4">
+          <div class="mt-6 flex min-h-[250px] flex-col items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-slate-50 text-sm text-slate-400 p-4 w-full overflow-hidden">
             <span class="text-[10px] font-bold text-slate-300 uppercase tracking-widest mb-2">Advertisement</span>
-            <ins class="adsbygoogle"
-                 style="display:block; width:100%; min-height:200px;"
-                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-                 data-ad-slot="YYYYYYYYYY"
-                 data-ad-format="rectangle, vertical"
-                 data-full-width-responsive="true"></ins>
+            <div class="w-full flex justify-center overflow-hidden">
+              <ins class="adsbygoogle"
+                   style="display:block; width:100%; min-width:250px; min-height:200px;"
+                   data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                   data-ad-slot="YYYYYYYYYY"
+                   data-ad-format="rectangle, vertical"
+                   data-full-width-responsive="true"></ins>
+            </div>
             <script>
                  (adsbygoogle = window.adsbygoogle || []).push({});
             </script>
           </div>
 
-          <div class="mt-5 rounded-2xl bg-slate-100 p-4 text-xs leading-5 text-slate-500">
+          <div class="mt-5 rounded-2xl bg-slate-100 p-4 text-[11px] sm:text-xs leading-5 text-slate-500 break-words">
             <span class="block font-bold text-slate-700 mb-1">Disclaimer & Legal Notice:</span>
             This tool is provided on an "as is" and "as available" basis without warranties of any kind. Audio bitstream re-encoding allocations run 100% inside client-bound browser WebAssembly runtime sandboxes; NodnWebTools never mirrors, stores, intercepts, caches, or logs your upload media resources. The operator carries absolute liability to review tracking fidelity metadata sets before deployment. NodnWebTools, its core developer affiliates, and operators disclaim all responsibility for broken frequencies, compressed loss nodes, or browser memory heap crashing faults arising from binary formatting.
           </div>
         </div>
 
-        <section class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-8">
-          <span class="inline-flex rounded-full bg-slate-200 px-4 py-2 text-sm font-semibold text-slate-800">
+        <!-- Educational Section -->
+        <section class="rounded-3xl bg-white p-4 shadow-sm ring-1 ring-slate-200 sm:p-8">
+          <span class="inline-flex rounded-full bg-slate-200 px-3 py-1.5 text-xs sm:text-sm font-semibold text-slate-800">
             WebAssembly Encoding Guide
           </span>
 
-          <h2 class="mt-5 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
+          <h2 class="mt-4 text-xl font-bold tracking-tight text-slate-900 sm:mt-5 sm:text-3xl">
             Decentralized Audio Transcoding: Isolate Data Streams to Client Browsers
           </h2>
 
-          <div class="mt-5 space-y-5 text-sm leading-7 text-slate-600">
+          <div class="mt-4 space-y-4 text-xs sm:text-sm leading-6 sm:leading-7 text-slate-600">
             <p>
               In secure digital asset infrastructure setups, re-encoding sound elements safely into alternate codecs relies heavily on implementing a decentralized 
               <strong class="font-semibold text-slate-800">online audio converter</strong>. When sound engineers manipulate uncompressed master files, passing media data chunks across third-party remote network servers creates high compliance risk profiles and leaks copyright metadata layers.
@@ -204,7 +217,7 @@
               Utilizing a browser-bound WebAssembly <strong class="font-semibold text-slate-800">convert to mp3 platform</strong> isolates heavy signal rendering rules completely within local client memory frames. This layout allows content teams to invoke a flexible <strong class="font-semibold text-slate-800">online document converter</strong> framework layout style for binary processing, transforming media channels smoothly while protecting operational data privacy boundaries.
             </p>
 
-            <h3 class="text-lg font-bold text-slate-900 pt-2">How Wasm-FFmpeg Handles Media Layers Locally</h3>
+            <h3 class="text-base sm:text-lg font-bold text-slate-900 pt-2">How Wasm-FFmpeg Handles Media Layers Locally</h3>
             <p>
               Generic media tracking converters pool client assets into remote computing servers, incurring processing latency overheads. This utility locks all decoding operations inside a local application runtime scope:
             </p>
@@ -219,7 +232,7 @@
       </div>
     </section>
 
-    <div class="mt-8 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white text-sm text-slate-400">
+    <div class="mt-6 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white p-2 text-center text-xs sm:text-sm text-slate-400 sm:mt-8">
       AdSense Responsive Ad Area - Bottom
     </div>
 
@@ -404,6 +417,7 @@
         }
       }
 
+      // UX Error Component Handlers
       function showErrorState(msg) {
         errorNotification.textContent = msg;
         errorNotification.classList.remove("hidden");
