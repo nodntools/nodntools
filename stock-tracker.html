@@ -7,11 +7,11 @@
   <title>Global Stock Market Tracker</title>
   <meta
     name="description"
-    content="Free Global Stock Market Tracker powered by TradingView widgets. Search global stocks, view live market charts, stock overview, technical analysis, company profile, financial data, and major market shortcuts."
+    content="Free Global Stock Market Tracker powered by TradingView widgets. Search global stocks, view charts, technical analysis, company profile, financial data, and market shortcuts."
   />
   <meta
     name="keywords"
-    content="global stock tracker, stock market tracker, live stock chart, TradingView stock widget, AAPL stock chart, TSLA stock chart, NVDA stock chart, stock price tracker, stock market dashboard, stock technical analysis"
+    content="global stock tracker, stock market tracker, live stock chart, TradingView widget, AAPL stock chart, TSLA stock chart, NVDA stock chart, stock technical analysis, financial overview"
   />
 
   <script src="https://cdn.tailwindcss.com"></script>
@@ -26,19 +26,26 @@
       text-rendering: optimizeLegibility;
     }
 
-    .tv-widget-container iframe {
+    .tv-box {
+      width: 100%;
+      max-width: 100%;
+      overflow: hidden;
+      border-radius: 1rem;
+      background: #020617;
+    }
+
+    .tradingview-widget-container,
+    .tradingview-widget-container__widget {
       width: 100% !important;
       max-width: 100% !important;
-      border-radius: 18px;
+      height: 100% !important;
     }
 
-    .no-scrollbar::-webkit-scrollbar {
-      display: none;
-    }
-
-    .no-scrollbar {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
+    .tradingview-widget-container iframe {
+      width: 100% !important;
+      max-width: 100% !important;
+      border: 0 !important;
+      border-radius: 1rem;
     }
   </style>
 </head>
@@ -47,18 +54,13 @@
   <main class="mx-auto w-full max-w-6xl">
 
     <div class="mb-6 text-center">
-      <a
-        href="https://nodntools.com"
-        class="inline-block transition hover:opacity-80"
-        aria-label="NodnWebTools Home"
-      >
+      <a href="https://nodntools.com" class="inline-block transition hover:opacity-80" aria-label="NodnWebTools Home">
         <div class="text-2xl font-extrabold tracking-tight text-white sm:text-3xl">
           Nodn<span class="text-cyan-400">WebTools</span>
         </div>
       </a>
     </div>
 
-    <!-- Google AdSense Responsive Ad - Top -->
     <div class="mb-6 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-700 bg-slate-900 text-sm text-slate-500">
       AdSense Responsive Ad Area - Top
     </div>
@@ -74,42 +76,15 @@
         </h1>
 
         <p class="mt-2 max-w-3xl text-sm leading-6 text-slate-400">
-          Search global stocks and view TradingView-powered live charts, market overview, technical analysis, company profile, and financial widgets.
+          Search global stocks and view TradingView-powered charts, symbol info, technical analysis, company profile, and financial data.
         </p>
       </div>
 
-      <!-- TradingView Market Ticker Tape -->
       <div class="border-b border-slate-800 bg-slate-950 p-2">
-        <div class="tradingview-widget-container">
-          <div class="tradingview-widget-container__widget"></div>
-          <script
-            type="text/javascript"
-            src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js"
-            async
-          >
-          {
-            "symbols": [
-              { "proName": "FOREXCOM:SPXUSD", "title": "S&P 500" },
-              { "proName": "FOREXCOM:NSXUSD", "title": "Nasdaq 100" },
-              { "proName": "FOREXCOM:DJI", "title": "Dow Jones" },
-              { "proName": "KRX:KOSPI", "title": "KOSPI" },
-              { "proName": "TSX:TSX", "title": "TSX" },
-              { "proName": "NASDAQ:AAPL", "title": "Apple" },
-              { "proName": "NASDAQ:NVDA", "title": "Nvidia" },
-              { "proName": "NASDAQ:TSLA", "title": "Tesla" }
-            ],
-            "showSymbolLogo": true,
-            "isTransparent": true,
-            "displayMode": "adaptive",
-            "colorTheme": "dark",
-            "locale": "en"
-          }
-          </script>
-        </div>
+        <div id="tickerTapeWrap" class="min-h-[46px] w-full overflow-hidden"></div>
       </div>
 
       <div class="grid w-full min-w-0 gap-5 p-4 sm:p-5 lg:grid-cols-[0.9fr_1.4fr] lg:p-8">
-        <!-- Left Panel -->
         <section class="min-w-0 space-y-5">
           <div class="rounded-2xl border border-slate-800 bg-slate-950 p-4 sm:rounded-3xl sm:p-5">
             <label for="stockInput" class="mb-3 block text-sm font-bold text-slate-200">
@@ -133,8 +108,8 @@
               </button>
             </div>
 
-            <p id="searchHint" class="mt-3 text-xs leading-5 text-slate-500">
-              Tip: You can type AAPL, TSLA, NVDA, MSFT, AMZN, GOOGL, META, or full TradingView symbols like NASDAQ:AAPL, NYSE:BRK.B, TSX:SHOP, KRX:005930.
+            <p class="mt-3 text-xs leading-5 text-slate-500">
+              Examples: AAPL, TSLA, NVDA, MSFT, AMZN, GOOGL, META, NASDAQ:AAPL, NYSE:BRK.B, TSX:SHOP, KRX:005930
             </p>
 
             <div class="mt-5">
@@ -148,7 +123,7 @@
                 </span>
               </div>
 
-              <div id="shortcutGrid" class="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-3">
+              <div class="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-3">
                 <button data-symbol="NASDAQ:NVDA" class="shortcutBtn min-w-0 rounded-2xl bg-slate-900 px-3 py-3 text-left ring-1 ring-slate-800 transition hover:bg-slate-800 active:scale-[0.98]">
                   <span class="block truncate text-sm font-extrabold text-white">NVDA</span>
                   <span class="mt-1 block truncate text-[11px] text-slate-500">NVIDIA</span>
@@ -184,40 +159,38 @@
 
           <div class="rounded-2xl border border-slate-800 bg-slate-950 p-4 sm:rounded-3xl sm:p-5">
             <h2 class="text-sm font-bold uppercase tracking-wide text-slate-400">
-              Popular Global Markets
+              Other Markets
             </h2>
 
             <div class="mt-4 grid gap-2">
-              <button data-symbol="NYSE:BRK.B" class="marketBtn flex items-center justify-between rounded-2xl bg-slate-900 px-4 py-3 text-sm font-bold text-slate-200 ring-1 ring-slate-800 transition hover:bg-slate-800">
-                Berkshire Hathaway <span class="text-xs text-slate-500">NYSE:BRK.B</span>
+              <button data-symbol="NYSE:BRK.B" class="shortcutBtn flex items-center justify-between gap-3 rounded-2xl bg-slate-900 px-4 py-3 text-sm font-bold text-slate-200 ring-1 ring-slate-800 transition hover:bg-slate-800">
+                <span>Berkshire Hathaway</span>
+                <span class="shrink-0 text-xs text-slate-500">NYSE:BRK.B</span>
               </button>
 
-              <button data-symbol="TSX:SHOP" class="marketBtn flex items-center justify-between rounded-2xl bg-slate-900 px-4 py-3 text-sm font-bold text-slate-200 ring-1 ring-slate-800 transition hover:bg-slate-800">
-                Shopify <span class="text-xs text-slate-500">TSX:SHOP</span>
+              <button data-symbol="TSX:SHOP" class="shortcutBtn flex items-center justify-between gap-3 rounded-2xl bg-slate-900 px-4 py-3 text-sm font-bold text-slate-200 ring-1 ring-slate-800 transition hover:bg-slate-800">
+                <span>Shopify</span>
+                <span class="shrink-0 text-xs text-slate-500">TSX:SHOP</span>
               </button>
 
-              <button data-symbol="KRX:005930" class="marketBtn flex items-center justify-between rounded-2xl bg-slate-900 px-4 py-3 text-sm font-bold text-slate-200 ring-1 ring-slate-800 transition hover:bg-slate-800">
-                Samsung Electronics <span class="text-xs text-slate-500">KRX:005930</span>
-              </button>
-
-              <button data-symbol="NASDAQ:TSLA" class="marketBtn flex items-center justify-between rounded-2xl bg-slate-900 px-4 py-3 text-sm font-bold text-slate-200 ring-1 ring-slate-800 transition hover:bg-slate-800">
-                Tesla <span class="text-xs text-slate-500">NASDAQ:TSLA</span>
+              <button data-symbol="KRX:005930" class="shortcutBtn flex items-center justify-between gap-3 rounded-2xl bg-slate-900 px-4 py-3 text-sm font-bold text-slate-200 ring-1 ring-slate-800 transition hover:bg-slate-800">
+                <span>Samsung Electronics</span>
+                <span class="shrink-0 text-xs text-slate-500">KRX:005930</span>
               </button>
             </div>
           </div>
 
           <div class="rounded-2xl border border-slate-800 bg-slate-950 p-4 sm:rounded-3xl sm:p-5">
             <h2 class="text-sm font-bold uppercase tracking-wide text-slate-400">
-              Data Source
+              Widget Notice
             </h2>
 
             <p class="mt-3 text-xs leading-5 text-slate-400">
-              This tool uses TradingView embedded widgets instead of unreliable browser-side scraping. The chart and financial widgets are loaded directly from TradingView.
+              Some TradingView widgets may not support every exchange symbol. If Company Profile or Financial Data is unavailable for a specific market, try a major US-listed ticker such as NASDAQ:AAPL, NASDAQ:MSFT, or NASDAQ:NVDA.
             </p>
           </div>
         </section>
 
-        <!-- Right Panel -->
         <section class="min-w-0 space-y-5">
           <div class="rounded-2xl border border-slate-800 bg-slate-950 p-4 sm:rounded-3xl sm:p-5">
             <div class="mb-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
@@ -232,14 +205,13 @@
               </div>
 
               <span class="rounded-full bg-emerald-500/10 px-4 py-2 text-xs font-bold text-emerald-300 ring-1 ring-emerald-400/20">
-                TradingView Widget
+                TradingView
               </span>
             </div>
 
-            <div id="advancedChartWrap" class="tv-widget-container h-[460px] w-full overflow-hidden rounded-2xl bg-slate-900 ring-1 ring-slate-800 sm:h-[560px] lg:h-[620px]"></div>
+            <div id="advancedChartWrap" class="tv-box h-[460px] sm:h-[560px] lg:h-[620px]"></div>
           </div>
 
-          <!-- Google AdSense Responsive Ad - Below Chart -->
           <div class="flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-700 bg-slate-900 text-sm text-slate-500">
             AdSense Responsive Ad Area - Below Chart
           </div>
@@ -253,7 +225,7 @@
           Technical Analysis
         </h2>
 
-        <div id="technicalAnalysisWrap" class="tv-widget-container h-[450px] w-full overflow-hidden rounded-2xl bg-slate-950 ring-1 ring-slate-800"></div>
+        <div id="technicalAnalysisWrap" class="tv-box h-[430px]"></div>
       </div>
 
       <div class="min-w-0 rounded-2xl border border-slate-800 bg-slate-900 p-4 sm:rounded-3xl sm:p-5">
@@ -261,7 +233,7 @@
           Company Profile
         </h2>
 
-        <div id="companyProfileWrap" class="tv-widget-container h-[450px] w-full overflow-hidden rounded-2xl bg-slate-950 ring-1 ring-slate-800"></div>
+        <div id="companyProfileWrap" class="tv-box h-[430px]"></div>
       </div>
     </section>
 
@@ -270,10 +242,9 @@
         Financial Overview
       </h2>
 
-      <div id="financialsWrap" class="tv-widget-container h-[520px] w-full overflow-hidden rounded-2xl bg-slate-950 ring-1 ring-slate-800"></div>
+      <div id="financialsWrap" class="tv-box h-[560px]"></div>
     </section>
 
-    <!-- SEO Content -->
     <section class="mt-8 rounded-2xl border border-slate-800 bg-slate-900 p-5 text-sm leading-7 text-slate-300 sm:rounded-3xl sm:p-8">
       <h2 class="mb-4 flex items-center gap-2 text-xl font-extrabold text-white">
         <span class="h-5 w-1.5 rounded-full bg-cyan-400"></span>
@@ -288,14 +259,14 @@
         <div class="rounded-2xl bg-slate-950 p-5 ring-1 ring-slate-800">
           <h3 class="font-bold text-white">TradingView-Powered Stock Charts</h3>
           <p class="mt-2 text-slate-400">
-            The main chart area uses TradingView widgets to provide interactive market charts. Users can search common tickers such as AAPL, TSLA, NVDA, MSFT, AMZN, GOOGL, META, or use full exchange symbols like NASDAQ:AAPL, TSX:SHOP, and KRX:005930.
+            The main chart area uses TradingView widgets to provide interactive stock charts. Users can search common tickers such as AAPL, TSLA, NVDA, MSFT, AMZN, GOOGL, META, or use full exchange symbols like NASDAQ:AAPL, TSX:SHOP, and KRX:005930.
           </p>
         </div>
 
         <div class="rounded-2xl bg-slate-950 p-5 ring-1 ring-slate-800">
-          <h3 class="font-bold text-white">Better Than Browser Scraping</h3>
+          <h3 class="font-bold text-white">Reliable Embed-Based Display</h3>
           <p class="mt-2 text-slate-400">
-            Many finance websites block direct browser fetch requests because of CORS, bot protection, or licensing restrictions. This version avoids unstable scraping and uses embeddable financial widgets for a more reliable user experience.
+            This version avoids unstable browser scraping and uses embeddable financial widgets for charts, analysis, company profile, and financial data where supported by TradingView.
           </p>
         </div>
       </div>
@@ -308,7 +279,6 @@
       </div>
     </section>
 
-    <!-- Disclaimer -->
     <div class="mt-8 rounded-2xl bg-slate-900 p-5 text-xs leading-5 text-slate-400 ring-1 ring-slate-800">
       <h3 class="mb-2 text-sm font-semibold text-slate-200">
         Disclaimer
@@ -327,7 +297,6 @@
       </p>
     </div>
 
-    <!-- Google AdSense Responsive Ad - Bottom -->
     <div class="mt-8 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-700 bg-slate-900 text-sm text-slate-500">
       AdSense Responsive Ad Area - Bottom
     </div>
@@ -339,6 +308,7 @@
     const selectedSymbolLabel = document.getElementById("selectedSymbolLabel");
     const mainSymbolTitle = document.getElementById("mainSymbolTitle");
 
+    const tickerTapeWrap = document.getElementById("tickerTapeWrap");
     const advancedChartWrap = document.getElementById("advancedChartWrap");
     const technicalAnalysisWrap = document.getElementById("technicalAnalysisWrap");
     const companyProfileWrap = document.getElementById("companyProfileWrap");
@@ -371,43 +341,83 @@
     function normalizeSymbol(value) {
       const clean = String(value || "").trim().toUpperCase();
 
-      if (!clean) {
-        return "NASDAQ:AAPL";
-      }
-
-      if (symbolMap[clean]) {
-        return symbolMap[clean];
-      }
-
-      if (clean.includes(":")) {
-        return clean;
-      }
+      if (!clean) return "NASDAQ:AAPL";
+      if (symbolMap[clean]) return symbolMap[clean];
+      if (clean.includes(":")) return clean;
 
       return `NASDAQ:${clean}`;
     }
 
-    function clearWidget(container) {
-      container.innerHTML = "";
+    function showLoading(container, label) {
+      container.innerHTML = `
+        <div class="flex h-full min-h-[220px] items-center justify-center rounded-2xl border border-slate-800 bg-slate-950 p-5 text-center">
+          <div>
+            <div class="mx-auto mb-3 h-8 w-8 animate-spin rounded-full border-2 border-slate-700 border-t-cyan-400"></div>
+            <p class="text-sm font-bold text-slate-300">Loading ${label}...</p>
+            <p class="mt-2 text-xs leading-5 text-slate-500">
+              If this area does not load, the selected symbol may not be supported by this specific TradingView widget.
+            </p>
+          </div>
+        </div>
+      `;
     }
 
-    function createScript(container, src, config) {
-      clearWidget(container);
+    function createTradingViewWidget(container, src, config, label) {
+      showLoading(container, label);
 
-      const widgetBox = document.createElement("div");
-      widgetBox.className = "tradingview-widget-container__widget h-full w-full";
-      container.appendChild(widgetBox);
+      setTimeout(() => {
+        container.innerHTML = "";
 
-      const script = document.createElement("script");
-      script.type = "text/javascript";
-      script.src = src;
-      script.async = true;
-      script.innerHTML = JSON.stringify(config);
+        const outer = document.createElement("div");
+        outer.className = "tradingview-widget-container";
+        outer.style.width = "100%";
+        outer.style.height = "100%";
 
-      container.appendChild(script);
+        const widget = document.createElement("div");
+        widget.className = "tradingview-widget-container__widget";
+        widget.style.width = "100%";
+        widget.style.height = "100%";
+
+        outer.appendChild(widget);
+
+        const script = document.createElement("script");
+        script.type = "text/javascript";
+        script.src = src;
+        script.async = true;
+        script.text = JSON.stringify(config);
+
+        outer.appendChild(script);
+        container.appendChild(outer);
+      }, 120);
+    }
+
+    function renderTickerTape() {
+      createTradingViewWidget(
+        tickerTapeWrap,
+        "https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js",
+        {
+          symbols: [
+            { proName: "FOREXCOM:SPXUSD", title: "S&P 500" },
+            { proName: "FOREXCOM:NSXUSD", title: "Nasdaq 100" },
+            { proName: "FOREXCOM:DJI", title: "Dow Jones" },
+            { proName: "KRX:KOSPI", title: "KOSPI" },
+            { proName: "TSX:TSX", title: "TSX" },
+            { proName: "NASDAQ:AAPL", title: "Apple" },
+            { proName: "NASDAQ:NVDA", title: "Nvidia" },
+            { proName: "NASDAQ:TSLA", title: "Tesla" }
+          ],
+          showSymbolLogo: true,
+          isTransparent: true,
+          displayMode: "adaptive",
+          colorTheme: "dark",
+          locale: "en"
+        },
+        "Market Ticker"
+      );
     }
 
     function renderAdvancedChart(symbol) {
-      createScript(
+      createTradingViewWidget(
         advancedChartWrap,
         "https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js",
         {
@@ -419,59 +429,63 @@
           style: "1",
           locale: "en",
           allow_symbol_change: true,
+          save_image: false,
           calendar: false,
           support_host: "https://www.tradingview.com"
-        }
+        },
+        "Chart"
       );
     }
 
     function renderTechnicalAnalysis(symbol) {
-      createScript(
+      createTradingViewWidget(
         technicalAnalysisWrap,
         "https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js",
         {
           interval: "1D",
           width: "100%",
-          isTransparent: true,
-          height: "100%",
+          height: 430,
           symbol: symbol,
           showIntervalTabs: true,
           displayMode: "single",
+          isTransparent: true,
           locale: "en",
           colorTheme: "dark"
-        }
+        },
+        "Technical Analysis"
       );
     }
 
     function renderCompanyProfile(symbol) {
-      createScript(
+      createTradingViewWidget(
         companyProfileWrap,
         "https://s3.tradingview.com/external-embedding/embed-widget-symbol-profile.js",
         {
           width: "100%",
-          height: "100%",
+          height: 430,
+          symbol: symbol,
           isTransparent: true,
           colorTheme: "dark",
-          symbol: symbol,
           locale: "en"
-        }
+        },
+        "Company Profile"
       );
     }
 
     function renderFinancials(symbol) {
-      createScript(
+      createTradingViewWidget(
         financialsWrap,
         "https://s3.tradingview.com/external-embedding/embed-widget-financials.js",
         {
+          width: "100%",
+          height: 560,
+          symbol: symbol,
           colorTheme: "dark",
           isTransparent: true,
-          largeChartUrl: "",
           displayMode: "regular",
-          width: "100%",
-          height: "100%",
-          symbol: symbol,
           locale: "en"
-        }
+        },
+        "Financial Overview"
       );
     }
 
@@ -498,12 +512,13 @@
       }
     });
 
-    document.querySelectorAll(".shortcutBtn, .marketBtn").forEach(button => {
+    document.querySelectorAll(".shortcutBtn").forEach(button => {
       button.addEventListener("click", () => {
         updateDashboard(button.dataset.symbol);
       });
     });
 
+    renderTickerTape();
     updateDashboard("NASDAQ:AAPL");
   </script>
 </body>
