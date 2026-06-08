@@ -7,80 +7,66 @@
   <title>Global Stock Market Tracker</title>
   <meta
     name="description"
-    content="Free Global Stock Market Tracker with stock search, major market index ticker, price chart, market cap, P/E ratio, EPS, ROE, dividend yield, beta, 52-week high and low, and mock fallback data."
+    content="Free Global Stock Market Tracker with stock search, market index ticker, stock price chart, market cap, P/E ratio, EPS, ROE, dividend yield, beta, 52-week high and low, and mock fallback data."
   />
   <meta
     name="keywords"
-    content="global stock market tracker, stock tracker, stock price checker, real time stock price, stock chart, market cap, P/E ratio, EPS, ROE, dividend yield, beta, AAPL stock, TSLA stock, NVDA stock, MSFT stock, stock market dashboard"
+    content="global stock market tracker, stock tracker, stock price checker, real time stock price, stock chart, market cap, P/E ratio, EPS, ROE, dividend yield, beta, AAPL stock, TSLA stock, NVDA stock, MSFT stock"
   />
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
-<body class="min-h-screen bg-slate-950 px-4 py-6 text-slate-100 sm:py-10">
-  <main class="mx-auto max-w-6xl">
+<body class="min-h-screen overflow-x-hidden bg-slate-950 px-3 py-5 text-slate-100 sm:px-4 sm:py-10">
+  <main class="mx-auto w-full max-w-6xl">
 
     <div class="mb-6 text-center">
-      <a
-        href="https://nodntools.com"
-        class="inline-block transition hover:opacity-80"
-        aria-label="NodnWebTools Home"
-      >
+      <a href="https://nodntools.com" class="inline-block transition hover:opacity-80" aria-label="NodnWebTools Home">
         <div class="text-2xl font-extrabold tracking-tight text-white sm:text-3xl">
           Nodn<span class="text-cyan-400">WebTools</span>
         </div>
       </a>
     </div>
 
-    <!-- Google AdSense Responsive Ad - Top -->
     <div class="mb-6 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-700 bg-slate-900 text-sm text-slate-500">
       AdSense Responsive Ad Area - Top
     </div>
 
-    <section class="overflow-hidden rounded-3xl border border-slate-800 bg-slate-900 shadow-2xl shadow-cyan-950/30">
-      <div class="border-b border-slate-800 bg-slate-950/70 px-5 py-4">
-        <div class="flex items-center justify-between gap-4">
-          <div>
-            <p class="text-xs font-bold uppercase tracking-[0.25em] text-cyan-400">
-              Global Markets
-            </p>
-            <h1 class="mt-2 text-2xl font-extrabold tracking-tight text-white sm:text-4xl">
-              Global Stock Market Tracker
-            </h1>
-          </div>
-
-          <div class="hidden rounded-full border border-slate-700 bg-slate-900 px-4 py-2 text-xs font-semibold text-slate-300 sm:block">
-            API First + Mock Fallback
-          </div>
-        </div>
+    <section class="w-full overflow-hidden rounded-2xl border border-slate-800 bg-slate-900 shadow-2xl shadow-cyan-950/30 sm:rounded-3xl">
+      <div class="border-b border-slate-800 bg-slate-950/70 px-4 py-5 sm:px-6">
+        <p class="text-xs font-bold uppercase tracking-[0.22em] text-cyan-400">Global Markets</p>
+        <h1 class="mt-2 text-2xl font-extrabold tracking-tight text-white sm:text-4xl">
+          Global Stock Market Tracker
+        </h1>
+        <p class="mt-2 text-sm leading-6 text-slate-400">
+          Search global stocks and view prices, charts, market cap, P/E, EPS, ROE and more.
+        </p>
       </div>
 
-      <!-- Market Ticker -->
-      <div class="border-b border-slate-800 bg-slate-950 px-4 py-3">
-        <div id="marketTicker" class="flex gap-3 overflow-x-auto pb-1 text-sm"></div>
+      <div class="border-b border-slate-800 bg-slate-950 px-3 py-3 sm:px-4">
+        <div id="marketTicker" class="flex max-w-full gap-3 overflow-x-auto pb-1 text-sm"></div>
       </div>
 
-      <div class="grid gap-6 p-5 lg:grid-cols-[0.9fr_1.4fr] lg:p-8">
-        <!-- Left Panel -->
-        <section class="space-y-5">
-          <div class="rounded-3xl border border-slate-800 bg-slate-950 p-5">
+      <div class="grid w-full min-w-0 gap-5 p-4 sm:p-5 lg:grid-cols-[0.9fr_1.4fr] lg:p-8">
+        <section class="min-w-0 space-y-5">
+          <div class="rounded-2xl border border-slate-800 bg-slate-950 p-4 sm:rounded-3xl sm:p-5">
             <label for="stockInput" class="mb-3 block text-sm font-bold text-slate-200">
               Search Stock Ticker or Company
             </label>
 
-            <div class="flex gap-2">
+            <div class="flex flex-col gap-2 sm:flex-row">
               <input
                 id="stockInput"
                 type="text"
                 value="AAPL"
-                placeholder="AAPL, TSLA, NVDA, MSFT..."
-                class="min-w-0 flex-1 rounded-2xl border border-slate-700 bg-slate-900 px-4 py-4 text-lg font-bold uppercase text-white outline-none transition placeholder:text-slate-600 focus:border-cyan-400 focus:ring-4 focus:ring-cyan-400/10"
+                placeholder="AAPL, TSLA, NVDA..."
+                class="w-full min-w-0 rounded-2xl border border-slate-700 bg-slate-900 px-4 py-4 text-base font-bold uppercase text-white outline-none transition placeholder:text-slate-600 focus:border-cyan-400 focus:ring-4 focus:ring-cyan-400/10 sm:text-lg"
               />
 
               <button
                 id="searchBtn"
-                class="rounded-2xl bg-cyan-500 px-5 py-4 text-sm font-extrabold text-slate-950 shadow-lg shadow-cyan-500/20 transition hover:bg-cyan-400 active:scale-[0.98]"
+                class="w-full rounded-2xl bg-cyan-500 px-5 py-4 text-sm font-extrabold text-slate-950 shadow-lg shadow-cyan-500/20 transition hover:bg-cyan-400 active:scale-[0.98] sm:w-auto"
               >
                 Search
               </button>
@@ -99,152 +85,146 @@
               <div id="topShortcutGrid" class="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-3"></div>
             </div>
 
-            <p id="statusText" class="mt-4 text-sm text-slate-400">
+            <p id="statusText" class="mt-4 text-sm leading-6 text-slate-400">
               Fetching latest market data...
             </p>
           </div>
 
-          <div class="rounded-3xl border border-slate-800 bg-slate-950 p-5">
+          <div class="rounded-2xl border border-slate-800 bg-slate-950 p-4 sm:rounded-3xl sm:p-5">
             <h2 class="text-sm font-bold uppercase tracking-wide text-slate-400">
               Stock Details Included
             </h2>
 
             <div class="mt-4 grid gap-3">
               <div class="rounded-2xl border border-slate-800 bg-slate-900 p-4">
-                <p class="text-sm font-bold text-white">Valuation</p>
+                <p class="text-sm font-bold text-white">Valuation Metrics</p>
                 <p class="mt-1 text-xs leading-5 text-slate-400">
-                  Market cap, P/E ratio, EPS, dividend yield, beta, and 52-week range.
+                  Market cap, P/E ratio, EPS, dividend yield, beta and 52-week range.
                 </p>
               </div>
 
               <div class="rounded-2xl border border-slate-800 bg-slate-900 p-4">
-                <p class="text-sm font-bold text-white">Profitability</p>
+                <p class="text-sm font-bold text-white">Mock Fallback</p>
                 <p class="mt-1 text-xs leading-5 text-slate-400">
-                  ROE is displayed when available from the API. If not available, mock fallback data is used.
+                  If live data is unavailable, built-in simulated data keeps the tool working.
                 </p>
               </div>
             </div>
           </div>
         </section>
 
-        <!-- Right Panel -->
-        <section class="space-y-5">
-          <div id="stockBoard" class="rounded-3xl border border-slate-800 bg-gradient-to-br from-slate-950 to-slate-900 p-5 sm:p-6">
+        <section class="min-w-0 space-y-5">
+          <div class="rounded-2xl border border-slate-800 bg-gradient-to-br from-slate-950 to-slate-900 p-4 sm:rounded-3xl sm:p-6">
             <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-              <div>
-                <p id="companyName" class="text-sm font-bold uppercase tracking-[0.2em] text-cyan-400">
+              <div class="min-w-0">
+                <p id="companyName" class="break-words text-xs font-bold uppercase tracking-[0.18em] text-cyan-400 sm:text-sm">
                   Apple Inc.
                 </p>
-                <div class="mt-2 flex items-end gap-3">
-                  <h2 id="symbolText" class="text-4xl font-black tracking-tight text-white sm:text-5xl">
+
+                <div class="mt-2 flex flex-wrap items-end gap-2">
+                  <h2 id="symbolText" class="break-all text-3xl font-black tracking-tight text-white sm:text-5xl">
                     AAPL
                   </h2>
+
                   <span id="currencyText" class="mb-1 rounded-full bg-slate-800 px-3 py-1 text-xs font-bold text-slate-300">
                     USD
                   </span>
                 </div>
               </div>
 
-              <div id="trendBadge" class="rounded-2xl bg-emerald-500/10 px-4 py-3 text-right ring-1 ring-emerald-400/20">
-                <p class="text-xs font-bold uppercase tracking-wide text-emerald-300">
-                  Up Today
-                </p>
-                <p id="changeBadgeText" class="mt-1 text-xl font-extrabold text-emerald-300">
-                  +0.00%
-                </p>
+              <div id="trendBadge" class="w-full rounded-2xl bg-emerald-500/10 px-4 py-3 text-left ring-1 ring-emerald-400/20 sm:w-auto sm:text-right">
+                <p class="text-xs font-bold uppercase tracking-wide text-emerald-300">Up Today</p>
+                <p id="changeBadgeText" class="mt-1 text-xl font-extrabold text-emerald-300">+0.00%</p>
               </div>
             </div>
 
-            <div class="mt-7">
+            <div class="mt-7 min-w-0">
               <p class="text-sm font-semibold text-slate-400">Current Price</p>
-              <p id="currentPrice" class="mt-1 text-5xl font-black tracking-tight text-white sm:text-6xl">
+              <p id="currentPrice" class="mt-1 break-words text-4xl font-black tracking-tight text-white sm:text-6xl">
                 $0.00
               </p>
-              <p id="changeText" class="mt-3 text-lg font-bold text-emerald-300">
+              <p id="changeText" class="mt-3 break-words text-base font-bold text-emerald-300 sm:text-lg">
                 +$0.00 (+0.00%)
               </p>
             </div>
 
-            <div class="mt-6 grid gap-3 sm:grid-cols-3">
-              <div class="rounded-2xl bg-slate-900 p-4 ring-1 ring-slate-800">
+            <div class="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-3">
+              <div class="min-w-0 rounded-2xl bg-slate-900 p-4 ring-1 ring-slate-800">
                 <p class="text-xs text-slate-500">Day High</p>
-                <p id="dayHigh" class="mt-1 text-lg font-bold text-white">$0.00</p>
+                <p id="dayHigh" class="mt-1 break-words text-lg font-bold text-white">$0.00</p>
               </div>
 
-              <div class="rounded-2xl bg-slate-900 p-4 ring-1 ring-slate-800">
+              <div class="min-w-0 rounded-2xl bg-slate-900 p-4 ring-1 ring-slate-800">
                 <p class="text-xs text-slate-500">Day Low</p>
-                <p id="dayLow" class="mt-1 text-lg font-bold text-white">$0.00</p>
+                <p id="dayLow" class="mt-1 break-words text-lg font-bold text-white">$0.00</p>
               </div>
 
-              <div class="rounded-2xl bg-slate-900 p-4 ring-1 ring-slate-800">
+              <div class="min-w-0 rounded-2xl bg-slate-900 p-4 ring-1 ring-slate-800">
                 <p class="text-xs text-slate-500">Volume</p>
-                <p id="volumeText" class="mt-1 text-lg font-bold text-white">0</p>
+                <p id="volumeText" class="mt-1 break-words text-lg font-bold text-white">0</p>
               </div>
             </div>
 
-            <div class="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-              <div class="rounded-2xl bg-slate-900 p-4 ring-1 ring-slate-800">
+            <div class="mt-4 grid grid-cols-2 gap-3 lg:grid-cols-4">
+              <div class="min-w-0 rounded-2xl bg-slate-900 p-4 ring-1 ring-slate-800">
                 <p class="text-xs text-slate-500">Market Cap</p>
-                <p id="marketCapText" class="mt-1 text-base font-bold text-white">-</p>
+                <p id="marketCapText" class="mt-1 break-words text-sm font-bold text-white sm:text-base">-</p>
               </div>
 
-              <div class="rounded-2xl bg-slate-900 p-4 ring-1 ring-slate-800">
+              <div class="min-w-0 rounded-2xl bg-slate-900 p-4 ring-1 ring-slate-800">
                 <p class="text-xs text-slate-500">P/E Ratio</p>
-                <p id="peText" class="mt-1 text-base font-bold text-white">-</p>
+                <p id="peText" class="mt-1 break-words text-sm font-bold text-white sm:text-base">-</p>
               </div>
 
-              <div class="rounded-2xl bg-slate-900 p-4 ring-1 ring-slate-800">
+              <div class="min-w-0 rounded-2xl bg-slate-900 p-4 ring-1 ring-slate-800">
                 <p class="text-xs text-slate-500">EPS</p>
-                <p id="epsText" class="mt-1 text-base font-bold text-white">-</p>
+                <p id="epsText" class="mt-1 break-words text-sm font-bold text-white sm:text-base">-</p>
               </div>
 
-              <div class="rounded-2xl bg-slate-900 p-4 ring-1 ring-slate-800">
+              <div class="min-w-0 rounded-2xl bg-slate-900 p-4 ring-1 ring-slate-800">
                 <p class="text-xs text-slate-500">ROE</p>
-                <p id="roeText" class="mt-1 text-base font-bold text-white">-</p>
+                <p id="roeText" class="mt-1 break-words text-sm font-bold text-white sm:text-base">-</p>
               </div>
 
-              <div class="rounded-2xl bg-slate-900 p-4 ring-1 ring-slate-800">
-                <p class="text-xs text-slate-500">Dividend Yield</p>
-                <p id="dividendText" class="mt-1 text-base font-bold text-white">-</p>
+              <div class="min-w-0 rounded-2xl bg-slate-900 p-4 ring-1 ring-slate-800">
+                <p class="text-xs text-slate-500">Dividend</p>
+                <p id="dividendText" class="mt-1 break-words text-sm font-bold text-white sm:text-base">-</p>
               </div>
 
-              <div class="rounded-2xl bg-slate-900 p-4 ring-1 ring-slate-800">
+              <div class="min-w-0 rounded-2xl bg-slate-900 p-4 ring-1 ring-slate-800">
                 <p class="text-xs text-slate-500">Beta</p>
-                <p id="betaText" class="mt-1 text-base font-bold text-white">-</p>
+                <p id="betaText" class="mt-1 break-words text-sm font-bold text-white sm:text-base">-</p>
               </div>
 
-              <div class="rounded-2xl bg-slate-900 p-4 ring-1 ring-slate-800">
+              <div class="min-w-0 rounded-2xl bg-slate-900 p-4 ring-1 ring-slate-800">
                 <p class="text-xs text-slate-500">52W High</p>
-                <p id="yearHighText" class="mt-1 text-base font-bold text-white">-</p>
+                <p id="yearHighText" class="mt-1 break-words text-sm font-bold text-white sm:text-base">-</p>
               </div>
 
-              <div class="rounded-2xl bg-slate-900 p-4 ring-1 ring-slate-800">
+              <div class="min-w-0 rounded-2xl bg-slate-900 p-4 ring-1 ring-slate-800">
                 <p class="text-xs text-slate-500">52W Low</p>
-                <p id="yearLowText" class="mt-1 text-base font-bold text-white">-</p>
+                <p id="yearLowText" class="mt-1 break-words text-sm font-bold text-white sm:text-base">-</p>
               </div>
             </div>
           </div>
 
-          <div class="rounded-3xl border border-slate-800 bg-slate-950 p-5 sm:p-6">
+          <div class="rounded-2xl border border-slate-800 bg-slate-950 p-4 sm:rounded-3xl sm:p-6">
             <div class="mb-4 flex items-center justify-between gap-4">
               <div>
                 <h2 class="text-lg font-extrabold text-white">Price Chart</h2>
-                <p class="mt-1 text-xs text-slate-500">
-                  Recent price movement
-                </p>
+                <p class="mt-1 text-xs text-slate-500">Recent price movement</p>
               </div>
 
-              <span id="chartMode" class="rounded-full bg-slate-900 px-3 py-1 text-xs font-bold text-slate-400 ring-1 ring-slate-800">
+              <span id="chartMode" class="shrink-0 rounded-full bg-slate-900 px-3 py-1 text-xs font-bold text-slate-400 ring-1 ring-slate-800">
                 30 Points
               </span>
             </div>
 
-            <div class="h-[280px] rounded-2xl bg-slate-900 p-3 ring-1 ring-slate-800 sm:h-[360px]">
-              <canvas id="stockChart"></canvas>
+            <div class="h-[220px] w-full max-w-full rounded-2xl bg-slate-900 p-2 ring-1 ring-slate-800 sm:h-[320px] sm:p-3 lg:h-[360px]">
+              <canvas id="stockChart" class="max-w-full"></canvas>
             </div>
           </div>
 
-          <!-- Google AdSense Responsive Ad - Below Result -->
           <div class="flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-700 bg-slate-900 text-sm text-slate-500">
             AdSense Responsive Ad Area - Below Result
           </div>
@@ -252,29 +232,28 @@
       </div>
     </section>
 
-    <!-- SEO Content -->
-    <section class="mt-8 rounded-3xl border border-slate-800 bg-slate-900 p-6 text-sm leading-7 text-slate-300 sm:p-8">
+    <section class="mt-8 rounded-2xl border border-slate-800 bg-slate-900 p-5 text-sm leading-7 text-slate-300 sm:rounded-3xl sm:p-8">
       <h2 class="mb-4 flex items-center gap-2 text-xl font-extrabold text-white">
         <span class="h-5 w-1.5 rounded-full bg-cyan-400"></span>
         Free Global Stock Market Tracker
       </h2>
 
       <p>
-        This Global Stock Market Tracker helps users quickly search popular global stocks and view a simple market dashboard directly in the browser. It displays current price, daily change, daily high and low, trading volume, market capitalization, P/E ratio, EPS, ROE, dividend yield, beta, 52-week high, 52-week low, and a lightweight stock chart.
+        This Global Stock Market Tracker helps users search popular global stocks and view a simple market dashboard directly in the browser. It displays current price, daily change, daily high and low, trading volume, market capitalization, P/E ratio, EPS, ROE, dividend yield, beta, 52-week high, 52-week low, and a lightweight stock chart.
       </p>
 
       <div class="mt-6 grid gap-5 md:grid-cols-2">
         <div class="rounded-2xl bg-slate-950 p-5 ring-1 ring-slate-800">
           <h3 class="font-bold text-white">Market Cap Shortcuts</h3>
           <p class="mt-2 text-slate-400">
-            The shortcut buttons below the search field are designed to show large market capitalization stocks first. When live API data is available, the symbols are sorted by market cap. If the API is unavailable, the tool uses built-in mock data so the layout remains fully functional.
+            Shortcut buttons are designed to show large market capitalization stocks first. If live API data is unavailable, mock data is used automatically.
           </p>
         </div>
 
         <div class="rounded-2xl bg-slate-950 p-5 ring-1 ring-slate-800">
           <h3 class="font-bold text-white">Detailed Stock Metrics</h3>
           <p class="mt-2 text-slate-400">
-            In addition to price and chart data, this tracker includes common valuation and profitability indicators such as P/E ratio, EPS, ROE, dividend yield, beta, and 52-week range. These metrics are useful for basic stock research and comparison.
+            Common indicators such as P/E, EPS, ROE, dividend yield, beta and 52-week range can help users compare stocks quickly.
           </p>
         </div>
       </div>
@@ -282,12 +261,11 @@
       <div class="mt-6">
         <h3 class="font-bold text-white">Popular Searches</h3>
         <p class="mt-2 text-slate-400">
-          AAPL stock price, TSLA stock tracker, NVDA stock chart, Microsoft stock price, Google stock price, Samsung stock, global stock market tracker, market cap ranking, P/E ratio checker, EPS stock data, ROE stock metric, dividend yield stock tracker, free stock price checker.
+          AAPL stock price, TSLA stock tracker, NVDA stock chart, Microsoft stock price, Google stock price, Samsung stock, global stock market tracker, market cap ranking, P/E ratio checker, EPS stock data, ROE stock metric, dividend yield stock tracker.
         </p>
       </div>
     </section>
 
-    <!-- Disclaimer -->
     <div class="mt-8 rounded-2xl bg-slate-900 p-5 text-xs leading-5 text-slate-400 ring-1 ring-slate-800">
       <h3 class="mb-2 text-sm font-semibold text-slate-200">
         Disclaimer
@@ -302,11 +280,10 @@
       </p>
 
       <p class="mt-3">
-        Stock prices and market values can change rapidly. Always verify prices, quotes, charts, and company information with your brokerage, exchange, licensed financial advisor, or another reliable source before making any financial transaction.
+        Always verify prices, quotes, charts, and company information with your brokerage, exchange, licensed financial advisor, or another reliable source before making any financial transaction.
       </p>
     </div>
 
-    <!-- Google AdSense Responsive Ad - Bottom -->
     <div class="mt-8 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-700 bg-slate-900 text-sm text-slate-500">
       AdSense Responsive Ad Area - Bottom
     </div>
@@ -353,13 +330,13 @@
       "AAPL",
       "AMZN",
       "GOOGL",
-      "GOOG",
       "META",
       "AVGO",
       "TSLA",
       "BRK-B",
       "LLY",
-      "TSM"
+      "TSM",
+      "JPM"
     ];
 
     const mockStocks = {
@@ -482,12 +459,12 @@
         volume: 92381200,
         marketCap: 586000000000,
         pe: 47.2,
-        eps: 3.90,
-        roe: 0.20,
+        eps: 3.9,
+        roe: 0.2,
         dividendYield: 0,
         beta: 2.31,
         fiftyTwoWeekHigh: 299.29,
-        fiftyTwoWeekLow: 138.80
+        fiftyTwoWeekLow: 138.8
       },
       "005930.KS": {
         symbol: "005930.KS",
@@ -514,7 +491,7 @@
       { symbol: "Nasdaq", price: 17192.53, changePercent: 0.68 },
       { symbol: "Dow Jones", price: 38914.72, changePercent: -0.18 },
       { symbol: "KOSPI", price: 2748.91, changePercent: 0.31 },
-      { symbol: "Nikkei 225", price: 38681.90, changePercent: -0.24 },
+      { symbol: "Nikkei 225", price: 38681.9, changePercent: -0.24 },
       { symbol: "TSX", price: 22154.38, changePercent: 0.15 }
     ];
 
@@ -545,7 +522,6 @@
 
     function formatPrice(value, currency) {
       const locale = currency === "KRW" ? "ko-KR" : "en-US";
-
       return new Intl.NumberFormat(locale, {
         style: "currency",
         currency: currency || "USD",
@@ -562,7 +538,6 @@
 
     function formatCompactMoney(value, currency = "USD") {
       if (value === null || value === undefined || isNaN(value)) return "-";
-
       return new Intl.NumberFormat("en-US", {
         style: "currency",
         currency,
@@ -602,7 +577,7 @@
 
     function generateSeries(current, previousClose, points = 30) {
       const data = [];
-      let start = previousClose || current;
+      const start = previousClose || current;
       const target = current || start;
 
       for (let i = 0; i < points; i++) {
@@ -618,15 +593,9 @@
 
     async function fetchQuoteBatch(symbols) {
       const url = `${API_QUOTE}${encodeURIComponent(symbols.join(","))}`;
+      const response = await fetch(url, { method: "GET", cache: "no-store" });
 
-      const response = await fetch(url, {
-        method: "GET",
-        cache: "no-store"
-      });
-
-      if (!response.ok) {
-        throw new Error("Quote batch request failed");
-      }
+      if (!response.ok) throw new Error("Quote batch request failed");
 
       const data = await response.json();
       return data?.quoteResponse?.result || [];
@@ -662,9 +631,7 @@
         summaryData = summaryJson?.quoteSummary?.result?.[0] || null;
       }
 
-      if (!chartData && !quoteData) {
-        throw new Error("No stock data");
-      }
+      if (!chartData && !quoteData) throw new Error("No stock data");
 
       const meta = chartData?.meta || {};
       const quote = chartData?.indicators?.quote?.[0] || {};
@@ -675,43 +642,13 @@
       const defaultStats = summaryData?.defaultKeyStatistics || {};
       const financialData = summaryData?.financialData || {};
 
-      const price = Number(
-        quoteData?.regularMarketPrice ||
-        meta.regularMarketPrice ||
-        closes[closes.length - 1] ||
-        0
-      );
+      const price = Number(quoteData?.regularMarketPrice || meta.regularMarketPrice || closes[closes.length - 1] || 0);
+      const previousClose = Number(quoteData?.regularMarketPreviousClose || meta.chartPreviousClose || meta.previousClose || closes[closes.length - 2] || price);
+      const high = Number(quoteData?.regularMarketDayHigh || meta.regularMarketDayHigh || Math.max(...(quote.high || closes).filter(v => typeof v === "number")));
+      const low = Number(quoteData?.regularMarketDayLow || meta.regularMarketDayLow || Math.min(...(quote.low || closes).filter(v => typeof v === "number")));
+      const volume = Number(quoteData?.regularMarketVolume || meta.regularMarketVolume || (quote.volume || []).filter(v => typeof v === "number").at(-1) || 0);
 
-      const previousClose = Number(
-        quoteData?.regularMarketPreviousClose ||
-        meta.chartPreviousClose ||
-        meta.previousClose ||
-        closes[closes.length - 2] ||
-        price
-      );
-
-      const high = Number(
-        quoteData?.regularMarketDayHigh ||
-        meta.regularMarketDayHigh ||
-        Math.max(...(quote.high || closes).filter(v => typeof v === "number"))
-      );
-
-      const low = Number(
-        quoteData?.regularMarketDayLow ||
-        meta.regularMarketDayLow ||
-        Math.min(...(quote.low || closes).filter(v => typeof v === "number"))
-      );
-
-      const volume = Number(
-        quoteData?.regularMarketVolume ||
-        meta.regularMarketVolume ||
-        (quote.volume || []).filter(v => typeof v === "number").at(-1) ||
-        0
-      );
-
-      if (!price) {
-        throw new Error("Invalid price");
-      }
+      if (!price) throw new Error("Invalid price");
 
       const labels = timestamps.length
         ? timestamps.slice(-closes.length).map(ts => {
@@ -791,17 +728,17 @@
     function renderTopShortcuts(items, modeLabel) {
       topShortcutGrid.innerHTML = items.slice(0, 6).map(item => {
         const symbol = item.symbol;
-        const name = item.shortName || item.longName || mockStocks[symbol]?.name || symbol;
+        const name = item.shortName || item.longName || item.name || mockStocks[symbol]?.name || symbol;
         const cap = item.marketCap || mockStocks[symbol]?.marketCap || null;
 
         return `
           <button
             data-symbol="${symbol}"
-            class="topShortcutBtn rounded-2xl bg-slate-900 px-3 py-3 text-left ring-1 ring-slate-800 transition hover:bg-slate-800 active:scale-[0.98]"
+            class="topShortcutBtn min-w-0 rounded-2xl bg-slate-900 px-3 py-3 text-left ring-1 ring-slate-800 transition hover:bg-slate-800 active:scale-[0.98]"
           >
-            <span class="block text-sm font-extrabold text-white">${symbol}</span>
+            <span class="block truncate text-sm font-extrabold text-white">${symbol}</span>
             <span class="mt-1 block truncate text-[11px] font-medium text-slate-500">${name}</span>
-            <span class="mt-1 block text-[11px] font-bold text-cyan-300">${cap ? formatCompactMoney(cap, "USD") : "Large Cap"}</span>
+            <span class="mt-1 block truncate text-[11px] font-bold text-cyan-300">${cap ? formatCompactMoney(cap, "USD") : "Large Cap"}</span>
           </button>
         `;
       }).join("");
@@ -826,9 +763,7 @@
           .sort((a, b) => b.marketCap - a.marketCap)
           .slice(0, 6);
 
-        if (!sorted.length) {
-          throw new Error("No market cap data");
-        }
+        if (!sorted.length) throw new Error("No market cap data");
 
         renderTopShortcuts(sorted, "Live sorted");
       } catch (error) {
@@ -846,16 +781,14 @@
       const isUp = change >= 0;
       const trendColor = isUp ? "rgb(52, 211, 153)" : "rgb(56, 189, 248)";
       const trendTextClass = isUp ? "text-emerald-300" : "text-sky-300";
-      const trendBgClass = isUp
-        ? "bg-emerald-500/10 ring-emerald-400/20"
-        : "bg-sky-500/10 ring-sky-400/20";
+      const trendBgClass = isUp ? "bg-emerald-500/10 ring-emerald-400/20" : "bg-sky-500/10 ring-sky-400/20";
 
       companyName.textContent = stock.name;
       symbolText.textContent = stock.symbol;
       currencyText.textContent = stock.currency;
       currentPrice.textContent = formatPrice(stock.price, stock.currency);
       changeText.textContent = `${change >= 0 ? "+" : "-"}${formatPrice(Math.abs(change), stock.currency)} (${changePercent >= 0 ? "+" : ""}${changePercent.toFixed(2)}%)`;
-      changeText.className = `mt-3 text-lg font-bold ${trendTextClass}`;
+      changeText.className = `mt-3 break-words text-base font-bold ${trendTextClass} sm:text-lg`;
 
       dayHigh.textContent = formatPrice(stock.high, stock.currency);
       dayLow.textContent = formatPrice(stock.low, stock.currency);
@@ -870,7 +803,7 @@
       yearHighText.textContent = stock.fiftyTwoWeekHigh ? formatPrice(stock.fiftyTwoWeekHigh, stock.currency) : "-";
       yearLowText.textContent = stock.fiftyTwoWeekLow ? formatPrice(stock.fiftyTwoWeekLow, stock.currency) : "-";
 
-      trendBadge.className = `rounded-2xl px-4 py-3 text-right ring-1 ${trendBgClass}`;
+      trendBadge.className = `w-full rounded-2xl px-4 py-3 text-left ring-1 ${trendBgClass} sm:w-auto sm:text-right`;
       trendBadge.querySelector("p").textContent = isUp ? "Up Today" : "Down Today";
       trendBadge.querySelector("p").className = `text-xs font-bold uppercase tracking-wide ${trendTextClass}`;
       changeBadgeText.textContent = `${changePercent >= 0 ? "+" : ""}${changePercent.toFixed(2)}%`;
@@ -887,7 +820,7 @@
         chartInstance.destroy();
       }
 
-      const gradient = ctx.createLinearGradient(0, 0, 0, 360);
+      const gradient = ctx.createLinearGradient(0, 0, 0, 320);
       gradient.addColorStop(0, color.replace("rgb", "rgba").replace(")", ", 0.28)"));
       gradient.addColorStop(1, color.replace("rgb", "rgba").replace(")", ", 0.02)"));
 
@@ -931,7 +864,7 @@
             x: {
               ticks: {
                 color: "#64748b",
-                maxTicksLimit: 6
+                maxTicksLimit: window.innerWidth < 640 ? 4 : 6
               },
               grid: {
                 color: "rgba(51, 65, 85, 0.35)"
@@ -940,6 +873,7 @@
             y: {
               ticks: {
                 color: "#64748b",
+                maxTicksLimit: window.innerWidth < 640 ? 5 : 7,
                 callback: value => Number(value).toLocaleString()
               },
               grid: {
@@ -955,18 +889,18 @@
       const symbol = normalizeSymbol(input.value);
       input.value = symbol;
       statusText.textContent = "Fetching latest stock data...";
-      statusText.className = "mt-4 text-sm text-cyan-300";
+      statusText.className = "mt-4 text-sm leading-6 text-cyan-300";
 
       try {
         const stock = await fetchYahooStock(symbol);
         renderStock(stock);
         statusText.textContent = `Showing ${stock.source} data for ${stock.symbol}. Some valuation metrics may be unavailable depending on the API response.`;
-        statusText.className = "mt-4 text-sm text-emerald-300";
+        statusText.className = "mt-4 text-sm leading-6 text-emerald-300";
       } catch (error) {
         const stock = getMockStock(symbol);
         renderStock(stock);
         statusText.textContent = `Live API unavailable. Showing simulated mock data for ${stock.symbol}.`;
-        statusText.className = "mt-4 text-sm text-amber-300";
+        statusText.className = "mt-4 text-sm leading-6 text-amber-300";
       }
     }
 
@@ -982,9 +916,7 @@
     loadTopMarketCapShortcuts();
     searchStock();
 
-    setInterval(() => {
-      renderTicker();
-    }, 8000);
+    setInterval(renderTicker, 8000);
   </script>
 </body>
 </html>
