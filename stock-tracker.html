@@ -7,60 +7,121 @@
   <title>Global Stock Market Tracker</title>
   <meta
     name="description"
-    content="Free Global Stock Market Tracker with stock search, market index ticker, stock price chart, market cap, P/E ratio, EPS, ROE, dividend yield, beta, 52-week high and low, and mock fallback data."
+    content="Free Global Stock Market Tracker powered by TradingView widgets. Search global stocks, view live market charts, stock overview, technical analysis, company profile, financial data, and major market shortcuts."
   />
   <meta
     name="keywords"
-    content="global stock market tracker, stock tracker, stock price checker, real time stock price, stock chart, market cap, P/E ratio, EPS, ROE, dividend yield, beta, AAPL stock, TSLA stock, NVDA stock, MSFT stock"
+    content="global stock tracker, stock market tracker, live stock chart, TradingView stock widget, AAPL stock chart, TSLA stock chart, NVDA stock chart, stock price tracker, stock market dashboard, stock technical analysis"
   />
 
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    .tv-widget-container iframe {
+      width: 100% !important;
+      max-width: 100% !important;
+      border-radius: 18px;
+    }
+
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
 </head>
 
 <body class="min-h-screen overflow-x-hidden bg-slate-950 px-3 py-5 text-slate-100 sm:px-4 sm:py-10">
   <main class="mx-auto w-full max-w-6xl">
 
     <div class="mb-6 text-center">
-      <a href="https://nodntools.com" class="inline-block transition hover:opacity-80" aria-label="NodnWebTools Home">
+      <a
+        href="https://nodntools.com"
+        class="inline-block transition hover:opacity-80"
+        aria-label="NodnWebTools Home"
+      >
         <div class="text-2xl font-extrabold tracking-tight text-white sm:text-3xl">
           Nodn<span class="text-cyan-400">WebTools</span>
         </div>
       </a>
     </div>
 
+    <!-- Google AdSense Responsive Ad - Top -->
     <div class="mb-6 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-700 bg-slate-900 text-sm text-slate-500">
       AdSense Responsive Ad Area - Top
     </div>
 
     <section class="w-full overflow-hidden rounded-2xl border border-slate-800 bg-slate-900 shadow-2xl shadow-cyan-950/30 sm:rounded-3xl">
       <div class="border-b border-slate-800 bg-slate-950/70 px-4 py-5 sm:px-6">
-        <p class="text-xs font-bold uppercase tracking-[0.22em] text-cyan-400">Global Markets</p>
+        <p class="text-xs font-bold uppercase tracking-[0.22em] text-cyan-400">
+          Global Markets
+        </p>
+
         <h1 class="mt-2 text-2xl font-extrabold tracking-tight text-white sm:text-4xl">
           Global Stock Market Tracker
         </h1>
-        <p class="mt-2 text-sm leading-6 text-slate-400">
-          Search global stocks and view prices, charts, market cap, P/E, EPS, ROE and more.
+
+        <p class="mt-2 max-w-3xl text-sm leading-6 text-slate-400">
+          Search global stocks and view TradingView-powered live charts, market overview, technical analysis, company profile, and financial widgets.
         </p>
       </div>
 
-      <div class="border-b border-slate-800 bg-slate-950 px-3 py-3 sm:px-4">
-        <div id="marketTicker" class="flex max-w-full gap-3 overflow-x-auto pb-1 text-sm"></div>
+      <!-- TradingView Market Ticker Tape -->
+      <div class="border-b border-slate-800 bg-slate-950 p-2">
+        <div class="tradingview-widget-container">
+          <div class="tradingview-widget-container__widget"></div>
+          <script
+            type="text/javascript"
+            src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js"
+            async
+          >
+          {
+            "symbols": [
+              { "proName": "FOREXCOM:SPXUSD", "title": "S&P 500" },
+              { "proName": "FOREXCOM:NSXUSD", "title": "Nasdaq 100" },
+              { "proName": "FOREXCOM:DJI", "title": "Dow Jones" },
+              { "proName": "KRX:KOSPI", "title": "KOSPI" },
+              { "proName": "TSX:TSX", "title": "TSX" },
+              { "proName": "NASDAQ:AAPL", "title": "Apple" },
+              { "proName": "NASDAQ:NVDA", "title": "Nvidia" },
+              { "proName": "NASDAQ:TSLA", "title": "Tesla" }
+            ],
+            "showSymbolLogo": true,
+            "isTransparent": true,
+            "displayMode": "adaptive",
+            "colorTheme": "dark",
+            "locale": "en"
+          }
+          </script>
+        </div>
       </div>
 
       <div class="grid w-full min-w-0 gap-5 p-4 sm:p-5 lg:grid-cols-[0.9fr_1.4fr] lg:p-8">
+        <!-- Left Panel -->
         <section class="min-w-0 space-y-5">
           <div class="rounded-2xl border border-slate-800 bg-slate-950 p-4 sm:rounded-3xl sm:p-5">
             <label for="stockInput" class="mb-3 block text-sm font-bold text-slate-200">
-              Search Stock Ticker or Company
+              Search Stock Symbol
             </label>
 
             <div class="flex flex-col gap-2 sm:flex-row">
               <input
                 id="stockInput"
                 type="text"
-                value="AAPL"
-                placeholder="AAPL, TSLA, NVDA..."
+                value="NASDAQ:AAPL"
+                placeholder="AAPL, TSLA, NVDA, KRX:005930..."
                 class="w-full min-w-0 rounded-2xl border border-slate-700 bg-slate-900 px-4 py-4 text-base font-bold uppercase text-white outline-none transition placeholder:text-slate-600 focus:border-cyan-400 focus:ring-4 focus:ring-cyan-400/10 sm:text-lg"
               />
 
@@ -72,166 +133,147 @@
               </button>
             </div>
 
+            <p id="searchHint" class="mt-3 text-xs leading-5 text-slate-500">
+              Tip: You can type AAPL, TSLA, NVDA, MSFT, AMZN, GOOGL, META, or full TradingView symbols like NASDAQ:AAPL, NYSE:BRK.B, TSX:SHOP, KRX:005930.
+            </p>
+
             <div class="mt-5">
               <div class="flex items-center justify-between gap-3">
                 <p class="text-xs font-bold uppercase tracking-wide text-slate-400">
-                  Top Market Cap Shortcuts
+                  Large Cap Shortcuts
                 </p>
-                <span id="shortcutStatus" class="text-[11px] font-semibold text-slate-500">
-                  Loading...
+
+                <span id="selectedSymbolLabel" class="rounded-full bg-slate-900 px-3 py-1 text-[11px] font-bold text-cyan-300 ring-1 ring-slate-800">
+                  NASDAQ:AAPL
                 </span>
               </div>
 
-              <div id="topShortcutGrid" class="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-3"></div>
-            </div>
+              <div id="shortcutGrid" class="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-3">
+                <button data-symbol="NASDAQ:NVDA" class="shortcutBtn min-w-0 rounded-2xl bg-slate-900 px-3 py-3 text-left ring-1 ring-slate-800 transition hover:bg-slate-800 active:scale-[0.98]">
+                  <span class="block truncate text-sm font-extrabold text-white">NVDA</span>
+                  <span class="mt-1 block truncate text-[11px] text-slate-500">NVIDIA</span>
+                </button>
 
-            <p id="statusText" class="mt-4 text-sm leading-6 text-slate-400">
-              Fetching latest market data...
-            </p>
+                <button data-symbol="NASDAQ:MSFT" class="shortcutBtn min-w-0 rounded-2xl bg-slate-900 px-3 py-3 text-left ring-1 ring-slate-800 transition hover:bg-slate-800 active:scale-[0.98]">
+                  <span class="block truncate text-sm font-extrabold text-white">MSFT</span>
+                  <span class="mt-1 block truncate text-[11px] text-slate-500">Microsoft</span>
+                </button>
+
+                <button data-symbol="NASDAQ:AAPL" class="shortcutBtn min-w-0 rounded-2xl bg-slate-900 px-3 py-3 text-left ring-1 ring-slate-800 transition hover:bg-slate-800 active:scale-[0.98]">
+                  <span class="block truncate text-sm font-extrabold text-white">AAPL</span>
+                  <span class="mt-1 block truncate text-[11px] text-slate-500">Apple</span>
+                </button>
+
+                <button data-symbol="NASDAQ:AMZN" class="shortcutBtn min-w-0 rounded-2xl bg-slate-900 px-3 py-3 text-left ring-1 ring-slate-800 transition hover:bg-slate-800 active:scale-[0.98]">
+                  <span class="block truncate text-sm font-extrabold text-white">AMZN</span>
+                  <span class="mt-1 block truncate text-[11px] text-slate-500">Amazon</span>
+                </button>
+
+                <button data-symbol="NASDAQ:GOOGL" class="shortcutBtn min-w-0 rounded-2xl bg-slate-900 px-3 py-3 text-left ring-1 ring-slate-800 transition hover:bg-slate-800 active:scale-[0.98]">
+                  <span class="block truncate text-sm font-extrabold text-white">GOOGL</span>
+                  <span class="mt-1 block truncate text-[11px] text-slate-500">Alphabet</span>
+                </button>
+
+                <button data-symbol="NASDAQ:META" class="shortcutBtn min-w-0 rounded-2xl bg-slate-900 px-3 py-3 text-left ring-1 ring-slate-800 transition hover:bg-slate-800 active:scale-[0.98]">
+                  <span class="block truncate text-sm font-extrabold text-white">META</span>
+                  <span class="mt-1 block truncate text-[11px] text-slate-500">Meta</span>
+                </button>
+              </div>
+            </div>
           </div>
 
           <div class="rounded-2xl border border-slate-800 bg-slate-950 p-4 sm:rounded-3xl sm:p-5">
             <h2 class="text-sm font-bold uppercase tracking-wide text-slate-400">
-              Stock Details Included
+              Popular Global Markets
             </h2>
 
-            <div class="mt-4 grid gap-3">
-              <div class="rounded-2xl border border-slate-800 bg-slate-900 p-4">
-                <p class="text-sm font-bold text-white">Valuation Metrics</p>
-                <p class="mt-1 text-xs leading-5 text-slate-400">
-                  Market cap, P/E ratio, EPS, dividend yield, beta and 52-week range.
-                </p>
-              </div>
+            <div class="mt-4 grid gap-2">
+              <button data-symbol="NYSE:BRK.B" class="marketBtn flex items-center justify-between rounded-2xl bg-slate-900 px-4 py-3 text-sm font-bold text-slate-200 ring-1 ring-slate-800 transition hover:bg-slate-800">
+                Berkshire Hathaway <span class="text-xs text-slate-500">NYSE:BRK.B</span>
+              </button>
 
-              <div class="rounded-2xl border border-slate-800 bg-slate-900 p-4">
-                <p class="text-sm font-bold text-white">Mock Fallback</p>
-                <p class="mt-1 text-xs leading-5 text-slate-400">
-                  If live data is unavailable, built-in simulated data keeps the tool working.
-                </p>
-              </div>
+              <button data-symbol="TSX:SHOP" class="marketBtn flex items-center justify-between rounded-2xl bg-slate-900 px-4 py-3 text-sm font-bold text-slate-200 ring-1 ring-slate-800 transition hover:bg-slate-800">
+                Shopify <span class="text-xs text-slate-500">TSX:SHOP</span>
+              </button>
+
+              <button data-symbol="KRX:005930" class="marketBtn flex items-center justify-between rounded-2xl bg-slate-900 px-4 py-3 text-sm font-bold text-slate-200 ring-1 ring-slate-800 transition hover:bg-slate-800">
+                Samsung Electronics <span class="text-xs text-slate-500">KRX:005930</span>
+              </button>
+
+              <button data-symbol="NASDAQ:TSLA" class="marketBtn flex items-center justify-between rounded-2xl bg-slate-900 px-4 py-3 text-sm font-bold text-slate-200 ring-1 ring-slate-800 transition hover:bg-slate-800">
+                Tesla <span class="text-xs text-slate-500">NASDAQ:TSLA</span>
+              </button>
             </div>
+          </div>
+
+          <div class="rounded-2xl border border-slate-800 bg-slate-950 p-4 sm:rounded-3xl sm:p-5">
+            <h2 class="text-sm font-bold uppercase tracking-wide text-slate-400">
+              Data Source
+            </h2>
+
+            <p class="mt-3 text-xs leading-5 text-slate-400">
+              This tool uses TradingView embedded widgets instead of unreliable browser-side scraping. The chart and financial widgets are loaded directly from TradingView.
+            </p>
           </div>
         </section>
 
+        <!-- Right Panel -->
         <section class="min-w-0 space-y-5">
-          <div class="rounded-2xl border border-slate-800 bg-gradient-to-br from-slate-950 to-slate-900 p-4 sm:rounded-3xl sm:p-6">
-            <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-              <div class="min-w-0">
-                <p id="companyName" class="break-words text-xs font-bold uppercase tracking-[0.18em] text-cyan-400 sm:text-sm">
-                  Apple Inc.
+          <div class="rounded-2xl border border-slate-800 bg-slate-950 p-4 sm:rounded-3xl sm:p-5">
+            <div class="mb-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <p class="text-xs font-bold uppercase tracking-[0.2em] text-cyan-400">
+                  Selected Symbol
                 </p>
 
-                <div class="mt-2 flex flex-wrap items-end gap-2">
-                  <h2 id="symbolText" class="break-all text-3xl font-black tracking-tight text-white sm:text-5xl">
-                    AAPL
-                  </h2>
-
-                  <span id="currencyText" class="mb-1 rounded-full bg-slate-800 px-3 py-1 text-xs font-bold text-slate-300">
-                    USD
-                  </span>
-                </div>
+                <h2 id="mainSymbolTitle" class="mt-1 break-all text-3xl font-black tracking-tight text-white sm:text-5xl">
+                  NASDAQ:AAPL
+                </h2>
               </div>
 
-              <div id="trendBadge" class="w-full rounded-2xl bg-emerald-500/10 px-4 py-3 text-left ring-1 ring-emerald-400/20 sm:w-auto sm:text-right">
-                <p class="text-xs font-bold uppercase tracking-wide text-emerald-300">Up Today</p>
-                <p id="changeBadgeText" class="mt-1 text-xl font-extrabold text-emerald-300">+0.00%</p>
-              </div>
-            </div>
-
-            <div class="mt-7 min-w-0">
-              <p class="text-sm font-semibold text-slate-400">Current Price</p>
-              <p id="currentPrice" class="mt-1 break-words text-4xl font-black tracking-tight text-white sm:text-6xl">
-                $0.00
-              </p>
-              <p id="changeText" class="mt-3 break-words text-base font-bold text-emerald-300 sm:text-lg">
-                +$0.00 (+0.00%)
-              </p>
-            </div>
-
-            <div class="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-3">
-              <div class="min-w-0 rounded-2xl bg-slate-900 p-4 ring-1 ring-slate-800">
-                <p class="text-xs text-slate-500">Day High</p>
-                <p id="dayHigh" class="mt-1 break-words text-lg font-bold text-white">$0.00</p>
-              </div>
-
-              <div class="min-w-0 rounded-2xl bg-slate-900 p-4 ring-1 ring-slate-800">
-                <p class="text-xs text-slate-500">Day Low</p>
-                <p id="dayLow" class="mt-1 break-words text-lg font-bold text-white">$0.00</p>
-              </div>
-
-              <div class="min-w-0 rounded-2xl bg-slate-900 p-4 ring-1 ring-slate-800">
-                <p class="text-xs text-slate-500">Volume</p>
-                <p id="volumeText" class="mt-1 break-words text-lg font-bold text-white">0</p>
-              </div>
-            </div>
-
-            <div class="mt-4 grid grid-cols-2 gap-3 lg:grid-cols-4">
-              <div class="min-w-0 rounded-2xl bg-slate-900 p-4 ring-1 ring-slate-800">
-                <p class="text-xs text-slate-500">Market Cap</p>
-                <p id="marketCapText" class="mt-1 break-words text-sm font-bold text-white sm:text-base">-</p>
-              </div>
-
-              <div class="min-w-0 rounded-2xl bg-slate-900 p-4 ring-1 ring-slate-800">
-                <p class="text-xs text-slate-500">P/E Ratio</p>
-                <p id="peText" class="mt-1 break-words text-sm font-bold text-white sm:text-base">-</p>
-              </div>
-
-              <div class="min-w-0 rounded-2xl bg-slate-900 p-4 ring-1 ring-slate-800">
-                <p class="text-xs text-slate-500">EPS</p>
-                <p id="epsText" class="mt-1 break-words text-sm font-bold text-white sm:text-base">-</p>
-              </div>
-
-              <div class="min-w-0 rounded-2xl bg-slate-900 p-4 ring-1 ring-slate-800">
-                <p class="text-xs text-slate-500">ROE</p>
-                <p id="roeText" class="mt-1 break-words text-sm font-bold text-white sm:text-base">-</p>
-              </div>
-
-              <div class="min-w-0 rounded-2xl bg-slate-900 p-4 ring-1 ring-slate-800">
-                <p class="text-xs text-slate-500">Dividend</p>
-                <p id="dividendText" class="mt-1 break-words text-sm font-bold text-white sm:text-base">-</p>
-              </div>
-
-              <div class="min-w-0 rounded-2xl bg-slate-900 p-4 ring-1 ring-slate-800">
-                <p class="text-xs text-slate-500">Beta</p>
-                <p id="betaText" class="mt-1 break-words text-sm font-bold text-white sm:text-base">-</p>
-              </div>
-
-              <div class="min-w-0 rounded-2xl bg-slate-900 p-4 ring-1 ring-slate-800">
-                <p class="text-xs text-slate-500">52W High</p>
-                <p id="yearHighText" class="mt-1 break-words text-sm font-bold text-white sm:text-base">-</p>
-              </div>
-
-              <div class="min-w-0 rounded-2xl bg-slate-900 p-4 ring-1 ring-slate-800">
-                <p class="text-xs text-slate-500">52W Low</p>
-                <p id="yearLowText" class="mt-1 break-words text-sm font-bold text-white sm:text-base">-</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="rounded-2xl border border-slate-800 bg-slate-950 p-4 sm:rounded-3xl sm:p-6">
-            <div class="mb-4 flex items-center justify-between gap-4">
-              <div>
-                <h2 class="text-lg font-extrabold text-white">Price Chart</h2>
-                <p class="mt-1 text-xs text-slate-500">Recent price movement</p>
-              </div>
-
-              <span id="chartMode" class="shrink-0 rounded-full bg-slate-900 px-3 py-1 text-xs font-bold text-slate-400 ring-1 ring-slate-800">
-                30 Points
+              <span class="rounded-full bg-emerald-500/10 px-4 py-2 text-xs font-bold text-emerald-300 ring-1 ring-emerald-400/20">
+                TradingView Widget
               </span>
             </div>
 
-            <div class="h-[220px] w-full max-w-full rounded-2xl bg-slate-900 p-2 ring-1 ring-slate-800 sm:h-[320px] sm:p-3 lg:h-[360px]">
-              <canvas id="stockChart" class="max-w-full"></canvas>
-            </div>
+            <div id="advancedChartWrap" class="tv-widget-container h-[460px] w-full overflow-hidden rounded-2xl bg-slate-900 ring-1 ring-slate-800 sm:h-[560px] lg:h-[620px]"></div>
           </div>
 
+          <!-- Google AdSense Responsive Ad - Below Chart -->
           <div class="flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-700 bg-slate-900 text-sm text-slate-500">
-            AdSense Responsive Ad Area - Below Result
+            AdSense Responsive Ad Area - Below Chart
           </div>
         </section>
       </div>
     </section>
 
+    <section class="mt-8 grid gap-5 lg:grid-cols-2">
+      <div class="min-w-0 rounded-2xl border border-slate-800 bg-slate-900 p-4 sm:rounded-3xl sm:p-5">
+        <h2 class="mb-4 text-lg font-extrabold text-white">
+          Technical Analysis
+        </h2>
+
+        <div id="technicalAnalysisWrap" class="tv-widget-container h-[450px] w-full overflow-hidden rounded-2xl bg-slate-950 ring-1 ring-slate-800"></div>
+      </div>
+
+      <div class="min-w-0 rounded-2xl border border-slate-800 bg-slate-900 p-4 sm:rounded-3xl sm:p-5">
+        <h2 class="mb-4 text-lg font-extrabold text-white">
+          Company Profile
+        </h2>
+
+        <div id="companyProfileWrap" class="tv-widget-container h-[450px] w-full overflow-hidden rounded-2xl bg-slate-950 ring-1 ring-slate-800"></div>
+      </div>
+    </section>
+
+    <section class="mt-8 rounded-2xl border border-slate-800 bg-slate-900 p-4 sm:rounded-3xl sm:p-5">
+      <h2 class="mb-4 text-lg font-extrabold text-white">
+        Financial Overview
+      </h2>
+
+      <div id="financialsWrap" class="tv-widget-container h-[520px] w-full overflow-hidden rounded-2xl bg-slate-950 ring-1 ring-slate-800"></div>
+    </section>
+
+    <!-- SEO Content -->
     <section class="mt-8 rounded-2xl border border-slate-800 bg-slate-900 p-5 text-sm leading-7 text-slate-300 sm:rounded-3xl sm:p-8">
       <h2 class="mb-4 flex items-center gap-2 text-xl font-extrabold text-white">
         <span class="h-5 w-1.5 rounded-full bg-cyan-400"></span>
@@ -239,21 +281,21 @@
       </h2>
 
       <p>
-        This Global Stock Market Tracker helps users search popular global stocks and view a simple market dashboard directly in the browser. It displays current price, daily change, daily high and low, trading volume, market capitalization, P/E ratio, EPS, ROE, dividend yield, beta, 52-week high, 52-week low, and a lightweight stock chart.
+        This Global Stock Market Tracker helps users search global stocks and view market charts, technical analysis, company profile information, and financial data in one browser-based dashboard. It is designed for quick stock research, market monitoring, investment education, and financial content websites.
       </p>
 
       <div class="mt-6 grid gap-5 md:grid-cols-2">
         <div class="rounded-2xl bg-slate-950 p-5 ring-1 ring-slate-800">
-          <h3 class="font-bold text-white">Market Cap Shortcuts</h3>
+          <h3 class="font-bold text-white">TradingView-Powered Stock Charts</h3>
           <p class="mt-2 text-slate-400">
-            Shortcut buttons are designed to show large market capitalization stocks first. If live API data is unavailable, mock data is used automatically.
+            The main chart area uses TradingView widgets to provide interactive market charts. Users can search common tickers such as AAPL, TSLA, NVDA, MSFT, AMZN, GOOGL, META, or use full exchange symbols like NASDAQ:AAPL, TSX:SHOP, and KRX:005930.
           </p>
         </div>
 
         <div class="rounded-2xl bg-slate-950 p-5 ring-1 ring-slate-800">
-          <h3 class="font-bold text-white">Detailed Stock Metrics</h3>
+          <h3 class="font-bold text-white">Better Than Browser Scraping</h3>
           <p class="mt-2 text-slate-400">
-            Common indicators such as P/E, EPS, ROE, dividend yield, beta and 52-week range can help users compare stocks quickly.
+            Many finance websites block direct browser fetch requests because of CORS, bot protection, or licensing restrictions. This version avoids unstable scraping and uses embeddable financial widgets for a more reliable user experience.
           </p>
         </div>
       </div>
@@ -261,18 +303,19 @@
       <div class="mt-6">
         <h3 class="font-bold text-white">Popular Searches</h3>
         <p class="mt-2 text-slate-400">
-          AAPL stock price, TSLA stock tracker, NVDA stock chart, Microsoft stock price, Google stock price, Samsung stock, global stock market tracker, market cap ranking, P/E ratio checker, EPS stock data, ROE stock metric, dividend yield stock tracker.
+          AAPL stock chart, TSLA stock tracker, NVDA stock price, Microsoft stock analysis, Google stock chart, Samsung stock, TradingView stock widget, global stock market tracker, technical analysis widget, financial overview widget, live stock chart, free stock dashboard.
         </p>
       </div>
     </section>
 
+    <!-- Disclaimer -->
     <div class="mt-8 rounded-2xl bg-slate-900 p-5 text-xs leading-5 text-slate-400 ring-1 ring-slate-800">
       <h3 class="mb-2 text-sm font-semibold text-slate-200">
         Disclaimer
       </h3>
 
       <p>
-        This stock market tracker is provided for general informational and educational purposes only. Market data may be delayed, incomplete, simulated, inaccurate, or unavailable depending on API access, network conditions, exchange rules, and third-party data limitations.
+        This stock market tracker is provided for general informational and educational purposes only. Market data, charts, indicators, company profile information, and financial data are provided through third-party embedded widgets and may be delayed, incomplete, unavailable, or inaccurate.
       </p>
 
       <p class="mt-3">
@@ -280,643 +323,188 @@
       </p>
 
       <p class="mt-3">
-        Always verify prices, quotes, charts, and company information with your brokerage, exchange, licensed financial advisor, or another reliable source before making any financial transaction.
+        Always verify prices, quotes, charts, financial metrics, and company information with your brokerage, exchange, licensed financial advisor, or another reliable source before making any financial transaction.
       </p>
     </div>
 
+    <!-- Google AdSense Responsive Ad - Bottom -->
     <div class="mt-8 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-700 bg-slate-900 text-sm text-slate-500">
       AdSense Responsive Ad Area - Bottom
     </div>
   </main>
 
   <script>
-    const API_CHART_BASE = "https://query1.finance.yahoo.com/v8/finance/chart/";
-    const API_QUOTE = "https://query1.finance.yahoo.com/v7/finance/quote?symbols=";
-    const API_SUMMARY_BASE = "https://query1.finance.yahoo.com/v10/finance/quoteSummary/";
-
     const input = document.getElementById("stockInput");
     const searchBtn = document.getElementById("searchBtn");
-    const statusText = document.getElementById("statusText");
-    const shortcutStatus = document.getElementById("shortcutStatus");
-    const topShortcutGrid = document.getElementById("topShortcutGrid");
-    const marketTicker = document.getElementById("marketTicker");
+    const selectedSymbolLabel = document.getElementById("selectedSymbolLabel");
+    const mainSymbolTitle = document.getElementById("mainSymbolTitle");
 
-    const companyName = document.getElementById("companyName");
-    const symbolText = document.getElementById("symbolText");
-    const currencyText = document.getElementById("currencyText");
-    const currentPrice = document.getElementById("currentPrice");
-    const changeText = document.getElementById("changeText");
-    const dayHigh = document.getElementById("dayHigh");
-    const dayLow = document.getElementById("dayLow");
-    const volumeText = document.getElementById("volumeText");
-    const trendBadge = document.getElementById("trendBadge");
-    const changeBadgeText = document.getElementById("changeBadgeText");
-    const chartMode = document.getElementById("chartMode");
+    const advancedChartWrap = document.getElementById("advancedChartWrap");
+    const technicalAnalysisWrap = document.getElementById("technicalAnalysisWrap");
+    const companyProfileWrap = document.getElementById("companyProfileWrap");
+    const financialsWrap = document.getElementById("financialsWrap");
 
-    const marketCapText = document.getElementById("marketCapText");
-    const peText = document.getElementById("peText");
-    const epsText = document.getElementById("epsText");
-    const roeText = document.getElementById("roeText");
-    const dividendText = document.getElementById("dividendText");
-    const betaText = document.getElementById("betaText");
-    const yearHighText = document.getElementById("yearHighText");
-    const yearLowText = document.getElementById("yearLowText");
-
-    let chartInstance = null;
-
-    const topUniverse = [
-      "NVDA",
-      "MSFT",
-      "AAPL",
-      "AMZN",
-      "GOOGL",
-      "META",
-      "AVGO",
-      "TSLA",
-      "BRK-B",
-      "LLY",
-      "TSM",
-      "JPM"
-    ];
-
-    const mockStocks = {
-      NVDA: {
-        symbol: "NVDA",
-        name: "NVIDIA Corporation",
-        currency: "USD",
-        price: 128.76,
-        previousClose: 124.52,
-        high: 130.35,
-        low: 123.86,
-        volume: 312009400,
-        marketCap: 3160000000000,
-        pe: 72.4,
-        eps: 1.78,
-        roe: 1.18,
-        dividendYield: 0.0003,
-        beta: 1.69,
-        fiftyTwoWeekHigh: 140.76,
-        fiftyTwoWeekLow: 39.23
-      },
-      MSFT: {
-        symbol: "MSFT",
-        name: "Microsoft Corporation",
-        currency: "USD",
-        price: 467.11,
-        previousClose: 462.88,
-        high: 469.45,
-        low: 460.21,
-        volume: 27481200,
-        marketCap: 3470000000000,
-        pe: 38.1,
-        eps: 12.26,
-        roe: 0.34,
-        dividendYield: 0.0065,
-        beta: 0.89,
-        fiftyTwoWeekHigh: 468.35,
-        fiftyTwoWeekLow: 344.77
-      },
-      AAPL: {
-        symbol: "AAPL",
-        name: "Apple Inc.",
-        currency: "USD",
-        price: 214.35,
-        previousClose: 210.86,
-        high: 216.12,
-        low: 209.74,
-        volume: 58234500,
-        marketCap: 3290000000000,
-        pe: 33.2,
-        eps: 6.46,
-        roe: 1.46,
-        dividendYield: 0.0046,
-        beta: 1.24,
-        fiftyTwoWeekHigh: 237.23,
-        fiftyTwoWeekLow: 164.08
-      },
-      AMZN: {
-        symbol: "AMZN",
-        name: "Amazon.com Inc.",
-        currency: "USD",
-        price: 184.29,
-        previousClose: 181.42,
-        high: 185.84,
-        low: 180.88,
-        volume: 49231200,
-        marketCap: 1930000000000,
-        pe: 52.7,
-        eps: 3.49,
-        roe: 0.19,
-        dividendYield: 0,
-        beta: 1.15,
-        fiftyTwoWeekHigh: 201.20,
-        fiftyTwoWeekLow: 118.35
-      },
-      GOOGL: {
-        symbol: "GOOGL",
-        name: "Alphabet Inc.",
-        currency: "USD",
-        price: 176.58,
-        previousClose: 178.02,
-        high: 179.22,
-        low: 174.95,
-        volume: 34219000,
-        marketCap: 2170000000000,
-        pe: 27.8,
-        eps: 6.35,
-        roe: 0.29,
-        dividendYield: 0.0045,
-        beta: 1.03,
-        fiftyTwoWeekHigh: 191.75,
-        fiftyTwoWeekLow: 120.21
-      },
-      META: {
-        symbol: "META",
-        name: "Meta Platforms Inc.",
-        currency: "USD",
-        price: 502.15,
-        previousClose: 492.74,
-        high: 506.20,
-        low: 491.33,
-        volume: 18231000,
-        marketCap: 1270000000000,
-        pe: 28.5,
-        eps: 17.63,
-        roe: 0.33,
-        dividendYield: 0.004,
-        beta: 1.21,
-        fiftyTwoWeekHigh: 531.49,
-        fiftyTwoWeekLow: 274.38
-      },
-      TSLA: {
-        symbol: "TSLA",
-        name: "Tesla Inc.",
-        currency: "USD",
-        price: 183.92,
-        previousClose: 188.63,
-        high: 190.15,
-        low: 181.44,
-        volume: 92381200,
-        marketCap: 586000000000,
-        pe: 47.2,
-        eps: 3.9,
-        roe: 0.2,
-        dividendYield: 0,
-        beta: 2.31,
-        fiftyTwoWeekHigh: 299.29,
-        fiftyTwoWeekLow: 138.8
-      },
-      "005930.KS": {
-        symbol: "005930.KS",
-        name: "Samsung Electronics",
-        currency: "KRW",
-        price: 73500,
-        previousClose: 72400,
-        high: 74100,
-        low: 72100,
-        volume: 18442000,
-        marketCap: 438000000000000,
-        pe: 18.6,
-        eps: 3950,
-        roe: 0.08,
-        dividendYield: 0.018,
-        beta: 0.92,
-        fiftyTwoWeekHigh: 88800,
-        fiftyTwoWeekLow: 65800
-      }
-    };
-
-    const mockIndexes = [
-      { symbol: "S&P 500", price: 5362.19, changePercent: 0.42 },
-      { symbol: "Nasdaq", price: 17192.53, changePercent: 0.68 },
-      { symbol: "Dow Jones", price: 38914.72, changePercent: -0.18 },
-      { symbol: "KOSPI", price: 2748.91, changePercent: 0.31 },
-      { symbol: "Nikkei 225", price: 38681.9, changePercent: -0.24 },
-      { symbol: "TSX", price: 22154.38, changePercent: 0.15 }
-    ];
-
-    const companyAlias = {
-      APPLE: "AAPL",
-      TESLA: "TSLA",
-      NVIDIA: "NVDA",
-      MICROSOFT: "MSFT",
-      AMAZON: "AMZN",
-      GOOGLE: "GOOGL",
-      ALPHABET: "GOOGL",
-      META: "META",
-      FACEBOOK: "META",
-      SAMSUNG: "005930.KS"
+    const symbolMap = {
+      AAPL: "NASDAQ:AAPL",
+      APPLE: "NASDAQ:AAPL",
+      TSLA: "NASDAQ:TSLA",
+      TESLA: "NASDAQ:TSLA",
+      NVDA: "NASDAQ:NVDA",
+      NVIDIA: "NASDAQ:NVDA",
+      MSFT: "NASDAQ:MSFT",
+      MICROSOFT: "NASDAQ:MSFT",
+      AMZN: "NASDAQ:AMZN",
+      AMAZON: "NASDAQ:AMZN",
+      GOOGL: "NASDAQ:GOOGL",
+      GOOGLE: "NASDAQ:GOOGL",
+      ALPHABET: "NASDAQ:GOOGL",
+      META: "NASDAQ:META",
+      FACEBOOK: "NASDAQ:META",
+      SHOP: "TSX:SHOP",
+      SAMSUNG: "KRX:005930",
+      "005930": "KRX:005930",
+      "005930.KS": "KRX:005930",
+      "BRK.B": "NYSE:BRK.B",
+      "BRK-B": "NYSE:BRK.B"
     };
 
     function normalizeSymbol(value) {
       const clean = String(value || "").trim().toUpperCase();
-      return companyAlias[clean] || clean || "AAPL";
-    }
 
-    function rawValue(obj) {
-      if (obj === null || obj === undefined) return null;
-      if (typeof obj === "number") return obj;
-      if (typeof obj.raw === "number") return obj.raw;
-      return null;
-    }
-
-    function formatPrice(value, currency) {
-      const locale = currency === "KRW" ? "ko-KR" : "en-US";
-      return new Intl.NumberFormat(locale, {
-        style: "currency",
-        currency: currency || "USD",
-        maximumFractionDigits: currency === "KRW" ? 0 : 2
-      }).format(Number(value) || 0);
-    }
-
-    function formatNumber(value) {
-      return new Intl.NumberFormat("en-US", {
-        notation: Math.abs(value || 0) >= 1000000 ? "compact" : "standard",
-        maximumFractionDigits: 2
-      }).format(Number(value) || 0);
-    }
-
-    function formatCompactMoney(value, currency = "USD") {
-      if (value === null || value === undefined || isNaN(value)) return "-";
-      return new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency,
-        notation: "compact",
-        maximumFractionDigits: 2
-      }).format(value);
-    }
-
-    function formatRatio(value) {
-      if (value === null || value === undefined || isNaN(value)) return "-";
-      return Number(value).toFixed(2);
-    }
-
-    function formatPercentValue(value) {
-      if (value === null || value === undefined || isNaN(value)) return "-";
-      return `${(Number(value) * 100).toFixed(2)}%`;
-    }
-
-    function randomizeMock(base) {
-      const drift = (Math.random() - 0.45) * 0.018;
-      const price = Math.max(base.price * (1 + drift), 0.01);
-      const previousClose = base.previousClose;
-      const high = Math.max(base.high, price * (1 + Math.random() * 0.008));
-      const low = Math.min(base.low, price * (1 - Math.random() * 0.008));
-      const volume = Math.round(base.volume * (0.92 + Math.random() * 0.18));
-
-      return {
-        ...base,
-        price,
-        previousClose,
-        high,
-        low,
-        volume,
-        source: "Mock fallback"
-      };
-    }
-
-    function generateSeries(current, previousClose, points = 30) {
-      const data = [];
-      const start = previousClose || current;
-      const target = current || start;
-
-      for (let i = 0; i < points; i++) {
-        const progress = i / (points - 1);
-        const trend = start + (target - start) * progress;
-        const noise = target * ((Math.random() - 0.5) * 0.015);
-        data.push(Math.max(trend + noise, 0.01));
+      if (!clean) {
+        return "NASDAQ:AAPL";
       }
 
-      data[points - 1] = target;
-      return data;
-    }
-
-    async function fetchQuoteBatch(symbols) {
-      const url = `${API_QUOTE}${encodeURIComponent(symbols.join(","))}`;
-      const response = await fetch(url, { method: "GET", cache: "no-store" });
-
-      if (!response.ok) throw new Error("Quote batch request failed");
-
-      const data = await response.json();
-      return data?.quoteResponse?.result || [];
-    }
-
-    async function fetchYahooStock(symbol) {
-      const chartUrl = `${API_CHART_BASE}${encodeURIComponent(symbol)}?range=1mo&interval=1d`;
-      const quoteUrl = `${API_QUOTE}${encodeURIComponent(symbol)}`;
-      const summaryUrl = `${API_SUMMARY_BASE}${encodeURIComponent(symbol)}?modules=summaryDetail,defaultKeyStatistics,financialData`;
-
-      const [chartResponse, quoteResponse, summaryResponse] = await Promise.allSettled([
-        fetch(chartUrl, { method: "GET", cache: "no-store" }),
-        fetch(quoteUrl, { method: "GET", cache: "no-store" }),
-        fetch(summaryUrl, { method: "GET", cache: "no-store" })
-      ]);
-
-      let chartData = null;
-      let quoteData = null;
-      let summaryData = null;
-
-      if (chartResponse.status === "fulfilled" && chartResponse.value.ok) {
-        const chartJson = await chartResponse.value.json();
-        chartData = chartJson?.chart?.result?.[0] || null;
+      if (symbolMap[clean]) {
+        return symbolMap[clean];
       }
 
-      if (quoteResponse.status === "fulfilled" && quoteResponse.value.ok) {
-        const quoteJson = await quoteResponse.value.json();
-        quoteData = quoteJson?.quoteResponse?.result?.[0] || null;
+      if (clean.includes(":")) {
+        return clean;
       }
 
-      if (summaryResponse.status === "fulfilled" && summaryResponse.value.ok) {
-        const summaryJson = await summaryResponse.value.json();
-        summaryData = summaryJson?.quoteSummary?.result?.[0] || null;
-      }
-
-      if (!chartData && !quoteData) throw new Error("No stock data");
-
-      const meta = chartData?.meta || {};
-      const quote = chartData?.indicators?.quote?.[0] || {};
-      const closes = (quote.close || []).filter(v => typeof v === "number");
-      const timestamps = chartData?.timestamp || [];
-
-      const summaryDetail = summaryData?.summaryDetail || {};
-      const defaultStats = summaryData?.defaultKeyStatistics || {};
-      const financialData = summaryData?.financialData || {};
-
-      const price = Number(quoteData?.regularMarketPrice || meta.regularMarketPrice || closes[closes.length - 1] || 0);
-      const previousClose = Number(quoteData?.regularMarketPreviousClose || meta.chartPreviousClose || meta.previousClose || closes[closes.length - 2] || price);
-      const high = Number(quoteData?.regularMarketDayHigh || meta.regularMarketDayHigh || Math.max(...(quote.high || closes).filter(v => typeof v === "number")));
-      const low = Number(quoteData?.regularMarketDayLow || meta.regularMarketDayLow || Math.min(...(quote.low || closes).filter(v => typeof v === "number")));
-      const volume = Number(quoteData?.regularMarketVolume || meta.regularMarketVolume || (quote.volume || []).filter(v => typeof v === "number").at(-1) || 0);
-
-      if (!price) throw new Error("Invalid price");
-
-      const labels = timestamps.length
-        ? timestamps.slice(-closes.length).map(ts => {
-            const d = new Date(ts * 1000);
-            return `${d.getMonth() + 1}/${d.getDate()}`;
-          })
-        : closes.map((_, index) => `D${index + 1}`);
-
-      return {
-        symbol: quoteData?.symbol || meta.symbol || symbol,
-        name: quoteData?.longName || quoteData?.shortName || meta.longName || meta.shortName || symbol,
-        currency: quoteData?.currency || meta.currency || "USD",
-        price,
-        previousClose,
-        high,
-        low,
-        volume,
-        marketCap: quoteData?.marketCap || rawValue(summaryDetail.marketCap) || null,
-        pe: quoteData?.trailingPE || rawValue(defaultStats.trailingPE) || rawValue(summaryDetail.trailingPE) || null,
-        eps: quoteData?.epsTrailingTwelveMonths || rawValue(defaultStats.trailingEps) || null,
-        roe: rawValue(financialData.returnOnEquity) || null,
-        dividendYield: quoteData?.trailingAnnualDividendYield || rawValue(summaryDetail.dividendYield) || null,
-        beta: quoteData?.beta || rawValue(defaultStats.beta) || rawValue(summaryDetail.beta) || null,
-        fiftyTwoWeekHigh: quoteData?.fiftyTwoWeekHigh || rawValue(summaryDetail.fiftyTwoWeekHigh) || null,
-        fiftyTwoWeekLow: quoteData?.fiftyTwoWeekLow || rawValue(summaryDetail.fiftyTwoWeekLow) || null,
-        series: closes.length >= 2 ? closes : generateSeries(price, previousClose),
-        labels: labels.length >= 2 ? labels : Array.from({ length: 30 }, (_, i) => `D${i + 1}`),
-        source: "Live API"
-      };
+      return `NASDAQ:${clean}`;
     }
 
-    function getMockStock(symbol) {
-      const base = mockStocks[symbol] || {
-        symbol,
-        name: `${symbol} Corporation`,
-        currency: "USD",
-        price: 100 + Math.random() * 150,
-        previousClose: 100 + Math.random() * 150,
-        high: 120 + Math.random() * 150,
-        low: 80 + Math.random() * 100,
-        volume: Math.round(1000000 + Math.random() * 60000000),
-        marketCap: Math.round(5000000000 + Math.random() * 300000000000),
-        pe: 12 + Math.random() * 60,
-        eps: 1 + Math.random() * 20,
-        roe: 0.05 + Math.random() * 0.35,
-        dividendYield: Math.random() * 0.035,
-        beta: 0.6 + Math.random() * 1.8,
-        fiftyTwoWeekHigh: 150 + Math.random() * 200,
-        fiftyTwoWeekLow: 40 + Math.random() * 80
-      };
-
-      const stock = randomizeMock(base);
-      stock.series = generateSeries(stock.price, stock.previousClose);
-      stock.labels = Array.from({ length: stock.series.length }, (_, i) => `D${i + 1}`);
-      return stock;
+    function clearWidget(container) {
+      container.innerHTML = "";
     }
 
-    function renderTicker() {
-      marketTicker.innerHTML = mockIndexes.map(index => {
-        const drift = (Math.random() - 0.5) * 0.08;
-        const changePercent = index.changePercent + drift;
-        const isUp = changePercent >= 0;
-        const colorClass = isUp ? "text-emerald-300" : "text-sky-300";
-        const bgClass = isUp ? "bg-emerald-500/10 ring-emerald-400/20" : "bg-sky-500/10 ring-sky-400/20";
-        const sign = isUp ? "+" : "";
+    function createScript(container, src, config) {
+      clearWidget(container);
 
-        return `
-          <div class="shrink-0 rounded-2xl px-4 py-3 ring-1 ${bgClass}">
-            <span class="font-bold text-white">${index.symbol}</span>
-            <span class="ml-2 text-slate-400">${formatNumber(index.price)}</span>
-            <span class="ml-2 font-extrabold ${colorClass}">${sign}${changePercent.toFixed(2)}%</span>
-          </div>
-        `;
-      }).join("");
+      const widgetBox = document.createElement("div");
+      widgetBox.className = "tradingview-widget-container__widget h-full w-full";
+      container.appendChild(widgetBox);
+
+      const script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src = src;
+      script.async = true;
+      script.innerHTML = JSON.stringify(config);
+
+      container.appendChild(script);
     }
 
-    function renderTopShortcuts(items, modeLabel) {
-      topShortcutGrid.innerHTML = items.slice(0, 6).map(item => {
-        const symbol = item.symbol;
-        const name = item.shortName || item.longName || item.name || mockStocks[symbol]?.name || symbol;
-        const cap = item.marketCap || mockStocks[symbol]?.marketCap || null;
-
-        return `
-          <button
-            data-symbol="${symbol}"
-            class="topShortcutBtn min-w-0 rounded-2xl bg-slate-900 px-3 py-3 text-left ring-1 ring-slate-800 transition hover:bg-slate-800 active:scale-[0.98]"
-          >
-            <span class="block truncate text-sm font-extrabold text-white">${symbol}</span>
-            <span class="mt-1 block truncate text-[11px] font-medium text-slate-500">${name}</span>
-            <span class="mt-1 block truncate text-[11px] font-bold text-cyan-300">${cap ? formatCompactMoney(cap, "USD") : "Large Cap"}</span>
-          </button>
-        `;
-      }).join("");
-
-      document.querySelectorAll(".topShortcutBtn").forEach(button => {
-        button.addEventListener("click", () => {
-          input.value = button.dataset.symbol;
-          searchStock();
-        });
-      });
-
-      shortcutStatus.textContent = modeLabel;
-    }
-
-    async function loadTopMarketCapShortcuts() {
-      shortcutStatus.textContent = "Loading...";
-
-      try {
-        const quotes = await fetchQuoteBatch(topUniverse);
-        const sorted = quotes
-          .filter(item => item.symbol && item.marketCap)
-          .sort((a, b) => b.marketCap - a.marketCap)
-          .slice(0, 6);
-
-        if (!sorted.length) throw new Error("No market cap data");
-
-        renderTopShortcuts(sorted, "Live sorted");
-      } catch (error) {
-        const fallback = Object.values(mockStocks)
-          .sort((a, b) => (b.marketCap || 0) - (a.marketCap || 0))
-          .slice(0, 6);
-
-        renderTopShortcuts(fallback, "Mock sorted");
-      }
-    }
-
-    function renderStock(stock) {
-      const change = stock.price - stock.previousClose;
-      const changePercent = stock.previousClose ? (change / stock.previousClose) * 100 : 0;
-      const isUp = change >= 0;
-      const trendColor = isUp ? "rgb(52, 211, 153)" : "rgb(56, 189, 248)";
-      const trendTextClass = isUp ? "text-emerald-300" : "text-sky-300";
-      const trendBgClass = isUp ? "bg-emerald-500/10 ring-emerald-400/20" : "bg-sky-500/10 ring-sky-400/20";
-
-      companyName.textContent = stock.name;
-      symbolText.textContent = stock.symbol;
-      currencyText.textContent = stock.currency;
-      currentPrice.textContent = formatPrice(stock.price, stock.currency);
-      changeText.textContent = `${change >= 0 ? "+" : "-"}${formatPrice(Math.abs(change), stock.currency)} (${changePercent >= 0 ? "+" : ""}${changePercent.toFixed(2)}%)`;
-      changeText.className = `mt-3 break-words text-base font-bold ${trendTextClass} sm:text-lg`;
-
-      dayHigh.textContent = formatPrice(stock.high, stock.currency);
-      dayLow.textContent = formatPrice(stock.low, stock.currency);
-      volumeText.textContent = formatNumber(stock.volume);
-
-      marketCapText.textContent = formatCompactMoney(stock.marketCap, stock.currency);
-      peText.textContent = formatRatio(stock.pe);
-      epsText.textContent = stock.eps === null || stock.eps === undefined ? "-" : formatPrice(stock.eps, stock.currency);
-      roeText.textContent = formatPercentValue(stock.roe);
-      dividendText.textContent = formatPercentValue(stock.dividendYield);
-      betaText.textContent = formatRatio(stock.beta);
-      yearHighText.textContent = stock.fiftyTwoWeekHigh ? formatPrice(stock.fiftyTwoWeekHigh, stock.currency) : "-";
-      yearLowText.textContent = stock.fiftyTwoWeekLow ? formatPrice(stock.fiftyTwoWeekLow, stock.currency) : "-";
-
-      trendBadge.className = `w-full rounded-2xl px-4 py-3 text-left ring-1 ${trendBgClass} sm:w-auto sm:text-right`;
-      trendBadge.querySelector("p").textContent = isUp ? "Up Today" : "Down Today";
-      trendBadge.querySelector("p").className = `text-xs font-bold uppercase tracking-wide ${trendTextClass}`;
-      changeBadgeText.textContent = `${changePercent >= 0 ? "+" : ""}${changePercent.toFixed(2)}%`;
-      changeBadgeText.className = `mt-1 text-xl font-extrabold ${trendTextClass}`;
-
-      chartMode.textContent = `${stock.series.length} Points`;
-      renderChart(stock.labels, stock.series, trendColor);
-    }
-
-    function renderChart(labels, data, color) {
-      const ctx = document.getElementById("stockChart").getContext("2d");
-
-      if (chartInstance) {
-        chartInstance.destroy();
-      }
-
-      const gradient = ctx.createLinearGradient(0, 0, 0, 320);
-      gradient.addColorStop(0, color.replace("rgb", "rgba").replace(")", ", 0.28)"));
-      gradient.addColorStop(1, color.replace("rgb", "rgba").replace(")", ", 0.02)"));
-
-      chartInstance = new Chart(ctx, {
-        type: "line",
-        data: {
-          labels,
-          datasets: [{
-            label: "Price",
-            data,
-            borderColor: color,
-            backgroundColor: gradient,
-            borderWidth: 3,
-            fill: true,
-            pointRadius: 0,
-            pointHoverRadius: 5,
-            tension: 0.35
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          interaction: {
-            intersect: false,
-            mode: "index"
-          },
-          plugins: {
-            legend: {
-              display: false
-            },
-            tooltip: {
-              backgroundColor: "rgba(15, 23, 42, 0.95)",
-              titleColor: "#ffffff",
-              bodyColor: "#cbd5e1",
-              borderColor: "#334155",
-              borderWidth: 1,
-              padding: 12
-            }
-          },
-          scales: {
-            x: {
-              ticks: {
-                color: "#64748b",
-                maxTicksLimit: window.innerWidth < 640 ? 4 : 6
-              },
-              grid: {
-                color: "rgba(51, 65, 85, 0.35)"
-              }
-            },
-            y: {
-              ticks: {
-                color: "#64748b",
-                maxTicksLimit: window.innerWidth < 640 ? 5 : 7,
-                callback: value => Number(value).toLocaleString()
-              },
-              grid: {
-                color: "rgba(51, 65, 85, 0.35)"
-              }
-            }
-          }
+    function renderAdvancedChart(symbol) {
+      createScript(
+        advancedChartWrap,
+        "https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js",
+        {
+          autosize: true,
+          symbol: symbol,
+          interval: "D",
+          timezone: "Etc/UTC",
+          theme: "dark",
+          style: "1",
+          locale: "en",
+          allow_symbol_change: true,
+          calendar: false,
+          support_host: "https://www.tradingview.com"
         }
-      });
+      );
     }
 
-    async function searchStock() {
-      const symbol = normalizeSymbol(input.value);
+    function renderTechnicalAnalysis(symbol) {
+      createScript(
+        technicalAnalysisWrap,
+        "https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js",
+        {
+          interval: "1D",
+          width: "100%",
+          isTransparent: true,
+          height: "100%",
+          symbol: symbol,
+          showIntervalTabs: true,
+          displayMode: "single",
+          locale: "en",
+          colorTheme: "dark"
+        }
+      );
+    }
+
+    function renderCompanyProfile(symbol) {
+      createScript(
+        companyProfileWrap,
+        "https://s3.tradingview.com/external-embedding/embed-widget-symbol-profile.js",
+        {
+          width: "100%",
+          height: "100%",
+          isTransparent: true,
+          colorTheme: "dark",
+          symbol: symbol,
+          locale: "en"
+        }
+      );
+    }
+
+    function renderFinancials(symbol) {
+      createScript(
+        financialsWrap,
+        "https://s3.tradingview.com/external-embedding/embed-widget-financials.js",
+        {
+          colorTheme: "dark",
+          isTransparent: true,
+          largeChartUrl: "",
+          displayMode: "regular",
+          width: "100%",
+          height: "100%",
+          symbol: symbol,
+          locale: "en"
+        }
+      );
+    }
+
+    function updateDashboard(rawSymbol) {
+      const symbol = normalizeSymbol(rawSymbol);
+
       input.value = symbol;
-      statusText.textContent = "Fetching latest stock data...";
-      statusText.className = "mt-4 text-sm leading-6 text-cyan-300";
+      selectedSymbolLabel.textContent = symbol;
+      mainSymbolTitle.textContent = symbol;
 
-      try {
-        const stock = await fetchYahooStock(symbol);
-        renderStock(stock);
-        statusText.textContent = `Showing ${stock.source} data for ${stock.symbol}. Some valuation metrics may be unavailable depending on the API response.`;
-        statusText.className = "mt-4 text-sm leading-6 text-emerald-300";
-      } catch (error) {
-        const stock = getMockStock(symbol);
-        renderStock(stock);
-        statusText.textContent = `Live API unavailable. Showing simulated mock data for ${stock.symbol}.`;
-        statusText.className = "mt-4 text-sm leading-6 text-amber-300";
-      }
+      renderAdvancedChart(symbol);
+      renderTechnicalAnalysis(symbol);
+      renderCompanyProfile(symbol);
+      renderFinancials(symbol);
     }
 
-    searchBtn.addEventListener("click", searchStock);
+    searchBtn.addEventListener("click", () => {
+      updateDashboard(input.value);
+    });
 
     input.addEventListener("keydown", event => {
       if (event.key === "Enter") {
-        searchStock();
+        updateDashboard(input.value);
       }
     });
 
-    renderTicker();
-    loadTopMarketCapShortcuts();
-    searchStock();
+    document.querySelectorAll(".shortcutBtn, .marketBtn").forEach(button => {
+      button.addEventListener("click", () => {
+        updateDashboard(button.dataset.symbol);
+      });
+    });
 
-    setInterval(renderTicker, 8000);
+    updateDashboard("NASDAQ:AAPL");
   </script>
 </body>
 </html>
