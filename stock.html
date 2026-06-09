@@ -7,11 +7,11 @@
   <title>Global Stock Market Tracker</title>
   <meta
     name="description"
-    content="Free Global Stock Market Tracker with a TradingView-powered stock chart, global stock search, large-cap shortcuts, SEO-friendly stock market guide, and financial disclaimer."
+    content="Free Global Stock Market Tracker powered by TradingView widgets. Search global stocks, view charts, technical analysis, company profile, financial data, and market shortcuts."
   />
   <meta
     name="keywords"
-    content="global stock tracker, stock market tracker, live stock chart, TradingView chart, AAPL stock chart, TSLA stock chart, NVDA stock chart, stock market dashboard, free stock tracker, stock price chart"
+    content="global stock tracker, stock market tracker, live stock chart, TradingView widget, AAPL stock chart, TSLA stock chart, NVDA stock chart, stock technical analysis, financial overview"
   />
 
   <script src="https://cdn.tailwindcss.com"></script>
@@ -61,7 +61,6 @@
       </a>
     </div>
 
-    <!-- Google AdSense Responsive Ad - Top -->
     <div class="mb-6 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-700 bg-slate-900 text-sm text-slate-500">
       AdSense Responsive Ad Area - Top
     </div>
@@ -77,11 +76,15 @@
         </h1>
 
         <p class="mt-2 max-w-3xl text-sm leading-6 text-slate-400">
-          Search global stocks and view an interactive TradingView-powered stock chart. This lightweight version loads only one main market widget for better mobile speed and lower page weight.
+          Search global stocks and view TradingView-powered charts, symbol info, technical analysis, company profile, and financial data.
         </p>
       </div>
 
-      <div class="grid w-full min-w-0 gap-5 p-4 sm:p-5 lg:grid-cols-[0.85fr_1.5fr] lg:p-8">
+      <div class="border-b border-slate-800 bg-slate-950 p-2">
+        <div id="tickerTapeWrap" class="min-h-[46px] w-full overflow-hidden"></div>
+      </div>
+
+      <div class="grid w-full min-w-0 gap-5 p-4 sm:p-5 lg:grid-cols-[0.9fr_1.4fr] lg:p-8">
         <section class="min-w-0 space-y-5">
           <div class="rounded-2xl border border-slate-800 bg-slate-950 p-4 sm:rounded-3xl sm:p-5">
             <label for="stockInput" class="mb-3 block text-sm font-bold text-slate-200">
@@ -179,11 +182,11 @@
 
           <div class="rounded-2xl border border-slate-800 bg-slate-950 p-4 sm:rounded-3xl sm:p-5">
             <h2 class="text-sm font-bold uppercase tracking-wide text-slate-400">
-              Lightweight Setup
+              Widget Notice
             </h2>
 
             <p class="mt-3 text-xs leading-5 text-slate-400">
-              This version uses only one primary TradingView chart widget instead of loading multiple heavy widgets at once. It is better for mobile speed, Core Web Vitals, and AdSense-friendly page performance.
+              Some TradingView widgets may not support every exchange symbol. If Company Profile or Financial Data is unavailable for a specific market, try a major US-listed ticker such as NASDAQ:AAPL, NASDAQ:MSFT, or NASDAQ:NVDA.
             </p>
           </div>
         </section>
@@ -202,19 +205,44 @@
               </div>
 
               <span class="rounded-full bg-emerald-500/10 px-4 py-2 text-xs font-bold text-emerald-300 ring-1 ring-emerald-400/20">
-                TradingView Chart
+                TradingView
               </span>
             </div>
 
             <div id="advancedChartWrap" class="tv-box h-[460px] sm:h-[560px] lg:h-[620px]"></div>
           </div>
 
-          <!-- Google AdSense Responsive Ad - Below Chart -->
           <div class="flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-700 bg-slate-900 text-sm text-slate-500">
             AdSense Responsive Ad Area - Below Chart
           </div>
         </section>
       </div>
+    </section>
+
+    <section class="mt-8 grid gap-5 lg:grid-cols-2">
+      <div class="min-w-0 rounded-2xl border border-slate-800 bg-slate-900 p-4 sm:rounded-3xl sm:p-5">
+        <h2 class="mb-4 text-lg font-extrabold text-white">
+          Technical Analysis
+        </h2>
+
+        <div id="technicalAnalysisWrap" class="tv-box h-[430px]"></div>
+      </div>
+
+      <div class="min-w-0 rounded-2xl border border-slate-800 bg-slate-900 p-4 sm:rounded-3xl sm:p-5">
+        <h2 class="mb-4 text-lg font-extrabold text-white">
+          Company Profile
+        </h2>
+
+        <div id="companyProfileWrap" class="tv-box h-[430px]"></div>
+      </div>
+    </section>
+
+    <section class="mt-8 rounded-2xl border border-slate-800 bg-slate-900 p-4 sm:rounded-3xl sm:p-5">
+      <h2 class="mb-4 text-lg font-extrabold text-white">
+        Financial Overview
+      </h2>
+
+      <div id="financialsWrap" class="tv-box h-[560px]"></div>
     </section>
 
     <section class="mt-8 rounded-2xl border border-slate-800 bg-slate-900 p-5 text-sm leading-7 text-slate-300 sm:rounded-3xl sm:p-8">
