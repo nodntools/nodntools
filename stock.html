@@ -352,12 +352,17 @@
     </div>
   </main>
 
-  <script>
+   <script>
     const input = document.getElementById("stockInput");
     const searchBtn = document.getElementById("searchBtn");
     const selectedSymbolLabel = document.getElementById("selectedSymbolLabel");
     const mainSymbolTitle = document.getElementById("mainSymbolTitle");
+
+    const tickerTapeWrap = document.getElementById("tickerTapeWrap");
     const advancedChartWrap = document.getElementById("advancedChartWrap");
+    const technicalAnalysisWrap = document.getElementById("technicalAnalysisWrap");
+    const companyProfileWrap = document.getElementById("companyProfileWrap");
+    const financialsWrap = document.getElementById("financialsWrap");
 
     const symbolMap = {
       AAPL: "NASDAQ:AAPL",
@@ -393,25 +398,25 @@
       return `NASDAQ:${clean}`;
     }
 
-    function showLoading(container) {
+    function showLoading(container, label) {
       container.innerHTML = `
-        <div class="flex h-full min-h-[360px] items-center justify-center rounded-2xl border border-slate-800 bg-slate-950 p-5 text-center">
+        <div class="flex h-full min-h-[220px] items-center justify-center rounded-2xl border border-slate-800 bg-slate-950 p-5 text-center">
           <div>
             <div class="mx-auto mb-3 h-8 w-8 animate-spin rounded-full border-2 border-slate-700 border-t-cyan-400"></div>
-            <p class="text-sm font-bold text-slate-300">Loading chart...</p>
+            <p class="text-sm font-bold text-slate-300">Loading ${label}...</p>
             <p class="mt-2 text-xs leading-5 text-slate-500">
-              If the chart does not load, the selected symbol may not be supported by TradingView or your browser may be blocking third-party scripts.
+              If this area does not load, the selected symbol may not be supported by this specific TradingView widget.
             </p>
           </div>
         </div>
       `;
     }
 
-    function renderAdvancedChart(symbol) {
-      showLoading(advancedChartWrap);
+    function createTradingViewWidget(container, src, config, label) {
+      showLoading(container, label);
 
       setTimeout(() => {
-        advancedChartWrap.innerHTML = "";
+        container.innerHTML = "";
 
         const outer = document.createElement("div");
         outer.className = "tradingview-widget-container";
@@ -423,11 +428,49 @@
         widget.style.width = "100%";
         widget.style.height = "100%";
 
+        outer.appendChild(widget);
+
         const script = document.createElement("script");
         script.type = "text/javascript";
-        script.src = "https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js";
+        script.src = src;
         script.async = true;
-        script.text = JSON.stringify({
+        script.text = JSON.stringify(config);
+
+        outer.appendChild(script);
+        container.appendChild(outer);
+      }, 120);
+    }
+
+    function renderTickerTape() {
+      createTradingViewWidget(
+        tickerTapeWrap,
+        "https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js",
+        {
+          symbols: [
+            { proName: "FOREXCOM:SPXUSD", title: "S&P 500" },
+            { proName: "FOREXCOM:NSXUSD", title: "Nasdaq 100" },
+            { proName: "FOREXCOM:DJI", title: "Dow Jones" },
+            { proName: "KRX:KOSPI", title: "KOSPI" },
+            { proName: "TSX:TSX", title: "TSX" },
+            { proName: "NASDAQ:AAPL", title: "Apple" },
+            { proName: "NASDAQ:NVDA", title: "Nvidia" },
+            { proName: "NASDAQ:TSLA", title: "Tesla" }
+          ],
+          showSymbolLogo: true,
+          isTransparent: true,
+          displayMode: "adaptive",
+          colorTheme: "dark",
+          locale: "en"
+        },
+        "Market Ticker"
+      );
+    }
+
+    function renderAdvancedChart(symbol) {
+      createTradingViewWidget(
+        advancedChartWrap,
+        "https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js",
+        {
           autosize: true,
           symbol: symbol,
           interval: "D",
@@ -439,12 +482,61 @@
           save_image: false,
           calendar: false,
           support_host: "https://www.tradingview.com"
-        });
+        },
+        "Chart"
+      );
+    }
 
-        outer.appendChild(widget);
-        outer.appendChild(script);
-        advancedChartWrap.appendChild(outer);
-      }, 120);
+    function renderTechnicalAnalysis(symbol) {
+      createTradingViewWidget(
+        technicalAnalysisWrap,
+        "https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js",
+        {
+          interval: "1D",
+          width: "100%",
+          height: 430,
+          symbol: symbol,
+          showIntervalTabs: true,
+          displayMode: "single",
+          isTransparent: true,
+          locale: "en",
+          colorTheme: "dark"
+        },
+        "Technical Analysis"
+      );
+    }
+
+    function renderCompanyProfile(symbol) {
+      createTradingViewWidget(
+        companyProfileWrap,
+        "https://s3.tradingview.com/external-embedding/embed-widget-symbol-profile.js",
+        {
+          width: "100%",
+          height: 430,
+          symbol: symbol,
+          isTransparent: true,
+          colorTheme: "dark",
+          locale: "en"
+        },
+        "Company Profile"
+      );
+    }
+
+    function renderFinancials(symbol) {
+      createTradingViewWidget(
+        financialsWrap,
+        "https://s3.tradingview.com/external-embedding/embed-widget-financials.js",
+        {
+          width: "100%",
+          height: 560,
+          symbol: symbol,
+          colorTheme: "dark",
+          isTransparent: true,
+          displayMode: "regular",
+          locale: "en"
+        },
+        "Financial Overview"
+      );
     }
 
     function updateDashboard(rawSymbol) {
@@ -455,6 +547,9 @@
       mainSymbolTitle.textContent = symbol;
 
       renderAdvancedChart(symbol);
+      renderTechnicalAnalysis(symbol);
+      renderCompanyProfile(symbol);
+      renderFinancials(symbol);
     }
 
     searchBtn.addEventListener("click", () => {
@@ -473,6 +568,7 @@
       });
     });
 
+    renderTickerTape();
     updateDashboard("NASDAQ:AAPL");
   </script>
 </body>
