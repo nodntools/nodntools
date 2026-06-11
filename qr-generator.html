@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404"
+     crossorigin="anonymous"></script>
+  <meta name="google-adsense-account" content="ca-pub-5282672325821404">
+
+  <title>Free QR Code Generator | Create QR Codes Online</title>
+  <meta name="description" content="Create custom QR codes instantly in your browser. Generate QR codes for URLs, text, Wi-Fi access, contact details, business cards, menus, events, and marketing campaigns with PNG and SVG downloads." />
+  <meta name="keywords" content="QR code generator, free QR code generator, QR code maker, WiFi QR code, URL QR code, contact QR code, QR code PNG download, QR code SVG download, create QR code online, custom QR code generator" />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="Free QR Code Generator" />
+  <meta property="og:description" content="Generate custom QR codes for URLs, text, Wi-Fi networks, contact information, and more directly in your browser." />
+  <meta property="og:type" content="website" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+              900: '#312e81'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Free QR Code Generator",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "All",
+    "description": "A free browser-based QR code generator that creates custom QR codes for URLs, text, Wi-Fi access, contact details, and more.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+
+  <style>
+    html,
+    body {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    main,
+    section,
+    aside,
+    div,
+    textarea,
+    canvas,
+    img,
+    svg {
+      max-width: 100%;
+    }
+
+    input[type="color"] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 3.5rem;
+      padding: 0.25rem;
+      border-radius: 1rem;
+      cursor: pointer;
+    }
+
+    input[type="color"]::-webkit-color-swatch-wrapper {
+      padding: 0;
+    }
+
+    input[type="color"]::-webkit-color-swatch {
+      border: none;
+      border-radius: 0.75rem;
+    }
+
+    input[type="color"]::-moz-color-swatch {
+      border: none;
+      border-radius: 0.75rem;
+    }
+
+    #qrCanvasWrap canvas,
+    #qrCanvasWrap img {
+      width: auto !important;
+      height: auto !important;
+      max-width: 100% !important;
+      border-radius: 1rem;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body class="min-h-screen bg-slate-50 px-4 py-5 text-slate-900 sm:py-10">
+  <main class="mx-auto w-full max-w-6xl">
+    <header class="mb-5 text-center">
+      <a href="https://nodntools.com" class="inline-block transition hover:opacity-80" aria-label="NodnWebTools Home">
+        <div class="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
+          Nodn<span class="text-indigo-600">WebTools</span>
+        </div>
+      </a>
+    </header>
+
+    <div class="mb-6 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white/80 text-sm text-slate-400 shadow-sm">
+      AdSense Responsive Ad Area - Top
+    </div>
+
+    <section class="grid gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
+      <aside class="rounded-[2rem] bg-white p-6 shadow-xl shadow-indigo-900/10 ring-1 ring-indigo-100 lg:sticky lg:top-8">
+        <div class="mb-4 inline-flex rounded-full bg-indigo-100 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-indigo-700">
+          QR Code Generator
+        </div>
+
+        <h1 class="text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">
+          Create Custom QR Codes Instantly
+        </h1>
+
+        <p class="mt-3 text-base leading-7 text-slate-600">
+          Generate QR codes for website URLs, text, Wi-Fi access, contact details, business cards, restaurant menus, event pages, and marketing campaigns directly in your browser.
+        </p>
+
+        <div class="mt-6 space-y-5">
+          <div>
+            <label for="qrInput" class="mb-2 block text-sm font-bold text-slate-700">QR Code Content</label>
+            <textarea
+              id="qrInput"
+              rows="8"
+              class="w-full resize-none rounded-3xl border border-slate-200 bg-slate-50 px-5 py-4 text-base leading-7 text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-100"
+              placeholder="Enter a website URL, text, email, phone number, Wi-Fi details, or contact information..."
+            ></textarea>
+          </div>
+
+          <div class="rounded-2xl bg-indigo-50 p-4 ring-1 ring-indigo-100">
+            <h3 class="font-black text-indigo-900">Example: Wi-Fi QR Code</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-700">
+              To create a QR code that lets users connect to a Wi-Fi network, enter this format:
+            </p>
+            <div class="mt-3 overflow-x-auto rounded-xl bg-white p-3 font-mono text-sm text-slate-800">
+              WIFI:T:WPA;S:MyHomeWiFi;P:MyPassword123;;
+            </div>
+            <p class="mt-3 text-sm leading-6 text-slate-600">
+              Replace the network name and password with your own Wi-Fi credentials. Most modern smartphones can scan this QR code and connect automatically.
+            </p>
+            <button id="wifiExampleBtn" type="button" class="mt-4 rounded-2xl bg-indigo-600 px-4 py-3 text-sm font-black text-white shadow-lg shadow-indigo-600/20 transition hover:bg-indigo-700 active:scale-95">
+              Use Wi-Fi Example
+            </button>
+          </div>
+
+          <div>
+            <label for="qrSize" class="mb-2 block text-sm font-bold text-slate-700">QR Code Size</label>
+            <select
+              id="qrSize"
+              class="h-14 w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 text-base font-bold text-slate-900 outline-none transition focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-100"
+            >
+              <option value="128">128 × 128 pixels</option>
+              <option value="256" selected>256 × 256 pixels</option>
+              <option value="512">512 × 512 pixels</option>
+            </select>
+          </div>
+
+          <div class="grid gap-4 sm:grid-cols-2">
+            <div>
+              <label for="foregroundColor" class="mb-2 block text-sm font-bold text-slate-700">Foreground Color</label>
+              <input id="foregroundColor" type="color" value="#111827" class="border border-slate-200 bg-slate-50 outline-none transition focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100" />
+            </div>
+
+            <div>
+              <label for="backgroundColor" class="mb-2 block text-sm font-bold text-slate-700">Background Color</label>
+              <input id="backgroundColor" type="color" value="#ffffff" class="border border-slate-200 bg-slate-50 outline-none transition focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100" />
+            </div>
+          </div>
+
+          <div id="statusMessage" class="hidden rounded-2xl border border-red-100 bg-red-50 px-4 py-3 text-sm font-semibold text-red-700"></div>
+        </div>
+      </aside>
+
+      <section class="overflow-hidden rounded-[2rem] bg-white shadow-2xl shadow-indigo-900/10 ring-1 ring-indigo-100">
+        <div class="bg-gradient-to-br from-indigo-600 to-violet-700 px-6 py-7 text-white">
+          <h2 class="text-2xl font-black tracking-tight">Live QR Code Preview</h2>
+          <p class="mt-2 text-sm leading-6 text-indigo-50/90">
+            Preview updates automatically as you type or change customization options.
+          </p>
+        </div>
+
+        <div class="space-y-5 p-5 sm:p-6">
+          <div id="previewBox" class="flex min-h-[360px] items-center justify-center rounded-[1.75rem] border border-slate-100 bg-slate-50 p-6">
+            <div id="emptyState" class="text-center">
+              <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-3xl bg-indigo-100 text-3xl text-indigo-700">
+                ⌗
+              </div>
+              <p class="text-base font-bold text-slate-700">Enter text to generate QR Code</p>
+              <p class="mt-2 text-sm leading-6 text-slate-500">Your QR code will appear here instantly.</p>
+            </div>
+
+            <div id="qrCanvasWrap" class="hidden rounded-[1.5rem] bg-white p-5 shadow-sm ring-1 ring-slate-100"></div>
+          </div>
+
+          <div class="grid gap-3 sm:grid-cols-2">
+            <button
+              id="downloadPngBtn"
+              type="button"
+              class="rounded-2xl bg-indigo-600 px-5 py-4 text-sm font-black text-white shadow-lg shadow-indigo-600/25 transition hover:bg-indigo-700 active:scale-95 disabled:cursor-not-allowed disabled:bg-slate-300 disabled:shadow-none"
+              disabled
+            >
+              Download PNG
+            </button>
+
+            <button
+              id="downloadSvgBtn"
+              type="button"
+              class="rounded-2xl bg-violet-600 px-5 py-4 text-sm font-black text-white shadow-lg shadow-violet-600/25 transition hover:bg-violet-700 active:scale-95 disabled:cursor-not-allowed disabled:bg-slate-300 disabled:shadow-none"
+              disabled
+            >
+              Download SVG
+            </button>
+          </div>
+
+          <div class="rounded-2xl bg-indigo-50 p-4 text-sm leading-6 text-indigo-900 ring-1 ring-indigo-100">
+            <strong>Privacy note:</strong> QR codes are generated directly in your browser. Your content is not uploaded to a server.
+          </div>
+
+          <div class="flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-slate-50 text-sm text-slate-400">
+            AdSense Responsive Ad Area - Below QR Generator
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section class="mt-8 rounded-[2rem] bg-white p-6 shadow-sm ring-1 ring-slate-100 sm:p-8">
+      <h2 class="text-2xl font-black tracking-tight text-slate-950">
+        Free QR Code Generator for URLs, Wi-Fi, Contact Cards and More
+      </h2>
+
+      <div class="mt-4 space-y-5 text-sm leading-7 text-slate-600 sm:text-base">
+        <p>
+          A QR Code, also known as a Quick Response Code, is a two-dimensional barcode that can store information in a compact visual format. QR codes are widely used on websites, restaurant menus, product packaging, business cards, posters, flyers, event tickets, retail displays, educational materials, and marketing campaigns because they make it easy for people to access digital content with a simple scan.
+        </p>
+
+        <p>
+          This free QR Code Generator helps users create custom QR codes directly inside the browser. You can generate a QR code for a website URL, plain text, email address, phone number, vCard contact information, social media profile, digital menu, landing page, online store, event registration page, coupon, or Wi-Fi network credential. The generated QR code can be downloaded as a PNG file for general use or as an SVG file for flexible web and design workflows.
+        </p>
+
+        <p>
+          One of the biggest advantages of a browser-based QR code maker is privacy. The information entered into this tool is processed locally in the browser and is not sent to a remote server. This makes it suitable for quick personal and business use cases where convenience, speed, and basic privacy are important.
+        </p>
+
+        <p>
+          QR codes are especially useful for businesses that want to connect offline materials with online destinations. A customer can scan a printed QR code on a product label, brochure, storefront window, table card, package insert, or advertisement and instantly open a website, menu, booking page, payment page, or promotional offer.
+        </p>
+      </div>
+
+      <div class="mt-8 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white/80 text-sm text-slate-400 shadow-sm">
+        AdSense Responsive Ad Area - Middle Content
+      </div>
+
+      <h2 class="mt-10 text-2xl font-black tracking-tight text-slate-950">
+        Popular Uses for QR Codes
+      </h2>
+
+      <div class="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <article class="rounded-2xl bg-slate-50 p-5 ring-1 ring-slate-100">
+          <h3 class="font-black text-slate-900">Website QR Codes</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">
+            Direct users to websites, blog posts, landing pages, product pages, online stores, booking pages, and affiliate offers with a single scan.
+          </p>
+        </article>
+
+        <article class="rounded-2xl bg-slate-50 p-5 ring-1 ring-slate-100">
+          <h3 class="font-black text-slate-900">Wi-Fi QR Codes</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">
+            Allow guests, customers, and visitors to connect to a wireless network without manually typing the network name or password.
+          </p>
+        </article>
+
+        <article class="rounded-2xl bg-slate-50 p-5 ring-1 ring-slate-100">
+          <h3 class="font-black text-slate-900">Business Card QR Codes</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">
+            Share contact details through vCard QR codes so users can quickly save a name, phone number, email address, website, and company information.
+          </p>
+        </article>
+
+        <article class="rounded-2xl bg-slate-50 p-5 ring-1 ring-slate-100">
+          <h3 class="font-black text-slate-900">Restaurant Menu QR Codes</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">
+            Restaurants, cafes, food trucks, and bars commonly use QR codes to provide digital menus, seasonal promotions, ordering pages, and customer feedback forms.
+          </p>
+        </article>
+
+        <article class="rounded-2xl bg-slate-50 p-5 ring-1 ring-slate-100">
+          <h3 class="font-black text-slate-900">Event QR Codes</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">
+            Event organizers can use QR codes for registration pages, digital tickets, check-in workflows, venue maps, schedules, announcements, and post-event surveys.
+          </p>
+        </article>
+
+        <article class="rounded-2xl bg-slate-50 p-5 ring-1 ring-slate-100">
+          <h3 class="font-black text-slate-900">Marketing QR Codes</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">
+            Marketers can connect print advertising to digital campaigns by linking posters, flyers, brochures, and packaging to online content or promotional pages.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="mt-8 rounded-[2rem] bg-white p-6 shadow-sm ring-1 ring-slate-100 sm:p-8">
+      <h2 class="text-2xl font-black tracking-tight text-slate-950">
+        How to Create a Wi-Fi QR Code
+      </h2>
+
+      <div class="mt-4 space-y-5 text-sm leading-7 text-slate-600 sm:text-base">
+        <p>
+          A Wi-Fi QR code is one of the most practical ways to share wireless network access. Instead of asking visitors to manually type a long password, you can create a QR code that contains the network type, network name, and password. When scanned by a compatible smartphone, the device can recognize the Wi-Fi format and offer to connect automatically.
+        </p>
+
+        <p>
+          The standard Wi-Fi QR format is simple. Use <strong>WIFI:T:WPA;S:NetworkName;P:Password;;</strong> for most password-protected networks. The value after <strong>T:</strong> describes the security type, the value after <strong>S:</strong> is the Wi-Fi network name, and the value after <strong>P:</strong> is the Wi-Fi password.
+        </p>
+
+        <div class="rounded-2xl bg-slate-50 p-5 ring-1 ring-slate-100">
+          <h3 class="font-black text-slate-900">Wi-Fi QR Code Example</h3>
+          <div class="mt-3 overflow-x-auto rounded-xl bg-white p-4 font-mono text-sm text-slate-800 ring-1 ring-slate-100">
+            WIFI:T:WPA;S:CoffeeShopGuest;P:Welcome2026;;
+          </div>
+          <p class="mt-3 text-sm leading-6 text-slate-600">
+            In this example, the network name is CoffeeShopGuest and the password is Welcome2026. You can replace those values with your own network details.
+          </p>
+        </div>
+
+        <p>
+          Wi-Fi QR codes are useful for homes, offices, hotels, clinics, schools, coworking spaces, restaurants, rental properties, and small businesses. For public or customer-facing environments, it is usually safer to create a guest network instead of sharing access to your main private network.
+        </p>
+      </div>
+
+      <div class="mt-8 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white/80 text-sm text-slate-400 shadow-sm">
+        AdSense Responsive Ad Area - Bottom Content
+      </div>
+    </section>
+
+    <section class="mt-8 rounded-[2rem] bg-white p-6 shadow-sm ring-1 ring-slate-100 sm:p-8">
+      <h2 class="text-2xl font-black tracking-tight text-slate-950">
+        QR Code Tips for Better Scanning
+      </h2>
+
+      <div class="mt-6 grid gap-4 md:grid-cols-2">
+        <article class="rounded-2xl bg-slate-50 p-5 ring-1 ring-slate-100">
+          <h3 class="font-black text-slate-900">Use strong contrast</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">
+            QR codes scan best when the foreground color is dark and the background is light. Avoid low-contrast combinations that make the code difficult to read.
+          </p>
+        </article>
+
+        <article class="rounded-2xl bg-slate-50 p-5 ring-1 ring-slate-100">
+          <h3 class="font-black text-slate-900">Leave enough white space</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">
+            Keep a clear margin around the QR code. This quiet zone helps camera apps detect the QR code accurately.
+          </p>
+        </article>
+
+        <article class="rounded-2xl bg-slate-50 p-5 ring-1 ring-slate-100">
+          <h3 class="font-black text-slate-900">Test before printing</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">
+            Always scan your QR code with multiple devices before printing it on business cards, posters, flyers, labels, or signs.
+          </p>
+        </article>
+
+        <article class="rounded-2xl bg-slate-50 p-5 ring-1 ring-slate-100">
+          <h3 class="font-black text-slate-900">Keep links active</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">
+            Static QR codes cannot be edited after printing. Make sure your website URL, menu page, or landing page remains available.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="mt-8 rounded-[2rem] bg-white p-6 shadow-sm ring-1 ring-slate-100 sm:p-8">
+      <h2 class="text-2xl font-black tracking-tight text-slate-950">
+        Frequently Asked Questions About QR Codes
+      </h2>
+
+      <div class="mt-6 space-y-6 text-sm leading-7 text-slate-600 sm:text-base">
+        <div>
+          <h3 class="font-black text-slate-900">Are QR codes free to generate?</h3>
+          <p class="mt-2">
+            Yes. Static QR codes can be generated for free and used indefinitely. This tool creates static QR codes directly in the browser.
+          </p>
+        </div>
+
+        <div>
+          <h3 class="font-black text-slate-900">Do QR codes expire?</h3>
+          <p class="mt-2">
+            Static QR codes do not expire by themselves. However, if the encoded website URL stops working, the QR code will still scan but the destination may no longer be available.
+          </p>
+        </div>
+
+        <div>
+          <h3 class="font-black text-slate-900">Can smartphones scan QR codes without an app?</h3>
+          <p class="mt-2">
+            Most modern iPhone and Android devices include built-in QR code scanning through the camera application or system scanner.
+          </p>
+        </div>
+
+        <div>
+          <h3 class="font-black text-slate-900">Are QR codes safe?</h3>
+          <p class="mt-2">
+            QR codes are simply a way to store and display information. Users should still be cautious when scanning unknown QR codes because they may lead to unsafe websites, downloads, or misleading content.
+          </p>
+        </div>
+
+        <div>
+          <h3 class="font-black text-slate-900">What is the best QR code size for printing?</h3>
+          <p class="mt-2">
+            The best size depends on the scanning distance and print material. For small materials such as business cards, use a clear and high-resolution QR code. For posters or signs, make the QR code larger and test it from the expected viewing distance.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="mt-8 rounded-[2rem] border border-amber-100 bg-amber-50 p-6 text-sm leading-6 text-amber-900 sm:p-8">
+      <h2 class="text-xl font-black text-amber-950">
+        Legal Disclaimer
+      </h2>
+
+      <p class="mt-3">
+        This QR Code Generator is provided for educational and informational purposes only. Users are solely responsible for the content encoded within generated QR codes, including URLs, contact information, Wi-Fi credentials, plain text, business information, promotional material, and any other data.
+      </p>
+
+      <p class="mt-3">
+        The website owner does not review, monitor, validate, endorse, or guarantee the accuracy, safety, legality, availability, privacy, security, or reliability of any content embedded within generated QR codes. Users should exercise caution when sharing QR codes publicly and ensure that all encoded information complies with applicable laws, privacy rules, advertising standards, platform policies, and intellectual property requirements.
+      </p>
+
+      <p class="mt-3">
+        QR codes may be misused for phishing, misleading links, malware distribution, unauthorized data collection, or other harmful activities. Users should not create, distribute, or promote QR codes that link to deceptive, unsafe, illegal, infringing, or harmful content.
+      </p>
+
+      <p class="mt-3">
+        The website owner and developer shall not be liable for any damages, losses, claims, security incidents, privacy issues, business interruptions, scanning errors, printed material costs, lost revenue, or other consequences resulting from the creation, distribution, scanning, or use of QR codes generated through this tool.
+      </p>
+
+      <p class="mt-3">
+        By using this QR Code Generator, you acknowledge and agree that all generated QR codes are created and used at your own discretion and risk.
+      </p>
+    </section>
+
+    <div class="mt-8 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white/80 text-sm text-slate-400 shadow-sm">
+      AdSense Responsive Ad Area - Bottom
+    </div>
+  </main>
+
+  <script>
+    const qrInput = document.getElementById('qrInput');
+    const qrSize = document.getElementById('qrSize');
+    const foregroundColor = document.getElementById('foregroundColor');
+    const backgroundColor = document.getElementById('backgroundColor');
+    const statusMessage = document.getElementById('statusMessage');
+    const emptyState = document.getElementById('emptyState');
+    const qrCanvasWrap = document.getElementById('qrCanvasWrap');
+    const downloadPngBtn = document.getElementById('downloadPngBtn');
+    const downloadSvgBtn = document.getElementById('downloadSvgBtn');
+    const wifiExampleBtn = document.getElementById('wifiExampleBtn');
+
+    let currentQrData = '';
+
+    function showError(message) {
+      statusMessage.textContent = message;
+      statusMessage.classList.remove('hidden');
+    }
+
+    function clearError() {
+      statusMessage.textContent = '';
+      statusMessage.classList.add('hidden');
+    }
+
+    function setEmptyState() {
+      qrCanvasWrap.innerHTML = '';
+      qrCanvasWrap.classList.add('hidden');
+      emptyState.classList.remove('hidden');
+      downloadPngBtn.disabled = true;
+      downloadSvgBtn.disabled = true;
+      currentQrData = '';
+    }
+
+    function generateQrCode() {
+      try {
+        clearError();
+
+        const text = qrInput.value.trim();
+        const size = parseInt(qrSize.value, 10);
+        const darkColor = foregroundColor.value || '#111827';
+        const lightColor = backgroundColor.value || '#ffffff';
+
+        if (!text) {
+          setEmptyState();
+          return;
+        }
+
+        qrCanvasWrap.innerHTML = '';
+        emptyState.classList.add('hidden');
+        qrCanvasWrap.classList.remove('hidden');
+
+        new QRCode(qrCanvasWrap, {
+          text: text,
+          width: size,
+          height: size,
+          colorDark: darkColor,
+          colorLight: lightColor,
+          correctLevel: QRCode.CorrectLevel.H
+        });
+
+        currentQrData = text;
+        downloadPngBtn.disabled = false;
+        downloadSvgBtn.disabled = false;
+      } catch (error) {
+        setEmptyState();
+        showError('The QR code could not be generated. Please shorten the content or check your input.');
+      }
+    }
+
+    function downloadFile(filename, href) {
+      const link = document.createElement('a');
+      link.href = href;
+      link.download = filename;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    function getCanvasDataUrl() {
+      const canvas = qrCanvasWrap.querySelector('canvas');
+      const img = qrCanvasWrap.querySelector('img');
+
+      if (canvas) {
+        return canvas.toDataURL('image/png');
+      }
+
+      if (img && img.src) {
+        return img.src;
+      }
+
+      return '';
+    }
+
+    function downloadPng() {
+      try {
+        const dataUrl = getCanvasDataUrl();
+
+        if (!dataUrl) {
+          showError('PNG download is not available yet. Please generate a QR code first.');
+          return;
+        }
+
+        downloadFile('qr-code.png', dataUrl);
+      } catch (error) {
+        showError('PNG download failed. Please try again.');
+      }
+    }
+
+    function escapeXml(value) {
+      return String(value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&apos;');
+    }
+
+    function downloadSvg() {
+      try {
+        const dataUrl = getCanvasDataUrl();
+
+        if (!dataUrl || !currentQrData) {
+          showError('SVG download is not available yet. Please generate a QR code first.');
+          return;
+        }
+
+        const size = parseInt(qrSize.value, 10);
+        const svg = `
+<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" role="img" aria-label="QR Code">
+  <title>QR Code</title>
+  <desc>${escapeXml(currentQrData)}</desc>
+  <rect width="100%" height="100%" fill="${backgroundColor.value || '#ffffff'}"/>
+  <image href="${dataUrl}" x="0" y="0" width="${size}" height="${size}" preserveAspectRatio="xMidYMid meet"/>
+</svg>`.trim();
+
+        const blob = new Blob([svg], { type: 'image/svg+xml;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        downloadFile('qr-code.svg', url);
+        URL.revokeObjectURL(url);
+      } catch (error) {
+        showError('SVG download failed. Please try again.');
+      }
+    }
+
+    qrInput.addEventListener('input', generateQrCode);
+    qrSize.addEventListener('change', generateQrCode);
+    foregroundColor.addEventListener('input', generateQrCode);
+    backgroundColor.addEventListener('input', generateQrCode);
+    downloadPngBtn.addEventListener('click', downloadPng);
+    downloadSvgBtn.addEventListener('click', downloadSvg);
+
+    wifiExampleBtn.addEventListener('click', () => {
+      qrInput.value = 'WIFI:T:WPA;S:MyHomeWiFi;P:MyPassword123;;';
+      generateQrCode();
+      qrInput.focus();
+    });
+
+    setEmptyState();
+  </script>
+</body>
+</html>
