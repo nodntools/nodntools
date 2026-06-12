@@ -84,6 +84,13 @@
       max-width: 100%;
     }
 
+    input[type="date"] {
+      width: 100%;
+      min-width: 0;
+      max-width: 100%;
+      appearance: auto;
+    }
+
     .safe-break {
       overflow-wrap: anywhere;
       word-break: break-word;
@@ -118,8 +125,18 @@
         border-radius: 1.5rem !important;
       }
 
-      .mobile-button-grid {
+      .mobile-button-grid,
+      .mobile-date-grid {
         grid-template-columns: 1fr !important;
+      }
+
+      .mobile-date-input {
+        width: 100% !important;
+        min-width: 0 !important;
+        max-width: 100% !important;
+        font-size: 0.95rem !important;
+        padding-left: 0.9rem !important;
+        padding-right: 0.9rem !important;
       }
 
       .mobile-full {
@@ -156,7 +173,7 @@
 </head>
 
 <body class="min-h-screen bg-slate-50 px-4 py-5 text-slate-900 sm:py-10">
-  <main class="mx-auto w-full max-w-6xl">
+  <main class="mx-auto w-full max-w-7xl">
     <header class="mb-5 text-center">
       <a href="https://nodntools.com" class="inline-block transition hover:opacity-80" aria-label="NodnWebTools Home">
         <div class="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
@@ -169,8 +186,8 @@
       AdSense Responsive Ad Area - Top
     </div>
 
-    <section class="grid gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
-      <aside class="mobile-card rounded-[2rem] bg-white p-6 shadow-xl shadow-cyan-900/10 ring-1 ring-cyan-100 lg:sticky lg:top-8">
+    <section class="space-y-6">
+      <aside class="mobile-card rounded-[2rem] bg-white p-6 shadow-xl shadow-cyan-900/10 ring-1 ring-cyan-100 ">
         <div class="mb-4 inline-flex rounded-full bg-cyan-100 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-cyan-700">
           Flight Deal Search
         </div>
@@ -193,7 +210,7 @@
         </div>
       </aside>
 
-      <section class="mobile-panel overflow-hidden rounded-[2rem] bg-white shadow-2xl shadow-cyan-900/10 ring-1 ring-cyan-100">
+      <section class="mobile-panel overflow-visible rounded-[2rem] bg-white shadow-2xl shadow-cyan-900/10 ring-1 ring-cyan-100">
         <div class="bg-gradient-to-br from-cyan-600 to-sky-700 px-6 py-7 text-white">
           <h2 class="text-2xl font-black tracking-tight">Search Cheap Flight Prices</h2>
           <p class="mt-2 text-sm leading-6 text-cyan-50/90">
@@ -239,17 +256,17 @@
             </div>
           </div>
 
-          <div class="grid gap-4 sm:grid-cols-2">
+          <div class="mobile-date-grid grid gap-4 sm:grid-cols-2">
             <div>
               <label for="departDate" class="mb-2 block text-sm font-bold text-slate-700">Departure Date</label>
               <input id="departDate" type="date"
-                class="w-full rounded-3xl border border-slate-200 bg-slate-50 px-5 py-4 font-bold text-slate-900 outline-none transition focus:border-cyan-500 focus:bg-white focus:ring-4 focus:ring-cyan-100" />
+                class="mobile-date-input w-full rounded-3xl border border-slate-200 bg-slate-50 px-5 py-4 font-bold text-slate-900 outline-none transition focus:border-cyan-500 focus:bg-white focus:ring-4 focus:ring-cyan-100" />
             </div>
 
             <div id="returnWrap">
               <label for="returnDate" class="mb-2 block text-sm font-bold text-slate-700">Return Date</label>
               <input id="returnDate" type="date"
-                class="w-full rounded-3xl border border-slate-200 bg-slate-50 px-5 py-4 font-bold text-slate-900 outline-none transition focus:border-cyan-500 focus:bg-white focus:ring-4 focus:ring-cyan-100" />
+                class="mobile-date-input w-full rounded-3xl border border-slate-200 bg-slate-50 px-5 py-4 font-bold text-slate-900 outline-none transition focus:border-cyan-500 focus:bg-white focus:ring-4 focus:ring-cyan-100" />
             </div>
           </div>
 
