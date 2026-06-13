@@ -4,12 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Video Format Converter - Convert MP4, WEBM, MOV, AVI, and MKV Online</title>
-  <meta name="description" content="Convert video files directly in your browser with this free client-side Video Format Converter. Convert MP4, WEBM, MOV, AVI, and MKV files without uploading videos to a server." />
-  <meta name="keywords" content="video format converter, convert video online, MP4 converter, WEBM converter, MOV to MP4, AVI to MP4, MKV to MP4, client-side video converter, FFmpeg WASM video tool" />
+  <title>Video Format Converter - Convert MP4 and WEBM Locally in Your Browser</title>
+  <meta name="description" content="Convert video files locally in your browser with this client-side Video Format Converter. Convert MP4, WEBM, MOV, AVI, and MKV files without server-side uploads." />
+  <meta name="keywords" content="video format converter, convert video online, MP4 converter, WEBM converter, MOV to MP4, AVI to MP4, MKV to MP4, browser video converter, FFmpeg WASM converter, client-side video tool" />
   <meta name="robots" content="index, follow" />
-  <meta property="og:title" content="Video Format Converter - Client-Side Video Conversion Tool" />
-  <meta property="og:description" content="Convert video files locally in your browser using WebAssembly. No server upload required." />
+  <meta property="og:title" content="Video Format Converter - Private Browser-Based Video Conversion" />
+  <meta property="og:description" content="Convert video files locally using FFmpeg WebAssembly. No server-side uploading required." />
   <meta property="og:type" content="website" />
 
   <meta name="google-adsense-account" content="ca-pub-5282672325821404">
@@ -25,7 +25,7 @@
     "name": "Video Format Converter",
     "applicationCategory": "MultimediaApplication",
     "operatingSystem": "Any",
-    "description": "A browser-based video format converter that uses FFmpeg WebAssembly to convert video files locally without server-side uploading.",
+    "description": "A browser-based video format converter that uses FFmpeg WebAssembly to convert video files locally without uploading videos to a server.",
     "offers": {
       "@type": "Offer",
       "price": "0",
@@ -35,16 +35,38 @@
   </script>
 
   <style>
-    html, body {
+    html,
+    body {
       width: 100%;
       max-width: 100%;
       overflow-x: hidden;
-      background: #020617;
+      background: #f8fafc;
     }
 
-    *, *::before, *::after {
+    *,
+    *::before,
+    *::after {
       box-sizing: border-box;
       min-width: 0;
+    }
+
+    main,
+    section,
+    article,
+    aside,
+    div,
+    table,
+    pre,
+    code,
+    video,
+    canvas,
+    img,
+    svg,
+    iframe,
+    input,
+    select,
+    button {
+      max-width: 100%;
     }
 
     .safe-break {
@@ -52,24 +74,17 @@
       word-break: break-word;
     }
 
-    .mobile-card,
-    .mobile-panel,
-    .mobile-preview,
-    .mobile-code,
-    .ad-box,
-    video,
-    canvas,
-    img,
-    svg {
-      max-width: 100%;
+    .mobile-code {
+      white-space: pre-wrap;
+      overflow-x: auto;
     }
 
     .ad-box {
       width: 100%;
       min-height: 90px;
-      border: 1.5px dashed rgba(148, 163, 184, 0.45);
-      background: rgba(15, 23, 42, 0.72);
-      color: #94a3b8;
+      border: 1.5px dashed #cbd5e1;
+      background: #f1f5f9;
+      color: #64748b;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -79,60 +94,77 @@
     }
 
     .dropzone-active {
-      border-color: #d946ef !important;
-      background: rgba(217, 70, 239, 0.12) !important;
+      border-color: #8b5cf6 !important;
+      background: #f5f3ff !important;
     }
 
     .spinner {
-      width: 1.1rem;
-      height: 1.1rem;
-      border: 2px solid rgba(255,255,255,.4);
-      border-top-color: white;
+      width: 1.15rem;
+      height: 1.15rem;
+      border: 2px solid rgba(255, 255, 255, 0.45);
+      border-top-color: #ffffff;
       border-radius: 999px;
-      animation: spin .8s linear infinite;
+      animation: spin 0.8s linear infinite;
+      flex: none;
     }
 
     @keyframes spin {
-      to { transform: rotate(360deg); }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    video {
+      width: 100%;
+      height: auto;
+      display: block;
     }
 
     @media (max-width: 640px) {
-      .mobile-card {
+      body {
+        font-size: 15px;
+      }
+
+      .mobile-card,
+      .mobile-panel {
         padding: 1rem !important;
         border-radius: 1rem !important;
       }
 
-      .mobile-panel {
-        padding: 1rem !important;
+      .mobile-title {
+        font-size: 2rem !important;
+        line-height: 2.35rem !important;
       }
 
       .mobile-button-grid {
         grid-template-columns: 1fr !important;
       }
 
-      .mobile-preview {
-        max-height: 260px;
+      .mobile-button-grid button,
+      .mobile-button-grid a {
+        width: 100%;
       }
 
-      .mobile-code {
-        font-size: 0.8rem;
-        overflow-x: auto;
+      .mobile-preview {
+        max-height: 260px;
       }
 
       .ad-box {
         min-height: 90px;
         border-radius: 0.875rem;
+        padding: 0.875rem;
       }
     }
 
     @media (max-width: 380px) {
-      .mobile-card {
+      .mobile-card,
+      .mobile-panel {
         padding: 0.8rem !important;
       }
 
       .mobile-title {
-        font-size: 1.75rem !important;
-        line-height: 2.1rem !important;
+        font-size: 1.7rem !important;
+        line-height: 2.05rem !important;
       }
 
       .mobile-preview {
@@ -142,16 +174,18 @@
   </style>
 </head>
 
-<body class="text-slate-100 antialiased">
-  <header class="border-b border-white/10 bg-slate-950/90 backdrop-blur">
+<body class="text-slate-900 antialiased">
+  <header class="border-b border-slate-200 bg-white">
     <div class="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-5 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
-      <a href="https://nodntools.com" class="text-xl font-bold tracking-tight text-white" aria-label="Go to NodnWebTools home">
-        Nodn<span class="text-fuchsia-400">WebTools</span>
+      <a href="https://nodntools.com" class="text-xl font-extrabold tracking-tight text-slate-950" aria-label="Go to NodnWebTools home">
+        Nodn<span class="text-violet-600">WebTools</span>
       </a>
-      <nav class="flex flex-wrap items-center gap-3 text-sm text-slate-300">
-        <a href="https://nodntools.com" class="rounded-full border border-white/10 px-4 py-2 transition hover:border-fuchsia-400 hover:text-white">Home</a>
-        <a href="#how-it-works" class="rounded-full border border-white/10 px-4 py-2 transition hover:border-fuchsia-400 hover:text-white">How It Works</a>
-        <a href="#faq" class="rounded-full border border-white/10 px-4 py-2 transition hover:border-fuchsia-400 hover:text-white">FAQ</a>
+
+      <nav class="flex flex-wrap gap-2 text-sm font-medium text-slate-600">
+        <a href="https://nodntools.com" class="rounded-full border border-slate-200 px-4 py-2 transition hover:border-violet-300 hover:text-violet-700">Home</a>
+        <a href="#tool" class="rounded-full border border-slate-200 px-4 py-2 transition hover:border-violet-300 hover:text-violet-700">Converter</a>
+        <a href="#guide" class="rounded-full border border-slate-200 px-4 py-2 transition hover:border-violet-300 hover:text-violet-700">Guide</a>
+        <a href="#faq" class="rounded-full border border-slate-200 px-4 py-2 transition hover:border-violet-300 hover:text-violet-700">FAQ</a>
       </nav>
     </div>
   </header>
@@ -161,139 +195,173 @@
       Top Advertisement Area
     </section>
 
-    <section class="grid gap-6 lg:grid-cols-[1.05fr_.95fr]">
-      <div class="mobile-card rounded-3xl border border-white/10 bg-slate-900/80 p-6 shadow-2xl shadow-fuchsia-950/20">
-        <p class="mb-3 inline-flex rounded-full bg-fuchsia-500/10 px-3 py-1 text-sm font-medium text-fuchsia-300">
-          Client-Side WebAssembly Video Tool
+    <section id="tool" class="grid gap-6 lg:grid-cols-[1.02fr_.98fr]">
+      <div class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-xl shadow-slate-200/70">
+        <p class="mb-3 inline-flex rounded-full bg-violet-50 px-3 py-1 text-sm font-bold text-violet-700">
+          Private Client-Side Video Conversion
         </p>
 
-        <h1 class="mobile-title text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
+        <h1 class="mobile-title text-4xl font-extrabold tracking-tight text-slate-950 sm:text-5xl">
           Video Format Converter
         </h1>
 
-        <p class="mt-4 text-base leading-7 text-slate-300">
-          Convert video files directly in your browser using FFmpeg WebAssembly. Your selected file is processed locally on your device and is not uploaded to a server.
+        <p class="mt-4 text-base leading-7 text-slate-600">
+          Convert MP4, WEBM, MOV, AVI, and MKV video files directly in your browser. This tool uses FFmpeg WebAssembly, so your selected video is processed locally on your device without being uploaded to a server.
         </p>
 
-        <div id="dropZone" class="mt-6 cursor-pointer rounded-3xl border-2 border-dashed border-slate-600 bg-slate-950/70 p-8 text-center transition hover:border-fuchsia-400 hover:bg-fuchsia-500/5">
-          <input id="fileInput" type="file" accept=".mov,.avi,.mkv,.webm,.mp4,video/*" class="hidden" />
-          <div class="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-fuchsia-500/15 text-3xl text-fuchsia-300">
-            ↥
+        <div id="dropZone" class="mt-6 cursor-pointer rounded-3xl border-2 border-dashed border-slate-300 bg-slate-50 p-8 text-center transition hover:border-violet-400 hover:bg-violet-50">
+          <input id="fileInput" type="file" accept=".mp4,.webm,.mov,.avi,.mkv,video/mp4,video/webm,video/quicktime,video/x-msvideo,video/x-matroska" class="hidden" />
+
+          <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-violet-100 text-3xl text-violet-700">
+            ↑
           </div>
-          <h2 class="text-xl font-bold text-white">Drag and drop your video file here</h2>
-          <p class="mt-2 text-sm text-slate-400">Supported formats: MP4, WEBM, MOV, AVI, and MKV</p>
-          <button type="button" id="browseButton" class="mt-5 rounded-2xl bg-fuchsia-500 px-5 py-3 text-sm font-bold text-white shadow-lg shadow-fuchsia-500/20 transition hover:bg-fuchsia-400">
+
+          <h2 class="text-xl font-extrabold text-slate-950">Drag and drop your video file here</h2>
+          <p class="mt-2 text-sm leading-6 text-slate-500">
+            Supported files: MP4, WEBM, MOV, AVI, and MKV. Small test files are recommended first.
+          </p>
+
+          <button id="browseButton" type="button" class="mt-5 rounded-2xl bg-violet-600 px-5 py-3 text-sm font-bold text-white shadow-lg shadow-violet-200 transition hover:bg-violet-500">
             Browse Video File
           </button>
         </div>
 
-        <div id="fileInfo" class="mt-5 hidden rounded-2xl border border-white/10 bg-slate-950/70 p-4">
-          <p class="text-sm font-semibold text-slate-200">Selected file</p>
-          <p id="fileName" class="safe-break mt-1 text-sm text-slate-400"></p>
+        <div id="fileInfo" class="mt-5 hidden rounded-2xl border border-slate-200 bg-slate-50 p-4">
+          <p class="text-sm font-bold text-slate-900">Selected file</p>
+          <p id="fileName" class="safe-break mt-1 text-sm text-slate-600"></p>
           <p id="fileSize" class="mt-1 text-sm text-slate-500"></p>
         </div>
 
         <div class="mt-6 grid gap-4 sm:grid-cols-2">
-          <label class="rounded-2xl border border-white/10 bg-slate-950/70 p-4">
-            <span class="block text-sm font-semibold text-slate-200">Target format</span>
-            <select id="formatSelect" class="mt-2 w-full rounded-xl border border-slate-700 bg-slate-900 px-4 py-3 text-white outline-none ring-fuchsia-400 transition focus:ring-2">
+          <label class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+            <span class="block text-sm font-bold text-slate-800">Target format</span>
+            <select id="formatSelect" class="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none ring-violet-300 transition focus:ring-2">
               <option value="mp4">Convert to MP4</option>
               <option value="webm">Convert to WEBM</option>
             </select>
           </label>
 
-          <label class="rounded-2xl border border-white/10 bg-slate-950/70 p-4">
-            <span class="block text-sm font-semibold text-slate-200">Encoding preset</span>
-            <select id="presetSelect" class="mt-2 w-full rounded-xl border border-slate-700 bg-slate-900 px-4 py-3 text-white outline-none ring-fuchsia-400 transition focus:ring-2">
-              <option value="balanced">Balanced quality</option>
+          <label class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+            <span class="block text-sm font-bold text-slate-800">Output mode</span>
+            <select id="modeSelect" class="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none ring-violet-300 transition focus:ring-2">
+              <option value="copy">Fast remux when possible</option>
+              <option value="balanced">Balanced re-encode</option>
               <option value="smaller">Smaller file size</option>
-              <option value="quality">Higher quality</option>
             </select>
           </label>
         </div>
 
-        <div class="mt-6 rounded-2xl border border-white/10 bg-slate-950/70 p-4">
+        <div class="mt-6 rounded-2xl border border-slate-200 bg-slate-50 p-4">
           <div class="mb-2 flex items-center justify-between gap-3">
-            <span class="text-sm font-semibold text-slate-200">Encoding progress</span>
-            <span id="progressText" class="text-sm font-bold text-fuchsia-300">0%</span>
+            <span class="text-sm font-bold text-slate-800">Conversion progress</span>
+            <span id="progressText" class="text-sm font-extrabold text-violet-700">0%</span>
           </div>
-          <div class="h-3 overflow-hidden rounded-full bg-slate-800">
-            <div id="progressBar" class="h-full w-0 rounded-full bg-gradient-to-r from-violet-500 to-fuchsia-400 transition-all duration-300"></div>
+
+          <div class="h-3 overflow-hidden rounded-full bg-slate-200">
+            <div id="progressBar" class="h-full w-0 rounded-full bg-gradient-to-r from-violet-600 to-fuchsia-500 transition-all duration-300"></div>
           </div>
-          <p id="statusText" class="safe-break mt-3 text-sm text-slate-400">Select a video file to begin.</p>
+
+          <p id="statusText" class="safe-break mt-3 text-sm leading-6 text-slate-500">
+            Select a video file to begin.
+          </p>
         </div>
 
-        <div id="errorBox" class="mt-5 hidden rounded-2xl border border-red-500/30 bg-red-500/10 p-4 text-sm text-red-200"></div>
+        <div id="errorBox" class="mt-5 hidden rounded-2xl border border-red-200 bg-red-50 p-4 text-sm leading-6 text-red-700"></div>
+        <div id="successBox" class="mt-5 hidden rounded-2xl border border-emerald-200 bg-emerald-50 p-4 text-sm leading-6 text-emerald-700"></div>
 
         <div class="mobile-button-grid mt-6 grid gap-3 sm:grid-cols-2">
-          <button id="convertButton" type="button" class="flex items-center justify-center gap-2 rounded-2xl bg-fuchsia-500 px-5 py-4 font-bold text-white shadow-lg shadow-fuchsia-500/20 transition hover:bg-fuchsia-400 disabled:cursor-not-allowed disabled:opacity-50">
-            <span id="convertButtonText">Convert & Download Video</span>
+          <button id="convertButton" type="button" class="flex items-center justify-center gap-2 rounded-2xl bg-violet-600 px-5 py-4 font-extrabold text-white shadow-lg shadow-violet-200 transition hover:bg-violet-500 disabled:cursor-not-allowed disabled:opacity-60">
+            <span id="convertButtonContent">Convert & Download Video</span>
           </button>
-          <button id="resetButton" type="button" class="rounded-2xl border border-white/10 bg-slate-950 px-5 py-4 font-bold text-slate-200 transition hover:border-fuchsia-400 hover:text-white">
+
+          <button id="resetButton" type="button" class="rounded-2xl border border-slate-300 bg-white px-5 py-4 font-extrabold text-slate-700 transition hover:border-violet-300 hover:text-violet-700">
             Reset Tool
           </button>
         </div>
+
+        <div class="mt-5 rounded-2xl border border-amber-200 bg-amber-50 p-4">
+          <h3 class="font-extrabold text-amber-900">Important browser note</h3>
+          <p class="mt-2 text-sm leading-6 text-amber-800">
+            FFmpeg WebAssembly can be heavy. For the first test, use a small video under 10 MB. Very large videos may fail because browser memory is limited.
+          </p>
+        </div>
       </div>
 
-      <aside class="mobile-card rounded-3xl border border-white/10 bg-slate-900/80 p-6 shadow-2xl shadow-slate-950/40">
-        <h2 class="text-2xl font-bold text-white">Video Preview</h2>
-        <p class="mt-2 text-sm leading-6 text-slate-400">
-          Preview your original video before converting. The preview appears only after a valid file is selected.
+      <aside class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-xl shadow-slate-200/70">
+        <h2 class="text-2xl font-extrabold text-slate-950">Original Video Preview</h2>
+        <p class="mt-2 text-sm leading-6 text-slate-500">
+          Your preview appears after a valid file is selected. The video remains local in your browser.
         </p>
 
-        <div class="mt-5 overflow-hidden rounded-3xl border border-white/10 bg-black">
-          <video id="videoPreview" class="mobile-preview hidden w-full bg-black" controls></video>
-          <div id="previewPlaceholder" class="flex min-h-[280px] items-center justify-center p-6 text-center text-slate-500">
+        <div class="mt-5 overflow-hidden rounded-3xl border border-slate-200 bg-black">
+          <video id="videoPreview" class="mobile-preview hidden bg-black" controls playsinline></video>
+          <div id="previewPlaceholder" class="flex min-h-[280px] items-center justify-center p-6 text-center text-slate-400">
             No video loaded yet.
           </div>
         </div>
 
-        <div class="mt-5 rounded-2xl border border-white/10 bg-slate-950/70 p-4">
-          <h3 class="font-bold text-white">Privacy-first conversion</h3>
-          <p class="mt-2 text-sm leading-6 text-slate-400">
-            This tool runs conversion commands locally in your browser through WebAssembly. Large files may require significant memory and processing power.
+        <div id="downloadBox" class="mt-5 hidden rounded-2xl border border-violet-200 bg-violet-50 p-5">
+          <h3 class="text-lg font-extrabold text-violet-900">Conversion complete</h3>
+          <p class="mt-2 text-sm leading-6 text-violet-800">
+            Your converted video file is ready. Use the button below to save it to your device.
+          </p>
+          <a id="downloadLink" class="mt-4 inline-flex w-full items-center justify-center rounded-2xl bg-violet-600 px-5 py-4 text-sm font-extrabold text-white shadow-lg shadow-violet-200 transition hover:bg-violet-500" download>
+            Download Converted Video
+          </a>
+        </div>
+
+        <div class="mt-5 rounded-2xl border border-slate-200 bg-slate-50 p-5">
+          <h3 class="font-extrabold text-slate-950">Why this version is more stable</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">
+            This page explicitly sets the FFmpeg core path, waits for the WebAssembly engine to finish loading, disables the conversion button during loading, and shows clearer error messages when a browser blocks or fails the FFmpeg runtime.
           </p>
         </div>
 
-        <div id="downloadBox" class="mt-5 hidden rounded-2xl border border-fuchsia-400/30 bg-fuchsia-500/10 p-4">
-          <h3 class="font-bold text-fuchsia-200">Conversion complete</h3>
-          <p class="mt-2 text-sm text-slate-300">Your converted video is ready to download.</p>
-          <a id="downloadLink" class="mt-4 inline-flex w-full items-center justify-center rounded-2xl bg-white px-5 py-3 text-sm font-bold text-slate-950 transition hover:bg-fuchsia-100" download>
-            Download Converted Video
-          </a>
+        <div class="mt-5 rounded-2xl border border-slate-200 bg-slate-50 p-5">
+          <h3 class="font-extrabold text-slate-950">Recommended first test</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">
+            Use a small MP4 file first, then convert it to WEBM. After confirming the tool works, test MOV, AVI, or MKV files.
+          </p>
         </div>
       </aside>
     </section>
 
     <section class="ad-box my-8">
-      Advertisement Area Below Video Converter
+      Advertisement Area Below Main Tool
     </section>
 
-    <section id="how-it-works" class="mobile-card rounded-3xl border border-white/10 bg-slate-900/80 p-6 shadow-xl">
-      <h2 class="text-3xl font-extrabold text-white">Client-Side Video Format Conversion</h2>
-      <p class="mt-4 leading-8 text-slate-300">
-        This Video Format Converter is designed for users who need a quick way to change a video file from one format to another without installing desktop software or uploading private media files to an external server. It uses FFmpeg compiled for WebAssembly, allowing modern browsers to process supported video files locally on your device.
+    <section id="guide" class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-xl shadow-slate-200/70">
+      <h2 class="text-3xl font-extrabold tracking-tight text-slate-950">
+        Online Video Format Converter for MP4 and WEBM
+      </h2>
+
+      <p class="mt-4 leading-8 text-slate-600">
+        This Video Format Converter helps users change video files into more convenient formats directly inside a modern browser. Instead of uploading media to a remote server, the page loads FFmpeg WebAssembly and performs the conversion locally. This makes the tool useful for quick personal workflows, private draft videos, client previews, lightweight publishing tasks, and web content preparation.
+      </p>
+
+      <p class="mt-4 leading-8 text-slate-600">
+        MP4 is one of the most widely supported video formats for phones, desktops, browsers, messaging apps, and social platforms. WEBM is commonly used for web publishing, browser-based previews, lightweight animations, and open media workflows. By offering both MP4 and WEBM output options, this tool covers the most common conversion needs for everyday users and website creators.
       </p>
 
       <div class="mt-8 grid gap-5 md:grid-cols-3">
-        <article class="rounded-2xl border border-white/10 bg-slate-950/70 p-5">
-          <h3 class="text-lg font-bold text-white">Convert for compatibility</h3>
-          <p class="mt-2 text-sm leading-6 text-slate-400">
-            MP4 is widely supported across phones, browsers, messaging apps, and editing platforms. Converting to MP4 can make sharing and playback easier.
+        <article class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+          <h3 class="text-lg font-extrabold text-slate-950">Private by design</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">
+            The selected video is handled locally in your browser. This helps reduce exposure when working with personal or unpublished media files.
           </p>
         </article>
 
-        <article class="rounded-2xl border border-white/10 bg-slate-950/70 p-5">
-          <h3 class="text-lg font-bold text-white">Create web-friendly media</h3>
-          <p class="mt-2 text-sm leading-6 text-slate-400">
-            WEBM is often useful for web publishing, lightweight previews, and browser-based media workflows where open video formats are preferred.
+        <article class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+          <h3 class="text-lg font-extrabold text-slate-950">Useful for creators</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">
+            Convert videos for websites, portfolios, tutorials, product pages, social previews, and lightweight online publishing.
           </p>
         </article>
 
-        <article class="rounded-2xl border border-white/10 bg-slate-950/70 p-5">
-          <h3 class="text-lg font-bold text-white">Protect private files</h3>
-          <p class="mt-2 text-sm leading-6 text-slate-400">
-            Since conversion happens locally, your file stays on your device. This is useful for personal videos, client files, draft content, and internal media.
+        <article class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+          <h3 class="text-lg font-extrabold text-slate-950">No installation required</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">
+            The converter runs in the browser and does not require traditional desktop video conversion software.
           </p>
         </article>
       </div>
@@ -302,82 +370,118 @@
         Middle Content Advertisement Area
       </section>
 
-      <h3 class="mt-8 text-2xl font-bold text-white">How to Use This Video Converter</h3>
+      <h3 class="text-2xl font-extrabold text-slate-950">How to Use the Video Format Converter</h3>
+
       <div class="mt-5 grid gap-5 md:grid-cols-2">
-        <div class="rounded-2xl border border-white/10 bg-slate-950/70 p-5">
-          <h4 class="font-bold text-fuchsia-300">1. Select a video file</h4>
-          <p class="mt-2 text-sm leading-6 text-slate-400">
-            Drag and drop a video file into the upload area or use the browse button. The tool accepts common video extensions such as MP4, WEBM, MOV, AVI, and MKV.
+        <article class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+          <h4 class="font-extrabold text-violet-700">1. Upload a supported video</h4>
+          <p class="mt-2 text-sm leading-6 text-slate-600">
+            Drag and drop your MP4, WEBM, MOV, AVI, or MKV file into the upload area. You can also use the browse button to choose a video from your device.
           </p>
-        </div>
-        <div class="rounded-2xl border border-white/10 bg-slate-950/70 p-5">
-          <h4 class="font-bold text-fuchsia-300">2. Choose the output format</h4>
-          <p class="mt-2 text-sm leading-6 text-slate-400">
-            Select MP4 for broad compatibility or WEBM for browser-focused publishing. Choose a preset based on whether you prefer balanced quality, smaller size, or higher quality.
+        </article>
+
+        <article class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+          <h4 class="font-extrabold text-violet-700">2. Preview the original file</h4>
+          <p class="mt-2 text-sm leading-6 text-slate-600">
+            After loading, the original video preview appears in the preview panel. This lets you confirm that the correct file was selected.
           </p>
-        </div>
-        <div class="rounded-2xl border border-white/10 bg-slate-950/70 p-5">
-          <h4 class="font-bold text-fuchsia-300">3. Start local encoding</h4>
-          <p class="mt-2 text-sm leading-6 text-slate-400">
-            Click the conversion button. The progress bar updates while FFmpeg processes the file in your browser. Processing time depends on file size and device performance.
+        </article>
+
+        <article class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+          <h4 class="font-extrabold text-violet-700">3. Choose MP4 or WEBM output</h4>
+          <p class="mt-2 text-sm leading-6 text-slate-600">
+            Choose MP4 for broad compatibility or WEBM for web-focused output. You can also select a fast remux mode, balanced re-encode mode, or smaller file mode.
           </p>
-        </div>
-        <div class="rounded-2xl border border-white/10 bg-slate-950/70 p-5">
-          <h4 class="font-bold text-fuchsia-300">4. Download the result</h4>
-          <p class="mt-2 text-sm leading-6 text-slate-400">
-            After conversion is complete, a secure local download link is created using a browser object URL. Save the converted video directly to your device.
+        </article>
+
+        <article class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+          <h4 class="font-extrabold text-violet-700">4. Convert and download</h4>
+          <p class="mt-2 text-sm leading-6 text-slate-600">
+            Click the conversion button and wait for the progress bar to complete. When processing finishes, a local download button appears.
           </p>
-        </div>
+        </article>
       </div>
 
       <section class="ad-box my-8">
         Bottom Content Advertisement Area
       </section>
 
-      <h3 class="mt-8 text-2xl font-bold text-white">Practical Tips for Better Results</h3>
-      <p class="mt-4 leading-8 text-slate-300">
-        For best performance, use a modern desktop browser with enough available memory. Very large video files can exceed browser memory limits, especially on mobile devices. When converting long videos, close unnecessary browser tabs before starting. If a conversion fails, try a smaller source file, use a shorter clip, or select a smaller output preset.
+      <h3 class="text-2xl font-extrabold text-slate-950">Popular Uses</h3>
+
+      <div class="mt-5 grid gap-5 md:grid-cols-3">
+        <article class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+          <h4 class="font-extrabold text-slate-950">MOV to MP4 conversion</h4>
+          <p class="mt-2 text-sm leading-6 text-slate-600">
+            Convert camera or phone video files into a format that is easier to share and play on more devices.
+          </p>
+        </article>
+
+        <article class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+          <h4 class="font-extrabold text-slate-950">WEBM for websites</h4>
+          <p class="mt-2 text-sm leading-6 text-slate-600">
+            Prepare browser-friendly video files for landing pages, demos, documentation, and lightweight previews.
+          </p>
+        </article>
+
+        <article class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+          <h4 class="font-extrabold text-slate-950">Small file testing</h4>
+          <p class="mt-2 text-sm leading-6 text-slate-600">
+            Use compact test videos to check browser playback, conversion behavior, and download workflows.
+          </p>
+        </article>
+      </div>
+
+      <h3 class="mt-8 text-2xl font-extrabold text-slate-950">Practical Tips for Better Video Conversion</h3>
+      <p class="mt-4 leading-8 text-slate-600">
+        Browser-based video conversion is convenient, but it is still limited by device hardware and browser memory. If a file fails, try a shorter video, a smaller resolution, or a smaller output mode. Desktop browsers usually perform better than mobile browsers for heavy conversion tasks. Closing unused tabs can also help reduce memory pressure during encoding.
       </p>
     </section>
 
-    <section id="faq" class="mobile-card mt-8 rounded-3xl border border-white/10 bg-slate-900/80 p-6 shadow-xl">
-      <h2 class="text-3xl font-extrabold text-white">Frequently Asked Questions</h2>
+    <section id="faq" class="mobile-card mt-8 rounded-3xl border border-slate-200 bg-white p-6 shadow-xl shadow-slate-200/70">
+      <h2 class="text-3xl font-extrabold tracking-tight text-slate-950">Frequently Asked Questions</h2>
 
       <div class="mt-6 space-y-4">
-        <details class="rounded-2xl border border-white/10 bg-slate-950/70 p-5">
-          <summary class="cursor-pointer font-bold text-white">Are my videos uploaded to a server?</summary>
-          <p class="mt-3 text-sm leading-6 text-slate-400">
-            No. This tool processes the selected video locally inside your browser using WebAssembly. The file is not intentionally uploaded to a backend server by this page.
+        <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+          <summary class="cursor-pointer font-extrabold text-slate-950">Does this tool upload my video?</summary>
+          <p class="mt-3 text-sm leading-6 text-slate-600">
+            No. The conversion is performed locally inside your browser using FFmpeg WebAssembly. The page does not intentionally upload the selected file to a backend server.
           </p>
         </details>
 
-        <details class="rounded-2xl border border-white/10 bg-slate-950/70 p-5">
-          <summary class="cursor-pointer font-bold text-white">Why does conversion take time?</summary>
-          <p class="mt-3 text-sm leading-6 text-slate-400">
-            Video encoding is CPU and memory intensive. Larger files, higher resolutions, and slower devices require more processing time.
+        <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+          <summary class="cursor-pointer font-extrabold text-slate-950">Why do large videos fail?</summary>
+          <p class="mt-3 text-sm leading-6 text-slate-600">
+            Large videos can exceed browser memory limits. WebAssembly video processing requires enough available RAM and CPU power, so very large files may fail on low-memory devices.
           </p>
         </details>
 
-        <details class="rounded-2xl border border-white/10 bg-slate-950/70 p-5">
-          <summary class="cursor-pointer font-bold text-white">Can I convert MOV or AVI files to MP4?</summary>
-          <p class="mt-3 text-sm leading-6 text-slate-400">
-            Yes, this tool accepts MOV and AVI files when the browser and FFmpeg WebAssembly runtime can read the file successfully. Some rare codecs may not convert correctly.
+        <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+          <summary class="cursor-pointer font-extrabold text-slate-950">What is fast remux mode?</summary>
+          <p class="mt-3 text-sm leading-6 text-slate-600">
+            Fast remux mode attempts to copy compatible video and audio streams into a new container without full re-encoding. It is faster, but it may fail if the source codec is not compatible with the selected output format.
           </p>
         </details>
 
-        <details class="rounded-2xl border border-white/10 bg-slate-950/70 p-5">
-          <summary class="cursor-pointer font-bold text-white">Does this tool work on mobile?</summary>
-          <p class="mt-3 text-sm leading-6 text-slate-400">
-            The interface is mobile responsive, but video conversion may be limited by mobile browser memory, battery, and processing power.
+        <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+          <summary class="cursor-pointer font-extrabold text-slate-950">Which output should I choose?</summary>
+          <p class="mt-3 text-sm leading-6 text-slate-600">
+            Choose MP4 when compatibility is the priority. Choose WEBM when preparing media for modern web publishing or browser-focused use cases.
+          </p>
+        </details>
+
+        <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+          <summary class="cursor-pointer font-extrabold text-slate-950">Why does the first conversion take longer?</summary>
+          <p class="mt-3 text-sm leading-6 text-slate-600">
+            The browser must download and initialize the FFmpeg WebAssembly runtime before the first conversion. Later conversions in the same session are usually faster to start.
           </p>
         </details>
       </div>
     </section>
 
-    <section class="mobile-card mt-8 rounded-3xl border border-slate-700 bg-slate-950 p-6">
+    <section class="mobile-card mt-8 rounded-3xl border border-slate-800 bg-slate-950 p-6 shadow-xl">
       <h2 class="text-2xl font-extrabold text-white">Legal Disclaimer</h2>
-      <p class="mt-4 leading-7 text-slate-400">
-        This Video Format Converter is provided for general media utility purposes only. Conversion accuracy, output compatibility, compression quality, and processing success may vary depending on the source file, codec, browser, device memory, and FFmpeg WebAssembly support. Users are responsible for ensuring they have the legal right to convert, copy, store, and distribute any media file they process with this tool. Do not use this tool to infringe copyright, bypass platform rules, or process confidential files on shared or untrusted devices. NodnWebTools does not guarantee uninterrupted operation, professional-grade encoding quality, or compatibility with every file type.
+      <p class="mt-4 leading-7 text-slate-300">
+        This Video Format Converter is provided as a general browser-based media utility. Conversion quality, file compatibility, metadata preservation, codec support, and processing success may vary depending on the source file, browser, device hardware, available memory, and FFmpeg WebAssembly behavior. Users are responsible for ensuring they have the legal right to convert, copy, store, and distribute any video file processed with this tool. Do not use this tool to infringe copyright, violate platform terms, bypass content restrictions, or process confidential files on shared or untrusted devices. NodnWebTools does not provide professional media engineering guarantees and is not responsible for file loss, conversion errors, quality changes, or unsupported codecs.
       </p>
     </section>
 
@@ -386,13 +490,11 @@
     </section>
   </main>
 
-  <footer class="border-t border-white/10 px-4 py-8 text-center text-sm text-slate-500">
+  <footer class="border-t border-slate-200 bg-white px-4 py-8 text-center text-sm text-slate-500">
     <p>© <span id="year"></span> NodnWebTools. All rights reserved.</p>
   </footer>
 
   <script>
-    const { createFFmpeg, fetchFile } = FFmpeg;
-
     const allowedExtensions = ["mp4", "webm", "mov", "avi", "mkv"];
 
     const fileInput = document.getElementById("fileInput");
@@ -404,13 +506,14 @@
     const fileName = document.getElementById("fileName");
     const fileSize = document.getElementById("fileSize");
     const formatSelect = document.getElementById("formatSelect");
-    const presetSelect = document.getElementById("presetSelect");
+    const modeSelect = document.getElementById("modeSelect");
     const progressText = document.getElementById("progressText");
     const progressBar = document.getElementById("progressBar");
     const statusText = document.getElementById("statusText");
     const errorBox = document.getElementById("errorBox");
+    const successBox = document.getElementById("successBox");
     const convertButton = document.getElementById("convertButton");
-    const convertButtonText = document.getElementById("convertButtonText");
+    const convertButtonContent = document.getElementById("convertButtonContent");
     const resetButton = document.getElementById("resetButton");
     const downloadBox = document.getElementById("downloadBox");
     const downloadLink = document.getElementById("downloadLink");
@@ -418,7 +521,8 @@
     let selectedFile = null;
     let previewUrl = null;
     let outputUrl = null;
-    let ffmpeg = null;
+    let ffmpegInstance = null;
+    let ffmpegLoadPromise = null;
     let isConverting = false;
 
     document.getElementById("year").textContent = new Date().getFullYear();
@@ -426,35 +530,37 @@
     function showError(message) {
       errorBox.textContent = message;
       errorBox.classList.remove("hidden");
+      successBox.classList.add("hidden");
     }
 
-    function clearError() {
-      errorBox.textContent = "";
+    function showSuccess(message) {
+      successBox.textContent = message;
+      successBox.classList.remove("hidden");
       errorBox.classList.add("hidden");
     }
 
+    function clearNotices() {
+      errorBox.textContent = "";
+      successBox.textContent = "";
+      errorBox.classList.add("hidden");
+      successBox.classList.add("hidden");
+    }
+
     function setProgress(percent) {
-      const safePercent = Math.max(0, Math.min(100, Math.round(percent || 0)));
+      const safePercent = Math.max(0, Math.min(100, Math.round(Number(percent) || 0)));
       progressText.textContent = safePercent + "%";
       progressBar.style.width = safePercent + "%";
     }
 
-    function setLoadingState(loading) {
-      isConverting = loading;
-      convertButton.disabled = loading;
+    function setButtonLoading(isLoading, label) {
+      convertButton.disabled = isLoading;
 
-      if (loading) {
-        convertButtonText.innerHTML = "";
-        const spinner = document.createElement("span");
-        spinner.className = "spinner";
-        const label = document.createElement("span");
-        label.textContent = "Encoding video...";
-        convertButtonText.appendChild(spinner);
-        convertButtonText.appendChild(label);
-        convertButtonText.className = "flex items-center justify-center gap-2";
+      if (isLoading) {
+        convertButtonContent.innerHTML = '<span class="spinner"></span><span>' + (label || "Processing...") + "</span>";
+        convertButtonContent.className = "flex items-center justify-center gap-2";
       } else {
-        convertButtonText.className = "";
-        convertButtonText.textContent = "Convert & Download Video";
+        convertButtonContent.className = "";
+        convertButtonContent.textContent = "Convert & Download Video";
       }
     }
 
@@ -462,11 +568,17 @@
       if (!Number.isFinite(bytes) || bytes <= 0) return "Unknown size";
       const units = ["bytes", "KB", "MB", "GB"];
       const index = Math.min(Math.floor(Math.log(bytes) / Math.log(1024)), units.length - 1);
-      return (bytes / Math.pow(1024, index)).toFixed(index === 0 ? 0 : 2) + " " + units[index];
+      const value = bytes / Math.pow(1024, index);
+      return value.toFixed(index === 0 ? 0 : 2) + " " + units[index];
     }
 
     function getExtension(filename) {
-      return String(filename || "").split(".").pop().toLowerCase();
+      const parts = String(filename || "").split(".");
+      return parts.length > 1 ? parts.pop().toLowerCase() : "";
+    }
+
+    function getBaseName(filename) {
+      return String(filename || "converted-video").replace(/\.[^/.]+$/, "").replace(/[^\w\-]+/g, "-").replace(/-+/g, "-").replace(/^-|-$/g, "") || "converted-video";
     }
 
     function validateFile(file) {
@@ -480,26 +592,28 @@
         throw new Error("Unsupported file format. Please upload an MP4, WEBM, MOV, AVI, or MKV video file.");
       }
 
-      if (!file.type.startsWith("video/") && !allowedExtensions.includes(extension)) {
-        throw new Error("The selected file does not appear to be a supported video file.");
-      }
-
-      const maxRecommendedSize = 1024 * 1024 * 1024;
+      const maxRecommendedSize = 600 * 1024 * 1024;
 
       if (file.size > maxRecommendedSize) {
-        throw new Error("This file is larger than the recommended browser processing limit. Please try a smaller video file.");
+        throw new Error("This file is larger than the recommended browser processing limit. Please try a smaller video file under 600 MB.");
       }
     }
 
     function loadVideoFile(file) {
       try {
-        clearError();
+        clearNotices();
         validateFile(file);
+
         selectedFile = file;
+        downloadBox.classList.add("hidden");
+        setProgress(0);
 
-        if (previewUrl) URL.revokeObjectURL(previewUrl);
+        if (previewUrl) {
+          URL.revokeObjectURL(previewUrl);
+          previewUrl = null;
+        }
+
         previewUrl = URL.createObjectURL(file);
-
         videoPreview.src = previewUrl;
         videoPreview.classList.remove("hidden");
         previewPlaceholder.classList.add("hidden");
@@ -508,53 +622,106 @@
         fileName.textContent = file.name;
         fileSize.textContent = formatBytes(file.size);
 
-        downloadBox.classList.add("hidden");
-        setProgress(0);
-        statusText.textContent = "Video loaded successfully. Choose a target format and start conversion.";
+        statusText.textContent = "Video loaded successfully. Choose an output format and start conversion.";
       } catch (error) {
         selectedFile = null;
         showError(error.message || "Unable to load the selected video file.");
       }
     }
 
-    async function getFFmpeg() {
-      if (ffmpeg) return ffmpeg;
+    function getFFmpegFactory() {
+      if (!window.FFmpeg || !window.FFmpeg.createFFmpeg || !window.FFmpeg.fetchFile) {
+        throw new Error("FFmpeg library was not loaded. Please check your internet connection or CDN access.");
+      }
 
-      statusText.textContent = "Loading FFmpeg WebAssembly. This may take a moment on first use.";
+      return window.FFmpeg;
+    }
 
-      ffmpeg = createFFmpeg({
-        log: false,
-        progress: ({ ratio }) => {
-          if (isConverting) {
-            setProgress((ratio || 0) * 100);
+    async function loadFFmpeg() {
+      if (ffmpegInstance && ffmpegInstance.isLoaded()) {
+        return ffmpegInstance;
+      }
+
+      if (ffmpegLoadPromise) {
+        return ffmpegLoadPromise;
+      }
+
+      const FFmpegTools = getFFmpegFactory();
+
+      ffmpegInstance = FFmpegTools.createFFmpeg({
+        log: true,
+        corePath: "https://unpkg.com/@ffmpeg/core@0.11.0/dist/ffmpeg-core.js",
+        progress: function(progressData) {
+          if (!isConverting) return;
+
+          const ratio = progressData && typeof progressData.ratio === "number" ? progressData.ratio : 0;
+          if (ratio > 0 && ratio <= 1) {
+            setProgress(ratio * 100);
           }
         }
       });
 
-      await ffmpeg.load();
-      return ffmpeg;
+      ffmpegLoadPromise = (async function() {
+        statusText.textContent = "Loading FFmpeg WebAssembly. This happens once per browser session.";
+        setButtonLoading(true, "Loading FFmpeg...");
+
+        try {
+          await ffmpegInstance.load();
+
+          if (!ffmpegInstance.isLoaded()) {
+            throw new Error("FFmpeg WebAssembly did not finish loading. Please refresh the page and try again.");
+          }
+
+          statusText.textContent = "FFmpeg is ready. You can now convert your video.";
+          return ffmpegInstance;
+        } catch (error) {
+          ffmpegInstance = null;
+          const rawMessage = String(error && error.message ? error.message : error);
+
+          if (rawMessage.toLowerCase().includes("sharedarraybuffer")) {
+            throw new Error("Your browser blocked FFmpeg WebAssembly because SharedArrayBuffer is unavailable. If this page is hosted on Vercel, add Cross-Origin-Opener-Policy and Cross-Origin-Embedder-Policy headers.");
+          }
+
+          if (rawMessage.toLowerCase().includes("failed to fetch") || rawMessage.toLowerCase().includes("network")) {
+            throw new Error("FFmpeg WebAssembly files could not be downloaded. Please check your internet connection, ad blocker, CDN access, or browser security settings.");
+          }
+
+          throw new Error("FFmpeg failed to load. " + rawMessage);
+        } finally {
+          ffmpegLoadPromise = null;
+          setButtonLoading(false);
+        }
+      })();
+
+      return ffmpegLoadPromise;
     }
 
-    function getEncodingArgs(targetFormat, preset) {
-      if (targetFormat === "mp4") {
-        if (preset === "smaller") {
-          return ["-c:v", "libx264", "-preset", "veryfast", "-crf", "30", "-c:a", "aac", "-b:a", "96k", "-movflags", "faststart"];
+    function getOutputMimeType(extension) {
+      return extension === "webm" ? "video/webm" : "video/mp4";
+    }
+
+    function getEncodingArguments(targetFormat, mode) {
+      if (mode === "copy") {
+        if (targetFormat === "mp4") {
+          return ["-c", "copy", "-movflags", "faststart"];
         }
 
-        if (preset === "quality") {
-          return ["-c:v", "libx264", "-preset", "medium", "-crf", "20", "-c:a", "aac", "-b:a", "160k", "-movflags", "faststart"];
+        if (targetFormat === "webm") {
+          return ["-c", "copy"];
+        }
+      }
+
+      if (targetFormat === "mp4") {
+        if (mode === "smaller") {
+          return ["-c:v", "libx264", "-preset", "veryfast", "-crf", "30", "-c:a", "aac", "-b:a", "96k", "-movflags", "faststart"];
         }
 
         return ["-c:v", "libx264", "-preset", "veryfast", "-crf", "24", "-c:a", "aac", "-b:a", "128k", "-movflags", "faststart"];
       }
 
       if (targetFormat === "webm") {
-        if (preset === "smaller") {
+        if (mode === "smaller") {
           return ["-c:v", "libvpx-vp9", "-b:v", "0", "-crf", "42", "-c:a", "libopus", "-b:a", "80k"];
-        }
-
-        if (preset === "quality") {
-          return ["-c:v", "libvpx-vp9", "-b:v", "0", "-crf", "28", "-c:a", "libopus", "-b:a", "128k"];
         }
 
         return ["-c:v", "libvpx-vp9", "-b:v", "0", "-crf", "34", "-c:a", "libopus", "-b:a", "96k"];
@@ -563,79 +730,113 @@
       return [];
     }
 
+    function cleanupFFmpegFile(engine, filename) {
+      try {
+        engine.FS("unlink", filename);
+      } catch (_) {}
+    }
+
+    async function runConversionWithMode(engine, inputName, outputName, targetFormat, mode) {
+      const args = ["-i", inputName].concat(getEncodingArguments(targetFormat, mode)).concat([outputName]);
+      await engine.run.apply(engine, args);
+    }
+
     async function convertVideo() {
       if (isConverting) return;
 
       try {
-        clearError();
+        clearNotices();
         validateFile(selectedFile);
 
-        setLoadingState(true);
+        isConverting = true;
         setProgress(0);
+        setButtonLoading(true, "Preparing...");
         downloadBox.classList.add("hidden");
 
         const targetFormat = formatSelect.value;
-        const preset = presetSelect.value;
-        const inputExtension = getExtension(selectedFile.name);
-        const inputName = "input." + inputExtension;
-        const outputName = "converted-video." + targetFormat;
+        const selectedMode = modeSelect.value;
+        const sourceExtension = getExtension(selectedFile.name);
+        const inputName = "input." + sourceExtension;
+        const outputName = getBaseName(selectedFile.name) + "-converted." + targetFormat;
 
-        const engine = await getFFmpeg();
+        const engine = await loadFFmpeg();
+
+        if (!engine || !engine.isLoaded()) {
+          throw new Error("FFmpeg WebAssembly is not ready. Please refresh the page and try again.");
+        }
+
+        const FFmpegTools = getFFmpegFactory();
+
+        cleanupFFmpegFile(engine, inputName);
+        cleanupFFmpegFile(engine, outputName);
+
+        statusText.textContent = "Reading the selected video into browser memory.";
+        setButtonLoading(true, "Reading file...");
+        engine.FS("writeFile", inputName, await FFmpegTools.fetchFile(selectedFile));
+
+        statusText.textContent = "Converting video locally. Please keep this tab open.";
+        setButtonLoading(true, "Encoding video...");
 
         try {
-          engine.FS("unlink", inputName);
-        } catch (_) {}
+          await runConversionWithMode(engine, inputName, outputName, targetFormat, selectedMode);
+        } catch (firstError) {
+          if (selectedMode === "copy") {
+            statusText.textContent = "Fast remux was not compatible with this file. Trying balanced re-encode instead.";
+            cleanupFFmpegFile(engine, outputName);
+            await runConversionWithMode(engine, inputName, outputName, targetFormat, "balanced");
+          } else {
+            throw firstError;
+          }
+        }
 
-        try {
-          engine.FS("unlink", outputName);
-        } catch (_) {}
+        statusText.textContent = "Preparing your converted download file.";
+        setButtonLoading(true, "Preparing download...");
 
-        statusText.textContent = "Preparing video data for local conversion.";
-        engine.FS("writeFile", inputName, await fetchFile(selectedFile));
+        const convertedData = engine.FS("readFile", outputName);
+        const blob = new Blob([convertedData.buffer], {
+          type: getOutputMimeType(targetFormat)
+        });
 
-        statusText.textContent = "Encoding video locally in your browser.";
+        if (outputUrl) {
+          URL.revokeObjectURL(outputUrl);
+          outputUrl = null;
+        }
 
-        const args = ["-i", inputName, ...getEncodingArgs(targetFormat, preset), outputName];
-        await engine.run(...args);
-
-        statusText.textContent = "Finalizing converted video file.";
-        const data = engine.FS("readFile", outputName);
-
-        const mimeType = targetFormat === "mp4" ? "video/mp4" : "video/webm";
-        const blob = new Blob([data.buffer], { type: mimeType });
-
-        if (outputUrl) URL.revokeObjectURL(outputUrl);
         outputUrl = URL.createObjectURL(blob);
-
         downloadLink.href = outputUrl;
         downloadLink.download = outputName;
         downloadBox.classList.remove("hidden");
 
         setProgress(100);
         statusText.textContent = "Conversion complete. Your download is ready.";
+        showSuccess("The video was converted successfully.");
 
-        try {
-          engine.FS("unlink", inputName);
-          engine.FS("unlink", outputName);
-        } catch (_) {}
+        cleanupFFmpegFile(engine, inputName);
+        cleanupFFmpegFile(engine, outputName);
       } catch (error) {
         const message = String(error && error.message ? error.message : error);
+        const lowerMessage = message.toLowerCase();
 
-        if (message.toLowerCase().includes("memory") || message.toLowerCase().includes("allocation")) {
-          showError("The browser ran out of available memory while converting this video. Please try a smaller file, a shorter clip, or a lower-size preset.");
+        if (lowerMessage.includes("memory") || lowerMessage.includes("allocation") || lowerMessage.includes("abort")) {
+          showError("The browser ran out of available memory while converting this video. Please try a smaller file, a shorter clip, or the smaller file size mode.");
+        } else if (lowerMessage.includes("not ready") || lowerMessage.includes("load")) {
+          showError("FFmpeg WebAssembly was not ready. Please refresh the page and wait for FFmpeg to load before converting again.");
+        } else if (lowerMessage.includes("codec") || lowerMessage.includes("invalid data")) {
+          showError("This video may use an unsupported codec or damaged media stream. Please try another file or convert from a standard MP4 source.");
         } else {
-          showError(message || "Video conversion failed. The file may use an unsupported codec or exceed browser processing limits.");
+          showError(message || "Video conversion failed. Please try a smaller file or another browser.");
         }
 
         statusText.textContent = "Conversion stopped.";
       } finally {
-        setLoadingState(false);
+        isConverting = false;
+        setButtonLoading(false);
       }
     }
 
     function resetTool() {
       selectedFile = null;
-      clearError();
+      clearNotices();
       setProgress(0);
       statusText.textContent = "Select a video file to begin.";
 
@@ -663,37 +864,47 @@
       }
     }
 
-    browseButton.addEventListener("click", () => fileInput.click());
-    dropZone.addEventListener("click", (event) => {
-      if (event.target !== browseButton) fileInput.click();
+    browseButton.addEventListener("click", function(event) {
+      event.stopPropagation();
+      fileInput.click();
     });
 
-    fileInput.addEventListener("change", (event) => {
+    dropZone.addEventListener("click", function(event) {
+      if (event.target !== browseButton) {
+        fileInput.click();
+      }
+    });
+
+    fileInput.addEventListener("change", function(event) {
       const file = event.target.files && event.target.files[0];
-      if (file) loadVideoFile(file);
+      if (file) {
+        loadVideoFile(file);
+      }
     });
 
-    dropZone.addEventListener("dragover", (event) => {
+    dropZone.addEventListener("dragover", function(event) {
       event.preventDefault();
       dropZone.classList.add("dropzone-active");
     });
 
-    dropZone.addEventListener("dragleave", () => {
+    dropZone.addEventListener("dragleave", function() {
       dropZone.classList.remove("dropzone-active");
     });
 
-    dropZone.addEventListener("drop", (event) => {
+    dropZone.addEventListener("drop", function(event) {
       event.preventDefault();
       dropZone.classList.remove("dropzone-active");
 
       const file = event.dataTransfer.files && event.dataTransfer.files[0];
-      if (file) loadVideoFile(file);
+      if (file) {
+        loadVideoFile(file);
+      }
     });
 
     convertButton.addEventListener("click", convertVideo);
     resetButton.addEventListener("click", resetTool);
 
-    window.addEventListener("beforeunload", () => {
+    window.addEventListener("beforeunload", function() {
       if (previewUrl) URL.revokeObjectURL(previewUrl);
       if (outputUrl) URL.revokeObjectURL(outputUrl);
     });
