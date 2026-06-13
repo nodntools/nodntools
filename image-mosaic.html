@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Free Online Photo Mosaic Tool - Pixelate, Blur, and Protect Images | NodnWebTools</title>
+  <meta name="description" content="Use this free online photo mosaic tool to pixelate, blur, censor, and protect sensitive areas in images directly in your browser. No upload required. Works with JPG, PNG, and WEBP images." />
+  <meta name="keywords" content="photo mosaic tool, image pixelate tool, blur faces online, censor photo online, privacy image editor, photo redaction tool, online image mosaic, pixelate image online, blur image online, free photo censor tool" />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="Free Online Photo Mosaic Tool" />
+  <meta property="og:description" content="Pixelate, blur, and censor sensitive parts of your photos directly in your browser with a private client-side image mosaic tool." />
+  <meta property="og:type" content="website" />
+
+  <meta name="google-adsense-account" content="ca-pub-5282672325821404">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404" crossorigin="anonymous"></script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Free Online Photo Mosaic Tool",
+    "applicationCategory": "MultimediaApplication",
+    "operatingSystem": "Any",
+    "description": "A browser-based photo mosaic and image privacy tool that lets users pixelate, blur, and censor sensitive areas in photos without uploading files to a server.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "featureList": [
+      "Image upload",
+      "Drag and drop support",
+      "Full image mosaic",
+      "Selected area mosaic",
+      "Brush mosaic",
+      "Blur mode",
+      "Pixelate mode",
+      "Undo",
+      "Download result"
+    ]
+  }
+  </script>
+
+  <style>
+    html,
+    body {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+      background: #f8fafc;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      min-width: 0;
+    }
+
+    .safe-break {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .mobile-card,
+    .mobile-panel,
+    .mobile-preview,
+    .mobile-code,
+    canvas,
+    img,
+    svg,
+    table,
+    pre,
+    code,
+    section,
+    main,
+    article,
+    aside,
+    div {
+      max-width: 100%;
+    }
+
+    .ad-box {
+      width: 100%;
+      max-width: 100%;
+      min-height: 90px;
+      border: 2px dashed #cbd5e1;
+      background: #f1f5f9;
+      color: #64748b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-radius: 1rem;
+      padding: 1rem;
+      overflow: hidden;
+    }
+
+    .canvas-shell {
+      width: 100%;
+      max-width: 100%;
+      overflow: auto;
+      background:
+        linear-gradient(45deg, #f1f5f9 25%, transparent 25%),
+        linear-gradient(-45deg, #f1f5f9 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #f1f5f9 75%),
+        linear-gradient(-45deg, transparent 75%, #f1f5f9 75%);
+      background-size: 20px 20px;
+      background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+    }
+
+    #editorCanvas {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      margin: 0 auto;
+      touch-action: none;
+      cursor: crosshair;
+      border-radius: 0.75rem;
+    }
+
+    .checker-empty {
+      min-height: 360px;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        font-size: 15px;
+      }
+
+      .mobile-card {
+        border-radius: 1rem !important;
+        padding: 1rem !important;
+      }
+
+      .mobile-panel {
+        padding: 1rem !important;
+      }
+
+      .mobile-preview {
+        padding: 0.75rem !important;
+      }
+
+      .mobile-button-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .mobile-button-grid button,
+      .mobile-button-grid a {
+        width: 100% !important;
+      }
+
+      .checker-empty {
+        min-height: 260px;
+      }
+
+      .ad-box {
+        min-height: 90px;
+        border-radius: 0.875rem;
+        padding: 0.75rem;
+      }
+
+      #editorCanvas {
+        border-radius: 0.5rem;
+      }
+    }
+
+    @media (max-width: 380px) {
+      body {
+        font-size: 14px;
+      }
+
+      .mobile-card {
+        padding: 0.875rem !important;
+        border-radius: 0.875rem !important;
+      }
+
+      .checker-empty {
+        min-height: 220px;
+      }
+
+      h1 {
+        font-size: 1.85rem !important;
+        line-height: 2.15rem !important;
+      }
+    }
+  </style>
+</head>
+
+<body class="text-slate-800">
+  <header class="w-full border-b border-slate-200 bg-white/90 backdrop-blur">
+    <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
+      <a href="https://nodntools.com" class="safe-break text-xl font-extrabold tracking-tight text-slate-900" aria-label="NodnWebTools Home">
+        Nodn<span class="text-indigo-600">WebTools</span>
+      </a>
+      <a href="https://nodntools.com" class="rounded-full border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700">
+        Home
+      </a>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+    <div class="ad-box mb-6">
+      Advertisement Area
+    </div>
+
+    <section class="grid gap-6 lg:grid-cols-[420px_1fr]">
+      <div class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+        <div class="mb-6">
+          <p class="mb-2 text-sm font-bold uppercase tracking-wider text-indigo-600">Private Browser Image Editor</p>
+          <h1 class="safe-break text-4xl font-extrabold tracking-tight text-slate-950">
+            Free Online Photo Mosaic Tool
+          </h1>
+          <p class="mt-4 text-base leading-7 text-slate-600">
+            Pixelate, blur, or censor sensitive parts of your image directly in your browser. Your photo stays on your device and is not uploaded to a server.
+          </p>
+        </div>
+
+        <div id="dropZone" class="mb-5 rounded-2xl border-2 border-dashed border-indigo-200 bg-indigo-50/50 p-5 text-center transition hover:border-indigo-400 hover:bg-indigo-50">
+          <input id="imageInput" type="file" accept="image/png,image/jpeg,image/webp" class="hidden" />
+          <button id="chooseImageBtn" type="button" class="w-full rounded-xl bg-indigo-600 px-5 py-3 font-bold text-white shadow-sm transition hover:bg-indigo-700">
+            Choose Image
+          </button>
+          <p class="mt-3 text-sm text-slate-600">or drag and drop a JPG, PNG, or WEBP file here</p>
+        </div>
+
+        <div class="space-y-5">
+          <div>
+            <label for="modeSelect" class="mb-2 block text-sm font-bold text-slate-700">Editing Mode</label>
+            <select id="modeSelect" class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-800 outline-none transition focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100">
+              <option value="brush">Brush selected areas</option>
+              <option value="rectangle">Draw rectangle area</option>
+              <option value="full">Apply to full image</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="effectSelect" class="mb-2 block text-sm font-bold text-slate-700">Effect Type</label>
+            <select id="effectSelect" class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-800 outline-none transition focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100">
+              <option value="pixelate">Pixelate mosaic</option>
+              <option value="blur">Soft blur</option>
+            </select>
+          </div>
+
+          <div>
+            <div class="mb-2 flex items-center justify-between gap-3">
+              <label for="strengthRange" class="text-sm font-bold text-slate-700">Mosaic Strength</label>
+              <span id="strengthValue" class="rounded-full bg-slate-100 px-3 py-1 text-xs font-bold text-slate-700">18</span>
+            </div>
+            <input id="strengthRange" type="range" min="4" max="60" value="18" class="w-full accent-indigo-600" />
+          </div>
+
+          <div>
+            <div class="mb-2 flex items-center justify-between gap-3">
+              <label for="brushRange" class="text-sm font-bold text-slate-700">Brush Size</label>
+              <span id="brushValue" class="rounded-full bg-slate-100 px-3 py-1 text-xs font-bold text-slate-700">42 px</span>
+            </div>
+            <input id="brushRange" type="range" min="10" max="160" value="42" class="w-full accent-indigo-600" />
+          </div>
+
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+            <h2 class="mb-2 font-bold text-slate-900">How to Use</h2>
+            <ul class="space-y-2 text-sm leading-6 text-slate-600">
+              <li>1. Upload an image from your device.</li>
+              <li>2. Choose brush, rectangle, or full image mode.</li>
+              <li>3. Adjust strength and apply the mosaic effect.</li>
+              <li>4. Download the edited image privately.</li>
+            </ul>
+          </div>
+
+          <div id="warningBox" class="hidden rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm leading-6 text-amber-800"></div>
+        </div>
+      </div>
+
+      <div class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+        <div class="mb-5 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
+          <div>
+            <h2 class="text-2xl font-extrabold text-slate-950">Live Preview</h2>
+            <p id="statusText" class="mt-1 text-sm text-slate-500">Upload an image to start editing.</p>
+          </div>
+          <div class="grid grid-cols-2 gap-2 mobile-button-grid sm:flex">
+            <button id="undoBtn" type="button" class="rounded-xl border border-slate-300 px-4 py-2 text-sm font-bold text-slate-700 transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50" disabled>
+              Undo
+            </button>
+            <button id="resetBtn" type="button" class="rounded-xl border border-slate-300 px-4 py-2 text-sm font-bold text-slate-700 transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50" disabled>
+              Reset
+            </button>
+            <button id="applyFullBtn" type="button" class="rounded-xl bg-violet-600 px-4 py-2 text-sm font-bold text-white transition hover:bg-violet-700 disabled:cursor-not-allowed disabled:opacity-50" disabled>
+              Apply Full
+            </button>
+            <button id="downloadBtn" type="button" class="rounded-xl bg-indigo-600 px-4 py-2 text-sm font-bold text-white transition hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-50" disabled>
+              Download
+            </button>
+          </div>
+        </div>
+
+        <div class="mobile-preview canvas-shell checker-empty flex items-center justify-center rounded-2xl border border-slate-200 p-4">
+          <div id="emptyState" class="max-w-md text-center">
+            <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-indigo-100 text-3xl">🖼️</div>
+            <p class="text-lg font-bold text-slate-800">No image selected</p>
+            <p class="mt-2 text-sm leading-6 text-slate-500">
+              Your uploaded image will appear here. Use the brush or rectangle mode to protect faces, license plates, documents, screens, and other private details.
+            </p>
+          </div>
+          <canvas id="editorCanvas" class="hidden"></canvas>
+        </div>
+
+        <div class="mt-4 grid gap-3 sm:grid-cols-3">
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+            <p class="text-xs font-bold uppercase tracking-wide text-slate-500">Privacy</p>
+            <p class="mt-1 text-sm font-semibold text-slate-800">Client-side only</p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+            <p class="text-xs font-bold uppercase tracking-wide text-slate-500">Formats</p>
+            <p class="mt-1 text-sm font-semibold text-slate-800">JPG, PNG, WEBP</p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+            <p class="text-xs font-bold uppercase tracking-wide text-slate-500">Output</p>
+            <p class="mt-1 text-sm font-semibold text-slate-800">PNG download</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="ad-box my-8">
+      Advertisement Area
+    </div>
+
+    <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm lg:p-10">
+      <div class="mx-auto max-w-4xl">
+        <p class="mb-2 text-sm font-bold uppercase tracking-wider text-indigo-600">Image Privacy Guide</p>
+        <h2 class="safe-break text-3xl font-extrabold tracking-tight text-slate-950">
+          Protect Sensitive Photos with a Browser-Based Mosaic Image Editor
+        </h2>
+        <p class="mt-5 leading-8 text-slate-600">
+          A photo mosaic tool is a practical way to hide sensitive visual information before sharing an image online, sending it through email, uploading it to social media, or publishing it in a public article. Instead of exposing faces, license plates, home addresses, document numbers, private screens, children’s school information, or financial details, you can apply a pixelated mosaic or blur effect to reduce visibility. This online image mosaic editor is designed for everyday users, creators, bloggers, teachers, office workers, and website owners who need a fast and private method for basic image redaction.
+        </p>
+
+        <h3 class="mt-8 text-2xl font-extrabold text-slate-950">Why Use an Online Photo Mosaic Tool?</h3>
+        <p class="mt-4 leading-8 text-slate-600">
+          Photos often contain more private information than people notice at first. A simple screenshot may show account names, email addresses, order numbers, browser tabs, messages, maps, or background details. A family photo may include a child’s face, school uniform, street sign, vehicle plate, or location clue. A photo mosaic tool helps reduce these risks by letting you censor selected parts of an image before it is shared.
+        </p>
+        <p class="mt-4 leading-8 text-slate-600">
+          This page works directly inside your browser. The selected image is processed locally with HTML canvas technology, which means the tool does not need a backend server for normal editing. For privacy-focused users, this is an important advantage because the photo does not need to be uploaded just to add a mosaic effect.
+        </p>
+
+        <div class="ad-box my-8">
+          Advertisement Area
+        </div>
+
+        <h3 class="mt-8 text-2xl font-extrabold text-slate-950">Popular Uses for a Photo Pixelate Tool</h3>
+        <div class="mt-5 grid gap-4 md:grid-cols-2">
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <h4 class="font-extrabold text-slate-900">Blur Faces in Photos</h4>
+            <p class="mt-2 text-sm leading-7 text-slate-600">
+              Use the brush or rectangle mode to cover faces before posting event photos, classroom images, travel pictures, or community photos.
+            </p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <h4 class="font-extrabold text-slate-900">Hide License Plates</h4>
+            <p class="mt-2 text-sm leading-7 text-slate-600">
+              Pixelate car plates in vehicle photos, parking images, insurance documentation, or online marketplace listings.
+            </p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <h4 class="font-extrabold text-slate-900">Censor Documents and Screenshots</h4>
+            <p class="mt-2 text-sm leading-7 text-slate-600">
+              Cover names, account numbers, addresses, order IDs, QR codes, barcodes, and personal messages before sharing screenshots.
+            </p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <h4 class="font-extrabold text-slate-900">Prepare Blog and Website Images</h4>
+            <p class="mt-2 text-sm leading-7 text-slate-600">
+              Website owners can quickly prepare safer images for tutorials, reviews, guides, case studies, and public documentation.
+            </p>
+          </div>
+        </div>
+
+        <h3 class="mt-8 text-2xl font-extrabold text-slate-950">Pixelate vs Blur: Which Effect Should You Choose?</h3>
+        <p class="mt-4 leading-8 text-slate-600">
+          Pixelation creates a blocky mosaic look by replacing a detailed area with larger color blocks. It is commonly used for censoring faces, license plates, private documents, and identifying information. Blur creates a softer effect by smoothing details. Blur can look cleaner for screenshots and background objects, while pixelation often communicates that an area was intentionally censored.
+        </p>
+        <p class="mt-4 leading-8 text-slate-600">
+          For stronger privacy protection, apply a higher mosaic strength and review the final image before publishing. Very light blur may still leave shapes, text, or faces partly recognizable. When the image contains highly sensitive information, consider cropping the image or removing the sensitive area entirely in addition to applying mosaic.
+        </p>
+
+        <div class="ad-box my-8">
+          Advertisement Area
+        </div>
+
+        <h3 class="mt-8 text-2xl font-extrabold text-slate-950">Practical Tips for Better Image Redaction</h3>
+        <p class="mt-4 leading-8 text-slate-600">
+          Always zoom in mentally and check the background of an image before sharing it. Look for mirrors, computer screens, address labels, package labels, ID cards, street signs, car plates, school logos, faces of bystanders, and personal documents. If you are editing a screenshot, check browser tabs, bookmarks, usernames, email addresses, chat previews, filenames, and notification banners.
+        </p>
+        <p class="mt-4 leading-8 text-slate-600">
+          Use rectangle mode when the sensitive area has a clear shape, such as a license plate, address label, receipt, or document number. Use brush mode when the sensitive area is irregular, such as a face, object, or background detail. Use full image mode when you want to create a stylized mosaic preview or intentionally obscure the whole image.
+        </p>
+      </div>
+    </article>
+
+    <section class="mobile-card mt-8 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm lg:p-10">
+      <div class="mx-auto max-w-4xl">
+        <h2 class="text-3xl font-extrabold text-slate-950">Frequently Asked Questions</h2>
+
+        <div class="mt-6 space-y-4">
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <h3 class="font-extrabold text-slate-900">Does this photo mosaic tool upload my image?</h3>
+            <p class="mt-2 leading-7 text-slate-600">
+              No. The editing process runs in your browser using client-side JavaScript and canvas. The tool is designed so your selected image does not need to be uploaded to a server for normal mosaic editing.
+            </p>
+          </div>
+
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <h3 class="font-extrabold text-slate-900">Can I blur only one part of a photo?</h3>
+            <p class="mt-2 leading-7 text-slate-600">
+              Yes. Use rectangle mode for clean block areas or brush mode for freehand editing. You can apply the mosaic effect to faces, license plates, text, screens, documents, or background details.
+            </p>
+          </div>
+
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <h3 class="font-extrabold text-slate-900">What image formats are supported?</h3>
+            <p class="mt-2 leading-7 text-slate-600">
+              The tool supports common browser image formats such as JPG, PNG, and WEBP. The edited image is downloaded as a PNG file for broad compatibility.
+            </p>
+          </div>
+
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <h3 class="font-extrabold text-slate-900">Is pixelation always enough to protect private information?</h3>
+            <p class="mt-2 leading-7 text-slate-600">
+              Not always. Pixelation and blur can reduce visibility, but extremely sensitive information should be removed, cropped out, or covered strongly. Always inspect the final image before sharing it publicly.
+            </p>
+          </div>
+
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <h3 class="font-extrabold text-slate-900">Does the tool work on mobile?</h3>
+            <p class="mt-2 leading-7 text-slate-600">
+              Yes. The layout is responsive and supports touch drawing on the canvas. For very large images, performance may depend on your device memory and browser capability.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="ad-box my-8">
+      Advertisement Area
+    </div>
+
+    <section class="mobile-card rounded-3xl border border-slate-800 bg-slate-950 p-6 text-slate-200 shadow-sm lg:p-10">
+      <div class="mx-auto max-w-4xl">
+        <h2 class="text-2xl font-extrabold text-white">Legal Disclaimer</h2>
+        <p class="mt-4 leading-8 text-slate-300">
+          This photo mosaic tool is provided for general informational and practical image editing purposes only. While the tool can help obscure visible details in an image, it does not guarantee complete privacy, legal compliance, anonymity, or irreversible removal of sensitive information. Users are responsible for reviewing edited images before sharing, publishing, storing, or distributing them.
+        </p>
+        <p class="mt-4 leading-8 text-slate-300">
+          Do not rely on mosaic, blur, or pixelation as the only protection for highly confidential, regulated, financial, medical, legal, identification, or security-sensitive information. For sensitive documents or professional compliance requirements, consult an appropriate privacy, legal, or security professional. NodnWebTools is not responsible for data exposure, misuse, inaccurate editing, browser limitations, device issues, or consequences resulting from edited or shared images.
+        </p>
+      </div>
+    </section>
+
+    <div class="ad-box mt-8">
+      Advertisement Area
+    </div>
+  </main>
+
+  <footer class="mt-8 border-t border-slate-200 bg-white">
+    <div class="mx-auto max-w-7xl px-4 py-8 text-center text-sm text-slate-500 sm:px-6 lg:px-8">
+      © <span id="yearText"></span> NodnWebTools. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    const imageInput = document.getElementById('imageInput');
+    const chooseImageBtn = document.getElementById('chooseImageBtn');
+    const dropZone = document.getElementById('dropZone');
+    const canvas = document.getElementById('editorCanvas');
+    const ctx = canvas.getContext('2d', { willReadFrequently: true });
+    const emptyState = document.getElementById('emptyState');
+    const statusText = document.getElementById('statusText');
+    const warningBox = document.getElementById('warningBox');
+
+    const modeSelect = document.getElementById('modeSelect');
+    const effectSelect = document.getElementById('effectSelect');
+    const strengthRange = document.getElementById('strengthRange');
+    const strengthValue = document.getElementById('strengthValue');
+    const brushRange = document.getElementById('brushRange');
+    const brushValue = document.getElementById('brushValue');
+
+    const undoBtn = document.getElementById('undoBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const applyFullBtn = document.getElementById('applyFullBtn');
+    const downloadBtn = document.getElementById('downloadBtn');
+    const yearText = document.getElementById('yearText');
+
+    let originalImage = null;
+    let originalDataUrl = '';
+    let historyStack = [];
+    let isDrawing = false;
+    let isRectDrawing = false;
+    let rectStart = null;
+    let rectPreviewImage = null;
+
+    yearText.textContent = new Date().getFullYear();
+
+    function showWarning(message) {
+      warningBox.textContent = message;
+      warningBox.classList.remove('hidden');
+    }
+
+    function clearWarning() {
+      warningBox.textContent = '';
+      warningBox.classList.add('hidden');
+    }
+
+    function setControlsEnabled(enabled) {
+      undoBtn.disabled = !enabled || historyStack.length === 0;
+      resetBtn.disabled = !enabled;
+      applyFullBtn.disabled = !enabled;
+      downloadBtn.disabled = !enabled;
+    }
+
+    function updateSliderLabels() {
+      strengthValue.textContent = strengthRange.value;
+      brushValue.textContent = brushRange.value + ' px';
+    }
+
+    function saveHistory() {
+      try {
+        if (!canvas.width || !canvas.height) return;
+        historyStack.push(canvas.toDataURL('image/png'));
+        if (historyStack.length > 20) historyStack.shift();
+        setControlsEnabled(true);
+      } catch (error) {
+        showWarning('Unable to save undo state for this image.');
+      }
+    }
+
+    function getCanvasPoint(event) {
+      const rect = canvas.getBoundingClientRect();
+      const clientX = event.touches ? event.touches[0].clientX : event.clientX;
+      const clientY = event.touches ? event.touches[0].clientY : event.clientY;
+      const scaleX = canvas.width / rect.width;
+      const scaleY = canvas.height / rect.height;
+
+      return {
+        x: Math.max(0, Math.min(canvas.width, (clientX - rect.left) * scaleX)),
+        y: Math.max(0, Math.min(canvas.height, (clientY - rect.top) * scaleY))
+      };
+    }
+
+    function loadImageFile(file) {
+      clearWarning();
+
+      if (!file) return;
+
+      if (!file.type.startsWith('image/')) {
+        showWarning('Please choose a valid image file.');
+        return;
+      }
+
+      if (file.size > 15 * 1024 * 1024) {
+        showWarning('This image is quite large. For smoother editing, please use an image under 15 MB.');
+      }
+
+      const reader = new FileReader();
+
+      reader.onload = function(event) {
+        const img = new Image();
+
+        img.onload = function() {
+          try {
+            const maxDimension = 2400;
+            let targetWidth = img.naturalWidth;
+            let targetHeight = img.naturalHeight;
+
+            if (targetWidth > maxDimension || targetHeight > maxDimension) {
+              const ratio = Math.min(maxDimension / targetWidth, maxDimension / targetHeight);
+              targetWidth = Math.round(targetWidth * ratio);
+              targetHeight = Math.round(targetHeight * ratio);
+              showWarning('The image was resized for smoother browser performance. The downloaded result will use the resized canvas dimensions.');
+            }
+
+            canvas.width = targetWidth;
+            canvas.height = targetHeight;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(img, 0, 0, targetWidth, targetHeight);
+
+            originalImage = img;
+            originalDataUrl = canvas.toDataURL('image/png');
+            historyStack = [];
+
+            emptyState.classList.add('hidden');
+            canvas.classList.remove('hidden');
+            statusText.textContent = `Loaded image: ${targetWidth} × ${targetHeight}px`;
+            setControlsEnabled(true);
+          } catch (error) {
+            showWarning('Unable to load this image. Please try another file.');
+          }
+        };
+
+        img.onerror = function() {
+          showWarning('The selected file could not be read as an image.');
+        };
+
+        img.src = event.target.result;
+      };
+
+      reader.onerror = function() {
+        showWarning('File reading failed. Please try again.');
+      };
+
+      reader.readAsDataURL(file);
+    }
+
+    function applyPixelate(x, y, width, height) {
+      try {
+        const blockSize = Math.max(2, parseInt(strengthRange.value, 10));
+        const startX = Math.max(0, Math.floor(x));
+        const startY = Math.max(0, Math.floor(y));
+        const endX = Math.min(canvas.width, Math.ceil(x + width));
+        const endY = Math.min(canvas.height, Math.ceil(y + height));
+
+        for (let py = startY; py < endY; py += blockSize) {
+          for (let px = startX; px < endX; px += blockSize) {
+            const sampleWidth = Math.min(blockSize, endX - px);
+            const sampleHeight = Math.min(blockSize, endY - py);
+            const imageData = ctx.getImageData(px, py, sampleWidth, sampleHeight).data;
+
+            let r = 0, g = 0, b = 0, a = 0;
+            const count = imageData.length / 4;
+
+            for (let i = 0; i < imageData.length; i += 4) {
+              r += imageData[i];
+              g += imageData[i + 1];
+              b += imageData[i + 2];
+              a += imageData[i + 3];
+            }
+
+            ctx.fillStyle = `rgba(${Math.round(r / count)}, ${Math.round(g / count)}, ${Math.round(b / count)}, ${Math.round(a / count) / 255})`;
+            ctx.fillRect(px, py, sampleWidth, sampleHeight);
+          }
+        }
+      } catch (error) {
+        showWarning('Pixelation failed for this area. Try a smaller image or a lower strength value.');
+      }
+    }
+
+    function applyBlur(x, y, width, height) {
+      try {
+        const startX = Math.max(0, Math.floor(x));
+        const startY = Math.max(0, Math.floor(y));
+        const areaWidth = Math.min(canvas.width - startX, Math.ceil(width));
+        const areaHeight = Math.min(canvas.height - startY, Math.ceil(height));
+
+        if (areaWidth <= 0 || areaHeight <= 0) return;
+
+        const tempCanvas = document.createElement('canvas');
+        const tempCtx = tempCanvas.getContext('2d');
+        tempCanvas.width = areaWidth;
+        tempCanvas.height = areaHeight;
+
+        tempCtx.drawImage(canvas, startX, startY, areaWidth, areaHeight, 0, 0, areaWidth, areaHeight);
+        ctx.save();
+        ctx.filter = `blur(${Math.max(2, Math.floor(parseInt(strengthRange.value, 10) / 3))}px)`;
+        ctx.drawImage(tempCanvas, 0, 0, areaWidth, areaHeight, startX, startY, areaWidth, areaHeight);
+        ctx.restore();
+      } catch (error) {
+        showWarning('Blur failed for this area. Try a smaller image or a lower strength value.');
+      }
+    }
+
+    function applyEffectToArea(x, y, width, height) {
+      if (!canvas.width || !canvas.height) return;
+
+      if (effectSelect.value === 'blur') {
+        applyBlur(x, y, width, height);
+      } else {
+        applyPixelate(x, y, width, height);
+      }
+    }
+
+    function applyBrushAt(point) {
+      const brushSize = parseInt(brushRange.value, 10);
+      const radius = brushSize / 2;
+      applyEffectToArea(point.x - radius, point.y - radius, brushSize, brushSize);
+    }
+
+    function drawRectPreview(currentPoint) {
+      if (!rectPreviewImage || !rectStart) return;
+
+      const x = Math.min(rectStart.x, currentPoint.x);
+      const y = Math.min(rectStart.y, currentPoint.y);
+      const w = Math.abs(currentPoint.x - rectStart.x);
+      const h = Math.abs(currentPoint.y - rectStart.y);
+
+      ctx.putImageData(rectPreviewImage, 0, 0);
+      ctx.save();
+      ctx.strokeStyle = '#4f46e5';
+      ctx.lineWidth = Math.max(2, canvas.width / 600);
+      ctx.setLineDash([10, 6]);
+      ctx.strokeRect(x, y, w, h);
+      ctx.restore();
+    }
+
+    function startCanvasAction(event) {
+      if (!canvas.width || !canvas.height) return;
+
+      event.preventDefault();
+      clearWarning();
+
+      const mode = modeSelect.value;
+      const point = getCanvasPoint(event);
+
+      if (mode === 'brush') {
+        saveHistory();
+        isDrawing = true;
+        applyBrushAt(point);
+      }
+
+      if (mode === 'rectangle') {
+        saveHistory();
+        isRectDrawing = true;
+        rectStart = point;
+        rectPreviewImage = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      }
+    }
+
+    function moveCanvasAction(event) {
+      if (!canvas.width || !canvas.height) return;
+      event.preventDefault();
+
+      const point = getCanvasPoint(event);
+
+      if (isDrawing && modeSelect.value === 'brush') {
+        applyBrushAt(point);
+      }
+
+      if (isRectDrawing && modeSelect.value === 'rectangle') {
+        drawRectPreview(point);
+      }
+    }
+
+    function endCanvasAction(event) {
+      if (!canvas.width || !canvas.height) return;
+
+      const mode = modeSelect.value;
+
+      if (mode === 'brush') {
+        isDrawing = false;
+      }
+
+      if (mode === 'rectangle' && isRectDrawing) {
+        const point = getCanvasPoint(event.changedTouches ? { touches: event.changedTouches } : event);
+        const x = Math.min(rectStart.x, point.x);
+        const y = Math.min(rectStart.y, point.y);
+        const w = Math.abs(point.x - rectStart.x);
+        const h = Math.abs(point.y - rectStart.y);
+
+        if (rectPreviewImage) {
+          ctx.putImageData(rectPreviewImage, 0, 0);
+        }
+
+        if (w > 4 && h > 4) {
+          applyEffectToArea(x, y, w, h);
+        }
+
+        isRectDrawing = false;
+        rectStart = null;
+        rectPreviewImage = null;
+      }
+
+      setControlsEnabled(true);
+    }
+
+    chooseImageBtn.addEventListener('click', function() {
+      imageInput.click();
+    });
+
+    imageInput.addEventListener('change', function(event) {
+      loadImageFile(event.target.files[0]);
+    });
+
+    dropZone.addEventListener('dragover', function(event) {
+      event.preventDefault();
+      dropZone.classList.add('border-indigo-500', 'bg-indigo-100');
+    });
+
+    dropZone.addEventListener('dragleave', function() {
+      dropZone.classList.remove('border-indigo-500', 'bg-indigo-100');
+    });
+
+    dropZone.addEventListener('drop', function(event) {
+      event.preventDefault();
+      dropZone.classList.remove('border-indigo-500', 'bg-indigo-100');
+      const file = event.dataTransfer.files && event.dataTransfer.files[0];
+      loadImageFile(file);
+    });
+
+    strengthRange.addEventListener('input', updateSliderLabels);
+    brushRange.addEventListener('input', updateSliderLabels);
+
+    canvas.addEventListener('mousedown', startCanvasAction);
+    canvas.addEventListener('mousemove', moveCanvasAction);
+    window.addEventListener('mouseup', endCanvasAction);
+
+    canvas.addEventListener('touchstart', startCanvasAction, { passive: false });
+    canvas.addEventListener('touchmove', moveCanvasAction, { passive: false });
+    canvas.addEventListener('touchend', endCanvasAction, { passive: false });
+
+    applyFullBtn.addEventListener('click', function() {
+      if (!canvas.width || !canvas.height) {
+        showWarning('Please upload an image first.');
+        return;
+      }
+
+      saveHistory();
+      applyEffectToArea(0, 0, canvas.width, canvas.height);
+      statusText.textContent = 'Mosaic effect applied to the full image.';
+      setControlsEnabled(true);
+    });
+
+    undoBtn.addEventListener('click', function() {
+      if (!historyStack.length) return;
+
+      const previousDataUrl = historyStack.pop();
+      const img = new Image();
+
+      img.onload = function() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(img, 0, 0);
+        setControlsEnabled(true);
+        statusText.textContent = 'Last edit undone.';
+      };
+
+      img.src = previousDataUrl;
+    });
+
+    resetBtn.addEventListener('click', function() {
+      if (!originalDataUrl) return;
+
+      const img = new Image();
+
+      img.onload = function() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(img, 0, 0);
+        historyStack = [];
+        setControlsEnabled(true);
+        statusText.textContent = 'Image reset to original loaded state.';
+      };
+
+      img.src = originalDataUrl;
+    });
+
+    downloadBtn.addEventListener('click', function() {
+      if (!canvas.width || !canvas.height) {
+        showWarning('Please upload and edit an image before downloading.');
+        return;
+      }
+
+      try {
+        canvas.toBlob(function(blob) {
+          if (!blob) {
+            showWarning('Download failed. Please try again.');
+            return;
+          }
+
+          const url = URL.createObjectURL(blob);
+          const link = document.createElement('a');
+          link.href = url;
+          link.download = 'mosaic-image.png';
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          URL.revokeObjectURL(url);
+          statusText.textContent = 'Edited image downloaded as PNG.';
+        }, 'image/png');
+      } catch (error) {
+        showWarning('Unable to download this image. Please try another browser or a smaller image.');
+      }
+    });
+
+    modeSelect.addEventListener('change', function() {
+      if (modeSelect.value === 'full') {
+        statusText.textContent = 'Full image mode selected. Use the Apply Full button.';
+      } else if (modeSelect.value === 'rectangle') {
+        statusText.textContent = 'Rectangle mode selected. Drag on the image to choose an area.';
+      } else {
+        statusText.textContent = 'Brush mode selected. Paint over the areas you want to protect.';
+      }
+    });
+
+    window.addEventListener('resize', function() {
+      if (canvas.width && canvas.height) {
+        statusText.textContent = 'Preview resized safely for your screen.';
+      }
+    });
+
+    updateSliderLabels();
+    setControlsEnabled(false);
+  </script>
+</body>
+</html>
