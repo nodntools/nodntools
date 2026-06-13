@@ -2,422 +2,859 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
 
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404"
-     crossorigin="anonymous"></script>
-
-	<meta name="google-adsense-account" content="ca-pub-5282672325821404">	
-
-  <title>Universal Image Converter | Free Online Photo Format Tool - NodnWebTools</title>
-
-  <meta
-    name="description"
-    content="Use the free NodnWebTools Image Converter to seamlessly convert photo formats completely in your browser. Convert PNG to JPG instantly, WebP to PNG, adjust image quality, and download securely with our file conversion guide."
-  />
-  <meta
-    name="keywords"
-    content="online image converter tool, convert png to jpg instantly, webp to png converter, photo format changer, secure file converter, convert image online, NodnWebTools"
-  />
-  <meta name="author" content="NodnWebTools" />
+  <title>Free Image Converter | PNG, JPG, WebP Photo Format Tool - NodnWebTools</title>
+  <meta name="description" content="Convert images between PNG, JPG, and WebP directly in your browser. Use this free client-side image converter to preview, adjust quality, resize, and download converted files securely without server uploads." />
+  <meta name="keywords" content="image converter, PNG to JPG, JPG to PNG, WebP converter, photo format converter, online image converter, client-side image tool, image quality compressor, NodnWebTools" />
   <meta name="robots" content="index, follow" />
+  <meta name="author" content="NodnWebTools" />
 
-  <meta property="og:title" content="Universal Image Converter | NodnWebTools" />
-  <meta
-    property="og:description"
-    content="Seamlessly convert images between PNG, JPG, and WebP formats instantly and securely inside your browser."
-  />
+  <meta property="og:title" content="Free Image Converter | NodnWebTools" />
+  <meta property="og:description" content="Convert PNG, JPG, and WebP images safely in your browser with live preview, quality control, resizing, and one-click download." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://nodntools.com/image-converter.html" />
   <meta property="og:site_name" content="NodnWebTools" />
 
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Universal Image Converter" />
-  <meta
-    name="twitter:description"
-    content="A secure, client-side online photo file converter tool for instant format modifications."
-  />
+  <meta name="google-adsense-account" content="ca-pub-5282672325821404">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404" crossorigin="anonymous"></script>
 
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            brand: {
-              50: '#f0fdf4',
-              100: '#dcfce7',
-              200: '#bbf7d0',
-              500: '#22c55e',
-              600: '#16a34a',
-              700: '#15803d',
-              800: '#166534',
-            }
-          }
-        }
-      }
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Image Converter",
+    "applicationCategory": "MultimediaApplication",
+    "operatingSystem": "Any",
+    "url": "https://nodntools.com/image-converter.html",
+    "description": "A free browser-based image converter for converting PNG, JPG, and WebP files with preview, quality adjustment, resizing, and local download.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "NodnWebTools",
+      "url": "https://nodntools.com"
     }
+  }
   </script>
 
   <style>
-    html, body {
+    html,
+    body {
       width: 100%;
+      max-width: 100%;
       overflow-x: hidden;
     }
 
-    *, *::before, *::after {
+    *,
+    *::before,
+    *::after {
       box-sizing: border-box;
+      min-width: 0;
     }
 
-    img, canvas, svg, video {
+    body {
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    input,
+    select,
+    button,
+    textarea {
       max-width: 100%;
     }
 
-    .adsbygoogle {
-      display: block;
+    img,
+    canvas,
+    svg,
+    video,
+    table,
+    pre,
+    code {
       max-width: 100%;
-      overflow: hidden;
+    }
+
+    .safe-break {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .mobile-card,
+    .mobile-panel,
+    .mobile-preview,
+    .mobile-code,
+    .ad-box {
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
+    .mobile-code {
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .ad-box {
+      min-height: 90px;
+      border: 2px dashed #cbd5e1;
+      background: #f8fafc;
+      color: #94a3b8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-radius: 1rem;
+      padding: 1rem;
+      font-size: 0.875rem;
+      line-height: 1.5;
+    }
+
+    .drop-active {
+      border-color: #4f46e5 !important;
+      background: #eef2ff !important;
+    }
+
+    .checkerboard {
+      background-image:
+        linear-gradient(45deg, #e2e8f0 25%, transparent 25%),
+        linear-gradient(-45deg, #e2e8f0 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #e2e8f0 75%),
+        linear-gradient(-45deg, transparent 75%, #e2e8f0 75%);
+      background-size: 18px 18px;
+      background-position: 0 0, 0 9px, 9px -9px, -9px 0;
+    }
+
+    .range-slider {
+      accent-color: #4f46e5;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding-left: 0;
+        padding-right: 0;
+      }
+
+      .mobile-card {
+        border-radius: 1.25rem;
+        padding: 1rem;
+      }
+
+      .mobile-panel {
+        border-radius: 1rem;
+        padding: 0.875rem;
+      }
+
+      .mobile-preview {
+        min-height: 190px;
+      }
+
+      .mobile-button-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .mobile-button-grid button,
+      .mobile-button-grid a {
+        width: 100%;
+      }
+
+      .mobile-code {
+        font-size: 0.75rem;
+      }
+
+      .ad-box {
+        min-height: 90px;
+        border-radius: 0.875rem;
+        padding: 0.875rem;
+        font-size: 0.75rem;
+      }
     }
 
     @media (max-width: 380px) {
-      .xs-stack {
-        flex-direction: column;
-        align-items: flex-start;
+      .mobile-card {
+        padding: 0.875rem;
+        border-radius: 1rem;
+      }
+
+      .mobile-panel {
+        padding: 0.75rem;
+      }
+
+      h1 {
+        font-size: 1.875rem !important;
+      }
+
+      h2 {
+        font-size: 1.35rem !important;
+      }
+
+      .mobile-preview {
+        min-height: 165px;
+      }
+
+      .ad-box {
+        font-size: 0.7rem;
       }
     }
   </style>
 </head>
 
-<body class="min-h-screen w-full overflow-x-hidden bg-slate-100 px-3 py-5 sm:px-4 sm:py-8 lg:py-12">
-  <main class="mx-auto w-full max-w-5xl overflow-hidden">
-
-    <!-- NodnWebTools Official Logo Header -->
-    <div class="mb-6 text-center sm:mb-8">
-      <a
-        href="https://nodntools.com"
-        class="inline-block transition hover:opacity-80"
-        aria-label="NodnWebTools Home"
-      >
-        <div class="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl break-words">
-          Nodn<span class="text-blue-600">WebTools</span>
-        </div>
+<body class="bg-slate-50 text-slate-800">
+  <div class="w-full px-4 py-5 sm:px-6 lg:px-8">
+    <header class="mx-auto flex w-full max-w-7xl flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <a href="https://nodntools.com" class="inline-flex items-center gap-2 safe-break" aria-label="NodnWebTools Home">
+        <span class="text-2xl font-black tracking-tight text-slate-950">
+          Nodn<span class="text-indigo-600">WebTools</span>
+        </span>
       </a>
+      <nav class="flex flex-wrap items-center gap-2 text-sm text-slate-500">
+        <a href="https://nodntools.com" class="rounded-full border border-slate-200 bg-white px-4 py-2 font-semibold transition hover:border-indigo-200 hover:text-indigo-700">Home</a>
+        <span class="rounded-full bg-indigo-50 px-4 py-2 font-semibold text-indigo-700">Client-side image utility</span>
+      </nav>
+    </header>
+
+    <div class="mx-auto mt-5 w-full max-w-7xl">
+      <div class="ad-box">AdSense Responsive Ad Area - Top</div>
     </div>
 
-    <!-- Google AdSense Responsive Ad - Top -->
-    <div class="mb-6 flex min-h-[80px] w-full items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white px-3 text-center text-xs text-slate-400 sm:mb-8 sm:min-h-[90px] sm:text-sm">
-      AdSense Responsive Ad Area - Top
-    </div>
-
-    <section class="grid grid-cols-1 gap-5 lg:grid-cols-2 lg:gap-6">
-
-      <!-- Left Panel: File Input & Configuration -->
-      <div class="w-full min-w-0 rounded-3xl bg-white p-4 shadow-xl ring-1 ring-slate-200 sm:p-8 lg:sticky lg:top-10 lg:self-start">
+    <main class="mx-auto mt-6 grid w-full max-w-7xl grid-cols-1 gap-6 lg:grid-cols-12">
+      <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:col-span-5 lg:p-8">
         <div class="mb-6">
-          <span class="inline-flex rounded-full bg-brand-50 px-4 py-2 text-sm font-semibold text-brand-700">
-            File Utility
-          </span>
-
-          <h1 class="mt-5 break-words text-2xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-            Universal Image Converter
-          </h1>
-
-          <p class="mt-3 text-sm leading-6 text-slate-600 sm:text-base sm:leading-7">
-            Convert image formats securely in real-time. Files are processed entirely on your device and are never uploaded to any server.
+          <p class="mb-3 inline-flex rounded-full bg-indigo-50 px-4 py-2 text-sm font-bold text-indigo-700">Image Converter</p>
+          <h1 class="text-4xl font-black tracking-tight text-slate-950 sm:text-5xl">Convert images safely in your browser.</h1>
+          <p class="mt-4 text-base leading-7 text-slate-600">
+            Convert PNG, JPG, and WebP files without uploading your images to a server. Preview the image, adjust quality, optionally resize it, and download the converted file locally.
           </p>
         </div>
 
-        <div class="space-y-5">
-          <!-- File Drop Zone Input -->
-          <div>
-            <label class="mb-2 block text-sm font-semibold text-slate-700">Select Image File</label>
-            <div id="dropZone" class="relative flex min-h-[170px] w-full flex-col items-center justify-center rounded-2xl border-2 border-dashed border-slate-300 bg-slate-50 p-5 text-center transition hover:bg-slate-100/70 cursor-pointer sm:p-6">
-              <input type="file" id="fileInput" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer" />
-              <svg class="mx-auto h-12 w-12 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
-              <p class="mt-2 max-w-full break-all px-1 text-sm font-medium text-slate-700" id="fileInputLabel">
-                Click to browse or drag & drop image here
-              </p>
-              <p class="mt-1 text-xs text-slate-400">Supports PNG, JPG, JPEG, WEBP, GIF, BMP</p>
-            </div>
-          </div>
-
-          <!-- Conversion Target Form Controls -->
-          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            <div>
-              <label for="targetFormat" class="mb-2 block text-sm font-semibold text-slate-700">Convert To</label>
-              <select id="targetFormat" class="w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-4 text-base font-medium text-slate-900 outline-none transition focus:border-brand-600 focus:bg-white focus:ring-4 focus:ring-brand-100 cursor-pointer">
-                <option value="image/jpeg">JPEG (.jpg)</option>
-                <option value="image/png" selected>PNG (.png)</option>
-                <option value="image/webp">WebP (.webp)</option>
-              </select>
-            </div>
-
-            <div>
-              <label for="imageQuality" class="mb-2 block text-sm font-semibold text-slate-700">
-                Quality: <span id="qualityDisplay">90%</span>
-              </label>
-              <div class="flex h-[58px] items-center rounded-2xl border border-slate-300 bg-slate-50 px-4">
-                <input type="range" id="imageQuality" min="10" max="100" value="90" class="w-full accent-brand-600 cursor-pointer" />
-              </div>
-            </div>
-          </div>
-
-          <!-- Action Core Processing Trigger Button -->
-          <button id="convertBtn" class="w-full rounded-2xl bg-brand-600 py-4 text-center text-base font-bold text-white shadow-md hover:bg-brand-700 active:scale-[0.99] transition-all disabled:opacity-50 disabled:pointer-events-none" disabled>
-            Convert Image Format
-          </button>
-
-          <div class="rounded-2xl bg-slate-100 p-4 text-sm leading-6 text-slate-600">
-            Processing runs client-side inside standard hardware graphics blocks. Your personal multimedia data remains 100% confidential.
-          </div>
-        </div>
-      </div>
-
-      <!-- Right Panel: Conversion Results & Preview Screen -->
-      <div class="min-w-0 space-y-5 lg:space-y-6">
-        <div class="w-full min-w-0 rounded-3xl bg-white p-4 shadow-xl ring-1 ring-slate-200 sm:p-8">
-          <div class="mb-6">
-            <h2 class="text-xl font-bold text-slate-900 sm:text-2xl">Conversion Output</h2>
-            <p class="mt-2 text-sm text-slate-500">Upload a file to preview the source and trigger modifications.</p>
-          </div>
-
-          <div id="resultPlaceholder" class="rounded-3xl border border-slate-200 bg-gradient-to-br from-slate-50 via-zinc-50 to-green-50/20 p-4 text-center text-sm leading-6 text-slate-400 sm:p-6">
-            Please choose a valid input image from the left dashboard menu to populate interactive analytics.
-          </div>
-
-          <!-- Output Node Panel (Hidden until file selected) -->
-          <div id="resultContent" class="hidden min-w-0 rounded-3xl border border-slate-200 bg-gradient-to-br from-slate-50 via-zinc-50 to-green-50/20 p-4 sm:p-5">
-            <p class="text-sm font-semibold uppercase tracking-wide text-slate-700">Image Preview</p>
-            
-            <!-- Real Image Display Frame -->
-            <div class="mt-4 flex max-h-[220px] min-h-[160px] w-full justify-center overflow-hidden rounded-2xl border border-slate-200 bg-slate-200 shadow-inner sm:max-h-[260px]">
-              <img id="previewImage" src="" alt="Source preview" class="h-auto max-h-[220px] w-full max-w-full object-contain sm:max-h-[260px]" />
-            </div>
-
-            <!-- Summary File Analytics Grid -->
-            <div class="mt-5 grid gap-3 sm:grid-cols-2">
-              <div class="rounded-2xl bg-white p-4 shadow-sm border border-slate-100">
-                <p class="text-xs text-slate-500">Source Name</p>
-                <p id="displayFileName" class="mt-1 break-all text-sm font-bold text-slate-900">Image.png</p>
-              </div>
-
-              <div class="rounded-2xl bg-white p-4 shadow-sm border border-slate-100">
-                <p class="text-xs text-slate-500">Original File Size</p>
-                <p id="displayFileSize" class="mt-1 text-sm font-bold text-slate-900">0 KB</p>
-              </div>
-            </div>
-
-            <!-- Downstream Export Action Layer -->
-            <div class="mt-5" id="downloadArea">
-              <a id="downloadBtn" href="#" download="converted-image" class="inline-flex w-full items-center justify-center space-x-2 rounded-2xl bg-slate-900 py-4 text-center text-base font-bold text-white shadow-md hover:bg-slate-800 transition-all">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+        <div class="mobile-panel rounded-2xl border border-slate-200 bg-slate-50 p-4">
+          <label class="mb-3 block text-sm font-bold text-slate-700">Select an image file</label>
+          <div id="dropZone" class="relative flex min-h-[190px] w-full cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed border-slate-300 bg-white p-5 text-center transition hover:border-indigo-300 hover:bg-indigo-50/40">
+            <input id="fileInput" type="file" accept="image/png,image/jpeg,image/webp,image/bmp,image/gif" class="absolute inset-0 z-20 h-full w-full cursor-pointer opacity-0" aria-label="Choose image file" />
+            <div class="pointer-events-none relative z-10 flex flex-col items-center">
+              <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-indigo-50 text-indigo-600">
+                <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                 </svg>
-                <span>Download Converted File</span>
-              </a>
+              </div>
+              <p id="fileInputLabel" class="mt-3 max-w-full text-sm font-black text-slate-800 safe-break">Click to browse or drag and drop an image here</p>
+              <p class="mt-1 text-xs leading-5 text-slate-500">Supports PNG, JPG, JPEG, WebP, BMP, and most static GIF files.</p>
             </div>
-          </div>
-
-          <!-- Google AdSense Responsive Ad - Below Result -->
-          <div class="mt-6 flex min-h-[180px] w-full flex-col items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-3 text-center text-xs text-slate-400 sm:min-h-[250px] sm:p-4 sm:text-sm">
-            <span class="text-[10px] font-bold text-slate-300 uppercase tracking-widest mb-2">Advertisement</span>
-            <ins class="adsbygoogle"
-                 style="display:block; width:100%; max-width:100%; min-height:160px;"
-                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-                 data-ad-slot="YYYYYYYYYY"
-                 data-ad-format="rectangle, vertical"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-          </div>
-
-          <!-- Legal Disclaimer Panel (Restored to previous slate gray theme, text made highly robust) -->
-          <div class="mt-5 rounded-2xl bg-slate-100 p-4 text-xs leading-5 text-slate-500">
-            <span class="block font-bold text-slate-700 mb-1">Disclaimer & Legal Notice:</span>
-            This tool is provided on an "as is" and "as available" basis without warranties of any kind. All image data stream operations are processed 100% locally inside the client user's browser canvas pipeline; NodnWebTools never receives, tracks, transmits, or logs your media content. The user assumes absolute responsibility to manually review file outcome integrity prior to commercial or personal utilization. NodnWebTools, its developers, and affiliates expressly disclaim all liability for data loss, generation bugs, formatting mismatches, or any legal claims, damages, and consequences emerging from downloaded output data.
           </div>
         </div>
 
-        <!-- SEO Informational Segment Card -->
-        <section class="w-full min-w-0 rounded-3xl bg-white p-4 shadow-sm ring-1 ring-slate-200 sm:p-8">
-          <span class="inline-flex rounded-full bg-slate-200 px-4 py-2 text-sm font-semibold text-slate-800">
-            File Conversion Guide
-          </span>
-
-          <h2 class="mt-5 break-words text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
-            Universal Image Conversion: Secure Client-Side Format Adjustments
-          </h2>
-
-          <div class="mt-5 space-y-5 text-sm leading-7 text-slate-600">
-            <p>
-              In contemporary digital ecosystems, managing optimized media assets requires a streamlined 
-              <strong class="font-semibold text-slate-800">online image converter tool</strong>. Whether you are constructing a lightweight portfolio website or filling paperwork demands, handling raw files often causes systemic friction. Different channels mandate varying compression standards. 
-            </p>
-
-            <p>
-              Using our secure web toolkit, you can <strong class="font-semibold text-slate-800">convert PNG to JPG instantly</strong> to slash file sizes without wrecking underlying graphic integrity. Conversely, developers frequently utilize a modern <strong class="font-semibold text-slate-800">WebP to PNG converter</strong> to reverse compress web assets into losslessly structured formats for advanced design editing suites. 
-            </p>
-
-            <h3 class="text-lg font-bold text-slate-900 pt-2">How to Use This Practical Photo Format Changer</h3>
-            <p>
-              Traditional online converters force you to upload sensitive files to remote server hardware, risking personal data leaks. This app completely subverts that pipeline by utilizing local canvas instances:
-            </p>
-
-            <ul class="list-disc pl-5 space-y-2 text-slate-600">
-              <li><strong>Load Content:</strong> Click the drop-zone interface element to open a file or drag the target item directly onto the active control space.</li>
-              <li><strong>Configure Targets:</strong> Set your compression quality boundaries and establish the requested file extension format container.</li>
-              <li><strong>Save Locally:</strong> Fire the converter engine and download the fully repackaged binary array payload straight to your downloads directory.</li>
-            </ul>
-
-            <p>
-              By utilizing this client-side <strong class="font-semibold text-slate-800">measurement and file guide</strong>, you can safely and efficiently scale your design work streams without data leaks.
-            </p>
+        <div class="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <div>
+            <label for="targetFormat" class="mb-2 block text-sm font-bold text-slate-700">Convert to</label>
+            <select id="targetFormat" class="w-full rounded-2xl border border-slate-300 bg-white px-4 py-4 text-base font-semibold text-slate-900 outline-none transition focus:border-indigo-400 focus:ring-4 focus:ring-indigo-100">
+              <option value="image/jpeg">JPEG (.jpg)</option>
+              <option value="image/png">PNG (.png)</option>
+              <option value="image/webp" selected>WebP (.webp)</option>
+            </select>
           </div>
-        </section>
-      </div>
-    </section>
 
-    <!-- Google AdSense Responsive Ad - Bottom -->
-    <div class="mt-6 flex min-h-[80px] w-full items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white px-3 text-center text-xs text-slate-400 sm:mt-8 sm:min-h-[90px] sm:text-sm">
-      AdSense Responsive Ad Area - Bottom
+          <div>
+            <label for="imageQuality" class="mb-2 block text-sm font-bold text-slate-700">Quality: <span id="qualityDisplay">90%</span></label>
+            <div class="flex h-[58px] items-center rounded-2xl border border-slate-300 bg-white px-4">
+              <input id="imageQuality" type="range" min="10" max="100" value="90" class="range-slider w-full cursor-pointer" />
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-5 rounded-2xl border border-slate-200 bg-white p-4">
+          <div class="flex items-start gap-3">
+            <input id="resizeToggle" type="checkbox" class="mt-1 h-4 w-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500" />
+            <div>
+              <label for="resizeToggle" class="block text-sm font-black text-slate-800">Resize image</label>
+              <p class="mt-1 text-sm leading-6 text-slate-500">Keep this off to preserve the original image dimensions.</p>
+            </div>
+          </div>
+
+          <div id="resizeControls" class="mt-4 hidden grid grid-cols-1 gap-3 sm:grid-cols-2">
+            <div>
+              <label for="resizeWidth" class="mb-2 block text-xs font-black uppercase tracking-widest text-slate-400">Width</label>
+              <input id="resizeWidth" type="number" min="1" step="1" class="w-full rounded-xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm font-semibold outline-none transition focus:border-indigo-400 focus:ring-4 focus:ring-indigo-100" placeholder="Width in px" />
+            </div>
+            <div>
+              <label for="resizeHeight" class="mb-2 block text-xs font-black uppercase tracking-widest text-slate-400">Height</label>
+              <input id="resizeHeight" type="number" min="1" step="1" class="w-full rounded-xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm font-semibold outline-none transition focus:border-indigo-400 focus:ring-4 focus:ring-indigo-100" placeholder="Height in px" />
+            </div>
+          </div>
+        </div>
+
+        <div id="alertBox" class="mt-5 hidden rounded-2xl border border-red-200 bg-red-50 p-4 text-sm font-semibold leading-6 text-red-700"></div>
+
+        <div class="mobile-button-grid mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2">
+          <button id="convertBtn" type="button" class="rounded-2xl bg-indigo-600 px-4 py-4 text-base font-black text-white shadow-sm transition hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-50" disabled>Convert Image</button>
+          <button id="resetBtn" type="button" class="rounded-2xl border border-slate-200 bg-white px-4 py-4 text-base font-black text-slate-700 transition hover:border-indigo-200 hover:text-indigo-700">Reset</button>
+        </div>
+
+        <div class="mt-5 rounded-2xl border border-indigo-100 bg-indigo-50 p-4 text-sm leading-6 text-indigo-900">
+          <strong>Privacy note:</strong> this tool uses your browser canvas to process images locally. The selected file is not uploaded by this converter.
+        </div>
+      </section>
+
+      <section class="space-y-6 lg:col-span-7">
+        <div class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
+          <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+            <div>
+              <h2 class="text-2xl font-black tracking-tight text-slate-950">Preview and output</h2>
+              <p class="mt-1 text-sm leading-6 text-slate-500">Preview your source image, then convert it to the selected format.</p>
+            </div>
+            <span id="statusBadge" class="inline-flex w-fit rounded-full bg-slate-100 px-4 py-2 text-sm font-bold text-slate-600">Waiting for image</span>
+          </div>
+
+          <div id="resultPlaceholder" class="mt-6 rounded-3xl border border-dashed border-slate-300 bg-slate-50 p-6 text-center text-sm leading-6 text-slate-500">
+            Choose an image file from the left panel to display the preview and conversion details.
+          </div>
+
+          <div id="resultContent" class="mt-6 hidden">
+            <div class="checkerboard mobile-preview flex min-h-[260px] w-full items-center justify-center overflow-hidden rounded-3xl border border-slate-200 p-3 shadow-inner">
+              <img id="previewImage" src="" alt="Selected image preview" class="max-h-[360px] w-auto max-w-full rounded-2xl object-contain" />
+            </div>
+
+            <div class="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2">
+              <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                <p class="text-xs font-black uppercase tracking-widest text-slate-400">Source name</p>
+                <p id="displayFileName" class="mt-1 text-sm font-black text-slate-900 safe-break">No file selected</p>
+              </div>
+              <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                <p class="text-xs font-black uppercase tracking-widest text-slate-400">Original size</p>
+                <p id="displayFileSize" class="mt-1 text-sm font-black text-slate-900">0 KB</p>
+              </div>
+              <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                <p class="text-xs font-black uppercase tracking-widest text-slate-400">Dimensions</p>
+                <p id="displayDimensions" class="mt-1 text-sm font-black text-slate-900">0 × 0 px</p>
+              </div>
+              <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                <p class="text-xs font-black uppercase tracking-widest text-slate-400">Output estimate</p>
+                <p id="displayOutputSize" class="mt-1 text-sm font-black text-slate-900">Convert to calculate</p>
+              </div>
+            </div>
+
+            <div class="mt-5 rounded-2xl border border-slate-200 bg-slate-950 p-4 text-slate-100">
+              <p class="text-xs font-black uppercase tracking-widest text-slate-400">Conversion summary</p>
+              <pre id="summaryOutput" class="mobile-code mt-3 text-sm leading-6"></pre>
+            </div>
+
+            <div class="mobile-button-grid mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2">
+              <a id="downloadBtn" href="#" download="converted-image" class="pointer-events-none flex items-center justify-center rounded-2xl bg-slate-300 px-4 py-4 text-center text-base font-black text-white shadow-sm transition" aria-disabled="true">
+                Download Converted File
+              </a>
+              <button id="copySummaryBtn" type="button" class="rounded-2xl border border-slate-200 bg-white px-4 py-4 text-base font-black text-slate-700 transition hover:border-indigo-200 hover:text-indigo-700">Copy Summary</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="ad-box">AdSense Responsive Ad Area - Below Result</div>
+      </section>
+    </main>
+
+    <div class="mx-auto mt-6 w-full max-w-7xl">
+      <div class="ad-box">AdSense Responsive Ad Area - Below Tool</div>
     </div>
 
-  </main>
+    <section class="mx-auto mt-8 w-full max-w-7xl space-y-6">
+      <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
+        <p class="mb-3 inline-flex rounded-full bg-violet-50 px-4 py-2 text-sm font-bold text-violet-700">Image conversion guide</p>
+        <h2 class="text-3xl font-black tracking-tight text-slate-950">A private online image converter for PNG, JPG, and WebP workflows</h2>
+        <div class="mt-5 space-y-5 text-base leading-8 text-slate-600">
+          <p>
+            The NodnWebTools Image Converter is designed for people who need a fast and simple way to change photo formats without sending their files to a remote server. It works directly in your browser using standard client-side image processing. That makes it useful for website owners, students, designers, bloggers, social media creators, and anyone who wants to prepare image files for everyday digital use.
+          </p>
+          <p>
+            Different platforms often require different file formats. A website may benefit from WebP because it can reduce file size, a document upload form may require JPG, and a design workflow may need PNG for transparency. This tool helps you move between these common formats while keeping the interface simple and mobile-friendly.
+          </p>
+        </div>
+      </article>
 
-  <!-- JavaScript Core Engine -->
+      <div class="ad-box">AdSense Responsive Ad Area - Middle Content</div>
+
+      <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
+        <h2 class="text-3xl font-black tracking-tight text-slate-950">How to use the image converter</h2>
+        <div class="mt-6 grid grid-cols-1 gap-4 md:grid-cols-3">
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <h3 class="text-lg font-black text-slate-950">1. Choose your image</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-600">Click the upload area or drag and drop a file. The preview appears immediately after the image loads.</p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <h3 class="text-lg font-black text-slate-950">2. Select format and quality</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-600">Choose JPG, PNG, or WebP. For JPG and WebP, use the quality slider to balance clarity and file size.</p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <h3 class="text-lg font-black text-slate-950">3. Convert and download</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-600">Click Convert Image, then download the generated file directly from your browser.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
+        <h2 class="text-3xl font-black tracking-tight text-slate-950">Popular uses for online image format conversion</h2>
+        <div class="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2">
+          <div class="rounded-2xl border border-slate-200 p-5">
+            <h3 class="text-xl font-black text-slate-950">Website performance optimization</h3>
+            <p class="mt-2 text-sm leading-7 text-slate-600">Converting large photos to WebP can help reduce image weight for websites, landing pages, portfolios, and blogs. Smaller images may load faster and improve the user experience.</p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 p-5">
+            <h3 class="text-xl font-black text-slate-950">Document and form uploads</h3>
+            <p class="mt-2 text-sm leading-7 text-slate-600">Some forms only accept JPG or PNG files. A browser-based converter makes it easier to prepare images before uploading them to school, work, government, or business portals.</p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 p-5">
+            <h3 class="text-xl font-black text-slate-950">Transparent image handling</h3>
+            <p class="mt-2 text-sm leading-7 text-slate-600">PNG and WebP can support transparency, while standard JPG does not. When converting transparent images to JPG, transparent areas may become a flat background.</p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 p-5">
+            <h3 class="text-xl font-black text-slate-950">Content creation and publishing</h3>
+            <p class="mt-2 text-sm leading-7 text-slate-600">Creators often need image versions for thumbnails, blog graphics, newsletters, product pages, and social posts. Converting locally can make this workflow quicker and safer.</p>
+          </div>
+        </div>
+      </article>
+
+      <div class="ad-box">AdSense Responsive Ad Area - Bottom Content</div>
+
+      <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
+        <h2 class="text-3xl font-black tracking-tight text-slate-950">Practical tips for better image conversion</h2>
+        <div class="mt-5 space-y-5 text-base leading-8 text-slate-600">
+          <p>
+            Use JPG for regular photos when transparency is not needed. JPG is widely supported and often produces smaller files for photographs. Use PNG when you need sharp edges, screenshots, icons, or transparency. Use WebP when you want modern compression for websites and supported platforms.
+          </p>
+          <p>
+            Quality settings affect output size and visible detail. A higher quality value keeps more detail but usually creates a larger file. A lower value can reduce file size, but it may add visible artifacts. For web images, testing several quality values can help you find the right balance between clarity and speed.
+          </p>
+          <p>
+            Resizing is useful when the image is much larger than necessary. For example, a 4000-pixel-wide photo may be excessive for a small blog thumbnail. Reducing dimensions before publishing can lower file size and make the page feel faster on mobile devices.
+          </p>
+        </div>
+      </article>
+
+      <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
+        <h2 class="text-3xl font-black tracking-tight text-slate-950">Frequently asked questions</h2>
+        <div class="mt-6 space-y-4">
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">Are my images uploaded to a server?</summary>
+            <p class="mt-3 text-sm leading-7 text-slate-600">No. This converter processes files locally in your browser using JavaScript and canvas. The tool does not intentionally upload your selected images to a backend server.</p>
+          </details>
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">Which image formats are supported?</summary>
+            <p class="mt-3 text-sm leading-7 text-slate-600">The tool accepts common browser-readable image files such as PNG, JPG, JPEG, WebP, BMP, and many static GIF files. Output formats are JPG, PNG, and WebP.</p>
+          </details>
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">Why does the quality slider not affect PNG much?</summary>
+            <p class="mt-3 text-sm leading-7 text-slate-600">PNG is generally a lossless format in browser canvas export, so the quality setting mainly affects JPG and WebP output.</p>
+          </details>
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">What happens to transparency when converting to JPG?</summary>
+            <p class="mt-3 text-sm leading-7 text-slate-600">JPG does not support transparency. Transparent areas are drawn over a white background before export to avoid black or unexpected transparent regions.</p>
+          </details>
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">Can I use this on a phone?</summary>
+            <p class="mt-3 text-sm leading-7 text-slate-600">Yes. The layout is responsive and designed to avoid horizontal overflow on mobile screens.</p>
+          </details>
+        </div>
+      </section>
+
+      <section class="mobile-card rounded-3xl bg-slate-950 p-5 text-slate-200 shadow-sm lg:p-8">
+        <h2 class="text-3xl font-black tracking-tight text-white">Legal Disclaimer</h2>
+        <div class="mt-5 space-y-4 text-sm leading-7 text-slate-300">
+          <p>
+            This Image Converter is provided for general file-format convenience only. While the tool attempts to convert images accurately, output quality, file size, transparency behavior, color appearance, metadata retention, and browser compatibility may vary depending on the source image, device, and browser implementation.
+          </p>
+          <p>
+            This tool is not a professional archival, forensic, legal, medical, security, or production-proof imaging system. Users are responsible for reviewing converted files before using them in commercial, legal, professional, or high-stakes contexts.
+          </p>
+          <p>
+            The converter runs locally in your browser and does not intentionally upload images to a backend server. However, users remain responsible for their own device security, browser extensions, local files, network environment, and third-party scripts. NodnWebTools is not liable for data loss, formatting errors, quality degradation, privacy issues, or any consequences resulting from use of this tool.
+          </p>
+        </div>
+      </section>
+
+      <div class="ad-box">AdSense Responsive Ad Area - Bottom</div>
+    </section>
+
+    <footer class="mx-auto mt-8 w-full max-w-7xl pb-8 text-center text-sm text-slate-500">
+      <p>© <span id="yearText"></span> NodnWebTools. All rights reserved.</p>
+    </footer>
+  </div>
+
+  <div id="toast" class="fixed bottom-4 left-4 right-4 z-50 mx-auto hidden max-w-sm rounded-2xl bg-slate-950 px-4 py-3 text-center text-sm font-bold text-white shadow-2xl sm:left-auto sm:right-6">
+    Copied!
+  </div>
+
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
+    document.addEventListener("DOMContentLoaded", function () {
       const fileInput = document.getElementById("fileInput");
       const dropZone = document.getElementById("dropZone");
       const fileInputLabel = document.getElementById("fileInputLabel");
-      const targetFormatSelect = document.getElementById("targetFormat");
-      const imageQualitySlider = document.getElementById("imageQuality");
+      const targetFormat = document.getElementById("targetFormat");
+      const imageQuality = document.getElementById("imageQuality");
       const qualityDisplay = document.getElementById("qualityDisplay");
+      const resizeToggle = document.getElementById("resizeToggle");
+      const resizeControls = document.getElementById("resizeControls");
+      const resizeWidth = document.getElementById("resizeWidth");
+      const resizeHeight = document.getElementById("resizeHeight");
       const convertBtn = document.getElementById("convertBtn");
-
+      const resetBtn = document.getElementById("resetBtn");
+      const alertBox = document.getElementById("alertBox");
       const resultPlaceholder = document.getElementById("resultPlaceholder");
       const resultContent = document.getElementById("resultContent");
       const previewImage = document.getElementById("previewImage");
       const displayFileName = document.getElementById("displayFileName");
       const displayFileSize = document.getElementById("displayFileSize");
+      const displayDimensions = document.getElementById("displayDimensions");
+      const displayOutputSize = document.getElementById("displayOutputSize");
+      const summaryOutput = document.getElementById("summaryOutput");
       const downloadBtn = document.getElementById("downloadBtn");
+      const copySummaryBtn = document.getElementById("copySummaryBtn");
+      const statusBadge = document.getElementById("statusBadge");
+      const toast = document.getElementById("toast");
+      const yearText = document.getElementById("yearText");
 
-      let loadedFileObject = null;
-      let loadedImageElement = null;
+      let loadedFile = null;
+      let loadedImage = null;
+      let sourceDataUrl = "";
+      let outputObjectUrl = "";
+      let toastTimer = null;
 
-      // Handle Quality Slider UI Sync
-      imageQualitySlider.addEventListener("input", (e) => {
-        qualityDisplay.textContent = `${e.target.value}%`;
-      });
+      yearText.textContent = new Date().getFullYear();
 
-      // Drag and Drop Event Interceptors
-      ["dragenter", "dragover"].forEach(eventName => {
-        dropZone.addEventListener(eventName, (e) => {
-          e.preventDefault();
-          dropZone.classList.add("bg-slate-100", "border-brand-600");
-        }, false);
-      });
-
-      ["dragleave", "drop"].forEach(eventName => {
-        dropZone.addEventListener(eventName, (e) => {
-          e.preventDefault();
-          dropZone.classList.remove("bg-slate-100", "border-brand-600");
-        }, false);
-      });
-
-      dropZone.addEventListener("drop", (e) => {
-        const dt = e.dataTransfer;
-        const files = dt.files;
-        if (files.length > 0 && files[0].type.startsWith("image/")) {
-          processIncomingFile(files[0]);
-        }
-      });
-
-      fileInput.addEventListener("change", (e) => {
-        if (e.target.files.length > 0) {
-          processIncomingFile(e.target.files[0]);
-        }
-      });
-
-      function formatBytes(bytes, decimals = 2) {
-        if (bytes === 0) return '0 Bytes';
-        const k = 1024;
-        const dm = decimals < 0 ? 0 : decimals;
-        const sizes = ['Bytes', 'KB', 'MB'];
-        const i = Math.floor(Math.log(bytes) / Math.log(k));
-        return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+      function showAlert(message) {
+        alertBox.textContent = message;
+        alertBox.classList.remove("hidden");
       }
 
-      function processIncomingFile(file) {
-        loadedFileObject = file;
-        fileInputLabel.textContent = `${file.name} loaded successfully`;
+      function clearAlert() {
+        alertBox.textContent = "";
+        alertBox.classList.add("hidden");
+      }
+
+      function showToast(message) {
+        toast.textContent = message || "Copied!";
+        toast.classList.remove("hidden");
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(function () {
+          toast.classList.add("hidden");
+        }, 1600);
+      }
+
+      function formatBytes(bytes) {
+        if (!Number.isFinite(bytes) || bytes <= 0) return "0 Bytes";
+        const units = ["Bytes", "KB", "MB", "GB"];
+        const index = Math.min(Math.floor(Math.log(bytes) / Math.log(1024)), units.length - 1);
+        return (bytes / Math.pow(1024, index)).toFixed(index === 0 ? 0 : 2) + " " + units[index];
+      }
+
+      function getExtension(mime) {
+        if (mime === "image/jpeg") return "jpg";
+        if (mime === "image/png") return "png";
+        if (mime === "image/webp") return "webp";
+        return "img";
+      }
+
+      function getBaseName(filename) {
+        const clean = String(filename || "image").replace(/[\\/:*?"<>|]+/g, "-");
+        const dotIndex = clean.lastIndexOf(".");
+        return dotIndex > 0 ? clean.slice(0, dotIndex) : clean;
+      }
+
+      function setDownloadDisabled() {
+        downloadBtn.href = "#";
+        downloadBtn.removeAttribute("download");
+        downloadBtn.classList.add("pointer-events-none", "bg-slate-300");
+        downloadBtn.classList.remove("bg-slate-900", "hover:bg-indigo-700");
+        downloadBtn.setAttribute("aria-disabled", "true");
+      }
+
+      function setDownloadEnabled(url, filename) {
+        downloadBtn.href = url;
+        downloadBtn.download = filename;
+        downloadBtn.classList.remove("pointer-events-none", "bg-slate-300");
+        downloadBtn.classList.add("bg-slate-900", "hover:bg-indigo-700");
+        downloadBtn.setAttribute("aria-disabled", "false");
+      }
+
+      function resetOutputOnly() {
+        if (outputObjectUrl) {
+          URL.revokeObjectURL(outputObjectUrl);
+          outputObjectUrl = "";
+        }
+        displayOutputSize.textContent = "Convert to calculate";
+        setDownloadDisabled();
+      }
+
+      function resetAll() {
+        loadedFile = null;
+        loadedImage = null;
+        sourceDataUrl = "";
+        fileInput.value = "";
+        fileInputLabel.textContent = "Click to browse or drag and drop an image here";
+        previewImage.src = "";
+        resultPlaceholder.classList.remove("hidden");
+        resultContent.classList.add("hidden");
+        convertBtn.disabled = true;
+        statusBadge.textContent = "Waiting for image";
+        statusBadge.className = "inline-flex w-fit rounded-full bg-slate-100 px-4 py-2 text-sm font-bold text-slate-600";
+        resizeWidth.value = "";
+        resizeHeight.value = "";
+        summaryOutput.textContent = "";
+        clearAlert();
+        resetOutputOnly();
+      }
+
+      function updateSummary(extraText) {
+        if (!loadedFile || !loadedImage) {
+          summaryOutput.textContent = "";
+          return;
+        }
+
+        const targetExt = getExtension(targetFormat.value);
+        const quality = Number(imageQuality.value);
+        const width = resizeToggle.checked && Number(resizeWidth.value) > 0 ? Number(resizeWidth.value) : loadedImage.naturalWidth;
+        const height = resizeToggle.checked && Number(resizeHeight.value) > 0 ? Number(resizeHeight.value) : loadedImage.naturalHeight;
+
+        summaryOutput.textContent =
+          "Source file: " + loadedFile.name + "\n" +
+          "Original size: " + formatBytes(loadedFile.size) + "\n" +
+          "Original dimensions: " + loadedImage.naturalWidth + " × " + loadedImage.naturalHeight + " px\n" +
+          "Output format: " + targetExt.toUpperCase() + "\n" +
+          "Quality setting: " + quality + "%\n" +
+          "Output dimensions: " + width + " × " + height + " px" +
+          (extraText ? "\n" + extraText : "");
+      }
+
+      function loadImageFile(file) {
+        clearAlert();
+        resetOutputOnly();
+
+        if (!file) return;
+
+        if (!file.type || !file.type.startsWith("image/")) {
+          showAlert("Please select a valid image file.");
+          return;
+        }
+
+        loadedFile = file;
+        fileInputLabel.textContent = file.name;
         displayFileName.textContent = file.name;
         displayFileSize.textContent = formatBytes(file.size);
+        statusBadge.textContent = "Loading image";
+        statusBadge.className = "inline-flex w-fit rounded-full bg-amber-50 px-4 py-2 text-sm font-bold text-amber-700";
 
         const reader = new FileReader();
-        reader.onload = function(event) {
-          loadedImageElement = new Image();
-          loadedImageElement.onload = function() {
-            previewImage.src = event.target.result;
-            
-            // Switch Panels Visibility States cleanly
+
+        reader.onload = function (event) {
+          sourceDataUrl = event.target.result;
+
+          const image = new Image();
+          image.onload = function () {
+            loadedImage = image;
+            previewImage.src = sourceDataUrl;
+            displayDimensions.textContent = image.naturalWidth + " × " + image.naturalHeight + " px";
+            resizeWidth.value = image.naturalWidth;
+            resizeHeight.value = image.naturalHeight;
             resultPlaceholder.classList.add("hidden");
             resultContent.classList.remove("hidden");
             convertBtn.disabled = false;
+            statusBadge.textContent = "Ready to convert";
+            statusBadge.className = "inline-flex w-fit rounded-full bg-emerald-50 px-4 py-2 text-sm font-bold text-emerald-700";
+            updateSummary("");
           };
-          loadedImageElement.src = event.target.result;
+
+          image.onerror = function () {
+            showAlert("This image could not be loaded. Please try a different file.");
+            resetAll();
+          };
+
+          image.src = sourceDataUrl;
         };
+
+        reader.onerror = function () {
+          showAlert("The selected file could not be read. Please try again.");
+        };
+
         reader.readAsDataURL(file);
       }
 
-      // Execution Engine Core: Canvas Mapping Routine
-      convertBtn.addEventListener("click", () => {
-        if (!loadedImageElement || !loadedFileObject) return;
+      function drawImageToCanvas() {
+        if (!loadedImage || !loadedFile) {
+          showAlert("Please choose an image before converting.");
+          return null;
+        }
+
+        let outputWidth = loadedImage.naturalWidth;
+        let outputHeight = loadedImage.naturalHeight;
+
+        if (resizeToggle.checked) {
+          outputWidth = Number(resizeWidth.value);
+          outputHeight = Number(resizeHeight.value);
+
+          if (!Number.isFinite(outputWidth) || !Number.isFinite(outputHeight) || outputWidth < 1 || outputHeight < 1) {
+            showAlert("Please enter valid resize dimensions greater than 0.");
+            return null;
+          }
+
+          outputWidth = Math.round(outputWidth);
+          outputHeight = Math.round(outputHeight);
+        }
 
         const canvas = document.createElement("canvas");
-        const ctx = canvas.getContext("2d");
+        canvas.width = outputWidth;
+        canvas.height = outputHeight;
 
-        // Maintain precise source graphic aspect dimensional nodes
-        canvas.width = loadedImageElement.naturalWidth;
-        canvas.height = loadedImageElement.naturalHeight;
+        const ctx = canvas.getContext("2d", { alpha: true });
+        if (!ctx) {
+          showAlert("Your browser does not support the required canvas features.");
+          return null;
+        }
 
-        // Draw image onto virtual background layer
-        ctx.drawImage(loadedImageElement, 0, 0);
+        if (targetFormat.value === "image/jpeg") {
+          ctx.fillStyle = "#ffffff";
+          ctx.fillRect(0, 0, outputWidth, outputHeight);
+        } else {
+          ctx.clearRect(0, 0, outputWidth, outputHeight);
+        }
 
-        const chosenMime = targetFormatSelect.value;
-        const qualitySetting = parseFloat(imageQualitySlider.value) / 100;
+        ctx.drawImage(loadedImage, 0, 0, outputWidth, outputHeight);
 
-        // Convert the virtual canvas data matrix into downloadable blob array links
-        const dataUrl = canvas.toDataURL(chosenMime, qualitySetting);
-        
-        // Formulate smart file download naming extension strings
-        const originalNameStr = loadedFileObject.name.substring(0, loadedFileObject.name.lastIndexOf('.')) || loadedFileObject.name;
-        const targetExt = chosenMime === "image/jpeg" ? "jpg" : chosenMime.split("/")[1];
-        
-        downloadBtn.href = dataUrl;
-        downloadBtn.setAttribute("download", `${originalNameStr}_converted.${targetExt}`);
-        
-        // Notify complete and focus visual layout onto download element action block
-        downloadBtn.scrollIntoView({ behavior: 'smooth' });
-        
-        // Add subtle feedback color flash onto button
-        convertBtn.classList.remove("bg-brand-600");
-        convertBtn.classList.add("bg-slate-700");
-        convertBtn.textContent = "Conversion Complete! (See Download Below)";
-        
-        setTimeout(() => {
-          convertBtn.classList.remove("bg-slate-700");
-          convertBtn.classList.add("bg-brand-600");
-          convertBtn.textContent = "Convert Image Format";
-        }, 2500);
+        return canvas;
+      }
+
+      function convertImage() {
+        clearAlert();
+
+        const canvas = drawImageToCanvas();
+        if (!canvas) return;
+
+        const mime = targetFormat.value;
+        const quality = Number(imageQuality.value) / 100;
+        const ext = getExtension(mime);
+        const filename = getBaseName(loadedFile.name) + "_converted." + ext;
+
+        statusBadge.textContent = "Converting";
+        statusBadge.className = "inline-flex w-fit rounded-full bg-amber-50 px-4 py-2 text-sm font-bold text-amber-700";
+
+        try {
+          canvas.toBlob(function (blob) {
+            if (!blob) {
+              showAlert("Conversion failed. This browser may not support the selected output format.");
+              statusBadge.textContent = "Conversion failed";
+              statusBadge.className = "inline-flex w-fit rounded-full bg-red-50 px-4 py-2 text-sm font-bold text-red-700";
+              return;
+            }
+
+            if (outputObjectUrl) URL.revokeObjectURL(outputObjectUrl);
+            outputObjectUrl = URL.createObjectURL(blob);
+            setDownloadEnabled(outputObjectUrl, filename);
+            displayOutputSize.textContent = formatBytes(blob.size);
+            statusBadge.textContent = "Conversion complete";
+            statusBadge.className = "inline-flex w-fit rounded-full bg-emerald-50 px-4 py-2 text-sm font-bold text-emerald-700";
+            updateSummary("Converted size: " + formatBytes(blob.size) + "\nDownload name: " + filename);
+            showToast("Conversion complete!");
+          }, mime, quality);
+        } catch (error) {
+          showAlert("Conversion failed. Please try a smaller image or another output format.");
+          statusBadge.textContent = "Conversion failed";
+          statusBadge.className = "inline-flex w-fit rounded-full bg-red-50 px-4 py-2 text-sm font-bold text-red-700";
+        }
+      }
+
+      async function copyText(text) {
+        try {
+          if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(text);
+          } else {
+            const textarea = document.createElement("textarea");
+            textarea.value = text;
+            textarea.style.position = "fixed";
+            textarea.style.left = "-9999px";
+            document.body.appendChild(textarea);
+            textarea.focus();
+            textarea.select();
+            document.execCommand("copy");
+            document.body.removeChild(textarea);
+          }
+          showToast("Copied!");
+        } catch (error) {
+          showAlert("Clipboard access failed. Please copy the summary manually.");
+        }
+      }
+
+      imageQuality.addEventListener("input", function () {
+        qualityDisplay.textContent = imageQuality.value + "%";
+        resetOutputOnly();
+        updateSummary("");
       });
+
+      targetFormat.addEventListener("change", function () {
+        resetOutputOnly();
+        updateSummary("");
+      });
+
+      resizeToggle.addEventListener("change", function () {
+        resizeControls.classList.toggle("hidden", !resizeToggle.checked);
+        resetOutputOnly();
+        updateSummary("");
+      });
+
+      resizeWidth.addEventListener("input", function () {
+        resetOutputOnly();
+        updateSummary("");
+      });
+
+      resizeHeight.addEventListener("input", function () {
+        resetOutputOnly();
+        updateSummary("");
+      });
+
+      fileInput.addEventListener("change", function (event) {
+        const file = event.target.files && event.target.files[0];
+        loadImageFile(file);
+      });
+
+      ["dragenter", "dragover"].forEach(function (eventName) {
+        dropZone.addEventListener(eventName, function (event) {
+          event.preventDefault();
+          event.stopPropagation();
+          dropZone.classList.add("drop-active");
+        });
+      });
+
+      ["dragleave", "drop"].forEach(function (eventName) {
+        dropZone.addEventListener(eventName, function (event) {
+          event.preventDefault();
+          event.stopPropagation();
+          dropZone.classList.remove("drop-active");
+        });
+      });
+
+      dropZone.addEventListener("drop", function (event) {
+        const files = event.dataTransfer && event.dataTransfer.files;
+        if (files && files.length > 0) {
+          loadImageFile(files[0]);
+        }
+      });
+
+      convertBtn.addEventListener("click", convertImage);
+      resetBtn.addEventListener("click", resetAll);
+
+      copySummaryBtn.addEventListener("click", function () {
+        if (!summaryOutput.textContent.trim()) {
+          showAlert("There is no summary to copy yet.");
+          return;
+        }
+        copyText(summaryOutput.textContent);
+      });
+
+      window.addEventListener("beforeunload", function () {
+        if (outputObjectUrl) URL.revokeObjectURL(outputObjectUrl);
+      });
+
+      setDownloadDisabled();
     });
   </script>
-
-  <!-- Google AdSense Main Library -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
 </body>
 </html>
