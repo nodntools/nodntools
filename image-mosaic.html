@@ -6,7 +6,7 @@
 
   <title>Free Online Photo Mosaic Tool - Pixelate, Blur, and Protect Images | NodnWebTools</title>
   <meta name="description" content="Use this free online photo mosaic tool to pixelate, blur, censor, and protect sensitive areas in images directly in your browser. No upload required. Works with JPG, PNG, and WEBP images." />
-  <meta name="keywords" content="photo mosaic tool, image pixelate tool, blur faces online, censor photo online, privacy image editor, photo redaction tool, online image mosaic, pixelate image online, blur image online, free photo censor tool" />
+  <meta name="keywords" content="photo mosaic tool, image pixelate tool, blur faces online, censor photo online, privacy image editor, photo redaction tool, online image mosaic, pixelate image online, blur image online, free photo censor tool, jpg mosaic editor" />
   <meta name="robots" content="index, follow" />
   <meta property="og:title" content="Free Online Photo Mosaic Tool" />
   <meta property="og:description" content="Pixelate, blur, and censor sensitive parts of your photos directly in your browser with a private client-side image mosaic tool." />
@@ -39,7 +39,7 @@
       "Blur mode",
       "Pixelate mode",
       "Undo",
-      "Download result"
+      "JPG download"
     ]
   }
   </script>
@@ -267,7 +267,7 @@
               <li>1. Upload an image from your device.</li>
               <li>2. Choose brush, rectangle, or full image mode.</li>
               <li>3. Adjust strength and apply the mosaic effect.</li>
-              <li>4. Download the edited image privately.</li>
+              <li>4. Download the edited image as a JPG file.</li>
             </ul>
           </div>
 
@@ -292,7 +292,7 @@
               Apply Full
             </button>
             <button id="downloadBtn" type="button" class="rounded-xl bg-indigo-600 px-4 py-2 text-sm font-bold text-white transition hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-50" disabled>
-              Download
+              Download JPG
             </button>
           </div>
         </div>
@@ -319,7 +319,7 @@
           </div>
           <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
             <p class="text-xs font-bold uppercase tracking-wide text-slate-500">Output</p>
-            <p class="mt-1 text-sm font-semibold text-slate-800">PNG download</p>
+            <p class="mt-1 text-sm font-semibold text-slate-800">JPG download</p>
           </div>
         </div>
       </div>
@@ -391,9 +391,14 @@
           Advertisement Area
         </div>
 
+        <h3 class="mt-8 text-2xl font-extrabold text-slate-950">Why JPG Output Is Useful</h3>
+        <p class="mt-4 leading-8 text-slate-600">
+          JPG is one of the most widely supported image formats for websites, email, social platforms, online forms, content management systems, and blog posts. By downloading the edited result as a JPG file, users can quickly share a privacy-protected version of the photo without needing another converter. The tool places the edited image onto a white background before creating the JPG file, which helps avoid transparency issues from PNG or WEBP source images.
+        </p>
+
         <h3 class="mt-8 text-2xl font-extrabold text-slate-950">Practical Tips for Better Image Redaction</h3>
         <p class="mt-4 leading-8 text-slate-600">
-          Always zoom in mentally and check the background of an image before sharing it. Look for mirrors, computer screens, address labels, package labels, ID cards, street signs, car plates, school logos, faces of bystanders, and personal documents. If you are editing a screenshot, check browser tabs, bookmarks, usernames, email addresses, chat previews, filenames, and notification banners.
+          Always check the background of an image before sharing it. Look for mirrors, computer screens, address labels, package labels, ID cards, street signs, car plates, school logos, faces of bystanders, and personal documents. If you are editing a screenshot, check browser tabs, bookmarks, usernames, email addresses, chat previews, filenames, and notification banners.
         </p>
         <p class="mt-4 leading-8 text-slate-600">
           Use rectangle mode when the sensitive area has a clear shape, such as a license plate, address label, receipt, or document number. Use brush mode when the sensitive area is irregular, such as a face, object, or background detail. Use full image mode when you want to create a stylized mosaic preview or intentionally obscure the whole image.
@@ -423,7 +428,14 @@
           <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
             <h3 class="font-extrabold text-slate-900">What image formats are supported?</h3>
             <p class="mt-2 leading-7 text-slate-600">
-              The tool supports common browser image formats such as JPG, PNG, and WEBP. The edited image is downloaded as a PNG file for broad compatibility.
+              The tool supports common browser image formats such as JPG, PNG, and WEBP. The edited image is downloaded as a JPG file for broad compatibility.
+            </p>
+          </div>
+
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <h3 class="font-extrabold text-slate-900">Why does the downloaded JPG have a white background?</h3>
+            <p class="mt-2 leading-7 text-slate-600">
+              JPG does not support transparency. If your original image has transparent areas, the tool fills those areas with white before creating the JPG download.
             </p>
           </div>
 
@@ -455,7 +467,7 @@
           This photo mosaic tool is provided for general informational and practical image editing purposes only. While the tool can help obscure visible details in an image, it does not guarantee complete privacy, legal compliance, anonymity, or irreversible removal of sensitive information. Users are responsible for reviewing edited images before sharing, publishing, storing, or distributing them.
         </p>
         <p class="mt-4 leading-8 text-slate-300">
-          Do not rely on mosaic, blur, or pixelation as the only protection for highly confidential, regulated, financial, medical, legal, identification, or security-sensitive information. For sensitive documents or professional compliance requirements, consult an appropriate privacy, legal, or security professional. NodnWebTools is not responsible for data exposure, misuse, inaccurate editing, browser limitations, device issues, or consequences resulting from edited or shared images.
+          Do not rely on mosaic, blur, or pixelation as the only protection for highly confidential, regulated, financial, medical, legal, identification, or security-sensitive information. For sensitive documents or professional compliance requirements, consult an appropriate privacy, legal, or security professional. NodnWebTools is not responsible for data exposure, misuse, inaccurate editing, browser limitations, device issues, JPG compression artifacts, or consequences resulting from edited or shared images.
         </p>
       </div>
     </section>
@@ -539,8 +551,9 @@
 
     function getCanvasPoint(event) {
       const rect = canvas.getBoundingClientRect();
-      const clientX = event.touches ? event.touches[0].clientX : event.clientX;
-      const clientY = event.touches ? event.touches[0].clientY : event.clientY;
+      const touch = event.touches && event.touches.length ? event.touches[0] : event.changedTouches && event.changedTouches.length ? event.changedTouches[0] : null;
+      const clientX = touch ? touch.clientX : event.clientX;
+      const clientY = touch ? touch.clientY : event.clientY;
       const scaleX = canvas.width / rect.width;
       const scaleY = canvas.height / rect.height;
 
@@ -579,7 +592,7 @@
               const ratio = Math.min(maxDimension / targetWidth, maxDimension / targetHeight);
               targetWidth = Math.round(targetWidth * ratio);
               targetHeight = Math.round(targetHeight * ratio);
-              showWarning('The image was resized for smoother browser performance. The downloaded result will use the resized canvas dimensions.');
+              showWarning('The image was resized for smoother browser performance. The downloaded JPG will use the resized canvas dimensions.');
             }
 
             canvas.width = targetWidth;
@@ -628,7 +641,10 @@
             const sampleHeight = Math.min(blockSize, endY - py);
             const imageData = ctx.getImageData(px, py, sampleWidth, sampleHeight).data;
 
-            let r = 0, g = 0, b = 0, a = 0;
+            let r = 0;
+            let g = 0;
+            let b = 0;
+            let a = 0;
             const count = imageData.length / 4;
 
             for (let i = 0; i < imageData.length; i += 4) {
@@ -752,7 +768,7 @@
       }
 
       if (mode === 'rectangle' && isRectDrawing) {
-        const point = getCanvasPoint(event.changedTouches ? { touches: event.changedTouches } : event);
+        const point = getCanvasPoint(event);
         const x = Math.min(rectStart.x, point.x);
         const y = Math.min(rectStart.y, point.y);
         const w = Math.abs(point.x - rectStart.x);
@@ -860,7 +876,17 @@
       }
 
       try {
-        canvas.toBlob(function(blob) {
+        const jpgCanvas = document.createElement('canvas');
+        const jpgCtx = jpgCanvas.getContext('2d');
+
+        jpgCanvas.width = canvas.width;
+        jpgCanvas.height = canvas.height;
+
+        jpgCtx.fillStyle = '#ffffff';
+        jpgCtx.fillRect(0, 0, jpgCanvas.width, jpgCanvas.height);
+        jpgCtx.drawImage(canvas, 0, 0);
+
+        jpgCanvas.toBlob(function(blob) {
           if (!blob) {
             showWarning('Download failed. Please try again.');
             return;
@@ -869,13 +895,13 @@
           const url = URL.createObjectURL(blob);
           const link = document.createElement('a');
           link.href = url;
-          link.download = 'mosaic-image.png';
+          link.download = 'mosaic-image.jpg';
           document.body.appendChild(link);
           link.click();
           document.body.removeChild(link);
           URL.revokeObjectURL(url);
-          statusText.textContent = 'Edited image downloaded as PNG.';
-        }, 'image/png');
+          statusText.textContent = 'Edited image downloaded as JPG.';
+        }, 'image/jpeg', 0.92);
       } catch (error) {
         showWarning('Unable to download this image. Please try another browser or a smaller image.');
       }
