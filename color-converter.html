@@ -229,12 +229,20 @@
         <div class="mobile-panel rounded-2xl border border-slate-200 bg-slate-50 p-4">
           <label for="colorPicker" class="mb-3 block text-sm font-bold text-slate-700">Pick a color</label>
           <div id="previewBox" class="mobile-preview checkerboard relative flex min-h-[240px] w-full overflow-hidden rounded-2xl border border-slate-200 shadow-inner">
-            <input id="colorPicker" type="color" value="#4f46e5" class="absolute inset-0 h-full w-full cursor-pointer opacity-0" aria-label="Open native color picker" />
-            <div id="previewColorLayer" class="absolute inset-0" style="background:#4f46e5;"></div>
-            <div class="relative z-10 m-auto rounded-full bg-black/35 px-4 py-2 text-center text-sm font-bold text-white backdrop-blur safe-break">
-              Click to open color picker
-            </div>
-          </div>
+  <div id="previewColorLayer" class="absolute inset-0 z-0" style="background:#4f46e5;"></div>
+
+  <input
+    id="colorPicker"
+    type="color"
+    value="#4f46e5"
+    class="absolute inset-0 z-20 h-full w-full cursor-pointer opacity-0"
+    aria-label="Open native color picker"
+  />
+
+  <div class="pointer-events-none relative z-10 m-auto rounded-full bg-black/35 px-4 py-2 text-center text-sm font-bold text-white backdrop-blur safe-break">
+    Click to open color picker
+  </div>
+</div>
 
           <div class="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-3">
             <div class="rounded-xl bg-white p-3 ring-1 ring-slate-200">
