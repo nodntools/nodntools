@@ -4,456 +4,952 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
 
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404"
-     crossorigin="anonymous"></script>
-
-  <meta name="google-adsense-account" content="ca-pub-5282672325821404">	
-
-  <title>Online Web Audio Converter | Convert MP3, WAV, OGG Free - NodnWebTools</title>
-
-  <meta
-    name="description"
-    content="Use the free NodnWebTools Online Web Audio Converter to transform your audio files into MP3, WAV, or OGG format instantly using WebAssembly. 100% secure client-side audio encoding with zero server uploads."
-  />
-  <meta
-    name="keywords"
-    content="audio converter, online audio converter, convert to mp3, wav to mp3, m4a to mp3, ogg converter, webassembly ffmpeg, secure audio encoder, NodnWebTools, nodntools, free audio converter, web audio encoder, transcode audio online"
-  />
-  <meta name="author" content="NodnWebTools" />
+  <title>Free Audio Converter | MP3, WAV, OGG, M4A Browser Tool - NodnWebTools</title>
+  <meta name="description" content="Convert audio files directly in your browser with the NodnWebTools Audio Converter. Preview audio, convert to MP3, WAV, or OGG using client-side WebAssembly, and download securely without server uploads." />
+  <meta name="keywords" content="audio converter, online audio converter, MP3 converter, WAV converter, OGG converter, M4A to MP3, client side audio converter, browser audio tool, NodnWebTools" />
   <meta name="robots" content="index, follow" />
+  <meta name="author" content="NodnWebTools" />
 
-  <meta property="og:title" content="Online Web Audio Converter | NodnWebTools" />
-  <meta
-    property="og:description"
-    content="Convert audio structures (.wav, .m4a, .ogg, .mp3) safely inside your browser viewport utilizing high-performance WebAssembly compilers."
-  />
+  <meta property="og:title" content="Free Audio Converter | NodnWebTools" />
+  <meta property="og:description" content="Convert audio files to MP3, WAV, or OGG directly in your browser with preview, status feedback, and secure local download." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://nodntools.com/audio-converter.html" />
   <meta property="og:site_name" content="NodnWebTools" />
 
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Online Web Audio Converter" />
-  <meta
-    name="twitter:description"
-    content="A client-side decentralized Wasm multimedia compression tool for processing standard audio assets."
-  />
+  <meta name="google-adsense-account" content="ca-pub-5282672325821404">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404" crossorigin="anonymous"></script>
 
   <script src="https://cdn.tailwindcss.com"></script>
-  
-  <script src="https://unpkg.com/@ffmpeg/ffmpeg@0.11.6/dist/ffmpeg.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://unpkg.com/@ffmpeg/ffmpeg@0.11.6/dist/ffmpeg.min.js" crossorigin="anonymous"></script>
 
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            brand: {
-              50: '#f5f3ff',
-              100: '#ede9fe',
-              200: '#ddd6fe',
-              500: '#8b5cf6',
-              600: '#7c3aed',
-              700: '#6d28d9',
-              800: '#5b21b6',
-            }
-          }
-        }
-      }
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Audio Converter",
+    "applicationCategory": "MultimediaApplication",
+    "operatingSystem": "Any",
+    "url": "https://nodntools.com/audio-converter.html",
+    "description": "A browser-based audio converter for converting local audio files to MP3, WAV, or OGG with client-side processing and local download.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "NodnWebTools",
+      "url": "https://nodntools.com"
     }
+  }
   </script>
 
   <style>
-    html, body {
+    html,
+    body {
       width: 100%;
+      max-width: 100%;
       overflow-x: hidden;
     }
-    *, *::before, *::after {
+
+    *,
+    *::before,
+    *::after {
       box-sizing: border-box;
+      min-width: 0;
     }
-    img, svg, video, canvas, audio, iframe, ins {
+
+    body {
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    input,
+    select,
+    button,
+    textarea {
       max-width: 100%;
     }
+
+    img,
+    canvas,
+    svg,
+    video,
+    audio,
+    iframe,
+    table,
+    pre,
+    code,
+    ins {
+      max-width: 100%;
+    }
+
     audio {
       width: 100%;
       min-width: 0;
     }
-    .adsbygoogle {
-      display: block;
-      width: 100% !important;
-      max-width: 100%;
-      overflow: hidden;
+
+    .safe-break {
+      overflow-wrap: anywhere;
+      word-break: break-word;
     }
-    @media (max-width: 420px) {
-      .mobile-tight-title {
-        font-size: 1.85rem;
-        line-height: 2.2rem;
+
+    .mobile-card,
+    .mobile-panel,
+    .mobile-preview,
+    .mobile-code,
+    .ad-box {
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
+    .mobile-code {
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .ad-box {
+      min-height: 90px;
+      border: 2px dashed #cbd5e1;
+      background: #f8fafc;
+      color: #94a3b8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-radius: 1rem;
+      padding: 1rem;
+      font-size: 0.875rem;
+      line-height: 1.5;
+    }
+
+    .drop-active {
+      border-color: #4f46e5 !important;
+      background: #eef2ff !important;
+    }
+
+    .range-slider {
+      accent-color: #4f46e5;
+    }
+
+    .progress-track {
+      overflow: hidden;
+      background: #e2e8f0;
+    }
+
+    .progress-bar {
+      width: 0%;
+      transition: width 0.25s ease;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding-left: 0;
+        padding-right: 0;
+      }
+
+      .mobile-card {
+        border-radius: 1.25rem;
+        padding: 1rem;
+      }
+
+      .mobile-panel {
+        border-radius: 1rem;
+        padding: 0.875rem;
+      }
+
+      .mobile-button-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .mobile-button-grid button,
+      .mobile-button-grid a {
+        width: 100%;
+      }
+
+      .mobile-code {
+        font-size: 0.75rem;
+      }
+
+      .ad-box {
+        min-height: 90px;
+        border-radius: 0.875rem;
+        padding: 0.875rem;
+        font-size: 0.75rem;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .mobile-card {
+        padding: 0.875rem;
+        border-radius: 1rem;
+      }
+
+      .mobile-panel {
+        padding: 0.75rem;
+      }
+
+      h1 {
+        font-size: 1.875rem !important;
+      }
+
+      h2 {
+        font-size: 1.35rem !important;
+      }
+
+      .ad-box {
+        font-size: 0.7rem;
       }
     }
   </style>
 </head>
 
-<body class="min-h-screen bg-slate-100 px-3 py-5 sm:px-4 sm:py-8 lg:py-12">
-  <main class="mx-auto w-full max-w-5xl overflow-hidden">
-
-    <div class="mb-6 text-center sm:mb-8">
-      <a href="https://nodntools.com" class="inline-block transition hover:opacity-80" aria-label="NodnWebTools Home">
-        <div class="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
-          Nodn<span class="text-blue-600">WebTools</span>
-        </div>
+<body class="bg-slate-50 text-slate-800">
+  <div class="w-full px-4 py-5 sm:px-6 lg:px-8">
+    <header class="mx-auto flex w-full max-w-7xl flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <a href="https://nodntools.com" class="inline-flex items-center gap-2 safe-break" aria-label="NodnWebTools Home">
+        <span class="text-2xl font-black tracking-tight text-slate-950">
+          Nodn<span class="text-indigo-600">WebTools</span>
+        </span>
       </a>
+      <nav class="flex flex-wrap items-center gap-2 text-sm text-slate-500">
+        <a href="https://nodntools.com" class="rounded-full border border-slate-200 bg-white px-4 py-2 font-semibold transition hover:border-indigo-200 hover:text-indigo-700">Home</a>
+        <span class="rounded-full bg-indigo-50 px-4 py-2 font-semibold text-indigo-700">Client-side audio utility</span>
+      </nav>
+    </header>
+
+    <div class="mx-auto mt-5 w-full max-w-7xl">
+      <div class="ad-box">AdSense Responsive Ad Area - Top</div>
     </div>
 
-    <div class="mb-6 flex min-h-[80px] w-full items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white px-3 text-center text-xs text-slate-400 sm:mb-8 sm:min-h-[90px] sm:text-sm">
-      AdSense Responsive Ad Area - Top
-    </div>
-
-    <section class="grid grid-cols-1 gap-5 lg:grid-cols-12 lg:gap-6">
-      
-      <div class="min-w-0 rounded-3xl bg-white p-4 shadow-xl ring-1 ring-slate-200 sm:p-8 lg:col-span-7 space-y-5">
-        <div>
-          <span class="inline-flex rounded-full bg-brand-50 px-4 py-2 text-sm font-semibold text-brand-700">
-            Wasm Media Utility
-          </span>
-          <h1 class="mobile-tight-title mt-5 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-            Web Audio Converter
-          </h1>
-          <p class="mt-3 text-sm leading-7 text-slate-600 sm:text-base">
-            Convert local sound recordings safely inside your system memory. Binary processing pipelines run 100% inside a high-speed isolated browser assembly engine sandbox.
+    <main class="mx-auto mt-6 grid w-full max-w-7xl grid-cols-1 gap-6 lg:grid-cols-12">
+      <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:col-span-5 lg:p-8">
+        <div class="mb-6">
+          <p class="mb-3 inline-flex rounded-full bg-indigo-50 px-4 py-2 text-sm font-bold text-indigo-700">Audio Converter</p>
+          <h1 class="text-4xl font-black tracking-tight text-slate-950 sm:text-5xl">Convert audio files in your browser.</h1>
+          <p class="mt-4 text-base leading-7 text-slate-600">
+            Upload a local audio file, preview it, choose MP3, WAV, or OGG, and download the converted file. Processing runs client-side through WebAssembly when supported by your browser.
           </p>
         </div>
 
-        <div>
-          <label class="mb-2 block text-sm font-semibold text-slate-700">Upload Target Sound Track</label>
-          <div id="dropZone" class="relative flex min-w-0 flex-col items-center justify-center rounded-2xl border-2 border-dashed border-slate-300 bg-slate-50 p-5 text-center transition hover:bg-slate-100/70 cursor-pointer select-none sm:p-8">
-            <input type="file" id="audioInput" accept="audio/*" class="absolute inset-0 opacity-0 cursor-pointer" />
-            <svg class="mx-auto h-12 w-12 text-brand-500 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
-            </svg>
-            <p class="mt-3 text-sm font-semibold text-slate-700 p-1 break-all" id="audioInputLabel">
-              Click to select or drop sound tracks here
-            </p>
-            <p class="mt-1 text-xs text-slate-400">Supports standard container forms (.wav, .m4a, .ogg, .mp3, etc.)</p>
-          </div>
-        </div>
-
-        <div id="mediaDashboard" class="hidden min-w-0 rounded-2xl bg-violet-50 border border-violet-200 p-4 sm:p-5 space-y-4 transition-all">
-          <div class="flex items-center space-x-2 text-brand-800 select-none">
-            <svg class="w-4 h-4 text-brand-600 shrink-0" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-            </svg>
-            <span class="text-xs font-bold uppercase tracking-wider">Audio Asset Loaded Safely</span>
-          </div>
-          
-          <div class="text-xs font-mono text-slate-700 space-y-1 sm:pl-6 border-b border-violet-100 pb-3">
-            <p class="min-w-0"><span class="font-bold text-slate-900">Track Name:</span> <span id="metaName" class="break-all">-</span></p>
-            <p><span>File Capacity Size:</span> <span id="metaSize">-</span></p>
-          </div>
-
-          <div class="sm:pl-6">
-            <label class="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2">Original Track Source Preview</label>
-            <audio id="audioPreview" controls class="w-full bg-white rounded-lg"></audio>
-          </div>
-        </div>
-
-        <div id="errorNotification" class="hidden rounded-2xl bg-red-50 border border-red-200 p-4 text-xs font-semibold text-red-600 leading-5"></div>
-      </div>
-
-      <div class="min-w-0 space-y-6 lg:col-span-5">
-        <div class="min-w-0 rounded-3xl bg-white p-4 shadow-xl ring-1 ring-slate-200 sm:p-8">
-          <div class="mb-5 select-none">
-            <h2 class="text-2xl font-bold text-slate-900">Transcode Matrix</h2>
-            <p class="mt-1 text-sm text-slate-500">Target codec target formatting layout loops.</p>
-          </div>
-
-          <div class="space-y-3 mb-6">
-            <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest select-none">Target Extension Format</label>
-            <div class="grid grid-cols-1 gap-2 sm:grid-cols-3">
-              <label class="flex flex-row items-center justify-between gap-3 rounded-xl border border-slate-200 p-3 hover:bg-slate-50 cursor-pointer transition select-none text-left sm:flex-col sm:justify-center sm:gap-0 sm:text-center">
-                <input type="radio" name="codecTarget" value="mp3" checked class="w-3.5 h-3.5 text-brand-600 border-slate-300 focus:ring-brand-500 sm:mb-1.5" />
-                <span class="text-xs font-bold text-slate-900">MP3</span>
-                <span class="text-[9px] text-slate-400 font-mono">audio/mp3</span>
-              </label>
-
-              <label class="flex flex-row items-center justify-between gap-3 rounded-xl border border-slate-200 p-3 hover:bg-slate-50 cursor-pointer transition select-none text-left sm:flex-col sm:justify-center sm:gap-0 sm:text-center">
-                <input type="radio" name="codecTarget" value="wav" class="w-3.5 h-3.5 text-brand-600 border-slate-300 focus:ring-brand-500 sm:mb-1.5" />
-                <span class="text-xs font-bold text-slate-900">WAV</span>
-                <span class="text-[9px] text-slate-400 font-mono">audio/wav</span>
-              </label>
-
-              <label class="flex flex-row items-center justify-between gap-3 rounded-xl border border-slate-200 p-3 hover:bg-slate-50 cursor-pointer transition select-none text-left sm:flex-col sm:justify-center sm:gap-0 sm:text-center">
-                <input type="radio" name="codecTarget" value="ogg" class="w-3.5 h-3.5 text-brand-600 border-slate-300 focus:ring-brand-500 sm:mb-1.5" />
-                <span class="text-xs font-bold text-slate-900">OGG</span>
-                <span class="text-[9px] text-slate-400 font-mono">audio/ogg</span>
-              </label>
+        <div class="mobile-panel rounded-2xl border border-slate-200 bg-slate-50 p-4">
+          <label class="mb-3 block text-sm font-bold text-slate-700">Select an audio file</label>
+          <div id="dropZone" class="relative flex min-h-[190px] w-full cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed border-slate-300 bg-white p-5 text-center transition hover:border-indigo-300 hover:bg-indigo-50/40">
+            <input id="audioInput" type="file" accept="audio/*,.mp3,.wav,.ogg,.m4a,.aac,.flac,.webm,.opus" class="absolute inset-0 z-20 h-full w-full cursor-pointer opacity-0" aria-label="Choose audio file" />
+            <div class="pointer-events-none relative z-10 flex flex-col items-center">
+              <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-indigo-50 text-indigo-600">
+                <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+                </svg>
+              </div>
+              <p id="audioInputLabel" class="mt-3 max-w-full text-sm font-black text-slate-800 safe-break">Click to browse or drag and drop audio here</p>
+              <p class="mt-1 text-xs leading-5 text-slate-500">Supports common audio files such as MP3, WAV, M4A, AAC, OGG, FLAC, WebM, and Opus when the browser can read them.</p>
             </div>
           </div>
-
-          <button id="convertBtn" class="w-full rounded-2xl bg-brand-600 px-4 py-4 text-center text-sm font-bold text-white shadow-md hover:bg-brand-700 active:scale-[0.99] transition-all flex items-center justify-center gap-2 sm:text-base">
-            <span>Convert & Download</span>
-          </button>
-
-          <div class="mt-6 flex min-h-[180px] w-full min-w-0 flex-col items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-3 text-center text-xs text-slate-400 sm:min-h-[250px] sm:p-4 sm:text-sm">
-            <span class="text-[10px] font-bold text-slate-300 uppercase tracking-widest mb-2">Advertisement</span>
-            <ins class="adsbygoogle"
-                 style="display:block; width:100%; max-width:100%; min-height:160px;"
-                 data-ad-client="ca-pub-5282672325821404"
-                 data-ad-slot="YYYYYYYYYY"
-                 data-ad-format="rectangle, vertical"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-          </div>
-
-          <div class="mt-5 rounded-2xl bg-slate-100 p-4 text-xs leading-5 text-slate-500">
-            <span class="block font-bold text-slate-700 mb-1">Disclaimer & Legal Notice:</span>
-            This tool is provided on an "as is" and "as available" basis without warranties of any kind. Audio bitstream re-encoding allocations run 100% inside client-bound browser WebAssembly runtime sandboxes; NodnWebTools never mirrors, stores, intercepts, caches, or logs your upload media resources.
-          </div>
         </div>
-      </div>
-    </section>
 
-    <section class="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-12">
-      <div class="min-w-0 rounded-3xl bg-white p-4 shadow-xl ring-1 ring-slate-200 sm:p-8 lg:col-span-7 space-y-5">
-        <span class="inline-flex rounded-full bg-blue-50 px-4 py-2 text-sm font-semibold text-blue-700">
-          Step-by-Step Guide
-        </span>
-        <h2 class="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
-          How It Works: Free Online Audio Converter
-        </h2>
-        <p class="text-sm leading-7 text-slate-600 sm:text-base">
-          Converting sound containers using our <strong>online audio converter</strong> framework is incredibly simple, fast, and secure. Unlike traditional cloud tools, you never have to wait for file uploads or server queues. Follow these three quick steps to <strong>convert to mp3</strong>, wav, or ogg format instantly:
-        </p>
-        <ol class="list-decimal pl-5 space-y-4 text-sm leading-7 text-slate-600">
-          <li>
-            <strong class="text-slate-900">Select or Drop Your Audio File:</strong> Click inside the upload region or drag your file (.wav, .m4a, .ogg, .mp3, etc.) directly into the sandbox dashboard. Your track stays strictly within your device memory.
-          </li>
-          <li>
-            <strong class="text-slate-900">Choose Target Format Matrix:</strong> Select your desired extension output codec from the transcode matrix board. We support standard configuration pipelines including high-fidelity MP3, lossless WAV container formats, and optimized OGG bitstreams.
-          </li>
-          <li>
-            <strong class="text-slate-900">Transcode & Instant Download:</strong> Trigger the process by clicking the conversion button. The browser-bound WebAssembly compiler processes the multi-layer audio asset instantly and initiates a local browser download pipeline.
-          </li>
-        </ol>
-      </div>
-
-      <div class="min-w-0 rounded-3xl bg-white p-4 shadow-xl ring-1 ring-slate-200 sm:p-8 lg:col-span-5 space-y-5">
-        <span class="inline-flex rounded-full bg-emerald-50 px-4 py-2 text-sm font-semibold text-emerald-700">
-          Knowledge Base
-        </span>
-        <h2 class="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
-          Frequently Asked Questions
-        </h2>
-        <div class="space-y-4 text-xs leading-6 text-slate-600 sm:text-sm">
+        <div class="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div>
-            <h3 class="font-bold text-slate-900">Q: Is this online audio converter safe to use?</h3>
-            <p class="mt-1 text-slate-500">A: Absolutely. Our tool operates completely client-side utilizing isolated WebAssembly compilers. Your files are never uploaded to any remote server, guaranteeing 100% data privacy.</p>
+            <label for="targetFormat" class="mb-2 block text-sm font-bold text-slate-700">Convert to</label>
+            <select id="targetFormat" class="w-full rounded-2xl border border-slate-300 bg-white px-4 py-4 text-base font-semibold text-slate-900 outline-none transition focus:border-indigo-400 focus:ring-4 focus:ring-indigo-100">
+              <option value="mp3" selected>MP3 (.mp3)</option>
+              <option value="wav">WAV (.wav)</option>
+              <option value="ogg">OGG (.ogg)</option>
+            </select>
           </div>
-          <div class="border-t border-slate-100 pt-3">
-            <h3 class="font-bold text-slate-900">Q: Why did I get a 'System Transcode Fault'?</h3>
-            <p class="mt-1 text-slate-500">A: High-performance browser encoding requires strict modern security isolation. Ensure your web host serves the page with proper Cross-Origin Isolation headers (COOP and COEP) so the WebAssembly core handles memory blocks correctly.</p>
-          </div>
-          <div class="border-t border-slate-100 pt-3">
-            <h3 class="font-bold text-slate-900">Q: Can I convert large wav to mp3 audio assets?</h3>
-            <p class="mt-1 text-slate-500">A: Yes! Because processing loops execute directly inside your browser heap, file size capability is bound only by your local system memory capacity, bypassing cloud payload caps.</p>
+
+          <div>
+            <label for="audioBitrate" class="mb-2 block text-sm font-bold text-slate-700">Bitrate</label>
+            <select id="audioBitrate" class="w-full rounded-2xl border border-slate-300 bg-white px-4 py-4 text-base font-semibold text-slate-900 outline-none transition focus:border-indigo-400 focus:ring-4 focus:ring-indigo-100">
+              <option value="128k">128 kbps</option>
+              <option value="192k" selected>192 kbps</option>
+              <option value="256k">256 kbps</option>
+              <option value="320k">320 kbps</option>
+            </select>
           </div>
         </div>
-      </div>
-    </section>
 
-    <section class="mt-6 min-w-0 rounded-3xl bg-white p-4 shadow-sm ring-1 ring-slate-200 sm:p-8">
-      <span class="inline-flex rounded-full bg-slate-200 px-4 py-2 text-sm font-semibold text-slate-800">
-        WebAssembly Encoding Guide
-      </span>
-      <h2 class="mt-5 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
-        Decentralized Audio Transcoding
-      </h2>
-      <div class="mt-5 space-y-5 text-sm leading-7 text-slate-600">
-        <p>
-          In secure digital asset infrastructure setups, re-encoding sound elements safely into alternate codecs relies heavily on implementing a decentralized 
-          <strong class="font-semibold text-slate-800">online audio converter</strong>. When sound engineers manipulate uncompressed master files, passing media data chunks across third-party remote network servers creates high compliance risk profiles and leaks copyright metadata layers.
-        </p>
-        <p>
-          Utilizing a browser-bound WebAssembly <strong class="font-semibold text-slate-800">convert to mp3 platform</strong> isolates heavy signal rendering rules completely within local client memory frames. This layout allows content teams to invoke a flexible <strong class="font-semibold text-slate-800">online document converter</strong> framework layout style for binary processing, transforming media channels smoothly while protecting operational data privacy boundaries.
-        </p>
-      </div>
-    </section>
+        <div class="mt-5">
+          <label for="sampleRate" class="mb-2 block text-sm font-bold text-slate-700">Sample rate</label>
+          <select id="sampleRate" class="w-full rounded-2xl border border-slate-300 bg-white px-4 py-4 text-base font-semibold text-slate-900 outline-none transition focus:border-indigo-400 focus:ring-4 focus:ring-indigo-100">
+            <option value="">Keep source default</option>
+            <option value="44100">44.1 kHz</option>
+            <option value="48000">48 kHz</option>
+          </select>
+        </div>
 
-    <div class="mt-6 flex min-h-[80px] w-full items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white px-3 text-center text-xs text-slate-400 sm:mt-8 sm:min-h-[90px] sm:text-sm">
-      AdSense Responsive Ad Area - Bottom
+        <div id="alertBox" class="mt-5 hidden rounded-2xl border border-red-200 bg-red-50 p-4 text-sm font-semibold leading-6 text-red-700"></div>
+
+        <div class="mobile-button-grid mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2">
+          <button id="convertBtn" type="button" class="rounded-2xl bg-indigo-600 px-4 py-4 text-base font-black text-white shadow-sm transition hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-50" disabled>Convert Audio</button>
+          <button id="resetBtn" type="button" class="rounded-2xl border border-slate-200 bg-white px-4 py-4 text-base font-black text-slate-700 transition hover:border-indigo-200 hover:text-indigo-700">Reset</button>
+        </div>
+
+        <div class="mt-5 rounded-2xl border border-indigo-100 bg-indigo-50 p-4 text-sm leading-6 text-indigo-900">
+          <strong>Important:</strong> MP3 and OGG conversion uses a browser-based FFmpeg WebAssembly engine. If a browser blocks WebAssembly from the CDN, the tool will show a clear error instead of silently failing.
+        </div>
+      </section>
+
+      <section class="space-y-6 lg:col-span-7">
+        <div class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
+          <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+            <div>
+              <h2 class="text-2xl font-black tracking-tight text-slate-950">Preview and output</h2>
+              <p class="mt-1 text-sm leading-6 text-slate-500">Listen to the source file and download the converted audio after processing.</p>
+            </div>
+            <span id="statusBadge" class="inline-flex w-fit rounded-full bg-slate-100 px-4 py-2 text-sm font-bold text-slate-600">Waiting for audio</span>
+          </div>
+
+          <div id="resultPlaceholder" class="mt-6 rounded-3xl border border-dashed border-slate-300 bg-slate-50 p-6 text-center text-sm leading-6 text-slate-500">
+            Choose an audio file from the left panel to display file details, preview, and conversion controls.
+          </div>
+
+          <div id="resultContent" class="mt-6 hidden">
+            <div class="rounded-3xl border border-slate-200 bg-slate-50 p-4">
+              <p class="mb-3 text-xs font-black uppercase tracking-widest text-slate-400">Source audio preview</p>
+              <audio id="audioPreview" controls class="rounded-xl bg-white"></audio>
+            </div>
+
+            <div class="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2">
+              <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                <p class="text-xs font-black uppercase tracking-widest text-slate-400">Source name</p>
+                <p id="displayFileName" class="mt-1 text-sm font-black text-slate-900 safe-break">No file selected</p>
+              </div>
+              <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                <p class="text-xs font-black uppercase tracking-widest text-slate-400">Original size</p>
+                <p id="displayFileSize" class="mt-1 text-sm font-black text-slate-900">0 KB</p>
+              </div>
+              <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                <p class="text-xs font-black uppercase tracking-widest text-slate-400">Duration</p>
+                <p id="displayDuration" class="mt-1 text-sm font-black text-slate-900">Unknown</p>
+              </div>
+              <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                <p class="text-xs font-black uppercase tracking-widest text-slate-400">Output size</p>
+                <p id="displayOutputSize" class="mt-1 text-sm font-black text-slate-900">Convert to calculate</p>
+              </div>
+            </div>
+
+            <div class="mt-5">
+              <div class="mb-2 flex items-center justify-between gap-3">
+                <span class="text-xs font-black uppercase tracking-widest text-slate-400">Progress</span>
+                <span id="progressText" class="text-xs font-bold text-slate-500">0%</span>
+              </div>
+              <div class="progress-track h-3 rounded-full">
+                <div id="progressBar" class="progress-bar h-full rounded-full bg-indigo-600"></div>
+              </div>
+            </div>
+
+            <div class="mt-5 rounded-2xl border border-slate-200 bg-slate-950 p-4 text-slate-100">
+              <p class="text-xs font-black uppercase tracking-widest text-slate-400">Conversion log</p>
+              <pre id="summaryOutput" class="mobile-code mt-3 max-h-48 overflow-y-auto text-sm leading-6"></pre>
+            </div>
+
+            <div id="outputPreviewWrap" class="mt-5 hidden rounded-3xl border border-slate-200 bg-slate-50 p-4">
+              <p class="mb-3 text-xs font-black uppercase tracking-widest text-slate-400">Converted audio preview</p>
+              <audio id="outputPreview" controls class="rounded-xl bg-white"></audio>
+            </div>
+
+            <div class="mobile-button-grid mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2">
+              <a id="downloadBtn" href="#" download="converted-audio" class="pointer-events-none flex items-center justify-center rounded-2xl bg-slate-300 px-4 py-4 text-center text-base font-black text-white shadow-sm transition" aria-disabled="true">
+                Download Converted File
+              </a>
+              <button id="copySummaryBtn" type="button" class="rounded-2xl border border-slate-200 bg-white px-4 py-4 text-base font-black text-slate-700 transition hover:border-indigo-200 hover:text-indigo-700">Copy Log</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="ad-box">AdSense Responsive Ad Area - Below Result</div>
+      </section>
+    </main>
+
+    <div class="mx-auto mt-6 w-full max-w-7xl">
+      <div class="ad-box">AdSense Responsive Ad Area - Below Tool</div>
     </div>
-  </main>
+
+    <section class="mx-auto mt-8 w-full max-w-7xl space-y-6">
+      <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
+        <p class="mb-3 inline-flex rounded-full bg-violet-50 px-4 py-2 text-sm font-bold text-violet-700">Audio conversion guide</p>
+        <h2 class="text-3xl font-black tracking-tight text-slate-950">A browser-based audio converter for everyday file format changes</h2>
+        <div class="mt-5 space-y-5 text-base leading-8 text-slate-600">
+          <p>
+            The NodnWebTools Audio Converter helps users convert local audio files into common formats such as MP3, WAV, and OGG. It is designed for simple tasks like preparing recordings for sharing, changing a downloaded file into a more compatible format, or creating a lightweight copy of a large audio source.
+          </p>
+          <p>
+            Unlike server-based audio tools, this converter is built to run directly inside the browser. Your selected audio file is handled locally by the page and the conversion output is created as a downloadable browser file. This approach is helpful when you want a practical conversion workflow without intentionally uploading your personal audio to a third-party conversion server.
+          </p>
+        </div>
+      </article>
+
+      <div class="ad-box">AdSense Responsive Ad Area - Middle Content</div>
+
+      <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
+        <h2 class="text-3xl font-black tracking-tight text-slate-950">How to use the audio converter</h2>
+        <div class="mt-6 grid grid-cols-1 gap-4 md:grid-cols-3">
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <h3 class="text-lg font-black text-slate-950">1. Upload your audio</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-600">Click the upload area or drag and drop an audio file. The preview player appears after the file loads.</p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <h3 class="text-lg font-black text-slate-950">2. Choose output settings</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-600">Select MP3, WAV, or OGG, then choose a bitrate and optional sample rate depending on your needs.</p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <h3 class="text-lg font-black text-slate-950">3. Convert and download</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-600">Click Convert Audio and wait for the progress indicator. The download button activates after the conversion is complete.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
+        <h2 class="text-3xl font-black tracking-tight text-slate-950">Popular uses for an online audio converter</h2>
+        <div class="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2">
+          <div class="rounded-2xl border border-slate-200 p-5">
+            <h3 class="text-xl font-black text-slate-950">Podcast and voice recording cleanup</h3>
+            <p class="mt-2 text-sm leading-7 text-slate-600">Voice recordings are often saved in different formats depending on the device. Converting to MP3 can make them easier to share, upload, and archive.</p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 p-5">
+            <h3 class="text-xl font-black text-slate-950">Website and app media preparation</h3>
+            <p class="mt-2 text-sm leading-7 text-slate-600">Developers may need compressed audio assets for websites, app prototypes, games, or learning tools. OGG and MP3 can be useful depending on target browser support.</p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 p-5">
+            <h3 class="text-xl font-black text-slate-950">High-quality WAV output</h3>
+            <p class="mt-2 text-sm leading-7 text-slate-600">WAV is usually larger than MP3 or OGG, but it can be useful for editing workflows, archival copies, and software that expects uncompressed PCM-style audio.</p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 p-5">
+            <h3 class="text-xl font-black text-slate-950">Simple file compatibility</h3>
+            <p class="mt-2 text-sm leading-7 text-slate-600">Some platforms accept only a limited list of formats. A quick conversion can help prepare files for forms, presentations, messaging apps, or publishing tools.</p>
+          </div>
+        </div>
+      </article>
+
+      <div class="ad-box">AdSense Responsive Ad Area - Bottom Content</div>
+
+      <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
+        <h2 class="text-3xl font-black tracking-tight text-slate-950">Practical tips for better audio conversion</h2>
+        <div class="mt-5 space-y-5 text-base leading-8 text-slate-600">
+          <p>
+            Choose MP3 when you need broad compatibility and smaller file sizes. MP3 is widely supported across phones, browsers, media players, and sharing platforms. For spoken audio, 128 kbps may be enough, while music often benefits from 192 kbps or higher.
+          </p>
+          <p>
+            Choose WAV when quality preservation matters more than file size. WAV files can become large, but they are useful for editing, sound design, and workflows where compression artifacts should be avoided.
+          </p>
+          <p>
+            Choose OGG when you want an open audio format for web or app projects. OGG can offer efficient compression, but compatibility may vary depending on the platform where the file will be used.
+          </p>
+        </div>
+      </article>
+
+      <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
+        <h2 class="text-3xl font-black tracking-tight text-slate-950">Frequently asked questions</h2>
+        <div class="mt-6 space-y-4">
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">Are my audio files uploaded to a server?</summary>
+            <p class="mt-3 text-sm leading-7 text-slate-600">No. This tool is designed to process files in your browser. It does not intentionally upload your selected audio file to a backend conversion server.</p>
+          </details>
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">Why can conversion fail in some browsers?</summary>
+            <p class="mt-3 text-sm leading-7 text-slate-600">Browser-based audio conversion depends on WebAssembly, memory limits, CDN access, and browser security rules. Very large files, unsupported codecs, or blocked scripts may prevent conversion.</p>
+          </details>
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">Which output format should I choose?</summary>
+            <p class="mt-3 text-sm leading-7 text-slate-600">Use MP3 for broad compatibility, WAV for high-quality editing workflows, and OGG for web or open-format use cases.</p>
+          </details>
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">Can I convert large audio files?</summary>
+            <p class="mt-3 text-sm leading-7 text-slate-600">It depends on your device memory and browser. Large files can take longer and may fail on phones or low-memory devices.</p>
+          </details>
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">Does this tool preserve metadata?</summary>
+            <p class="mt-3 text-sm leading-7 text-slate-600">Metadata may not always be preserved. Review the downloaded file before using it in professional or archival workflows.</p>
+          </details>
+        </div>
+      </section>
+
+      <section class="mobile-card rounded-3xl bg-slate-950 p-5 text-slate-200 shadow-sm lg:p-8">
+        <h2 class="text-3xl font-black tracking-tight text-white">Legal Disclaimer</h2>
+        <div class="mt-5 space-y-4 text-sm leading-7 text-slate-300">
+          <p>
+            This Audio Converter is provided for general file-format convenience only. While the tool attempts to convert audio accurately, output quality, compatibility, metadata retention, file size, codec behavior, and playback support may vary depending on the source file, browser, device, and WebAssembly runtime.
+          </p>
+          <p>
+            Users are responsible for ensuring they have the legal right to convert, copy, modify, download, or distribute any audio file processed with this tool. Do not use this converter to infringe copyright, bypass licensing restrictions, or distribute audio without proper permission.
+          </p>
+          <p>
+            This page is designed to process audio locally in the browser and does not intentionally upload files to a backend conversion server. However, users remain responsible for their own browser extensions, local device security, network environment, third-party scripts, and downloaded files. NodnWebTools is not liable for data loss, failed conversions, quality degradation, legal claims, copyright issues, or consequences resulting from use of this tool.
+          </p>
+        </div>
+      </section>
+
+      <div class="ad-box">AdSense Responsive Ad Area - Bottom</div>
+    </section>
+
+    <footer class="mx-auto mt-8 w-full max-w-7xl pb-8 text-center text-sm text-slate-500">
+      <p>© <span id="yearText"></span> NodnWebTools. All rights reserved.</p>
+    </footer>
+  </div>
+
+  <div id="toast" class="fixed bottom-4 left-4 right-4 z-50 mx-auto hidden max-w-sm rounded-2xl bg-slate-950 px-4 py-3 text-center text-sm font-bold text-white shadow-2xl sm:left-auto sm:right-6">
+    Copied!
+  </div>
 
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
+    document.addEventListener("DOMContentLoaded", function () {
       const audioInput = document.getElementById("audioInput");
       const dropZone = document.getElementById("dropZone");
       const audioInputLabel = document.getElementById("audioInputLabel");
-      const mediaDashboard = document.getElementById("mediaDashboard");
-      const metaName = document.getElementById("metaName");
-      const metaSize = document.getElementById("metaSize");
-      const audioPreview = document.getElementById("audioPreview");
-      const errorNotification = document.getElementById("errorNotification");
+      const targetFormat = document.getElementById("targetFormat");
+      const audioBitrate = document.getElementById("audioBitrate");
+      const sampleRate = document.getElementById("sampleRate");
       const convertBtn = document.getElementById("convertBtn");
+      const resetBtn = document.getElementById("resetBtn");
+      const alertBox = document.getElementById("alertBox");
+      const resultPlaceholder = document.getElementById("resultPlaceholder");
+      const resultContent = document.getElementById("resultContent");
+      const audioPreview = document.getElementById("audioPreview");
+      const outputPreviewWrap = document.getElementById("outputPreviewWrap");
+      const outputPreview = document.getElementById("outputPreview");
+      const displayFileName = document.getElementById("displayFileName");
+      const displayFileSize = document.getElementById("displayFileSize");
+      const displayDuration = document.getElementById("displayDuration");
+      const displayOutputSize = document.getElementById("displayOutputSize");
+      const summaryOutput = document.getElementById("summaryOutput");
+      const progressBar = document.getElementById("progressBar");
+      const progressText = document.getElementById("progressText");
+      const downloadBtn = document.getElementById("downloadBtn");
+      const copySummaryBtn = document.getElementById("copySummaryBtn");
+      const statusBadge = document.getElementById("statusBadge");
+      const toast = document.getElementById("toast");
+      const yearText = document.getElementById("yearText");
 
-      let currentFileBlob = null;
-      let isEngineProcessing = false;
+      let loadedFile = null;
+      let sourceObjectUrl = "";
+      let outputObjectUrl = "";
       let ffmpegInstance = null;
+      let isProcessing = false;
+      let toastTimer = null;
+      let logLines = [];
+
+      yearText.textContent = new Date().getFullYear();
+
+      function showAlert(message) {
+        alertBox.textContent = message;
+        alertBox.classList.remove("hidden");
+      }
+
+      function clearAlert() {
+        alertBox.textContent = "";
+        alertBox.classList.add("hidden");
+      }
+
+      function showToast(message) {
+        toast.textContent = message || "Copied!";
+        toast.classList.remove("hidden");
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(function () {
+          toast.classList.add("hidden");
+        }, 1600);
+      }
+
+      function addLog(message) {
+        const time = new Date().toLocaleTimeString();
+        logLines.push("[" + time + "] " + message);
+        if (logLines.length > 80) logLines = logLines.slice(-80);
+        summaryOutput.textContent = logLines.join("\n");
+        summaryOutput.scrollTop = summaryOutput.scrollHeight;
+      }
+
+      function clearLog() {
+        logLines = [];
+        summaryOutput.textContent = "";
+      }
+
+      function setStatus(text, tone) {
+        const toneMap = {
+          slate: "inline-flex w-fit rounded-full bg-slate-100 px-4 py-2 text-sm font-bold text-slate-600",
+          amber: "inline-flex w-fit rounded-full bg-amber-50 px-4 py-2 text-sm font-bold text-amber-700",
+          emerald: "inline-flex w-fit rounded-full bg-emerald-50 px-4 py-2 text-sm font-bold text-emerald-700",
+          red: "inline-flex w-fit rounded-full bg-red-50 px-4 py-2 text-sm font-bold text-red-700",
+          indigo: "inline-flex w-fit rounded-full bg-indigo-50 px-4 py-2 text-sm font-bold text-indigo-700"
+        };
+
+        statusBadge.textContent = text;
+        statusBadge.className = toneMap[tone] || toneMap.slate;
+      }
+
+      function setProgress(percent) {
+        const cleanPercent = Math.max(0, Math.min(100, Math.round(Number(percent) || 0)));
+        progressBar.style.width = cleanPercent + "%";
+        progressText.textContent = cleanPercent + "%";
+      }
 
       function formatBytes(bytes) {
-        if (bytes === 0) return '0 Bytes';
-        const k = 1024;
-        const sizes = ['Bytes', 'KB', 'MB'];
-        const i = Math.floor(Math.log(bytes) / Math.log(k));
-        return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        if (!Number.isFinite(bytes) || bytes <= 0) return "0 Bytes";
+        const units = ["Bytes", "KB", "MB", "GB"];
+        const index = Math.min(Math.floor(Math.log(bytes) / Math.log(1024)), units.length - 1);
+        return (bytes / Math.pow(1024, index)).toFixed(index === 0 ? 0 : 2) + " " + units[index];
       }
 
-      ["dragenter", "dragover"].forEach(eventName => {
-        dropZone.addEventListener(eventName, (e) => {
-          e.preventDefault();
-          dropZone.classList.add("bg-violet-50", "border-brand-600");
-        }, false);
-      });
-
-      ["dragleave", "drop"].forEach(eventName => {
-        dropZone.addEventListener(eventName, (e) => {
-          e.preventDefault();
-          dropZone.classList.remove("bg-violet-50", "border-brand-600");
-        }, false);
-      });
-
-      dropZone.addEventListener("drop", (e) => {
-        const dataTransfer = e.dataTransfer;
-        if (dataTransfer.files.length > 0) {
-          allocateIncomingAudioTrack(dataTransfer.files[0]);
-        }
-      });
-
-      audioInput.addEventListener("change", (e) => {
-        if (e.target.files.length > 0) {
-          allocateIncomingAudioTrack(e.target.files[0]);
-        }
-      });
-
-      function allocateIncomingAudioTrack(file) {
-        if (!file.type.startsWith("audio/")) {
-          const fallbackExtension = file.name.substring(file.name.lastIndexOf('.')).toLowerCase();
-          const validExtensions = ['.mp3', '.wav', '.ogg', '.m4a', '.flac', '.aac', '.wma'];
-          if (!validExtensions.includes(fallbackExtension)) {
-            showErrorState("⚠️ Media Format Error: The uploaded file does not map to a supported audio track model layout.");
-            return;
-          }
-        }
-        clearErrorState();
-        currentFileBlob = file;
-        metaName.textContent = file.name;
-        metaSize.textContent = formatBytes(file.size);
-        audioInputLabel.textContent = `${file.name} loaded`;
-
-        const streamUrl = URL.createObjectURL(file);
-        audioPreview.src = streamUrl;
-        mediaDashboard.classList.remove("hidden");
+      function formatDuration(seconds) {
+        if (!Number.isFinite(seconds) || seconds <= 0) return "Unknown";
+        const total = Math.round(seconds);
+        const mins = Math.floor(total / 60);
+        const secs = total % 60;
+        return mins + ":" + String(secs).padStart(2, "0");
       }
 
-      convertBtn.addEventListener("click", async () => {
-        if (isEngineProcessing) return;
-        if (!currentFileBlob) {
-          showErrorState("⚠️ Missing Asset: Please upload an audio track target asset before executing conversion loops.");
+      function getBaseName(filename) {
+        const clean = String(filename || "audio").replace(/[\\/:*?"<>|]+/g, "-");
+        const dotIndex = clean.lastIndexOf(".");
+        return dotIndex > 0 ? clean.slice(0, dotIndex) : clean;
+      }
+
+      function getExtension(filename) {
+        const clean = String(filename || "").toLowerCase();
+        const dotIndex = clean.lastIndexOf(".");
+        return dotIndex >= 0 ? clean.slice(dotIndex + 1) : "bin";
+      }
+
+      function getMimeFromTarget(target) {
+        if (target === "mp3") return "audio/mpeg";
+        if (target === "wav") return "audio/wav";
+        if (target === "ogg") return "audio/ogg";
+        return "application/octet-stream";
+      }
+
+      function setDownloadDisabled() {
+        downloadBtn.href = "#";
+        downloadBtn.removeAttribute("download");
+        downloadBtn.classList.add("pointer-events-none", "bg-slate-300");
+        downloadBtn.classList.remove("bg-slate-900", "hover:bg-indigo-700");
+        downloadBtn.setAttribute("aria-disabled", "true");
+        outputPreviewWrap.classList.add("hidden");
+        outputPreview.removeAttribute("src");
+      }
+
+      function setDownloadEnabled(url, filename) {
+        downloadBtn.href = url;
+        downloadBtn.download = filename;
+        downloadBtn.classList.remove("pointer-events-none", "bg-slate-300");
+        downloadBtn.classList.add("bg-slate-900", "hover:bg-indigo-700");
+        downloadBtn.setAttribute("aria-disabled", "false");
+        outputPreview.src = url;
+        outputPreviewWrap.classList.remove("hidden");
+      }
+
+      function resetOutputOnly() {
+        if (outputObjectUrl) {
+          URL.revokeObjectURL(outputObjectUrl);
+          outputObjectUrl = "";
+        }
+        displayOutputSize.textContent = "Convert to calculate";
+        setDownloadDisabled();
+        setProgress(0);
+      }
+
+      function resetAll() {
+        if (sourceObjectUrl) {
+          URL.revokeObjectURL(sourceObjectUrl);
+          sourceObjectUrl = "";
+        }
+        if (outputObjectUrl) {
+          URL.revokeObjectURL(outputObjectUrl);
+          outputObjectUrl = "";
+        }
+
+        loadedFile = null;
+        audioInput.value = "";
+        audioInputLabel.textContent = "Click to browse or drag and drop audio here";
+        audioPreview.removeAttribute("src");
+        resultPlaceholder.classList.remove("hidden");
+        resultContent.classList.add("hidden");
+        convertBtn.disabled = true;
+        displayFileName.textContent = "No file selected";
+        displayFileSize.textContent = "0 KB";
+        displayDuration.textContent = "Unknown";
+        displayOutputSize.textContent = "Convert to calculate";
+        clearAlert();
+        clearLog();
+        setProgress(0);
+        setDownloadDisabled();
+        setStatus("Waiting for audio", "slate");
+      }
+
+      function validateAudioFile(file) {
+        if (!file) return false;
+
+        const extension = getExtension(file.name);
+        const allowedExtensions = ["mp3", "wav", "ogg", "m4a", "aac", "flac", "webm", "opus", "aiff", "aif"];
+
+        if (file.type && file.type.startsWith("audio/")) return true;
+        return allowedExtensions.includes(extension);
+      }
+
+      function loadAudioFile(file) {
+        clearAlert();
+        resetOutputOnly();
+        clearLog();
+
+        if (!file) return;
+
+        if (!validateAudioFile(file)) {
+          showAlert("Please select a valid audio file. Supported examples include MP3, WAV, OGG, M4A, AAC, FLAC, WebM, and Opus.");
           return;
         }
 
-        clearErrorState();
-        switchLoadingState(true);
+        loadedFile = file;
+        audioInputLabel.textContent = file.name;
+        displayFileName.textContent = file.name;
+        displayFileSize.textContent = formatBytes(file.size);
+
+        if (sourceObjectUrl) URL.revokeObjectURL(sourceObjectUrl);
+        sourceObjectUrl = URL.createObjectURL(file);
+        audioPreview.src = sourceObjectUrl;
+
+        resultPlaceholder.classList.add("hidden");
+        resultContent.classList.remove("hidden");
+        convertBtn.disabled = false;
+        setStatus("Audio loaded", "emerald");
+        addLog("Loaded source file: " + file.name);
+        addLog("Source size: " + formatBytes(file.size));
+
+        audioPreview.onloadedmetadata = function () {
+          displayDuration.textContent = formatDuration(audioPreview.duration);
+          addLog("Detected duration: " + formatDuration(audioPreview.duration));
+        };
+
+        audioPreview.onerror = function () {
+          displayDuration.textContent = "Preview unavailable";
+          addLog("Browser preview is unavailable, but conversion may still work if FFmpeg can read the file.");
+        };
+      }
+
+      function setProcessingState(active) {
+        isProcessing = active;
+
+        if (active) {
+          convertBtn.disabled = true;
+          convertBtn.classList.remove("bg-indigo-600", "hover:bg-indigo-700");
+          convertBtn.classList.add("bg-slate-400", "cursor-wait");
+          convertBtn.innerHTML =
+            '<svg class="h-5 w-5 animate-spin text-white" fill="none" viewBox="0 0 24 24" aria-hidden="true">' +
+            '<circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>' +
+            '<path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>' +
+            '</svg>' +
+            '<span class="ml-2">Converting...</span>';
+        } else {
+          convertBtn.disabled = !loadedFile;
+          convertBtn.classList.remove("bg-slate-400", "cursor-wait");
+          convertBtn.classList.add("bg-indigo-600", "hover:bg-indigo-700");
+          convertBtn.innerHTML = "Convert Audio";
+        }
+      }
+
+      async function ensureFfmpegLoaded() {
+        if (!window.FFmpeg || !window.FFmpeg.createFFmpeg) {
+          throw new Error("FFmpeg WebAssembly library is not available. Check your internet connection or CDN blocking settings.");
+        }
+
+        if (!ffmpegInstance) {
+          const createFFmpeg = window.FFmpeg.createFFmpeg;
+
+          ffmpegInstance = createFFmpeg({
+            log: true,
+            corePath: "https://unpkg.com/@ffmpeg/core@0.11.0/dist/ffmpeg-core.js"
+          });
+
+          ffmpegInstance.setProgress(function (progress) {
+            if (progress && Number.isFinite(progress.ratio)) {
+              setProgress(Math.max(1, Math.min(99, progress.ratio * 100)));
+            }
+          });
+
+          ffmpegInstance.setLogger(function (log) {
+            if (log && log.message) {
+              const message = String(log.message).trim();
+              if (message) addLog(message);
+            }
+          });
+        }
+
+        if (!ffmpegInstance.isLoaded()) {
+          setStatus("Loading engine", "amber");
+          addLog("Loading FFmpeg WebAssembly engine. This may take a moment on the first run.");
+          await ffmpegInstance.load();
+          addLog("FFmpeg engine loaded successfully.");
+        }
+      }
+
+      async function convertAudio() {
+        if (isProcessing) return;
+
+        if (!loadedFile) {
+          showAlert("Please upload an audio file before converting.");
+          return;
+        }
+
+        clearAlert();
+        resetOutputOnly();
+        setProcessingState(true);
+        setStatus("Preparing conversion", "amber");
+        setProgress(1);
 
         try {
-          if (!ffmpegInstance) {
-            const { createFFmpeg } = FFmpeg;
-            // 버전을 0.11.6 버전으로 정확하게 맞추고 디버깅을 위해 로깅을 활성화합니다.
-            ffmpegInstance = createFFmpeg({ 
-              log: true,
-              corePath: 'https://unpkg.com/@ffmpeg/core@0.11.6/dist/ffmpeg-core.js'
-            });
+          await ensureFfmpegLoaded();
+
+          const target = targetFormat.value;
+          const bitrate = audioBitrate.value;
+          const sampleRateValue = sampleRate.value;
+          const inputExt = getExtension(loadedFile.name) || "audio";
+          const inputName = "input_source." + inputExt;
+          const outputName = "output_converted." + target;
+
+          addLog("Writing source file into the browser virtual file system.");
+          const fileBuffer = await loadedFile.arrayBuffer();
+          ffmpegInstance.FS("writeFile", inputName, new Uint8Array(fileBuffer));
+
+          const args = ["-i", inputName];
+
+          if (sampleRateValue) {
+            args.push("-ar", sampleRateValue);
           }
 
-          if (!ffmpegInstance.isLoaded()) {
-            audioInputLabel.textContent = "Loading WebAssembly core layers...";
-            await ffmpegInstance.load();
+          if (target === "mp3") {
+            args.push("-vn", "-codec:a", "libmp3lame", "-b:a", bitrate, outputName);
+          } else if (target === "wav") {
+            args.push("-vn", "-codec:a", "pcm_s16le", outputName);
+          } else if (target === "ogg") {
+            args.push("-vn", "-codec:a", "libvorbis", "-b:a", bitrate, outputName);
+          } else {
+            throw new Error("Unsupported target format selected.");
           }
 
-          const originalName = currentFileBlob.name;
-          const inputExt = originalName.substring(originalName.lastIndexOf('.')).toLowerCase();
-          const targetCodec = document.querySelector('input[name="codecTarget"]:checked').value;
-          
-          const virtualInputName = `input_source${inputExt}`;
-          const virtualOutputName = `output_compiled.${targetCodec}`;
+          addLog("Running conversion command: ffmpeg " + args.join(" "));
+          setStatus("Converting audio", "indigo");
+          await ffmpegInstance.run.apply(ffmpegInstance, args);
 
-          const fileDataBuffer = await currentFileBlob.arrayBuffer();
-          ffmpegInstance.FS('writeFile', virtualInputName, new Uint8Array(fileDataBuffer));
+          addLog("Reading converted output file.");
+          const data = ffmpegInstance.FS("readFile", outputName);
 
-          audioInputLabel.textContent = "Processing audio signals in sandbox...";
-          await ffmpegInstance.run('-i', virtualInputName, virtualOutputName);
+          try {
+            ffmpegInstance.FS("unlink", inputName);
+          } catch (cleanupInputError) {}
 
-          const binaryResultData = ffmpegInstance.FS('readFile', virtualOutputName);
-          
-          ffmpegInstance.FS('unlink', virtualInputName);
-          ffmpegInstance.FS('unlink', virtualOutputName);
+          try {
+            ffmpegInstance.FS("unlink", outputName);
+          } catch (cleanupOutputError) {}
 
-          const compiledMimeType = `audio/${targetCodec}`;
-          const resultBlob = new Blob([binaryResultData.buffer], { type: compiledMimeType });
-          const localBlobDownloadUrl = URL.createObjectURL(resultBlob);
+          const resultBlob = new Blob([data.buffer], { type: getMimeFromTarget(target) });
 
-          const clientBaseName = originalName.substring(0, originalName.lastIndexOf('.')) || originalName;
-          const safeTitleName = clientBaseName.toLowerCase().replace(/[^a-z0-9_-]/gi, '_');
+          if (outputObjectUrl) URL.revokeObjectURL(outputObjectUrl);
+          outputObjectUrl = URL.createObjectURL(resultBlob);
 
-          const virtualAnchor = document.createElement("a");
-          virtualAnchor.href = localBlobDownloadUrl;
-          virtualAnchor.download = `${safeTitleName}_converted.${targetCodec}`;
-          
-          document.body.appendChild(virtualAnchor);
-          virtualAnchor.click();
-
-          document.body.removeChild(virtualAnchor);
-          URL.revokeObjectURL(localBlobDownloadUrl);
-          
-          audioInputLabel.textContent = "Conversion task completed successfully.";
+          const outputFileName = getBaseName(loadedFile.name) + "_converted." + target;
+          setDownloadEnabled(outputObjectUrl, outputFileName);
+          displayOutputSize.textContent = formatBytes(resultBlob.size);
+          setProgress(100);
+          setStatus("Conversion complete", "emerald");
+          addLog("Conversion complete.");
+          addLog("Output file: " + outputFileName);
+          addLog("Output size: " + formatBytes(resultBlob.size));
+          showToast("Conversion complete!");
         } catch (error) {
-          console.error("Wasm Engine Fault node: ", error);
-          showErrorState(`⚠️ System Transcode Fault: WebAssembly kernel failed to re-encode the audio matrix block. Check file formatting layouts.`);
-        } {
-          switchLoadingState(false);
+          console.error(error);
+          setStatus("Conversion failed", "red");
+          setProgress(0);
+
+          const message = error && error.message ? error.message : "The conversion failed.";
+          addLog("Error: " + message);
+
+          showAlert(
+            "Conversion failed. This can happen if the browser blocks the WebAssembly engine, the file codec is unsupported, or the file is too large for device memory. Try a smaller file, a different browser, or another source format."
+          );
+        } finally {
+          setProcessingState(false);
+        }
+      }
+
+      async function copyText(text) {
+        try {
+          if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(text);
+          } else {
+            const textarea = document.createElement("textarea");
+            textarea.value = text;
+            textarea.style.position = "fixed";
+            textarea.style.left = "-9999px";
+            document.body.appendChild(textarea);
+            textarea.focus();
+            textarea.select();
+            document.execCommand("copy");
+            document.body.removeChild(textarea);
+          }
+          showToast("Copied!");
+        } catch (error) {
+          showAlert("Clipboard access failed. Please copy the log manually.");
+        }
+      }
+
+      ["dragenter", "dragover"].forEach(function (eventName) {
+        dropZone.addEventListener(eventName, function (event) {
+          event.preventDefault();
+          event.stopPropagation();
+          dropZone.classList.add("drop-active");
+        });
+      });
+
+      ["dragleave", "drop"].forEach(function (eventName) {
+        dropZone.addEventListener(eventName, function (event) {
+          event.preventDefault();
+          event.stopPropagation();
+          dropZone.classList.remove("drop-active");
+        });
+      });
+
+      dropZone.addEventListener("drop", function (event) {
+        const files = event.dataTransfer && event.dataTransfer.files;
+        if (files && files.length > 0) {
+          loadAudioFile(files[0]);
         }
       });
 
-      function switchLoadingState(isLoading) {
-        isEngineProcessing = isLoading;
-        if (isLoading) {
-          convertBtn.disabled = true;
-          convertBtn.classList.remove("bg-brand-600", "hover:bg-brand-700");
-          convertBtn.classList.add("bg-slate-400", "cursor-wait");
-          convertBtn.innerHTML = `
-            <svg class="animate-spin h-5 w-5 text-white" fill="none" viewBox="0 0 24 24">
-              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-            </svg>
-            <span>Wasm Encoding Signal...</span>
-          `;
-        } else {
-          convertBtn.disabled = false;
-          convertBtn.classList.remove("bg-slate-400", "cursor-wait");
-          convertBtn.classList.add("bg-brand-600", "hover:bg-brand-700");
-          convertBtn.innerHTML = `<span>Convert & Download</span>`;
+      audioInput.addEventListener("change", function (event) {
+        const file = event.target.files && event.target.files[0];
+        loadAudioFile(file);
+      });
+
+      targetFormat.addEventListener("change", function () {
+        resetOutputOnly();
+        addLog("Target format changed to: " + targetFormat.value.toUpperCase());
+      });
+
+      audioBitrate.addEventListener("change", function () {
+        resetOutputOnly();
+        addLog("Bitrate changed to: " + audioBitrate.value);
+      });
+
+      sampleRate.addEventListener("change", function () {
+        resetOutputOnly();
+        addLog("Sample rate option changed.");
+      });
+
+      convertBtn.addEventListener("click", convertAudio);
+      resetBtn.addEventListener("click", resetAll);
+
+      copySummaryBtn.addEventListener("click", function () {
+        if (!summaryOutput.textContent.trim()) {
+          showAlert("There is no conversion log to copy yet.");
+          return;
         }
-      }
+        copyText(summaryOutput.textContent);
+      });
 
-      function showErrorState(msg) {
-        errorNotification.textContent = msg;
-        errorNotification.classList.remove("hidden");
-      }
+      window.addEventListener("beforeunload", function () {
+        if (sourceObjectUrl) URL.revokeObjectURL(sourceObjectUrl);
+        if (outputObjectUrl) URL.revokeObjectURL(outputObjectUrl);
+      });
 
-      function clearErrorState() {
-        errorNotification.textContent = "";
-        errorNotification.classList.add("hidden");
-      }
+      setDownloadDisabled();
     });
   </script>
 </body>
