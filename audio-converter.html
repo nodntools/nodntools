@@ -4,14 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
 
-  <title>Free Audio Converter | MP3, WAV, OGG, M4A Browser Tool - NodnWebTools</title>
-  <meta name="description" content="Convert audio files directly in your browser with the NodnWebTools Audio Converter. Preview audio, convert to MP3, WAV, or OGG using client-side WebAssembly, and download securely without server uploads." />
-  <meta name="keywords" content="audio converter, online audio converter, MP3 converter, WAV converter, OGG converter, M4A to MP3, client side audio converter, browser audio tool, NodnWebTools" />
+  <title>Free Audio Converter | MP3 and WAV Browser Tool - NodnWebTools</title>
+  <meta name="description" content="Convert audio files to MP3 or WAV directly in your browser. Preview audio, adjust MP3 bitrate, export WAV, and download securely without server uploads or WebAssembly engine errors." />
+  <meta name="keywords" content="audio converter, MP3 converter, WAV converter, M4A to MP3, browser audio converter, client-side audio tool, audio file converter, NodnWebTools" />
   <meta name="robots" content="index, follow" />
   <meta name="author" content="NodnWebTools" />
 
   <meta property="og:title" content="Free Audio Converter | NodnWebTools" />
-  <meta property="og:description" content="Convert audio files to MP3, WAV, or OGG directly in your browser with preview, status feedback, and secure local download." />
+  <meta property="og:description" content="Convert audio files to MP3 or WAV directly in your browser with preview, bitrate options, and secure local download." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://nodntools.com/audio-converter.html" />
   <meta property="og:site_name" content="NodnWebTools" />
@@ -20,7 +20,7 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404" crossorigin="anonymous"></script>
 
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/@ffmpeg/ffmpeg@0.11.6/dist/ffmpeg.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lamejs@1.2.1/lame.min.js"></script>
 
   <script type="application/ld+json">
   {
@@ -30,7 +30,7 @@
     "applicationCategory": "MultimediaApplication",
     "operatingSystem": "Any",
     "url": "https://nodntools.com/audio-converter.html",
-    "description": "A browser-based audio converter for converting local audio files to MP3, WAV, or OGG with client-side processing and local download.",
+    "description": "A browser-based audio converter for converting local audio files to MP3 or WAV with preview, bitrate settings, and local download.",
     "offers": {
       "@type": "Offer",
       "price": "0",
@@ -129,10 +129,6 @@
       background: #eef2ff !important;
     }
 
-    .range-slider {
-      accent-color: #4f46e5;
-    }
-
     .progress-track {
       overflow: hidden;
       background: #e2e8f0;
@@ -227,9 +223,9 @@
       <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:col-span-5 lg:p-8">
         <div class="mb-6">
           <p class="mb-3 inline-flex rounded-full bg-indigo-50 px-4 py-2 text-sm font-bold text-indigo-700">Audio Converter</p>
-          <h1 class="text-4xl font-black tracking-tight text-slate-950 sm:text-5xl">Convert audio files in your browser.</h1>
+          <h1 class="text-4xl font-black tracking-tight text-slate-950 sm:text-5xl">Convert audio without server uploads.</h1>
           <p class="mt-4 text-base leading-7 text-slate-600">
-            Upload a local audio file, preview it, choose MP3, WAV, or OGG, and download the converted file. Processing runs client-side through WebAssembly when supported by your browser.
+            Convert browser-readable audio files to MP3 or WAV directly on your device. This version avoids FFmpeg WebAssembly loading failures and uses the browser audio engine plus a lightweight MP3 encoder.
           </p>
         </div>
 
@@ -244,7 +240,7 @@
                 </svg>
               </div>
               <p id="audioInputLabel" class="mt-3 max-w-full text-sm font-black text-slate-800 safe-break">Click to browse or drag and drop audio here</p>
-              <p class="mt-1 text-xs leading-5 text-slate-500">Supports common audio files such as MP3, WAV, M4A, AAC, OGG, FLAC, WebM, and Opus when the browser can read them.</p>
+              <p class="mt-1 text-xs leading-5 text-slate-500">MP3, WAV, M4A, AAC, OGG, FLAC, WebM, and Opus may work when your browser can decode them.</p>
             </div>
           </div>
         </div>
@@ -255,17 +251,16 @@
             <select id="targetFormat" class="w-full rounded-2xl border border-slate-300 bg-white px-4 py-4 text-base font-semibold text-slate-900 outline-none transition focus:border-indigo-400 focus:ring-4 focus:ring-indigo-100">
               <option value="mp3" selected>MP3 (.mp3)</option>
               <option value="wav">WAV (.wav)</option>
-              <option value="ogg">OGG (.ogg)</option>
             </select>
           </div>
 
           <div>
-            <label for="audioBitrate" class="mb-2 block text-sm font-bold text-slate-700">Bitrate</label>
+            <label for="audioBitrate" class="mb-2 block text-sm font-bold text-slate-700">MP3 bitrate</label>
             <select id="audioBitrate" class="w-full rounded-2xl border border-slate-300 bg-white px-4 py-4 text-base font-semibold text-slate-900 outline-none transition focus:border-indigo-400 focus:ring-4 focus:ring-indigo-100">
-              <option value="128k">128 kbps</option>
-              <option value="192k" selected>192 kbps</option>
-              <option value="256k">256 kbps</option>
-              <option value="320k">320 kbps</option>
+              <option value="128">128 kbps</option>
+              <option value="192" selected>192 kbps</option>
+              <option value="256">256 kbps</option>
+              <option value="320">320 kbps</option>
             </select>
           </div>
         </div>
@@ -273,7 +268,7 @@
         <div class="mt-5">
           <label for="sampleRate" class="mb-2 block text-sm font-bold text-slate-700">Sample rate</label>
           <select id="sampleRate" class="w-full rounded-2xl border border-slate-300 bg-white px-4 py-4 text-base font-semibold text-slate-900 outline-none transition focus:border-indigo-400 focus:ring-4 focus:ring-indigo-100">
-            <option value="">Keep source default</option>
+            <option value="">Keep source rate</option>
             <option value="44100">44.1 kHz</option>
             <option value="48000">48 kHz</option>
           </select>
@@ -287,7 +282,7 @@
         </div>
 
         <div class="mt-5 rounded-2xl border border-indigo-100 bg-indigo-50 p-4 text-sm leading-6 text-indigo-900">
-          <strong>Important:</strong> MP3 and OGG conversion uses a browser-based FFmpeg WebAssembly engine. If a browser blocks WebAssembly from the CDN, the tool will show a clear error instead of silently failing.
+          <strong>Compatibility note:</strong> this version converts files that your browser can decode through the Web Audio API. MP3 and WAV export are handled locally.
         </div>
       </section>
 
@@ -370,13 +365,13 @@
     <section class="mx-auto mt-8 w-full max-w-7xl space-y-6">
       <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
         <p class="mb-3 inline-flex rounded-full bg-violet-50 px-4 py-2 text-sm font-bold text-violet-700">Audio conversion guide</p>
-        <h2 class="text-3xl font-black tracking-tight text-slate-950">A browser-based audio converter for everyday file format changes</h2>
+        <h2 class="text-3xl font-black tracking-tight text-slate-950">A more reliable browser-based audio converter</h2>
         <div class="mt-5 space-y-5 text-base leading-8 text-slate-600">
           <p>
-            The NodnWebTools Audio Converter helps users convert local audio files into common formats such as MP3, WAV, and OGG. It is designed for simple tasks like preparing recordings for sharing, changing a downloaded file into a more compatible format, or creating a lightweight copy of a large audio source.
+            This NodnWebTools Audio Converter is designed to avoid common WebAssembly conversion errors by using the browser audio engine for decoding and a lightweight JavaScript MP3 encoder for export. It is useful for converting everyday audio files into MP3 or WAV without intentionally uploading the file to a server.
           </p>
           <p>
-            Unlike server-based audio tools, this converter is built to run directly inside the browser. Your selected audio file is handled locally by the page and the conversion output is created as a downloadable browser file. This approach is helpful when you want a practical conversion workflow without intentionally uploading your personal audio to a third-party conversion server.
+            The tool is ideal for voice recordings, simple podcast clips, school projects, web audio preparation, and general file compatibility. Because the conversion happens in the browser, performance depends on the device, browser, source codec, and file size.
           </p>
         </div>
       </article>
@@ -391,12 +386,12 @@
             <p class="mt-2 text-sm leading-6 text-slate-600">Click the upload area or drag and drop an audio file. The preview player appears after the file loads.</p>
           </div>
           <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
-            <h3 class="text-lg font-black text-slate-950">2. Choose output settings</h3>
-            <p class="mt-2 text-sm leading-6 text-slate-600">Select MP3, WAV, or OGG, then choose a bitrate and optional sample rate depending on your needs.</p>
+            <h3 class="text-lg font-black text-slate-950">2. Choose MP3 or WAV</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-600">Select MP3 for smaller files or WAV for an uncompressed audio export.</p>
           </div>
           <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
             <h3 class="text-lg font-black text-slate-950">3. Convert and download</h3>
-            <p class="mt-2 text-sm leading-6 text-slate-600">Click Convert Audio and wait for the progress indicator. The download button activates after the conversion is complete.</p>
+            <p class="mt-2 text-sm leading-6 text-slate-600">Click Convert Audio and wait for the progress indicator. The download button activates after conversion.</p>
           </div>
         </div>
       </article>
@@ -405,20 +400,20 @@
         <h2 class="text-3xl font-black tracking-tight text-slate-950">Popular uses for an online audio converter</h2>
         <div class="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2">
           <div class="rounded-2xl border border-slate-200 p-5">
-            <h3 class="text-xl font-black text-slate-950">Podcast and voice recording cleanup</h3>
-            <p class="mt-2 text-sm leading-7 text-slate-600">Voice recordings are often saved in different formats depending on the device. Converting to MP3 can make them easier to share, upload, and archive.</p>
+            <h3 class="text-xl font-black text-slate-950">Voice recording conversion</h3>
+            <p class="mt-2 text-sm leading-7 text-slate-600">Phone and computer recordings are often saved in different formats. Converting to MP3 can make them easier to share, upload, and store.</p>
           </div>
           <div class="rounded-2xl border border-slate-200 p-5">
-            <h3 class="text-xl font-black text-slate-950">Website and app media preparation</h3>
-            <p class="mt-2 text-sm leading-7 text-slate-600">Developers may need compressed audio assets for websites, app prototypes, games, or learning tools. OGG and MP3 can be useful depending on target browser support.</p>
+            <h3 class="text-xl font-black text-slate-950">Website audio preparation</h3>
+            <p class="mt-2 text-sm leading-7 text-slate-600">MP3 files are widely supported and useful for simple website audio, learning tools, demos, and lightweight media assets.</p>
           </div>
           <div class="rounded-2xl border border-slate-200 p-5">
-            <h3 class="text-xl font-black text-slate-950">High-quality WAV output</h3>
-            <p class="mt-2 text-sm leading-7 text-slate-600">WAV is usually larger than MP3 or OGG, but it can be useful for editing workflows, archival copies, and software that expects uncompressed PCM-style audio.</p>
+            <h3 class="text-xl font-black text-slate-950">WAV export for editing</h3>
+            <p class="mt-2 text-sm leading-7 text-slate-600">WAV output is larger, but it is useful when you need an uncompressed file for basic editing workflows.</p>
           </div>
           <div class="rounded-2xl border border-slate-200 p-5">
-            <h3 class="text-xl font-black text-slate-950">Simple file compatibility</h3>
-            <p class="mt-2 text-sm leading-7 text-slate-600">Some platforms accept only a limited list of formats. A quick conversion can help prepare files for forms, presentations, messaging apps, or publishing tools.</p>
+            <h3 class="text-xl font-black text-slate-950">Quick compatibility fixes</h3>
+            <p class="mt-2 text-sm leading-7 text-slate-600">Some platforms only accept specific audio formats. A quick browser conversion can help prepare files for uploads, presentations, or sharing.</p>
           </div>
         </div>
       </article>
@@ -429,13 +424,13 @@
         <h2 class="text-3xl font-black tracking-tight text-slate-950">Practical tips for better audio conversion</h2>
         <div class="mt-5 space-y-5 text-base leading-8 text-slate-600">
           <p>
-            Choose MP3 when you need broad compatibility and smaller file sizes. MP3 is widely supported across phones, browsers, media players, and sharing platforms. For spoken audio, 128 kbps may be enough, while music often benefits from 192 kbps or higher.
+            Choose MP3 when you need broad compatibility and smaller file sizes. For spoken audio, 128 kbps may be enough, while music usually benefits from 192 kbps or higher.
           </p>
           <p>
-            Choose WAV when quality preservation matters more than file size. WAV files can become large, but they are useful for editing, sound design, and workflows where compression artifacts should be avoided.
+            Choose WAV when quality preservation matters more than file size. WAV files are larger, but they are simple, widely understood, and useful for editing workflows.
           </p>
           <p>
-            Choose OGG when you want an open audio format for web or app projects. OGG can offer efficient compression, but compatibility may vary depending on the platform where the file will be used.
+            For very large files, browser-based conversion may take time and can use a lot of memory. If conversion fails, try a shorter clip, a smaller source file, or a modern desktop browser.
           </p>
         </div>
       </article>
@@ -445,15 +440,15 @@
         <div class="mt-6 space-y-4">
           <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
             <summary class="cursor-pointer font-black text-slate-950">Are my audio files uploaded to a server?</summary>
-            <p class="mt-3 text-sm leading-7 text-slate-600">No. This tool is designed to process files in your browser. It does not intentionally upload your selected audio file to a backend conversion server.</p>
+            <p class="mt-3 text-sm leading-7 text-slate-600">No. This tool is designed to process audio in your browser. It does not intentionally upload your selected file to a backend conversion server.</p>
           </details>
           <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
-            <summary class="cursor-pointer font-black text-slate-950">Why can conversion fail in some browsers?</summary>
-            <p class="mt-3 text-sm leading-7 text-slate-600">Browser-based audio conversion depends on WebAssembly, memory limits, CDN access, and browser security rules. Very large files, unsupported codecs, or blocked scripts may prevent conversion.</p>
+            <summary class="cursor-pointer font-black text-slate-950">Why did the old WebAssembly version fail?</summary>
+            <p class="mt-3 text-sm leading-7 text-slate-600">FFmpeg WebAssembly can fail because of CDN loading, browser memory limits, security headers, unsupported codecs, or large files. This version avoids that heavy dependency for better reliability.</p>
           </details>
           <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
-            <summary class="cursor-pointer font-black text-slate-950">Which output format should I choose?</summary>
-            <p class="mt-3 text-sm leading-7 text-slate-600">Use MP3 for broad compatibility, WAV for high-quality editing workflows, and OGG for web or open-format use cases.</p>
+            <summary class="cursor-pointer font-black text-slate-950">Why is OGG not included?</summary>
+            <p class="mt-3 text-sm leading-7 text-slate-600">Reliable OGG encoding in a single static browser page usually requires heavier encoding libraries. This version focuses on MP3 and WAV because they are more practical for stable client-side use.</p>
           </details>
           <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
             <summary class="cursor-pointer font-black text-slate-950">Can I convert large audio files?</summary>
@@ -470,7 +465,7 @@
         <h2 class="text-3xl font-black tracking-tight text-white">Legal Disclaimer</h2>
         <div class="mt-5 space-y-4 text-sm leading-7 text-slate-300">
           <p>
-            This Audio Converter is provided for general file-format convenience only. While the tool attempts to convert audio accurately, output quality, compatibility, metadata retention, file size, codec behavior, and playback support may vary depending on the source file, browser, device, and WebAssembly runtime.
+            This Audio Converter is provided for general file-format convenience only. While the tool attempts to convert audio accurately, output quality, compatibility, metadata retention, file size, codec behavior, and playback support may vary depending on the source file, browser, and device.
           </p>
           <p>
             Users are responsible for ensuring they have the legal right to convert, copy, modify, download, or distribute any audio file processed with this tool. Do not use this converter to infringe copyright, bypass licensing restrictions, or distribute audio without proper permission.
@@ -525,7 +520,7 @@
       let loadedFile = null;
       let sourceObjectUrl = "";
       let outputObjectUrl = "";
-      let ffmpegInstance = null;
+      let decodedBuffer = null;
       let isProcessing = false;
       let toastTimer = null;
       let logLines = [];
@@ -610,13 +605,6 @@
         return dotIndex >= 0 ? clean.slice(dotIndex + 1) : "bin";
       }
 
-      function getMimeFromTarget(target) {
-        if (target === "mp3") return "audio/mpeg";
-        if (target === "wav") return "audio/wav";
-        if (target === "ogg") return "audio/ogg";
-        return "application/octet-stream";
-      }
-
       function setDownloadDisabled() {
         downloadBtn.href = "#";
         downloadBtn.removeAttribute("download");
@@ -652,12 +640,14 @@
           URL.revokeObjectURL(sourceObjectUrl);
           sourceObjectUrl = "";
         }
+
         if (outputObjectUrl) {
           URL.revokeObjectURL(outputObjectUrl);
           outputObjectUrl = "";
         }
 
         loadedFile = null;
+        decodedBuffer = null;
         audioInput.value = "";
         audioInputLabel.textContent = "Click to browse or drag and drop audio here";
         audioPreview.removeAttribute("src");
@@ -685,7 +675,27 @@
         return allowedExtensions.includes(extension);
       }
 
-      function loadAudioFile(file) {
+      async function decodeFile(file) {
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+
+        if (!AudioContextClass) {
+          throw new Error("This browser does not support the Web Audio API.");
+        }
+
+        const arrayBuffer = await file.arrayBuffer();
+        const audioContext = new AudioContextClass();
+
+        try {
+          const decoded = await audioContext.decodeAudioData(arrayBuffer.slice(0));
+          await audioContext.close();
+          return decoded;
+        } catch (error) {
+          await audioContext.close();
+          throw new Error("This audio codec could not be decoded by the browser.");
+        }
+      }
+
+      async function loadAudioFile(file) {
         clearAlert();
         resetOutputOnly();
         clearLog();
@@ -698,6 +708,7 @@
         }
 
         loadedFile = file;
+        decodedBuffer = null;
         audioInputLabel.textContent = file.name;
         displayFileName.textContent = file.name;
         displayFileSize.textContent = formatBytes(file.size);
@@ -708,20 +719,24 @@
 
         resultPlaceholder.classList.add("hidden");
         resultContent.classList.remove("hidden");
-        convertBtn.disabled = false;
-        setStatus("Audio loaded", "emerald");
+        convertBtn.disabled = true;
+        setStatus("Reading audio", "amber");
         addLog("Loaded source file: " + file.name);
         addLog("Source size: " + formatBytes(file.size));
 
-        audioPreview.onloadedmetadata = function () {
-          displayDuration.textContent = formatDuration(audioPreview.duration);
-          addLog("Detected duration: " + formatDuration(audioPreview.duration));
-        };
-
-        audioPreview.onerror = function () {
-          displayDuration.textContent = "Preview unavailable";
-          addLog("Browser preview is unavailable, but conversion may still work if FFmpeg can read the file.");
-        };
+        try {
+          decodedBuffer = await decodeFile(file);
+          displayDuration.textContent = formatDuration(decodedBuffer.duration);
+          addLog("Decoded duration: " + formatDuration(decodedBuffer.duration));
+          addLog("Detected channels: " + decodedBuffer.numberOfChannels);
+          addLog("Detected sample rate: " + decodedBuffer.sampleRate + " Hz");
+          convertBtn.disabled = false;
+          setStatus("Ready to convert", "emerald");
+        } catch (error) {
+          addLog("Decode error: " + error.message);
+          setStatus("Preview only", "red");
+          showAlert("This file can be previewed by the browser, but it could not be decoded for conversion. Try an MP3, WAV, M4A, or another browser-readable source file.");
+        }
       }
 
       function setProcessingState(active) {
@@ -732,122 +747,210 @@
           convertBtn.classList.remove("bg-indigo-600", "hover:bg-indigo-700");
           convertBtn.classList.add("bg-slate-400", "cursor-wait");
           convertBtn.innerHTML =
-            '<svg class="h-5 w-5 animate-spin text-white" fill="none" viewBox="0 0 24 24" aria-hidden="true">' +
+            '<svg class="h-5 w-5 animate-spin text-white inline-block" fill="none" viewBox="0 0 24 24" aria-hidden="true">' +
             '<circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>' +
             '<path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>' +
             '</svg>' +
             '<span class="ml-2">Converting...</span>';
         } else {
-          convertBtn.disabled = !loadedFile;
+          convertBtn.disabled = !decodedBuffer;
           convertBtn.classList.remove("bg-slate-400", "cursor-wait");
           convertBtn.classList.add("bg-indigo-600", "hover:bg-indigo-700");
           convertBtn.innerHTML = "Convert Audio";
         }
       }
 
-      async function ensureFfmpegLoaded() {
-        if (!window.FFmpeg || !window.FFmpeg.createFFmpeg) {
-          throw new Error("FFmpeg WebAssembly library is not available. Check your internet connection or CDN blocking settings.");
+      function audioBufferToWav(buffer) {
+        const numChannels = buffer.numberOfChannels;
+        const sampleRateValue = buffer.sampleRate;
+        const length = buffer.length * numChannels * 2 + 44;
+        const output = new ArrayBuffer(length);
+        const view = new DataView(output);
+        const channels = [];
+        let offset = 0;
+        let position = 0;
+
+        function setUint16(data) {
+          view.setUint16(position, data, true);
+          position += 2;
         }
 
-        if (!ffmpegInstance) {
-          const createFFmpeg = window.FFmpeg.createFFmpeg;
-
-          ffmpegInstance = createFFmpeg({
-            log: true,
-            corePath: "https://unpkg.com/@ffmpeg/core@0.11.0/dist/ffmpeg-core.js"
-          });
-
-          ffmpegInstance.setProgress(function (progress) {
-            if (progress && Number.isFinite(progress.ratio)) {
-              setProgress(Math.max(1, Math.min(99, progress.ratio * 100)));
-            }
-          });
-
-          ffmpegInstance.setLogger(function (log) {
-            if (log && log.message) {
-              const message = String(log.message).trim();
-              if (message) addLog(message);
-            }
-          });
+        function setUint32(data) {
+          view.setUint32(position, data, true);
+          position += 4;
         }
 
-        if (!ffmpegInstance.isLoaded()) {
-          setStatus("Loading engine", "amber");
-          addLog("Loading FFmpeg WebAssembly engine. This may take a moment on the first run.");
-          await ffmpegInstance.load();
-          addLog("FFmpeg engine loaded successfully.");
+        function writeString(value) {
+          for (let i = 0; i < value.length; i++) {
+            view.setUint8(position++, value.charCodeAt(i));
+          }
         }
+
+        writeString("RIFF");
+        setUint32(length - 8);
+        writeString("WAVE");
+        writeString("fmt ");
+        setUint32(16);
+        setUint16(1);
+        setUint16(numChannels);
+        setUint32(sampleRateValue);
+        setUint32(sampleRateValue * numChannels * 2);
+        setUint16(numChannels * 2);
+        setUint16(16);
+        writeString("data");
+        setUint32(length - position - 4);
+
+        for (let i = 0; i < numChannels; i++) {
+          channels.push(buffer.getChannelData(i));
+        }
+
+        while (position < length) {
+          for (let i = 0; i < numChannels; i++) {
+            let sample = Math.max(-1, Math.min(1, channels[i][offset]));
+            sample = sample < 0 ? sample * 0x8000 : sample * 0x7fff;
+            view.setInt16(position, sample, true);
+            position += 2;
+          }
+          offset++;
+        }
+
+        return new Blob([output], { type: "audio/wav" });
+      }
+
+      async function resampleBufferIfNeeded(buffer) {
+        const selectedRate = sampleRate.value ? Number(sampleRate.value) : buffer.sampleRate;
+
+        if (!selectedRate || selectedRate === buffer.sampleRate) {
+          return buffer;
+        }
+
+        const OfflineContextClass = window.OfflineAudioContext || window.webkitOfflineAudioContext;
+
+        if (!OfflineContextClass) {
+          addLog("Sample-rate conversion is not supported in this browser. Keeping the source sample rate.");
+          return buffer;
+        }
+
+        const channels = buffer.numberOfChannels;
+        const duration = buffer.duration;
+        const frameCount = Math.ceil(duration * selectedRate);
+        const offlineContext = new OfflineContextClass(channels, frameCount, selectedRate);
+        const source = offlineContext.createBufferSource();
+
+        source.buffer = buffer;
+        source.connect(offlineContext.destination);
+        source.start(0);
+
+        addLog("Resampling audio to " + selectedRate + " Hz.");
+        return await offlineContext.startRendering();
+      }
+
+      function floatTo16BitPcm(float32Array) {
+        const output = new Int16Array(float32Array.length);
+
+        for (let i = 0; i < float32Array.length; i++) {
+          const sample = Math.max(-1, Math.min(1, float32Array[i]));
+          output[i] = sample < 0 ? sample * 0x8000 : sample * 0x7fff;
+        }
+
+        return output;
+      }
+
+      async function encodeMp3(buffer) {
+        if (!window.lamejs || !window.lamejs.Mp3Encoder) {
+          throw new Error("The MP3 encoder library is not available.");
+        }
+
+        const channels = Math.min(2, buffer.numberOfChannels);
+        const sampleRateValue = buffer.sampleRate;
+        const bitrate = Number(audioBitrate.value) || 192;
+        const blockSize = 1152;
+        const mp3Data = [];
+
+        const left = floatTo16BitPcm(buffer.getChannelData(0));
+        const right = channels > 1 ? floatTo16BitPcm(buffer.getChannelData(1)) : null;
+        const encoder = new lamejs.Mp3Encoder(channels, sampleRateValue, bitrate);
+
+        addLog("Encoding MP3 at " + bitrate + " kbps.");
+        addLog("Output sample rate: " + sampleRateValue + " Hz.");
+
+        for (let i = 0; i < left.length; i += blockSize) {
+          const leftChunk = left.subarray(i, i + blockSize);
+          let mp3Buffer;
+
+          if (channels > 1 && right) {
+            const rightChunk = right.subarray(i, i + blockSize);
+            mp3Buffer = encoder.encodeBuffer(leftChunk, rightChunk);
+          } else {
+            mp3Buffer = encoder.encodeBuffer(leftChunk);
+          }
+
+          if (mp3Buffer.length > 0) {
+            mp3Data.push(mp3Buffer);
+          }
+
+          if (i % (blockSize * 24) === 0) {
+            setProgress(Math.min(95, (i / left.length) * 100));
+            await new Promise(function (resolve) {
+              setTimeout(resolve, 0);
+            });
+          }
+        }
+
+        const finalBuffer = encoder.flush();
+
+        if (finalBuffer.length > 0) {
+          mp3Data.push(finalBuffer);
+        }
+
+        return new Blob(mp3Data, { type: "audio/mpeg" });
       }
 
       async function convertAudio() {
         if (isProcessing) return;
 
-        if (!loadedFile) {
-          showAlert("Please upload an audio file before converting.");
+        if (!decodedBuffer || !loadedFile) {
+          showAlert("Please upload a browser-decodable audio file before converting.");
           return;
         }
 
         clearAlert();
         resetOutputOnly();
         setProcessingState(true);
-        setStatus("Preparing conversion", "amber");
+        setStatus("Converting audio", "indigo");
         setProgress(1);
 
         try {
-          await ensureFfmpegLoaded();
-
           const target = targetFormat.value;
-          const bitrate = audioBitrate.value;
-          const sampleRateValue = sampleRate.value;
-          const inputExt = getExtension(loadedFile.name) || "audio";
-          const inputName = "input_source." + inputExt;
-          const outputName = "output_converted." + target;
+          const processedBuffer = await resampleBufferIfNeeded(decodedBuffer);
+          let resultBlob;
+          let extension;
+          let mimeType;
 
-          addLog("Writing source file into the browser virtual file system.");
-          const fileBuffer = await loadedFile.arrayBuffer();
-          ffmpegInstance.FS("writeFile", inputName, new Uint8Array(fileBuffer));
-
-          const args = ["-i", inputName];
-
-          if (sampleRateValue) {
-            args.push("-ar", sampleRateValue);
-          }
-
-          if (target === "mp3") {
-            args.push("-vn", "-codec:a", "libmp3lame", "-b:a", bitrate, outputName);
-          } else if (target === "wav") {
-            args.push("-vn", "-codec:a", "pcm_s16le", outputName);
-          } else if (target === "ogg") {
-            args.push("-vn", "-codec:a", "libvorbis", "-b:a", bitrate, outputName);
+          if (target === "wav") {
+            addLog("Encoding WAV file.");
+            resultBlob = audioBufferToWav(processedBuffer);
+            extension = "wav";
+            mimeType = "audio/wav";
+            setProgress(100);
           } else {
-            throw new Error("Unsupported target format selected.");
+            resultBlob = await encodeMp3(processedBuffer);
+            extension = "mp3";
+            mimeType = "audio/mpeg";
+            setProgress(100);
           }
 
-          addLog("Running conversion command: ffmpeg " + args.join(" "));
-          setStatus("Converting audio", "indigo");
-          await ffmpegInstance.run.apply(ffmpegInstance, args);
-
-          addLog("Reading converted output file.");
-          const data = ffmpegInstance.FS("readFile", outputName);
-
-          try {
-            ffmpegInstance.FS("unlink", inputName);
-          } catch (cleanupInputError) {}
-
-          try {
-            ffmpegInstance.FS("unlink", outputName);
-          } catch (cleanupOutputError) {}
-
-          const resultBlob = new Blob([data.buffer], { type: getMimeFromTarget(target) });
+          if (!resultBlob || resultBlob.size === 0) {
+            throw new Error("The encoder returned an empty output file.");
+          }
 
           if (outputObjectUrl) URL.revokeObjectURL(outputObjectUrl);
           outputObjectUrl = URL.createObjectURL(resultBlob);
 
-          const outputFileName = getBaseName(loadedFile.name) + "_converted." + target;
+          const outputFileName = getBaseName(loadedFile.name) + "_converted." + extension;
           setDownloadEnabled(outputObjectUrl, outputFileName);
           displayOutputSize.textContent = formatBytes(resultBlob.size);
-          setProgress(100);
+          outputPreview.type = mimeType;
           setStatus("Conversion complete", "emerald");
           addLog("Conversion complete.");
           addLog("Output file: " + outputFileName);
@@ -857,13 +960,8 @@
           console.error(error);
           setStatus("Conversion failed", "red");
           setProgress(0);
-
-          const message = error && error.message ? error.message : "The conversion failed.";
-          addLog("Error: " + message);
-
-          showAlert(
-            "Conversion failed. This can happen if the browser blocks the WebAssembly engine, the file codec is unsupported, or the file is too large for device memory. Try a smaller file, a different browser, or another source format."
-          );
+          addLog("Error: " + (error && error.message ? error.message : "The conversion failed."));
+          showAlert("Conversion failed. Try a smaller file, a shorter audio clip, MP3 or WAV output, or a source file that your browser can decode.");
         } finally {
           setProcessingState(false);
         }
@@ -925,7 +1023,7 @@
 
       audioBitrate.addEventListener("change", function () {
         resetOutputOnly();
-        addLog("Bitrate changed to: " + audioBitrate.value);
+        addLog("MP3 bitrate changed to: " + audioBitrate.value + " kbps.");
       });
 
       sampleRate.addEventListener("change", function () {
