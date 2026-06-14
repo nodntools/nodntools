@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Photo Slideshow Maker - Create and Download Image Slideshows Online</title>
+  <meta name="description" content="Create a beautiful photo slideshow online from multiple images. Upload photos, set slide duration, choose transition effects, preview instantly, and download your slideshow as a client-side HTML file." />
+  <meta name="keywords" content="photo slideshow maker, image slideshow generator, online slideshow creator, picture slideshow download, photo presentation maker, create slideshow from photos, client side slideshow tool" />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="Photo Slideshow Maker - Create and Download Image Slideshows Online" />
+  <meta property="og:description" content="Upload photos, customize timing and transitions, preview your slideshow, and download a ready-to-use slideshow file directly in your browser." />
+  <meta property="og:type" content="website" />
+
+  <meta name="google-adsense-account" content="ca-pub-5282672325821404">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404" crossorigin="anonymous"></script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Photo Slideshow Maker",
+    "applicationCategory": "MultimediaApplication",
+    "operatingSystem": "Any",
+    "description": "A browser-based tool that creates downloadable photo slideshows from uploaded images without sending files to a server.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+
+  <style>
+    html,
+    body {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      min-width: 0;
+    }
+
+    body {
+      background: #f8fafc;
+    }
+
+    .safe-break {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .mobile-card,
+    .mobile-panel,
+    .mobile-preview,
+    .mobile-code,
+    canvas,
+    img,
+    svg,
+    video,
+    table,
+    pre,
+    code {
+      max-width: 100%;
+    }
+
+    .ad-box {
+      width: 100%;
+      min-height: 90px;
+      border: 2px dashed #cbd5e1;
+      background: #f1f5f9;
+      color: #64748b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-radius: 1rem;
+      padding: 1rem;
+      overflow: hidden;
+    }
+
+    .slideshow-stage {
+      aspect-ratio: 16 / 9;
+      background:
+        radial-gradient(circle at top left, rgba(99,102,241,.18), transparent 32%),
+        linear-gradient(135deg, #0f172a, #1e1b4b);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .slide-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      opacity: 0;
+      transform: scale(1);
+      transition: opacity 700ms ease, transform 1200ms ease;
+    }
+
+    .slide-img.active {
+      opacity: 1;
+    }
+
+    .effect-fade.active {
+      transform: scale(1);
+    }
+
+    .effect-zoom.active {
+      transform: scale(1.08);
+    }
+
+    .effect-slide {
+      transform: translateX(30px);
+    }
+
+    .effect-slide.active {
+      transform: translateX(0);
+    }
+
+    @media (max-width: 640px) {
+      body {
+        font-size: 15px;
+      }
+
+      .mobile-card,
+      .mobile-panel {
+        border-radius: 1rem !important;
+        padding: 1rem !important;
+      }
+
+      .mobile-preview {
+        border-radius: 1rem !important;
+      }
+
+      .mobile-button-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .mobile-button-grid button,
+      .mobile-button-grid a {
+        width: 100%;
+      }
+
+      .ad-box {
+        min-height: 90px;
+        border-radius: .875rem;
+        padding: .75rem;
+      }
+
+      .slideshow-stage {
+        aspect-ratio: 4 / 3;
+      }
+    }
+
+    @media (max-width: 380px) {
+      body {
+        font-size: 14px;
+      }
+
+      .mobile-card,
+      .mobile-panel {
+        padding: .875rem !important;
+        border-radius: .875rem !important;
+      }
+
+      .slideshow-stage {
+        aspect-ratio: 1 / 1;
+      }
+    }
+  </style>
+</head>
+
+<body class="text-slate-800">
+  <header class="border-b border-slate-200 bg-white/90 backdrop-blur">
+    <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
+      <a href="https://nodntools.com" class="safe-break text-xl font-extrabold tracking-tight text-slate-900" aria-label="Go to NodnWebTools home">
+        Nodn<span class="text-indigo-600">WebTools</span>
+      </a>
+      <a href="https://nodntools.com" class="rounded-full border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-700 hover:border-indigo-300 hover:text-indigo-700">
+        Home
+      </a>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+    <section class="ad-box mb-6">
+      Advertisement Area
+    </section>
+
+    <section class="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
+      <div class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+        <p class="mb-3 inline-flex rounded-full bg-indigo-50 px-3 py-1 text-sm font-semibold text-indigo-700">
+          Browser-Based Slideshow Tool
+        </p>
+        <h1 class="safe-break text-3xl font-extrabold tracking-tight text-slate-950 sm:text-4xl">
+          Photo Slideshow Maker
+        </h1>
+        <p class="mt-4 text-slate-600">
+          Upload multiple photos, arrange them into a simple slideshow, choose timing and transition style, preview the result, and download a ready-to-open slideshow file. Everything runs directly in your browser.
+        </p>
+
+        <div class="mt-6 space-y-5">
+          <div>
+            <label for="imageInput" class="mb-2 block text-sm font-semibold text-slate-700">Upload Photos</label>
+            <input id="imageInput" type="file" accept="image/*" multiple class="block w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-sm file:mr-4 file:rounded-full file:border-0 file:bg-indigo-600 file:px-4 file:py-2 file:text-sm file:font-semibold file:text-white hover:file:bg-indigo-700" />
+            <p class="mt-2 text-sm text-slate-500">You can select JPG, PNG, WebP, or GIF images. Files are processed locally.</p>
+          </div>
+
+          <div class="grid gap-4 sm:grid-cols-2">
+            <div>
+              <label for="durationInput" class="mb-2 block text-sm font-semibold text-slate-700">Slide Duration</label>
+              <select id="durationInput" class="w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-sm outline-none focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100">
+                <option value="1500">1.5 seconds</option>
+                <option value="2500" selected>2.5 seconds</option>
+                <option value="3500">3.5 seconds</option>
+                <option value="5000">5 seconds</option>
+                <option value="7000">7 seconds</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="transitionInput" class="mb-2 block text-sm font-semibold text-slate-700">Transition Effect</label>
+              <select id="transitionInput" class="w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-sm outline-none focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100">
+                <option value="fade" selected>Soft Fade</option>
+                <option value="zoom">Gentle Zoom</option>
+                <option value="slide">Smooth Slide</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label for="titleInput" class="mb-2 block text-sm font-semibold text-slate-700">Slideshow Title</label>
+            <input id="titleInput" type="text" value="My Photo Slideshow" placeholder="Enter a slideshow title" class="w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-sm outline-none focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100" />
+          </div>
+
+          <div class="rounded-2xl border border-indigo-100 bg-indigo-50 p-4">
+            <h2 class="font-bold text-indigo-950">Example Uses</h2>
+            <ul class="mt-2 space-y-1 text-sm text-indigo-900">
+              <li>• Family photo presentation</li>
+              <li>• Travel memory slideshow</li>
+              <li>• Birthday or wedding photo display</li>
+              <li>• Simple portfolio image showcase</li>
+            </ul>
+          </div>
+
+          <div class="grid gap-3 sm:grid-cols-2 mobile-button-grid">
+            <button id="startBtn" class="rounded-2xl bg-indigo-600 px-5 py-3 text-sm font-bold text-white shadow-sm hover:bg-indigo-700">
+              Start Preview
+            </button>
+            <button id="resetBtn" class="rounded-2xl border border-slate-300 bg-white px-5 py-3 text-sm font-bold text-slate-700 hover:border-indigo-300 hover:text-indigo-700">
+              Reset
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="mobile-panel rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+        <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <h2 class="text-2xl font-extrabold text-slate-950">Live Preview</h2>
+            <p id="statusText" class="safe-break mt-1 text-sm text-slate-500">Upload at least two images to build your slideshow.</p>
+          </div>
+          <span id="countBadge" class="inline-flex w-fit rounded-full bg-slate-100 px-3 py-1 text-sm font-semibold text-slate-600">0 photos</span>
+        </div>
+
+        <div id="previewStage" class="slideshow-stage mobile-preview mt-5 rounded-3xl border border-slate-800 shadow-inner">
+          <div id="emptyState" class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center text-white">
+            <div class="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10 text-3xl">🖼️</div>
+            <p class="text-lg font-bold">Your slideshow preview will appear here.</p>
+            <p class="mt-2 max-w-md text-sm text-slate-300">Select multiple images from your device to create a browser-based slideshow.</p>
+          </div>
+        </div>
+
+        <div class="mt-5 grid gap-3 sm:grid-cols-3 mobile-button-grid">
+          <button id="prevBtn" class="rounded-2xl border border-slate-300 bg-white px-4 py-3 text-sm font-bold text-slate-700 hover:border-indigo-300 hover:text-indigo-700">
+            Previous
+          </button>
+          <button id="nextBtn" class="rounded-2xl border border-slate-300 bg-white px-4 py-3 text-sm font-bold text-slate-700 hover:border-indigo-300 hover:text-indigo-700">
+            Next
+          </button>
+          <button id="downloadBtn" class="rounded-2xl bg-violet-600 px-4 py-3 text-sm font-bold text-white shadow-sm hover:bg-violet-700">
+            Download Slideshow
+          </button>
+        </div>
+
+        <div class="mt-5">
+          <h3 class="mb-3 text-sm font-bold uppercase tracking-wide text-slate-500">Uploaded Photos</h3>
+          <div id="thumbGrid" class="grid grid-cols-2 gap-3 sm:grid-cols-3"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ad-box my-8">
+      Advertisement Area
+    </section>
+
+    <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+      <h2 class="text-2xl font-extrabold text-slate-950">Create a Downloadable Photo Slideshow Online</h2>
+      <p class="mt-4 text-slate-600">
+        This Photo Slideshow Maker helps you turn a group of images into a polished slideshow that can be previewed and downloaded directly from your browser. It is useful for personal memories, family albums, travel photography, event highlights, portfolio previews, and simple visual presentations. Because the tool works fully client-side, your uploaded photos are not sent to a remote server by this page.
+      </p>
+
+      <div class="mt-6 grid gap-4 md:grid-cols-3">
+        <article class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+          <h3 class="font-bold text-slate-950">Upload Your Photos</h3>
+          <p class="mt-2 text-sm text-slate-600">Choose multiple images from your device and instantly load them into the slideshow preview area.</p>
+        </article>
+        <article class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+          <h3 class="font-bold text-slate-950">Customize the Presentation</h3>
+          <p class="mt-2 text-sm text-slate-600">Select slide duration, transition style, and a slideshow title before downloading your final file.</p>
+        </article>
+        <article class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+          <h3 class="font-bold text-slate-950">Download and Share</h3>
+          <p class="mt-2 text-sm text-slate-600">Export a standalone HTML slideshow file that can be opened in a modern browser.</p>
+        </article>
+      </div>
+
+      <div class="ad-box my-8">
+        Advertisement Area
+      </div>
+
+      <h2 class="text-2xl font-extrabold text-slate-950">Popular Uses for a Photo Slideshow Maker</h2>
+      <p class="mt-4 text-slate-600">
+        Online slideshow tools are popular because they make visual storytelling simple. A slideshow can organize images into a smooth sequence without requiring video editing experience. This type of tool is especially helpful when you want to present many photos quickly, create a lightweight gallery, or prepare a visual display for a celebration, classroom, business, or personal project.
+      </p>
+
+      <div class="mt-6 grid gap-4 md:grid-cols-2">
+        <article class="rounded-2xl border border-slate-200 p-5">
+          <h3 class="font-bold text-slate-950">Family and Event Slideshows</h3>
+          <p class="mt-2 text-sm text-slate-600">Create a simple photo sequence for birthdays, weddings, anniversaries, school events, reunions, and holiday memories.</p>
+        </article>
+        <article class="rounded-2xl border border-slate-200 p-5">
+          <h3 class="font-bold text-slate-950">Travel and Portfolio Presentations</h3>
+          <p class="mt-2 text-sm text-slate-600">Showcase travel photos, product images, design work, photography samples, or creative projects in a clean visual format.</p>
+        </article>
+      </div>
+
+      <div class="ad-box my-8">
+        Advertisement Area
+      </div>
+
+      <h2 class="text-2xl font-extrabold text-slate-950">Tips for Better Slideshow Results</h2>
+      <p class="mt-4 text-slate-600">
+        For the best experience, use images with similar orientation and quality. Landscape photos usually work well with a 16:9 preview, while square or portrait images may leave empty space around the image so the full photo remains visible. Choose shorter slide durations for fast social-style presentations and longer durations for storytelling, memorial slideshows, wedding displays, or detailed photo galleries.
+      </p>
+    </section>
+
+    <section class="mobile-card mt-8 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+      <h2 class="text-2xl font-extrabold text-slate-950">Frequently Asked Questions</h2>
+      <div class="mt-5 space-y-4">
+        <details class="rounded-2xl border border-slate-200 p-4">
+          <summary class="cursor-pointer font-bold text-slate-900">Does this tool upload my photos to a server?</summary>
+          <p class="mt-3 text-sm text-slate-600">No. The slideshow is created in your browser. Your selected images are read locally by the page.</p>
+        </details>
+        <details class="rounded-2xl border border-slate-200 p-4">
+          <summary class="cursor-pointer font-bold text-slate-900">What file does the download button create?</summary>
+          <p class="mt-3 text-sm text-slate-600">The download button creates a standalone HTML slideshow file that includes your selected images and slideshow settings.</p>
+        </details>
+        <details class="rounded-2xl border border-slate-200 p-4">
+          <summary class="cursor-pointer font-bold text-slate-900">Can I make an MP4 video with this version?</summary>
+          <p class="mt-3 text-sm text-slate-600">This version focuses on slideshow preview and HTML slideshow download. MP4 video export requires more advanced browser encoding technology.</p>
+        </details>
+        <details class="rounded-2xl border border-slate-200 p-4">
+          <summary class="cursor-pointer font-bold text-slate-900">How many images can I use?</summary>
+          <p class="mt-3 text-sm text-slate-600">The practical limit depends on your device memory and image file sizes. For smoother performance, use optimized images and avoid extremely large files.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="ad-box my-8">
+      Advertisement Area
+    </section>
+
+    <section class="mobile-card rounded-3xl bg-slate-900 p-6 text-slate-100 shadow-sm">
+      <h2 class="text-2xl font-extrabold">Legal Disclaimer</h2>
+      <p class="mt-4 text-sm leading-7 text-slate-300">
+        This Photo Slideshow Maker is provided for general creative and informational use only. The tool processes files in the browser, but users are responsible for ensuring they have permission to use, store, download, present, or share any uploaded images. Results may vary depending on browser support, device memory, image size, and file format compatibility. NodnWebTools does not guarantee uninterrupted operation, perfect visual accuracy, or compatibility with every device or browser. Do not use this tool for confidential, copyrighted, private, or sensitive images unless you understand and accept the risks of handling those files on your own device.
+      </p>
+    </section>
+  </main>
+
+  <footer class="mt-10 border-t border-slate-200 bg-white">
+    <div class="mx-auto max-w-7xl px-4 py-6 text-center text-sm text-slate-500 sm:px-6 lg:px-8">
+      © <span id="yearText"></span> NodnWebTools. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    const imageInput = document.getElementById('imageInput');
+    const durationInput = document.getElementById('durationInput');
+    const transitionInput = document.getElementById('transitionInput');
+    const titleInput = document.getElementById('titleInput');
+    const previewStage = document.getElementById('previewStage');
+    const emptyState = document.getElementById('emptyState');
+    const statusText = document.getElementById('statusText');
+    const countBadge = document.getElementById('countBadge');
+    const thumbGrid = document.getElementById('thumbGrid');
+    const startBtn = document.getElementById('startBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const downloadBtn = document.getElementById('downloadBtn');
+    const yearText = document.getElementById('yearText');
+
+    let slides = [];
+    let currentIndex = 0;
+    let timer = null;
+
+    yearText.textContent = new Date().getFullYear();
+
+    function escapeHtml(text) {
+      return String(text || '')
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#039;');
+    }
+
+    function setStatus(message) {
+      statusText.textContent = message;
+    }
+
+    function clearTimer() {
+      if (timer) {
+        clearInterval(timer);
+        timer = null;
+      }
+    }
+
+    function renderSlides() {
+      try {
+        previewStage.querySelectorAll('.slide-img').forEach(img => img.remove());
+        emptyState.style.display = slides.length ? 'none' : 'flex';
+
+        slides.forEach((slide, index) => {
+          const img = document.createElement('img');
+          img.src = slide.dataUrl;
+          img.alt = slide.name || 'Uploaded slideshow image';
+          img.className = `slide-img effect-${transitionInput.value}`;
+          if (index === currentIndex) img.classList.add('active');
+          previewStage.appendChild(img);
+        });
+
+        countBadge.textContent = `${slides.length} ${slides.length === 1 ? 'photo' : 'photos'}`;
+        renderThumbnails();
+
+        if (!slides.length) {
+          setStatus('Upload at least two images to build your slideshow.');
+        } else {
+          setStatus(`Previewing slide ${currentIndex + 1} of ${slides.length}.`);
+        }
+      } catch (error) {
+        setStatus('Preview could not be rendered. Try smaller image files.');
+      }
+    }
+
+    function renderThumbnails() {
+      thumbGrid.innerHTML = '';
+
+      if (!slides.length) {
+        thumbGrid.innerHTML = '<p class="safe-break col-span-full rounded-2xl bg-slate-50 p-4 text-sm text-slate-500">No photos uploaded yet.</p>';
+        return;
+      }
+
+      slides.forEach((slide, index) => {
+        const wrapper = document.createElement('button');
+        wrapper.type = 'button';
+        wrapper.className = `overflow-hidden rounded-2xl border bg-slate-50 text-left shadow-sm ${index === currentIndex ? 'border-indigo-500 ring-4 ring-indigo-100' : 'border-slate-200'}`;
+        wrapper.setAttribute('aria-label', `Show slide ${index + 1}`);
+        wrapper.innerHTML = `
+          <img src="${slide.dataUrl}" alt="${escapeHtml(slide.name)}" class="h-24 w-full object-cover">
+          <div class="safe-break p-2 text-xs font-semibold text-slate-600">${index + 1}. ${escapeHtml(slide.name)}</div>
+        `;
+        wrapper.addEventListener('click', () => {
+          currentIndex = index;
+          renderSlides();
+        });
+        thumbGrid.appendChild(wrapper);
+      });
+    }
+
+    function showSlide(index) {
+      if (!slides.length) return;
+      currentIndex = (index + slides.length) % slides.length;
+      renderSlides();
+    }
+
+    function startPreview() {
+      clearTimer();
+
+      if (slides.length < 1) {
+        setStatus('Please upload at least one image before starting the preview.');
+        return;
+      }
+
+      const duration = Number(durationInput.value) || 2500;
+      renderSlides();
+
+      if (slides.length > 1) {
+        timer = setInterval(() => {
+          showSlide(currentIndex + 1);
+        }, duration);
+      }
+
+      setStatus('Slideshow preview is playing.');
+    }
+
+    function resetTool() {
+      clearTimer();
+      slides = [];
+      currentIndex = 0;
+      imageInput.value = '';
+      titleInput.value = 'My Photo Slideshow';
+      durationInput.value = '2500';
+      transitionInput.value = 'fade';
+      renderSlides();
+    }
+
+    async function handleImages(files) {
+      clearTimer();
+      const validFiles = Array.from(files || []).filter(file => file && file.type.startsWith('image/'));
+
+      if (!validFiles.length) {
+        setStatus('Please choose valid image files.');
+        return;
+      }
+
+      try {
+        const loadedSlides = await Promise.all(validFiles.map(file => {
+          return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = () => resolve({
+              name: file.name,
+              type: file.type,
+              dataUrl: reader.result
+            });
+            reader.onerror = () => reject(new Error('File reading failed.'));
+            reader.readAsDataURL(file);
+          });
+        }));
+
+        slides = loadedSlides;
+        currentIndex = 0;
+        renderSlides();
+        setStatus(`${slides.length} photo${slides.length === 1 ? '' : 's'} loaded successfully.`);
+      } catch (error) {
+        setStatus('Some images could not be loaded. Try smaller or different image files.');
+      }
+    }
+
+    function buildDownloadHtml() {
+      const title = escapeHtml(titleInput.value.trim() || 'My Photo Slideshow');
+      const duration = Number(durationInput.value) || 2500;
+      const effect = transitionInput.value || 'fade';
+      const slideData = JSON.stringify(slides.map(slide => ({
+        name: slide.name,
+        dataUrl: slide.dataUrl
+      })));
+
+      return `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>${title}</title>
+<style>
+html,body{width:100%;max-width:100%;overflow-x:hidden;margin:0;background:#020617;color:#fff;font-family:Arial,sans-serif}
+*,*::before,*::after{box-sizing:border-box;min-width:0}
+.page{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px}
+h1{text-align:center;max-width:900px;overflow-wrap:anywhere}
+.stage{width:min(100%,1100px);aspect-ratio:16/9;background:#0f172a;border-radius:24px;overflow:hidden;position:relative;box-shadow:0 25px 80px rgba(0,0,0,.45)}
+.slide{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:0;transition:opacity 700ms ease,transform 1200ms ease;transform:scale(1)}
+.slide.active{opacity:1}
+.effect-zoom.active{transform:scale(1.08)}
+.effect-slide{transform:translateX(30px)}
+.effect-slide.active{transform:translateX(0)}
+.controls{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:20px}
+button{border:0;border-radius:999px;padding:12px 18px;font-weight:700;cursor:pointer;background:#4f46e5;color:white}
+.counter{margin-top:14px;color:#cbd5e1}
+@media(max-width:640px){.page{padding:14px}.stage{border-radius:16px;aspect-ratio:4/3}h1{font-size:24px}button{width:100%}.controls{width:100%}}
+</style>
+</head>
+<body>
+<div class="page">
+<h1>${title}</h1>
+<div class="stage" id="stage"></div>
+<div class="controls">
+<button id="prevBtn">Previous</button>
+<button id="playBtn">Pause</button>
+<button id="nextBtn">Next</button>
+</div>
+<div class="counter" id="counter"></div>
+</div>
+<script>
+const slides=${slideData};
+const duration=${duration};
+const effect=${JSON.stringify(effect)};
+let index=0;
+let playing=true;
+let timer=null;
+const stage=document.getElementById('stage');
+const counter=document.getElementById('counter');
+const playBtn=document.getElementById('playBtn');
+
+function render(){
+  stage.innerHTML='';
+  slides.forEach((slide,i)=>{
+    const img=document.createElement('img');
+    img.src=slide.dataUrl;
+    img.alt=slide.name || 'Slideshow image';
+    img.className='slide effect-'+effect+(i===index?' active':'');
+    stage.appendChild(img);
+  });
+  counter.textContent=slides.length ? 'Slide '+(index+1)+' of '+slides.length : 'No slides available';
+}
+function show(nextIndex){
+  if(!slides.length)return;
+  index=(nextIndex+slides.length)%slides.length;
+  render();
+}
+function start(){
+  stop();
+  timer=setInterval(()=>show(index+1),duration);
+}
+function stop(){
+  if(timer)clearInterval(timer);
+  timer=null;
+}
+document.getElementById('prevBtn').addEventListener('click',()=>show(index-1));
+document.getElementById('nextBtn').addEventListener('click',()=>show(index+1));
+playBtn.addEventListener('click',()=>{
+  playing=!playing;
+  playBtn.textContent=playing?'Pause':'Play';
+  playing?start():stop();
+});
+render();
+if(slides.length>1)start();
+<\/script>
+</body>
+</html>`;
+    }
+
+    function downloadSlideshow() {
+      try {
+        if (!slides.length) {
+          setStatus('Please upload photos before downloading a slideshow.');
+          return;
+        }
+
+        const html = buildDownloadHtml();
+        const blob = new Blob([html], { type: 'text/html' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        const fileName = (titleInput.value.trim() || 'photo-slideshow')
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, '-')
+          .replace(/^-+|-+$/g, '') || 'photo-slideshow';
+
+        a.href = url;
+        a.download = `${fileName}.html`;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+
+        const originalText = downloadBtn.textContent;
+        downloadBtn.textContent = 'Downloaded!';
+        setTimeout(() => {
+          downloadBtn.textContent = originalText;
+        }, 1400);
+      } catch (error) {
+        setStatus('Download failed. Try using fewer or smaller images.');
+      }
+    }
+
+    imageInput.addEventListener('change', event => handleImages(event.target.files));
+    startBtn.addEventListener('click', startPreview);
+    resetBtn.addEventListener('click', resetTool);
+    prevBtn.addEventListener('click', () => showSlide(currentIndex - 1));
+    nextBtn.addEventListener('click', () => showSlide(currentIndex + 1));
+    downloadBtn.addEventListener('click', downloadSlideshow);
+
+    durationInput.addEventListener('change', () => {
+      if (timer) startPreview();
+    });
+
+    transitionInput.addEventListener('change', renderSlides);
+
+    window.addEventListener('resize', () => {
+      try {
+        renderSlides();
+      } catch (error) {
+        setStatus('Preview resized safely.');
+      }
+    });
+
+    renderSlides();
+  </script>
+</body>
+</html>
