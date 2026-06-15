@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Canada Broker Comparison Tool | Canadian Online Brokerage Fee Calculator</title>
+  <meta name="description" content="Compare Canadian online brokers, trading commissions, ETF fees, options fees, FX conversion assumptions, TFSA, RRSP, FHSA support, and estimated annual investing costs with this free Canada broker comparison tool." />
+  <meta name="keywords" content="Canada broker comparison, Canadian brokerage fees, best broker Canada, online brokerage comparison Canada, Wealthsimple vs Questrade, Interactive Brokers Canada, TFSA broker Canada, RRSP broker Canada, FHSA broker Canada, Canadian stock trading fees, ETF trading Canada, low cost broker Canada" />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="Canada Broker Comparison Tool" />
+  <meta property="og:description" content="Compare Canadian online brokers and estimate annual trading costs using editable brokerage fee assumptions." />
+  <meta property="og:type" content="website" />
+
+  <meta name="google-adsense-account" content="ca-pub-5282672325821404">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404" crossorigin="anonymous"></script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Canada Broker Comparison Tool",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "description": "A client-side Canadian online brokerage comparison tool that estimates trading costs, ETF costs, options costs, FX conversion assumptions, registered account support, and investor suitability.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "CAD"
+    }
+  }
+  </script>
+
+  <style>
+    html, body { width:100%; max-width:100%; overflow-x:hidden; }
+    *, *::before, *::after { box-sizing:border-box; min-width:0; }
+    main, section, aside, div, table, canvas, img, svg, input, select, textarea, button, pre, code { max-width:100%; }
+    .safe-break { overflow-wrap:anywhere; word-break:break-word; }
+    .mobile-card, .mobile-panel, .mobile-preview, .mobile-code { max-width:100%; overflow:hidden; }
+    .mobile-code { overflow-x:auto; white-space:pre-wrap; word-break:break-word; }
+    .ad-box {
+      width:100%;
+      max-width:100%;
+      min-height:90px;
+      border:2px dashed #cbd5e1;
+      background:#f8fafc;
+      color:#64748b;
+      border-radius:1rem;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:1rem;
+      overflow:hidden;
+    }
+    .table-scroll { width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch; }
+    .comparison-table { width:100%; border-collapse:separate; border-spacing:0; }
+    .comparison-table th, .comparison-table td { white-space:nowrap; }
+    @media (max-width:640px) {
+      body { font-size:15px; }
+      .mobile-card, .mobile-panel, .mobile-preview { padding:1rem !important; border-radius:1rem !important; }
+      .mobile-button-grid { grid-template-columns:1fr !important; }
+      .mobile-button-grid button, .mobile-button-grid a { width:100% !important; }
+      .comparison-table th, .comparison-table td { padding:0.75rem !important; font-size:0.82rem !important; }
+      .ad-box { min-height:90px; border-radius:0.875rem; padding:0.875rem; }
+    }
+    @media (max-width:380px) {
+      h1 { font-size:1.85rem !important; line-height:2.15rem !important; }
+      h2 { font-size:1.35rem !important; }
+      .mobile-card, .mobile-panel, .mobile-preview { padding:0.85rem !important; border-radius:0.85rem !important; }
+      .text-sm { font-size:0.82rem !important; }
+    }
+  </style>
+</head>
+
+<body class="bg-slate-50 text-slate-900">
+  <header class="border-b border-slate-200 bg-white">
+    <div class="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-4 sm:px-6 lg:px-8">
+      <a href="https://nodntools.com" class="safe-break text-xl font-bold tracking-tight text-slate-950">
+        Nodn<span class="text-indigo-600">WebTools</span>
+      </a>
+      <a href="https://nodntools.com" class="shrink-0 rounded-full border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50">Home</a>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+    <div class="ad-box mb-6">Top Advertisement Area</div>
+
+    <section class="grid gap-6 lg:grid-cols-[0.98fr_1.02fr]">
+      <div class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+        <div class="mb-4 inline-flex rounded-full bg-indigo-50 px-3 py-1 text-sm font-bold text-indigo-700">Canada Brokerage Comparison</div>
+
+        <h1 class="safe-break text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Canada Broker Comparison Tool</h1>
+
+        <p class="mt-4 text-slate-600">
+          Compare Canadian online brokers using built-in fee assumptions, registered account support, estimated annual trading costs, ETF fees, options fees, and currency conversion impact.
+        </p>
+
+        <div class="mt-5 rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900">
+          <strong>Fee data note:</strong> Broker fees, promotions, eligible ETF lists, account rules, and FX spreads may change. Users can edit every assumption below.
+        </div>
+
+        <div class="mt-6 grid gap-4 sm:grid-cols-2">
+          <label class="block">
+            <span class="text-sm font-semibold text-slate-700">Investor profile</span>
+            <select id="investorProfile" class="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-100">
+              <option value="beginner">Beginner investor</option>
+              <option value="etf">ETF-focused investor</option>
+              <option value="us">U.S. stock investor</option>
+              <option value="active">Active trader</option>
+              <option value="options">Options trader</option>
+            </select>
+          </label>
+
+          <label class="block">
+            <span class="text-sm font-semibold text-slate-700">Account type</span>
+            <select id="accountType" class="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-100">
+              <option value="tfsa">TFSA</option>
+              <option value="rrsp">RRSP</option>
+              <option value="fhsa">FHSA</option>
+              <option value="cash">Non-registered cash account</option>
+              <option value="margin">Margin account</option>
+            </select>
+          </label>
+
+          <label class="block">
+            <span class="text-sm font-semibold text-slate-700">Portfolio value (CAD)</span>
+            <input id="portfolioValue" type="number" min="0" value="25000" class="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-100">
+          </label>
+
+          <label class="block">
+            <span class="text-sm font-semibold text-slate-700">Annual contribution (CAD)</span>
+            <input id="annualContribution" type="number" min="0" value="7000" class="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-100">
+          </label>
+
+          <label class="block">
+            <span class="text-sm font-semibold text-slate-700">Stock trades per year</span>
+            <input id="stockTrades" type="number" min="0" value="12" class="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-100">
+          </label>
+
+          <label class="block">
+            <span class="text-sm font-semibold text-slate-700">ETF trades per year</span>
+            <input id="etfTrades" type="number" min="0" value="12" class="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-100">
+          </label>
+
+          <label class="block">
+            <span class="text-sm font-semibold text-slate-700">Options contracts per year</span>
+            <input id="optionContracts" type="number" min="0" value="0" class="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-100">
+          </label>
+
+          <label class="block">
+            <span class="text-sm font-semibold text-slate-700">CAD to USD conversion per year</span>
+            <input id="fxAmount" type="number" min="0" value="5000" class="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-100">
+          </label>
+        </div>
+
+        <div class="mt-6 rounded-2xl bg-slate-50 p-4">
+          <h2 class="text-lg font-bold text-slate-950">Editable Fee Assumptions</h2>
+          <p class="mt-1 text-sm text-slate-600">
+            Change any broker fee below. The comparison results update instantly in your browser. Standard pricing is used where promotional or selected-ETF pricing may vary.
+          </p>
+          <div id="feeInputs" class="mt-5 grid gap-3"></div>
+        </div>
+
+        <div class="mobile-button-grid mt-6 grid grid-cols-2 gap-3">
+          <button id="resetBtn" class="rounded-xl border border-slate-300 px-4 py-3 font-semibold text-slate-700 hover:bg-slate-50">Reset All</button>
+          <button id="copyBtn" class="rounded-xl bg-indigo-600 px-4 py-3 font-semibold text-white hover:bg-indigo-700">Copy Summary</button>
+          <button id="csvBtn" class="rounded-xl border border-indigo-200 bg-indigo-50 px-4 py-3 font-semibold text-indigo-700 hover:bg-indigo-100">Download CSV</button>
+          <button id="printBtn" class="rounded-xl border border-slate-300 px-4 py-3 font-semibold text-slate-700 hover:bg-slate-50">Print</button>
+        </div>
+
+        <p id="actionStatus" class="mt-3 text-sm font-semibold text-indigo-700"></p>
+      </div>
+
+      <aside class="mobile-preview rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+        <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+          <div>
+            <h2 class="text-2xl font-bold text-slate-950">Comparison Results</h2>
+            <p class="mt-1 text-sm text-slate-600">Estimated annual cost ranking based on your inputs.</p>
+          </div>
+          <div class="rounded-full bg-slate-100 px-3 py-1 text-xs font-bold text-slate-600">Client-side only</div>
+        </div>
+
+        <div id="bestBrokerCard" class="mt-5 rounded-2xl bg-indigo-50 p-5"></div>
+
+        <div class="mt-5 grid gap-3 sm:grid-cols-3">
+          <div class="rounded-2xl border border-slate-200 p-4">
+            <p class="text-sm font-semibold text-slate-500">Lowest cost</p>
+            <p id="lowestCostMetric" class="mt-1 text-xl font-bold text-slate-950">$0.00</p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 p-4">
+            <p class="text-sm font-semibold text-slate-500">Highest cost</p>
+            <p id="highestCostMetric" class="mt-1 text-xl font-bold text-slate-950">$0.00</p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 p-4">
+            <p class="text-sm font-semibold text-slate-500">Potential difference</p>
+            <p id="differenceMetric" class="mt-1 text-xl font-bold text-slate-950">$0.00</p>
+          </div>
+        </div>
+
+        <div id="brokerCards" class="mt-5 space-y-3"></div>
+
+        <div class="mt-6">
+          <h3 class="mb-3 text-lg font-bold text-slate-950">Detailed Broker Table</h3>
+          <div class="table-scroll rounded-2xl border border-slate-200">
+            <table class="comparison-table text-left text-sm">
+              <thead class="bg-slate-50 text-slate-600">
+                <tr>
+                  <th class="p-3 font-bold">Broker</th>
+                  <th class="p-3 font-bold">Estimated Cost</th>
+                  <th class="p-3 font-bold">Stock</th>
+                  <th class="p-3 font-bold">ETF</th>
+                  <th class="p-3 font-bold">Options</th>
+                  <th class="p-3 font-bold">FX</th>
+                  <th class="p-3 font-bold">TFSA</th>
+                  <th class="p-3 font-bold">RRSP</th>
+                  <th class="p-3 font-bold">FHSA</th>
+                </tr>
+              </thead>
+              <tbody id="comparisonTable" class="divide-y divide-slate-200 bg-white"></tbody>
+            </table>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <div class="ad-box my-8">Advertisement Area Below Main Tool</div>
+
+    <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+      <h2 class="text-2xl font-bold text-slate-950">Canadian Online Brokerage Comparison Guide</h2>
+      <p class="mt-4 text-slate-700">
+        A Canadian broker comparison page is useful because investors often need more than a simple commission table. The right brokerage can depend on whether the investor uses a TFSA, RRSP, FHSA, cash account, or margin account. It can also depend on how often they buy ETFs, whether they purchase U.S.-listed stocks, how they convert Canadian dollars into U.S. dollars, and whether they need options trading, research tools, market data, or advanced order types.
+      </p>
+
+      <h3 class="mt-6 text-xl font-bold text-slate-900">Why Canadian Brokerage Fees Are Hard to Compare</h3>
+      <p class="mt-3 text-slate-700">
+        Many Canadian investors focus on the visible stock trading commission, but the total cost of investing can include ETF commissions, options base fees, options contract fees, foreign exchange spreads, account administration charges, transfer-out fees, data fees, ECN fees, inactivity policies, and promotional pricing. Some brokers may look inexpensive for Canadian ETFs but become less attractive for frequent U.S. dollar conversions.
+      </p>
+
+      <div class="ad-box my-6">Middle Content Advertisement Area</div>
+
+      <h3 class="text-xl font-bold text-slate-900">Popular Uses for This Canada Broker Comparison Tool</h3>
+      <div class="mt-4 grid gap-4 md:grid-cols-3">
+        <article class="rounded-2xl border border-slate-200 p-4">
+          <h4 class="font-bold text-slate-950">Choosing a TFSA Broker</h4>
+          <p class="mt-2 text-sm text-slate-600">Compare which broker may be more suitable for a Tax-Free Savings Account based on ETF purchases, stock trades, and U.S. stock exposure.</p>
+        </article>
+        <article class="rounded-2xl border border-slate-200 p-4">
+          <h4 class="font-bold text-slate-950">Comparing U.S. Stock Costs</h4>
+          <p class="mt-2 text-sm text-slate-600">Estimate how much currency conversion assumptions can affect Canadian investors who buy U.S.-listed shares or ETFs.</p>
+        </article>
+        <article class="rounded-2xl border border-slate-200 p-4">
+          <h4 class="font-bold text-slate-950">Reviewing Active Trading Costs</h4>
+          <p class="mt-2 text-sm text-slate-600">Compare stock commissions, options assumptions, and platform suitability for investors who trade more frequently.</p>
+        </article>
+      </div>
+
+      <h3 class="mt-6 text-xl font-bold text-slate-900">Practical Tips Before Choosing a Canadian Broker</h3>
+      <p class="mt-3 text-slate-700">
+        Always check the official pricing page before opening or transferring an account. Look at more than the headline commission. Consider registered account availability, U.S. dollar handling, customer support, transfer fees, platform reliability, statement quality, order execution, research tools, dividend processing, and how easy it is to manage contributions and withdrawals.
+      </p>
+
+      <div class="ad-box my-6">Bottom Content Advertisement Area</div>
+
+      <h3 class="text-xl font-bold text-slate-900">Fee Sources Used for Default Assumptions</h3>
+      <p class="mt-3 text-slate-700">
+        The default broker assumptions are based on publicly available pricing pages from each broker. Some products may have special promotions, selected commission-free ETF lists, active trader pricing, student pricing, young investor pricing, currency conversion minimums, or account-specific conditions. The calculator intentionally keeps every fee editable so users can update numbers before relying on a result.
+      </p>
+    </section>
+
+    <section class="mobile-card mt-8 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+      <h2 class="text-2xl font-bold text-slate-950">Frequently Asked Questions</h2>
+
+      <div class="mt-5 space-y-5">
+        <div>
+          <h3 class="font-bold text-slate-950">Does this Canada broker comparison tool use live data?</h3>
+          <p class="mt-1 text-slate-700">No. This is a fully client-side tool with built-in editable assumptions. It does not scrape broker websites or send user input to a server.</p>
+        </div>
+        <div>
+          <h3 class="font-bold text-slate-950">Why are some ETF fees not listed as zero?</h3>
+          <p class="mt-1 text-slate-700">Some brokers offer selected commission-free ETF lists, while standard ETF trades may still have a regular commission. This tool uses simplified standard assumptions unless a broker broadly offers zero-commission ETF trading.</p>
+        </div>
+        <div>
+          <h3 class="font-bold text-slate-950">Is the cheapest broker always the best broker?</h3>
+          <p class="mt-1 text-slate-700">Not always. Cost matters, but account support, platform quality, available securities, customer service, currency handling, and personal investing style may be just as important.</p>
+        </div>
+        <div>
+          <h3 class="font-bold text-slate-950">Can this tool compare TFSA, RRSP, and FHSA support?</h3>
+          <p class="mt-1 text-slate-700">Yes. The comparison table includes registered account support assumptions, and the account type selector adjusts how the ranking message is interpreted.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="mobile-card mt-8 rounded-3xl bg-slate-900 p-6 text-slate-100 shadow-sm">
+      <h2 class="text-2xl font-bold">Legal Disclaimer</h2>
+      <p class="mt-4 text-slate-300">
+        This Canada broker comparison tool is provided for informational and educational purposes only. It is not financial, investment, tax, legal, accounting, or professional advice. Brokerage fees, account availability, registered account rules, foreign exchange spreads, trading commissions, options fees, data fees, administrative charges, transfer fees, and promotional offers may change at any time. The calculations use simplified assumptions and may not include all possible costs, restrictions, or risks. Users are responsible for verifying all information directly with each broker and consulting a qualified professional before making financial decisions.
+      </p>
+    </section>
+
+    <div class="ad-box mt-8">Bottom Advertisement Area</div>
+  </main>
+
+  <script>
+    const defaultBrokers = [
+      {
+        name: "Wealthsimple",
+        stockFee: 0,
+        etfFee: 0,
+        optionBaseFee: 0,
+        optionContractFee: 0,
+        optionMinFee: 0,
+        fxRate: 1.50,
+        annualFee: 0,
+        tfsa: true,
+        rrsp: true,
+        fhsa: true,
+        bestFor: "Beginner investors and simple Canadian ETF portfolios",
+        source: "https://www.wealthsimple.com/en-ca/legal/fees/trade",
+        note: "Default assumes $0 stock, ETF, and options contract fees, plus a 1.5% CAD/USD conversion assumption for CAD accounts."
+      },
+      {
+        name: "Questrade",
+        stockFee: 0,
+        etfFee: 0,
+        optionBaseFee: 0,
+        optionContractFee: 0.99,
+        optionMinFee: 0,
+        fxRate: 1.50,
+        annualFee: 0,
+        tfsa: true,
+        rrsp: true,
+        fhsa: true,
+        bestFor: "ETF investors and registered account users",
+        source: "https://www.questrade.com/pricing/self-directed-commissions-plans-fees",
+        note: "Default assumes $0 online stock and ETF trades, options at $0.99 per contract, and a 1.5% currency conversion assumption."
+      },
+      {
+        name: "Interactive Brokers Canada",
+        stockFee: 1.00,
+        etfFee: 1.00,
+        optionBaseFee: 0,
+        optionContractFee: 0.65,
+        optionMinFee: 0,
+        fxRate: 0.03,
+        annualFee: 0,
+        tfsa: true,
+        rrsp: true,
+        fhsa: false,
+        bestFor: "U.S. market investors and active traders",
+        source: "https://www.interactivebrokers.ca/en/pricing/commissions-home.php",
+        note: "Default simplifies IBKR’s per-share and tiered pricing into an estimated $1 order cost and a low FX assumption. Actual costs may vary by market, order size, and pricing plan."
+      },
+      {
+        name: "National Bank Direct Brokerage",
+        stockFee: 0,
+        etfFee: 0,
+        optionBaseFee: 0,
+        optionContractFee: 1.25,
+        optionMinFee: 6.25,
+        fxRate: 1.50,
+        annualFee: 0,
+        tfsa: true,
+        rrsp: true,
+        fhsa: true,
+        bestFor: "Commission-sensitive Canadian investors",
+        source: "https://nbdb.ca/pricing.html",
+        note: "Default assumes $0 online stock and ETF commissions, options at $1.25 per contract with a $6.25 minimum transaction fee."
+      },
+      {
+        name: "TD Direct Investing",
+        stockFee: 9.99,
+        etfFee: 9.99,
+        optionBaseFee: 9.99,
+        optionContractFee: 1.25,
+        optionMinFee: 0,
+        fxRate: 1.50,
+        annualFee: 0,
+        tfsa: true,
+        rrsp: true,
+        fhsa: true,
+        bestFor: "Bank-integrated investing",
+        source: "https://www.td.com/ca/en/investing/direct-investing/pricing",
+        note: "Default uses standard online stock and ETF commission assumptions. TD offers selected commission-free ETFs and active trader pricing that may change the result."
+      },
+      {
+        name: "RBC Direct Investing",
+        stockFee: 9.95,
+        etfFee: 9.95,
+        optionBaseFee: 9.95,
+        optionContractFee: 1.25,
+        optionMinFee: 0,
+        fxRate: 1.50,
+        annualFee: 0,
+        tfsa: true,
+        rrsp: true,
+        fhsa: true,
+        bestFor: "RBC banking clients",
+        source: "https://www.rbcdirectinvesting.com/pricing/",
+        note: "Default uses standard online equity commission assumptions. RBC has selected commission-free ETF and account-specific pricing features."
+      },
+      {
+        name: "BMO InvestorLine",
+        stockFee: 9.95,
+        etfFee: 9.95,
+        optionBaseFee: 9.95,
+        optionContractFee: 1.25,
+        optionMinFee: 0,
+        fxRate: 1.50,
+        annualFee: 0,
+        tfsa: true,
+        rrsp: true,
+        fhsa: true,
+        bestFor: "BMO banking clients",
+        source: "https://www.bmo.com/en-ca/main/personal/investments/direct-investing/investorline/self-directed/pricing/",
+        note: "Default uses standard online stock, ETF, and options assumptions. Selected commission-free ETFs and active trader pricing may apply."
+      },
+      {
+        name: "CIBC Investor's Edge",
+        stockFee: 6.95,
+        etfFee: 6.95,
+        optionBaseFee: 6.95,
+        optionContractFee: 1.25,
+        optionMinFee: 0,
+        fxRate: 1.50,
+        annualFee: 0,
+        tfsa: true,
+        rrsp: true,
+        fhsa: true,
+        bestFor: "Lower-cost big-bank brokerage users",
+        source: "https://www.investorsedge.cibc.com/en/pricing.html",
+        note: "Default uses standard investor pricing. CIBC also lists selected $0 commission ETFs and promotional or investor-segment pricing that may change actual costs."
+      },
+      {
+        name: "Scotia iTRADE",
+        stockFee: 9.99,
+        etfFee: 9.99,
+        optionBaseFee: 9.99,
+        optionContractFee: 1.25,
+        optionMinFee: 0,
+        fxRate: 1.50,
+        annualFee: 0,
+        tfsa: true,
+        rrsp: true,
+        fhsa: true,
+        bestFor: "Scotiabank ecosystem investors",
+        source: "https://www.scotiaitrade.com/en/home/pricing.html",
+        note: "Default uses standard online equity and options assumptions. Scotia iTRADE offers selected commission-free ETFs when conditions are met."
+      }
+    ];
+
+    let brokers = JSON.parse(JSON.stringify(defaultBrokers));
+    let latestResults = [];
+
+    const money = new Intl.NumberFormat("en-CA", {
+      style: "currency",
+      currency: "CAD",
+      maximumFractionDigits: 2
+    });
+
+    const inputIds = [
+      "investorProfile",
+      "accountType",
+      "portfolioValue",
+      "annualContribution",
+      "stockTrades",
+      "etfTrades",
+      "optionContracts",
+      "fxAmount"
+    ];
+
+    function getNumber(id) {
+      const element = document.getElementById(id);
+      const value = Number(element.value);
+      return Number.isFinite(value) && value >= 0 ? value : 0;
+    }
+
+    function yesNo(value) {
+      return value ? "Yes" : "No";
+    }
+
+    function renderFeeInputs() {
+      const wrapper = document.getElementById("feeInputs");
+      wrapper.innerHTML = "";
+
+      brokers.forEach((broker, index) => {
+        const card = document.createElement("div");
+        card.className = "rounded-2xl border border-slate-200 bg-white p-4";
+        card.innerHTML = `
+          <div>
+            <h3 class="safe-break font-bold text-slate-950">${broker.name}</h3>
+            <p class="safe-break mt-1 text-xs text-slate-500">${broker.bestFor}</p>
+            <a href="${broker.source}" target="_blank" rel="noopener noreferrer" class="mt-2 inline-flex text-xs font-semibold text-indigo-700 hover:text-indigo-900">Official pricing source</a>
+          </div>
+
+          <div class="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            <label class="text-xs font-semibold text-slate-600">Stock fee
+              <input type="number" step="0.01" min="0" value="${broker.stockFee}" data-index="${index}" data-key="stockFee" class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2">
+            </label>
+            <label class="text-xs font-semibold text-slate-600">ETF fee
+              <input type="number" step="0.01" min="0" value="${broker.etfFee}" data-index="${index}" data-key="etfFee" class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2">
+            </label>
+            <label class="text-xs font-semibold text-slate-600">Options base fee
+              <input type="number" step="0.01" min="0" value="${broker.optionBaseFee}" data-index="${index}" data-key="optionBaseFee" class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2">
+            </label>
+            <label class="text-xs font-semibold text-slate-600">Options contract fee
+              <input type="number" step="0.01" min="0" value="${broker.optionContractFee}" data-index="${index}" data-key="optionContractFee" class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2">
+            </label>
+            <label class="text-xs font-semibold text-slate-600">Options minimum fee
+              <input type="number" step="0.01" min="0" value="${broker.optionMinFee}" data-index="${index}" data-key="optionMinFee" class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2">
+            </label>
+            <label class="text-xs font-semibold text-slate-600">FX assumption %
+              <input type="number" step="0.01" min="0" value="${broker.fxRate}" data-index="${index}" data-key="fxRate" class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2">
+            </label>
+            <label class="text-xs font-semibold text-slate-600">Annual fee
+              <input type="number" step="0.01" min="0" value="${broker.annualFee}" data-index="${index}" data-key="annualFee" class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2">
+            </label>
+          </div>
+
+          <div class="mt-3 grid gap-3 sm:grid-cols-3">
+            <label class="flex items-center gap-2 rounded-xl bg-slate-50 px-3 py-2 text-sm font-semibold text-slate-700">
+              <input type="checkbox" ${broker.tfsa ? "checked" : ""} data-index="${index}" data-key="tfsa" class="h-4 w-4 rounded border-slate-300 text-indigo-600">
+              TFSA
+            </label>
+            <label class="flex items-center gap-2 rounded-xl bg-slate-50 px-3 py-2 text-sm font-semibold text-slate-700">
+              <input type="checkbox" ${broker.rrsp ? "checked" : ""} data-index="${index}" data-key="rrsp" class="h-4 w-4 rounded border-slate-300 text-indigo-600">
+              RRSP
+            </label>
+            <label class="flex items-center gap-2 rounded-xl bg-slate-50 px-3 py-2 text-sm font-semibold text-slate-700">
+              <input type="checkbox" ${broker.fhsa ? "checked" : ""} data-index="${index}" data-key="fhsa" class="h-4 w-4 rounded border-slate-300 text-indigo-600">
+              FHSA
+            </label>
+          </div>
+
+          <p class="safe-break mt-3 text-xs text-slate-500">${broker.note}</p>
+        `;
+
+        wrapper.appendChild(card);
+      });
+
+      wrapper.querySelectorAll("input").forEach((input) => {
+        input.addEventListener("input", handleFeeInput);
+        input.addEventListener("change", handleFeeInput);
+      });
+    }
+
+    function handleFeeInput(event) {
+      const index = Number(event.target.dataset.index);
+      const key = event.target.dataset.key;
+
+      if (!brokers[index] || !key) return;
+
+      if (event.target.type === "checkbox") {
+        brokers[index][key] = event.target.checked;
+      } else {
+        const value = Number(event.target.value);
+        brokers[index][key] = Number.isFinite(value) && value >= 0 ? value : 0;
+      }
+
+      calculate();
+    }
+
+    function optionCostForBroker(broker, contracts) {
+      if (contracts <= 0) return 0;
+      const rawCost = broker.optionBaseFee + (contracts * broker.optionContractFee);
+      return Math.max(rawCost, broker.optionMinFee || 0);
+    }
+
+    function getSuitabilityScore(broker, result) {
+      const profile = document.getElementById("investorProfile").value;
+      const accountType = document.getElementById("accountType").value;
+      let score = 70;
+
+      if (accountType === "tfsa" && broker.tfsa) score += 8;
+      if (accountType === "rrsp" && broker.rrsp) score += 8;
+      if (accountType === "fhsa" && broker.fhsa) score += 8;
+      if (accountType === "fhsa" && !broker.fhsa) score -= 25;
+
+      if (profile === "beginner" && broker.stockFee === 0 && broker.etfFee === 0) score += 8;
+      if (profile === "etf" && broker.etfFee === 0) score += 12;
+      if (profile === "us" && broker.fxRate <= 0.5) score += 15;
+      if (profile === "active" && broker.stockFee <= 1) score += 10;
+      if (profile === "options" && broker.optionContractFee <= 1.25) score += 8;
+
+      if (result.totalCost <= 25) score += 8;
+      if (result.totalCost > 250) score -= 10;
+
+      return Math.max(0, Math.min(100, Math.round(score)));
+    }
+
+    function calculate() {
+      try {
+        const stockTrades = getNumber("stockTrades");
+        const etfTrades = getNumber("etfTrades");
+        const optionContracts = getNumber("optionContracts");
+        const fxAmount = getNumber("fxAmount");
+        const portfolioValue = getNumber("portfolioValue");
+        const accountType = document.getElementById("accountType").value;
+
+        const results = brokers.map((broker) => {
+          const stockCost = stockTrades * broker.stockFee;
+          const etfCost = etfTrades * broker.etfFee;
+          const optionsCost = optionCostForBroker(broker, optionContracts);
+          const fxCost = fxAmount * (broker.fxRate / 100);
+          const totalCost = stockCost + etfCost + optionsCost + fxCost + broker.annualFee;
+          const costRatio = portfolioValue > 0 ? (totalCost / portfolioValue) * 100 : 0;
+          const unsupportedAccountPenalty =
+            (accountType === "tfsa" && !broker.tfsa) ||
+            (accountType === "rrsp" && !broker.rrsp) ||
+            (accountType === "fhsa" && !broker.fhsa)
+              ? 100000
+              : 0;
+
+          const result = {
+            ...broker,
+            stockCost,
+            etfCost,
+            optionsCost,
+            fxCost,
+            totalCost,
+            costRatio,
+            unsupportedAccountPenalty
+          };
+
+          result.suitabilityScore = getSuitabilityScore(broker, result);
+          return result;
+        }).sort((a, b) => {
+          const adjustedA = a.totalCost + a.unsupportedAccountPenalty;
+          const adjustedB = b.totalCost + b.unsupportedAccountPenalty;
+          return adjustedA - adjustedB;
+        });
+
+        latestResults = results;
+
+        const best = results[0];
+        const lowest = results.reduce((min, item) => Math.min(min, item.totalCost), results[0]?.totalCost || 0);
+        const highest = results.reduce((max, item) => Math.max(max, item.totalCost), results[0]?.totalCost || 0);
+
+        document.getElementById("lowestCostMetric").textContent = money.format(lowest);
+        document.getElementById("highestCostMetric").textContent = money.format(highest);
+        document.getElementById("differenceMetric").textContent = money.format(highest - lowest);
+
+        const accountSupportMessage = best.unsupportedAccountPenalty > 0
+          ? "The lowest-cost option may not support the selected account type. Verify account availability before deciding."
+          : `This broker appears competitive for the selected ${accountType.toUpperCase()} comparison based on the current assumptions.`;
+
+        document.getElementById("bestBrokerCard").innerHTML = `
+          <p class="text-sm font-bold uppercase tracking-wide text-indigo-700">Estimated best match</p>
+          <h3 class="safe-break mt-1 text-2xl font-bold text-indigo-950">${best.name}</h3>
+          <p class="mt-2 text-indigo-900">Estimated annual cost: <strong>${money.format(best.totalCost)}</strong></p>
+          <p class="mt-1 text-sm text-indigo-800">Suitability score: <strong>${best.suitabilityScore}/100</strong></p>
+          <p class="safe-break mt-2 text-sm text-indigo-800">${accountSupportMessage}</p>
+        `;
+
+        document.getElementById("brokerCards").innerHTML = results.map((item, index) => {
+          const accountWarning = item.unsupportedAccountPenalty > 0
+            ? `<p class="mt-2 rounded-lg bg-red-50 px-3 py-2 text-xs font-semibold text-red-700">Selected account type may not be supported based on current assumptions.</p>`
+            : "";
+
+          return `
+            <div class="rounded-2xl border border-slate-200 p-4">
+              <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                <div>
+                  <p class="text-sm font-bold text-slate-500">Rank #${index + 1}</p>
+                  <h3 class="safe-break text-lg font-bold text-slate-950">${item.name}</h3>
+                  <p class="safe-break mt-1 text-sm text-slate-600">${item.bestFor}</p>
+                </div>
+                <div class="text-left sm:text-right">
+                  <p class="text-xl font-bold text-slate-950">${money.format(item.totalCost)}</p>
+                  <p class="text-xs text-slate-500">${item.costRatio.toFixed(3)}% of portfolio</p>
+                </div>
+              </div>
+              <div class="mt-3 grid gap-2 text-sm text-slate-600 sm:grid-cols-4">
+                <p>Stock: <strong>${money.format(item.stockCost)}</strong></p>
+                <p>ETF: <strong>${money.format(item.etfCost)}</strong></p>
+                <p>Options: <strong>${money.format(item.optionsCost)}</strong></p>
+                <p>FX: <strong>${money.format(item.fxCost)}</strong></p>
+              </div>
+              ${accountWarning}
+              <p class="safe-break mt-3 text-sm text-slate-600">${item.note}</p>
+            </div>
+          `;
+        }).join("");
+
+        document.getElementById("comparisonTable").innerHTML = results.map((item) => `
+          <tr>
+            <td class="safe-break p-3 font-bold text-slate-950">${item.name}</td>
+            <td class="p-3 font-semibold text-slate-900">${money.format(item.totalCost)}</td>
+            <td class="p-3 text-slate-700">${money.format(item.stockFee)}</td>
+            <td class="p-3 text-slate-700">${money.format(item.etfFee)}</td>
+            <td class="p-3 text-slate-700">${money.format(item.optionContractFee)}</td>
+            <td class="p-3 text-slate-700">${item.fxRate.toFixed(2)}%</td>
+            <td class="p-3 text-slate-700">${yesNo(item.tfsa)}</td>
+            <td class="p-3 text-slate-700">${yesNo(item.rrsp)}</td>
+            <td class="p-3 text-slate-700">${yesNo(item.fhsa)}</td>
+          </tr>
+        `).join("");
+      } catch (error) {
+        document.getElementById("brokerCards").innerHTML = `
+          <div class="rounded-2xl bg-red-50 p-4 text-red-700">
+            The calculator could not process the current inputs. Please check the values and try again.
+          </div>
+        `;
+      }
+    }
+
+    function setStatus(message) {
+      const status = document.getElementById("actionStatus");
+      status.textContent = message;
+      window.clearTimeout(window.statusTimer);
+      window.statusTimer = window.setTimeout(() => {
+        status.textContent = "";
+      }, 2200);
+    }
+
+    function resetAll() {
+      brokers = JSON.parse(JSON.stringify(defaultBrokers));
+      document.getElementById("investorProfile").value = "beginner";
+      document.getElementById("accountType").value = "tfsa";
+      document.getElementById("portfolioValue").value = 25000;
+      document.getElementById("annualContribution").value = 7000;
+      document.getElementById("stockTrades").value = 12;
+      document.getElementById("etfTrades").value = 12;
+      document.getElementById("optionContracts").value = 0;
+      document.getElementById("fxAmount").value = 5000;
+      renderFeeInputs();
+      calculate();
+      setStatus("Reset complete.");
+    }
+
+    function buildSummaryText() {
+      if (!latestResults.length) return "No broker comparison results available.";
+
+      const profile = document.getElementById("investorProfile").value;
+      const accountType = document.getElementById("accountType").value;
+
+      const lines = [
+        "Canada Broker Comparison Summary",
+        "Default fee assumptions reviewed: June 15, 2026",
+        `Investor profile: ${profile}`,
+        `Account type: ${accountType.toUpperCase()}`,
+        "",
+        ...latestResults.map((item, index) => {
+          return `${index + 1}. ${item.name}: ${money.format(item.totalCost)} estimated annual cost | Score ${item.suitabilityScore}/100 | TFSA ${yesNo(item.tfsa)} | RRSP ${yesNo(item.rrsp)} | FHSA ${yesNo(item.fhsa)}`;
+        }),
+        "",
+        "Disclaimer: Estimates are based on editable assumptions and are not financial advice."
+      ];
+
+      return lines.join("\n");
+    }
+
+    async function copySummary() {
+      try {
+        await navigator.clipboard.writeText(buildSummaryText());
+        setStatus("Copied!");
+      } catch (error) {
+        setStatus("Copy failed. Please copy manually.");
+      }
+    }
+
+    function downloadCsv() {
+      const rows = [
+        [
+          "Rank",
+          "Broker",
+          "Estimated Annual Cost",
+          "Stock Fee",
+          "ETF Fee",
+          "Options Base Fee",
+          "Options Contract Fee",
+          "Options Minimum Fee",
+          "FX Assumption %",
+          "Annual Fee",
+          "TFSA",
+          "RRSP",
+          "FHSA",
+          "Suitability Score",
+          "Official Source"
+        ],
+        ...latestResults.map((item, index) => [
+          index + 1,
+          item.name,
+          item.totalCost.toFixed(2),
+          item.stockFee.toFixed(2),
+          item.etfFee.toFixed(2),
+          item.optionBaseFee.toFixed(2),
+          item.optionContractFee.toFixed(2),
+          item.optionMinFee.toFixed(2),
+          item.fxRate.toFixed(2),
+          item.annualFee.toFixed(2),
+          yesNo(item.tfsa),
+          yesNo(item.rrsp),
+          yesNo(item.fhsa),
+          item.suitabilityScore,
+          item.source
+        ])
+      ];
+
+      const csv = rows.map((row) => row.map((cell) => {
+        const value = String(cell).replace(/"/g, '""');
+        return `"${value}"`;
+      }).join(",")).join("\n");
+
+      const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "canada-broker-comparison.csv";
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
+      setStatus("CSV downloaded.");
+    }
+
+    inputIds.forEach((id) => {
+      const element = document.getElementById(id);
+      element.addEventListener("input", calculate);
+      element.addEventListener("change", calculate);
+    });
+
+    document.getElementById("resetBtn").addEventListener("click", resetAll);
+    document.getElementById("copyBtn").addEventListener("click", copySummary);
+    document.getElementById("csvBtn").addEventListener("click", downloadCsv);
+    document.getElementById("printBtn").addEventListener("click", () => window.print());
+
+    renderFeeInputs();
+    calculate();
+  </script>
+</body>
+</html>
