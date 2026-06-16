@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Canada Trading Fee Calculator | Stock, ETF, Options and FX Cost Estimator</title>
+  <meta name="description" content="Estimate Canadian trading fees for stocks, ETFs, options, and CAD/USD currency conversion. Compare editable broker fee assumptions for Canadian online trading accounts." />
+  <meta name="keywords" content="Canada trading fee calculator, Canadian stock trading fees, ETF trading fees Canada, options trading fees Canada, broker fee calculator Canada, Wealthsimple fees, Questrade fees, Interactive Brokers Canada fees, TD Direct Investing fees, RBC Direct Investing fees" />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="Canada Trading Fee Calculator" />
+  <meta property="og:description" content="Estimate Canadian stock, ETF, options, and FX trading fees using editable broker assumptions." />
+  <meta property="og:type" content="website" />
+
+  <meta name="google-adsense-account" content="ca-pub-5282672325821404">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404" crossorigin="anonymous"></script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Canada Trading Fee Calculator",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "description": "A client-side Canadian trading fee calculator for estimating stock, ETF, options, and foreign exchange conversion costs using editable broker assumptions.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "CAD"
+    }
+  }
+  </script>
+
+  <style>
+    html, body { width:100%; max-width:100%; overflow-x:hidden; }
+    *, *::before, *::after { box-sizing:border-box; min-width:0; }
+    main, section, aside, div, table, canvas, img, svg, input, select, textarea, button, pre, code { max-width:100%; }
+    .safe-break { overflow-wrap:anywhere; word-break:break-word; }
+    .mobile-card, .mobile-panel, .mobile-preview, .mobile-code { max-width:100%; overflow:hidden; }
+    .mobile-code { overflow-x:auto; white-space:pre-wrap; word-break:break-word; }
+    .ad-box {
+      width:100%;
+      max-width:100%;
+      min-height:90px;
+      border:2px dashed #cbd5e1;
+      background:#f8fafc;
+      color:#64748b;
+      border-radius:1rem;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:1rem;
+      overflow:hidden;
+    }
+    .table-scroll { width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch; }
+    .result-table { width:100%; border-collapse:separate; border-spacing:0; }
+    .result-table th, .result-table td { white-space:nowrap; }
+    @media (max-width:640px) {
+      body { font-size:15px; }
+      .mobile-card, .mobile-panel, .mobile-preview { padding:1rem !important; border-radius:1rem !important; }
+      .mobile-button-grid { grid-template-columns:1fr !important; }
+      .mobile-button-grid button, .mobile-button-grid a { width:100% !important; }
+      .result-table th, .result-table td { padding:0.75rem !important; font-size:0.82rem !important; }
+      .ad-box { min-height:90px; border-radius:0.875rem; padding:0.875rem; }
+    }
+    @media (max-width:380px) {
+      h1 { font-size:1.85rem !important; line-height:2.15rem !important; }
+      h2 { font-size:1.35rem !important; }
+      .mobile-card, .mobile-panel, .mobile-preview { padding:0.85rem !important; border-radius:0.85rem !important; }
+      .text-sm { font-size:0.82rem !important; }
+    }
+  </style>
+</head>
+
+<body class="bg-slate-50 text-slate-900">
+  <header class="border-b border-slate-200 bg-white">
+    <div class="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-4 sm:px-6 lg:px-8">
+      <a href="https://nodntools.com" class="safe-break text-xl font-bold tracking-tight text-slate-950">
+        Nodn<span class="text-indigo-600">WebTools</span>
+      </a>
+      <a href="https://nodntools.com" class="shrink-0 rounded-full border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50">Home</a>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+    <div class="ad-box mb-6">Top Advertisement Area</div>
+
+    <section class="grid gap-6 lg:grid-cols-[0.98fr_1.02fr]">
+      <div class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+        <div class="mb-4 inline-flex rounded-full bg-indigo-50 px-3 py-1 text-sm font-bold text-indigo-700">
+          Canadian Trading Cost Estimator
+        </div>
+
+        <h1 class="safe-break text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
+          Canada Trading Fee Calculator
+        </h1>
+
+        <p class="mt-4 text-slate-600">
+          Estimate stock, ETF, options, and CAD/USD conversion costs for Canadian online brokers. All assumptions are editable and calculations run fully in your browser.
+        </p>
+
+        <div class="mt-5 rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900">
+          <strong>Important:</strong> Actual fees may vary by promotion, pricing tier, exchange, account type, order size, and currency conversion method.
+        </div>
+
+        <div class="mt-6 grid gap-4 sm:grid-cols-2">
+          <label class="block">
+            <span class="text-sm font-semibold text-slate-700">Broker</span>
+            <select id="brokerSelect" class="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-100"></select>
+          </label>
+
+          <label class="block">
+            <span class="text-sm font-semibold text-slate-700">Trade type</span>
+            <select id="tradeType" class="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-100">
+              <option value="stock">Stock</option>
+              <option value="etf">ETF</option>
+              <option value="options">Options</option>
+              <option value="mixed">Mixed yearly activity</option>
+            </select>
+          </label>
+
+          <label class="block">
+            <span class="text-sm font-semibold text-slate-700">Buy orders per year</span>
+            <input id="buyOrders" type="number" min="0" value="12" class="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-100">
+          </label>
+
+          <label class="block">
+            <span class="text-sm font-semibold text-slate-700">Sell orders per year</span>
+            <input id="sellOrders" type="number" min="0" value="4" class="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-100">
+          </label>
+
+          <label class="block">
+            <span class="text-sm font-semibold text-slate-700">Average order value (CAD)</span>
+            <input id="orderValue" type="number" min="0" value="1000" class="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-100">
+          </label>
+
+          <label class="block">
+            <span class="text-sm font-semibold text-slate-700">Options contracts per year</span>
+            <input id="optionContracts" type="number" min="0" value="0" class="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-100">
+          </label>
+
+          <label class="block">
+            <span class="text-sm font-semibold text-slate-700">CAD to USD conversion per year</span>
+            <input id="fxAmount" type="number" min="0" value="5000" class="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-100">
+          </label>
+
+          <label class="block">
+            <span class="text-sm font-semibold text-slate-700">Other estimated fees per year</span>
+            <input id="otherFees" type="number" min="0" value="0" class="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-100">
+          </label>
+        </div>
+
+        <div class="mt-6 rounded-2xl bg-slate-50 p-4">
+          <h2 class="text-lg font-bold text-slate-950">Selected Broker Fee Assumptions</h2>
+          <p class="mt-1 text-sm text-slate-600">
+            Edit the selected broker’s assumptions below. The calculator updates instantly.
+          </p>
+
+          <div class="mt-4 grid gap-3 sm:grid-cols-2">
+            <label class="text-sm font-semibold text-slate-700">Stock fee per order
+              <input id="stockFee" type="number" step="0.01" min="0" class="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3">
+            </label>
+            <label class="text-sm font-semibold text-slate-700">ETF fee per order
+              <input id="etfFee" type="number" step="0.01" min="0" class="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3">
+            </label>
+            <label class="text-sm font-semibold text-slate-700">Options base fee
+              <input id="optionBaseFee" type="number" step="0.01" min="0" class="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3">
+            </label>
+            <label class="text-sm font-semibold text-slate-700">Options contract fee
+              <input id="optionContractFee" type="number" step="0.01" min="0" class="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3">
+            </label>
+            <label class="text-sm font-semibold text-slate-700">Options minimum fee
+              <input id="optionMinFee" type="number" step="0.01" min="0" class="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3">
+            </label>
+            <label class="text-sm font-semibold text-slate-700">FX conversion assumption %
+              <input id="fxRate" type="number" step="0.01" min="0" class="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3">
+            </label>
+          </div>
+
+          <p id="brokerNote" class="safe-break mt-4 text-sm text-slate-600"></p>
+        </div>
+
+        <div class="mobile-button-grid mt-6 grid grid-cols-2 gap-3">
+          <button id="resetBtn" class="rounded-xl border border-slate-300 px-4 py-3 font-semibold text-slate-700 hover:bg-slate-50">Reset All</button>
+          <button id="copyBtn" class="rounded-xl bg-indigo-600 px-4 py-3 font-semibold text-white hover:bg-indigo-700">Copy Result</button>
+          <button id="csvBtn" class="rounded-xl border border-indigo-200 bg-indigo-50 px-4 py-3 font-semibold text-indigo-700 hover:bg-indigo-100">Download CSV</button>
+          <button id="printBtn" class="rounded-xl border border-slate-300 px-4 py-3 font-semibold text-slate-700 hover:bg-slate-50">Print</button>
+        </div>
+
+        <p id="actionStatus" class="mt-3 text-sm font-semibold text-indigo-700"></p>
+      </div>
+
+      <aside class="mobile-preview rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+        <h2 class="text-2xl font-bold text-slate-950">Estimated Trading Cost</h2>
+        <p class="mt-1 text-sm text-slate-600">Your result updates automatically as you change inputs.</p>
+
+        <div id="summaryCard" class="mt-5 rounded-2xl bg-indigo-50 p-5"></div>
+
+        <div class="mt-5 grid gap-3 sm:grid-cols-3">
+          <div class="rounded-2xl border border-slate-200 p-4">
+            <p class="text-sm font-semibold text-slate-500">Order fees</p>
+            <p id="orderFeeMetric" class="mt-1 text-xl font-bold text-slate-950">$0.00</p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 p-4">
+            <p class="text-sm font-semibold text-slate-500">FX cost</p>
+            <p id="fxMetric" class="mt-1 text-xl font-bold text-slate-950">$0.00</p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 p-4">
+            <p class="text-sm font-semibold text-slate-500">Total cost</p>
+            <p id="totalMetric" class="mt-1 text-xl font-bold text-slate-950">$0.00</p>
+          </div>
+        </div>
+
+        <div class="mt-6 rounded-2xl border border-slate-200 p-4">
+          <h3 class="font-bold text-slate-950">Cost Breakdown</h3>
+          <div id="breakdownList" class="mt-4 space-y-3"></div>
+        </div>
+
+        <div class="mt-6">
+          <h3 class="mb-3 text-lg font-bold text-slate-950">All Broker Estimate Table</h3>
+          <div class="table-scroll rounded-2xl border border-slate-200">
+            <table class="result-table text-left text-sm">
+              <thead class="bg-slate-50 text-slate-600">
+                <tr>
+                  <th class="p-3 font-bold">Broker</th>
+                  <th class="p-3 font-bold">Order Fees</th>
+                  <th class="p-3 font-bold">FX Cost</th>
+                  <th class="p-3 font-bold">Total</th>
+                </tr>
+              </thead>
+              <tbody id="allBrokerTable" class="divide-y divide-slate-200 bg-white"></tbody>
+            </table>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <div class="ad-box my-8">Advertisement Area Below Main Tool</div>
+
+    <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+      <h2 class="text-2xl font-bold text-slate-950">Canadian Trading Fee Calculator Guide</h2>
+      <p class="mt-4 text-slate-700">
+        Canadian investors often compare brokers by looking only at the headline stock commission, but the true cost of trading may include stock commissions, ETF commissions, options base fees, options contract fees, foreign exchange conversion spreads, account fees, market data fees, ECN fees, and transfer charges. This calculator helps estimate the most common trading costs in one place.
+      </p>
+
+      <h3 class="mt-6 text-xl font-bold text-slate-900">What This Trading Fee Calculator Does</h3>
+      <p class="mt-3 text-slate-700">
+        The tool estimates annual trading costs based on your number of buy orders, sell orders, options contracts, and CAD/USD conversion amount. It is especially useful for Canadian investors who want to compare different trading habits, such as monthly ETF investing, occasional stock purchases, active stock trading, or U.S. stock investing.
+      </p>
+
+      <div class="ad-box my-6">Middle Content Advertisement Area</div>
+
+      <h3 class="text-xl font-bold text-slate-900">Popular Uses</h3>
+      <div class="mt-4 grid gap-4 md:grid-cols-3">
+        <article class="rounded-2xl border border-slate-200 p-4">
+          <h4 class="font-bold text-slate-950">Monthly ETF Investors</h4>
+          <p class="mt-2 text-sm text-slate-600">Estimate yearly costs for investors who buy ETFs every month inside a TFSA, RRSP, FHSA, or non-registered account.</p>
+        </article>
+        <article class="rounded-2xl border border-slate-200 p-4">
+          <h4 class="font-bold text-slate-950">U.S. Stock Buyers</h4>
+          <p class="mt-2 text-sm text-slate-600">Estimate the effect of CAD/USD conversion assumptions when buying U.S.-listed stocks or ETFs from Canada.</p>
+        </article>
+        <article class="rounded-2xl border border-slate-200 p-4">
+          <h4 class="font-bold text-slate-950">Options Traders</h4>
+          <p class="mt-2 text-sm text-slate-600">Compare how base fees, per-contract charges, and minimum options fees can affect annual trading costs.</p>
+        </article>
+      </div>
+
+      <h3 class="mt-6 text-xl font-bold text-slate-900">How to Use the Calculator</h3>
+      <p class="mt-3 text-slate-700">
+        Choose a broker, select your trade type, enter your expected annual number of orders, and add your estimated CAD/USD conversion amount. The calculator shows a detailed cost breakdown and also estimates the same trading pattern across all included brokers. You can edit any fee assumption if a broker changes pricing or if your account qualifies for a different pricing tier.
+      </p>
+
+      <div class="ad-box my-6">Bottom Content Advertisement Area</div>
+
+      <h3 class="text-xl font-bold text-slate-900">Why Foreign Exchange Costs Matter</h3>
+      <p class="mt-3 text-slate-700">
+        For Canadian investors who buy U.S. stocks, foreign exchange costs may be more important than the visible trading commission. A broker with zero-dollar trades can still be costly if the investor frequently converts Canadian dollars into U.S. dollars. This is why the calculator includes a separate FX assumption field instead of focusing only on trading commissions.
+      </p>
+    </section>
+
+    <section class="mobile-card mt-8 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+      <h2 class="text-2xl font-bold text-slate-950">Frequently Asked Questions</h2>
+      <div class="mt-5 space-y-5">
+        <div>
+          <h3 class="font-bold text-slate-950">Does this calculator use live broker data?</h3>
+          <p class="mt-1 text-slate-700">No. It uses built-in editable assumptions and runs fully in the browser. Always verify current fees directly with each broker.</p>
+        </div>
+        <div>
+          <h3 class="font-bold text-slate-950">Why can I edit the broker fees?</h3>
+          <p class="mt-1 text-slate-700">Broker fees, promotions, and pricing tiers can change. Editable assumptions make the calculator more useful when you need to update a specific fee.</p>
+        </div>
+        <div>
+          <h3 class="font-bold text-slate-950">Are ETF trades always free in Canada?</h3>
+          <p class="mt-1 text-slate-700">No. Some brokers offer free ETF purchases, selected commission-free ETF lists, or standard ETF commissions. Check the broker’s official pricing page.</p>
+        </div>
+        <div>
+          <h3 class="font-bold text-slate-950">Does this include tax effects?</h3>
+          <p class="mt-1 text-slate-700">No. This tool estimates trading costs only. It does not calculate income tax, capital gains tax, withholding tax, or registered account contribution rules.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="mobile-card mt-8 rounded-3xl bg-slate-900 p-6 text-slate-100 shadow-sm">
+      <h2 class="text-2xl font-bold">Legal Disclaimer</h2>
+      <p class="mt-4 text-slate-300">
+        This Canada trading fee calculator is provided for informational and educational purposes only. It is not financial, investment, tax, legal, accounting, or professional advice. Broker fees, currency conversion costs, account rules, promotional pricing, options commissions, data fees, ECN fees, and other charges may change at any time. The calculator uses simplified assumptions and may not include all possible fees, restrictions, or risks. Users are responsible for verifying all information directly with each broker and consulting a qualified professional before making financial decisions.
+      </p>
+    </section>
+
+    <div class="ad-box mt-8">Bottom Advertisement Area</div>
+  </main>
+
+  <script>
+    const defaultBrokers = [
+      { name: "Wealthsimple", stockFee: 0, etfFee: 0, optionBaseFee: 0, optionContractFee: 0, optionMinFee: 0, fxRate: 1.50, note: "Default assumes zero-commission stocks, ETFs, and options, plus a 1.5% CAD/USD conversion assumption." },
+      { name: "Questrade", stockFee: 0, etfFee: 0, optionBaseFee: 0, optionContractFee: 0.99, optionMinFee: 0, fxRate: 1.50, note: "Default assumes zero-dollar online stock and ETF trades, options at $0.99 per contract, and a 1.5% FX assumption." },
+      { name: "Interactive Brokers Canada", stockFee: 1.00, etfFee: 1.00, optionBaseFee: 0, optionContractFee: 0.65, optionMinFee: 0, fxRate: 0.03, note: "Default simplifies IBKR pricing into an estimated order cost and a low FX assumption. Actual pricing may vary by market and order size." },
+      { name: "National Bank Direct Brokerage", stockFee: 0, etfFee: 0, optionBaseFee: 0, optionContractFee: 1.25, optionMinFee: 6.25, fxRate: 1.50, note: "Default assumes zero-dollar online stock and ETF commissions, options at $1.25 per contract with a $6.25 minimum." },
+      { name: "TD Direct Investing", stockFee: 9.99, etfFee: 9.99, optionBaseFee: 9.99, optionContractFee: 1.25, optionMinFee: 0, fxRate: 1.50, note: "Default uses standard online commission assumptions. Selected commission-free ETFs or active trader pricing may apply." },
+      { name: "RBC Direct Investing", stockFee: 9.95, etfFee: 9.95, optionBaseFee: 9.95, optionContractFee: 1.25, optionMinFee: 0, fxRate: 1.50, note: "Default uses standard online commission assumptions. Selected ETF pricing or account-specific pricing may apply." },
+      { name: "BMO InvestorLine", stockFee: 9.95, etfFee: 9.95, optionBaseFee: 9.95, optionContractFee: 1.25, optionMinFee: 0, fxRate: 1.50, note: "Default uses standard online commission assumptions. Selected commission-free ETFs and active trader pricing may apply." },
+      { name: "CIBC Investor's Edge", stockFee: 6.95, etfFee: 6.95, optionBaseFee: 6.95, optionContractFee: 1.25, optionMinFee: 0, fxRate: 1.50, note: "Default uses standard investor pricing assumptions. Some investor groups or selected ETFs may qualify for different pricing." },
+      { name: "Scotia iTRADE", stockFee: 9.99, etfFee: 9.99, optionBaseFee: 9.99, optionContractFee: 1.25, optionMinFee: 0, fxRate: 1.50, note: "Default uses standard online commission assumptions. Selected commission-free ETFs may apply when conditions are met." }
+    ];
+
+    let brokers = JSON.parse(JSON.stringify(defaultBrokers));
+    let selectedBrokerIndex = 0;
+    let latestResult = null;
+    let latestAllBrokerResults = [];
+
+    const money = new Intl.NumberFormat("en-CA", { style: "currency", currency: "CAD", maximumFractionDigits: 2 });
+
+    const inputIds = ["brokerSelect", "tradeType", "buyOrders", "sellOrders", "orderValue", "optionContracts", "fxAmount", "otherFees", "stockFee", "etfFee", "optionBaseFee", "optionContractFee", "optionMinFee", "fxRate"];
+
+    function getNumber(id) {
+      const value = Number(document.getElementById(id).value);
+      return Number.isFinite(value) && value >= 0 ? value : 0;
+    }
+
+    function populateBrokerSelect() {
+      const select = document.getElementById("brokerSelect");
+      select.innerHTML = brokers.map((broker, index) => `<option value="${index}">${broker.name}</option>`).join("");
+    }
+
+    function loadSelectedBrokerFields() {
+      const broker = brokers[selectedBrokerIndex];
+      document.getElementById("stockFee").value = broker.stockFee;
+      document.getElementById("etfFee").value = broker.etfFee;
+      document.getElementById("optionBaseFee").value = broker.optionBaseFee;
+      document.getElementById("optionContractFee").value = broker.optionContractFee;
+      document.getElementById("optionMinFee").value = broker.optionMinFee;
+      document.getElementById("fxRate").value = broker.fxRate;
+      document.getElementById("brokerNote").textContent = broker.note;
+    }
+
+    function updateSelectedBrokerAssumptions() {
+      const broker = brokers[selectedBrokerIndex];
+      broker.stockFee = getNumber("stockFee");
+      broker.etfFee = getNumber("etfFee");
+      broker.optionBaseFee = getNumber("optionBaseFee");
+      broker.optionContractFee = getNumber("optionContractFee");
+      broker.optionMinFee = getNumber("optionMinFee");
+      broker.fxRate = getNumber("fxRate");
+    }
+
+    function getOrderFee(broker, tradeType, totalOrders, optionContracts) {
+      if (tradeType === "stock") return totalOrders * broker.stockFee;
+      if (tradeType === "etf") return totalOrders * broker.etfFee;
+      if (tradeType === "options") {
+        if (optionContracts <= 0) return 0;
+        return Math.max(broker.optionBaseFee + (optionContracts * broker.optionContractFee), broker.optionMinFee || 0);
+      }
+
+      const mixedStockOrders = Math.ceil(totalOrders * 0.4);
+      const mixedEtfOrders = Math.ceil(totalOrders * 0.4);
+      const mixedOptionOrders = optionContracts > 0 ? Math.max(broker.optionBaseFee + (optionContracts * broker.optionContractFee), broker.optionMinFee || 0) : 0;
+      return (mixedStockOrders * broker.stockFee) + (mixedEtfOrders * broker.etfFee) + mixedOptionOrders;
+    }
+
+    function calculateForBroker(broker) {
+      const tradeType = document.getElementById("tradeType").value;
+      const buyOrders = getNumber("buyOrders");
+      const sellOrders = getNumber("sellOrders");
+      const totalOrders = buyOrders + sellOrders;
+      const orderValue = getNumber("orderValue");
+      const optionContracts = getNumber("optionContracts");
+      const fxAmount = getNumber("fxAmount");
+      const otherFees = getNumber("otherFees");
+
+      const orderFees = getOrderFee(broker, tradeType, totalOrders, optionContracts);
+      const fxCost = fxAmount * (broker.fxRate / 100);
+      const tradingVolume = totalOrders * orderValue;
+      const totalCost = orderFees + fxCost + otherFees;
+      const costAsVolumePercent = tradingVolume > 0 ? (totalCost / tradingVolume) * 100 : 0;
+      const averageCostPerOrder = totalOrders > 0 ? totalCost / totalOrders : totalCost;
+
+      return {
+        brokerName: broker.name,
+        tradeType,
+        buyOrders,
+        sellOrders,
+        totalOrders,
+        orderValue,
+        optionContracts,
+        fxAmount,
+        otherFees,
+        orderFees,
+        fxCost,
+        tradingVolume,
+        totalCost,
+        costAsVolumePercent,
+        averageCostPerOrder
+      };
+    }
+
+    function renderBreakdown(result) {
+      const items = [
+        ["Buy orders", result.buyOrders],
+        ["Sell orders", result.sellOrders],
+        ["Total orders", result.totalOrders],
+        ["Estimated trading volume", money.format(result.tradingVolume)],
+        ["Order fees", money.format(result.orderFees)],
+        ["FX conversion cost", money.format(result.fxCost)],
+        ["Other estimated fees", money.format(result.otherFees)],
+        ["Average cost per order", money.format(result.averageCostPerOrder)]
+      ];
+
+      document.getElementById("breakdownList").innerHTML = items.map(([label, value]) => `
+        <div class="flex items-center justify-between gap-4 rounded-xl bg-slate-50 px-4 py-3">
+          <span class="text-sm font-semibold text-slate-600">${label}</span>
+          <span class="text-sm font-bold text-slate-950">${value}</span>
+        </div>
+      `).join("");
+    }
+
+    function calculate() {
+      try {
+        updateSelectedBrokerAssumptions();
+
+        const selectedBroker = brokers[selectedBrokerIndex];
+        const result = calculateForBroker(selectedBroker);
+        latestResult = result;
+
+        latestAllBrokerResults = brokers.map(calculateForBroker).sort((a, b) => a.totalCost - b.totalCost);
+
+        document.getElementById("orderFeeMetric").textContent = money.format(result.orderFees);
+        document.getElementById("fxMetric").textContent = money.format(result.fxCost);
+        document.getElementById("totalMetric").textContent = money.format(result.totalCost);
+
+        document.getElementById("summaryCard").innerHTML = `
+          <p class="text-sm font-bold uppercase tracking-wide text-indigo-700">Selected broker estimate</p>
+          <h3 class="safe-break mt-1 text-2xl font-bold text-indigo-950">${result.brokerName}</h3>
+          <p class="mt-2 text-indigo-900">Estimated annual trading cost: <strong>${money.format(result.totalCost)}</strong></p>
+          <p class="mt-1 text-sm text-indigo-800">Average cost per order: <strong>${money.format(result.averageCostPerOrder)}</strong></p>
+          <p class="mt-1 text-sm text-indigo-800">Cost as percentage of estimated trading volume: <strong>${result.costAsVolumePercent.toFixed(3)}%</strong></p>
+        `;
+
+        renderBreakdown(result);
+
+        document.getElementById("allBrokerTable").innerHTML = latestAllBrokerResults.map((item) => `
+          <tr>
+            <td class="safe-break p-3 font-bold text-slate-950">${item.brokerName}</td>
+            <td class="p-3 text-slate-700">${money.format(item.orderFees)}</td>
+            <td class="p-3 text-slate-700">${money.format(item.fxCost)}</td>
+            <td class="p-3 font-semibold text-slate-900">${money.format(item.totalCost)}</td>
+          </tr>
+        `).join("");
+      } catch (error) {
+        document.getElementById("summaryCard").innerHTML = `<div class="rounded-xl bg-red-50 p-4 text-red-700">The calculator could not process the current inputs.</div>`;
+      }
+    }
+
+    function setStatus(message) {
+      const status = document.getElementById("actionStatus");
+      status.textContent = message;
+      clearTimeout(window.statusTimer);
+      window.statusTimer = setTimeout(() => status.textContent = "", 1800);
+    }
+
+    function resetAll() {
+      brokers = JSON.parse(JSON.stringify(defaultBrokers));
+      selectedBrokerIndex = 0;
+      populateBrokerSelect();
+      document.getElementById("brokerSelect").value = "0";
+      document.getElementById("tradeType").value = "stock";
+      document.getElementById("buyOrders").value = 12;
+      document.getElementById("sellOrders").value = 4;
+      document.getElementById("orderValue").value = 1000;
+      document.getElementById("optionContracts").value = 0;
+      document.getElementById("fxAmount").value = 5000;
+      document.getElementById("otherFees").value = 0;
+      loadSelectedBrokerFields();
+      calculate();
+      setStatus("Reset complete.");
+    }
+
+    function buildSummaryText() {
+      if (!latestResult) return "No trading fee result available.";
+      return [
+        "Canada Trading Fee Calculator Result",
+        `Broker: ${latestResult.brokerName}`,
+        `Trade type: ${latestResult.tradeType}`,
+        `Buy orders: ${latestResult.buyOrders}`,
+        `Sell orders: ${latestResult.sellOrders}`,
+        `Order fees: ${money.format(latestResult.orderFees)}`,
+        `FX cost: ${money.format(latestResult.fxCost)}`,
+        `Other fees: ${money.format(latestResult.otherFees)}`,
+        `Total estimated annual cost: ${money.format(latestResult.totalCost)}`,
+        "",
+        "Disclaimer: This estimate is based on editable assumptions and is not financial advice."
+      ].join("\n");
+    }
+
+    async function copyResult() {
+      try {
+        await navigator.clipboard.writeText(buildSummaryText());
+        setStatus("Copied!");
+      } catch (error) {
+        setStatus("Copy failed. Please copy manually.");
+      }
+    }
+
+    function downloadCsv() {
+      const rows = [
+        ["Broker", "Order Fees", "FX Cost", "Other Fees", "Total Cost", "Average Cost Per Order", "Cost as Volume %"],
+        ...latestAllBrokerResults.map(item => [
+          item.brokerName,
+          item.orderFees.toFixed(2),
+          item.fxCost.toFixed(2),
+          item.otherFees.toFixed(2),
+          item.totalCost.toFixed(2),
+          item.averageCostPerOrder.toFixed(2),
+          item.costAsVolumePercent.toFixed(4)
+        ])
+      ];
+
+      const csv = rows.map(row => row.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(",")).join("\n");
+      const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "canada-trading-fee-calculator.csv";
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
+      setStatus("CSV downloaded.");
+    }
+
+    populateBrokerSelect();
+    loadSelectedBrokerFields();
+
+    inputIds.forEach(id => {
+      document.getElementById(id).addEventListener("input", calculate);
+      document.getElementById(id).addEventListener("change", () => {
+        if (id === "brokerSelect") {
+          selectedBrokerIndex = Number(document.getElementById("brokerSelect").value) || 0;
+          loadSelectedBrokerFields();
+        }
+        calculate();
+      });
+    });
+
+    document.getElementById("resetBtn").addEventListener("click", resetAll);
+    document.getElementById("copyBtn").addEventListener("click", copyResult);
+    document.getElementById("csvBtn").addEventListener("click", downloadCsv);
+    document.getElementById("printBtn").addEventListener("click", () => window.print());
+
+    calculate();
+  </script>
+</body>
+</html>
