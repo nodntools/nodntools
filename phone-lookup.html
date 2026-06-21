@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Phone Number Lookup Tool | Country, Region, Carrier Format Checker</title>
+  <meta name="description" content="Use this free client-side phone number lookup tool to analyze international phone numbers, detect country codes, validate formatting, identify possible regions, and create clean tel links without uploading data." />
+  <meta name="keywords" content="phone number lookup, phone number checker, international phone number validator, country code lookup, area code lookup, phone format tool, phone number parser, tel link generator" />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="Phone Number Lookup Tool" />
+  <meta property="og:description" content="Analyze phone numbers directly in your browser. Check country code, possible region, formatting, tel link, and basic number structure." />
+  <meta property="og:type" content="website" />
+
+  <meta name="google-adsense-account" content="ca-pub-5282672325821404">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404" crossorigin="anonymous"></script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Phone Number Lookup Tool",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "All",
+    "description": "A browser-based phone number lookup and formatting tool that analyzes international phone numbers, country codes, possible regions, and clean dialing formats.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+
+  <style>
+    html, body {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+      background: #f8fafc;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      min-width: 0;
+    }
+
+    .safe-break {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .mobile-code {
+      max-width: 100%;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .ad-box {
+      width: 100%;
+      max-width: 100%;
+      min-height: 90px;
+      border: 2px dashed #cbd5e1;
+      background: #f1f5f9;
+      color: #64748b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-radius: 1rem;
+      padding: 1rem;
+      overflow: hidden;
+    }
+
+    @media (max-width: 640px) {
+      .mobile-card, .mobile-panel, .mobile-preview {
+        border-radius: 1rem !important;
+        padding: 1rem !important;
+      }
+
+      .mobile-button-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      button, .mobile-full {
+        width: 100%;
+      }
+
+      h1 {
+        font-size: 2rem !important;
+        line-height: 2.35rem !important;
+      }
+
+      .ad-box {
+        min-height: 90px;
+        font-size: 0.875rem;
+      }
+    }
+
+    @media (max-width: 380px) {
+      body {
+        font-size: 14px;
+      }
+
+      .mobile-card, .mobile-panel, .mobile-preview {
+        padding: 0.875rem !important;
+      }
+
+      h1 {
+        font-size: 1.75rem !important;
+      }
+    }
+  </style>
+</head>
+
+<body class="text-slate-800">
+  <header class="w-full border-b border-slate-200 bg-white/90 backdrop-blur">
+    <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
+      <a href="https://nodntools.com" class="safe-break text-xl font-extrabold tracking-tight text-slate-900">
+        Nodn<span class="text-indigo-600">WebTools</span>
+      </a>
+      <a href="https://nodntools.com" class="rounded-full border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-700 hover:border-indigo-300 hover:text-indigo-700">
+        Home
+      </a>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+    <section class="ad-box mb-6">
+      Top Advertisement Area
+    </section>
+
+    <section class="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
+      <div class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+        <p class="mb-3 inline-flex rounded-full bg-indigo-50 px-3 py-1 text-sm font-semibold text-indigo-700">
+          Client-side phone utility
+        </p>
+
+        <h1 class="safe-break text-4xl font-extrabold tracking-tight text-slate-950">
+          Phone Number Lookup
+        </h1>
+
+        <p class="mt-4 text-slate-600">
+          Analyze a phone number directly in your browser. This tool checks the number structure, detects common country codes, identifies North American area codes, formats the number, and creates a clean click-to-call link.
+        </p>
+
+        <div class="mt-6 space-y-5">
+          <div>
+            <label for="phoneInput" class="mb-2 block text-sm font-semibold text-slate-700">
+              Phone number
+            </label>
+            <input id="phoneInput" type="tel" inputmode="tel" placeholder="Example: +1 604 555 0198"
+              class="w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100" />
+            <p class="mt-2 text-sm text-slate-500">
+              You can enter local, national, or international formats.
+            </p>
+          </div>
+
+          <div>
+            <label for="defaultCountry" class="mb-2 block text-sm font-semibold text-slate-700">
+              Default country for local numbers
+            </label>
+            <select id="defaultCountry"
+              class="w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100">
+              <option value="US">United States / Canada (+1)</option>
+              <option value="GB">United Kingdom (+44)</option>
+              <option value="AU">Australia (+61)</option>
+              <option value="KR">South Korea (+82)</option>
+              <option value="JP">Japan (+81)</option>
+              <option value="DE">Germany (+49)</option>
+              <option value="FR">France (+33)</option>
+              <option value="IN">India (+91)</option>
+            </select>
+          </div>
+
+          <div class="rounded-2xl bg-slate-50 p-4">
+            <h2 class="text-sm font-bold uppercase tracking-wide text-slate-500">Examples</h2>
+            <div class="mt-3 grid gap-2 sm:grid-cols-2">
+              <button class="exampleBtn rounded-xl border border-slate-200 bg-white px-3 py-2 text-left text-sm font-medium hover:border-indigo-300 hover:text-indigo-700" data-example="+1 604 555 0198">+1 604 555 0198</button>
+              <button class="exampleBtn rounded-xl border border-slate-200 bg-white px-3 py-2 text-left text-sm font-medium hover:border-indigo-300 hover:text-indigo-700" data-example="+1 212 555 0144">+1 212 555 0144</button>
+              <button class="exampleBtn rounded-xl border border-slate-200 bg-white px-3 py-2 text-left text-sm font-medium hover:border-indigo-300 hover:text-indigo-700" data-example="+44 20 7946 0958">+44 20 7946 0958</button>
+              <button class="exampleBtn rounded-xl border border-slate-200 bg-white px-3 py-2 text-left text-sm font-medium hover:border-indigo-300 hover:text-indigo-700" data-example="+82 2 1234 5678">+82 2 1234 5678</button>
+            </div>
+          </div>
+
+          <div class="mobile-button-grid grid gap-3 sm:grid-cols-3">
+            <button id="lookupBtn" class="rounded-2xl bg-indigo-600 px-5 py-3 font-bold text-white shadow-sm hover:bg-indigo-700">
+              Analyze Number
+            </button>
+            <button id="copyBtn" class="rounded-2xl border border-slate-300 bg-white px-5 py-3 font-bold text-slate-700 hover:border-indigo-300 hover:text-indigo-700">
+              Copy Result
+            </button>
+            <button id="resetBtn" class="rounded-2xl border border-slate-300 bg-white px-5 py-3 font-bold text-slate-700 hover:border-red-300 hover:text-red-700">
+              Reset
+            </button>
+          </div>
+
+          <div id="copyFeedback" class="hidden rounded-2xl bg-emerald-50 px-4 py-3 text-sm font-semibold text-emerald-700">
+            Copied!
+          </div>
+        </div>
+      </div>
+
+      <div class="mobile-preview rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+        <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+          <div>
+            <h2 class="text-2xl font-extrabold text-slate-950">Lookup Result</h2>
+            <p class="mt-1 text-sm text-slate-500">
+              Instant analysis appears here as you type.
+            </p>
+          </div>
+          <span id="statusBadge" class="inline-flex rounded-full bg-slate-100 px-3 py-1 text-sm font-bold text-slate-600">
+            Waiting
+          </span>
+        </div>
+
+        <div id="warningBox" class="mt-5 rounded-2xl bg-amber-50 p-4 text-sm font-medium text-amber-800">
+          Enter a phone number to begin. This tool performs format and region analysis only. It does not reveal the owner of a number.
+        </div>
+
+        <div class="mt-5 grid gap-4 sm:grid-cols-2">
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+            <p class="text-sm font-semibold text-slate-500">Detected country</p>
+            <p id="countryResult" class="safe-break mt-2 text-lg font-extrabold text-slate-950">—</p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+            <p class="text-sm font-semibold text-slate-500">Possible region</p>
+            <p id="regionResult" class="safe-break mt-2 text-lg font-extrabold text-slate-950">—</p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+            <p class="text-sm font-semibold text-slate-500">Number type estimate</p>
+            <p id="typeResult" class="safe-break mt-2 text-lg font-extrabold text-slate-950">—</p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+            <p class="text-sm font-semibold text-slate-500">Validity check</p>
+            <p id="validityResult" class="safe-break mt-2 text-lg font-extrabold text-slate-950">—</p>
+          </div>
+        </div>
+
+        <div class="mt-5 rounded-2xl border border-slate-200 bg-slate-950 p-4 text-white">
+          <p class="text-sm font-semibold text-slate-300">International format</p>
+          <p id="internationalResult" class="safe-break mt-2 text-xl font-extrabold">—</p>
+        </div>
+
+        <div class="mt-4 rounded-2xl border border-slate-200 bg-white p-4">
+          <p class="text-sm font-semibold text-slate-500">Dialing link</p>
+          <a id="telLink" href="#" class="safe-break mt-2 block text-lg font-bold text-indigo-700">—</a>
+        </div>
+
+        <div class="mt-4 rounded-2xl border border-slate-200 bg-white p-4">
+          <p class="text-sm font-semibold text-slate-500">Clean report</p>
+          <pre id="reportOutput" class="mobile-code mt-2 text-sm leading-6 text-slate-700">No number analyzed yet.</pre>
+        </div>
+
+        <button id="downloadBtn" class="mt-5 w-full rounded-2xl bg-violet-600 px-5 py-3 font-bold text-white shadow-sm hover:bg-violet-700">
+          Download Report
+        </button>
+      </div>
+    </section>
+
+    <section class="ad-box my-8">
+      Advertisement Area Below Tool
+    </section>
+
+    <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+      <h2 class="text-3xl font-extrabold text-slate-950">Free Phone Number Lookup and Formatting Tool</h2>
+      <p class="mt-4 text-slate-600">
+        This phone number lookup tool helps users quickly understand the basic structure of a phone number before saving it, calling it, sharing it, or adding it to a customer record. It is especially useful when you receive a number in an unfamiliar format and want to know which country code it may belong to, whether the digits look complete, and how the number should appear in a cleaner international format.
+      </p>
+
+      <p class="mt-4 text-slate-600">
+        The tool runs completely inside your browser. The number you enter is not uploaded to a server, which makes it practical for everyday formatting tasks, contact cleanup, customer service preparation, personal organization, and quick phone number validation. It does not identify the private owner of a number, access carrier databases, or provide real-time caller ID data.
+      </p>
+
+      <div class="ad-box my-8">
+        Middle Content Advertisement Area
+      </div>
+
+      <h3 class="mt-8 text-2xl font-bold text-slate-950">How to Use This Phone Number Checker</h3>
+      <div class="mt-4 grid gap-4 md:grid-cols-3">
+        <article class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+          <h4 class="font-bold text-slate-950">1. Enter a number</h4>
+          <p class="mt-2 text-sm text-slate-600">Paste or type a phone number using spaces, dashes, brackets, or a plus sign. The tool removes unnecessary characters automatically.</p>
+        </article>
+        <article class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+          <h4 class="font-bold text-slate-950">2. Review the analysis</h4>
+          <p class="mt-2 text-sm text-slate-600">Check the detected country code, possible region, format quality, and international dialing version.</p>
+        </article>
+        <article class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+          <h4 class="font-bold text-slate-950">3. Copy or download</h4>
+          <p class="mt-2 text-sm text-slate-600">Copy the report, use the tel link, or download a text report for your records.</p>
+        </article>
+      </div>
+
+      <h3 class="mt-8 text-2xl font-bold text-slate-950">Popular Uses</h3>
+      <div class="mt-4 grid gap-4 md:grid-cols-2">
+        <article class="rounded-2xl border border-slate-200 p-5">
+          <h4 class="font-bold text-indigo-700">International contact cleanup</h4>
+          <p class="mt-2 text-slate-600">Convert messy phone entries into cleaner international-looking numbers before adding them to your address book, CRM, spreadsheet, or client notes.</p>
+        </article>
+        <article class="rounded-2xl border border-slate-200 p-5">
+          <h4 class="font-bold text-indigo-700">North American area code checks</h4>
+          <p class="mt-2 text-slate-600">For United States and Canada numbers, the tool can identify common area code regions such as Vancouver, Toronto, New York, Los Angeles, and other major locations.</p>
+        </article>
+        <article class="rounded-2xl border border-slate-200 p-5">
+          <h4 class="font-bold text-indigo-700">Click-to-call link creation</h4>
+          <p class="mt-2 text-slate-600">Generate a clean tel link that can be used in mobile-friendly contact pages, HTML snippets, internal documents, or customer support notes.</p>
+        </article>
+        <article class="rounded-2xl border border-slate-200 p-5">
+          <h4 class="font-bold text-indigo-700">Quick format validation</h4>
+          <p class="mt-2 text-slate-600">See whether the entered number has enough digits, too many digits, or an unclear country code before relying on it.</p>
+        </article>
+      </div>
+
+      <div class="ad-box my-8">
+        Bottom Content Advertisement Area
+      </div>
+
+      <h3 class="text-2xl font-bold text-slate-950">Practical Tips for Phone Number Formatting</h3>
+      <p class="mt-4 text-slate-600">
+        For international use, a phone number should usually start with a plus sign followed by a country calling code. For example, numbers in the United States and Canada commonly use +1, the United Kingdom uses +44, South Korea uses +82, Japan uses +81, and Australia uses +61. When storing phone numbers for websites or business records, the international format is often easier to read, search, and use across devices.
+      </p>
+      <p class="mt-4 text-slate-600">
+        Avoid storing numbers with unnecessary notes inside the number field. Keep extensions, names, and call instructions in a separate field when possible. This helps mobile devices, contact apps, and CRM systems recognize the number more reliably.
+      </p>
+    </section>
+
+    <section class="mt-8 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+      <h2 class="text-3xl font-extrabold text-slate-950">FAQ</h2>
+
+      <div class="mt-6 space-y-4">
+        <details class="rounded-2xl border border-slate-200 p-5">
+          <summary class="cursor-pointer font-bold text-slate-950">Can this tool tell me who owns a phone number?</summary>
+          <p class="mt-3 text-slate-600">No. This tool does not access private identity records, telecom databases, or caller ID systems. It only analyzes number structure, formatting, country code, and possible region information.</p>
+        </details>
+
+        <details class="rounded-2xl border border-slate-200 p-5">
+          <summary class="cursor-pointer font-bold text-slate-950">Is my phone number uploaded anywhere?</summary>
+          <p class="mt-3 text-slate-600">No. The analysis runs locally in your browser using JavaScript. Your entered number is not sent to a backend server by this tool.</p>
+        </details>
+
+        <details class="rounded-2xl border border-slate-200 p-5">
+          <summary class="cursor-pointer font-bold text-slate-950">Can it detect spam calls?</summary>
+          <p class="mt-3 text-slate-600">No. Spam detection requires live reputation data, user reports, or carrier-level information. This tool is designed for formatting and basic lookup guidance only.</p>
+        </details>
+
+        <details class="rounded-2xl border border-slate-200 p-5">
+          <summary class="cursor-pointer font-bold text-slate-950">Why does the result say “possible region”?</summary>
+          <p class="mt-3 text-slate-600">Area codes and number ranges can change, and mobile numbers may not always represent a person’s current location. The region result should be treated as a helpful estimate, not a guaranteed location.</p>
+        </details>
+
+        <details class="rounded-2xl border border-slate-200 p-5">
+          <summary class="cursor-pointer font-bold text-slate-950">Can I use this tool for business contact lists?</summary>
+          <p class="mt-3 text-slate-600">Yes, it can help clean and standardize phone number entries. For compliance-sensitive use, always follow applicable privacy, consent, telemarketing, and data protection rules.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="ad-box my-8">
+      Bottom Advertisement Area
+    </section>
+
+    <section class="mb-8 rounded-3xl bg-slate-900 p-6 text-slate-200 shadow-sm">
+      <h2 class="text-2xl font-extrabold text-white">Legal Disclaimer</h2>
+      <p class="mt-4">
+        This Phone Number Lookup Tool is provided for informational and formatting purposes only. It does not identify the owner of a phone number, confirm the current subscriber, verify spam status, guarantee carrier information, or provide emergency location data. Results are based on basic client-side parsing rules, common country calling codes, and selected area code references.
+      </p>
+      <p class="mt-4">
+        Users are responsible for verifying important phone number information through official, authorized, or consent-based sources. Do not use this tool for harassment, stalking, unauthorized tracking, privacy invasion, fraud, or any unlawful activity. When handling phone numbers for business, marketing, customer support, or analytics, follow applicable privacy laws, consent requirements, anti-spam rules, and data protection obligations.
+      </p>
+    </section>
+  </main>
+
+  <script>
+    const phoneInput = document.getElementById('phoneInput');
+    const defaultCountry = document.getElementById('defaultCountry');
+    const lookupBtn = document.getElementById('lookupBtn');
+    const copyBtn = document.getElementById('copyBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const downloadBtn = document.getElementById('downloadBtn');
+    const copyFeedback = document.getElementById('copyFeedback');
+    const statusBadge = document.getElementById('statusBadge');
+    const warningBox = document.getElementById('warningBox');
+
+    const countryResult = document.getElementById('countryResult');
+    const regionResult = document.getElementById('regionResult');
+    const typeResult = document.getElementById('typeResult');
+    const validityResult = document.getElementById('validityResult');
+    const internationalResult = document.getElementById('internationalResult');
+    const telLink = document.getElementById('telLink');
+    const reportOutput = document.getElementById('reportOutput');
+
+    const countryCodes = [
+      { code: '1', country: 'United States / Canada', min: 10, max: 10 },
+      { code: '44', country: 'United Kingdom', min: 9, max: 10 },
+      { code: '61', country: 'Australia', min: 9, max: 9 },
+      { code: '82', country: 'South Korea', min: 8, max: 10 },
+      { code: '81', country: 'Japan', min: 9, max: 10 },
+      { code: '49', country: 'Germany', min: 7, max: 12 },
+      { code: '33', country: 'France', min: 9, max: 9 },
+      { code: '91', country: 'India', min: 10, max: 10 },
+      { code: '86', country: 'China', min: 11, max: 11 },
+      { code: '52', country: 'Mexico', min: 10, max: 10 },
+      { code: '55', country: 'Brazil', min: 10, max: 11 },
+      { code: '39', country: 'Italy', min: 8, max: 11 },
+      { code: '34', country: 'Spain', min: 9, max: 9 },
+      { code: '31', country: 'Netherlands', min: 9, max: 9 },
+      { code: '64', country: 'New Zealand', min: 8, max: 9 }
+    ];
+
+    const defaultCountryMap = {
+      US: '1',
+      GB: '44',
+      AU: '61',
+      KR: '82',
+      JP: '81',
+      DE: '49',
+      FR: '33',
+      IN: '91'
+    };
+
+    const nanpAreaCodes = {
+      '201': 'New Jersey, United States',
+      '202': 'Washington, DC, United States',
+      '212': 'New York City, United States',
+      '213': 'Los Angeles, United States',
+      '305': 'Miami, United States',
+      '310': 'Los Angeles, United States',
+      '312': 'Chicago, United States',
+      '415': 'San Francisco, United States',
+      '416': 'Toronto, Canada',
+      '438': 'Montreal, Canada',
+      '514': 'Montreal, Canada',
+      '604': 'Vancouver, Canada',
+      '647': 'Toronto, Canada',
+      '650': 'San Mateo County, United States',
+      '702': 'Las Vegas, United States',
+      '778': 'British Columbia, Canada',
+      '780': 'Alberta, Canada',
+      '818': 'Los Angeles, United States',
+      '905': 'Greater Toronto Area, Canada'
+    };
+
+    function cleanInput(value) {
+      return value.replace(/[^\d+]/g, '').replace(/(?!^)\+/g, '');
+    }
+
+    function digitsOnly(value) {
+      return value.replace(/\D/g, '');
+    }
+
+    function detectNumber(rawValue) {
+      const raw = rawValue.trim();
+      const cleaned = cleanInput(raw);
+      let digits = digitsOnly(cleaned);
+
+      if (!digits) {
+        return null;
+      }
+
+      let selectedCode = null;
+      let nationalNumber = digits;
+
+      if (cleaned.startsWith('+')) {
+        const sortedCodes = [...countryCodes].sort((a, b) => b.code.length - a.code.length);
+        selectedCode = sortedCodes.find(item => digits.startsWith(item.code));
+        if (selectedCode) {
+          nationalNumber = digits.slice(selectedCode.code.length);
+        }
+      } else {
+        const fallbackCode = defaultCountryMap[defaultCountry.value] || '1';
+        selectedCode = countryCodes.find(item => item.code === fallbackCode);
+        if (selectedCode) {
+          if (fallbackCode === '1' && digits.length === 11 && digits.startsWith('1')) {
+            nationalNumber = digits.slice(1);
+          } else {
+            nationalNumber = digits;
+          }
+        }
+      }
+
+      if (!selectedCode) {
+        selectedCode = { code: 'Unknown', country: 'Unknown country code', min: 6, max: 15 };
+      }
+
+      const international = selectedCode.code === 'Unknown'
+        ? '+' + digits
+        : '+' + selectedCode.code + ' ' + groupNumber(nationalNumber);
+
+      let region = 'Region unavailable';
+      if (selectedCode.code === '1' && nationalNumber.length >= 3) {
+        const areaCode = nationalNumber.slice(0, 3);
+        region = nanpAreaCodes[areaCode] || 'North American Numbering Plan area';
+      } else if (selectedCode.code === '44') {
+        region = nationalNumber.startsWith('20') ? 'London or nearby area, United Kingdom' : 'United Kingdom region estimate unavailable';
+      } else if (selectedCode.code === '82') {
+        region = nationalNumber.startsWith('2') ? 'Seoul, South Korea' : 'South Korea region estimate unavailable';
+      } else if (selectedCode.code !== 'Unknown') {
+        region = selectedCode.country;
+      }
+
+      const isLengthValid = nationalNumber.length >= selectedCode.min && nationalNumber.length <= selectedCode.max;
+      const typeEstimate = estimateType(selectedCode.code, nationalNumber);
+      const validity = isLengthValid ? 'Looks structurally valid' : 'Check digit length';
+
+      return {
+        raw,
+        cleaned,
+        digits,
+        selectedCode,
+        nationalNumber,
+        international,
+        region,
+        typeEstimate,
+        validity,
+        isLengthValid,
+        tel: selectedCode.code === 'Unknown' ? '+' + digits : '+' + selectedCode.code + nationalNumber
+      };
+    }
+
+    function groupNumber(number) {
+      if (!number) return '';
+      if (number.length === 10) return number.replace(/(\d{3})(\d{3})(\d{4})/, '$1 $2 $3');
+      if (number.length === 9) return number.replace(/(\d{2})(\d{3})(\d{4})/, '$1 $2 $3');
+      if (number.length === 8) return number.replace(/(\d{4})(\d{4})/, '$1 $2');
+      if (number.length === 11) return number.replace(/(\d{3})(\d{4})(\d{4})/, '$1 $2 $3');
+      return number.replace(/(\d{3})(?=\d)/g, '$1 ').trim();
+    }
+
+    function estimateType(code, number) {
+      if (code === '1') {
+        if (number.length === 10) return 'Landline or mobile';
+        return 'Unknown North American type';
+      }
+
+      if (code === '44' && number.startsWith('7')) return 'Likely mobile';
+      if (code === '82' && number.startsWith('10')) return 'Likely mobile';
+      if (code === '81' && (number.startsWith('70') || number.startsWith('80') || number.startsWith('90'))) return 'Likely mobile';
+      if (code === '61' && number.startsWith('4')) return 'Likely mobile';
+      if (code === '91' && /^[6-9]/.test(number)) return 'Likely mobile';
+
+      return 'Landline or mobile';
+    }
+
+    function updateResults() {
+      try {
+        const result = detectNumber(phoneInput.value);
+
+        if (!result) {
+          statusBadge.textContent = 'Waiting';
+          statusBadge.className = 'inline-flex rounded-full bg-slate-100 px-3 py-1 text-sm font-bold text-slate-600';
+          warningBox.textContent = 'Enter a phone number to begin. This tool performs format and region analysis only. It does not reveal the owner of a number.';
+          warningBox.className = 'mt-5 rounded-2xl bg-amber-50 p-4 text-sm font-medium text-amber-800';
+
+          countryResult.textContent = '—';
+          regionResult.textContent = '—';
+          typeResult.textContent = '—';
+          validityResult.textContent = '—';
+          internationalResult.textContent = '—';
+          telLink.textContent = '—';
+          telLink.href = '#';
+          reportOutput.textContent = 'No number analyzed yet.';
+          return;
+        }
+
+        countryResult.textContent = result.selectedCode.country + (result.selectedCode.code !== 'Unknown' ? ' (+' + result.selectedCode.code + ')' : '');
+        regionResult.textContent = result.region;
+        typeResult.textContent = result.typeEstimate;
+        validityResult.textContent = result.validity;
+        internationalResult.textContent = result.international;
+        telLink.textContent = 'tel:' + result.tel;
+        telLink.href = 'tel:' + result.tel;
+
+        if (result.isLengthValid) {
+          statusBadge.textContent = 'Ready';
+          statusBadge.className = 'inline-flex rounded-full bg-emerald-100 px-3 py-1 text-sm font-bold text-emerald-700';
+          warningBox.textContent = 'The number looks structurally reasonable. Always verify important contact details before relying on them.';
+          warningBox.className = 'mt-5 rounded-2xl bg-emerald-50 p-4 text-sm font-medium text-emerald-800';
+        } else {
+          statusBadge.textContent = 'Review';
+          statusBadge.className = 'inline-flex rounded-full bg-amber-100 px-3 py-1 text-sm font-bold text-amber-700';
+          warningBox.textContent = 'The number may be incomplete, too long, or missing a clear country code. Review the digits before using it.';
+          warningBox.className = 'mt-5 rounded-2xl bg-amber-50 p-4 text-sm font-medium text-amber-800';
+        }
+
+        reportOutput.textContent =
+`Phone Number Lookup Report
+Original input: ${result.raw}
+Detected country: ${countryResult.textContent}
+Possible region: ${result.region}
+Number type estimate: ${result.typeEstimate}
+Validity check: ${result.validity}
+International format: ${result.international}
+Dialing link: tel:${result.tel}
+
+Note: This is a format and region estimate only. It does not identify the owner, spam status, or live carrier data.`;
+      } catch (error) {
+        warningBox.textContent = 'Something went wrong while analyzing the number. Please check the input and try again.';
+        warningBox.className = 'mt-5 rounded-2xl bg-red-50 p-4 text-sm font-medium text-red-700';
+      }
+    }
+
+    async function copyReport() {
+      try {
+        await navigator.clipboard.writeText(reportOutput.textContent);
+        copyFeedback.classList.remove('hidden');
+        setTimeout(() => copyFeedback.classList.add('hidden'), 1400);
+      } catch (error) {
+        copyFeedback.textContent = 'Copy failed. Please select the report manually.';
+        copyFeedback.classList.remove('hidden');
+        setTimeout(() => {
+          copyFeedback.classList.add('hidden');
+          copyFeedback.textContent = 'Copied!';
+        }, 1800);
+      }
+    }
+
+    function downloadReport() {
+      try {
+        const content = reportOutput.textContent || 'No report available.';
+        const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'phone-number-lookup-report.txt';
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        URL.revokeObjectURL(url);
+      } catch (error) {
+        warningBox.textContent = 'Download failed. Please copy the report instead.';
+        warningBox.className = 'mt-5 rounded-2xl bg-red-50 p-4 text-sm font-medium text-red-700';
+      }
+    }
+
+    phoneInput.addEventListener('input', updateResults);
+    defaultCountry.addEventListener('change', updateResults);
+    lookupBtn.addEventListener('click', updateResults);
+    copyBtn.addEventListener('click', copyReport);
+    downloadBtn.addEventListener('click', downloadReport);
+
+    resetBtn.addEventListener('click', () => {
+      phoneInput.value = '';
+      defaultCountry.value = 'US';
+      updateResults();
+      phoneInput.focus();
+    });
+
+    document.querySelectorAll('.exampleBtn').forEach(button => {
+      button.addEventListener('click', () => {
+        phoneInput.value = button.dataset.example || '';
+        updateResults();
+      });
+    });
+
+    window.addEventListener('resize', () => {
+      document.body.style.overflowX = 'hidden';
+    });
+
+    updateResults();
+  </script>
+</body>
+</html>
