@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Area Code Lookup Tool | Find Country, State, Province, and City by Area Code</title>
+  <meta name="description" content="Use this free browser-based area code lookup tool to identify possible locations for North American and international calling codes. Search by area code, country code, city, state, or province." />
+  <meta name="keywords" content="area code lookup, phone area code lookup, country calling code lookup, North American area code finder, US area code lookup, Canada area code lookup, phone prefix lookup, city area code finder" />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="Area Code Lookup Tool" />
+  <meta property="og:description" content="Find possible city, state, province, country, and timezone information for common area codes and country calling codes." />
+  <meta property="og:type" content="website" />
+
+  <meta name="google-adsense-account" content="ca-pub-5282672325821404">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404" crossorigin="anonymous"></script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Area Code Lookup Tool",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "All",
+    "description": "A client-side area code lookup tool for finding possible cities, states, provinces, countries, and time zones from area codes and country calling codes.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+
+  <style>
+    html, body {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+      background: #f8fafc;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      min-width: 0;
+    }
+
+    .safe-break {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .mobile-code {
+      max-width: 100%;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .mobile-table-wrap {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .ad-box {
+      width: 100%;
+      max-width: 100%;
+      min-height: 90px;
+      border: 2px dashed #cbd5e1;
+      background: #f1f5f9;
+      color: #64748b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-radius: 1rem;
+      padding: 1rem;
+      overflow: hidden;
+    }
+
+    @media (max-width: 640px) {
+      .mobile-card, .mobile-panel, .mobile-preview {
+        border-radius: 1rem !important;
+        padding: 1rem !important;
+      }
+
+      .mobile-button-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      button, .mobile-full {
+        width: 100%;
+      }
+
+      h1 {
+        font-size: 2rem !important;
+        line-height: 2.35rem !important;
+      }
+
+      table {
+        min-width: 560px;
+      }
+
+      .ad-box {
+        min-height: 90px;
+        font-size: 0.875rem;
+      }
+    }
+
+    @media (max-width: 380px) {
+      body {
+        font-size: 14px;
+      }
+
+      .mobile-card, .mobile-panel, .mobile-preview {
+        padding: 0.875rem !important;
+      }
+
+      h1 {
+        font-size: 1.75rem !important;
+      }
+    }
+  </style>
+</head>
+
+<body class="text-slate-800">
+  <header class="w-full border-b border-slate-200 bg-white/90 backdrop-blur">
+    <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
+      <a href="https://nodntools.com" class="safe-break text-xl font-extrabold tracking-tight text-slate-900">
+        Nodn<span class="text-indigo-600">WebTools</span>
+      </a>
+      <a href="https://nodntools.com" class="rounded-full border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-700 hover:border-indigo-300 hover:text-indigo-700">
+        Home
+      </a>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+    <section class="ad-box mb-6">
+      Top Advertisement Area
+    </section>
+
+    <section class="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
+      <div class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+        <p class="mb-3 inline-flex rounded-full bg-indigo-50 px-3 py-1 text-sm font-semibold text-indigo-700">
+          Client-side area code utility
+        </p>
+
+        <h1 class="safe-break text-4xl font-extrabold tracking-tight text-slate-950">
+          Area Code Lookup
+        </h1>
+
+        <p class="mt-4 text-slate-600">
+          Search an area code, country calling code, city, state, or province to find possible phone number locations. This tool works entirely in your browser and is useful for quick reference, contact cleanup, and call screening notes.
+        </p>
+
+        <div class="mt-6 space-y-5">
+          <div>
+            <label for="searchInput" class="mb-2 block text-sm font-semibold text-slate-700">
+              Area code, country code, city, state, or province
+            </label>
+            <input id="searchInput" type="text" inputmode="search" placeholder="Example: 604, 212, Toronto, California, +44"
+              class="w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100" />
+            <p class="mt-2 text-sm text-slate-500">
+              Enter a 3-digit North American area code or an international country calling code.
+            </p>
+          </div>
+
+          <div>
+            <label for="regionFilter" class="mb-2 block text-sm font-semibold text-slate-700">
+              Filter by region type
+            </label>
+            <select id="regionFilter"
+              class="w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100">
+              <option value="all">All area and country codes</option>
+              <option value="US">United States area codes</option>
+              <option value="CA">Canada area codes</option>
+              <option value="INTL">International country calling codes</option>
+            </select>
+          </div>
+
+          <div class="rounded-2xl bg-slate-50 p-4">
+            <h2 class="text-sm font-bold uppercase tracking-wide text-slate-500">Quick examples</h2>
+            <div class="mt-3 grid gap-2 sm:grid-cols-2">
+              <button class="exampleBtn rounded-xl border border-slate-200 bg-white px-3 py-2 text-left text-sm font-medium hover:border-indigo-300 hover:text-indigo-700" data-example="604">604 Vancouver</button>
+              <button class="exampleBtn rounded-xl border border-slate-200 bg-white px-3 py-2 text-left text-sm font-medium hover:border-indigo-300 hover:text-indigo-700" data-example="212">212 New York</button>
+              <button class="exampleBtn rounded-xl border border-slate-200 bg-white px-3 py-2 text-left text-sm font-medium hover:border-indigo-300 hover:text-indigo-700" data-example="416">416 Toronto</button>
+              <button class="exampleBtn rounded-xl border border-slate-200 bg-white px-3 py-2 text-left text-sm font-medium hover:border-indigo-300 hover:text-indigo-700" data-example="+44">+44 United Kingdom</button>
+            </div>
+          </div>
+
+          <div class="mobile-button-grid grid gap-3 sm:grid-cols-3">
+            <button id="lookupBtn" class="rounded-2xl bg-indigo-600 px-5 py-3 font-bold text-white shadow-sm hover:bg-indigo-700">
+              Search Code
+            </button>
+            <button id="copyBtn" class="rounded-2xl border border-slate-300 bg-white px-5 py-3 font-bold text-slate-700 hover:border-indigo-300 hover:text-indigo-700">
+              Copy Results
+            </button>
+            <button id="resetBtn" class="rounded-2xl border border-slate-300 bg-white px-5 py-3 font-bold text-slate-700 hover:border-red-300 hover:text-red-700">
+              Reset
+            </button>
+          </div>
+
+          <div id="copyFeedback" class="hidden rounded-2xl bg-emerald-50 px-4 py-3 text-sm font-semibold text-emerald-700">
+            Copied!
+          </div>
+        </div>
+      </div>
+
+      <div class="mobile-preview rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+        <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+          <div>
+            <h2 class="text-2xl font-extrabold text-slate-950">Lookup Results</h2>
+            <p class="mt-1 text-sm text-slate-500">
+              Matching area code information appears here instantly.
+            </p>
+          </div>
+          <span id="statusBadge" class="inline-flex rounded-full bg-slate-100 px-3 py-1 text-sm font-bold text-slate-600">
+            Waiting
+          </span>
+        </div>
+
+        <div id="warningBox" class="mt-5 rounded-2xl bg-amber-50 p-4 text-sm font-medium text-amber-800">
+          Enter an area code, country code, city, state, or province to begin. Results are reference estimates and may not reflect number portability.
+        </div>
+
+        <div class="mt-5 grid gap-4 sm:grid-cols-3">
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+            <p class="text-sm font-semibold text-slate-500">Matches</p>
+            <p id="matchCount" class="safe-break mt-2 text-2xl font-extrabold text-slate-950">0</p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+            <p class="text-sm font-semibold text-slate-500">Best match</p>
+            <p id="bestMatch" class="safe-break mt-2 text-lg font-extrabold text-slate-950">—</p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+            <p class="text-sm font-semibold text-slate-500">Code type</p>
+            <p id="codeType" class="safe-break mt-2 text-lg font-extrabold text-slate-950">—</p>
+          </div>
+        </div>
+
+        <div class="mobile-table-wrap mt-5 rounded-2xl border border-slate-200">
+          <table class="w-full border-collapse text-left text-sm">
+            <thead class="bg-slate-50 text-slate-600">
+              <tr>
+                <th class="border-b border-slate-200 px-4 py-3 font-bold">Code</th>
+                <th class="border-b border-slate-200 px-4 py-3 font-bold">Location</th>
+                <th class="border-b border-slate-200 px-4 py-3 font-bold">Region</th>
+                <th class="border-b border-slate-200 px-4 py-3 font-bold">Timezone</th>
+              </tr>
+            </thead>
+            <tbody id="resultsBody">
+              <tr>
+                <td colspan="4" class="px-4 py-6 text-center text-slate-500">
+                  No search entered yet.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="mt-4 rounded-2xl border border-slate-200 bg-white p-4">
+          <p class="text-sm font-semibold text-slate-500">Clean report</p>
+          <pre id="reportOutput" class="mobile-code mt-2 text-sm leading-6 text-slate-700">No area code searched yet.</pre>
+        </div>
+
+        <button id="downloadBtn" class="mt-5 w-full rounded-2xl bg-violet-600 px-5 py-3 font-bold text-white shadow-sm hover:bg-violet-700">
+          Download Results
+        </button>
+      </div>
+    </section>
+
+    <section class="ad-box my-8">
+      Advertisement Area Below Tool
+    </section>
+
+    <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+      <h2 class="text-3xl font-extrabold text-slate-950">Free Area Code Lookup and Phone Region Finder</h2>
+      <p class="mt-4 text-slate-600">
+        This area code lookup tool helps you quickly identify the possible geographic origin of a phone number based on its area code or country calling code. It is designed for everyday reference when you receive an unfamiliar call, organize contact lists, review business leads, clean customer records, or prepare phone number data for a website or spreadsheet.
+      </p>
+
+      <p class="mt-4 text-slate-600">
+        Area codes are especially helpful in the United States and Canada because they often point to a city, province, state, or wider region within the North American Numbering Plan. For example, 604 is commonly associated with Vancouver and British Columbia, 416 is associated with Toronto, and 212 is associated with New York City. However, mobile number portability means a number’s area code does not always prove where the caller currently lives.
+      </p>
+
+      <div class="ad-box my-8">
+        Middle Content Advertisement Area
+      </div>
+
+      <h3 class="mt-8 text-2xl font-bold text-slate-950">How to Use This Area Code Finder</h3>
+      <div class="mt-4 grid gap-4 md:grid-cols-3">
+        <article class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+          <h4 class="font-bold text-slate-950">1. Enter a code</h4>
+          <p class="mt-2 text-sm text-slate-600">Type a 3-digit area code such as 604, 212, or 416. You can also enter an international code such as +44 or +82.</p>
+        </article>
+        <article class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+          <h4 class="font-bold text-slate-950">2. Search by place</h4>
+          <p class="mt-2 text-sm text-slate-600">Search by city, state, province, or country to find matching codes in the built-in reference list.</p>
+        </article>
+        <article class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+          <h4 class="font-bold text-slate-950">3. Copy or download</h4>
+          <p class="mt-2 text-sm text-slate-600">Copy the results or download a text report for contact management, support notes, or personal reference.</p>
+        </article>
+      </div>
+
+      <h3 class="mt-8 text-2xl font-bold text-slate-950">Popular Uses for Area Code Lookup</h3>
+      <div class="mt-4 grid gap-4 md:grid-cols-2">
+        <article class="rounded-2xl border border-slate-200 p-5">
+          <h4 class="font-bold text-indigo-700">Identifying unfamiliar calls</h4>
+          <p class="mt-2 text-slate-600">When you receive a call from an unknown number, the area code can provide a quick clue about the possible region before you call back.</p>
+        </article>
+        <article class="rounded-2xl border border-slate-200 p-5">
+          <h4 class="font-bold text-indigo-700">Cleaning customer data</h4>
+          <p class="mt-2 text-slate-600">Businesses can use area code references to review customer records, standardize phone lists, and add helpful regional context to contact notes.</p>
+        </article>
+        <article class="rounded-2xl border border-slate-200 p-5">
+          <h4 class="font-bold text-indigo-700">Learning country calling codes</h4>
+          <p class="mt-2 text-slate-600">International calling codes such as +1, +44, +82, +81, and +61 help identify the country format used by a phone number.</p>
+        </article>
+        <article class="rounded-2xl border border-slate-200 p-5">
+          <h4 class="font-bold text-indigo-700">Preparing website contact pages</h4>
+          <p class="mt-2 text-slate-600">Area code references can help website owners organize regional phone numbers and make contact information clearer for visitors.</p>
+        </article>
+      </div>
+
+      <div class="ad-box my-8">
+        Bottom Content Advertisement Area
+      </div>
+
+      <h3 class="text-2xl font-bold text-slate-950">Important Area Code Tips</h3>
+      <p class="mt-4 text-slate-600">
+        Area codes are useful, but they are not perfect location tools. People can move while keeping the same mobile number, businesses may use virtual phone systems, and phone numbers can be forwarded across regions. For that reason, an area code should be treated as a reference clue rather than proof of a caller’s current location.
+      </p>
+      <p class="mt-4 text-slate-600">
+        For the cleanest phone number records, store numbers in international format whenever possible. Use the plus sign followed by the country calling code, then the national number. This makes phone data easier to read, search, dial, and use across different devices and countries.
+      </p>
+    </section>
+
+    <section class="mt-8 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+      <h2 class="text-3xl font-extrabold text-slate-950">FAQ</h2>
+
+      <div class="mt-6 space-y-4">
+        <details class="rounded-2xl border border-slate-200 p-5">
+          <summary class="cursor-pointer font-bold text-slate-950">Can an area code show the exact location of a caller?</summary>
+          <p class="mt-3 text-slate-600">No. An area code can suggest the original numbering region, but it cannot confirm a caller’s exact current location. Mobile number portability, VoIP services, and call forwarding can make location estimates inaccurate.</p>
+        </details>
+
+        <details class="rounded-2xl border border-slate-200 p-5">
+          <summary class="cursor-pointer font-bold text-slate-950">Does this tool identify the owner of a phone number?</summary>
+          <p class="mt-3 text-slate-600">No. This tool does not access private records, subscriber databases, caller ID systems, or carrier data. It only provides basic reference information about codes and possible regions.</p>
+        </details>
+
+        <details class="rounded-2xl border border-slate-200 p-5">
+          <summary class="cursor-pointer font-bold text-slate-950">Does this tool work offline?</summary>
+          <p class="mt-3 text-slate-600">The lookup logic and built-in code list run in the browser. If Tailwind CSS is already cached, the page can still function locally, but the visual styling CDN normally requires an internet connection.</p>
+        </details>
+
+        <details class="rounded-2xl border border-slate-200 p-5">
+          <summary class="cursor-pointer font-bold text-slate-950">Why are some area codes missing?</summary>
+          <p class="mt-3 text-slate-600">This tool includes a practical reference list of common codes. Area code systems change over time, and new overlays can be introduced. For official telecom records, check the relevant numbering authority.</p>
+        </details>
+
+        <details class="rounded-2xl border border-slate-200 p-5">
+          <summary class="cursor-pointer font-bold text-slate-950">Can I use this for spam detection?</summary>
+          <p class="mt-3 text-slate-600">No. Area codes alone cannot determine whether a call is spam. Scammers can spoof caller ID numbers, so always use caution with unexpected calls and never share sensitive information with unverified callers.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="ad-box my-8">
+      Bottom Advertisement Area
+    </section>
+
+    <section class="mb-8 rounded-3xl bg-slate-900 p-6 text-slate-200 shadow-sm">
+      <h2 class="text-2xl font-extrabold text-white">Legal Disclaimer</h2>
+      <p class="mt-4">
+        This Area Code Lookup Tool is provided for informational and reference purposes only. Results are based on a built-in client-side reference list and may be incomplete, outdated, or inaccurate. Area codes and country calling codes do not guarantee the real-time location, identity, carrier, ownership, legitimacy, or spam status of any caller.
+      </p>
+      <p class="mt-4">
+        Users are responsible for verifying important phone number information through official, authorized, or consent-based sources. Do not use this tool for harassment, stalking, unauthorized tracking, privacy invasion, fraud, or any unlawful activity. When handling phone numbers for business, marketing, customer support, or analytics, follow applicable privacy laws, consent rules, anti-spam requirements, and data protection obligations.
+      </p>
+    </section>
+  </main>
+
+  <script>
+    const searchInput = document.getElementById('searchInput');
+    const regionFilter = document.getElementById('regionFilter');
+    const lookupBtn = document.getElementById('lookupBtn');
+    const copyBtn = document.getElementById('copyBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const downloadBtn = document.getElementById('downloadBtn');
+    const copyFeedback = document.getElementById('copyFeedback');
+
+    const statusBadge = document.getElementById('statusBadge');
+    const warningBox = document.getElementById('warningBox');
+    const matchCount = document.getElementById('matchCount');
+    const bestMatch = document.getElementById('bestMatch');
+    const codeType = document.getElementById('codeType');
+    const resultsBody = document.getElementById('resultsBody');
+    const reportOutput = document.getElementById('reportOutput');
+
+    const areaCodeData = [
+      { code: '201', location: 'Jersey City, Hackensack', region: 'New Jersey, United States', timezone: 'Eastern Time', type: 'US' },
+      { code: '202', location: 'Washington', region: 'District of Columbia, United States', timezone: 'Eastern Time', type: 'US' },
+      { code: '203', location: 'Bridgeport, New Haven, Stamford', region: 'Connecticut, United States', timezone: 'Eastern Time', type: 'US' },
+      { code: '206', location: 'Seattle', region: 'Washington, United States', timezone: 'Pacific Time', type: 'US' },
+      { code: '207', location: 'Portland, Bangor', region: 'Maine, United States', timezone: 'Eastern Time', type: 'US' },
+      { code: '208', location: 'Boise, Idaho Falls', region: 'Idaho, United States', timezone: 'Mountain / Pacific Time', type: 'US' },
+      { code: '209', location: 'Stockton, Modesto', region: 'California, United States', timezone: 'Pacific Time', type: 'US' },
+      { code: '210', location: 'San Antonio', region: 'Texas, United States', timezone: 'Central Time', type: 'US' },
+      { code: '212', location: 'Manhattan, New York City', region: 'New York, United States', timezone: 'Eastern Time', type: 'US' },
+      { code: '213', location: 'Los Angeles', region: 'California, United States', timezone: 'Pacific Time', type: 'US' },
+      { code: '214', location: 'Dallas', region: 'Texas, United States', timezone: 'Central Time', type: 'US' },
+      { code: '215', location: 'Philadelphia', region: 'Pennsylvania, United States', timezone: 'Eastern Time', type: 'US' },
+      { code: '216', location: 'Cleveland', region: 'Ohio, United States', timezone: 'Eastern Time', type: 'US' },
+      { code: '217', location: 'Springfield, Champaign', region: 'Illinois, United States', timezone: 'Central Time', type: 'US' },
+      { code: '224', location: 'Northern Chicago suburbs', region: 'Illinois, United States', timezone: 'Central Time', type: 'US' },
+      { code: '236', location: 'Provincewide overlay', region: 'British Columbia, Canada', timezone: 'Pacific / Mountain Time', type: 'CA' },
+      { code: '250', location: 'Victoria, Kelowna, Prince George', region: 'British Columbia, Canada', timezone: 'Pacific / Mountain Time', type: 'CA' },
+      { code: '305', location: 'Miami, Florida Keys', region: 'Florida, United States', timezone: 'Eastern Time', type: 'US' },
+      { code: '310', location: 'West Los Angeles, Beverly Hills, Santa Monica', region: 'California, United States', timezone: 'Pacific Time', type: 'US' },
+      { code: '312', location: 'Downtown Chicago', region: 'Illinois, United States', timezone: 'Central Time', type: 'US' },
+      { code: '315', location: 'Syracuse, Utica', region: 'New York, United States', timezone: 'Eastern Time', type: 'US' },
+      { code: '323', location: 'Los Angeles', region: 'California, United States', timezone: 'Pacific Time', type: 'US' },
+      { code: '332', location: 'New York City overlay', region: 'New York, United States', timezone: 'Eastern Time', type: 'US' },
+      { code: '343', location: 'Ottawa overlay', region: 'Ontario, Canada', timezone: 'Eastern Time', type: 'CA' },
+      { code: '346', location: 'Houston overlay', region: 'Texas, United States', timezone: 'Central Time', type: 'US' },
+      { code: '403', location: 'Calgary, southern Alberta', region: 'Alberta, Canada', timezone: 'Mountain Time', type: 'CA' },
+      { code: '404', location: 'Atlanta', region: 'Georgia, United States', timezone: 'Eastern Time', type: 'US' },
+      { code: '408', location: 'San Jose', region: 'California, United States', timezone: 'Pacific Time', type: 'US' },
+      { code: '409', location: 'Beaumont, Galveston', region: 'Texas, United States', timezone: 'Central Time', type: 'US' },
+      { code: '410', location: 'Baltimore, eastern Maryland', region: 'Maryland, United States', timezone: 'Eastern Time', type: 'US' },
+      { code: '412', location: 'Pittsburgh', region: 'Pennsylvania, United States', timezone: 'Eastern Time', type: 'US' },
+      { code: '413', location: 'Springfield', region: 'Massachusetts, United States', timezone: 'Eastern Time', type: 'US' },
+      { code: '414', location: 'Milwaukee', region: 'Wisconsin, United States', timezone: 'Central Time', type: 'US' },
+      { code: '415', location: 'San Francisco', region: 'California, United States', timezone: 'Pacific Time', type: 'US' },
+      { code: '416', location: 'Toronto', region: 'Ontario, Canada', timezone: 'Eastern Time', type: 'CA' },
+      { code: '418', location: 'Quebec City, eastern Quebec', region: 'Quebec, Canada', timezone: 'Eastern Time', type: 'CA' },
+      { code: '424', location: 'West Los Angeles overlay', region: 'California, United States', timezone: 'Pacific Time', type: 'US' },
+      { code: '425', location: 'Bellevue, Everett, Redmond', region: 'Washington, United States', timezone: 'Pacific Time', type: 'US' },
+      { code: '431', location: 'Provincewide overlay', region: 'Manitoba, Canada', timezone: 'Central Time', type: 'CA' },
+      { code: '437', location: 'Toronto overlay', region: 'Ontario, Canada', timezone: 'Eastern Time', type: 'CA' },
+      { code: '438', location: 'Montreal overlay', region: 'Quebec, Canada', timezone: 'Eastern Time', type: 'CA' },
+      { code: '450', location: 'Laval, South Shore, suburbs of Montreal', region: 'Quebec, Canada', timezone: 'Eastern Time', type: 'CA' },
+      { code: '469', location: 'Dallas overlay', region: 'Texas, United States', timezone: 'Central Time', type: 'US' },
+      { code: '470', location: 'Atlanta overlay', region: 'Georgia, United States', timezone: 'Eastern Time', type: 'US' },
+      { code: '475', location: 'Connecticut overlay', region: 'Connecticut, United States', timezone: 'Eastern Time', type: 'US' },
+      { code: '503', location: 'Portland, Salem', region: 'Oregon, United States', timezone: 'Pacific Time', type: 'US' },
+      { code: '504', location: 'New Orleans', region: 'Louisiana, United States', timezone: 'Central Time', type: 'US' },
+      { code: '505', location: 'Albuquerque, Santa Fe', region: 'New Mexico, United States', timezone: 'Mountain Time', type: 'US' },
+      { code: '509', location: 'Spokane, eastern Washington', region: 'Washington, United States', timezone: 'Pacific Time', type: 'US' },
+      { code: '510', location: 'Oakland, Berkeley', region: 'California, United States', timezone: 'Pacific Time', type: 'US' },
+      { code: '512', location: 'Austin', region: 'Texas, United States', timezone: 'Central Time', type: 'US' },
+      { code: '514', location: 'Montreal', region: 'Quebec, Canada', timezone: 'Eastern Time', type: 'CA' },
+      { code: '519', location: 'London, Windsor, Kitchener', region: 'Ontario, Canada', timezone: 'Eastern Time', type: 'CA' },
+      { code: '530', location: 'Northern California', region: 'California, United States', timezone: 'Pacific Time', type: 'US' },
+      { code: '604', location: 'Vancouver, Lower Mainland', region: 'British Columbia, Canada', timezone: 'Pacific Time', type: 'CA' },
+      { code: '605', location: 'Statewide', region: 'South Dakota, United States', timezone: 'Central / Mountain Time', type: 'US' },
+      { code: '607', location: 'Binghamton, Ithaca', region: 'New York, United States', timezone: 'Eastern Time', type: 'US' },
+      { code: '608', location: 'Madison', region: 'Wisconsin, United States', timezone: 'Central Time', type: 'US' },
+      { code: '609', location: 'Trenton, Atlantic City', region: 'New Jersey, United States', timezone: 'Eastern Time', type: 'US' },
+      { code: '613', location: 'Ottawa, Kingston', region: 'Ontario, Canada', timezone: 'Eastern Time', type: 'CA' },
+      { code: '615', location: 'Nashville', region: 'Tennessee, United States', timezone: 'Central Time', type: 'US' },
+      { code: '617', location: 'Boston, Cambridge', region: 'Massachusetts, United States', timezone: 'Eastern Time', type: 'US' },
+      { code: '619', location: 'San Diego', region: 'California, United States', timezone: 'Pacific Time', type: 'US' },
+      { code: '626', location: 'Pasadena, San Gabriel Valley', region: 'California, United States', timezone: 'Pacific Time', type: 'US' },
+      { code: '628', location: 'San Francisco overlay', region: 'California, United States', timezone: 'Pacific Time', type: 'US' },
+      { code: '646', location: 'Manhattan overlay', region: 'New York, United States', timezone: 'Eastern Time', type: 'US' },
+      { code: '647', location: 'Toronto overlay', region: 'Ontario, Canada', timezone: 'Eastern Time', type: 'CA' },
+      { code: '650', location: 'San Mateo County, Palo Alto', region: 'California, United States', timezone: 'Pacific Time', type: 'US' },
+      { code: '657', location: 'Orange County overlay', region: 'California, United States', timezone: 'Pacific Time', type: 'US' },
+      { code: '661', location: 'Bakersfield, Santa Clarita', region: 'California, United States', timezone: 'Pacific Time', type: 'US' },
+      { code: '669', location: 'San Jose overlay', region: 'California, United States', timezone: 'Pacific Time', type: 'US' },
+      { code: '702', location: 'Las Vegas', region: 'Nevada, United States', timezone: 'Pacific Time', type: 'US' },
+      { code: '703', location: 'Northern Virginia', region: 'Virginia, United States', timezone: 'Eastern Time', type: 'US' },
+      { code: '704', location: 'Charlotte', region: 'North Carolina, United States', timezone: 'Eastern Time', type: 'US' },
+      { code: '705', location: 'Northern and central Ontario', region: 'Ontario, Canada', timezone: 'Eastern / Central Time', type: 'CA' },
+      { code: '713', location: 'Houston', region: 'Texas, United States', timezone: 'Central Time', type: 'US' },
+      { code: '714', location: 'Orange County', region: 'California, United States', timezone: 'Pacific Time', type: 'US' },
+      { code: '718', location: 'Brooklyn, Queens, Bronx, Staten Island', region: 'New York, United States', timezone: 'Eastern Time', type: 'US' },
+      { code: '778', location: 'British Columbia overlay', region: 'British Columbia, Canada', timezone: 'Pacific / Mountain Time', type: 'CA' },
+      { code: '780', location: 'Edmonton, northern Alberta', region: 'Alberta, Canada', timezone: 'Mountain Time', type: 'CA' },
+      { code: '781', location: 'Boston suburbs', region: 'Massachusetts, United States', timezone: 'Eastern Time', type: 'US' },
+      { code: '782', location: 'Nova Scotia and Prince Edward Island overlay', region: 'Canada', timezone: 'Atlantic Time', type: 'CA' },
+      { code: '801', location: 'Salt Lake City', region: 'Utah, United States', timezone: 'Mountain Time', type: 'US' },
+      { code: '802', location: 'Statewide', region: 'Vermont, United States', timezone: 'Eastern Time', type: 'US' },
+      { code: '803', location: 'Columbia', region: 'South Carolina, United States', timezone: 'Eastern Time', type: 'US' },
+      { code: '808', location: 'Statewide', region: 'Hawaii, United States', timezone: 'Hawaii-Aleutian Time', type: 'US' },
+      { code: '813', location: 'Tampa', region: 'Florida, United States', timezone: 'Eastern Time', type: 'US' },
+      { code: '818', location: 'San Fernando Valley', region: 'California, United States', timezone: 'Pacific Time', type: 'US' },
+      { code: '825', location: 'Alberta overlay', region: 'Alberta, Canada', timezone: 'Mountain Time', type: 'CA' },
+      { code: '858', location: 'San Diego area', region: 'California, United States', timezone: 'Pacific Time', type: 'US' },
+      { code: '902', location: 'Nova Scotia, Prince Edward Island', region: 'Canada', timezone: 'Atlantic Time', type: 'CA' },
+      { code: '905', location: 'Greater Toronto Area suburbs', region: 'Ontario, Canada', timezone: 'Eastern Time', type: 'CA' },
+      { code: '917', location: 'New York City overlay', region: 'New York, United States', timezone: 'Eastern Time', type: 'US' },
+      { code: '929', location: 'New York City overlay', region: 'New York, United States', timezone: 'Eastern Time', type: 'US' },
+      { code: '949', location: 'Orange County', region: 'California, United States', timezone: 'Pacific Time', type: 'US' },
+      { code: '971', location: 'Portland overlay', region: 'Oregon, United States', timezone: 'Pacific Time', type: 'US' },
+      { code: '972', location: 'Dallas overlay', region: 'Texas, United States', timezone: 'Central Time', type: 'US' },
+      { code: '980', location: 'Charlotte overlay', region: 'North Carolina, United States', timezone: 'Eastern Time', type: 'US' },
+
+      { code: '+1', location: 'United States, Canada, and NANP countries', region: 'North American Numbering Plan', timezone: 'Multiple time zones', type: 'INTL' },
+      { code: '+7', location: 'Russia, Kazakhstan', region: 'International country calling code', timezone: 'Multiple time zones', type: 'INTL' },
+      { code: '+20', location: 'Egypt', region: 'International country calling code', timezone: 'Eastern European Time', type: 'INTL' },
+      { code: '+27', location: 'South Africa', region: 'International country calling code', timezone: 'South Africa Standard Time', type: 'INTL' },
+      { code: '+30', location: 'Greece', region: 'International country calling code', timezone: 'Eastern European Time', type: 'INTL' },
+      { code: '+31', location: 'Netherlands', region: 'International country calling code', timezone: 'Central European Time', type: 'INTL' },
+      { code: '+32', location: 'Belgium', region: 'International country calling code', timezone: 'Central European Time', type: 'INTL' },
+      { code: '+33', location: 'France', region: 'International country calling code', timezone: 'Central European Time', type: 'INTL' },
+      { code: '+34', location: 'Spain', region: 'International country calling code', timezone: 'Central European Time', type: 'INTL' },
+      { code: '+36', location: 'Hungary', region: 'International country calling code', timezone: 'Central European Time', type: 'INTL' },
+      { code: '+39', location: 'Italy', region: 'International country calling code', timezone: 'Central European Time', type: 'INTL' },
+      { code: '+40', location: 'Romania', region: 'International country calling code', timezone: 'Eastern European Time', type: 'INTL' },
+      { code: '+41', location: 'Switzerland', region: 'International country calling code', timezone: 'Central European Time', type: 'INTL' },
+      { code: '+43', location: 'Austria', region: 'International country calling code', timezone: 'Central European Time', type: 'INTL' },
+      { code: '+44', location: 'United Kingdom', region: 'International country calling code', timezone: 'Greenwich Mean Time / British Time', type: 'INTL' },
+      { code: '+45', location: 'Denmark', region: 'International country calling code', timezone: 'Central European Time', type: 'INTL' },
+      { code: '+46', location: 'Sweden', region: 'International country calling code', timezone: 'Central European Time', type: 'INTL' },
+      { code: '+47', location: 'Norway', region: 'International country calling code', timezone: 'Central European Time', type: 'INTL' },
+      { code: '+48', location: 'Poland', region: 'International country calling code', timezone: 'Central European Time', type: 'INTL' },
+      { code: '+49', location: 'Germany', region: 'International country calling code', timezone: 'Central European Time', type: 'INTL' },
+      { code: '+52', location: 'Mexico', region: 'International country calling code', timezone: 'Multiple time zones', type: 'INTL' },
+      { code: '+55', location: 'Brazil', region: 'International country calling code', timezone: 'Multiple time zones', type: 'INTL' },
+      { code: '+60', location: 'Malaysia', region: 'International country calling code', timezone: 'Malaysia Time', type: 'INTL' },
+      { code: '+61', location: 'Australia', region: 'International country calling code', timezone: 'Multiple time zones', type: 'INTL' },
+      { code: '+63', location: 'Philippines', region: 'International country calling code', timezone: 'Philippine Time', type: 'INTL' },
+      { code: '+64', location: 'New Zealand', region: 'International country calling code', timezone: 'New Zealand Time', type: 'INTL' },
+      { code: '+65', location: 'Singapore', region: 'International country calling code', timezone: 'Singapore Time', type: 'INTL' },
+      { code: '+66', location: 'Thailand', region: 'International country calling code', timezone: 'Indochina Time', type: 'INTL' },
+      { code: '+81', location: 'Japan', region: 'International country calling code', timezone: 'Japan Standard Time', type: 'INTL' },
+      { code: '+82', location: 'South Korea', region: 'International country calling code', timezone: 'Korea Standard Time', type: 'INTL' },
+      { code: '+84', location: 'Vietnam', region: 'International country calling code', timezone: 'Indochina Time', type: 'INTL' },
+      { code: '+86', location: 'China', region: 'International country calling code', timezone: 'China Standard Time', type: 'INTL' },
+      { code: '+90', location: 'Turkey', region: 'International country calling code', timezone: 'Turkey Time', type: 'INTL' },
+      { code: '+91', location: 'India', region: 'International country calling code', timezone: 'India Standard Time', type: 'INTL' },
+      { code: '+92', location: 'Pakistan', region: 'International country calling code', timezone: 'Pakistan Standard Time', type: 'INTL' },
+      { code: '+971', location: 'United Arab Emirates', region: 'International country calling code', timezone: 'Gulf Standard Time', type: 'INTL' }
+    ];
+
+    function normalizeQuery(value) {
+      return value.trim().toLowerCase().replace(/\s+/g, ' ');
+    }
+
+    function filterData() {
+      try {
+        const query = normalizeQuery(searchInput.value);
+        const filter = regionFilter.value;
+
+        let data = areaCodeData.filter(item => filter === 'all' || item.type === filter);
+
+        if (query) {
+          const queryNoPlus = query.replace(/^\+/, '');
+          data = data.filter(item => {
+            const codeNoPlus = item.code.toLowerCase().replace(/^\+/, '');
+            return (
+              item.code.toLowerCase().includes(query) ||
+              codeNoPlus === queryNoPlus ||
+              item.location.toLowerCase().includes(query) ||
+              item.region.toLowerCase().includes(query) ||
+              item.timezone.toLowerCase().includes(query) ||
+              item.type.toLowerCase().includes(query)
+            );
+          });
+        } else {
+          data = [];
+        }
+
+        renderResults(data, query);
+      } catch (error) {
+        warningBox.textContent = 'Something went wrong while searching. Please check your input and try again.';
+        warningBox.className = 'mt-5 rounded-2xl bg-red-50 p-4 text-sm font-medium text-red-700';
+      }
+    }
+
+    function renderResults(results, query) {
+      matchCount.textContent = String(results.length);
+
+      if (!query) {
+        statusBadge.textContent = 'Waiting';
+        statusBadge.className = 'inline-flex rounded-full bg-slate-100 px-3 py-1 text-sm font-bold text-slate-600';
+        warningBox.textContent = 'Enter an area code, country code, city, state, or province to begin. Results are reference estimates and may not reflect number portability.';
+        warningBox.className = 'mt-5 rounded-2xl bg-amber-50 p-4 text-sm font-medium text-amber-800';
+        bestMatch.textContent = '—';
+        codeType.textContent = '—';
+        resultsBody.innerHTML = '<tr><td colspan="4" class="px-4 py-6 text-center text-slate-500">No search entered yet.</td></tr>';
+        reportOutput.textContent = 'No area code searched yet.';
+        return;
+      }
+
+      if (!results.length) {
+        statusBadge.textContent = 'No match';
+        statusBadge.className = 'inline-flex rounded-full bg-red-100 px-3 py-1 text-sm font-bold text-red-700';
+        warningBox.textContent = 'No matching code was found in this built-in reference list. Try a different city, region, or code format.';
+        warningBox.className = 'mt-5 rounded-2xl bg-red-50 p-4 text-sm font-medium text-red-700';
+        bestMatch.textContent = '—';
+        codeType.textContent = '—';
+        resultsBody.innerHTML = '<tr><td colspan="4" class="px-4 py-6 text-center text-slate-500">No matching area code found.</td></tr>';
+        reportOutput.textContent = `Area Code Lookup Report\nSearch: ${query}\nMatches: 0\n\nNo matching code was found in the built-in reference list.`;
+        return;
+      }
+
+      const first = results[0];
+      statusBadge.textContent = 'Ready';
+      statusBadge.className = 'inline-flex rounded-full bg-emerald-100 px-3 py-1 text-sm font-bold text-emerald-700';
+      warningBox.textContent = 'Results are available. Treat locations as reference estimates because phone numbers may be moved, ported, forwarded, or spoofed.';
+      warningBox.className = 'mt-5 rounded-2xl bg-emerald-50 p-4 text-sm font-medium text-emerald-800';
+      bestMatch.textContent = `${first.code} · ${first.location}`;
+      codeType.textContent = getTypeLabel(first.type);
+
+      resultsBody.innerHTML = results.map(item => `
+        <tr class="hover:bg-slate-50">
+          <td class="border-b border-slate-100 px-4 py-3 font-bold text-indigo-700">${escapeHtml(item.code)}</td>
+          <td class="border-b border-slate-100 px-4 py-3 text-slate-800">${escapeHtml(item.location)}</td>
+          <td class="border-b border-slate-100 px-4 py-3 text-slate-700">${escapeHtml(item.region)}</td>
+          <td class="border-b border-slate-100 px-4 py-3 text-slate-700">${escapeHtml(item.timezone)}</td>
+        </tr>
+      `).join('');
+
+      reportOutput.textContent = buildReport(results, query);
+    }
+
+    function getTypeLabel(type) {
+      if (type === 'US') return 'United States area code';
+      if (type === 'CA') return 'Canada area code';
+      if (type === 'INTL') return 'International calling code';
+      return 'Code reference';
+    }
+
+    function buildReport(results, query) {
+      const lines = [
+        'Area Code Lookup Report',
+        `Search: ${query}`,
+        `Matches: ${results.length}`,
+        '',
+        ...results.map((item, index) => {
+          return `${index + 1}. ${item.code}
+Location: ${item.location}
+Region: ${item.region}
+Timezone: ${item.timezone}
+Type: ${getTypeLabel(item.type)}`;
+        }),
+        '',
+        'Note: Area code locations are reference estimates only. They do not confirm caller identity, current location, carrier, ownership, or spam status.'
+      ];
+
+      return lines.join('\n');
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#039;');
+    }
+
+    async function copyResults() {
+      try {
+        await navigator.clipboard.writeText(reportOutput.textContent);
+        copyFeedback.textContent = 'Copied!';
+        copyFeedback.classList.remove('hidden');
+        setTimeout(() => copyFeedback.classList.add('hidden'), 1400);
+      } catch (error) {
+        copyFeedback.textContent = 'Copy failed. Please select the report manually.';
+        copyFeedback.classList.remove('hidden');
+        setTimeout(() => {
+          copyFeedback.classList.add('hidden');
+          copyFeedback.textContent = 'Copied!';
+        }, 1800);
+      }
+    }
+
+    function downloadResults() {
+      try {
+        const content = reportOutput.textContent || 'No area code lookup results available.';
+        const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'area-code-lookup-results.txt';
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        URL.revokeObjectURL(url);
+      } catch (error) {
+        warningBox.textContent = 'Download failed. Please copy the results instead.';
+        warningBox.className = 'mt-5 rounded-2xl bg-red-50 p-4 text-sm font-medium text-red-700';
+      }
+    }
+
+    searchInput.addEventListener('input', filterData);
+    regionFilter.addEventListener('change', filterData);
+    lookupBtn.addEventListener('click', filterData);
+    copyBtn.addEventListener('click', copyResults);
+    downloadBtn.addEventListener('click', downloadResults);
+
+    resetBtn.addEventListener('click', () => {
+      searchInput.value = '';
+      regionFilter.value = 'all';
+      filterData();
+      searchInput.focus();
+    });
+
+    document.querySelectorAll('.exampleBtn').forEach(button => {
+      button.addEventListener('click', () => {
+        searchInput.value = button.dataset.example || '';
+        filterData();
+      });
+    });
+
+    window.addEventListener('resize', () => {
+      document.body.style.overflowX = 'hidden';
+    });
+
+    filterData();
+  </script>
+</body>
+</html>
