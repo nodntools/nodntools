@@ -1,192 +1,287 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<div class="mb-8 text-center">
-  <a
-    href="https://nodntools.com"
-    class="inline-block transition hover:opacity-80"
-    aria-label="NodnWebTools Home"
-  >
-    <div class="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
-      Nodn<span class="text-blue-600">WebTools</span>
-    </div>
-  </a>
-</div>
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404"
-     crossorigin="anonymous"></script>
-
-	<meta name="google-adsense-account" content="ca-pub-5282672325821404">	
-
-  <title>Personal Loan Calculator | NodnWebTools</title>
-
-  <meta
-    name="description"
-    content="Use the free NodnWebTools Personal Loan Calculator to estimate monthly payments, total interest paid, and total repayment. Learn about unsecured personal loans, personal loan interest rates, debt consolidation loans, credit score requirements, and fixed-rate vs variable-rate loans."
-  />
-  <meta
-    name="keywords"
-    content="personal loan calculator, unsecured personal loans, personal loan interest rates, debt consolidation loan, credit score for personal loan, fixed-rate vs variable-rate loans, monthly loan payment calculator, loan interest calculator, NodnWebTools"
-  />
+  <title>Personal Loan Calculator | Payment & Interest Tool</title>
+  <meta name="description" content="Free personal loan calculator to estimate monthly payments, total interest, repayment cost, APR impact, and loan payoff plans." />
+  <meta name="keywords" content="personal loan calculator, loan payment calculator, monthly payment calculator, personal loan interest calculator, unsecured loan calculator, debt consolidation calculator, fixed rate loan calculator, loan repayment calculator, APR calculator, personal finance calculator, installment loan calculator, loan affordability calculator, total interest calculator, personal loan payoff calculator, borrower payment estimator" />
   <meta name="author" content="NodnWebTools" />
   <meta name="robots" content="index, follow" />
 
-  <meta property="og:title" content="Personal Loan Calculator | NodnWebTools" />
-  <meta
-    property="og:description"
-    content="Estimate your monthly personal loan payment, total interest paid, and total repayment with a clean, real-time loan calculator."
-  />
+  <meta property="og:title" content="Personal Loan Calculator | Payment & Interest Tool" />
+  <meta property="og:description" content="Estimate personal loan payments, interest, repayment cost, APR impact, and loan payoff plans with a free browser-based calculator." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://nodnwebtools.com/personal-loan/" />
+  <meta property="og:url" content="https://nodntools.com/personalloan" />
   <meta property="og:site_name" content="NodnWebTools" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Personal Loan Calculator" />
-  <meta
-    name="twitter:description"
-    content="A free personal loan calculator for estimating monthly payments, total interest, and total repayment."
-  />
+  <meta name="twitter:description" content="Estimate monthly personal loan payments, total interest, and repayment costs instantly." />
+
+  <meta name="google-adsense-account" content="ca-pub-5282672325821404" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404" crossorigin="anonymous"></script>
 
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Personal Loan Calculator",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "All",
+    "description": "A free browser-based personal loan calculator that estimates monthly payment, total interest, repayment cost, annual interest rate impact, loan term impact, and fixed-rate installment loan scenarios.",
+    "url": "https://nodntools.com/personalloan",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+
+  <style>
+    html,
+    body {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      min-width: 0;
+    }
+
+    main,
+    section,
+    article,
+    aside,
+    div,
+    input,
+    select,
+    button,
+    table,
+    canvas,
+    img,
+    svg,
+    pre,
+    code {
+      max-width: 100%;
+    }
+
+    .safe-break {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .ad-box {
+      width: 100%;
+      min-height: 90px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px dashed #cbd5e1;
+      background: #f8fafc;
+      color: #94a3b8;
+      text-align: center;
+      border-radius: 1rem;
+      padding: 1rem;
+      font-size: 0.875rem;
+      overflow: hidden;
+    }
+
+    .mobile-card,
+    .mobile-panel,
+    .mobile-preview {
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
+    .mobile-code {
+      max-width: 100%;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      max-width: 100%;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+      }
+
+      .mobile-card,
+      .mobile-panel {
+        border-radius: 1.25rem !important;
+        padding: 1rem !important;
+      }
+
+      .mobile-button-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+      }
+
+      input,
+      select,
+      button {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 380px) {
+      body {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+      }
+
+      .mobile-card,
+      .mobile-panel {
+        border-radius: 1rem !important;
+        padding: 0.875rem !important;
+      }
+
+      h1 {
+        font-size: 2rem !important;
+      }
+
+      h2 {
+        font-size: 1.35rem !important;
+      }
+
+      input,
+      select,
+      button {
+        font-size: 0.9rem !important;
+      }
+    }
+  </style>
 </head>
 
-<body class="min-h-screen bg-slate-100 px-4 py-8 sm:py-12">
-  <main class="mx-auto max-w-5xl">
+<body class="min-h-screen bg-slate-50 px-4 py-8 text-slate-800 sm:py-12">
+  <main class="mx-auto w-full max-w-6xl">
+    <header class="mb-8 text-center">
+      <a href="https://nodntools.com" class="inline-block transition hover:opacity-80" aria-label="NodnWebTools Home">
+        <div class="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
+          Nodn<span class="text-indigo-600">WebTools</span>
+        </div>
+      </a>
+    </header>
 
-    <!-- Google AdSense Responsive Ad - Top -->
-    <div class="mb-8 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white text-sm text-slate-400">
+    <div class="ad-box mb-8">
       AdSense Responsive Ad Area - Top
     </div>
 
     <section class="grid gap-6 lg:grid-cols-2">
+      <aside class="mobile-panel space-y-6 lg:sticky lg:top-10 lg:self-start">
+        <span class="inline-flex rounded-full bg-indigo-100 px-4 py-2 text-sm font-semibold text-indigo-700">
+          Personal Loan Calculator
+        </span>
 
-      <div class="rounded-3xl bg-white p-5 shadow-xl ring-1 ring-slate-200 sm:p-8 lg:sticky lg:top-10 lg:self-start">
-        <div class="mb-6">
-          <span class="inline-flex rounded-full bg-indigo-100 px-4 py-2 text-sm font-semibold text-indigo-700">
-            Personal Loan Calculator
-          </span>
-
-          <h1 class="mt-5 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+        <div>
+          <h1 class="safe-break text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
             Estimate Your Personal Loan Payment
           </h1>
-
-          <p class="mt-3 text-base leading-7 text-slate-600">
-            Calculate your estimated monthly payment, total interest paid, and total repayment amount
-            based on your loan amount, repayment term, and annual interest rate.
+          <p class="mt-4 text-base leading-7 text-slate-600 sm:text-lg">
+            Calculate your estimated monthly personal loan payment, total interest paid, and total repayment
+            amount using your loan amount, repayment term, and annual interest rate. This free browser-based
+            loan calculator is useful for comparing unsecured personal loans, debt consolidation loans,
+            fixed-rate installment loans, and borrowing scenarios before applying.
           </p>
         </div>
 
-        <div class="space-y-5">
-          <div>
-            <label for="loanAmount" class="mb-2 block text-sm font-semibold text-slate-700">
-              Loan Amount
-            </label>
-
-            <div class="relative">
-              <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">$</span>
-              <input
-                type="number"
-                id="loanAmount"
-                inputmode="decimal"
-                min="0"
-                step="100"
-                value="10000"
-                placeholder="10000"
-                class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-8 pr-4 text-lg font-semibold text-slate-900 outline-none transition focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-100"
-              />
-            </div>
-          </div>
-
-          <div>
-            <div class="mb-2 flex items-center justify-between gap-3">
-              <label for="loanTermMonths" class="block text-sm font-semibold text-slate-700">
-                Loan Term
-              </label>
-              <span id="loanTermBadge" class="rounded-full bg-indigo-50 px-3 py-1 text-xs font-semibold text-indigo-700">
-                60 Months
-              </span>
-            </div>
-
-            <input
-              type="range"
-              id="loanTermSlider"
-              min="6"
-              max="120"
-              step="1"
-              value="60"
-              class="w-full accent-indigo-600"
-            />
-
-            <div class="mt-3 relative">
-              <input
-                type="number"
-                id="loanTermMonths"
-                inputmode="numeric"
-                min="1"
-                step="1"
-                value="60"
-                placeholder="60"
-                class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-4 pr-24 text-lg font-semibold text-slate-900 outline-none transition focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-100"
-              />
-              <span class="absolute right-4 top-1/2 -translate-y-1/2 text-sm font-medium text-slate-400">
-                Months
-              </span>
-            </div>
-
-            <div class="mt-2 flex justify-between text-xs text-slate-400">
-              <span>6 months</span>
-              <span>120 months</span>
-            </div>
-          </div>
-
-          <div>
-            <label for="interestRate" class="mb-2 block text-sm font-semibold text-slate-700">
-              Annual Interest Rate
-            </label>
-
-            <div class="relative">
-              <input
-                type="number"
-                id="interestRate"
-                inputmode="decimal"
-                min="0"
-                step="0.01"
-                value="8.99"
-                placeholder="8.99"
-                class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-4 pr-10 text-lg font-semibold text-slate-900 outline-none transition focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-100"
-              />
-              <span class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400">%</span>
-            </div>
-          </div>
-
-          <div class="rounded-2xl bg-indigo-50 p-4 text-sm leading-6 text-slate-600">
-            This tool estimates fixed monthly payments for a simple installment loan. It does not include
-            origination fees, late fees, insurance, prepayment penalties, or lender-specific charges.
-          </div>
+        <div class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
+          <h2 class="text-lg font-bold text-slate-900">What this loan calculator estimates</h2>
+          <ul class="mt-4 space-y-3 text-sm leading-6 text-slate-600">
+            <li>• Estimated monthly loan payment</li>
+            <li>• Total interest paid over the repayment term</li>
+            <li>• Total repayment amount including principal and interest</li>
+            <li>• Interest rate impact on borrowing cost</li>
+            <li>• Loan term impact on monthly affordability</li>
+            <li>• Fixed-rate installment loan payment scenarios</li>
+          </ul>
         </div>
-      </div>
 
-      <div class="space-y-6">
-        <div class="rounded-3xl bg-white p-5 shadow-xl ring-1 ring-slate-200 sm:p-8">
+        <div class="mobile-card rounded-3xl border border-indigo-100 bg-indigo-50 p-5 text-sm leading-6 text-indigo-900">
+          <strong>Example:</strong> Enter a $10,000 loan amount, 60-month term, and 8.99% annual interest rate
+          to estimate the monthly payment, total interest, and full repayment cost.
+        </div>
+      </aside>
+
+      <section class="space-y-6">
+        <div class="mobile-card rounded-3xl bg-white p-5 shadow-xl ring-1 ring-slate-200 sm:p-8">
           <div class="mb-6">
-            <h2 class="text-2xl font-bold text-slate-900">
-              Estimated Loan Result
-            </h2>
+            <h2 class="text-2xl font-bold text-slate-900">Personal Loan Calculator</h2>
             <p class="mt-2 text-sm text-slate-500">
               Results update automatically as you adjust the loan details.
             </p>
           </div>
 
-          <div id="result" class="rounded-3xl border border-indigo-100 bg-gradient-to-br from-indigo-50 via-blue-50 to-slate-50 p-5">
+          <div class="space-y-5">
+            <div>
+              <label for="loanAmount" class="mb-2 block text-sm font-semibold text-slate-700">Loan Amount</label>
+              <div class="relative">
+                <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">$</span>
+                <input type="number" id="loanAmount" inputmode="decimal" min="0" step="100" value="10000" placeholder="10000"
+                  class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-8 pr-4 text-lg font-semibold text-slate-900 outline-none transition focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-100" />
+              </div>
+            </div>
+
+            <div>
+              <div class="mb-2 flex items-center justify-between gap-3">
+                <label for="loanTermMonths" class="block text-sm font-semibold text-slate-700">Loan Term</label>
+                <span id="loanTermBadge" class="rounded-full bg-indigo-50 px-3 py-1 text-xs font-semibold text-indigo-700">
+                  60 Months
+                </span>
+              </div>
+
+              <input type="range" id="loanTermSlider" min="6" max="120" step="1" value="60" class="w-full accent-indigo-600" />
+
+              <div class="relative mt-3">
+                <input type="number" id="loanTermMonths" inputmode="numeric" min="1" step="1" value="60" placeholder="60"
+                  class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-4 pr-24 text-lg font-semibold text-slate-900 outline-none transition focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-100" />
+                <span class="absolute right-4 top-1/2 -translate-y-1/2 text-sm font-medium text-slate-400">
+                  Months
+                </span>
+              </div>
+
+              <div class="mt-2 flex justify-between text-xs text-slate-400">
+                <span>6 months</span>
+                <span>120 months</span>
+              </div>
+            </div>
+
+            <div>
+              <label for="interestRate" class="mb-2 block text-sm font-semibold text-slate-700">Annual Interest Rate</label>
+              <div class="relative">
+                <input type="number" id="interestRate" inputmode="decimal" min="0" step="0.01" value="8.99" placeholder="8.99"
+                  class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-4 pr-10 text-lg font-semibold text-slate-900 outline-none transition focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-100" />
+                <span class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400">%</span>
+              </div>
+            </div>
+
+            <div class="rounded-2xl bg-indigo-50 p-4 text-sm leading-6 text-slate-600">
+              This tool estimates fixed monthly payments for a simple installment loan. It does not include
+              origination fees, late fees, insurance, prepayment penalties, variable APR changes, or lender-specific charges.
+            </div>
+          </div>
+
+          <div id="result" class="mobile-preview mt-6 rounded-3xl border border-indigo-100 bg-gradient-to-br from-indigo-50 via-blue-50 to-slate-50 p-5">
             <p class="text-sm font-semibold uppercase tracking-wide text-indigo-700">
               Estimated Monthly Payment
             </p>
 
-            <p id="monthlyPayment" class="mt-2 text-4xl font-extrabold tracking-tight text-slate-900">
+            <p id="monthlyPayment" class="safe-break mt-2 text-4xl font-extrabold tracking-tight text-slate-900">
               $0.00
             </p>
 
@@ -218,81 +313,260 @@
             </div>
           </div>
 
-          <!-- Google AdSense Responsive Ad - Below Result -->
-          <div class="mt-6 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-slate-50 text-sm text-slate-400">
+          <div class="ad-box mt-6">
             AdSense Responsive Ad Area - Below Result
           </div>
+        </div>
+      </section>
+    </section>
 
-          <p class="mt-5 text-xs leading-5 text-slate-500">
-            Disclaimer: This calculator is for general educational and informational purposes only.
-            It provides an estimate based on simplified fixed-rate loan assumptions and should not be considered
-            financial, legal, tax, lending, or credit advice. Actual loan payments may vary depending on lender terms,
-            APR, fees, payment schedule, compounding method, credit profile, prepayment rules, and other personal circumstances.
-            Please consult a qualified financial professional or lender before making borrowing decisions.
+    <div class="ad-box my-10">
+      AdSense Responsive Ad Area - Below Main Tool
+    </div>
+
+    <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+      <div class="max-w-4xl">
+        <h2 class="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
+          Personal Loan Calculator Guide: Estimate Monthly Payments, Interest, and Total Repayment
+        </h2>
+        <p class="mt-4 text-base leading-8 text-slate-600">
+          This Personal Loan Calculator is designed for borrowers who want to estimate the real cost of a personal
+          loan before applying. A loan offer may appear simple at first, but the total cost depends on the loan amount,
+          repayment term, annual percentage rate, monthly payment schedule, fees, lender rules, and whether the loan is
+          fixed-rate or variable-rate. By entering a loan amount, interest rate, and term, you can quickly estimate the
+          monthly payment, total interest, and full repayment amount.
+        </p>
+
+        <p class="mt-4 text-base leading-8 text-slate-600">
+          Personal loans are often used for debt consolidation, emergency expenses, home improvement projects, medical
+          bills, moving costs, wedding expenses, large purchases, car repairs, and other planned or unexpected expenses.
+          This personal loan payment calculator can help you compare different borrowing scenarios so you can understand
+          how a shorter repayment term, lower interest rate, or smaller loan amount may reduce total borrowing costs.
+        </p>
+      </div>
+
+      <div class="ad-box my-8">
+        AdSense Responsive Ad Area - Middle Content
+      </div>
+
+      <div class="grid gap-6 md:grid-cols-2">
+        <article class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+          <h3 class="text-lg font-bold text-slate-900">How Personal Loan Payments Are Calculated</h3>
+          <p class="mt-3 text-sm leading-7 text-slate-600">
+            A fixed-rate personal loan payment is usually calculated with an amortization formula. The formula uses the
+            loan principal, monthly interest rate, and number of monthly payments. In the early months, a larger portion
+            of the payment may go toward interest. Over time, more of each payment reduces the principal balance.
+          </p>
+        </article>
+
+        <article class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+          <h3 class="text-lg font-bold text-slate-900">Loan Amount and Monthly Affordability</h3>
+          <p class="mt-3 text-sm leading-7 text-slate-600">
+            The loan amount is the principal you borrow. A higher loan amount generally means a higher monthly payment
+            and more total interest. Before borrowing, compare the amount you need with the payment you can comfortably
+            afford while still covering rent, mortgage, utilities, groceries, transportation, insurance, savings, and
+            other financial obligations.
+          </p>
+        </article>
+
+        <article class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+          <h3 class="text-lg font-bold text-slate-900">Interest Rate and APR Impact</h3>
+          <p class="mt-3 text-sm leading-7 text-slate-600">
+            The interest rate or APR has a major impact on total repayment. Even a small rate difference can change the
+            total interest paid over the life of a loan. Borrowers with stronger credit scores, stable income, and lower
+            debt-to-income ratios may qualify for better rates, while riskier profiles may receive higher-rate offers.
+          </p>
+        </article>
+
+        <article class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+          <h3 class="text-lg font-bold text-slate-900">Loan Term: Shorter vs. Longer Repayment</h3>
+          <p class="mt-3 text-sm leading-7 text-slate-600">
+            A shorter loan term usually increases the monthly payment but reduces total interest. A longer loan term may
+            lower the monthly payment, but it can increase the total amount paid over time. Use this repayment calculator
+            to compare 12-month, 24-month, 36-month, 60-month, 84-month, and 120-month loan scenarios.
+          </p>
+        </article>
+      </div>
+
+      <div class="mt-10 space-y-8 text-base leading-8 text-slate-600">
+        <div>
+          <h2 class="text-2xl font-bold text-slate-900">How to Use This Personal Loan Calculator</h2>
+          <p class="mt-3">
+            Start by entering the amount you want to borrow. Then adjust the repayment term in months using the slider
+            or the number input. Finally, enter the annual interest rate. The calculator automatically estimates your
+            monthly loan payment, total interest paid, and total repayment amount. You can change the inputs repeatedly
+            to compare loan offers, repayment timelines, and affordability levels.
+          </p>
+          <p class="mt-3">
+            For example, a borrower comparing a $10,000 personal loan at 8.99% APR over 36 months versus 60 months
+            may notice that the longer term lowers the monthly payment but increases the total interest. This type of
+            comparison is helpful when choosing between affordability today and total cost over time.
           </p>
         </div>
 
-        <section class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-8">
-          <span class="inline-flex rounded-full bg-indigo-100 px-4 py-2 text-sm font-semibold text-indigo-700">
-            Personal Finance Guide
-          </span>
+        <div>
+          <h2 class="text-2xl font-bold text-slate-900">Popular Uses for a Personal Loan Calculator</h2>
+          <div class="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <div class="rounded-2xl border border-slate-200 p-5">
+              <h3 class="font-bold text-slate-900">Debt Consolidation</h3>
+              <p class="mt-2 text-sm leading-6">
+                Estimate whether combining credit card balances or smaller loans into one fixed payment may reduce costs.
+              </p>
+            </div>
 
-          <h2 class="mt-5 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
-            Ultimate Guide to Personal Loans & Smart Borrowing
-          </h2>
+            <div class="rounded-2xl border border-slate-200 p-5">
+              <h3 class="font-bold text-slate-900">Compare Loan Offers</h3>
+              <p class="mt-2 text-sm leading-6">
+                Compare multiple lender offers by entering different interest rates, terms, and loan amounts.
+              </p>
+            </div>
 
-          <div class="mt-5 space-y-5 text-sm leading-7 text-slate-600">
-            <p>
-              Personal loans can be useful when you need predictable financing for a major purchase, emergency expense,
-              home improvement project, medical bill, or planned debt payoff strategy. Many borrowers compare
-              <strong class="font-semibold text-slate-800"> unsecured personal loans</strong> because they usually do not require collateral such as a house or car.
-              Instead, approval is often based on your income, credit history, debt-to-income ratio, and overall ability to repay.
-            </p>
+            <div class="rounded-2xl border border-slate-200 p-5">
+              <h3 class="font-bold text-slate-900">Plan Monthly Payments</h3>
+              <p class="mt-2 text-sm leading-6">
+                Estimate whether a monthly loan payment fits your household budget before applying.
+              </p>
+            </div>
 
-            <p>
-              One of the most important factors to review before borrowing is
-              <strong class="font-semibold text-slate-800"> personal loan interest rates</strong>. Lenders may offer different rates depending on your credit profile,
-              loan amount, repayment term, employment stability, and market conditions. A lower interest rate can reduce both your monthly payment
-              and the total interest paid over the life of the loan, while a higher rate can make the same loan significantly more expensive.
-            </p>
+            <div class="rounded-2xl border border-slate-200 p-5">
+              <h3 class="font-bold text-slate-900">Estimate Total Interest</h3>
+              <p class="mt-2 text-sm leading-6">
+                See how much interest may be paid over the full term of the personal loan.
+              </p>
+            </div>
 
-            <p>
-              A common reason people use a personal loan is to create a
-              <strong class="font-semibold text-slate-800"> debt consolidation loan</strong>. This strategy combines multiple debts, such as credit card balances
-              or smaller installment loans, into one fixed monthly payment. Debt consolidation may simplify budgeting and could reduce interest costs
-              if the new loan has a lower rate than the debts being paid off. However, it works best when paired with disciplined spending habits
-              and a clear repayment plan.
-            </p>
+            <div class="rounded-2xl border border-slate-200 p-5">
+              <h3 class="font-bold text-slate-900">Check Repayment Terms</h3>
+              <p class="mt-2 text-sm leading-6">
+                Compare shorter and longer repayment periods to balance monthly affordability and total cost.
+              </p>
+            </div>
 
-            <p>
-              Before applying, it is smart to understand the typical
-              <strong class="font-semibold text-slate-800"> credit score for personal loan</strong> approval. While each lender has its own criteria,
-              a stronger credit score may improve your chances of qualifying for lower rates and better terms. To prepare, review your credit report,
-              pay bills on time, lower credit card balances where possible, and avoid opening too many new accounts shortly before submitting a loan application.
-            </p>
-
-            <p>
-              Borrowers should also compare
-              <strong class="font-semibold text-slate-800"> fixed-rate vs variable-rate loans</strong>. A fixed-rate personal loan keeps the same interest rate
-              and monthly payment throughout the repayment term, making it easier to budget. A variable-rate loan may start with a lower rate,
-              but the payment can change if market rates rise. For many household budgets, fixed payments provide more stability and predictability.
-            </p>
-
-            <p>
-              This Personal Loan Calculator from NodnWebTools is designed to help you estimate monthly payments before you borrow.
-              Use it to test different loan amounts, repayment terms, and interest rates so you can compare scenarios and choose a repayment plan
-              that fits your financial goals.
-            </p>
+            <div class="rounded-2xl border border-slate-200 p-5">
+              <h3 class="font-bold text-slate-900">Prepare Before Applying</h3>
+              <p class="mt-2 text-sm leading-6">
+                Understand approximate loan costs before submitting an application or accepting a lender quote.
+              </p>
+            </div>
           </div>
-        </section>
+        </div>
+
+        <div>
+          <h2 class="text-2xl font-bold text-slate-900">Unsecured Personal Loans and Credit Requirements</h2>
+          <p class="mt-3">
+            Many personal loans are unsecured, meaning they do not require collateral such as a home or vehicle.
+            Because the lender is not secured by an asset, approval and pricing often depend on credit score, income,
+            employment stability, existing debt, payment history, and debt-to-income ratio. A stronger borrower profile
+            may help qualify for a lower APR, while a weaker profile may lead to higher rates, smaller loan limits, or
+            additional requirements.
+          </p>
+          <p class="mt-3">
+            Before applying, review your credit report, compare multiple lenders, check whether prequalification is
+            available, and understand whether the lender charges origination fees, late fees, returned payment fees,
+            or prepayment penalties. These additional costs can affect the true cost of borrowing beyond the monthly
+            payment shown by a basic personal loan calculator.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-2xl font-bold text-slate-900">Fixed-Rate vs. Variable-Rate Personal Loans</h2>
+          <p class="mt-3">
+            A fixed-rate personal loan keeps the same interest rate and monthly payment throughout the repayment term.
+            This makes budgeting easier because the payment is predictable. A variable-rate loan may start with a lower
+            rate, but the payment can change if market rates rise. For many borrowers, fixed-rate loans provide more
+            certainty, especially when planning long-term debt repayment.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-2xl font-bold text-slate-900">Smart Borrowing Tips Before Taking a Personal Loan</h2>
+          <p class="mt-3">
+            Before borrowing, ask whether the loan is necessary, whether the payment is affordable, and whether there
+            are cheaper alternatives. Compare the APR, term length, monthly payment, total repayment, lender reputation,
+            fees, payoff flexibility, and customer support. If the loan is for debt consolidation, avoid adding new
+            credit card debt after consolidating, or the loan may increase your total debt instead of improving your
+            financial situation.
+          </p>
+        </div>
       </div>
+
+      <div class="ad-box my-8">
+        AdSense Responsive Ad Area - Bottom Content
+      </div>
+
+      <section class="mt-10">
+        <h2 class="text-2xl font-bold text-slate-900">Personal Loan Calculator FAQ</h2>
+
+        <div class="mt-6 space-y-4">
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-bold text-slate-900">What is a personal loan calculator?</summary>
+            <p class="mt-3 text-sm leading-7 text-slate-600">
+              A personal loan calculator estimates monthly payments, total interest, and total repayment based on
+              loan amount, interest rate, and repayment term.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-bold text-slate-900">Does a longer loan term lower my payment?</summary>
+            <p class="mt-3 text-sm leading-7 text-slate-600">
+              Yes. A longer term usually lowers the monthly payment, but it may increase the total interest paid
+              over the life of the loan.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-bold text-slate-900">Does this calculator include loan fees?</summary>
+            <p class="mt-3 text-sm leading-7 text-slate-600">
+              No. This calculator estimates a simple fixed-rate installment loan. It does not include origination fees,
+              late fees, insurance, prepayment penalties, or lender-specific charges.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-bold text-slate-900">Can I use this for debt consolidation?</summary>
+            <p class="mt-3 text-sm leading-7 text-slate-600">
+              Yes. You can use it to estimate whether a debt consolidation loan payment may fit your budget, but you
+              should compare APR, fees, and total cost carefully.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-bold text-slate-900">Is this financial advice?</summary>
+            <p class="mt-3 text-sm leading-7 text-slate-600">
+              No. This tool is for general informational purposes only and should not be considered financial, legal,
+              lending, credit, or tax advice.
+            </p>
+          </details>
+        </div>
+      </section>
     </section>
 
-    <!-- Google AdSense Responsive Ad - Bottom -->
-    <div class="mt-8 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white text-sm text-slate-400">
+    <section class="mobile-card mt-10 rounded-3xl bg-slate-900 p-6 text-slate-200 shadow-sm sm:p-8">
+      <h2 class="text-2xl font-bold text-white">Legal Disclaimer</h2>
+      <p class="mt-4 text-sm leading-7">
+        This Personal Loan Calculator is provided for general educational and informational purposes only.
+        It is not financial advice, lending advice, legal advice, tax advice, credit counseling, or a loan approval tool.
+        Results are estimates based on simplified fixed-rate loan assumptions and may differ from actual lender offers,
+        APRs, origination fees, payment schedules, compounding methods, insurance charges, prepayment rules, credit
+        profile requirements, underwriting decisions, and personal circumstances. You are responsible for verifying all
+        calculations and loan terms with a qualified lender, financial advisor, credit counselor, accountant, or legal
+        professional before making borrowing decisions. This tool runs in your browser and does not intentionally upload
+        your entered loan data to a server.
+      </p>
+    </section>
+
+    <div class="ad-box mt-10">
       AdSense Responsive Ad Area - Bottom
     </div>
 
+    <footer class="py-8 text-center text-sm text-slate-500">
+      <div class="mb-3 flex flex-wrap justify-center gap-4">
+        <a href="https://nodntools.com" class="font-semibold text-indigo-600 hover:text-indigo-700">Home</a>
+        <a href="/privacy" class="hover:text-slate-900">Privacy Policy</a>
+        <a href="/terms" class="hover:text-slate-900">Terms of Service</a>
+      </div>
+      <p>&copy; 2026 NodnWebTools. All rights reserved.</p>
+    </footer>
   </main>
 
   <script>
@@ -327,7 +601,7 @@
 
     function sanitizeNumber(value, fallback = 0) {
       const number = parseFloat(value);
-      return isNaN(number) || number < 0 ? fallback : number;
+      return Number.isFinite(number) && number >= 0 ? number : fallback;
     }
 
     function syncTermFromSlider() {
@@ -338,7 +612,7 @@
     function syncTermFromInput() {
       let months = parseInt(loanTermMonthsInput.value, 10);
 
-      if (isNaN(months) || months < 1) {
+      if (!Number.isFinite(months) || months < 1) {
         months = 1;
       }
 
@@ -350,37 +624,41 @@
     }
 
     function calculatePersonalLoan() {
-      const loanAmount = sanitizeNumber(loanAmountInput.value);
-      const loanTermMonths = Math.max(0, parseInt(loanTermMonthsInput.value, 10) || 0);
-      const annualInterestRate = sanitizeNumber(interestRateInput.value);
+      try {
+        const loanAmount = sanitizeNumber(loanAmountInput.value);
+        const loanTermMonths = Math.max(0, parseInt(loanTermMonthsInput.value, 10) || 0);
+        const annualInterestRate = sanitizeNumber(interestRateInput.value);
 
-      const monthlyInterestRate = annualInterestRate / 100 / 12;
+        const monthlyInterestRate = annualInterestRate / 100 / 12;
 
-      let monthlyPayment = 0;
-      let totalRepayment = 0;
-      let totalInterest = 0;
+        let monthlyPayment = 0;
+        let totalRepayment = 0;
+        let totalInterest = 0;
 
-      if (loanAmount > 0 && loanTermMonths > 0) {
-        if (monthlyInterestRate === 0) {
-          monthlyPayment = loanAmount / loanTermMonths;
-        } else {
-          monthlyPayment =
-            loanAmount *
-            (monthlyInterestRate * Math.pow(1 + monthlyInterestRate, loanTermMonths)) /
-            (Math.pow(1 + monthlyInterestRate, loanTermMonths) - 1);
+        if (loanAmount > 0 && loanTermMonths > 0) {
+          if (monthlyInterestRate === 0) {
+            monthlyPayment = loanAmount / loanTermMonths;
+          } else {
+            monthlyPayment =
+              loanAmount *
+              (monthlyInterestRate * Math.pow(1 + monthlyInterestRate, loanTermMonths)) /
+              (Math.pow(1 + monthlyInterestRate, loanTermMonths) - 1);
+          }
+
+          totalRepayment = monthlyPayment * loanTermMonths;
+          totalInterest = totalRepayment - loanAmount;
         }
 
-        totalRepayment = monthlyPayment * loanTermMonths;
-        totalInterest = totalRepayment - loanAmount;
+        loanTermBadge.textContent = formatNumber(loanTermMonths, 0) + " Months";
+        monthlyPaymentEl.textContent = formatCurrency(monthlyPayment);
+        displayLoanAmountEl.textContent = formatCurrency(loanAmount);
+        displayLoanTermEl.textContent = formatNumber(loanTermMonths, 0) + " Months";
+        displayInterestRateEl.textContent = formatNumber(annualInterestRate) + "%";
+        displayTotalInterestEl.textContent = formatCurrency(totalInterest);
+        displayTotalRepaymentEl.textContent = formatCurrency(totalRepayment);
+      } catch (error) {
+        monthlyPaymentEl.textContent = "$0.00";
       }
-
-      loanTermBadge.textContent = formatNumber(loanTermMonths, 0) + " Months";
-      monthlyPaymentEl.textContent = formatCurrency(monthlyPayment);
-      displayLoanAmountEl.textContent = formatCurrency(loanAmount);
-      displayLoanTermEl.textContent = formatNumber(loanTermMonths, 0) + " Months";
-      displayInterestRateEl.textContent = formatNumber(annualInterestRate) + "%";
-      displayTotalInterestEl.textContent = formatCurrency(totalInterest);
-      displayTotalRepaymentEl.textContent = formatCurrency(totalRepayment);
     }
 
     loanAmountInput.addEventListener("input", calculatePersonalLoan);
