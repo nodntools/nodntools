@@ -1,448 +1,736 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<div class="mb-8 text-center">
-  <a
-    href="https://nodntools.com"
-    class="inline-block transition hover:opacity-80"
-    aria-label="NodnWebTools Home"
-  >
-    <div class="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
-      Nodn<span class="text-blue-600">WebTools</span>
-    </div>
-  </a>
-</div>
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404"
-     crossorigin="anonymous"></script>
+  <title>Overtime Calculator | Hourly Pay Tool</title>
+  <meta name="description" content="Calculate regular pay, overtime pay, time and a half, double time, and total gross pay instantly in your browser.">
+  <meta name="keywords" content="overtime calculator, overtime pay calculator, time and a half calculator, double time calculator, hourly wage calculator, gross pay calculator, regular pay calculator, weekly pay calculator, payroll calculator, hourly worker calculator, overtime hours calculator, employee pay calculator, FLSA overtime calculator, wage calculator, NodnWebTools">
+  <meta name="author" content="NodnWebTools">
+  <meta name="robots" content="index, follow">
 
-	<meta name="google-adsense-account" content="ca-pub-5282672325821404">	
+  <meta property="og:title" content="Overtime Calculator | Hourly Pay Tool">
+  <meta property="og:description" content="Estimate regular pay, overtime pay, time and a half, double time, and total gross pay with a browser-based overtime calculator.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nodntools.com/overtime.html">
+  <meta property="og:site_name" content="NodnWebTools">
 
-  <title>Overtime Calculator | NodnWebTools</title>
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Overtime Calculator">
+  <meta name="twitter:description" content="Calculate overtime pay, regular pay, hourly wage results, and total gross pay before taxes.">
 
-  <meta
-    name="description"
-    content="Use the free NodnWebTools Overtime Calculator to estimate regular pay, overtime pay, and total gross pay. Learn how to calculate overtime pay, time and a half, double time wages, FLSA overtime rules, and overtime pay for hourly workers."
-  />
-  <meta
-    name="keywords"
-    content="overtime calculator, how to calculate overtime pay, time and a half calculator, FLSA overtime rules, overtime pay for hourly workers, double time wages, gross pay calculator, hourly wage calculator, NodnWebTools"
-  />
-  <meta name="author" content="NodnWebTools" />
-  <meta name="robots" content="index, follow" />
-
-  <meta property="og:title" content="Overtime Calculator | NodnWebTools" />
-  <meta
-    property="og:description"
-    content="Calculate regular pay, overtime pay, and total gross pay with a clean real-time overtime calculator."
-  />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://nodnwebtools.com/overtime.html" />
-  <meta property="og:site_name" content="NodnWebTools" />
-
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Overtime Calculator" />
-  <meta
-    name="twitter:description"
-    content="A free overtime pay calculator for hourly workers, time and a half, double time, and weekly gross pay estimates."
-  />
+  <meta name="google-adsense-account" content="ca-pub-5282672325821404">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404" crossorigin="anonymous"></script>
 
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            accent: {
+              50: "#ecfdf5",
+              100: "#d1fae5",
+              200: "#a7f3d0",
+              500: "#10b981",
+              600: "#059669",
+              700: "#047857",
+              800: "#065f46"
+            }
+          },
+          boxShadow: {
+            soft: "0 20px 45px rgba(15, 23, 42, 0.08)"
+          }
+        }
+      }
+    };
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Overtime Calculator",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "url": "https://nodntools.com/overtime.html",
+    "description": "A free browser-based overtime calculator for estimating regular pay, overtime pay, time and a half, double time, hourly wages, and total gross pay.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "creator": {
+      "@type": "Organization",
+      "name": "NodnWebTools",
+      "url": "https://nodntools.com"
+    }
+  }
+  </script>
+
+  <style>
+    html, body {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+      background: #f8fafc;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      min-width: 0;
+    }
+
+    input, select, button, textarea {
+      max-width: 100%;
+    }
+
+    img, svg, canvas, iframe, table, pre, code, section, article, aside, main, div {
+      max-width: 100%;
+    }
+
+    .safe-break {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .mobile-card,
+    .mobile-panel,
+    .mobile-preview,
+    .mobile-code,
+    .ad-box {
+      max-width: 100%;
+      overflow-wrap: anywhere;
+    }
+
+    .mobile-code {
+      overflow-x: auto;
+      white-space: pre-wrap;
+    }
+
+    .table-wrap {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .ad-box {
+      width: 100%;
+      min-height: 90px;
+      border: 1px dashed #cbd5e1;
+      background: #f8fafc;
+      color: #94a3b8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-radius: 1rem;
+      padding: 1rem;
+      font-size: 0.875rem;
+      overflow: hidden;
+    }
+
+    @media (max-width: 640px) {
+      .mobile-card {
+        border-radius: 1.25rem !important;
+        padding: 1rem !important;
+      }
+
+      .mobile-panel {
+        padding: 1rem !important;
+      }
+
+      .mobile-button-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .mobile-button-grid button,
+      .mobile-button-grid a {
+        width: 100%;
+      }
+
+      .ad-box {
+        min-height: 90px;
+        border-radius: 0.875rem;
+        padding: 0.875rem;
+        font-size: 0.78rem;
+      }
+
+      table {
+        min-width: 620px;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .mobile-card {
+        padding: 0.875rem !important;
+        border-radius: 1rem !important;
+      }
+
+      h1 {
+        font-size: 1.85rem !important;
+        line-height: 2.25rem !important;
+      }
+
+      h2 {
+        font-size: 1.45rem !important;
+        line-height: 1.9rem !important;
+      }
+
+      .ad-box {
+        padding: 0.75rem;
+        font-size: 0.72rem;
+      }
+    }
+  </style>
 </head>
 
-<body class="min-h-screen bg-slate-100 px-4 py-8 sm:py-12">
-  <main class="mx-auto max-w-5xl">
-
-    <!-- Google AdSense Responsive Ad - Top -->
-    <div class="mb-8 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white text-sm text-slate-400">
-      AdSense Responsive Ad Area - Top
+<body class="min-h-screen bg-slate-50 text-slate-900">
+  <header class="w-full border-b border-slate-200 bg-white/90 backdrop-blur">
+    <div class="mx-auto flex w-full max-w-7xl flex-col gap-4 px-4 py-5 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
+      <a href="https://nodntools.com" class="inline-flex items-center safe-break" aria-label="NodnWebTools Home">
+        <span class="text-2xl font-black tracking-tight text-slate-950">Nodn<span class="text-accent-600">WebTools</span></span>
+      </a>
+      <nav class="flex flex-wrap items-center gap-3 text-sm font-semibold text-slate-600">
+        <a href="https://nodntools.com" class="rounded-full px-4 py-2 transition hover:bg-slate-100 hover:text-accent-700">Home</a>
+        <a href="#how-to-use" class="rounded-full px-4 py-2 transition hover:bg-slate-100 hover:text-accent-700">How to Use</a>
+        <a href="#faq" class="rounded-full px-4 py-2 transition hover:bg-slate-100 hover:text-accent-700">FAQ</a>
+      </nav>
     </div>
+  </header>
 
-    <section class="grid gap-6 lg:grid-cols-2">
+  <main class="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+    <div class="ad-box mb-6">Top Ad Area - Responsive AdSense Placeholder</div>
 
-      <div class="rounded-3xl bg-white p-5 shadow-xl ring-1 ring-slate-200 sm:p-8 lg:sticky lg:top-10 lg:self-start">
-        <div class="mb-6">
-          <span class="inline-flex rounded-full bg-emerald-100 px-4 py-2 text-sm font-semibold text-emerald-700">
-            Overtime Calculator
-          </span>
+    <section class="grid grid-cols-1 gap-6 lg:grid-cols-12">
+      <div class="mobile-card rounded-3xl bg-white p-5 shadow-soft ring-1 ring-slate-200 sm:p-8 lg:col-span-5 lg:sticky lg:top-8 lg:self-start">
+        <span class="inline-flex rounded-full bg-accent-50 px-4 py-2 text-sm font-bold text-accent-700 ring-1 ring-accent-100">Payroll Estimate Tool</span>
 
-          <h1 class="mt-5 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-            Calculate Your Overtime Pay Instantly
-          </h1>
+        <h1 class="mt-5 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">
+          Overtime Calculator
+        </h1>
 
-          <p class="mt-3 text-base leading-7 text-slate-600">
-            Enter your hourly wage, regular hours, overtime hours, and overtime multiplier to estimate
-            regular pay, overtime pay, and total gross pay before taxes.
-          </p>
-        </div>
+        <p class="mt-4 text-sm leading-7 text-slate-600">
+          Estimate regular pay, overtime pay, time and a half, double time, and total gross pay before taxes. Enter your hourly wage, regular hours, overtime hours, and overtime multiplier to see a clear pay breakdown instantly.
+        </p>
 
-        <div class="space-y-5">
+        <div class="mt-6 space-y-5">
           <div>
-            <label for="hourlyWage" class="mb-2 block text-sm font-semibold text-slate-700">
-              Regular Hourly Wage
-            </label>
-
+            <label for="hourlyWage" class="mb-2 block text-sm font-bold text-slate-800">Regular Hourly Wage</label>
             <div class="relative">
-              <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">$</span>
-              <input
-                type="number"
-                id="hourlyWage"
-                inputmode="decimal"
-                min="0"
-                step="0.01"
-                value="25"
-                placeholder="25.00"
-                class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-8 pr-4 text-lg font-semibold text-slate-900 outline-none transition focus:border-emerald-500 focus:bg-white focus:ring-4 focus:ring-emerald-100"
-              />
+              <span class="absolute left-4 top-1/2 -translate-y-1/2 font-bold text-slate-400">$</span>
+              <input id="hourlyWage" type="number" inputmode="decimal" min="0" step="0.01" value="25" placeholder="25.00" class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-9 pr-4 text-lg font-bold text-slate-900 outline-none transition focus:border-accent-500 focus:bg-white focus:ring-4 focus:ring-accent-100">
             </div>
           </div>
 
           <div>
-            <label for="regularHours" class="mb-2 block text-sm font-semibold text-slate-700">
-              Regular Hours Worked
-            </label>
-
+            <label for="regularHours" class="mb-2 block text-sm font-bold text-slate-800">Regular Hours Worked</label>
             <div class="relative">
-              <input
-                type="number"
-                id="regularHours"
-                inputmode="decimal"
-                min="0"
-                step="0.25"
-                value="40"
-                placeholder="40"
-                class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-4 pr-20 text-lg font-semibold text-slate-900 outline-none transition focus:border-emerald-500 focus:bg-white focus:ring-4 focus:ring-emerald-100"
-              />
-              <span class="absolute right-4 top-1/2 -translate-y-1/2 text-sm font-medium text-slate-400">
-                Hours
-              </span>
+              <input id="regularHours" type="number" inputmode="decimal" min="0" step="0.25" value="40" placeholder="40" class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-4 pr-20 text-lg font-bold text-slate-900 outline-none transition focus:border-accent-500 focus:bg-white focus:ring-4 focus:ring-accent-100">
+              <span class="absolute right-4 top-1/2 -translate-y-1/2 text-sm font-bold text-slate-400">Hours</span>
             </div>
-
             <p class="mt-2 text-xs leading-5 text-slate-500">
-              Many U.S. overtime rules begin after 40 hours in a workweek, but rules may vary by location and job type.
+              Many U.S. overtime rules begin after 40 hours in a workweek, but rules can vary by location, job type, agreement, and classification.
             </p>
           </div>
 
           <div>
-            <label for="overtimeHours" class="mb-2 block text-sm font-semibold text-slate-700">
-              Overtime Hours Worked
-            </label>
-
+            <label for="overtimeHours" class="mb-2 block text-sm font-bold text-slate-800">Overtime Hours Worked</label>
             <div class="relative">
-              <input
-                type="number"
-                id="overtimeHours"
-                inputmode="decimal"
-                min="0"
-                step="0.25"
-                value="5"
-                placeholder="5"
-                class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-4 pr-20 text-lg font-semibold text-slate-900 outline-none transition focus:border-emerald-500 focus:bg-white focus:ring-4 focus:ring-emerald-100"
-              />
-              <span class="absolute right-4 top-1/2 -translate-y-1/2 text-sm font-medium text-slate-400">
-                Hours
-              </span>
+              <input id="overtimeHours" type="number" inputmode="decimal" min="0" step="0.25" value="5" placeholder="5" class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-4 pr-20 text-lg font-bold text-slate-900 outline-none transition focus:border-accent-500 focus:bg-white focus:ring-4 focus:ring-accent-100">
+              <span class="absolute right-4 top-1/2 -translate-y-1/2 text-sm font-bold text-slate-400">Hours</span>
             </div>
           </div>
 
           <div>
-            <label for="overtimeMultiplier" class="mb-2 block text-sm font-semibold text-slate-700">
-              Overtime Rate Multiplier
-            </label>
-
-            <select
-              id="overtimeMultiplier"
-              class="w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-4 text-base font-medium text-slate-900 outline-none transition focus:border-emerald-500 focus:bg-white focus:ring-4 focus:ring-emerald-100"
-            >
+            <label for="overtimeMultiplier" class="mb-2 block text-sm font-bold text-slate-800">Overtime Rate Multiplier</label>
+            <select id="overtimeMultiplier" class="w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-4 text-base font-bold text-slate-900 outline-none transition focus:border-accent-500 focus:bg-white focus:ring-4 focus:ring-accent-100">
               <option value="1.5" selected>1.5× - Time and a Half</option>
               <option value="2">2× - Double Time</option>
+              <option value="1">1× - Straight Time</option>
+              <option value="1.25">1.25× - Custom Premium</option>
+              <option value="1.75">1.75× - Custom Premium</option>
             </select>
           </div>
 
-          <div class="rounded-2xl bg-emerald-50 p-4 text-sm leading-6 text-slate-600">
-            This calculator estimates gross pay before taxes, deductions, benefits, tips, bonuses, and payroll adjustments.
+          <div class="mobile-button-grid grid grid-cols-1 gap-3 sm:grid-cols-2">
+            <button id="copyResultBtn" type="button" class="rounded-2xl bg-accent-600 px-4 py-3 text-sm font-black text-white shadow-lg shadow-accent-600/20 transition hover:bg-accent-700 active:scale-[0.98]">Copy Result</button>
+            <button id="resetBtn" type="button" class="rounded-2xl bg-white px-4 py-3 text-sm font-black text-slate-800 ring-1 ring-slate-300 transition hover:bg-slate-100 active:scale-[0.98]">Reset</button>
+          </div>
+
+          <div id="statusBox" class="rounded-2xl bg-accent-50 p-4 text-sm font-bold text-accent-700 ring-1 ring-accent-100">Ready</div>
+
+          <div class="rounded-2xl bg-slate-50 p-4 text-sm leading-6 text-slate-600 ring-1 ring-slate-200">
+            This calculator estimates gross pay before taxes, deductions, benefits, tips, bonuses, commissions, and payroll adjustments.
           </div>
         </div>
       </div>
 
-      <div class="space-y-6">
-        <div class="rounded-3xl bg-white p-5 shadow-xl ring-1 ring-slate-200 sm:p-8">
+      <div class="space-y-6 lg:col-span-7">
+        <section class="mobile-card rounded-3xl bg-white p-5 shadow-soft ring-1 ring-slate-200 sm:p-8">
           <div class="mb-6">
-            <h2 class="text-2xl font-bold text-slate-900">
-              Overtime Pay Result
-            </h2>
-
-            <p class="mt-2 text-sm text-slate-500">
-              Results update automatically as you change wage, hours, or overtime multiplier.
-            </p>
+            <h2 class="text-2xl font-black tracking-tight text-slate-950">Overtime Pay Result</h2>
+            <p class="mt-2 text-sm leading-6 text-slate-500">Results update automatically as you change wage, hours, or overtime multiplier.</p>
           </div>
 
-          <div id="result" class="rounded-3xl border border-emerald-100 bg-gradient-to-br from-emerald-50 via-teal-50 to-slate-50 p-5">
-            <p class="text-sm font-semibold uppercase tracking-wide text-emerald-700">
-              Total Gross Pay
-            </p>
+          <div class="rounded-3xl border border-accent-100 bg-gradient-to-br from-accent-50 via-teal-50 to-white p-5">
+            <p class="text-sm font-black uppercase tracking-wide text-accent-700">Total Gross Pay</p>
+            <p id="totalGrossPay" class="safe-break mt-2 text-4xl font-black tracking-tight text-slate-950 sm:text-5xl">$0.00</p>
 
-            <p id="totalGrossPay" class="mt-2 text-4xl font-extrabold tracking-tight text-slate-900">
-              $0.00
-            </p>
-
-            <div class="mt-5 grid gap-3 sm:grid-cols-2">
-              <div class="rounded-2xl bg-white p-4 shadow-sm">
-                <p class="text-xs text-slate-500">Hourly Wage</p>
-                <p id="displayHourlyWage" class="mt-1 text-lg font-bold text-slate-900">$0.00</p>
+            <div class="mt-6 grid gap-3 sm:grid-cols-2">
+              <div class="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-200">
+                <p class="text-xs font-bold uppercase tracking-wide text-slate-500">Hourly Wage</p>
+                <p id="displayHourlyWage" class="mt-1 text-lg font-black text-slate-950">$0.00</p>
               </div>
 
-              <div class="rounded-2xl bg-white p-4 shadow-sm">
-                <p class="text-xs text-slate-500">Overtime Rate</p>
-                <p id="displayOvertimeRate" class="mt-1 text-lg font-bold text-slate-900">$0.00/hr</p>
+              <div class="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-200">
+                <p class="text-xs font-bold uppercase tracking-wide text-slate-500">Overtime Rate</p>
+                <p id="displayOvertimeRate" class="mt-1 text-lg font-black text-slate-950">$0.00/hr</p>
               </div>
 
-              <div class="rounded-2xl bg-white p-4 shadow-sm">
-                <p class="text-xs text-slate-500">Regular Hours</p>
-                <p id="displayRegularHours" class="mt-1 text-lg font-bold text-slate-900">0 Hours</p>
+              <div class="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-200">
+                <p class="text-xs font-bold uppercase tracking-wide text-slate-500">Regular Hours</p>
+                <p id="displayRegularHours" class="mt-1 text-lg font-black text-slate-950">0 Hours</p>
               </div>
 
-              <div class="rounded-2xl bg-white p-4 shadow-sm">
-                <p class="text-xs text-slate-500">Overtime Hours</p>
-                <p id="displayOvertimeHours" class="mt-1 text-lg font-bold text-slate-900">0 Hours</p>
+              <div class="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-200">
+                <p class="text-xs font-bold uppercase tracking-wide text-slate-500">Overtime Hours</p>
+                <p id="displayOvertimeHours" class="mt-1 text-lg font-black text-slate-950">0 Hours</p>
               </div>
             </div>
 
             <div class="mt-5 grid gap-3 sm:grid-cols-2">
-              <div class="rounded-3xl border border-emerald-100 bg-white p-5 shadow-sm">
-                <p class="text-xs font-semibold uppercase tracking-wide text-emerald-700">
-                  Regular Pay
-                </p>
-                <p id="regularPay" class="mt-2 text-3xl font-extrabold text-slate-900">
-                  $0.00
-                </p>
-                <p class="mt-2 text-xs leading-5 text-slate-500">
-                  Hourly wage × regular hours.
-                </p>
+              <div class="rounded-3xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
+                <p class="text-xs font-black uppercase tracking-wide text-accent-700">Regular Pay</p>
+                <p id="regularPay" class="mt-2 text-3xl font-black text-slate-950">$0.00</p>
+                <p class="mt-2 text-xs leading-5 text-slate-500">Hourly wage multiplied by regular hours.</p>
               </div>
 
-              <div class="rounded-3xl border border-teal-100 bg-white p-5 shadow-sm">
-                <p class="text-xs font-semibold uppercase tracking-wide text-teal-700">
-                  Overtime Pay
-                </p>
-                <p id="overtimePay" class="mt-2 text-3xl font-extrabold text-emerald-700">
-                  $0.00
-                </p>
-                <p class="mt-2 text-xs leading-5 text-slate-500">
-                  Overtime hours × overtime rate.
-                </p>
+              <div class="rounded-3xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
+                <p class="text-xs font-black uppercase tracking-wide text-teal-700">Overtime Pay</p>
+                <p id="overtimePay" class="mt-2 text-3xl font-black text-accent-700">$0.00</p>
+                <p class="mt-2 text-xs leading-5 text-slate-500">Overtime hours multiplied by the overtime rate.</p>
               </div>
             </div>
 
-            <div class="mt-4 rounded-2xl bg-white p-4 text-sm leading-6 text-slate-600 shadow-sm">
-              Overtime multiplier:
-              <strong id="displayMultiplier">1.5×</strong>
-              · Pay type:
-              <strong id="displayPayType">Time and a Half</strong>
+            <div class="mt-5 grid gap-3 sm:grid-cols-2">
+              <div class="rounded-3xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
+                <p class="text-xs font-black uppercase tracking-wide text-slate-600">Total Hours</p>
+                <p id="displayTotalHours" class="mt-2 text-3xl font-black text-slate-950">0 Hours</p>
+                <p class="mt-2 text-xs leading-5 text-slate-500">Regular hours plus overtime hours.</p>
+              </div>
+
+              <div class="rounded-3xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
+                <p class="text-xs font-black uppercase tracking-wide text-slate-600">Effective Hourly Rate</p>
+                <p id="effectiveHourlyRate" class="mt-2 text-3xl font-black text-slate-950">$0.00/hr</p>
+                <p class="mt-2 text-xs leading-5 text-slate-500">Total gross pay divided by total hours.</p>
+              </div>
+            </div>
+
+            <div class="mt-5 rounded-2xl bg-white p-4 text-sm leading-6 text-slate-600 shadow-sm ring-1 ring-slate-200">
+              Overtime multiplier: <strong id="displayMultiplier" class="text-slate-950">1.5×</strong>
+              · Pay type: <strong id="displayPayType" class="text-accent-700">Time and a Half</strong>
             </div>
           </div>
+        </section>
 
-          <!-- Google AdSense Responsive Ad - Below Result -->
-          <div class="mt-6 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-slate-50 text-sm text-slate-400">
-            AdSense Responsive Ad Area - Below Result
-          </div>
+        <div class="ad-box">Ad Area Below Main Tool and Result Section</div>
 
-          <p class="mt-5 text-xs leading-5 text-slate-500">
-            Disclaimer: This calculator is for general educational and payroll estimation purposes only.
-            Overtime laws, exemptions, daily overtime, holiday pay, union agreements, state or provincial rules,
-            and employer policies may vary. This tool does not calculate taxes, deductions, benefits, tips, bonuses,
-            commissions, or final paycheck amounts. Always verify with your employer, HR department, payroll provider,
-            labor authority, or qualified professional.
-          </p>
-        </div>
-
-        <section class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-8">
-          <span class="inline-flex rounded-full bg-emerald-100 px-4 py-2 text-sm font-semibold text-emerald-700">
-            Payroll & Labor Guide
-          </span>
-
-          <h2 class="mt-5 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
-            Understanding Overtime Rules: How to Calculate Your Extra Pay
-          </h2>
-
-          <div class="mt-5 space-y-5 text-sm leading-7 text-slate-600">
-            <p>
-              If you are wondering <strong class="font-semibold text-slate-800">how to calculate overtime pay</strong>,
-              the basic idea is simple: multiply your regular hourly wage by the overtime rate multiplier, then multiply
-              that overtime rate by the number of overtime hours worked. For many hourly workers in the United States,
-              overtime is commonly calculated after 40 hours in a workweek.
-            </p>
-
-            <p>
-              A <strong class="font-semibold text-slate-800">time and a half calculator</strong> uses a 1.5× multiplier.
-              For example, if your regular hourly wage is $20, your time-and-a-half overtime rate is $30 per hour.
-              If you worked 5 overtime hours, your overtime pay would be $150. This amount is added to your regular pay
-              to estimate your total gross pay before taxes and deductions.
-            </p>
-
-            <p>
-              The <strong class="font-semibold text-slate-800">FLSA overtime rules</strong> are a major reference point
-              in the United States. The Fair Labor Standards Act generally requires covered nonexempt employees to receive
-              overtime pay at not less than one and one-half times their regular rate of pay for hours worked over 40 in a
-              workweek. However, exemptions, salary basis rules, job duties, state laws, and industry-specific rules can affect
-              eligibility.
-            </p>
-
-            <p>
-              <strong class="font-semibold text-slate-800">Overtime pay for hourly workers</strong> can also vary in Canada
-              and across U.S. states. Some jurisdictions may have daily overtime rules, special rules for holidays, or different
-              standards for certain industries. Workers should always compare their paystub against the rules that apply to their
-              province, state, employer, union agreement, or contract.
-            </p>
-
-            <div class="overflow-hidden rounded-2xl border border-slate-200">
-              <table class="w-full text-left text-sm">
-                <thead class="bg-slate-100 text-slate-700">
-                  <tr>
-                    <th class="px-4 py-3 font-bold">Pay Type</th>
-                    <th class="px-4 py-3 font-bold">Multiplier</th>
-                    <th class="px-4 py-3 font-bold">Example at $20/hr</th>
-                  </tr>
-                </thead>
-                <tbody class="divide-y divide-slate-200 bg-white">
-                  <tr>
-                    <td class="px-4 py-3 font-semibold text-slate-800">Regular Pay</td>
-                    <td class="px-4 py-3">1.0×</td>
-                    <td class="px-4 py-3">$20/hr</td>
-                  </tr>
-                  <tr>
-                    <td class="px-4 py-3 font-semibold text-slate-800">Time and a Half</td>
-                    <td class="px-4 py-3">1.5×</td>
-                    <td class="px-4 py-3">$30/hr</td>
-                  </tr>
-                  <tr>
-                    <td class="px-4 py-3 font-semibold text-slate-800">Double Time</td>
-                    <td class="px-4 py-3">2.0×</td>
-                    <td class="px-4 py-3">$40/hr</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-            <p>
-              <strong class="font-semibold text-slate-800">Double time wages</strong> are typically calculated at 2× the
-              regular hourly rate. Double time may apply in specific circumstances depending on local law, employment contract,
-              union rules, weekend schedules, holiday policies, or daily overtime thresholds. It is not automatic everywhere,
-              so workers should confirm the exact rule that applies to their workplace.
-            </p>
-
-            <div class="rounded-2xl bg-emerald-50 p-5">
-              <h3 class="font-bold text-slate-900">
-                Paystub checklist for overtime
-              </h3>
-              <ul class="mt-3 space-y-2">
-                <li>
-                  <strong class="text-slate-800">Check total hours</strong>: Confirm regular and overtime hours are separated correctly.
-                </li>
-                <li>
-                  <strong class="text-slate-800">Check the multiplier</strong>: Make sure overtime is paid at 1.5×, 2×, or the applicable rate.
-                </li>
-                <li>
-                  <strong class="text-slate-800">Check unpaid breaks</strong>: Verify break deductions match your time records.
-                </li>
-                <li>
-                  <strong class="text-slate-800">Check local rules</strong>: Some areas have daily overtime, holiday pay, or special industry rules.
-                </li>
-              </ul>
-            </div>
-
-            <p>
-              This Overtime Calculator from NodnWebTools is designed for hourly workers, managers, freelancers, and small
-              business owners who need a quick way to estimate regular pay, overtime pay, and total gross pay before payroll
-              deductions. Use it as a planning tool, then confirm official pay with your employer or payroll provider.
-            </p>
+        <section class="mobile-card rounded-3xl bg-white p-5 shadow-sm ring-1 ring-slate-200 sm:p-8">
+          <h2 class="text-2xl font-black tracking-tight text-slate-950">What This Calculator Shows</h2>
+          <div class="mt-5 grid grid-cols-1 gap-4 md:grid-cols-3">
+            <article class="rounded-2xl bg-slate-50 p-5 ring-1 ring-slate-200">
+              <h3 class="font-black text-slate-950">Regular Pay</h3>
+              <p class="mt-2 text-sm leading-6 text-slate-600">Your standard hourly wage multiplied by regular hours worked.</p>
+            </article>
+            <article class="rounded-2xl bg-slate-50 p-5 ring-1 ring-slate-200">
+              <h3 class="font-black text-slate-950">Overtime Pay</h3>
+              <p class="mt-2 text-sm leading-6 text-slate-600">Your premium overtime rate multiplied by overtime hours worked.</p>
+            </article>
+            <article class="rounded-2xl bg-slate-50 p-5 ring-1 ring-slate-200">
+              <h3 class="font-black text-slate-950">Gross Pay</h3>
+              <p class="mt-2 text-sm leading-6 text-slate-600">The estimated total before taxes, deductions, benefits, and payroll adjustments.</p>
+            </article>
           </div>
         </section>
       </div>
     </section>
 
-    <!-- Google AdSense Responsive Ad - Bottom -->
-    <div class="mt-8 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white text-sm text-slate-400">
-      AdSense Responsive Ad Area - Bottom
-    </div>
+    <section class="mt-8 rounded-3xl bg-white p-5 shadow-sm ring-1 ring-slate-200 sm:p-8">
+      <div class="mx-auto max-w-4xl">
+        <span class="inline-flex rounded-full bg-accent-50 px-4 py-2 text-sm font-black text-accent-700 ring-1 ring-accent-100">Complete Guide</span>
+        <h2 class="mt-5 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">
+          Overtime Calculator Guide for Hourly Workers and Payroll Estimates
+        </h2>
 
+        <p class="mt-5 text-base leading-8 text-slate-600">
+          The NodnWebTools Overtime Calculator is a free browser-based payroll estimate tool designed to help hourly workers, managers, freelancers, contractors, shift workers, and small business owners estimate regular pay, overtime pay, and total gross pay. Overtime can make a major difference in weekly earnings, but it can also be confusing because pay rules vary by location, employment classification, industry, contract, union agreement, holiday schedule, and employer policy. This calculator gives you a simple way to enter your hourly wage, regular hours, overtime hours, and overtime multiplier so you can see a clear pay breakdown before taxes and deductions.
+        </p>
+
+        <p class="mt-5 text-base leading-8 text-slate-600">
+          Many people search for an overtime calculator, time and a half calculator, double time calculator, hourly wage calculator, gross pay calculator, weekly pay calculator, or payroll calculator because they want to understand what should appear on a paycheck. A standard paycheck may include regular hours, overtime hours, bonuses, tips, deductions, taxes, benefits, commissions, reimbursements, or other adjustments. This tool focuses on the core overtime math: hourly wage multiplied by regular hours, overtime rate multiplied by overtime hours, and the combined gross pay amount.
+        </p>
+
+        <p class="mt-5 text-base leading-8 text-slate-600">
+          The calculator is useful for estimating a weekly shift total, checking a paystub, comparing different schedules, planning extra shifts, reviewing time card entries, or understanding how overtime premiums affect earnings. It is not a legal payroll determination tool, but it can help make the numbers easier to understand. If your actual paycheck differs from the estimate, review your employer’s pay policy, your time records, unpaid breaks, deductions, taxes, and applicable labor rules.
+        </p>
+
+        <div class="ad-box my-8">Middle Content Ad Area Inside the SEO Article Section</div>
+
+        <h2 id="how-to-use" class="mt-10 text-2xl font-black tracking-tight text-slate-950">How to Use the Overtime Calculator</h2>
+        <p class="mt-4 text-base leading-8 text-slate-600">
+          Start by entering your regular hourly wage. This is your base pay rate before overtime premiums. Next, enter the number of regular hours worked. For many U.S. hourly workers, regular weekly hours are often counted up to 40 hours in a workweek, but this can vary depending on local rules and employer policies. Then enter the number of overtime hours worked. Finally, choose an overtime multiplier. The most common overtime multiplier is 1.5×, often called time and a half. Some situations may use 2×, often called double time.
+        </p>
+
+        <p class="mt-5 text-base leading-8 text-slate-600">
+          After you enter the numbers, the calculator instantly displays total gross pay, hourly wage, overtime rate, regular hours, overtime hours, regular pay, overtime pay, total hours, and effective hourly rate. The effective hourly rate can be helpful because it shows your average pay across all hours after including overtime premiums. For example, if your base wage is $25 per hour, your time-and-a-half overtime rate is $37.50 per hour. If you work 40 regular hours and 5 overtime hours, the overtime premium increases your total gross pay and your effective average hourly rate.
+        </p>
+
+        <div class="mt-8 grid grid-cols-1 gap-5 md:grid-cols-3">
+          <article class="rounded-2xl bg-slate-50 p-5 ring-1 ring-slate-200">
+            <h3 class="text-lg font-black text-slate-950">Step 1: Enter Wage</h3>
+            <p class="mt-3 text-sm leading-7 text-slate-600">Type your regular hourly wage before overtime, taxes, benefits, and deductions.</p>
+          </article>
+          <article class="rounded-2xl bg-slate-50 p-5 ring-1 ring-slate-200">
+            <h3 class="text-lg font-black text-slate-950">Step 2: Add Hours</h3>
+            <p class="mt-3 text-sm leading-7 text-slate-600">Enter regular hours and overtime hours from your schedule, timesheet, or pay period record.</p>
+          </article>
+          <article class="rounded-2xl bg-slate-50 p-5 ring-1 ring-slate-200">
+            <h3 class="text-lg font-black text-slate-950">Step 3: Choose Multiplier</h3>
+            <p class="mt-3 text-sm leading-7 text-slate-600">Select time and a half, double time, straight time, or a custom premium multiplier.</p>
+          </article>
+        </div>
+
+        <h2 class="mt-12 text-2xl font-black tracking-tight text-slate-950">How to Calculate Overtime Pay</h2>
+        <p class="mt-4 text-base leading-8 text-slate-600">
+          The basic overtime formula is straightforward. First, multiply your hourly wage by the overtime multiplier to find the overtime rate. Then multiply that overtime rate by the number of overtime hours worked. Regular pay is calculated separately by multiplying the regular hourly wage by regular hours. Total gross pay equals regular pay plus overtime pay. This amount is gross pay, meaning it is calculated before taxes, payroll deductions, retirement contributions, health insurance premiums, wage garnishments, or other adjustments.
+        </p>
+
+        <p class="mt-5 text-base leading-8 text-slate-600">
+          For example, suppose your regular hourly wage is $20 per hour and your overtime multiplier is 1.5×. Your overtime rate is $30 per hour. If you work 40 regular hours and 8 overtime hours, your regular pay is $800 and your overtime pay is $240. Your total gross pay would be $1,040 before deductions. If double time applies at 2×, the overtime rate would be $40 per hour, and 8 double-time hours would equal $320 in overtime pay.
+        </p>
+
+        <div class="table-wrap mt-8 rounded-2xl border border-slate-200">
+          <table class="w-full text-left text-sm">
+            <thead class="bg-slate-100 text-slate-700">
+              <tr>
+                <th class="px-4 py-3 font-black">Pay Type</th>
+                <th class="px-4 py-3 font-black">Multiplier</th>
+                <th class="px-4 py-3 font-black">Example at $20/hr</th>
+                <th class="px-4 py-3 font-black">Typical Use</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200 bg-white">
+              <tr>
+                <td class="px-4 py-3 font-bold text-slate-900">Regular Pay</td>
+                <td class="px-4 py-3">1.0×</td>
+                <td class="px-4 py-3">$20/hr</td>
+                <td class="px-4 py-3">Standard scheduled hours</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-3 font-bold text-slate-900">Time and a Half</td>
+                <td class="px-4 py-3">1.5×</td>
+                <td class="px-4 py-3">$30/hr</td>
+                <td class="px-4 py-3">Common overtime premium</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-3 font-bold text-slate-900">Double Time</td>
+                <td class="px-4 py-3">2.0×</td>
+                <td class="px-4 py-3">$40/hr</td>
+                <td class="px-4 py-3">Certain holidays, long shifts, or special rules</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ad-box my-8">Bottom Content Ad Area Before FAQ</div>
+
+        <h2 class="mt-12 text-2xl font-black tracking-tight text-slate-950">Time and a Half Explained</h2>
+        <p class="mt-4 text-base leading-8 text-slate-600">
+          Time and a half means an employee is paid one and one-half times the regular hourly rate for qualifying overtime hours. The multiplier is 1.5. If the regular rate is $18 per hour, time and a half is $27 per hour. If the regular rate is $25 per hour, time and a half is $37.50 per hour. This type of overtime premium is common for covered nonexempt hourly workers in many U.S. workweek overtime situations, but actual eligibility depends on employment classification and applicable law.
+        </p>
+
+        <p class="mt-5 text-base leading-8 text-slate-600">
+          A time and a half calculator is helpful because overtime pay is not simply extra hours at the regular rate. The premium rate can increase the value of each additional hour significantly. Workers can use this estimate to decide whether extra shifts are worth the time, compare schedules, budget for upcoming expenses, or check whether a paycheck roughly matches expected hours.
+        </p>
+
+        <h2 class="mt-12 text-2xl font-black tracking-tight text-slate-950">Double Time Explained</h2>
+        <p class="mt-4 text-base leading-8 text-slate-600">
+          Double time means the employee is paid twice the regular hourly wage for qualifying hours. If a worker earns $20 per hour, double time is $40 per hour. Double time may apply under certain state or provincial laws, union contracts, employer policies, holiday pay rules, emergency schedules, or long-shift thresholds. It is not automatic in every workplace, so workers should confirm when double time applies before relying on the estimate.
+        </p>
+
+        <p class="mt-5 text-base leading-8 text-slate-600">
+          Employers and workers should carefully distinguish between overtime, holiday pay, premium pay, shift differentials, and bonuses. Some payments may be calculated separately or included differently depending on the payroll system and applicable rules. This calculator provides a simple gross pay estimate based on the selected multiplier, but payroll departments may use more detailed calculations.
+        </p>
+
+        <h2 class="mt-12 text-2xl font-black tracking-tight text-slate-950">Common Uses for an Overtime Pay Calculator</h2>
+        <div class="mt-8 grid grid-cols-1 gap-5 md:grid-cols-2">
+          <article class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
+            <h3 class="text-xl font-black text-slate-950">Weekly Paycheck Estimates</h3>
+            <p class="mt-3 text-sm leading-7 text-slate-600">Estimate total gross pay for a week with regular hours and overtime hours before payroll taxes and deductions.</p>
+          </article>
+          <article class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
+            <h3 class="text-xl font-black text-slate-950">Paystub Review</h3>
+            <p class="mt-3 text-sm leading-7 text-slate-600">Compare your expected regular pay and overtime pay against your paystub or timecard summary.</p>
+          </article>
+          <article class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
+            <h3 class="text-xl font-black text-slate-950">Shift Planning</h3>
+            <p class="mt-3 text-sm leading-7 text-slate-600">Check how extra shifts, weekend work, or extended hours may affect gross pay before accepting additional work.</p>
+          </article>
+          <article class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
+            <h3 class="text-xl font-black text-slate-950">Small Business Payroll</h3>
+            <p class="mt-3 text-sm leading-7 text-slate-600">Help managers and small business owners estimate gross overtime costs before running payroll.</p>
+          </article>
+        </div>
+
+        <h2 class="mt-12 text-2xl font-black tracking-tight text-slate-950">Important Payroll Details This Calculator Does Not Include</h2>
+        <p class="mt-4 text-base leading-8 text-slate-600">
+          This calculator estimates gross pay only. It does not calculate final take-home pay. Your paycheck may be reduced by income tax withholding, Social Security, Medicare, Canada Pension Plan, Employment Insurance, state or provincial taxes, health insurance premiums, retirement contributions, union dues, wage garnishments, or other deductions. It also does not include tips, bonuses, commissions, paid time off, holiday premiums, shift differentials, retroactive pay, expense reimbursements, or employer-specific adjustments.
+        </p>
+
+        <p class="mt-5 text-base leading-8 text-slate-600">
+          Overtime eligibility can also depend on more than hours worked. Some salaried employees may be exempt from overtime depending on job duties and legal classification. Some employees may have special rules under union agreements, public sector policies, healthcare schedules, transportation rules, agricultural rules, construction rules, or local labor laws. Because rules vary, this calculator should be used as a planning estimate rather than a final legal answer.
+        </p>
+
+        <h2 class="mt-12 text-2xl font-black tracking-tight text-slate-950">Paystub Checklist for Overtime</h2>
+        <p class="mt-4 text-base leading-8 text-slate-600">
+          When reviewing overtime pay, compare your timesheet with your paystub. Check that regular hours and overtime hours are separated correctly. Confirm that the overtime multiplier matches your workplace rule. Review unpaid meal breaks, paid breaks, shift premiums, holiday rules, and daily overtime rules if they apply. Also check whether your employer uses a weekly, biweekly, semi-monthly, or monthly pay period, because pay periods can affect how hours appear on a paycheck.
+        </p>
+
+        <p class="mt-5 text-base leading-8 text-slate-600">
+          If your pay appears incorrect, gather your time records, schedule, paystub, employment agreement, and workplace policy. Then contact your manager, HR department, payroll provider, union representative, or local labor authority. Clear records make payroll questions easier to resolve. This calculator can help you estimate the expected gross pay, but official payroll records and applicable laws determine the final answer.
+        </p>
+
+        <h2 class="mt-12 text-2xl font-black tracking-tight text-slate-950">Why Effective Hourly Rate Matters</h2>
+        <p class="mt-4 text-base leading-8 text-slate-600">
+          The effective hourly rate shows your average hourly earnings after combining regular pay and overtime pay. This number can help compare different schedules. For example, a 45-hour week with 5 overtime hours may produce a higher effective hourly rate than a 40-hour week at the same base wage. However, effective pay is only one factor. Extra hours can also affect rest, childcare, commuting, health, family time, and work-life balance.
+        </p>
+
+        <p class="mt-5 text-base leading-8 text-slate-600">
+          Workers can use the effective hourly rate to make informed decisions about overtime opportunities. Employers can use it to understand labor cost. In both cases, the calculation supports better planning. A transparent pay estimate can reduce confusion and help everyone understand the financial impact of additional hours.
+        </p>
+      </div>
+    </section>
+
+    <section id="faq" class="mt-8 rounded-3xl bg-white p-5 shadow-sm ring-1 ring-slate-200 sm:p-8">
+      <div class="mx-auto max-w-4xl">
+        <span class="inline-flex rounded-full bg-slate-100 px-4 py-2 text-sm font-black text-slate-700 ring-1 ring-slate-200">Frequently Asked Questions</span>
+        <h2 class="mt-5 text-3xl font-black tracking-tight text-slate-950">Overtime Calculator FAQ</h2>
+
+        <div class="mt-8 space-y-5">
+          <article class="rounded-2xl bg-slate-50 p-5 ring-1 ring-slate-200">
+            <h3 class="text-lg font-black text-slate-950">How do I calculate overtime pay?</h3>
+            <p class="mt-3 text-sm leading-7 text-slate-600">Multiply your regular hourly wage by the overtime multiplier, then multiply that overtime rate by your overtime hours.</p>
+          </article>
+
+          <article class="rounded-2xl bg-slate-50 p-5 ring-1 ring-slate-200">
+            <h3 class="text-lg font-black text-slate-950">What is time and a half?</h3>
+            <p class="mt-3 text-sm leading-7 text-slate-600">Time and a half means 1.5 times your regular hourly wage. A $20 hourly wage becomes $30 per overtime hour.</p>
+          </article>
+
+          <article class="rounded-2xl bg-slate-50 p-5 ring-1 ring-slate-200">
+            <h3 class="text-lg font-black text-slate-950">What is double time?</h3>
+            <p class="mt-3 text-sm leading-7 text-slate-600">Double time means 2 times your regular hourly wage. A $20 hourly wage becomes $40 per double-time hour.</p>
+          </article>
+
+          <article class="rounded-2xl bg-slate-50 p-5 ring-1 ring-slate-200">
+            <h3 class="text-lg font-black text-slate-950">Does this calculator show take-home pay?</h3>
+            <p class="mt-3 text-sm leading-7 text-slate-600">No. It estimates gross pay before taxes, deductions, benefits, tips, bonuses, and payroll adjustments.</p>
+          </article>
+
+          <article class="rounded-2xl bg-slate-50 p-5 ring-1 ring-slate-200">
+            <h3 class="text-lg font-black text-slate-950">Are overtime rules the same everywhere?</h3>
+            <p class="mt-3 text-sm leading-7 text-slate-600">No. Overtime rules vary by country, state, province, industry, job classification, union agreement, and employer policy.</p>
+          </article>
+
+          <article class="rounded-2xl bg-slate-50 p-5 ring-1 ring-slate-200">
+            <h3 class="text-lg font-black text-slate-950">Can salaried employees get overtime?</h3>
+            <p class="mt-3 text-sm leading-7 text-slate-600">Some salaried employees may qualify for overtime depending on local law, pay level, job duties, and exemption status.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="mt-8 rounded-3xl bg-slate-950 p-5 text-white shadow-sm sm:p-8">
+      <div class="mx-auto max-w-4xl">
+        <h2 class="text-2xl font-black tracking-tight">Legal Disclaimer</h2>
+        <div class="mt-5 space-y-4 text-sm leading-7 text-slate-300">
+          <p>
+            This Overtime Calculator is provided for general educational and payroll estimation purposes only. It uses simplified calculations based on user-entered hourly wage, regular hours, overtime hours, and multiplier. It does not calculate taxes, deductions, benefits, tips, bonuses, commissions, shift differentials, holiday premiums, paid leave, retroactive adjustments, or final paycheck amounts.
+          </p>
+          <p>
+            This tool is not legal, payroll, tax, employment, accounting, or professional labor advice. Overtime eligibility and pay rules can vary by jurisdiction, employment classification, industry, agreement, contract, union rules, employer policy, and applicable labor law. Users are responsible for verifying results with their employer, HR department, payroll provider, labor authority, or qualified professional.
+          </p>
+          <p>
+            NodnWebTools and its operators are not responsible for payroll errors, underpayment, overpayment, employment disputes, tax issues, legal claims, calculation mistakes, or decisions made based on this tool. Always confirm official pay calculations with the appropriate payroll or legal authority.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="ad-box mt-8">Bottom Ad Area Near the End of the Page</div>
   </main>
 
+  <footer class="mt-10 border-t border-slate-200 bg-white">
+    <div class="mx-auto flex w-full max-w-7xl flex-col gap-3 px-4 py-8 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
+      <p>© <span id="yearText"></span> NodnWebTools. All rights reserved.</p>
+      <a href="https://nodntools.com" class="font-semibold text-accent-700 hover:text-accent-800">Visit Home</a>
+    </div>
+  </footer>
+
   <script>
-    const hourlyWageInput = document.getElementById("hourlyWage");
-    const regularHoursInput = document.getElementById("regularHours");
-    const overtimeHoursInput = document.getElementById("overtimeHours");
-    const overtimeMultiplierSelect = document.getElementById("overtimeMultiplier");
+    document.addEventListener("DOMContentLoaded", function () {
+      const hourlyWageInput = document.getElementById("hourlyWage");
+      const regularHoursInput = document.getElementById("regularHours");
+      const overtimeHoursInput = document.getElementById("overtimeHours");
+      const overtimeMultiplierSelect = document.getElementById("overtimeMultiplier");
 
-    const totalGrossPayEl = document.getElementById("totalGrossPay");
-    const displayHourlyWageEl = document.getElementById("displayHourlyWage");
-    const displayOvertimeRateEl = document.getElementById("displayOvertimeRate");
-    const displayRegularHoursEl = document.getElementById("displayRegularHours");
-    const displayOvertimeHoursEl = document.getElementById("displayOvertimeHours");
-    const regularPayEl = document.getElementById("regularPay");
-    const overtimePayEl = document.getElementById("overtimePay");
-    const displayMultiplierEl = document.getElementById("displayMultiplier");
-    const displayPayTypeEl = document.getElementById("displayPayType");
+      const totalGrossPayEl = document.getElementById("totalGrossPay");
+      const displayHourlyWageEl = document.getElementById("displayHourlyWage");
+      const displayOvertimeRateEl = document.getElementById("displayOvertimeRate");
+      const displayRegularHoursEl = document.getElementById("displayRegularHours");
+      const displayOvertimeHoursEl = document.getElementById("displayOvertimeHours");
+      const regularPayEl = document.getElementById("regularPay");
+      const overtimePayEl = document.getElementById("overtimePay");
+      const displayMultiplierEl = document.getElementById("displayMultiplier");
+      const displayPayTypeEl = document.getElementById("displayPayType");
+      const displayTotalHoursEl = document.getElementById("displayTotalHours");
+      const effectiveHourlyRateEl = document.getElementById("effectiveHourlyRate");
+      const copyResultBtn = document.getElementById("copyResultBtn");
+      const resetBtn = document.getElementById("resetBtn");
+      const statusBox = document.getElementById("statusBox");
+      const yearText = document.getElementById("yearText");
 
-    function formatCurrency(value) {
-      return new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-      }).format(value);
-    }
+      function setStatus(message, type) {
+        statusBox.textContent = message;
+        if (type === "success") {
+          statusBox.className = "rounded-2xl bg-emerald-50 p-4 text-sm font-bold text-emerald-700 ring-1 ring-emerald-100";
+        } else if (type === "error") {
+          statusBox.className = "rounded-2xl bg-rose-50 p-4 text-sm font-bold text-rose-700 ring-1 ring-rose-100";
+        } else {
+          statusBox.className = "rounded-2xl bg-accent-50 p-4 text-sm font-bold text-accent-700 ring-1 ring-accent-100";
+        }
+      }
 
-    function formatNumber(value, decimals = 2) {
-      return new Intl.NumberFormat("en-US", {
-        minimumFractionDigits: decimals,
-        maximumFractionDigits: decimals
-      }).format(value);
-    }
+      function formatCurrency(value) {
+        return new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "USD",
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        }).format(Number.isFinite(value) ? value : 0);
+      }
 
-    function sanitizeNumber(value, fallback = 0) {
-      const number = parseFloat(value);
-      return isNaN(number) || number < 0 ? fallback : number;
-    }
+      function formatNumber(value, decimals) {
+        return new Intl.NumberFormat("en-US", {
+          minimumFractionDigits: decimals,
+          maximumFractionDigits: decimals
+        }).format(Number.isFinite(value) ? value : 0);
+      }
 
-    function getPayType(multiplier) {
-      if (multiplier === 2) return "Double Time";
-      if (multiplier === 1.5) return "Time and a Half";
-      return "Custom Overtime Rate";
-    }
+      function sanitizeNumber(value, fallback) {
+        const number = parseFloat(value);
+        return Number.isFinite(number) && number >= 0 ? number : fallback;
+      }
 
-    function calculateOvertimePay() {
-      const hourlyWage = sanitizeNumber(hourlyWageInput.value);
-      const regularHours = sanitizeNumber(regularHoursInput.value);
-      const overtimeHours = sanitizeNumber(overtimeHoursInput.value);
-      const overtimeMultiplier = sanitizeNumber(overtimeMultiplierSelect.value, 1.5);
+      function getPayType(multiplier) {
+        if (multiplier === 2) return "Double Time";
+        if (multiplier === 1.5) return "Time and a Half";
+        if (multiplier === 1) return "Straight Time";
+        return "Custom Overtime Rate";
+      }
 
-      const overtimeRate = hourlyWage * overtimeMultiplier;
-      const regularPay = hourlyWage * regularHours;
-      const overtimePay = overtimeRate * overtimeHours;
-      const totalGrossPay = regularPay + overtimePay;
+      function formatHours(hours) {
+        return formatNumber(hours, hours % 1 === 0 ? 0 : 2) + (hours === 1 ? " Hour" : " Hours");
+      }
 
-      totalGrossPayEl.textContent = formatCurrency(totalGrossPay);
-      displayHourlyWageEl.textContent = formatCurrency(hourlyWage);
-      displayOvertimeRateEl.textContent = formatCurrency(overtimeRate) + "/hr";
-      displayRegularHoursEl.textContent = formatNumber(regularHours, regularHours % 1 === 0 ? 0 : 2) + " Hours";
-      displayOvertimeHoursEl.textContent = formatNumber(overtimeHours, overtimeHours % 1 === 0 ? 0 : 2) + " Hours";
-      regularPayEl.textContent = formatCurrency(regularPay);
-      overtimePayEl.textContent = formatCurrency(overtimePay);
-      displayMultiplierEl.textContent = formatNumber(overtimeMultiplier, overtimeMultiplier % 1 === 0 ? 0 : 1) + "×";
-      displayPayTypeEl.textContent = getPayType(overtimeMultiplier);
-    }
+      function calculateOvertimePay() {
+        const hourlyWage = sanitizeNumber(hourlyWageInput.value, 0);
+        const regularHours = sanitizeNumber(regularHoursInput.value, 0);
+        const overtimeHours = sanitizeNumber(overtimeHoursInput.value, 0);
+        const overtimeMultiplier = sanitizeNumber(overtimeMultiplierSelect.value, 1.5);
 
-    hourlyWageInput.addEventListener("input", calculateOvertimePay);
-    regularHoursInput.addEventListener("input", calculateOvertimePay);
-    overtimeHoursInput.addEventListener("input", calculateOvertimePay);
-    overtimeMultiplierSelect.addEventListener("change", calculateOvertimePay);
+        const overtimeRate = hourlyWage * overtimeMultiplier;
+        const regularPay = hourlyWage * regularHours;
+        const overtimePay = overtimeRate * overtimeHours;
+        const totalGrossPay = regularPay + overtimePay;
+        const totalHours = regularHours + overtimeHours;
+        const effectiveHourlyRate = totalHours > 0 ? totalGrossPay / totalHours : 0;
 
-    calculateOvertimePay();
+        totalGrossPayEl.textContent = formatCurrency(totalGrossPay);
+        displayHourlyWageEl.textContent = formatCurrency(hourlyWage);
+        displayOvertimeRateEl.textContent = formatCurrency(overtimeRate) + "/hr";
+        displayRegularHoursEl.textContent = formatHours(regularHours);
+        displayOvertimeHoursEl.textContent = formatHours(overtimeHours);
+        regularPayEl.textContent = formatCurrency(regularPay);
+        overtimePayEl.textContent = formatCurrency(overtimePay);
+        displayMultiplierEl.textContent = formatNumber(overtimeMultiplier, overtimeMultiplier % 1 === 0 ? 0 : 2) + "×";
+        displayPayTypeEl.textContent = getPayType(overtimeMultiplier);
+        displayTotalHoursEl.textContent = formatHours(totalHours);
+        effectiveHourlyRateEl.textContent = formatCurrency(effectiveHourlyRate) + "/hr";
+      }
+
+      async function copyResult() {
+        try {
+          const text = [
+            "Overtime Calculator Result",
+            "Total Gross Pay: " + totalGrossPayEl.textContent,
+            "Hourly Wage: " + displayHourlyWageEl.textContent,
+            "Overtime Rate: " + displayOvertimeRateEl.textContent,
+            "Regular Hours: " + displayRegularHoursEl.textContent,
+            "Overtime Hours: " + displayOvertimeHoursEl.textContent,
+            "Regular Pay: " + regularPayEl.textContent,
+            "Overtime Pay: " + overtimePayEl.textContent,
+            "Total Hours: " + displayTotalHoursEl.textContent,
+            "Effective Hourly Rate: " + effectiveHourlyRateEl.textContent,
+            "Multiplier: " + displayMultiplierEl.textContent + " - " + displayPayTypeEl.textContent
+          ].join("\n");
+
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            await navigator.clipboard.writeText(text);
+          } else {
+            const temp = document.createElement("textarea");
+            temp.value = text;
+            temp.style.position = "fixed";
+            temp.style.opacity = "0";
+            document.body.appendChild(temp);
+            temp.select();
+            document.execCommand("copy");
+            temp.remove();
+          }
+
+          copyResultBtn.textContent = "Copied!";
+          setStatus("Result copied", "success");
+          window.setTimeout(function () {
+            copyResultBtn.textContent = "Copy Result";
+            setStatus("Ready", "info");
+          }, 1500);
+        } catch (error) {
+          setStatus("Copy failed", "error");
+        }
+      }
+
+      function resetCalculator() {
+        hourlyWageInput.value = "25";
+        regularHoursInput.value = "40";
+        overtimeHoursInput.value = "5";
+        overtimeMultiplierSelect.value = "1.5";
+        calculateOvertimePay();
+        setStatus("Calculator reset", "success");
+      }
+
+      hourlyWageInput.addEventListener("input", calculateOvertimePay);
+      regularHoursInput.addEventListener("input", calculateOvertimePay);
+      overtimeHoursInput.addEventListener("input", calculateOvertimePay);
+      overtimeMultiplierSelect.addEventListener("change", calculateOvertimePay);
+      copyResultBtn.addEventListener("click", copyResult);
+      resetBtn.addEventListener("click", resetCalculator);
+
+      yearText.textContent = new Date().getFullYear();
+      calculateOvertimePay();
+    });
   </script>
 </body>
 </html>
