@@ -4,498 +4,972 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404"
-     crossorigin="anonymous"></script>
-
-	<meta name="google-adsense-account" content="ca-pub-5282672325821404">	
-
-  <title>Online CSV to JSON Converter | Free Data Formatting Tool - NodnWebTools</title>
-
-  <meta
-    name="description"
-    content="Use the free NodnWebTools CSV to JSON Converter to seamlessly transform Excel CSV spreadsheets into developer-friendly JSON arrays and vice versa instantly. 100% secure client-side conversion."
-  />
-  <meta
-    name="keywords"
-    content="csv to json, json to csv, online csv converter, excel to json, csv parser, json formatter, free data converter, NodnWebTools"
-  />
+  <title>CSV JSON Converter | Data Format Tool</title>
+  <meta name="description" content="Free CSV JSON converter to transform CSV to JSON, JSON to CSV, upload files, copy output, and download clean data locally." />
+  <meta name="keywords" content="CSV JSON converter, CSV to JSON converter, JSON to CSV converter, online CSV converter, online JSON converter, Excel CSV to JSON, JSON array to CSV, data format converter, CSV parser, JSON formatter, spreadsheet to JSON, developer data tool, client-side CSV converter, browser JSON converter, free data converter, tabular data converter, NodnWebTools" />
   <meta name="author" content="NodnWebTools" />
   <meta name="robots" content="index, follow" />
 
-  <meta property="og:title" content="Online CSV to JSON Converter | NodnWebTools" />
-  <meta
-    property="og:description"
-    content="Convert Excel CSV files to JSON arrays or transform JSON objects back into clean CSV format instantly and securely in your browser."
-  />
+  <meta property="og:title" content="CSV JSON Converter | Data Format Tool" />
+  <meta property="og:description" content="Convert CSV to JSON or JSON to CSV locally in your browser with upload, copy, download, and clean formatting tools." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://nodntools.com/csv-json-converter.html" />
   <meta property="og:site_name" content="NodnWebTools" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Online CSV to JSON Converter" />
-  <meta
-    name="twitter:description"
-    content="A secure, client-side online data transformation utility for fast Excel CSV and JSON conversions."
-  />
+  <meta name="twitter:title" content="CSV JSON Converter" />
+  <meta name="twitter:description" content="Convert CSV and JSON data formats locally in your browser with copy and download options." />
+
+  <meta name="google-adsense-account" content="ca-pub-5282672325821404" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404" crossorigin="anonymous"></script>
 
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            brand: {
-              50: '#f0fdfa',
-              100: '#ccfbf1',
-              200: '#99f6e4',
-              500: '#14b8a6',
-              600: '#0d9488',
-              700: '#0f766e',
-              800: '#115e59',
-            }
-          }
-        }
-      }
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "CSV JSON Converter",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "All",
+    "url": "https://nodntools.com/csv-json-converter.html",
+    "description": "A free browser-based CSV JSON converter that transforms CSV to JSON and JSON to CSV locally with file upload, copy, download, and clean data formatting tools.",
+    "featureList": [
+      "Convert CSV to JSON",
+      "Convert JSON to CSV",
+      "Upload CSV and JSON files",
+      "Copy converted output",
+      "Download converted data",
+      "Client-side browser processing",
+      "CSV parsing with quoted field support",
+      "JSON array and object conversion"
+    ],
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "NodnWebTools",
+      "url": "https://nodntools.com"
     }
+  }
   </script>
 
   <style>
-    html, body { width: 100%; overflow-x: hidden; }
-    *, *::before, *::after { box-sizing: border-box; }
-    textarea, input, button { max-width: 100%; }
-    .adsbygoogle { max-width: 100%; overflow: hidden; }
+    html,
+    body {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      min-width: 0;
+    }
+
+    main,
+    section,
+    article,
+    aside,
+    div,
+    textarea,
+    input,
+    select,
+    button,
+    table,
+    canvas,
+    img,
+    svg,
+    pre,
+    code,
+    iframe,
+    ins {
+      max-width: 100%;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    .safe-break {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .mobile-card,
+    .mobile-panel,
+    .mobile-preview,
+    .ad-box {
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
+    .mobile-code {
+      max-width: 100%;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .ad-box {
+      width: 100%;
+      min-height: 90px;
+      border: 2px dashed #cbd5e1;
+      background: #f8fafc;
+      color: #94a3b8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-radius: 1rem;
+      padding: 1rem;
+      font-size: 0.875rem;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding-left: 0;
+        padding-right: 0;
+      }
+
+      .mobile-card,
+      .mobile-panel,
+      .mobile-preview {
+        border-radius: 1.25rem !important;
+        padding: 1rem !important;
+      }
+
+      .mobile-button-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .mobile-button-grid button,
+      .mobile-button-grid label,
+      .mobile-full {
+        width: 100%;
+      }
+
+      h1 {
+        font-size: 2rem !important;
+        line-height: 2.35rem !important;
+      }
+
+      .ad-box {
+        min-height: 90px;
+        border-radius: 0.875rem;
+        padding: 0.875rem;
+        font-size: 0.75rem;
+      }
+    }
+
     @media (max-width: 380px) {
-      .text-2xl { font-size: 1.35rem; line-height: 1.75rem; }
-      .rounded-3xl { border-radius: 1.25rem; }
+      .mobile-card,
+      .mobile-panel,
+      .mobile-preview {
+        padding: 0.875rem !important;
+        border-radius: 1rem !important;
+      }
+
+      h1 {
+        font-size: 1.75rem !important;
+      }
+
+      h2 {
+        font-size: 1.35rem !important;
+      }
+
+      textarea,
+      button,
+      label {
+        font-size: 0.9rem !important;
+      }
     }
   </style>
 </head>
 
-<body class="min-h-screen bg-slate-100 px-3 py-5 sm:px-4 sm:py-8 overflow-x-hidden">
-  <main class="mx-auto w-full max-w-5xl overflow-hidden">
-
-    <div class="mb-8 text-center">
-      <a
-        href="https://nodntools.com"
-        class="inline-block transition hover:opacity-80"
-        aria-label="NodnWebTools Home"
-      >
-        <div class="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
-          Nodn<span class="text-blue-600">WebTools</span>
-        </div>
+<body class="min-h-screen bg-slate-50 text-slate-800">
+  <div class="w-full px-4 py-5 sm:px-6 lg:px-8">
+    <header class="mx-auto flex w-full max-w-7xl flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <a href="https://nodntools.com" class="inline-flex items-center gap-2 safe-break" aria-label="NodnWebTools Home">
+        <span class="text-2xl font-black tracking-tight text-slate-950">
+          Nodn<span class="text-indigo-600">WebTools</span>
+        </span>
       </a>
+      <nav class="flex flex-wrap items-center gap-2 text-sm text-slate-500">
+        <a href="https://nodntools.com" class="rounded-full border border-slate-200 bg-white px-4 py-2 font-semibold transition hover:border-indigo-200 hover:text-indigo-700">Home</a>
+        <span class="rounded-full bg-indigo-50 px-4 py-2 font-semibold text-indigo-700">Client-side data utility</span>
+      </nav>
+    </header>
+
+    <div class="mx-auto mt-5 w-full max-w-7xl">
+      <div class="ad-box">AdSense Responsive Ad Area - Top</div>
     </div>
 
-    <div class="mb-6 flex min-h-[80px] sm:min-h-[90px] w-full items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white px-3 text-center text-xs sm:text-sm text-slate-400">
-      AdSense Responsive Ad Area - Top
-    </div>
-
-    <div class="mb-5 flex flex-col gap-1.5 rounded-2xl bg-slate-200 p-1.5 shadow-inner sm:flex-row">
-      <button id="tabCsvToJson" class="w-full rounded-xl px-3 py-2.5 text-center text-xs sm:text-sm font-bold transition-all text-brand-800 bg-white shadow-sm">
-        CSV to JSON Mode
-      </button>
-      <button id="tabJsonToCsv" class="w-full rounded-xl px-3 py-2.5 text-center text-xs sm:text-sm font-bold transition-all text-slate-600 hover:text-slate-900">
-        JSON to CSV Mode
-      </button>
-    </div>
-
-    <section class="grid grid-cols-1 gap-5 lg:grid-cols-2">
-
-      <div class="rounded-3xl bg-white p-4 shadow-xl ring-1 ring-slate-200 sm:p-8 lg:sticky lg:top-10 lg:self-start">
+    <main class="mx-auto mt-6 grid w-full max-w-7xl grid-cols-1 gap-6 lg:grid-cols-12">
+      <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:col-span-5 lg:p-8">
         <div class="mb-6">
-          <span class="inline-flex rounded-full bg-brand-50 px-4 py-2 text-sm font-semibold text-brand-700" id="badgeLabel">
-            Data Matrix Utility
-          </span>
+          <p class="mb-3 inline-flex rounded-full bg-indigo-50 px-4 py-2 text-sm font-bold text-indigo-700">
+            CSV JSON Converter
+          </p>
 
-          <h1 class="mt-4 text-2xl font-bold tracking-tight text-slate-900 sm:mt-5 sm:text-4xl" id="mainTitle">
-            CSV to JSON Converter
+          <h1 id="mainTitle" class="safe-break text-4xl font-black tracking-tight text-slate-950 sm:text-5xl">
+            Convert CSV to JSON
           </h1>
 
-          <p class="mt-3 text-sm leading-6 text-slate-600 sm:text-base sm:leading-7" id="mainDescription">
-            Convert standard Excel CSV spreadsheets into fully structured JSON developer arrays instantly. 
+          <p id="mainDescription" class="mt-4 text-base leading-7 text-slate-600">
+            Paste spreadsheet-style CSV data or upload a file to convert rows into clean JSON arrays.
+            Switch modes anytime to convert JSON objects and arrays back into CSV.
           </p>
         </div>
 
-        <div class="space-y-5">
-          <div>
-            <div class="flex flex-wrap justify-between items-center mb-2 gap-2">
-              <label for="inputText" class="text-sm font-semibold text-slate-700" id="inputLabel">Raw CSV Payload Source</label>
-              
-              <div class="flex w-full flex-wrap items-center gap-2 sm:w-auto">
-                <label class="flex-1 whitespace-nowrap text-center text-xs font-semibold text-brand-700 bg-brand-50 hover:bg-brand-100 px-3 py-1.5 rounded-xl cursor-pointer transition sm:flex-none">
-                  <span>Upload File</span>
-                  <input type="file" id="fileInput" accept=".csv,.json" class="hidden" />
-                </label>
-                <button id="clearBtn" class="flex-1 whitespace-nowrap text-xs font-semibold text-slate-500 hover:text-red-600 bg-slate-100 hover:bg-slate-200 px-3 py-1.5 rounded-xl transition sm:flex-none">
-                  Clear
-                </button>
-              </div>
-            </div>
-            <textarea id="inputText" rows="9" placeholder="Paste your raw comma-separated CSV text streams here..." class="w-full min-h-[220px] rounded-2xl border border-slate-300 bg-slate-50 p-3 font-mono text-xs text-slate-900 shadow-inner outline-none transition focus:border-brand-600 focus:bg-white focus:ring-4 focus:ring-brand-100 resize-y sm:min-h-[260px] sm:p-4"></textarea>
-          </div>
-
-          <div>
-            <button id="convertBtn" class="w-full rounded-2xl bg-brand-600 px-4 py-3.5 text-center text-sm sm:text-base font-bold text-white shadow-md hover:bg-brand-700 active:scale-[0.99] transition-all">
-              Transform Stream Elements
-            </button>
-          </div>
-
-          <div class="rounded-2xl bg-slate-100 p-4 text-xs leading-5 text-slate-600 sm:text-sm sm:leading-6">
-            All structural transformations run locally inside the client browser. No tabular data nodes are ever passed to remote server architectures.
-          </div>
+        <div class="mb-5 grid grid-cols-1 gap-2 rounded-2xl bg-slate-100 p-1.5 sm:grid-cols-2">
+          <button id="tabCsvToJson" type="button" class="rounded-xl bg-white px-4 py-3 text-sm font-black text-indigo-700 shadow-sm transition">
+            CSV to JSON
+          </button>
+          <button id="tabJsonToCsv" type="button" class="rounded-xl px-4 py-3 text-sm font-black text-slate-600 transition hover:bg-white">
+            JSON to CSV
+          </button>
         </div>
-      </div>
 
-      <div class="space-y-6">
-        <div class="rounded-3xl bg-white p-4 shadow-xl ring-1 ring-slate-200 sm:p-8">
-          <div class="mb-6">
-            <h2 class="text-xl font-bold text-slate-900 sm:text-2xl">Transformation Outcome</h2>
-            <p class="mt-2 text-sm text-slate-500">View and save parsed layout tree array structures downstairs.</p>
-          </div>
-
-          <div class="rounded-3xl border border-slate-200 bg-gradient-to-br from-slate-50 via-zinc-50 to-teal-50/20 p-4 sm:p-5">
-            <div class="mb-3 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-              <span class="text-sm font-semibold uppercase tracking-wide text-slate-700" id="outputLabel">Output Array Object</span>
-              
-              <div class="relative grid w-full grid-cols-2 gap-2 sm:flex sm:w-auto sm:items-center sm:space-x-2 sm:gap-0">
-                <button id="copyBtn" class="justify-center text-xs font-semibold text-white bg-slate-900 hover:bg-slate-800 px-3 py-2 sm:py-1.5 rounded-xl transition flex items-center space-x-1 shadow-sm">
-                  <span>Copy</span>
-                </button>
-                <button id="downloadBtn" class="justify-center text-xs font-semibold text-slate-700 bg-white border border-slate-300 hover:bg-slate-50 px-3 py-2 sm:py-1.5 rounded-xl transition flex items-center space-x-1 shadow-sm">
-                  <span>Download</span>
-                </button>
-
-                <span id="copyToast" class="absolute bottom-full right-0 mb-2 bg-slate-900 text-white text-xs px-2.5 py-1 rounded-xl opacity-0 scale-95 pointer-events-none transition-all duration-200 font-semibold shadow-md whitespace-nowrap">
-                  Copied!
-                </span>
-              </div>
+        <div class="mobile-panel rounded-2xl border border-slate-200 bg-slate-50 p-4">
+          <div class="mb-3 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <label id="inputLabel" for="inputText" class="text-sm font-bold text-slate-700">CSV input</label>
+            <div class="mobile-button-grid grid grid-cols-2 gap-2 sm:flex sm:w-auto">
+              <label class="cursor-pointer rounded-xl bg-indigo-50 px-3 py-2 text-center text-xs font-bold text-indigo-700 transition hover:bg-indigo-100">
+                Upload File
+                <input type="file" id="fileInput" accept=".csv,.json,.txt" class="hidden" />
+              </label>
+              <button id="clearBtn" type="button" class="rounded-xl bg-white px-3 py-2 text-xs font-bold text-slate-600 ring-1 ring-slate-200 transition hover:text-red-600">
+                Clear
+              </button>
             </div>
-            
-            <textarea id="outputText" rows="10" readonly placeholder="Calculated format blocks populate here..." class="w-full min-h-[240px] rounded-2xl border border-slate-200 bg-white p-3 font-mono text-xs text-slate-900 shadow-inner outline-none transition focus:ring-4 focus:ring-brand-100 resize-y sm:min-h-[300px] sm:p-4"></textarea>
           </div>
 
-          <div class="mt-6 flex min-h-[180px] sm:min-h-[250px] w-full flex-col items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-3 sm:p-4 text-center text-xs sm:text-sm text-slate-400">
-            <span class="text-[10px] font-bold text-slate-300 uppercase tracking-widest mb-2">Advertisement</span>
-            <ins class="adsbygoogle"
-                 style="display:block; width:100%; max-width:100%; min-height:160px;"
-                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-                 data-ad-slot="YYYYYYYYYY"
-                 data-ad-format="rectangle, vertical"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-          </div>
+          <textarea id="inputText" rows="12" placeholder="name,email,role&#10;Alex,alex@example.com,Developer&#10;Taylor,taylor@example.com,Designer"
+            class="w-full rounded-2xl border border-slate-300 bg-white p-4 font-mono text-sm leading-6 text-slate-900 outline-none transition focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100"></textarea>
 
-          <div class="mt-5 rounded-2xl bg-slate-100 p-4 text-xs leading-5 text-slate-500">
-            <span class="block font-bold text-slate-700 mb-1">Disclaimer & Legal Notice:</span>
-            This tool is provided on an "as is" and "as available" basis without warranties of any kind. Structural conversion stream routines execute 100% locally within the client user's browser processing threads; NodnWebTools never mirrors, intercepts, captures, or leaks your payload texts. The user maintains absolute personal liability to verify characters or database decoding logs before deployment. NodnWebTools, its creators, and affiliates reject all liability for unexpected character distortion, configuration mismatches, decoding errors, or downstream system damage resulting from compiling strings.
+          <div class="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-4">
+            <div class="rounded-2xl bg-white p-3 ring-1 ring-slate-100">
+              <p class="text-xs font-black uppercase tracking-widest text-slate-400">Characters</p>
+              <p id="characterCount" class="mt-1 text-lg font-black text-slate-900">0</p>
+            </div>
+            <div class="rounded-2xl bg-white p-3 ring-1 ring-slate-100">
+              <p class="text-xs font-black uppercase tracking-widest text-slate-400">Lines</p>
+              <p id="lineCount" class="mt-1 text-lg font-black text-slate-900">0</p>
+            </div>
+            <div class="rounded-2xl bg-white p-3 ring-1 ring-slate-100">
+              <p class="text-xs font-black uppercase tracking-widest text-slate-400">Mode</p>
+              <p id="modeCount" class="mt-1 text-lg font-black text-slate-900">CSV</p>
+            </div>
+            <div class="rounded-2xl bg-white p-3 ring-1 ring-slate-100">
+              <p class="text-xs font-black uppercase tracking-widest text-slate-400">Status</p>
+              <p id="statusText" class="mt-1 text-lg font-black text-slate-900">Ready</p>
+            </div>
           </div>
         </div>
 
-        <section class="rounded-3xl bg-white p-4 shadow-sm ring-1 ring-slate-200 sm:p-8">
-          <span class="inline-flex rounded-full bg-slate-200 px-4 py-2 text-sm font-semibold text-slate-800">
-            Data Processing Guide
-          </span>
+        <div id="warningBox" class="mt-4 hidden rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm font-semibold leading-6 text-amber-800"></div>
 
-          <h2 class="mt-5 text-xl font-bold tracking-tight text-slate-900 sm:text-3xl">
-            Bidirectional Data Mapping: Aligning CSV Arrays with JSON Trees
-          </h2>
+        <div class="mobile-button-grid mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2">
+          <button id="convertBtn" type="button"
+            class="rounded-2xl bg-indigo-600 px-4 py-4 text-base font-black text-white shadow-sm transition hover:bg-indigo-700 active:scale-[0.99]">
+            Convert Data
+          </button>
 
-          <div class="mt-5 space-y-5 text-sm leading-7 text-slate-600">
-            <p>
-              In current microservices architectures, synchronizing spreadsheet lists with application databases requires standard deployment of an 
-              <strong class="font-semibold text-slate-800">online csv to json converter</strong>. When operational workflows compile raw comma-separated cells, parsing non-escaped row parameters triggers compilation errors if syntax validation fails downstream.
-            </p>
+          <button id="sampleBtn" type="button"
+            class="rounded-2xl border border-slate-200 bg-white px-4 py-4 text-base font-black text-slate-700 transition hover:border-indigo-200 hover:text-indigo-700">
+            Load Example
+          </button>
+        </div>
 
-            <p>
-              Utilizing an integrated client-side <strong class="font-semibold text-slate-800">json to csv tool</strong> transforms complex web data arrays back into clean spreadsheets instantly. Conversely, software engineering nodes rely on an automated <strong class="font-semibold text-slate-800">excel csv data converter</strong> framework to process legacy user record arrays safely without network delay vectors.
-            </p>
+        <div class="mt-5 rounded-2xl border border-indigo-100 bg-indigo-50 p-4 text-sm leading-6 text-indigo-900">
+          <strong>Privacy note:</strong> CSV and JSON conversion runs locally in your browser.
+          Your pasted data is not intentionally uploaded to a backend conversion server.
+        </div>
+      </section>
 
-            <h3 class="text-lg font-bold text-slate-900 pt-2">How to Manage Comma-Separated Layout Formats Safely</h3>
-            <p>
-              Traditional translation portals parse data inputs via remote cloud endpoints, posing critical compliance hazards. Our local compiler restricts runtime computation within your isolated tab:
-            </p>
-
-            <ul class="list-disc pl-5 space-y-2 text-slate-600">
-              <li><strong>Header Alignment Maps:</strong> The engine isolates the first line array as base property headers, looping subsequent row elements into object attributes seamlessly.</li>
-              <li><strong>Robust Array Flattening:</strong> While shifting nested JSON schemas into flat structures, the system builds matrix mappings using strict escaping models.</li>
-              <li><strong>100% Client-Bound Protection:</strong> Because conversions complete without external API triggers, corporate finance lists and customer tables remain 100% confidential.</li>
-            </ul>
-
-            <p>
-              By leveraging this flexible, standalone <strong class="font-semibold text-slate-800">line and archive check utility</strong> guide, you can automate structural object pipelines safely without data leakage pathways.
-            </p>
+      <section class="space-y-6 lg:col-span-7">
+        <div class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
+          <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+            <div>
+              <h2 class="text-2xl font-black tracking-tight text-slate-950">Converted Output</h2>
+              <p class="mt-1 text-sm leading-6 text-slate-500">
+                Review the result, copy it, or download it as a local file.
+              </p>
+            </div>
+            <span id="statusBadge" class="inline-flex w-fit rounded-full bg-slate-100 px-4 py-2 text-sm font-bold text-slate-600">
+              Waiting
+            </span>
           </div>
-        </section>
-      </div>
-    </section>
 
-    <div class="mt-8 flex min-h-[80px] sm:min-h-[90px] w-full items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white px-3 text-center text-xs sm:text-sm text-slate-400">
-      AdSense Responsive Ad Area - Bottom
+          <div class="mt-6 rounded-3xl border border-slate-200 bg-gradient-to-br from-slate-50 via-indigo-50/30 to-violet-50/30 p-4">
+            <div class="mb-3 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+              <span id="outputLabel" class="text-sm font-black uppercase tracking-wide text-slate-700">JSON output</span>
+              <div class="mobile-button-grid grid grid-cols-2 gap-2 sm:flex sm:w-auto">
+                <button id="copyBtn" type="button" class="rounded-xl bg-slate-900 px-4 py-2 text-xs font-bold text-white transition hover:bg-slate-800">
+                  Copy
+                </button>
+                <button id="downloadBtn" type="button" class="rounded-xl bg-indigo-600 px-4 py-2 text-xs font-bold text-white transition hover:bg-indigo-700">
+                  Download
+                </button>
+              </div>
+            </div>
+
+            <textarea id="outputText" rows="14" readonly placeholder="Converted output will appear here..."
+              class="w-full rounded-2xl border border-slate-200 bg-white p-4 font-mono text-sm leading-6 text-slate-900 outline-none"></textarea>
+
+            <div class="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-3">
+              <div class="rounded-2xl bg-white p-4 ring-1 ring-slate-100">
+                <p class="text-xs font-black uppercase tracking-widest text-slate-400">Output size</p>
+                <p id="outputLength" class="safe-break mt-1 text-lg font-black text-slate-900">0</p>
+              </div>
+              <div class="rounded-2xl bg-white p-4 ring-1 ring-slate-100">
+                <p class="text-xs font-black uppercase tracking-widest text-slate-400">Rows</p>
+                <p id="rowCount" class="safe-break mt-1 text-lg font-black text-slate-900">0</p>
+              </div>
+              <div class="rounded-2xl bg-white p-4 ring-1 ring-slate-100">
+                <p class="text-xs font-black uppercase tracking-widest text-slate-400">Columns</p>
+                <p id="columnCount" class="safe-break mt-1 text-lg font-black text-slate-900">0</p>
+              </div>
+            </div>
+          </div>
+
+          <div id="copyFeedback" class="mt-4 hidden rounded-2xl bg-emerald-50 px-4 py-3 text-sm font-bold text-emerald-700">
+            Copied!
+          </div>
+        </div>
+
+        <div class="ad-box">AdSense Responsive Ad Area - Below Result</div>
+      </section>
+    </main>
+
+    <div class="mx-auto mt-6 w-full max-w-7xl">
+      <div class="ad-box">AdSense Responsive Ad Area - Below Tool</div>
     </div>
 
-  </main>
+    <section class="mx-auto mt-8 w-full max-w-7xl space-y-6">
+      <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
+        <p class="mb-3 inline-flex rounded-full bg-violet-50 px-4 py-2 text-sm font-bold text-violet-700">
+          Data Conversion Guide
+        </p>
+        <h2 class="text-3xl font-black tracking-tight text-slate-950">
+          Free CSV JSON Converter for Spreadsheets, APIs, Databases, and Developer Workflows
+        </h2>
+        <div class="mt-5 space-y-5 text-base leading-8 text-slate-600">
+          <p>
+            This CSV JSON Converter is a free online data formatting tool that helps you convert CSV to JSON
+            and JSON to CSV directly in your browser. It is useful for developers, spreadsheet users, data analysts,
+            students, content managers, website owners, support teams, and anyone who needs to move information
+            between Excel-style tables and structured JSON data.
+          </p>
+          <p>
+            CSV, or comma-separated values, is widely used for spreadsheets, exports, reports, customer lists,
+            inventory files, product catalogs, accounting records, and simple tabular datasets. JSON, or JavaScript
+            Object Notation, is widely used for APIs, web applications, databases, configuration files, automation
+            tools, and software development. This converter bridges those two formats so you can transform rows and
+            columns into structured objects or flatten JSON records into a spreadsheet-friendly format.
+          </p>
+          <p>
+            Many users search for tools such as CSV to JSON converter, JSON to CSV converter, Excel CSV to JSON,
+            JSON array to CSV, CSV parser, JSON formatter, online data converter, browser data tool, and spreadsheet
+            converter because they need a fast way to clean and reshape data. This page is designed to provide that
+            workflow with a clear interface, upload support, copy output, download options, and client-side processing.
+          </p>
+        </div>
+      </article>
+
+      <div class="ad-box">AdSense Responsive Ad Area - Middle Content</div>
+
+      <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
+        <h2 class="text-3xl font-black tracking-tight text-slate-950">
+          What Is the Difference Between CSV and JSON?
+        </h2>
+        <div class="mt-5 space-y-5 text-base leading-8 text-slate-600">
+          <p>
+            CSV is a plain text table format. A typical CSV file has one row for headers and additional rows for data.
+            Each row is separated by a new line, and each cell is separated by a comma. CSV is easy to open in spreadsheet
+            software, but it does not naturally represent nested objects, arrays, or complex relationships.
+          </p>
+          <p>
+            JSON is a structured data format built around objects, arrays, keys, and values. It is common in modern
+            web development because JavaScript, APIs, cloud services, and many databases can read and write JSON easily.
+            JSON can represent more complex data than CSV, but it may be harder to edit manually in spreadsheet software.
+          </p>
+          <p>
+            A CSV to JSON converter is helpful when spreadsheet rows need to become API-ready objects. A JSON to CSV
+            converter is helpful when structured records need to become spreadsheet rows for review, reporting, editing,
+            or sharing with non-technical users.
+          </p>
+        </div>
+      </article>
+
+      <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
+        <h2 class="text-3xl font-black tracking-tight text-slate-950">
+          How to Use This CSV JSON Converter
+        </h2>
+        <div class="mt-6 grid grid-cols-1 gap-4 md:grid-cols-3">
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <h3 class="text-lg font-black text-slate-950">1. Choose conversion mode</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-600">
+              Select CSV to JSON when starting with spreadsheet data, or JSON to CSV when starting with JSON objects or arrays.
+            </p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <h3 class="text-lg font-black text-slate-950">2. Paste or upload data</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-600">
+              Paste your source data into the input box or upload a local .csv, .json, or .txt file from your device.
+            </p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <h3 class="text-lg font-black text-slate-950">3. Copy or download output</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-600">
+              Convert the data, review the result, then copy it or download a clean .json or .csv file locally.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
+        <h2 class="text-3xl font-black tracking-tight text-slate-950">
+          Popular Uses for CSV to JSON and JSON to CSV Conversion
+        </h2>
+        <div class="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2">
+          <div class="rounded-2xl border border-slate-200 p-5">
+            <h3 class="text-xl font-black text-slate-950">API testing and development</h3>
+            <p class="mt-2 text-sm leading-7 text-slate-600">
+              Convert spreadsheet rows into JSON arrays for test payloads, mock API responses, imports, automation scripts,
+              and frontend development examples.
+            </p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 p-5">
+            <h3 class="text-xl font-black text-slate-950">Spreadsheet cleanup</h3>
+            <p class="mt-2 text-sm leading-7 text-slate-600">
+              Convert JSON records into CSV so they can be opened in Excel, Google Sheets, Numbers, database tools,
+              or reporting workflows.
+            </p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 p-5">
+            <h3 class="text-xl font-black text-slate-950">Product catalog imports</h3>
+            <p class="mt-2 text-sm leading-7 text-slate-600">
+              Prepare product names, SKUs, prices, categories, descriptions, and inventory rows for ecommerce imports
+              or structured content systems.
+            </p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 p-5">
+            <h3 class="text-xl font-black text-slate-950">Customer and lead data</h3>
+            <p class="mt-2 text-sm leading-7 text-slate-600">
+              Transform contact lists, CRM exports, lead tables, signup forms, and customer datasets between spreadsheet
+              and JSON formats.
+            </p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 p-5">
+            <h3 class="text-xl font-black text-slate-950">Database migration preparation</h3>
+            <p class="mt-2 text-sm leading-7 text-slate-600">
+              Convert simple CSV exports into structured JSON records before importing data into development tools,
+              scripts, or lightweight databases.
+            </p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 p-5">
+            <h3 class="text-xl font-black text-slate-950">Data learning and education</h3>
+            <p class="mt-2 text-sm leading-7 text-slate-600">
+              Students can use the converter to understand how rows, headers, objects, arrays, keys, values,
+              and escaped fields work.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <div class="ad-box">AdSense Responsive Ad Area - Bottom Content</div>
+
+      <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
+        <h2 class="text-3xl font-black tracking-tight text-slate-950">
+          Practical Tips for Clean CSV and JSON Data
+        </h2>
+        <div class="mt-5 space-y-5 text-base leading-8 text-slate-600">
+          <p>
+            Use clear and consistent column headers before converting CSV to JSON. Headers become JSON keys, so names
+            such as product_name, email, price, status, created_at, and category are easier to use than vague names
+            such as column1 or field2. Avoid duplicate headers when possible because they can create confusing output.
+          </p>
+          <p>
+            Be careful with commas, quotes, and line breaks inside CSV fields. Well-formed CSV files wrap fields in
+            double quotes when they contain commas or line breaks. This converter supports quoted CSV fields, but
+            malformed exports may still need cleanup before conversion.
+          </p>
+          <p>
+            When converting JSON to CSV, remember that CSV is a flat table format. Nested objects and arrays must be
+            converted into text values. For complex application data, you may need a custom mapping process before
+            importing the result into a database, spreadsheet, analytics tool, or content management system.
+          </p>
+        </div>
+      </article>
+
+      <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
+        <h2 class="text-3xl font-black tracking-tight text-slate-950">
+          Frequently Asked Questions
+        </h2>
+        <div class="mt-6 space-y-4">
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">What is a CSV to JSON converter?</summary>
+            <p class="mt-3 text-sm leading-7 text-slate-600">
+              A CSV to JSON converter changes spreadsheet-style rows and columns into JSON objects or arrays that can be used in APIs, apps, and development workflows.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">Can this tool convert JSON to CSV?</summary>
+            <p class="mt-3 text-sm leading-7 text-slate-600">
+              Yes. Switch to JSON to CSV mode, paste a JSON object or array, and the tool will generate a downloadable CSV file.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">Does this converter upload my data?</summary>
+            <p class="mt-3 text-sm leading-7 text-slate-600">
+              No. The conversion logic runs locally in your browser. Your pasted data is not intentionally uploaded to a backend conversion server.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">Can I upload CSV and JSON files?</summary>
+            <p class="mt-3 text-sm leading-7 text-slate-600">
+              Yes. You can upload .csv, .json, or .txt files from your device and convert the file contents locally.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">Does CSV support nested data?</summary>
+            <p class="mt-3 text-sm leading-7 text-slate-600">
+              CSV is a flat table format. Nested JSON objects and arrays are converted into text values when exported to CSV.
+            </p>
+          </details>
+        </div>
+      </section>
+
+      <section class="mobile-card rounded-3xl bg-slate-950 p-5 text-slate-200 shadow-sm lg:p-8">
+        <h2 class="text-3xl font-black tracking-tight text-white">Legal Disclaimer</h2>
+        <div class="mt-5 space-y-4 text-sm leading-7 text-slate-300">
+          <p>
+            This CSV JSON Converter is provided for general informational, educational, development, and data-formatting
+            convenience only. It is not a compliance tool, database migration guarantee, backup system, security product,
+            or professional data engineering service.
+          </p>
+          <p>
+            Data conversion may not preserve every character, nested object, data type, formula, encoding style, delimiter,
+            line break, or application-specific schema. Users are responsible for reviewing all converted output before
+            using it in production systems, spreadsheets, APIs, databases, analytics tools, or business workflows.
+          </p>
+          <p>
+            This page is designed to process data locally in the browser, but users remain responsible for browser extensions,
+            device security, copied output, downloaded files, and downstream use. NodnWebTools is not liable for data loss,
+            formatting errors, privacy incidents, import failures, business interruption, or consequences resulting from use
+            of this tool.
+          </p>
+        </div>
+      </section>
+
+      <div class="ad-box">AdSense Responsive Ad Area - Bottom</div>
+    </section>
+
+    <footer class="mx-auto mt-8 w-full max-w-7xl pb-8 text-center text-sm text-slate-500">
+      <p>© <span id="yearText"></span> NodnWebTools. All rights reserved.</p>
+    </footer>
+  </div>
 
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      // Configuration Core Interface Selectors
+    document.addEventListener("DOMContentLoaded", function () {
       const tabCsvToJson = document.getElementById("tabCsvToJson");
       const tabJsonToCsv = document.getElementById("tabJsonToCsv");
-      const badgeLabel = document.getElementById("badgeLabel");
       const mainTitle = document.getElementById("mainTitle");
       const mainDescription = document.getElementById("mainDescription");
-      
       const inputLabel = document.getElementById("inputLabel");
       const inputText = document.getElementById("inputText");
       const fileInput = document.getElementById("fileInput");
       const clearBtn = document.getElementById("clearBtn");
       const convertBtn = document.getElementById("convertBtn");
-
+      const sampleBtn = document.getElementById("sampleBtn");
       const outputLabel = document.getElementById("outputLabel");
       const outputText = document.getElementById("outputText");
       const copyBtn = document.getElementById("copyBtn");
       const downloadBtn = document.getElementById("downloadBtn");
-      const copyToast = document.getElementById("copyToast");
+      const copyFeedback = document.getElementById("copyFeedback");
+      const warningBox = document.getElementById("warningBox");
+      const statusBadge = document.getElementById("statusBadge");
+      const characterCount = document.getElementById("characterCount");
+      const lineCount = document.getElementById("lineCount");
+      const modeCount = document.getElementById("modeCount");
+      const statusText = document.getElementById("statusText");
+      const outputLength = document.getElementById("outputLength");
+      const rowCount = document.getElementById("rowCount");
+      const columnCount = document.getElementById("columnCount");
+      const yearText = document.getElementById("yearText");
 
-      // Global Functional Engine Mode (true = CSV->JSON, false = JSON->CSV)
       let isCsvToJsonMode = true;
+      let latestRows = 0;
+      let latestColumns = 0;
 
-      // Tab Configuration Controller Loops
-      tabCsvToJson.addEventListener("click", () => {
-        if (isCsvToJsonMode) return;
-        isCsvToJsonMode = true;
-        toggleTabUi(tabCsvToJson, tabJsonToCsv);
-        updateInterfaceStrings("CSV to JSON Converter", "Convert standard Excel CSV spreadsheets into fully structured JSON developer arrays instantly.", "Raw CSV Payload Source", "Output Array Object", "Paste your raw comma-separated CSV text streams here...", "Calculated format blocks populate here...");
-      });
+      yearText.textContent = new Date().getFullYear();
 
-      tabJsonToCsv.addEventListener("click", () => {
-        if (!isCsvToJsonMode) return;
-        isCsvToJsonMode = false;
-        toggleTabUi(tabJsonToCsv, tabCsvToJson);
-        updateInterfaceStrings("JSON to CSV Converter", "Transform structured developer JSON trees back into clean, comma-delimited Excel spreadsheets easily.", "Raw JSON Tree Object", "Output CSV Spreadsheet Data", "Paste your structured JSON objects or arrays here...", "Calculated comma-separated matrix fields populate here...");
-      });
-
-      function toggleTabUi(activeTab, inactiveTab) {
-        activeTab.classList.add("bg-white", "shadow-sm", "text-brand-800");
-        activeTab.classList.remove("text-slate-600", "hover:text-slate-900");
-        inactiveTab.classList.remove("bg-white", "shadow-sm", "text-brand-800");
-        inactiveTab.classList.add("text-slate-600", "hover:text-slate-900");
-        inputText.value = "";
-        outputText.value = "";
-        resetOutputStyle();
-      }
-
-      function updateInterfaceStrings(title, desc, inputLbl, outputLbl, inputPlh, outputPlh) {
-        mainTitle.textContent = title;
-        mainDescription.textContent = desc;
-        inputLabel.textContent = inputLbl;
-        outputLabel.textContent = outputLbl;
-        inputText.placeholder = inputPlh;
-        outputText.placeholder = outputPlh;
-      }
-
-      // Clear Form Handlers
-      clearBtn.addEventListener("click", () => {
-        inputText.value = "";
-        outputText.value = "";
-        fileInput.value = "";
-        resetOutputStyle();
-      });
-
-      // Local File Reading File Upload Triggers
-      fileInput.addEventListener("change", (e) => {
-        if (e.target.files.length === 0) return;
-        const targetFile = e.target.files[0];
-        const reader = new FileReader();
-        reader.onload = function(event) {
-          inputText.value = event.target.result;
-          resetOutputStyle();
+      function setStatus(text, tone) {
+        const classes = {
+          waiting: "inline-flex w-fit rounded-full bg-slate-100 px-4 py-2 text-sm font-bold text-slate-600",
+          success: "inline-flex w-fit rounded-full bg-emerald-50 px-4 py-2 text-sm font-bold text-emerald-700",
+          error: "inline-flex w-fit rounded-full bg-red-50 px-4 py-2 text-sm font-bold text-red-700",
+          active: "inline-flex w-fit rounded-full bg-indigo-50 px-4 py-2 text-sm font-bold text-indigo-700"
         };
-        reader.readAsText(targetFile);
-      });
 
-      // Core Action Switchboard Routing Layer
-      convertBtn.addEventListener("click", () => {
-        const payloadData = inputText.value.trim();
-        if (payloadData === "") {
-          outputText.value = "";
-          return;
-        }
-
-        resetOutputStyle();
-
-        if (isCsvToJsonMode) {
-          executeCsvToJson(payloadData);
-        } else {
-          executeJsonToCsv(payloadData);
-        }
-      });
-
-      // CSV to JSON Core Parsing Algorithm Engine
-      function executeCsvToJson(csvText) {
-        try {
-          // Robust regular expression matching routine to split rows while respecting quoted commas
-          const lines = [];
-          const rowRegex = /[^\r\n]+/g;
-          let match;
-          while ((match = rowRegex.exec(csvText)) !== null) {
-            lines.push(match[0]);
-          }
-
-          if (lines.length === 0) {
-            showErrorState("⚠️ Empty Dataset: No trackable text parameters detected inside the CSV dashboard.");
-            return;
-          }
-
-          // Split cell tokens with precision mapping patterns
-          function splitCsvLine(line) {
-            const result = [];
-            let currentToken = '';
-            let insideQuotes = false;
-            for (let i = 0; i < line.length; i++) {
-              const char = line[i];
-              if (char === '"' || char === "'") {
-                insideQuotes = !insideQuotes;
-              } else if (char === ',' && !insideQuotes) {
-                result.push(currentToken.trim().replace(/^["']|["']$/g, ''));
-                currentToken = '';
-              } else {
-                currentToken += char;
-              }
-            }
-            result.push(currentToken.trim().replace(/^["']|["']$/g, ''));
-            return result;
-          }
-
-          const headerTokens = splitCsvLine(lines[0]);
-          const jsonResultArray = [];
-
-          for (let j = 1; j < lines.length; j++) {
-            const currentTokens = splitCsvLine(lines[j]);
-            // Skip trailing newline anomalies safely
-            if (currentTokens.length === 1 && currentTokens[0] === "") continue;
-
-            const rowObject = {};
-            headerTokens.forEach((header, index) => {
-              rowObject[header] = currentTokens[index] !== undefined ? currentTokens[index] : "";
-            });
-            jsonResultArray.push(rowObject);
-          }
-
-          outputText.value = JSON.stringify(jsonResultArray, null, 2);
-        } catch (error) {
-          showErrorState("⚠️ Processing Failure: Unable to split structural CSV tokens. Please check your data formatting lines.");
-        }
+        statusBadge.textContent = text;
+        statusBadge.className = classes[tone] || classes.waiting;
+        statusText.textContent = text;
       }
 
-      // JSON to CSV Core Flattening Algorithm Engine
-      function executeJsonToCsv(jsonText) {
-        try {
-          let parsedJsonObject = JSON.parse(jsonText);
-          
-          // Force single object containers into array matrices structures smoothly
-          if (!Array.isArray(parsedJsonObject)) {
-            if (typeof parsedJsonObject === 'object' && parsedJsonObject !== null) {
-              parsedJsonObject = [parsedJsonObject];
-            } else {
-              showErrorState("⚠️ Invalid JSON Schema: Input must be a valid structured standard object array nodes.");
-              return;
-            }
-          }
-
-          if (parsedJsonObject.length === 0) {
-            showErrorState("⚠️ Matrix Void: The input JSON data array contains zero active object rows.");
-            return;
-          }
-
-          // Collect distinct key parameters from nested object children arrays
-          const headerKeysSet = new Set();
-          parsedJsonObject.forEach(obj => {
-            Object.keys(obj).forEach(key => headerKeysSet.add(key));
-          });
-          const headersArray = Array.from(headerKeysSet);
-
-          const csvOutputRows = [];
-          // Construct top row headers indices
-          csvOutputRows.push(headersArray.map(h => `"${h.replace(/"/g, '""')}"`).join(','));
-
-          // Construct element payload arrays mapping fields down cleanly
-          parsedJsonObject.forEach(rowObj => {
-            const rowLine = headersArray.map(key => {
-              let cellValue = rowObj[key] !== undefined && rowObj[key] !== null ? rowObj[key] : '';
-              if (typeof cellValue === 'object') {
-                cellValue = JSON.stringify(cellValue);
-              } else {
-                cellValue = String(cellValue);
-              }
-              // Escape double quotes safely for Excel alignment parsing logic
-              return `"${cellValue.replace(/"/g, '""')}"`;
-            }).join(',');
-            csvOutputRows.push(rowLine);
-          });
-
-          outputText.value = csvOutputRows.join('\n');
-        } catch (error) {
-          showErrorState("⚠️ JSON Syntax Error: The structural tokens fail validation testing parameters. Check for missing brackets, trailing commas, or quotation errors.");
-        }
+      function showWarning(message) {
+        warningBox.textContent = message;
+        warningBox.classList.remove("hidden");
       }
 
-      // Feedback Style Management Utilities
-      function showErrorState(msg) {
-        outputText.value = msg;
-        outputText.classList.remove("text-slate-900", "border-slate-200");
-        outputText.classList.add("text-red-600", "border-red-300", "bg-red-50/50");
-        outputLabel.classList.add("text-red-600");
+      function clearWarning() {
+        warningBox.textContent = "";
+        warningBox.classList.add("hidden");
       }
 
       function resetOutputStyle() {
-        outputText.classList.remove("text-red-600", "border-red-300", "bg-red-50/50");
-        outputText.classList.add("text-slate-900", "border-slate-200");
+        outputText.classList.remove("text-red-600", "border-red-300", "bg-red-50");
+        outputText.classList.add("text-slate-900", "border-slate-200", "bg-white");
         outputLabel.classList.remove("text-red-600");
         outputLabel.classList.add("text-slate-700");
       }
 
-      // Clipboard Copier Route Interface
-      copyBtn.addEventListener("click", () => {
-        if (outputText.value === "" || outputText.classList.contains("text-red-600")) return;
+      function showError(message) {
+        outputText.value = message;
+        outputText.classList.remove("text-slate-900", "border-slate-200", "bg-white");
+        outputText.classList.add("text-red-600", "border-red-300", "bg-red-50");
+        outputLabel.classList.add("text-red-600");
+        setStatus("Error", "error");
+        showWarning(message);
+        updateOutputStats();
+      }
 
-        navigator.clipboard.writeText(outputText.value).then(() => {
-          copyToast.classList.remove("opacity-0", "scale-95");
-          copyToast.classList.add("opacity-100", "scale-100");
-          setTimeout(() => {
-            copyToast.classList.remove("opacity-100", "scale-100");
-            copyToast.classList.add("opacity-0", "scale-95");
-          }, 1500);
-        }).catch(err => {
-          console.error("Clipboard routing fault node: ", err);
+      function updateInputStats() {
+        const text = inputText.value;
+        characterCount.textContent = String(text.length);
+        lineCount.textContent = String(text ? text.split(/\r\n|\r|\n/).length : 0);
+        modeCount.textContent = isCsvToJsonMode ? "CSV" : "JSON";
+      }
+
+      function updateOutputStats() {
+        outputLength.textContent = String(outputText.value.length);
+        rowCount.textContent = String(latestRows);
+        columnCount.textContent = String(latestColumns);
+      }
+
+      function setMode(mode) {
+        isCsvToJsonMode = mode === "csv";
+
+        tabCsvToJson.className = isCsvToJsonMode
+          ? "rounded-xl bg-white px-4 py-3 text-sm font-black text-indigo-700 shadow-sm transition"
+          : "rounded-xl px-4 py-3 text-sm font-black text-slate-600 transition hover:bg-white";
+
+        tabJsonToCsv.className = !isCsvToJsonMode
+          ? "rounded-xl bg-white px-4 py-3 text-sm font-black text-indigo-700 shadow-sm transition"
+          : "rounded-xl px-4 py-3 text-sm font-black text-slate-600 transition hover:bg-white";
+
+        if (isCsvToJsonMode) {
+          mainTitle.textContent = "Convert CSV to JSON";
+          mainDescription.textContent = "Paste spreadsheet-style CSV data or upload a file to convert rows into clean JSON arrays. Switch modes anytime to convert JSON objects and arrays back into CSV.";
+          inputLabel.textContent = "CSV input";
+          inputText.placeholder = "name,email,role\nAlex,alex@example.com,Developer\nTaylor,taylor@example.com,Designer";
+          outputLabel.textContent = "JSON output";
+        } else {
+          mainTitle.textContent = "Convert JSON to CSV";
+          mainDescription.textContent = "Paste JSON arrays or objects to generate clean CSV output for spreadsheets, reports, imports, and data cleanup.";
+          inputLabel.textContent = "JSON input";
+          inputText.placeholder = '[\n  { "name": "Alex", "email": "alex@example.com", "role": "Developer" },\n  { "name": "Taylor", "email": "taylor@example.com", "role": "Designer" }\n]';
+          outputLabel.textContent = "CSV output";
+        }
+
+        inputText.value = "";
+        outputText.value = "";
+        fileInput.value = "";
+        latestRows = 0;
+        latestColumns = 0;
+        clearWarning();
+        resetOutputStyle();
+        updateInputStats();
+        updateOutputStats();
+        setStatus("Waiting", "waiting");
+      }
+
+      function parseCsv(csvText) {
+        const rows = [];
+        let row = [];
+        let field = "";
+        let inQuotes = false;
+
+        for (let i = 0; i < csvText.length; i++) {
+          const char = csvText[i];
+          const nextChar = csvText[i + 1];
+
+          if (char === '"') {
+            if (inQuotes && nextChar === '"') {
+              field += '"';
+              i++;
+            } else {
+              inQuotes = !inQuotes;
+            }
+          } else if (char === "," && !inQuotes) {
+            row.push(field);
+            field = "";
+          } else if ((char === "\n" || char === "\r") && !inQuotes) {
+            if (char === "\r" && nextChar === "\n") i++;
+            row.push(field);
+            rows.push(row);
+            row = [];
+            field = "";
+          } else {
+            field += char;
+          }
+        }
+
+        row.push(field);
+        rows.push(row);
+
+        return rows.filter(function (items) {
+          return items.some(function (item) {
+            return String(item).trim() !== "";
+          });
         });
+      }
+
+      function csvToJson(csvText) {
+        const rows = parseCsv(csvText);
+
+        if (!rows.length) {
+          throw new Error("No CSV rows were found.");
+        }
+
+        const headers = rows[0].map(function (header, index) {
+          const clean = String(header).trim();
+          return clean || "column_" + (index + 1);
+        });
+
+        const data = rows.slice(1).map(function (row) {
+          const record = {};
+          headers.forEach(function (header, index) {
+            record[header] = row[index] !== undefined ? row[index] : "";
+          });
+          return record;
+        });
+
+        latestRows = data.length;
+        latestColumns = headers.length;
+
+        return JSON.stringify(data, null, 2);
+      }
+
+      function flattenValue(value) {
+        if (value === null || value === undefined) return "";
+        if (typeof value === "object") return JSON.stringify(value);
+        return String(value);
+      }
+
+      function escapeCsvCell(value) {
+        const stringValue = String(value);
+        if (/[",\r\n]/.test(stringValue)) {
+          return '"' + stringValue.replace(/"/g, '""') + '"';
+        }
+        return stringValue;
+      }
+
+      function jsonToCsv(jsonText) {
+        let parsed = JSON.parse(jsonText);
+
+        if (!Array.isArray(parsed)) {
+          if (typeof parsed === "object" && parsed !== null) {
+            parsed = [parsed];
+          } else {
+            throw new Error("JSON input must be an object or an array of objects.");
+          }
+        }
+
+        if (!parsed.length) {
+          throw new Error("JSON array is empty.");
+        }
+
+        const headers = [];
+        parsed.forEach(function (item) {
+          if (typeof item !== "object" || item === null || Array.isArray(item)) {
+            throw new Error("JSON array must contain objects.");
+          }
+
+          Object.keys(item).forEach(function (key) {
+            if (!headers.includes(key)) headers.push(key);
+          });
+        });
+
+        const lines = [];
+        lines.push(headers.map(escapeCsvCell).join(","));
+
+        parsed.forEach(function (item) {
+          lines.push(headers.map(function (key) {
+            return escapeCsvCell(flattenValue(item[key]));
+          }).join(","));
+        });
+
+        latestRows = parsed.length;
+        latestColumns = headers.length;
+
+        return lines.join("\n");
+      }
+
+      function convertData() {
+        const raw = inputText.value.trim();
+
+        clearWarning();
+        resetOutputStyle();
+
+        if (!raw) {
+          showWarning("Please paste CSV or JSON data before converting.");
+          outputText.value = "";
+          latestRows = 0;
+          latestColumns = 0;
+          updateOutputStats();
+          setStatus("Waiting", "waiting");
+          return;
+        }
+
+        try {
+          outputText.value = isCsvToJsonMode ? csvToJson(raw) : jsonToCsv(raw);
+          setStatus("Converted", "success");
+          updateOutputStats();
+        } catch (error) {
+          latestRows = 0;
+          latestColumns = 0;
+          showError(error.message || "Conversion failed. Please check the input format.");
+        }
+      }
+
+      function loadExample() {
+        if (isCsvToJsonMode) {
+          inputText.value = "name,email,role\nAlex,alex@example.com,Developer\nTaylor,taylor@example.com,Designer\nMorgan,morgan@example.com,Manager";
+        } else {
+          inputText.value = JSON.stringify([
+            { name: "Alex", email: "alex@example.com", role: "Developer" },
+            { name: "Taylor", email: "taylor@example.com", role: "Designer" },
+            { name: "Morgan", email: "morgan@example.com", role: "Manager" }
+          ], null, 2);
+        }
+
+        updateInputStats();
+        convertData();
+      }
+
+      async function copyOutput() {
+        if (!outputText.value || outputText.classList.contains("text-red-600")) {
+          showWarning("There is no valid converted output to copy yet.");
+          return;
+        }
+
+        try {
+          if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(outputText.value);
+          } else {
+            outputText.focus();
+            outputText.select();
+            document.execCommand("copy");
+          }
+
+          copyFeedback.classList.remove("hidden");
+          setTimeout(function () {
+            copyFeedback.classList.add("hidden");
+          }, 1400);
+        } catch (error) {
+          showWarning("Copy failed. Please select and copy the output manually.");
+        }
+      }
+
+      function downloadOutput() {
+        if (!outputText.value || outputText.classList.contains("text-red-600")) {
+          showWarning("There is no valid converted output to download yet.");
+          return;
+        }
+
+        try {
+          const extension = isCsvToJsonMode ? "json" : "csv";
+          const mime = isCsvToJsonMode ? "application/json" : "text/csv";
+          const blob = new Blob([outputText.value], { type: mime + ";charset=utf-8" });
+          const url = URL.createObjectURL(blob);
+          const link = document.createElement("a");
+          link.href = url;
+          link.download = "nodntools-converted-data." + extension;
+          document.body.appendChild(link);
+          link.click();
+          link.remove();
+          URL.revokeObjectURL(url);
+        } catch (error) {
+          showWarning("Download failed. Please try copying the output instead.");
+        }
+      }
+
+      tabCsvToJson.addEventListener("click", function () {
+        setMode("csv");
       });
 
-      // Browser Blob File Saving Link Downloader Routine
-      downloadBtn.addEventListener("click", () => {
-        const textData = outputText.value;
-        if (textData === "" || outputText.classList.contains("text-red-600")) return;
-
-        const targetExtension = isCsvToJsonMode ? "json" : "csv";
-        const targetMime = isCsvToJsonMode ? "application/json" : "text/csv";
-        
-        const blob = new Blob([textData], { type: `${targetMime};charset=utf-8;` });
-        const localBlobUrl = URL.createObjectURL(blob);
-        
-        const virtualAnchor = document.createElement("a");
-        virtualAnchor.href = localBlobUrl;
-        virtualAnchor.download = `nodntools_export_${Date.now()}.${targetExtension}`;
-        
-        document.body.appendChild(virtualAnchor);
-        virtualAnchor.click();
-        
-        document.body.removeChild(virtualAnchor);
-        URL.revokeObjectURL(localBlobUrl);
+      tabJsonToCsv.addEventListener("click", function () {
+        setMode("json");
       });
+
+      inputText.addEventListener("input", updateInputStats);
+
+      fileInput.addEventListener("change", function (event) {
+        const file = event.target.files && event.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+
+        reader.onload = function (loadEvent) {
+          inputText.value = String(loadEvent.target.result || "");
+          updateInputStats();
+          clearWarning();
+        };
+
+        reader.onerror = function () {
+          showWarning("File reading failed. Please try another file.");
+        };
+
+        reader.readAsText(file);
+      });
+
+      clearBtn.addEventListener("click", function () {
+        inputText.value = "";
+        outputText.value = "";
+        fileInput.value = "";
+        latestRows = 0;
+        latestColumns = 0;
+        clearWarning();
+        resetOutputStyle();
+        updateInputStats();
+        updateOutputStats();
+        setStatus("Waiting", "waiting");
+        inputText.focus();
+      });
+
+      convertBtn.addEventListener("click", convertData);
+      sampleBtn.addEventListener("click", loadExample);
+      copyBtn.addEventListener("click", copyOutput);
+      downloadBtn.addEventListener("click", downloadOutput);
+
+      updateInputStats();
+      updateOutputStats();
+      setStatus("Waiting", "waiting");
     });
   </script>
-
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
 </body>
 </html>
