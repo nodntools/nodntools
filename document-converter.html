@@ -4,347 +4,813 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404"
-     crossorigin="anonymous"></script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404" crossorigin="anonymous"></script>
+  <meta name="google-adsense-account" content="ca-pub-5282672325821404">
 
-	<meta name="google-adsense-account" content="ca-pub-5282672325821404">	
+  <title>Document Converter: PDF, DOCX & TXT Export Tool</title>
+  <meta name="description" content="Create private PDF, Word DOCX, and TXT documents in your browser with live preview, local export, and no server upload.">
+  <meta name="keywords" content="document converter, online document converter, PDF converter, DOCX converter, text to PDF, text to Word, text to DOCX, TXT export tool, browser document editor, private document converter, client-side document tool, free document exporter, no upload document converter, NodnWebTools">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="NodnWebTools">
 
-  <title>Online Document Converter | Export PDF & Word Free - NodnWebTools</title>
+  <meta property="og:title" content="Document Converter: PDF, DOCX & TXT Export Tool">
+  <meta property="og:description" content="Write, preview, and export private documents to PDF, DOCX, or TXT directly inside your browser without uploading content to a server.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nodntools.com/document-converter.html">
+  <meta property="og:site_name" content="NodnWebTools">
 
-  <meta
-    name="description"
-    content="Use the free NodnWebTools Online Document Converter to transform text and documents into PDF or Word .docx format instantly. 100% secure client-side document exporting tool."
-  />
-  <meta
-    name="keywords"
-    content="document converter, export to pdf, convert to word, text to docx, online document editor, free pdf creator, secure document tool, NodnWebTools"
-  />
-  <meta name="author" content="NodnWebTools" />
-  <meta name="robots" content="index, follow" />
-
-  <meta property="og:title" content="Online Document Converter | NodnWebTools" />
-  <meta
-    property="og:description"
-    content="Write or paste your text to preview in real-time and export to professional PDF or Word .docx files instantly without server uploads."
-  />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://nodntools.com/document-converter.html" />
-  <meta property="og:site_name" content="NodnWebTools" />
-
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Online Document Converter" />
-  <meta
-    name="twitter:description"
-    content="A secure, client-side online document engine for instant text-to-PDF and Word archive transformations."
-  />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Document Converter: PDF, DOCX & TXT Export Tool",
+    "applicationCategory": "ProductivityApplication",
+    "operatingSystem": "Any",
+    "url": "https://nodntools.com/document-converter.html",
+    "description": "A free client-side document converter for creating PDF, Word DOCX, and TXT files from typed or pasted text with a live browser preview.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "creator": {
+      "@type": "Organization",
+      "name": "NodnWebTools",
+      "url": "https://nodntools.com"
+    }
+  }
+  </script>
 
   <script src="https://cdn.tailwindcss.com"></script>
-  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/docx/7.1.1/docx.umd.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/docx/7.8.2/docx.umd.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            brand: {
-              50: '#fff1f2',
-              100: '#ffe4e6',
-              200: '#fecdd3',
-              500: '#f43f5e',
-              600: '#e11d48',
-              700: '#be123c',
-              800: '#9f1239',
+            accent: {
+              50: "#eef2ff",
+              100: "#e0e7ff",
+              200: "#c7d2fe",
+              500: "#6366f1",
+              600: "#4f46e5",
+              700: "#4338ca",
+              800: "#3730a3"
             }
+          },
+          boxShadow: {
+            soft: "0 20px 45px rgba(15, 23, 42, 0.08)"
           }
         }
       }
-    }
+    };
   </script>
+
   <style>
-    *, *::before, *::after { box-sizing: border-box; }
-    html, body { width: 100%; overflow-x: hidden; }
-    input, textarea, button { max-width: 100%; }
-    .adsbygoogle { max-width: 100%; overflow: hidden; }
-    /* Absolute A4 Aspect Ratio Simulation Mapping for Live Preview Grid */
-    .a4-preview-box {
-      aspect-ratio: 1 / 1.4142;
+    html, body {
       width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+      background: #f8fafc;
     }
-    @media (max-width: 420px) {
-      .a4-preview-box { aspect-ratio: auto; min-height: 420px; }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      min-width: 0;
+    }
+
+    img, svg, canvas, video, iframe, table, pre, code, section, article, aside, main, div {
+      max-width: 100%;
+    }
+
+    input, textarea, select, button {
+      max-width: 100%;
+    }
+
+    textarea {
+      overflow-wrap: break-word;
+    }
+
+    .safe-break {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .mobile-card,
+    .mobile-panel,
+    .mobile-preview,
+    .mobile-code {
+      max-width: 100%;
+      overflow-wrap: anywhere;
+    }
+
+    .mobile-code {
+      overflow-x: auto;
+      white-space: pre-wrap;
+    }
+
+    .ad-box {
+      width: 100%;
+      min-height: 90px;
+      border: 1px dashed #cbd5e1;
+      background: #f8fafc;
+      border-radius: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #94a3b8;
+      font-size: 0.875rem;
+      padding: 1rem;
+      overflow: hidden;
+    }
+
+    .paper-preview {
+      width: 100%;
+      aspect-ratio: 1 / 1.4142;
+      min-height: 520px;
+      max-height: 760px;
+      overflow-y: auto;
+    }
+
+    .preview-line {
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding-left: 0;
+        padding-right: 0;
+      }
+
+      .mobile-card {
+        border-radius: 1.25rem;
+        padding: 1rem;
+      }
+
+      .mobile-panel {
+        padding: 1rem;
+      }
+
+      .mobile-preview {
+        padding: 0.75rem;
+      }
+
+      .mobile-button-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .mobile-button-grid button,
+      .mobile-button-grid a {
+        width: 100%;
+      }
+
+      .paper-preview {
+        aspect-ratio: auto;
+        min-height: 440px;
+        max-height: 620px;
+      }
+
+      .mobile-code {
+        font-size: 0.78rem;
+        line-height: 1.55;
+      }
+
+      .ad-box {
+        min-height: 90px;
+        border-radius: 0.875rem;
+        font-size: 0.8rem;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .mobile-card {
+        padding: 0.875rem;
+        border-radius: 1rem;
+      }
+
+      .mobile-panel {
+        padding: 0.875rem;
+      }
+
+      .paper-preview {
+        min-height: 380px;
+      }
+
+      .ad-box {
+        padding: 0.75rem;
+        font-size: 0.75rem;
+      }
+
+      .tiny-phone-text {
+        font-size: 0.78rem;
+      }
     }
   </style>
 </head>
 
-<body class="min-h-screen bg-slate-100 px-3 py-5 text-slate-900 sm:px-4 sm:py-8 lg:py-12 overflow-x-hidden">
-  <main class="mx-auto w-full max-w-5xl overflow-hidden">
-
-    <div class="mb-8 text-center">
-      <a
-        href="https://nodntools.com"
-        class="inline-block transition hover:opacity-80"
-        aria-label="NodnWebTools Home"
-      >
-        <div class="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
-          Nodn<span class="text-blue-600">WebTools</span>
-        </div>
+<body class="min-h-screen bg-slate-50 text-slate-900">
+  <header class="w-full border-b border-slate-200 bg-white/90 backdrop-blur">
+    <div class="mx-auto flex w-full max-w-7xl flex-col gap-4 px-4 py-5 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
+      <a href="https://nodntools.com" class="inline-flex items-center gap-2 safe-break" aria-label="NodnWebTools Home">
+        <span class="text-2xl font-black tracking-tight text-slate-950">Nodn<span class="text-accent-600">WebTools</span></span>
       </a>
+      <nav class="flex flex-wrap items-center gap-3 text-sm font-semibold text-slate-600">
+        <a href="https://nodntools.com" class="rounded-full px-4 py-2 transition hover:bg-slate-100 hover:text-accent-700">Home</a>
+        <a href="#how-to-use" class="rounded-full px-4 py-2 transition hover:bg-slate-100 hover:text-accent-700">How to Use</a>
+        <a href="#faq" class="rounded-full px-4 py-2 transition hover:bg-slate-100 hover:text-accent-700">FAQ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+    <div class="ad-box mb-6">
+      Top Ad Area - Responsive AdSense Placeholder
     </div>
 
-    <div class="mb-6 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white px-3 text-center text-sm text-slate-400 sm:mb-8">
-      AdSense Responsive Ad Area - Top
-    </div>
-
-    <section class="grid grid-cols-1 gap-5 lg:grid-cols-12">
-
-      <div class="rounded-3xl bg-white p-4 shadow-xl ring-1 ring-slate-200 sm:p-6 lg:col-span-5 space-y-4">
-        <div>
-          <span class="inline-flex rounded-full bg-brand-50 px-4 py-1.5 text-sm font-semibold text-brand-700">
-            Office Utility
-          </span>
-          <h1 class="mt-4 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl break-words">
+    <section class="grid w-full grid-cols-1 gap-6 lg:grid-cols-12">
+      <div class="mobile-card rounded-3xl bg-white p-5 shadow-soft ring-1 ring-slate-200 sm:p-7 lg:col-span-5">
+        <div class="mb-6">
+          <span class="inline-flex rounded-full bg-accent-50 px-4 py-2 text-sm font-bold text-accent-700 ring-1 ring-accent-100">Client-Side Productivity Tool</span>
+          <h1 class="mt-5 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">
             Document Converter
           </h1>
-          <p class="mt-2 text-xs leading-5 text-slate-600">
-            Compose your reports locally. Stream matrices tokenize client-side directly into compiled file objects without data transmission pipelines.
+          <p class="mt-4 text-sm leading-7 text-slate-600">
+            Write, paste, preview, and export clean documents as PDF, Word DOCX, or plain TXT. Your content is processed locally in your browser, so drafts, notes, letters, reports, and private text do not need to be uploaded to a server.
           </p>
         </div>
 
-        <div class="space-y-3">
+        <div class="space-y-5">
           <div>
-            <label for="docTitle" class="text-xs font-bold text-slate-700 uppercase tracking-wider block mb-1">Document Title</label>
-            <input type="text" id="docTitle" value="Untitled Document" placeholder="Enter document heading title..." class="w-full min-w-0 rounded-xl border border-slate-300 bg-slate-50 p-3 text-sm font-semibold text-slate-900 shadow-inner outline-none transition focus:border-brand-600 focus:bg-white focus:ring-4 focus:ring-brand-100" />
+            <label for="documentTitle" class="mb-2 block text-sm font-bold text-slate-800">Document Title</label>
+            <input id="documentTitle" type="text" value="Untitled Document" placeholder="Enter a document title" class="w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm font-semibold text-slate-900 outline-none transition focus:border-accent-500 focus:bg-white focus:ring-4 focus:ring-accent-100">
           </div>
 
           <div>
-            <label for="docBody" class="text-xs font-bold text-slate-700 uppercase tracking-wider block mb-1">Body Text Content</label>
-            <textarea id="docBody" rows="10" placeholder="Type or paste your markdown text blocks here. Changes project into the layout board instantly..." class="w-full min-h-[220px] rounded-2xl border border-slate-300 bg-slate-50 p-3 font-mono text-xs text-slate-900 shadow-inner outline-none transition focus:border-brand-600 focus:bg-white focus:ring-4 focus:ring-brand-100 resize-y leading-5 sm:min-h-[340px] sm:p-4"></textarea>
+            <label for="documentBody" class="mb-2 block text-sm font-bold text-slate-800">Document Content</label>
+            <textarea id="documentBody" rows="14" placeholder="Type or paste your content here. The live preview updates instantly as you write." class="w-full min-h-[300px] resize-y rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 font-mono text-sm leading-6 text-slate-900 outline-none transition focus:border-accent-500 focus:bg-white focus:ring-4 focus:ring-accent-100"></textarea>
           </div>
 
-          <div class="flex flex-col gap-2 text-[11px] text-slate-400 font-medium min-[360px]:flex-row min-[360px]:items-center min-[360px]:justify-between">
-            <span id="charCount">Characters: 0</span>
-            <button id="clearWorkspaceBtn" class="text-slate-500 hover:text-brand-600 bg-slate-100 hover:bg-slate-200 px-2.5 py-1 rounded-lg transition font-semibold">Clear Canvas</button>
-          </div>
-        </div>
+          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div>
+              <label for="fontSize" class="mb-2 block text-sm font-bold text-slate-800">Preview Font Size</label>
+              <select id="fontSize" class="w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-sm font-semibold text-slate-800 outline-none focus:border-accent-500 focus:ring-4 focus:ring-accent-100">
+                <option value="12">Compact</option>
+                <option value="14" selected>Standard</option>
+                <option value="16">Comfortable</option>
+                <option value="18">Large</option>
+              </select>
+            </div>
 
-        <div class="pt-2 grid grid-cols-1 gap-3 sm:grid-cols-2">
-          <button id="exportPdfBtn" class="w-full rounded-xl bg-brand-600 py-3.5 px-4 text-center text-xs font-bold text-white shadow-md hover:bg-brand-700 active:scale-[0.98] transition-all flex items-center justify-center gap-1.5">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-            <span>Export to PDF</span>
-          </button>
-          
-          <button id="exportWordBtn" class="w-full rounded-xl bg-slate-900 py-3.5 px-4 text-center text-xs font-bold text-white shadow-md hover:bg-slate-800 active:scale-[0.98] transition-all flex items-center justify-center gap-1.5">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-            <span>Export to Word</span>
-          </button>
+            <div>
+              <label for="paperPadding" class="mb-2 block text-sm font-bold text-slate-800">Page Padding</label>
+              <select id="paperPadding" class="w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-sm font-semibold text-slate-800 outline-none focus:border-accent-500 focus:ring-4 focus:ring-accent-100">
+                <option value="32">Narrow</option>
+                <option value="48" selected>Standard</option>
+                <option value="64">Wide</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="rounded-2xl bg-slate-50 p-4 ring-1 ring-slate-200">
+            <p class="text-sm font-bold text-slate-800">Example Starters</p>
+            <div class="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-3">
+              <button type="button" class="exampleBtn rounded-xl bg-white px-3 py-2 text-sm font-semibold text-slate-700 ring-1 ring-slate-200 transition hover:bg-accent-50 hover:text-accent-700" data-example="letter">Letter</button>
+              <button type="button" class="exampleBtn rounded-xl bg-white px-3 py-2 text-sm font-semibold text-slate-700 ring-1 ring-slate-200 transition hover:bg-accent-50 hover:text-accent-700" data-example="report">Report</button>
+              <button type="button" class="exampleBtn rounded-xl bg-white px-3 py-2 text-sm font-semibold text-slate-700 ring-1 ring-slate-200 transition hover:bg-accent-50 hover:text-accent-700" data-example="meeting">Meeting Notes</button>
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-3 rounded-2xl bg-accent-50 p-4 text-sm text-accent-900 ring-1 ring-accent-100 sm:flex-row sm:items-center sm:justify-between">
+            <span id="documentStats" class="font-semibold">0 characters · 0 words · 0 lines</span>
+            <span id="statusMessage" class="font-bold text-accent-700">Ready</span>
+          </div>
+
+          <div class="mobile-button-grid grid grid-cols-1 gap-3 sm:grid-cols-2">
+            <button id="exportPdfBtn" type="button" class="rounded-2xl bg-accent-600 px-4 py-3 text-sm font-black text-white shadow-lg shadow-accent-600/20 transition hover:bg-accent-700 active:scale-[0.98]">Download PDF</button>
+            <button id="exportDocxBtn" type="button" class="rounded-2xl bg-slate-950 px-4 py-3 text-sm font-black text-white shadow-lg shadow-slate-950/10 transition hover:bg-slate-800 active:scale-[0.98]">Download DOCX</button>
+            <button id="exportTxtBtn" type="button" class="rounded-2xl bg-white px-4 py-3 text-sm font-black text-slate-800 ring-1 ring-slate-300 transition hover:bg-slate-100 active:scale-[0.98]">Download TXT</button>
+            <button id="copyTextBtn" type="button" class="rounded-2xl bg-white px-4 py-3 text-sm font-black text-slate-800 ring-1 ring-slate-300 transition hover:bg-slate-100 active:scale-[0.98]">Copy Text</button>
+          </div>
+
+          <button id="resetBtn" type="button" class="w-full rounded-2xl border border-slate-300 bg-slate-100 px-4 py-3 text-sm font-black text-slate-700 transition hover:bg-slate-200 active:scale-[0.98]">Reset Tool</button>
         </div>
       </div>
 
-      <div class="lg:col-span-7 space-y-6">
-        
-        <div class="rounded-3xl bg-white p-4 shadow-xl ring-1 ring-slate-200 sm:p-6">
-          <div class="mb-4 flex flex-col gap-2 select-none sm:flex-row sm:items-center sm:justify-between">
+      <div class="space-y-6 lg:col-span-7">
+        <section class="mobile-card rounded-3xl bg-white p-5 shadow-soft ring-1 ring-slate-200 sm:p-7">
+          <div class="mb-5 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
             <div>
-              <h2 class="text-lg font-bold text-slate-900">Live WYSIWYG Board</h2>
-              <p class="text-[11px] text-slate-500">A4 Ratio simulated bounding grid box structure.</p>
+              <h2 class="text-2xl font-black tracking-tight text-slate-950">Live Document Preview</h2>
+              <p class="mt-2 text-sm leading-6 text-slate-600">Preview your document before exporting. The preview is formatted like a clean printable page and updates in real time.</p>
             </div>
-            <span class="text-[10px] font-bold text-brand-700 bg-brand-50 px-2.5 py-1 rounded-lg uppercase tracking-wider">Local Render</span>
+            <span class="inline-flex w-fit rounded-full bg-slate-100 px-3 py-2 text-xs font-black uppercase tracking-wide text-slate-600">Local Preview</span>
           </div>
 
-          <div class="border border-slate-300 rounded-2xl bg-slate-200 p-2 shadow-inner overflow-x-auto sm:p-4">
-            <div id="printableArea" class="a4-preview-box min-w-[280px] max-h-[520px] bg-white shadow-md p-5 text-slate-900 flex flex-col overflow-y-auto font-serif sm:p-10 lg:p-12">
-              <h1 id="previewTitle" class="text-xl font-bold border-b-2 border-slate-800 pb-3 mb-4 text-slate-900 font-sans break-words sm:text-2xl">Untitled Document</h1>
-              <div id="previewBody" class="text-xs leading-6 text-slate-800 whitespace-pre-wrap break-words flex-1 sm:text-sm">Your document content renders live right inside this zone layer...</div>
-            </div>
+          <div class="mobile-preview rounded-3xl bg-slate-200 p-3 shadow-inner sm:p-5">
+            <article id="printableArea" class="paper-preview mx-auto rounded-sm bg-white text-slate-950 shadow-xl">
+              <div id="previewInner" class="h-full w-full p-12">
+                <div id="previewTitle" class="safe-break border-b-2 border-slate-900 pb-4 text-2xl font-black leading-tight tracking-tight text-slate-950">Untitled Document</div>
+                <div id="previewBody" class="preview-line mt-6 text-sm leading-7 text-slate-800">Your document content will appear here as you type. Use this preview to check spacing, readability, and structure before exporting your file.</div>
+              </div>
+            </article>
           </div>
 
-          <div class="mt-6 flex min-h-[180px] flex-col items-center justify-center overflow-hidden rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-3 text-center text-sm text-slate-400 sm:min-h-[250px] sm:p-4">
-            <span class="text-[10px] font-bold text-slate-300 uppercase tracking-widest mb-2">Advertisement</span>
-            <ins class="adsbygoogle"
-                 style="display:block; width:100%; min-height:160px; max-width:100%; overflow:hidden;"
-                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-                 data-ad-slot="YYYYYYYYYY"
-                 data-ad-format="rectangle, vertical"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-          </div>
-
-          <div class="mt-5 rounded-2xl bg-slate-100 p-4 text-xs leading-5 text-slate-500">
-            <span class="block font-bold text-slate-700 mb-1">Disclaimer & Legal Notice:</span>
-            This tool is provided on an "as is" and "as available" basis without warranties of any kind. Structural vector canvas operations and text decoding maps run 100% inside the user's browser engine sandbox thread; NodnWebTools never tracks, logs, caches, or intercepts your private writing payloads. The author carries exclusive obligation to verify word wrap padding rules before executing high-volume commercial publication cycles. NodnWebTools, its technical operators, and affiliates deny all legal responsibility for corrupted file metadata structures, typographical line cuts, or system memory overflows resulting from compiling blocks.
-          </div>
-        </div>
-
-        <section class="rounded-3xl bg-white p-4 shadow-sm ring-1 ring-slate-200 sm:p-8">
-          <span class="inline-flex rounded-full bg-slate-200 px-4 py-2 text-sm font-semibold text-slate-800">
-            Export Mechanics Guide
-          </span>
-
-          <h2 class="mt-5 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
-            Client-Side Document Exporting: Compiling PDF and Word Instantly
-          </h2>
-
-          <div class="mt-5 space-y-5 text-sm leading-7 text-slate-600">
-            <p>
-              In decentralized operational networks, converting content logs into cross-platform files securely depends heavily on leveraging an optimized 
-              <strong class="font-semibold text-slate-800">online document converter</strong>. When users submit raw copy blocks, transmitting text parameters across standard network API layers poses corporate confidentiality hazards and violates strict data privacy compliance parameters.
-            </p>
-
-            <p>
-              Utilizing a standalone, client-side <strong class="font-semibold text-slate-800">export to pdf utility</strong> transforms loose data lines into print-ready templates immediately. Simultaneously, developers rely on an automated <strong class="font-semibold text-slate-800">convert text to word docx</strong> engine component to build manageable doc blocks in real time, bypassing remote enterprise backend processing traps entirely.
-            </p>
-
-            <h3 class="text-lg font-bold text-slate-900 pt-2">How to Process Layout Objects Locally</h3>
-            <p>
-              Most generic converter applications stream binary records through remote infrastructure servers, risking file leaks. This sandbox module isolates compiling routines safely inside your web viewport layout:
-            </p>
-
-            <ul class="list-disc pl-5 space-y-2 text-slate-600">
-              <li><strong>WYSIWYG Token Synchronization:</strong> The browser hooks input event characters directly, updating font maps in the preview card block instantly.</li>
-              <li><strong>Vector Canvas Printing:</strong> The engine isolates the document element box coordinates, running client-side script arrays to compile pixel-perfect PDF file data sheets.</li>
-              <li><strong>100% Locked Pipelines:</strong> Because the file compression runtime completes within local variables, internal corporate structures, legal clauses, and master drafts are fully protected from outside exposure.</li>
-            </ul>
-
-            <p>
-              By utilizing this secure, standalone <strong class="font-semibold text-slate-800">document text converter and editor</strong> guide, you can automate your publishing tasks without exposing data.
+          <div class="mt-5 rounded-2xl bg-slate-50 p-4 ring-1 ring-slate-200">
+            <h2 class="text-base font-black text-slate-900">Privacy-Friendly Local Export</h2>
+            <p class="mt-2 text-sm leading-6 text-slate-600">
+              This tool creates downloadable files in your browser. It is designed for drafts, notes, letters, simple documentation, homework, internal reports, and quick printable text files. Avoid entering highly sensitive information on shared or public computers.
             </p>
           </div>
         </section>
 
+        <div class="ad-box">
+          Ad Area Below Main Tool and Result Section
+        </div>
+
+        <section class="mobile-card rounded-3xl bg-white p-5 shadow-soft ring-1 ring-slate-200 sm:p-7">
+          <h2 class="text-2xl font-black tracking-tight text-slate-950">File Export Notes</h2>
+          <div class="mt-4 grid grid-cols-1 gap-4 md:grid-cols-3">
+            <div class="rounded-2xl bg-slate-50 p-4 ring-1 ring-slate-200">
+              <h3 class="font-black text-slate-900">PDF Export</h3>
+              <p class="mt-2 text-sm leading-6 text-slate-600">Best for printing, sharing finalized layouts, saving records, and creating a stable visual copy of your document.</p>
+            </div>
+            <div class="rounded-2xl bg-slate-50 p-4 ring-1 ring-slate-200">
+              <h3 class="font-black text-slate-900">DOCX Export</h3>
+              <p class="mt-2 text-sm leading-6 text-slate-600">Best for editing later in Microsoft Word, Google Docs, LibreOffice, or another compatible word processor.</p>
+            </div>
+            <div class="rounded-2xl bg-slate-50 p-4 ring-1 ring-slate-200">
+              <h3 class="font-black text-slate-900">TXT Export</h3>
+              <p class="mt-2 text-sm leading-6 text-slate-600">Best for plain text backups, lightweight notes, code-free archives, and universal compatibility.</p>
+            </div>
+          </div>
+        </section>
       </div>
     </section>
 
-    <div class="mt-8 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white px-3 text-center text-sm text-slate-400">
-      AdSense Responsive Ad Area - Bottom
-    </div>
+    <section class="mt-8 rounded-3xl bg-white p-5 shadow-soft ring-1 ring-slate-200 sm:p-8">
+      <div class="mx-auto max-w-4xl">
+        <span class="inline-flex rounded-full bg-accent-50 px-4 py-2 text-sm font-black text-accent-700 ring-1 ring-accent-100">Complete Guide</span>
+        <h2 class="mt-5 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">
+          Free Online Document Converter for PDF, Word DOCX, and TXT Files
+        </h2>
+        <p class="mt-5 text-base leading-8 text-slate-600">
+          The NodnWebTools Document Converter is a practical browser-based document creation and export tool for anyone who needs to turn text into a clean downloadable file. It is built for fast writing, simple formatting, immediate previewing, and local file generation. Instead of opening a heavy office suite for every short letter, work note, printable summary, school assignment, business memo, personal draft, policy outline, or content brief, you can paste or type your text into the editor and export the result as a PDF, Microsoft Word DOCX file, or plain TXT document. The tool focuses on speed, privacy, and accessibility, making it useful for students, remote workers, small business owners, teachers, freelancers, administrators, bloggers, marketers, and everyday users who need a lightweight online document converter.
+        </p>
 
+        <p class="mt-5 text-base leading-8 text-slate-600">
+          Many document conversion websites require uploading a file to a remote server before the conversion begins. That may be acceptable for some public documents, but it is not ideal for private notes, internal drafts, client summaries, business correspondence, legal outlines, financial checklists, application letters, resumes, or unpublished articles. This client-side document converter is designed differently. The text you enter is processed inside the browser environment, and the export buttons generate downloadable files locally. While the page loads helpful front-end libraries from trusted CDN sources to create PDF and DOCX files, your typed document content is not intentionally submitted to a NodnWebTools backend. This makes the tool especially useful when you want a quick no-upload document converter for normal productivity tasks.
+        </p>
+
+        <div class="ad-box my-8">
+          Middle Content Ad Area Inside the SEO Article Section
+        </div>
+
+        <h2 id="how-to-use" class="mt-10 text-2xl font-black tracking-tight text-slate-950">How to Use This Browser Document Converter</h2>
+        <p class="mt-4 text-base leading-8 text-slate-600">
+          Using the tool is simple. First, enter a clear document title. The title appears at the top of the live preview and is also used to create a readable filename when you download a file. Next, type or paste your document content into the text area. The right-side preview updates instantly, so you can check your heading, line breaks, spacing, and general readability before exporting. You can adjust the preview font size and page padding to make the output feel more compact or more comfortable. When the document looks right, choose Download PDF, Download DOCX, or Download TXT depending on your use case.
+        </p>
+
+        <p class="mt-5 text-base leading-8 text-slate-600">
+          PDF is usually the best choice when you want a stable file that looks consistent across devices. It is ideal for printing, emailing finalized content, preserving a document snapshot, or sending a file that should not be easily altered. DOCX is useful when you want to continue editing the document in Microsoft Word, Google Docs, Apple Pages, LibreOffice Writer, or another word processing program. TXT is the most universal format and is excellent for plain text notes, backups, simple archives, quick drafts, and compatibility with nearly any operating system. Because all three export options are available on the same page, the tool works as a flexible text to PDF converter, text to Word converter, and text to TXT exporter.
+        </p>
+
+        <div class="mt-8 grid grid-cols-1 gap-5 md:grid-cols-3">
+          <article class="rounded-2xl bg-slate-50 p-5 ring-1 ring-slate-200">
+            <h3 class="text-lg font-black text-slate-950">Step 1: Write or Paste</h3>
+            <p class="mt-3 text-sm leading-7 text-slate-600">Add your title and content. You can paste notes from another app, write a fresh draft, or use one of the built-in example starters to begin faster.</p>
+          </article>
+          <article class="rounded-2xl bg-slate-50 p-5 ring-1 ring-slate-200">
+            <h3 class="text-lg font-black text-slate-950">Step 2: Preview Layout</h3>
+            <p class="mt-3 text-sm leading-7 text-slate-600">Use the live preview to review line breaks, page spacing, font size, readability, and overall structure before creating your final file.</p>
+          </article>
+          <article class="rounded-2xl bg-slate-50 p-5 ring-1 ring-slate-200">
+            <h3 class="text-lg font-black text-slate-950">Step 3: Export Locally</h3>
+            <p class="mt-3 text-sm leading-7 text-slate-600">Download a PDF for sharing, a DOCX for editing, or a TXT file for simple storage. You can also copy the full text to your clipboard.</p>
+          </article>
+        </div>
+
+        <h2 class="mt-12 text-2xl font-black tracking-tight text-slate-950">Why a Client-Side Document Converter Is Useful</h2>
+        <p class="mt-4 text-base leading-8 text-slate-600">
+          A client-side converter is valuable because it reduces friction. Traditional document editors can be powerful, but they are sometimes slow to open, require sign-in, store files in cloud folders by default, or include complex menus that are unnecessary for a short document. A lightweight online document converter removes those barriers. It helps you create a clean document without installing software, setting up an account, learning a complicated toolbar, or uploading your writing to a conversion service. The entire workflow is focused on the most common tasks: write, preview, export, download, and continue working.
+        </p>
+
+        <p class="mt-5 text-base leading-8 text-slate-600">
+          This approach is especially helpful for quick content preparation. For example, a freelancer can draft a project scope and export it to PDF for a client. A teacher can prepare classroom instructions and download a printable copy. A student can create a simple assignment draft and export it as DOCX for further formatting. A job seeker can write a plain cover letter, download it as a Word file, and then apply advanced formatting in a dedicated editor. A small business owner can create a return policy, notice, checklist, invoice note, or staff memo without opening a full office program. A blogger or SEO writer can draft structured text, count words, copy the text, and move it into a publishing platform.
+        </p>
+
+        <h2 class="mt-12 text-2xl font-black tracking-tight text-slate-950">Popular Uses for a Text to PDF and Text to Word Tool</h2>
+        <p class="mt-4 text-base leading-8 text-slate-600">
+          This free online document converter supports many everyday workflows. It is useful for personal productivity, office administration, school assignments, website content planning, marketing copy, customer service templates, printable instructions, professional correspondence, and private drafting. Since the interface is intentionally simple, it works well for short and medium-length documents that do not require advanced tables, charts, footnotes, citations, tracked changes, or multi-column layout controls. The best results usually come from clean text documents with clear headings, paragraphs, lists, and readable spacing.
+        </p>
+
+        <div class="mt-8 grid grid-cols-1 gap-5 md:grid-cols-2">
+          <article class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
+            <h3 class="text-xl font-black text-slate-950">Business Letters and Office Memos</h3>
+            <p class="mt-3 text-sm leading-7 text-slate-600">
+              Create customer notices, internal announcements, policy summaries, short proposals, meeting follow-ups, administrative reminders, and professional memos. Export to PDF when you want a stable final copy, or DOCX when your team needs to revise the wording later.
+            </p>
+          </article>
+          <article class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
+            <h3 class="text-xl font-black text-slate-950">School Notes and Study Documents</h3>
+            <p class="mt-3 text-sm leading-7 text-slate-600">
+              Students can convert lecture notes, study outlines, essay drafts, reading summaries, homework instructions, and research checklists into portable files. TXT export is helpful for simple backups, while PDF export is helpful for printing.
+            </p>
+          </article>
+          <article class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
+            <h3 class="text-xl font-black text-slate-950">Content Writing and SEO Drafts</h3>
+            <p class="mt-3 text-sm leading-7 text-slate-600">
+              Writers can draft blog introductions, product descriptions, landing page copy, FAQ sections, newsletter ideas, keyword notes, meta description concepts, and article outlines. The live word count helps estimate content length before publishing.
+            </p>
+          </article>
+          <article class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
+            <h3 class="text-xl font-black text-slate-950">Personal Records and Printable Notes</h3>
+            <p class="mt-3 text-sm leading-7 text-slate-600">
+              Use the tool for personal checklists, travel notes, household instructions, appointment summaries, recipes, event plans, warranty notes, and general reminders. Download a local copy and store it wherever you prefer.
+            </p>
+          </article>
+        </div>
+
+        <h2 class="mt-12 text-2xl font-black tracking-tight text-slate-950">PDF, DOCX, and TXT: Which Format Should You Choose?</h2>
+        <p class="mt-4 text-base leading-8 text-slate-600">
+          Choosing the right file format depends on how you plan to use the document. PDF is designed to preserve visual presentation. It is widely supported across computers, phones, tablets, printers, browsers, and email clients. A PDF is often the best option for a final version because recipients usually see the same layout you saw when exporting. That makes PDF useful for forms, notices, letters, instructions, reading copies, and finalized drafts. However, PDF is not always the easiest format to edit. If you expect more changes, DOCX may be better.
+        </p>
+
+        <p class="mt-5 text-base leading-8 text-slate-600">
+          DOCX is the standard Word document format used by many office applications. It is the right option when a document is still active, collaborative, or likely to be updated. DOCX files can be opened in Microsoft Word, uploaded to Google Docs, imported into many writing apps, and formatted with advanced features after export. This tool creates a simple DOCX structure from your title and text, which makes it useful for a fast text to Word workflow. You can use it as a starting point and then add tables, images, footers, page numbers, style themes, or comments in a full word processor.
+        </p>
+
+        <p class="mt-5 text-base leading-8 text-slate-600">
+          TXT is the simplest and most portable choice. Plain text files do not preserve advanced styling, but they are extremely reliable. They open quickly, work almost everywhere, and are excellent for storing raw writing. TXT is useful for backup copies, data-cleaning tasks, content migration, simple notes, coding-related drafts, and situations where formatting is less important than text preservation. If you are writing content for a website, app, chatbot, content management system, or email campaign, a TXT file can be a clean intermediate format.
+        </p>
+
+        <div class="ad-box my-8">
+          Bottom Content Ad Area Before FAQ
+        </div>
+
+        <h2 class="mt-12 text-2xl font-black tracking-tight text-slate-950">Practical Tips for Better Document Conversion Results</h2>
+        <p class="mt-4 text-base leading-8 text-slate-600">
+          For the cleanest export, start with structured text. Use a short title, clear paragraph breaks, and consistent spacing. Avoid pasting heavily formatted content from complex sources if you only need clean output, because hidden formatting from other editors may not always translate perfectly into a simple browser preview. When creating a PDF, check the live preview carefully before downloading. If the content feels too tight, choose a larger font size or wider padding. If you need more content on one page, choose compact font size and narrow padding.
+        </p>
+
+        <p class="mt-5 text-base leading-8 text-slate-600">
+          When creating a DOCX file, remember that this tool is intended for simple document generation. It is excellent for turning text into a basic Word-compatible file, but it is not a full replacement for a professional desktop publishing system. After downloading the DOCX file, open it in your preferred editor if you need detailed formatting such as custom margins, headers, footers, tables of contents, citations, images, tracked changes, or brand templates. For many users, this tool works best as a fast first step before advanced editing.
+        </p>
+
+        <p class="mt-5 text-base leading-8 text-slate-600">
+          For privacy and security, use common sense. Although this converter is designed to avoid server-side document submission, the browser environment still depends on your device, installed extensions, network settings, and the page resources your browser loads. Do not use public computers for confidential writing. Be cautious with sensitive personal data, private legal documents, medical details, financial account information, passwords, confidential client information, or regulated business records. Save exported files in a secure location and delete temporary copies when they are no longer needed.
+        </p>
+
+        <h2 class="mt-12 text-2xl font-black tracking-tight text-slate-950">Benefits for Remote Work, Online Learning, and Small Business</h2>
+        <p class="mt-4 text-base leading-8 text-slate-600">
+          Remote workers often need to prepare quick documents during meetings, calls, and project updates. A browser-based document converter provides an easy way to turn notes into shareable files without switching between multiple apps. Online learners can use it for study guides, assignment notes, reading summaries, and printable revision sheets. Small businesses can use it for signage text, customer notices, simple agreements, staff instructions, job descriptions, onboarding notes, and service explanations. Because the tool is free and does not require account creation, it is useful for one-time tasks and repeat workflows alike.
+        </p>
+
+        <p class="mt-5 text-base leading-8 text-slate-600">
+          The interface also supports mobile and tablet use. The responsive layout avoids horizontal overflow, uses mobile-safe cards, and keeps buttons easy to tap on smaller screens. This matters because many users now draft quick documents on phones while traveling, commuting, studying, or working away from a desk. While a desktop browser may still be more comfortable for long documents, the mobile-friendly design helps you create, copy, and export shorter documents when you need convenience.
+        </p>
+
+        <h2 class="mt-12 text-2xl font-black tracking-tight text-slate-950">SEO and Content Workflow Advantages</h2>
+        <p class="mt-4 text-base leading-8 text-slate-600">
+          Website owners, bloggers, affiliate marketers, local business operators, and content creators often need to prepare text outside a content management system before publishing. This online document converter can act as a clean drafting workspace for content outlines, landing page sections, FAQ answers, service descriptions, product summaries, and keyword-focused article drafts. The character and word counter gives a fast estimate of content size, while the export options allow the same text to be stored as a PDF archive, DOCX editing file, or TXT source draft.
+        </p>
+
+        <p class="mt-5 text-base leading-8 text-slate-600">
+          For search engine optimization work, clean documents are valuable. A writer may draft an article brief, collect keyword ideas, prepare meta title options, write meta description drafts, outline internal links, and save everything in a file that can be shared with a client or teammate. A PDF can be used for a stable content brief. A DOCX file can be used for collaborative editing. A TXT file can be used for moving copy into a CMS without unwanted formatting. This makes the tool useful not only as a document converter, but also as a lightweight writing utility for SEO planning and digital publishing.
+        </p>
+      </div>
+    </section>
+
+    <section id="faq" class="mt-8 rounded-3xl bg-white p-5 shadow-soft ring-1 ring-slate-200 sm:p-8">
+      <div class="mx-auto max-w-4xl">
+        <span class="inline-flex rounded-full bg-slate-100 px-4 py-2 text-sm font-black text-slate-700 ring-1 ring-slate-200">Frequently Asked Questions</span>
+        <h2 class="mt-5 text-3xl font-black tracking-tight text-slate-950">Document Converter FAQ</h2>
+
+        <div class="mt-8 space-y-5">
+          <article class="rounded-2xl bg-slate-50 p-5 ring-1 ring-slate-200">
+            <h3 class="text-lg font-black text-slate-950">Is this document converter free to use?</h3>
+            <p class="mt-3 text-sm leading-7 text-slate-600">Yes. The tool is designed as a free browser-based utility for creating PDF, DOCX, and TXT files from typed or pasted text.</p>
+          </article>
+
+          <article class="rounded-2xl bg-slate-50 p-5 ring-1 ring-slate-200">
+            <h3 class="text-lg font-black text-slate-950">Does the tool upload my document to a server?</h3>
+            <p class="mt-3 text-sm leading-7 text-slate-600">The document export process is designed to run locally in your browser. Your typed text is not intentionally sent to a NodnWebTools backend for conversion. However, you should still avoid entering highly sensitive information on shared devices or untrusted browsers.</p>
+          </article>
+
+          <article class="rounded-2xl bg-slate-50 p-5 ring-1 ring-slate-200">
+            <h3 class="text-lg font-black text-slate-950">Which export format should I choose?</h3>
+            <p class="mt-3 text-sm leading-7 text-slate-600">Choose PDF for a final printable document, DOCX for a file you want to edit later in a word processor, and TXT for a plain text backup or universal compatibility.</p>
+          </article>
+
+          <article class="rounded-2xl bg-slate-50 p-5 ring-1 ring-slate-200">
+            <h3 class="text-lg font-black text-slate-950">Can I use this tool on a phone?</h3>
+            <p class="mt-3 text-sm leading-7 text-slate-600">Yes. The layout is responsive and includes mobile-safe CSS to reduce horizontal overflow. Long text, preview areas, buttons, and cards are designed to fit smaller screens.</p>
+          </article>
+
+          <article class="rounded-2xl bg-slate-50 p-5 ring-1 ring-slate-200">
+            <h3 class="text-lg font-black text-slate-950">Why does my PDF look slightly different from the preview?</h3>
+            <p class="mt-3 text-sm leading-7 text-slate-600">PDF rendering can vary depending on browser settings, fonts, screen size, and canvas rendering behavior. Review your exported file before sending it as a final document.</p>
+          </article>
+
+          <article class="rounded-2xl bg-slate-50 p-5 ring-1 ring-slate-200">
+            <h3 class="text-lg font-black text-slate-950">Can this replace Microsoft Word or Google Docs?</h3>
+            <p class="mt-3 text-sm leading-7 text-slate-600">This tool is best for simple document creation and export. Use a full word processor for advanced formatting, collaboration, tables, images, page numbering, comments, and professional templates.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="mt-8 rounded-3xl bg-slate-950 p-5 text-white shadow-soft sm:p-8">
+      <div class="mx-auto max-w-4xl">
+        <h2 class="text-2xl font-black tracking-tight">Legal Disclaimer</h2>
+        <div class="mt-5 space-y-4 text-sm leading-7 text-slate-300">
+          <p>
+            This document converter is provided for general productivity and informational use only. It is not a legal, financial, tax, medical, compliance, recordkeeping, archival, or professional publishing service. NodnWebTools does not guarantee that exported PDF, DOCX, or TXT files will meet any specific formatting rule, court filing requirement, school submission requirement, business compliance standard, accessibility requirement, government standard, or professional documentation policy.
+          </p>
+          <p>
+            Users are responsible for reviewing all exported files before sharing, printing, submitting, signing, storing, or relying on them. Browser rendering, third-party front-end libraries, device memory, fonts, extensions, and local security settings may affect output quality or export behavior. Do not enter passwords, private keys, confidential client data, protected health information, regulated financial information, or highly sensitive personal data into any online tool unless you fully understand the risks and control the device environment.
+          </p>
+          <p>
+            NodnWebTools and its operators are not responsible for data loss, formatting errors, incomplete exports, corrupted downloads, inaccurate content, missed deadlines, privacy issues caused by user devices, or any direct or indirect damages resulting from the use of this tool. By using the tool, you accept responsibility for verifying accuracy, protecting your own data, and choosing an appropriate file format for your intended purpose.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="ad-box mt-8">
+      Bottom Ad Area Near the End of the Page
+    </div>
   </main>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      // Form Input Selectors
-      const docTitle = document.getElementById("docTitle");
-      const docBody = document.getElementById("docBody");
-      const charCount = document.getElementById("charCount");
-      const clearWorkspaceBtn = document.getElementById("clearWorkspaceBtn");
+  <footer class="mt-10 border-t border-slate-200 bg-white">
+    <div class="mx-auto flex w-full max-w-7xl flex-col gap-3 px-4 py-8 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
+      <p>© <span id="currentYear"></span> NodnWebTools. All rights reserved.</p>
+      <a href="https://nodntools.com" class="font-semibold text-accent-700 hover:text-accent-800">Visit Home</a>
+    </div>
+  </footer>
 
-      // Presentation View Target Selectors
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const documentTitle = document.getElementById("documentTitle");
+      const documentBody = document.getElementById("documentBody");
+      const fontSize = document.getElementById("fontSize");
+      const paperPadding = document.getElementById("paperPadding");
       const previewTitle = document.getElementById("previewTitle");
       const previewBody = document.getElementById("previewBody");
+      const previewInner = document.getElementById("previewInner");
       const printableArea = document.getElementById("printableArea");
-
-      // Action Dispatcher Core Triggers
+      const documentStats = document.getElementById("documentStats");
+      const statusMessage = document.getElementById("statusMessage");
       const exportPdfBtn = document.getElementById("exportPdfBtn");
-      const exportWordBtn = document.getElementById("exportWordBtn");
+      const exportDocxBtn = document.getElementById("exportDocxBtn");
+      const exportTxtBtn = document.getElementById("exportTxtBtn");
+      const copyTextBtn = document.getElementById("copyTextBtn");
+      const resetBtn = document.getElementById("resetBtn");
+      const exampleButtons = document.querySelectorAll(".exampleBtn");
+      const currentYear = document.getElementById("currentYear");
 
-      // Live WYSIWYG Event Synchronization Listeners
-      function syncPreviewCanvas() {
-        const titleValue = docTitle.value.trim();
-        const bodyValue = docBody.value;
+      const examples = {
+        letter: {
+          title: "Professional Letter",
+          body: "Dear Recipient,\\n\\nI am writing to share a brief update and provide the requested information in a clear, organized format. Please review the details below and let me know if any adjustments are needed.\\n\\nSummary:\\n- Main point one\\n- Main point two\\n- Main point three\\n\\nThank you for your time and consideration.\\n\\nSincerely,\\nYour Name"
+        },
+        report: {
+          title: "Project Summary Report",
+          body: "Overview\\nThis report summarizes the current project status, key progress, open issues, and recommended next steps.\\n\\nProgress\\nThe main tasks have been reviewed, documented, and prepared for the next phase. Team members should confirm outstanding items before final delivery.\\n\\nNext Steps\\n1. Review the remaining action items.\\n2. Confirm timeline and ownership.\\n3. Prepare the final version for distribution."
+        },
+        meeting: {
+          title: "Meeting Notes",
+          body: "Meeting Date: \\nAttendees: \\n\\nAgenda\\n- Topic one\\n- Topic two\\n- Topic three\\n\\nDiscussion Notes\\nAdd key decisions, questions, and important context here.\\n\\nAction Items\\n- Owner: Task description and deadline\\n- Owner: Task description and deadline\\n\\nFollow-Up\\nSchedule the next review and confirm responsibilities."
+        }
+      };
 
-        previewTitle.textContent = titleValue === "" ? "Untitled Document" : titleValue;
-        previewBody.textContent = bodyValue === "" ? "Your document content renders live right inside this zone layer..." : bodyValue;
-        
-        // Character counter update parameters
-        charCount.textContent = `Characters: ${bodyValue.length}`;
+      function sanitizeFileName(value) {
+        const cleaned = String(value || "document")
+          .trim()
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, "-")
+          .replace(/^-+|-+$/g, "");
+        return cleaned || "document";
       }
 
-      docTitle.addEventListener("input", syncPreviewCanvas);
-      docBody.addEventListener("input", syncPreviewCanvas);
+      function getBodyText() {
+        return documentBody.value || "";
+      }
 
-      // Clear Workspace Button Handler
-      clearWorkspaceBtn.addEventListener("click", () => {
-        docTitle.value = "Untitled Document";
-        docBody.value = "";
-        syncPreviewCanvas();
-      });
+      function getTitleText() {
+        return documentTitle.value.trim() || "Untitled Document";
+      }
 
-      // 1. html2pdf.js Compilation Pipeline Handler
-      exportPdfBtn.addEventListener("click", () => {
-        const titleFilename = (docTitle.value.trim() || "document").toLowerCase().replace(/[^a-z0-9]/gi, '_');
-        
-        // Configuration parameters for local PDF rendering matrix
-        const optionsConfig = {
-          margin:       [15, 15, 15, 15], // Standard millimetric padding fields
-          filename:     `${titleFilename}.pdf`,
-          image:        { type: 'jpeg', quality: 0.98 },
-          html2canvas:  { scale: 2, useCORS: true, letterRendering: true },
-          jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
-        };
-
-        // Trigger local vector canvas conversion routines
-        html2pdf().set(optionsConfig).from(printableArea).save();
-      });
-
-      // 2. docx.js Compilation Pipeline Handler
-      exportWordBtn.addEventListener("click", () => {
-        const rawTitle = docTitle.value.trim() || "Untitled Document";
-        const rawBody = docBody.value || "";
-        const titleFilename = rawTitle.toLowerCase().replace(/[^a-z0-9]/gi, '_');
-
-        // Access the globally loaded docx UMD namespace block component
-        if (typeof docx === 'undefined') {
-          alert("⚠️ Library Error: Word compilation library elements could not be loaded from remote CDN.");
-          return;
+      function updateStatus(message, isError) {
+        statusMessage.textContent = message;
+        statusMessage.className = isError ? "font-bold text-rose-700" : "font-bold text-accent-700";
+        if (message !== "Ready") {
+          window.clearTimeout(updateStatus.timer);
+          updateStatus.timer = window.setTimeout(function () {
+            statusMessage.textContent = "Ready";
+            statusMessage.className = "font-bold text-accent-700";
+          }, 2200);
         }
+      }
 
-        // Split body text lines accurately to preserve paragraph structures
-        const textLines = rawBody.split('\n');
-        const documentParagraphs = [
-          // Primary Document Heading
-          new docx.Paragraph({
-            text: rawTitle,
-            heading: docx.HeadingLevel.HEADING_1,
-            spacing: { after: 300 }
-          })
-        ];
+      function updatePreview() {
+        try {
+          const title = getTitleText();
+          const body = getBodyText();
+          const words = body.trim() ? body.trim().split(/\\s+/).filter(Boolean).length : 0;
+          const lines = body ? body.split(/\\n/).length : 0;
 
-        // Loop array chunks to assemble clean paragraph structural layout arrays
-        textLines.forEach(line => {
-          documentParagraphs.push(
-            new docx.Paragraph({
-              text: line,
-              spacing: { bottom: 120 },
-              style: "normal"
-            })
-          );
-        });
+          previewTitle.textContent = title;
+          previewBody.textContent = body.trim() ? body : "Your document content will appear here as you type. Use this preview to check spacing, readability, and structure before exporting your file.";
+          previewBody.style.fontSize = fontSize.value + "px";
+          previewInner.style.padding = paperPadding.value + "px";
+          documentStats.textContent = `${body.length} characters · ${words} words · ${lines} lines`;
+        } catch (error) {
+          console.error(error);
+          updateStatus("Preview error", true);
+        }
+      }
 
-        // Initialize structured Document archive tree matrix
-        const wordDocument = new docx.Document({
-          sections: [{
-            properties: {},
-            children: documentParagraphs
-          }]
-        });
+      function ensureContent() {
+        if (!getBodyText().trim()) {
+          updateStatus("Add content first", true);
+          documentBody.focus();
+          return false;
+        }
+        return true;
+      }
 
-        // Compile file elements into downloadable browser binary file blob targets
-        docx.Packer.toBlob(wordDocument).then(blobOutput => {
-          const localBlobUrl = URL.createObjectURL(blobOutput);
-          
-          const virtualAnchor = document.createElement("a");
-          virtualAnchor.href = localBlobUrl;
-          virtualAnchor.download = `${titleFilename}.docx`;
-          
-          document.body.appendChild(virtualAnchor);
-          virtualAnchor.click();
-          
-          // Clear operational allocation footprints instantly from client browser cache storage loops
-          document.body.removeChild(virtualAnchor);
-          URL.revokeObjectURL(localBlobUrl);
-        }).catch(err => {
-          console.error("Word archive generation fault node: ", err);
-          alert("⚠️ Conversion Fault: Failed to compile structured Word binary package components locally.");
+      function downloadBlob(filename, blob) {
+        const url = URL.createObjectURL(blob);
+        const anchor = document.createElement("a");
+        anchor.href = url;
+        anchor.download = filename;
+        document.body.appendChild(anchor);
+        anchor.click();
+        anchor.remove();
+        window.setTimeout(function () {
+          URL.revokeObjectURL(url);
+        }, 500);
+      }
+
+      documentTitle.addEventListener("input", updatePreview);
+      documentBody.addEventListener("input", updatePreview);
+      fontSize.addEventListener("change", updatePreview);
+      paperPadding.addEventListener("change", updatePreview);
+      window.addEventListener("resize", updatePreview);
+
+      exampleButtons.forEach(function (button) {
+        button.addEventListener("click", function () {
+          const example = examples[button.dataset.example];
+          if (!example) return;
+          documentTitle.value = example.title;
+          documentBody.value = example.body;
+          updatePreview();
+          updateStatus("Example loaded", false);
         });
       });
 
+      exportTxtBtn.addEventListener("click", function () {
+        try {
+          if (!ensureContent()) return;
+          const title = getTitleText();
+          const body = getBodyText();
+          const text = `${title}\\n\\n${body}`;
+          const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+          downloadBlob(sanitizeFileName(title) + ".txt", blob);
+          updateStatus("TXT downloaded", false);
+        } catch (error) {
+          console.error(error);
+          updateStatus("TXT export failed", true);
+        }
+      });
+
+      copyTextBtn.addEventListener("click", async function () {
+        try {
+          if (!ensureContent()) return;
+          const text = `${getTitleText()}\\n\\n${getBodyText()}`;
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            await navigator.clipboard.writeText(text);
+          } else {
+            const temp = document.createElement("textarea");
+            temp.value = text;
+            temp.style.position = "fixed";
+            temp.style.opacity = "0";
+            document.body.appendChild(temp);
+            temp.select();
+            document.execCommand("copy");
+            temp.remove();
+          }
+          const original = copyTextBtn.textContent;
+          copyTextBtn.textContent = "Copied!";
+          updateStatus("Copied!", false);
+          window.setTimeout(function () {
+            copyTextBtn.textContent = original;
+          }, 1500);
+        } catch (error) {
+          console.error(error);
+          updateStatus("Copy failed", true);
+        }
+      });
+
+      exportPdfBtn.addEventListener("click", function () {
+        try {
+          if (!ensureContent()) return;
+          if (typeof html2pdf === "undefined") {
+            updateStatus("PDF library unavailable", true);
+            return;
+          }
+
+          const title = getTitleText();
+          const options = {
+            margin: [12, 12, 12, 12],
+            filename: sanitizeFileName(title) + ".pdf",
+            image: { type: "jpeg", quality: 0.98 },
+            html2canvas: { scale: 2, useCORS: true, letterRendering: true },
+            jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
+          };
+
+          updateStatus("Creating PDF...", false);
+          html2pdf().set(options).from(printableArea).save().then(function () {
+            updateStatus("PDF downloaded", false);
+          }).catch(function (error) {
+            console.error(error);
+            updateStatus("PDF export failed", true);
+          });
+        } catch (error) {
+          console.error(error);
+          updateStatus("PDF export failed", true);
+        }
+      });
+
+      exportDocxBtn.addEventListener("click", function () {
+        try {
+          if (!ensureContent()) return;
+          if (typeof docx === "undefined") {
+            updateStatus("DOCX library unavailable", true);
+            return;
+          }
+
+          const title = getTitleText();
+          const body = getBodyText();
+          const lines = body.split("\\n");
+
+          const children = [
+            new docx.Paragraph({
+              text: title,
+              heading: docx.HeadingLevel.HEADING_1,
+              spacing: { after: 300 }
+            })
+          ];
+
+          lines.forEach(function (line) {
+            children.push(
+              new docx.Paragraph({
+                children: [new docx.TextRun(line || "")],
+                spacing: { after: 160 }
+              })
+            );
+          });
+
+          const wordDocument = new docx.Document({
+            sections: [
+              {
+                properties: {},
+                children: children
+              }
+            ]
+          });
+
+          updateStatus("Creating DOCX...", false);
+          docx.Packer.toBlob(wordDocument).then(function (blob) {
+            downloadBlob(sanitizeFileName(title) + ".docx", blob);
+            updateStatus("DOCX downloaded", false);
+          }).catch(function (error) {
+            console.error(error);
+            updateStatus("DOCX export failed", true);
+          });
+        } catch (error) {
+          console.error(error);
+          updateStatus("DOCX export failed", true);
+        }
+      });
+
+      resetBtn.addEventListener("click", function () {
+        documentTitle.value = "Untitled Document";
+        documentBody.value = "";
+        fontSize.value = "14";
+        paperPadding.value = "48";
+        updatePreview();
+        updateStatus("Tool reset", false);
+      });
+
+      currentYear.textContent = new Date().getFullYear();
+      updatePreview();
     });
   </script>
-
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
 </body>
 </html>
