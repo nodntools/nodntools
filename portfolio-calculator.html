@@ -4,17 +4,24 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404"
-     crossorigin="anonymous"></script>
-  <meta name="google-adsense-account" content="ca-pub-5282672325821404">
-
-  <title>Investment Portfolio Calculator | Portfolio Rebalancing Calculator</title>
-  <meta name="description" content="Free investment portfolio calculator and portfolio rebalancing calculator. Enter asset values and target allocation percentages to visualize your current portfolio and calculate buy or sell rebalancing amounts." />
-  <meta name="keywords" content="investment portfolio calculator, portfolio rebalancing calculator, asset allocation calculator, rebalance portfolio, investment calculator, target allocation calculator, buy sell rebalancing calculator" />
+  <title>Investment Portfolio Calculator | Rebalancing Tool</title>
+  <meta name="description" content="Calculate portfolio allocation and rebalancing amounts with a free investment portfolio calculator." />
+  <meta name="keywords" content="investment portfolio calculator, portfolio rebalancing calculator, asset allocation calculator, rebalance portfolio, investment calculator, target allocation calculator, buy sell rebalancing calculator, portfolio drift calculator, ETF allocation calculator, stock bond allocation calculator, portfolio analysis tool, asset weight calculator, financial planning calculator" />
   <meta name="robots" content="index, follow" />
-  <meta property="og:title" content="Investment Portfolio Calculator" />
-  <meta property="og:description" content="Visualize asset allocation and calculate portfolio rebalancing buy or sell amounts instantly." />
+  <meta name="author" content="NodnWebTools" />
+
+  <meta property="og:title" content="Investment Portfolio Calculator | Rebalancing Tool" />
+  <meta property="og:description" content="Calculate asset allocation, portfolio drift, and buy or sell rebalancing amounts directly in your browser." />
   <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://nodntools.com/portfolio-calculator.html" />
+  <meta property="og:site_name" content="NodnWebTools" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Investment Portfolio Calculator" />
+  <meta name="twitter:description" content="Analyze asset allocation and calculate estimated portfolio rebalancing amounts." />
+
+  <meta name="google-adsense-account" content="ca-pub-5282672325821404">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404" crossorigin="anonymous"></script>
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -24,40 +31,78 @@
       theme: {
         extend: {
           colors: {
-            royal: {
+            accent: {
               50: '#eef2ff',
               100: '#e0e7ff',
+              200: '#c7d2fe',
               500: '#6366f1',
               600: '#4f46e5',
               700: '#4338ca',
+              800: '#3730a3',
               900: '#312e81'
             }
           }
         }
       }
-    }
+    };
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Investment Portfolio Calculator",
+    "url": "https://nodntools.com/portfolio-calculator.html",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any modern web browser",
+    "description": "A free client-side investment portfolio calculator that visualizes asset allocation and estimates portfolio rebalancing buy or sell amounts.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "NodnWebTools",
+      "url": "https://nodntools.com"
+    },
+    "featureList": [
+      "Investment portfolio value calculation",
+      "Asset allocation analysis",
+      "Portfolio rebalancing report",
+      "Buy, sell, and hold estimates",
+      "Target allocation comparison",
+      "Portfolio drift calculation",
+      "Doughnut allocation chart",
+      "Copyable report",
+      "Client-side browser processing"
+    ]
+  }
   </script>
 
   <style>
-    html,
-    body {
+    html, body {
       width: 100%;
       max-width: 100%;
       overflow-x: hidden;
+      scroll-behavior: smooth;
     }
 
-    * {
+    *, *::before, *::after {
       box-sizing: border-box;
+      min-width: 0;
     }
 
     body {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       -webkit-text-size-adjust: 100%;
     }
 
-    input,
-    button,
-    select,
-    textarea {
+    main, section, article, aside, div, header, footer, table, canvas, img, svg, pre, code {
+      max-width: 100%;
+    }
+
+    input, button, select, textarea {
       max-width: 100%;
     }
 
@@ -73,6 +118,38 @@
 
     input[type="number"] {
       -moz-appearance: textfield;
+    }
+
+    .safe-break {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .mobile-code {
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .mobile-preview {
+      max-width: 100%;
+      overflow-x: auto;
+    }
+
+    .ad-box {
+      width: 100%;
+      max-width: 100%;
+      min-height: 90px;
+      overflow: hidden;
+      border: 1px dashed #cbd5e1;
+      background: #f8fafc;
+      color: #94a3b8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-radius: 1.25rem;
+      padding: 1rem;
     }
 
     .fade-in {
@@ -166,80 +243,131 @@
         content: "Action";
       }
     }
-  </style>
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "Investment Portfolio Calculator",
-    "applicationCategory": "FinanceApplication",
-    "operatingSystem": "All",
-    "description": "A free browser-based investment portfolio calculator that visualizes asset allocation and estimates portfolio rebalancing buy or sell amounts.",
-    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
-  }
-  </script>
+    @media (max-width: 640px) {
+      .mobile-card,
+      .mobile-panel,
+      .mobile-preview {
+        border-radius: 1.25rem !important;
+        padding: 1rem !important;
+      }
+
+      .mobile-button-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      button {
+        width: 100%;
+      }
+
+      .ad-box {
+        min-height: 90px;
+        border-radius: 1rem;
+        padding: .875rem;
+        font-size: .875rem;
+      }
+
+      h1 {
+        font-size: 2rem !important;
+        line-height: 1.15 !important;
+      }
+
+      h2 {
+        font-size: 1.5rem !important;
+        line-height: 1.25 !important;
+      }
+
+      h3 {
+        font-size: 1.125rem !important;
+      }
+    }
+
+    @media (max-width: 380px) {
+      body {
+        font-size: 14px;
+      }
+
+      .mobile-card,
+      .mobile-panel,
+      .mobile-preview {
+        padding: .875rem !important;
+        border-radius: 1rem !important;
+      }
+
+      .ad-box {
+        min-height: 82px;
+        font-size: .8rem;
+      }
+
+      h1 {
+        font-size: 1.75rem !important;
+      }
+    }
+  </style>
 </head>
 
-<body class="min-h-screen bg-gradient-to-br from-slate-50 via-white to-indigo-50 px-3 py-4 text-slate-900 sm:px-4 sm:py-10">
-  <main class="mx-auto w-full max-w-7xl overflow-hidden">
-    <header class="mb-5 text-center">
-      <a href="https://nodntools.com" class="inline-block transition hover:opacity-80" aria-label="NodnWebTools Home">
-        <div class="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
-          Nodn<span class="text-indigo-600">WebTools</span>
-        </div>
+<body class="min-h-screen bg-slate-50 text-slate-900">
+  <header class="border-b border-slate-200 bg-white/90 backdrop-blur">
+    <div class="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
+      <a href="https://nodntools.com" class="safe-break text-xl font-extrabold tracking-tight text-slate-950 sm:text-2xl" aria-label="NodnWebTools Home">
+        Nodn<span class="text-accent-600">WebTools</span>
       </a>
-    </header>
+      <a href="https://nodntools.com" class="rounded-full border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-accent-200 hover:bg-accent-50 hover:text-accent-700">
+        Home
+      </a>
+    </div>
+  </header>
 
-    <div class="mb-5 flex min-h-[90px] w-full items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white/80 px-3 text-center text-sm text-slate-400 shadow-sm">
-      AdSense Responsive Ad Area - Top
+  <main class="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
+    <div class="ad-box mb-6">
+      Top Ad Area
     </div>
 
-    <section class="mb-6 overflow-hidden rounded-[1.75rem] bg-white shadow-xl shadow-indigo-900/10 ring-1 ring-indigo-100 sm:rounded-[2rem]">
-      <div class="bg-gradient-to-br from-slate-900 via-indigo-900 to-indigo-700 px-5 py-7 text-white sm:px-8 sm:py-9">
+    <section class="mb-6 overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-slate-200">
+      <div class="bg-gradient-to-br from-slate-950 via-accent-900 to-accent-700 px-5 py-8 text-white sm:px-8 sm:py-10">
         <div class="inline-flex max-w-full rounded-full bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-[0.12em] text-indigo-100 ring-1 ring-white/15">
           Portfolio Rebalancing Tool
         </div>
-        <h1 class="mt-4 break-words text-3xl font-black tracking-tight sm:text-5xl">
+        <h1 class="mt-4 safe-break text-4xl font-black tracking-tight sm:text-5xl">
           Investment Portfolio Calculator
         </h1>
-        <p class="mt-4 max-w-3xl text-sm leading-7 text-indigo-50/90 sm:text-base">
-          Enter your asset values and target allocation percentages to visualize your current portfolio, compare it with your desired allocation, and calculate how much to buy or sell for rebalancing.
+        <p class="mt-4 max-w-3xl text-base leading-8 text-indigo-50/90">
+          Enter asset values and target allocation percentages to visualize your current investment mix, compare it with your desired allocation, and estimate buy or sell amounts for portfolio rebalancing.
         </p>
       </div>
     </section>
 
-    <section class="grid w-full gap-5 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-start">
-      <section class="min-w-0 rounded-[1.75rem] bg-white p-4 shadow-xl shadow-slate-900/5 ring-1 ring-slate-100 sm:rounded-[2rem] sm:p-6">
+    <section class="grid w-full grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-start">
+      <section class="mobile-card min-w-0 rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-8">
         <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
           <div class="min-w-0">
-            <h2 class="break-words text-2xl font-black tracking-tight text-slate-950">Asset Inputs</h2>
+            <h2 class="safe-break text-2xl font-black tracking-tight text-slate-950">Asset Inputs</h2>
             <p class="mt-2 text-sm leading-6 text-slate-600">
-              Add each asset, enter its current value, and set the target allocation.
+              Add each asset, enter its current value, and set the target allocation percentage.
             </p>
           </div>
-          <button id="addAssetBtn" type="button" class="w-full rounded-2xl bg-indigo-600 px-5 py-3 text-sm font-black text-white shadow-lg shadow-indigo-600/20 transition hover:bg-indigo-700 active:scale-95 sm:w-auto">
+          <button id="addAssetBtn" type="button" class="w-full rounded-2xl bg-accent-600 px-5 py-3 text-sm font-black text-white shadow-sm transition hover:bg-accent-700 active:scale-95 sm:w-auto">
             + Add Asset
           </button>
         </div>
 
-        <div class="mt-5 grid w-full gap-3 sm:grid-cols-3">
+        <div class="mt-5 grid w-full grid-cols-1 gap-3 sm:grid-cols-3">
           <article class="min-w-0 rounded-3xl bg-slate-50 p-4 ring-1 ring-slate-100">
             <p class="text-xs font-bold uppercase tracking-[0.12em] text-slate-500">Total Portfolio</p>
-            <p id="totalAssetValue" class="mt-2 break-words text-2xl font-black text-slate-950">$0</p>
+            <p id="totalAssetValue" class="mt-2 safe-break text-2xl font-black text-slate-950">$0</p>
           </article>
-          <article class="min-w-0 rounded-3xl bg-indigo-50 p-4 ring-1 ring-indigo-100">
-            <p class="text-xs font-bold uppercase tracking-[0.12em] text-indigo-600">Target Weight Sum</p>
-            <p id="targetWeightSum" class="mt-2 break-words text-2xl font-black text-indigo-800">0%</p>
+          <article class="min-w-0 rounded-3xl bg-accent-50 p-4 ring-1 ring-accent-100">
+            <p class="text-xs font-bold uppercase tracking-[0.12em] text-accent-600">Target Weight Sum</p>
+            <p id="targetWeightSum" class="mt-2 safe-break text-2xl font-black text-accent-800">0%</p>
           </article>
           <article class="min-w-0 rounded-3xl bg-slate-50 p-4 ring-1 ring-slate-100">
             <p class="text-xs font-bold uppercase tracking-[0.12em] text-slate-500">Asset Count</p>
-            <p id="assetCount" class="mt-2 break-words text-2xl font-black text-slate-950">0</p>
+            <p id="assetCount" class="mt-2 safe-break text-2xl font-black text-slate-950">0</p>
           </article>
         </div>
 
-        <div id="warningBox" class="mt-4 hidden rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-semibold text-amber-800"></div>
-        <div id="errorBox" class="mt-4 hidden rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-semibold text-red-700"></div>
+        <div id="warningBox" class="mt-4 hidden rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-semibold leading-6 text-amber-800"></div>
+        <div id="errorBox" class="mt-4 hidden rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-semibold leading-6 text-red-700"></div>
 
         <div class="mt-5 hidden w-full grid-cols-[1.3fr_1fr_0.85fr_0.85fr_auto] gap-3 rounded-2xl bg-slate-100 px-4 py-3 text-xs font-black uppercase tracking-wide text-slate-500 md:grid">
           <div>Asset Name</div>
@@ -253,48 +381,44 @@
 
         <div class="mt-5 rounded-3xl bg-slate-50 p-5 ring-1 ring-slate-100">
           <h3 class="text-lg font-black text-slate-950">How to Use</h3>
-          <div class="mt-3 grid gap-3 text-sm leading-6 text-slate-600 md:grid-cols-2">
-            <p><strong class="text-slate-900">Current Value:</strong> Enter the current market value of each asset category, ETF, stock, bond, cash account, or fund.</p>
-            <p><strong class="text-slate-900">Target %:</strong> Your target allocation should equal 100%. If it does not, the calculator will show a warning.</p>
+          <div class="mt-3 grid grid-cols-1 gap-3 text-sm leading-6 text-slate-600 md:grid-cols-2">
+            <p><strong class="text-slate-900">Current Value:</strong> Enter the current market value of each asset class, ETF, stock, bond fund, cash account, crypto position, or custom category.</p>
+            <p><strong class="text-slate-900">Target %:</strong> Your target allocation should equal 100%. If it does not, the calculator will show a warning so you can adjust the weights.</p>
           </div>
-        </div>
-
-        <div class="mt-6 flex min-h-[90px] w-full items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-slate-50 px-3 text-center text-sm text-slate-400">
-          AdSense Responsive Ad Area - Below Inputs
         </div>
       </section>
 
-      <aside class="min-w-0 space-y-5 lg:sticky lg:top-8">
-        <section class="min-w-0 rounded-[1.75rem] bg-white p-4 shadow-xl shadow-indigo-900/5 ring-1 ring-indigo-100 sm:rounded-[2rem] sm:p-6">
+      <aside class="min-w-0 space-y-6 lg:sticky lg:top-8">
+        <section class="mobile-preview min-w-0 rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-8">
           <div class="flex items-start justify-between gap-3">
             <div class="min-w-0">
-              <h2 class="break-words text-2xl font-black tracking-tight text-slate-950">Current Allocation</h2>
+              <h2 class="safe-break text-2xl font-black tracking-tight text-slate-950">Current Allocation</h2>
               <p class="mt-2 text-sm leading-6 text-slate-600">
                 Doughnut chart based on your current asset values.
               </p>
             </div>
-            <span class="shrink-0 rounded-full bg-indigo-50 px-3 py-1 text-xs font-black uppercase tracking-wide text-indigo-700 ring-1 ring-indigo-100">
+            <span class="shrink-0 rounded-full bg-accent-50 px-3 py-1 text-xs font-black uppercase tracking-wide text-accent-700 ring-1 ring-accent-100">
               Live
             </span>
           </div>
 
-          <div class="mt-5 rounded-[1.75rem] bg-gradient-to-br from-slate-50 to-indigo-50 p-3 ring-1 ring-slate-100 sm:p-4">
+          <div class="mt-5 rounded-3xl bg-gradient-to-br from-slate-50 to-indigo-50 p-3 ring-1 ring-slate-100 sm:p-4">
             <div class="mx-auto h-[240px] w-full max-w-[310px] sm:h-[320px] sm:max-w-[360px]">
               <canvas id="portfolioChart" aria-label="Portfolio Allocation Chart"></canvas>
             </div>
           </div>
         </section>
 
-        <section class="min-w-0 rounded-[1.75rem] bg-white p-4 shadow-xl shadow-indigo-900/5 ring-1 ring-indigo-100 sm:rounded-[2rem] sm:p-6">
+        <section class="mobile-card min-w-0 rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-8">
           <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
             <div class="min-w-0">
-              <h2 class="break-words text-2xl font-black tracking-tight text-slate-950">Rebalancing Report</h2>
+              <h2 class="safe-break text-2xl font-black tracking-tight text-slate-950">Rebalancing Report</h2>
               <p class="mt-2 text-sm leading-6 text-slate-600">
                 Estimated buy or sell amounts to reach your target allocation.
               </p>
             </div>
 
-            <button id="copyReportBtn" type="button" class="w-full rounded-2xl bg-slate-900 px-4 py-2.5 text-sm font-black text-white shadow-lg shadow-slate-900/15 transition hover:bg-indigo-700 active:scale-95 sm:w-auto">
+            <button id="copyReportBtn" type="button" class="w-full rounded-2xl bg-slate-950 px-4 py-3 text-sm font-black text-white shadow-sm transition hover:bg-accent-700 active:scale-95 sm:w-auto">
               Copy
             </button>
           </div>
@@ -324,465 +448,675 @@
       </aside>
     </section>
 
-    <section class="mt-8 rounded-[1.75rem] bg-white p-5 shadow-sm ring-1 ring-slate-100 sm:rounded-[2rem] sm:p-8">
-      <h2 class="text-2xl font-black tracking-tight text-slate-950">What Is Portfolio Rebalancing?</h2>
-      <div class="mt-4 space-y-4 text-sm leading-7 text-slate-600 sm:text-base">
-        <p>
-          Portfolio rebalancing is the process of bringing your investment portfolio back to your target asset allocation. Over time, different assets grow or fall at different speeds. For example, if stocks rise sharply while bonds remain flat, your portfolio may become more stock-heavy than you originally planned. A portfolio rebalancing calculator helps you compare your current allocation with your target allocation and estimate how much you may need to buy or sell.
-        </p>
-        <p>
-          This investment portfolio calculator is designed for investors who want a simple asset allocation calculator without uploading private financial data to a server. You can enter categories such as U.S. stocks, Canadian stocks, international stocks, Korean stocks, bonds, cash, REITs, commodities, crypto, or any custom asset class. The calculator instantly updates your current portfolio weight, doughnut chart, target value, difference, and rebalancing action.
-        </p>
-      </div>
+    <div class="ad-box my-8">
+      Ad Area Below Main Tool and Result Section
+    </div>
 
-      <h2 class="mt-8 text-2xl font-black tracking-tight text-slate-950">Why Portfolio Rebalancing Is Important</h2>
-      <div class="mt-4 space-y-4 text-sm leading-7 text-slate-600 sm:text-base">
-        <p>
-          Rebalancing is important because it helps keep your investment risk aligned with your original plan. Without rebalancing, a portfolio can slowly drift into a risk level that no longer matches your goals. A conservative investor may become overexposed to stocks after a long bull market, while a growth-focused investor may become too defensive after moving too much money into cash or bonds.
-        </p>
-        <p>
-          Rebalancing also creates a disciplined investment habit. Instead of making emotional decisions based on market headlines, you follow a structured process. When one asset has grown far above its target, the calculator may show a Sell amount. When another asset has fallen below its target, the calculator may show a Buy amount. In this way, rebalancing can encourage systematic “sell high and buy low” behavior.
-        </p>
-      </div>
+    <article class="mobile-card rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-8 lg:p-10">
+      <div class="mx-auto max-w-4xl">
+        <span class="inline-flex rounded-full bg-accent-50 px-4 py-2 text-sm font-bold text-accent-700 ring-1 ring-accent-100">
+          Portfolio Rebalancing Guide
+        </span>
 
-      <h2 class="mt-8 text-2xl font-black tracking-tight text-slate-950">Common Portfolio Rebalancing Strategies</h2>
-      <div class="mt-5 grid gap-4 md:grid-cols-2">
-        <article class="rounded-3xl bg-slate-50 p-5 ring-1 ring-slate-100">
-          <h3 class="text-lg font-black text-slate-900">1. Calendar-Based Rebalancing</h3>
-          <p class="mt-2 text-sm leading-7 text-slate-600">
-            Calendar-based rebalancing means reviewing your portfolio on a fixed schedule, such as monthly, quarterly, semi-annually, or annually. Many long-term investors prefer quarterly or annual rebalancing because it is simple and reduces unnecessary trading.
+        <h2 class="mt-5 text-3xl font-black tracking-tight text-slate-950">
+          Investment Portfolio Calculator for Asset Allocation and Rebalancing
+        </h2>
+
+        <div class="mt-6 space-y-6 text-base leading-8 text-slate-600">
+          <p>
+            An investment portfolio calculator helps investors understand how their money is distributed across different asset classes, funds, accounts, and investment categories. A portfolio may include U.S. stocks, Canadian stocks, international stocks, emerging market funds, bonds, cash, real estate investment trusts, commodities, crypto assets, sector ETFs, individual stocks, retirement accounts, taxable brokerage accounts, and other custom categories. Over time, each part of the portfolio can grow or shrink at a different rate. This causes the current allocation to drift away from the original target allocation. The NodnWebTools Investment Portfolio Calculator is designed to make that drift easier to see by comparing current asset values with target percentages and estimating the buy, sell, or hold amount for each asset.
           </p>
-        </article>
 
-        <article class="rounded-3xl bg-slate-50 p-5 ring-1 ring-slate-100">
-          <h3 class="text-lg font-black text-slate-900">2. Threshold-Based Rebalancing</h3>
-          <p class="mt-2 text-sm leading-7 text-slate-600">
-            Threshold-based rebalancing means rebalancing only when an asset class moves beyond a chosen range. For example, if your target stock allocation is 60%, you may rebalance only when it moves above 65% or below 55%.
+          <p>
+            This tool is useful for people searching for an investment portfolio calculator, asset allocation calculator, portfolio rebalancing calculator, ETF allocation calculator, stock bond allocation calculator, portfolio drift calculator, target allocation calculator, and buy sell rebalancing calculator. Instead of building a spreadsheet from scratch, you can enter your assets directly in the browser, review the current portfolio weight, view a visual allocation chart, and generate a simple rebalancing report. The calculator runs client-side, which means the numbers you enter are processed in your browser. It does not require a backend account, login system, or database for the core calculation.
           </p>
-        </article>
 
-        <article class="rounded-3xl bg-slate-50 p-5 ring-1 ring-slate-100">
-          <h3 class="text-lg font-black text-slate-900">3. Cash-Flow Rebalancing</h3>
-          <p class="mt-2 text-sm leading-7 text-slate-600">
-            Cash-flow rebalancing uses new contributions, dividends, interest, or deposits to buy underweight assets instead of selling overweight assets. This approach can reduce transaction costs and may help avoid unnecessary taxable sales.
+          <h3 class="text-2xl font-black text-slate-950">What Is Portfolio Rebalancing?</h3>
+          <p>
+            Portfolio rebalancing is the process of bringing an investment portfolio back toward a planned target allocation. A target allocation is the mix of asset classes that reflects your goals, risk tolerance, time horizon, liquidity needs, and investment strategy. For example, an investor may choose a target allocation of 60% stocks and 40% bonds. Another investor may choose 80% global equities, 15% bonds, and 5% cash. A more detailed portfolio may separate U.S. equities, Canadian equities, international equities, emerging markets, real estate, bonds, cash, and alternative assets. Rebalancing compares the current weight of each asset to the desired target weight and identifies where the portfolio is overweight or underweight.
           </p>
-        </article>
 
-        <article class="rounded-3xl bg-slate-50 p-5 ring-1 ring-slate-100">
-          <h3 class="text-lg font-black text-slate-900">4. Hybrid Rebalancing</h3>
-          <p class="mt-2 text-sm leading-7 text-slate-600">
-            Hybrid rebalancing combines calendar and threshold methods. For example, you may check your portfolio every quarter but only trade if an asset class has drifted more than 5% from its target weight.
+          <p>
+            If stocks rise faster than bonds, a 60/40 portfolio can become 70/30 or higher. That may increase risk beyond the investor’s original plan. If the stock market falls sharply and bonds or cash become a larger part of the portfolio, the portfolio may become more conservative than intended. Rebalancing helps restore the original balance. The process may involve selling assets that are above target, buying assets that are below target, or directing new contributions into underweight assets. This calculator estimates the difference between current value and target value for each line item, then labels the action as Buy, Sell, or Hold.
           </p>
-        </article>
+
+          <h3 class="text-2xl font-black text-slate-950">Why Asset Allocation Matters</h3>
+          <p>
+            Asset allocation is one of the most important parts of long-term investing because it affects risk, volatility, expected return, diversification, and drawdown behavior. A portfolio with a high percentage of stocks may offer greater long-term growth potential, but it may also experience larger short-term losses. A portfolio with more bonds and cash may be more stable, but it may have lower long-term growth potential. Real estate, commodities, international assets, and alternative investments may add diversification, but they also have their own risks and costs. A portfolio calculator helps investors see whether their actual allocation still matches the plan they intended to follow.
+          </p>
+
+          <p>
+            Many investors create a target allocation at the beginning of the year, when opening an investment account, when building a retirement plan, or when choosing an ETF strategy. However, portfolios do not remain static. Market prices move every day. Contributions, withdrawals, dividends, interest payments, distributions, currency movements, and capital gains can all change the weights. Without monitoring, a portfolio can slowly become concentrated in one asset class, one region, one sector, or one risk factor. Rebalancing is a method for keeping the portfolio aligned with the investor’s chosen structure.
+          </p>
+
+          <div class="ad-box my-8">
+            Middle Content Ad Area
+          </div>
+
+          <h3 class="text-2xl font-black text-slate-950">How This Portfolio Rebalancing Calculator Works</h3>
+          <p>
+            The calculator begins by adding all current asset values to find the total portfolio value. It then calculates the current percentage weight of each asset by dividing each asset value by the total portfolio value. Next, it multiplies the total portfolio value by each target percentage to calculate the ideal target value. The difference between target value and current value becomes the estimated rebalancing amount. A positive difference means the asset is below target and may require a Buy action. A negative difference means the asset is above target and may require a Sell action. If the difference is close to zero, the tool marks the asset as Hold.
+          </p>
+
+          <p>
+            For example, imagine a $100,000 portfolio with $70,000 in stocks and $30,000 in bonds. If the target allocation is 60% stocks and 40% bonds, the target stock value is $60,000 and the target bond value is $40,000. The calculator would show stocks as $10,000 above target and bonds as $10,000 below target. A full rebalance would involve selling $10,000 of stocks and buying $10,000 of bonds. In real life, an investor may choose to rebalance gradually, use new contributions, consider taxes, or avoid selling if transaction costs are high.
+          </p>
+
+          <h3 class="text-2xl font-black text-slate-950">Popular Uses for This Investment Portfolio Calculator</h3>
+          <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+            <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+              <h4 class="font-black text-slate-950">Portfolio Allocation Review</h4>
+              <p class="mt-2 text-sm leading-7 text-slate-600">
+                Review how much of your portfolio is allocated to stocks, bonds, cash, ETFs, real estate, crypto, commodities, or other custom asset categories.
+              </p>
+            </div>
+            <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+              <h4 class="font-black text-slate-950">Rebalancing Estimate</h4>
+              <p class="mt-2 text-sm leading-7 text-slate-600">
+                Estimate buy and sell amounts required to move your current portfolio closer to your target allocation.
+              </p>
+            </div>
+            <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+              <h4 class="font-black text-slate-950">ETF Portfolio Planning</h4>
+              <p class="mt-2 text-sm leading-7 text-slate-600">
+                Compare broad-market ETFs, bond ETFs, international ETFs, dividend ETFs, sector ETFs, and cash holdings within one simple allocation dashboard.
+              </p>
+            </div>
+            <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+              <h4 class="font-black text-slate-950">Retirement Account Review</h4>
+              <p class="mt-2 text-sm leading-7 text-slate-600">
+                Use custom labels to review retirement accounts, taxable accounts, savings accounts, and long-term investing categories.
+              </p>
+            </div>
+          </div>
+
+          <h3 class="text-2xl font-black text-slate-950">Common Portfolio Rebalancing Strategies</h3>
+          <p>
+            There are several ways to rebalance a portfolio. Calendar-based rebalancing means reviewing and adjusting on a fixed schedule, such as monthly, quarterly, semi-annually, or annually. Many long-term investors prefer quarterly or annual reviews because they are simple and reduce unnecessary trading. Threshold-based rebalancing means taking action only when an asset class drifts beyond a chosen band, such as 5 percentage points from target. Cash-flow rebalancing means using new contributions, dividends, interest, or deposits to buy underweight assets instead of selling overweight assets. Hybrid rebalancing combines schedule-based reviews with drift thresholds.
+          </p>
+
+          <p>
+            Each strategy has trade-offs. Frequent rebalancing may keep the portfolio very close to target, but it can increase transaction costs, taxes, and administrative effort. Infrequent rebalancing may reduce costs, but it allows greater drift. Threshold-based rebalancing can be efficient because it focuses only on meaningful allocation changes. Cash-flow rebalancing is often tax-efficient because it avoids unnecessary selling. Investors in taxable accounts should be especially mindful of capital gains, tax lots, wash sale rules where applicable, bid-ask spreads, and trading fees.
+          </p>
+
+          <h3 class="text-2xl font-black text-slate-950">How to Use This Portfolio Calculator</h3>
+          <p>
+            Start by entering each asset name. You can use broad categories such as Stocks, Bonds, Cash, and Real Estate, or you can enter specific funds such as U.S. Total Market ETF, International Equity ETF, Canadian Equity ETF, Bond ETF, High Interest Savings, REIT Fund, Gold ETF, or Crypto. Next, enter the current value of each asset. Use the current market value, not the original purchase price. Then enter your target allocation percentage for each asset. The target percentages should add up to 100%. If they do not, the calculator will show a warning so you can correct the allocation.
+          </p>
+
+          <p>
+            After entering the values, review the summary cards at the top of the input panel. The total portfolio value shows the combined value of all assets. The target weight sum tells you whether your target allocation equals 100%. The asset count shows how many lines are currently included. The doughnut chart visualizes your current allocation. The rebalancing table shows the target value, difference, and estimated action for each asset. You can copy the report for use in notes, planning documents, or a personal investment journal.
+          </p>
+
+          <h3 class="text-2xl font-black text-slate-950">Example Portfolio Allocation</h3>
+          <p>
+            A simple long-term investor might use a four-part portfolio: U.S. stocks, international stocks, bonds, and cash. The investor may choose a target of 50% U.S. stocks, 25% international stocks, 20% bonds, and 5% cash. If the stock market performs strongly, the stock allocation may rise above target. If bonds decline or cash is spent, those categories may fall below target. By entering the current values into the calculator, the investor can quickly see which categories are overweight and underweight.
+          </p>
+
+          <p>
+            Another investor may use a more detailed portfolio with Canadian stocks, U.S. stocks, developed international stocks, emerging markets, short-term bonds, long-term bonds, real estate, and cash. A younger investor may choose a high equity allocation, while a retiree may choose a larger bond and cash allocation. The calculator does not decide which allocation is right. It simply helps compare the current portfolio against the allocation the user chooses.
+          </p>
+
+          <div class="ad-box my-8">
+            Bottom Content Ad Area
+          </div>
+
+          <h3 class="text-2xl font-black text-slate-950">Portfolio Drift and Risk Control</h3>
+          <p>
+            Portfolio drift occurs when the actual asset weights move away from target weights. This can happen because some assets grow faster than others, some assets decline, or new contributions are not spread according to the target allocation. Drift is not always bad, but it changes the risk profile of the portfolio. If stocks rise for several years, an investor may become more exposed to equity market risk than originally intended. If the portfolio becomes too concentrated in one region, sector, or asset type, diversification may be weaker than expected.
+          </p>
+
+          <p>
+            Rebalancing can help manage drift by restoring discipline. It forces the investor to compare current numbers against a written plan instead of reacting only to headlines, fear, excitement, or short-term market performance. A portfolio calculator makes this process more transparent. The investor can see the exact dollar amount of drift, not just a vague impression that one asset has become too large or too small.
+          </p>
+
+          <h3 class="text-2xl font-black text-slate-950">Buy, Sell, and Hold Signals Explained</h3>
+          <p>
+            The Buy, Sell, and Hold labels in this tool are mathematical labels based on your inputs. Buy means the asset’s current value is below the target value. Sell means the asset’s current value is above the target value. Hold means the current value is close to the target value. These labels are not investment recommendations. They do not consider market outlook, taxes, transaction fees, risk tolerance, account type, investment policy, liquidity needs, or personal financial circumstances.
+          </p>
+
+          <p>
+            In practice, investors often modify the raw rebalancing result. For example, instead of selling an overweight asset in a taxable account, an investor may direct new contributions toward underweight assets. Instead of fully rebalancing immediately, an investor may rebalance only when drift exceeds a threshold. Instead of trading small differences, an investor may ignore minor deviations to avoid unnecessary costs. The calculator provides a structured estimate, but the user remains responsible for deciding whether and how to act.
+          </p>
+
+          <h3 class="text-2xl font-black text-slate-950">Taxable Accounts vs. Tax-Advantaged Accounts</h3>
+          <p>
+            Rebalancing can have different implications depending on the account type. In a tax-advantaged retirement account, selling one fund and buying another may not create an immediate taxable capital gain, depending on the country and account rules. In a taxable brokerage account, selling an appreciated asset can create a taxable gain. Investors may also need to consider dividend taxes, foreign withholding taxes, tax-loss harvesting rules, and transaction records. This calculator does not calculate taxes, so users should review tax consequences before making trades.
+          </p>
+
+          <p>
+            Many investors prefer to rebalance inside tax-advantaged accounts first, use new contributions to correct drift, or place tax-inefficient assets in suitable account types. These decisions depend on personal circumstances and local tax rules. A financial advisor, tax professional, or licensed investment professional can help evaluate the best approach.
+          </p>
+
+          <h3 class="text-2xl font-black text-slate-950">Using New Contributions to Rebalance</h3>
+          <p>
+            Cash-flow rebalancing is one of the most practical methods for long-term investors who add money regularly. Instead of selling overweight assets, you can direct new contributions toward underweight assets. For example, if bonds are below target and stocks are above target, new deposits can go into bonds until the portfolio returns closer to the target. This approach may reduce taxes and transaction costs while still moving the portfolio in the right direction.
+          </p>
+
+          <p>
+            The calculator can support cash-flow rebalancing by showing which categories are below target. If the report shows a Buy amount for bonds, international stocks, or cash, you may choose to allocate new money there. If the portfolio is far from target, new contributions alone may not be enough, but they can still reduce the size of trades needed later.
+          </p>
+
+          <h3 class="text-2xl font-black text-slate-950">Practical Tips for Better Portfolio Reviews</h3>
+          <p>
+            Keep your asset categories consistent from one review to the next. If you use broad categories, continue using broad categories. If you use specific ETFs or accounts, keep the same level of detail. Review your target allocation before entering numbers, and make sure the target percentages reflect your current investment plan. Do not change the target allocation only because one asset has recently performed well or poorly. A target allocation should usually be based on long-term goals, not short-term market noise.
+          </p>
+
+          <p>
+            It is also helpful to record the date, portfolio value, target allocation, and rebalancing report in a personal investment journal. This creates a history of decisions and can reduce emotional investing. If you work with a financial advisor, you can use the report as a discussion starting point, but it should not replace professional advice.
+          </p>
+
+          <h3 class="text-2xl font-black text-slate-950">Limitations of This Calculator</h3>
+          <p>
+            This calculator uses only the values and target percentages entered by the user. It does not connect to brokerage accounts, fetch live market prices, calculate taxes, estimate transaction costs, analyze risk, evaluate investment quality, or recommend securities. It does not know your age, income, retirement plan, emergency fund, debt level, tax situation, investment policy statement, or risk tolerance. The chart and report are educational tools for understanding allocation math.
+          </p>
+
+          <p>
+            Market values can change quickly. Before placing trades, verify current account balances, fund prices, order types, fees, spreads, taxes, and account rules. If you invest in multiple currencies, currency conversion can also affect allocation. If you hold funds that already contain multiple asset classes, such as balanced ETFs or target-date funds, you may need to decide whether to treat them as one asset or break them into underlying components. For complex portfolios, professional guidance may be appropriate.
+          </p>
+        </div>
       </div>
+    </article>
 
-      <h2 class="mt-8 text-2xl font-black tracking-tight text-slate-950">Recommended Rebalancing Approach</h2>
-      <div class="mt-4 space-y-4 text-sm leading-7 text-slate-600 sm:text-base">
-        <p>
-          For most long-term investors, a practical strategy is to use a hybrid approach: review the portfolio on a regular schedule and rebalance only when allocation drift becomes meaningful. This avoids overtrading while still keeping the portfolio aligned with your long-term investment plan.
-        </p>
-        <p>
-          A simple example is to review your portfolio every three or six months and rebalance if any major asset class is more than 5 percentage points away from its target. Conservative investors may choose a tighter band, while aggressive investors may allow wider drift. Investors in taxable accounts should also consider capital gains taxes, transaction fees, and bid-ask spreads before selling.
-        </p>
-      </div>
+    <section class="mobile-card mt-8 rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-8 lg:p-10">
+      <div class="mx-auto max-w-4xl">
+        <h2 class="text-3xl font-black tracking-tight text-slate-950">Frequently Asked Questions</h2>
 
-      <h2 class="mt-8 text-2xl font-black tracking-tight text-slate-950">How This Portfolio Calculator Works</h2>
-      <div class="mt-4 space-y-4 text-sm leading-7 text-slate-600 sm:text-base">
-        <p>
-          The calculator first adds up all current asset values to determine your total portfolio value. Then it calculates each asset’s current percentage of the portfolio. Next, it multiplies the total portfolio value by each asset’s target percentage to estimate the ideal target value. Finally, it compares the target value with the current value and shows the difference as a Buy, Sell, or Hold action.
-        </p>
+        <div class="mt-6 space-y-4">
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">Is this investment portfolio calculator free?</summary>
+            <p class="mt-3 leading-7 text-slate-600">Yes. This tool is free to use and runs directly in your browser.</p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">Does this calculator provide investment advice?</summary>
+            <p class="mt-3 leading-7 text-slate-600">No. The calculator provides educational allocation math only. It does not recommend securities or tell you whether to buy or sell any investment.</p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">What should my target allocation be?</summary>
+            <p class="mt-3 leading-7 text-slate-600">Your target allocation depends on your goals, time horizon, risk tolerance, income needs, tax situation, and investment policy. Consider professional advice if you are unsure.</p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">Why should target percentages add up to 100%?</summary>
+            <p class="mt-3 leading-7 text-slate-600">The calculator compares each asset to a share of the total portfolio. A complete target allocation should represent the full portfolio, so the total should equal 100%.</p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">Can I use this for ETFs and stocks?</summary>
+            <p class="mt-3 leading-7 text-slate-600">Yes. You can enter asset classes, individual stocks, ETFs, mutual funds, account balances, or any custom category.</p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">Does this tool calculate taxes or trading fees?</summary>
+            <p class="mt-3 leading-7 text-slate-600">No. Taxes, commissions, bid-ask spreads, currency conversion, and account rules are not included. Review those factors before trading.</p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">Is my portfolio data uploaded?</summary>
+            <p class="mt-3 leading-7 text-slate-600">No. The core calculation runs locally in your browser. The tool does not require you to submit your portfolio to a backend server.</p>
+          </details>
+        </div>
       </div>
     </section>
 
-    <section class="mt-6 rounded-[1.75rem] border border-amber-100 bg-amber-50 p-5 text-sm leading-6 text-amber-900 sm:rounded-[2rem] sm:p-8">
-      <h2 class="text-xl font-black text-amber-950">Legal Disclaimer</h2>
-      <p class="mt-3">
-        This investment portfolio calculator is provided for general educational and informational purposes only. It does not provide financial, investment, tax, legal, accounting, or trading advice. The results are estimates based only on the numbers entered by the user and may not reflect actual market prices, taxes, fees, spreads, liquidity, account rules, or personal financial circumstances.
-      </p>
-      <p class="mt-3">
-        Investing involves risk, including possible loss of principal. Always review your investment decisions with a qualified financial advisor, tax professional, or licensed investment professional before buying, selling, or rebalancing securities.
-      </p>
+    <section class="mobile-card mt-8 rounded-3xl bg-slate-900 p-6 text-slate-200 shadow-sm sm:p-8 lg:p-10">
+      <div class="mx-auto max-w-4xl">
+        <h2 class="text-2xl font-black text-white">Legal Disclaimer</h2>
+        <div class="mt-4 space-y-4 text-sm leading-7 text-slate-300">
+          <p>
+            This investment portfolio calculator is provided for general educational and informational purposes only. It does not provide financial, investment, tax, legal, accounting, retirement, trading, or fiduciary advice. The results are estimates based only on the numbers entered by the user and may not reflect actual market prices, taxes, fees, spreads, liquidity, account restrictions, currency conversion, or personal financial circumstances.
+          </p>
+          <p>
+            Buy, Sell, and Hold labels are mathematical outputs based on target allocation differences. They are not recommendations to purchase, sell, hold, or rebalance any security, fund, asset class, cryptocurrency, commodity, or financial product. Investing involves risk, including possible loss of principal. Past performance does not guarantee future results.
+          </p>
+          <p>
+            Users are responsible for verifying all numbers, reviewing tax consequences, understanding account rules, and seeking appropriate professional advice before making investment decisions. NodnWebTools, its owners, developers, and affiliates are not responsible for errors, omissions, outdated assumptions, investment losses, tax consequences, missed opportunities, trading costs, legal claims, or any direct or indirect damages resulting from use of this calculator.
+          </p>
+        </div>
+      </div>
     </section>
 
-    <div class="mt-8 flex min-h-[90px] w-full items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white/80 px-3 text-center text-sm text-slate-400 shadow-sm">
-      AdSense Responsive Ad Area - Bottom
+    <div class="ad-box mt-8">
+      Bottom Ad Area
     </div>
   </main>
 
+  <footer class="mt-10 border-t border-slate-200 bg-white">
+    <div class="mx-auto flex w-full max-w-7xl flex-col gap-3 px-4 py-6 text-sm text-slate-500 sm:px-6 lg:px-8">
+      <div class="font-extrabold text-slate-900">Nodn<span class="text-accent-600">WebTools</span></div>
+      <p class="leading-6">Free browser-based utilities designed for practical calculations, productivity, and financial planning support.</p>
+    </div>
+  </footer>
+
   <script>
-    const assetRows = document.getElementById('assetRows');
-    const addAssetBtn = document.getElementById('addAssetBtn');
-    const totalAssetValue = document.getElementById('totalAssetValue');
-    const targetWeightSum = document.getElementById('targetWeightSum');
-    const assetCount = document.getElementById('assetCount');
-    const warningBox = document.getElementById('warningBox');
-    const errorBox = document.getElementById('errorBox');
-    const rebalanceTable = document.getElementById('rebalanceTable');
-    const emptyReport = document.getElementById('emptyReport');
-    const copyReportBtn = document.getElementById('copyReportBtn');
-    const copyFeedback = document.getElementById('copyFeedback');
-    const chartCanvas = document.getElementById('portfolioChart');
+    document.addEventListener('DOMContentLoaded', function () {
+      const assetRows = document.getElementById('assetRows');
+      const addAssetBtn = document.getElementById('addAssetBtn');
+      const totalAssetValue = document.getElementById('totalAssetValue');
+      const targetWeightSum = document.getElementById('targetWeightSum');
+      const assetCount = document.getElementById('assetCount');
+      const warningBox = document.getElementById('warningBox');
+      const errorBox = document.getElementById('errorBox');
+      const rebalanceTable = document.getElementById('rebalanceTable');
+      const emptyReport = document.getElementById('emptyReport');
+      const copyReportBtn = document.getElementById('copyReportBtn');
+      const copyFeedback = document.getElementById('copyFeedback');
+      const chartCanvas = document.getElementById('portfolioChart');
 
-    const assetColors = [
-      '#3b82f6',
-      '#22c55e',
-      '#eab308',
-      '#8b5cf6',
-      '#f97316',
-      '#06b6d4',
-      '#ec4899',
-      '#64748b',
-      '#14b8a6',
-      '#ef4444'
-    ];
+      const assetColors = [
+        '#4f46e5',
+        '#22c55e',
+        '#eab308',
+        '#8b5cf6',
+        '#f97316',
+        '#06b6d4',
+        '#ec4899',
+        '#64748b',
+        '#14b8a6',
+        '#ef4444'
+      ];
 
-    let assets = [
-      { id: crypto.randomUUID(), name: 'U.S. Stocks', value: 45000, target: 50 },
-      { id: crypto.randomUUID(), name: 'International Stocks', value: 20000, target: 25 },
-      { id: crypto.randomUUID(), name: 'Bonds', value: 25000, target: 20 },
-      { id: crypto.randomUUID(), name: 'Cash', value: 10000, target: 5 }
-    ];
+      let assets = [
+        { id: createId(), name: 'U.S. Stocks', value: 45000, target: 50 },
+        { id: createId(), name: 'International Stocks', value: 20000, target: 25 },
+        { id: createId(), name: 'Bonds', value: 25000, target: 20 },
+        { id: createId(), name: 'Cash', value: 10000, target: 5 }
+      ];
 
-    let portfolioChart = null;
-    let latestReportRows = [];
+      let portfolioChart = null;
+      let latestReportRows = [];
 
-    function formatCurrency(value) {
-      const safeValue = Number.isFinite(value) ? value : 0;
-      return new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD',
-        minimumFractionDigits: 0,
-        maximumFractionDigits: 0
-      }).format(safeValue);
-    }
-
-    function formatNumber(value, digits = 2) {
-      const safeValue = Number.isFinite(value) ? value : 0;
-      return new Intl.NumberFormat('en-US', {
-        minimumFractionDigits: 0,
-        maximumFractionDigits: digits
-      }).format(safeValue);
-    }
-
-    function sanitizeNumber(value) {
-      const parsed = parseFloat(String(value).replace(/,/g, ''));
-      return Number.isFinite(parsed) ? parsed : 0;
-    }
-
-    function setMessage(element, message, show = true) {
-      element.textContent = message;
-      element.classList.toggle('hidden', !show);
-    }
-
-    function escapeHtml(value) {
-      return String(value)
-        .replaceAll('&', '&amp;')
-        .replaceAll('<', '&lt;')
-        .replaceAll('>', '&gt;')
-        .replaceAll('"', '&quot;')
-        .replaceAll("'", '&#039;');
-    }
-
-    function createAssetRow(asset, index, total) {
-      const currentPercent = total > 0 ? (asset.value / total) * 100 : 0;
-      const row = document.createElement('div');
-      row.className = 'asset-row fade-in rounded-3xl bg-white px-4 py-4 shadow-sm ring-1 ring-slate-100';
-      row.dataset.id = asset.id;
-
-      row.innerHTML = `
-        <div class="min-w-0">
-          <label class="mb-1 block text-xs font-black uppercase tracking-wide text-slate-500 md:hidden" for="name-${asset.id}">Asset Name</label>
-          <div class="flex min-w-0 items-center gap-2">
-            <span class="h-3 w-3 shrink-0 rounded-full" style="background:${assetColors[index % assetColors.length]}"></span>
-            <input id="name-${asset.id}" type="text" value="${escapeHtml(asset.name)}" class="asset-name min-w-0 w-full rounded-2xl border border-slate-200 bg-slate-50 px-3 py-3 text-base font-bold text-slate-900 outline-none transition focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-100 md:text-sm" placeholder="Asset name" />
-          </div>
-        </div>
-
-        <div class="min-w-0">
-          <label class="mb-1 block text-xs font-black uppercase tracking-wide text-slate-500 md:hidden" for="value-${asset.id}">Current Value</label>
-          <input id="value-${asset.id}" type="number" min="0" step="100" inputmode="decimal" value="${asset.value}" class="asset-value min-w-0 w-full rounded-2xl border border-slate-200 bg-slate-50 px-3 py-3 text-base font-bold text-slate-900 outline-none transition focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-100 md:text-sm" placeholder="0" />
-        </div>
-
-        <div class="min-w-0">
-          <label class="mb-1 block text-xs font-black uppercase tracking-wide text-slate-500 md:hidden" for="target-${asset.id}">Target %</label>
-          <input id="target-${asset.id}" type="number" min="0" max="100" step="0.1" inputmode="decimal" value="${asset.target}" class="asset-target min-w-0 w-full rounded-2xl border border-slate-200 bg-slate-50 px-3 py-3 text-base font-bold text-slate-900 outline-none transition focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-100 md:text-sm" placeholder="0" />
-        </div>
-
-        <div class="min-w-0">
-          <label class="mb-1 block text-xs font-black uppercase tracking-wide text-slate-500 md:hidden">Current %</label>
-          <div class="min-w-0 rounded-2xl bg-slate-50 px-3 py-3 text-right text-base font-black text-slate-700 ring-1 ring-slate-100 md:text-sm">
-            ${formatNumber(currentPercent)}%
-          </div>
-        </div>
-
-        <button type="button" class="delete-asset w-full rounded-2xl bg-red-50 px-4 py-3 text-sm font-black text-red-600 ring-1 ring-red-100 transition hover:bg-red-100 active:scale-95 md:w-auto" aria-label="Delete asset">
-          Delete
-        </button>
-      `;
-
-      row.querySelector('.asset-name').addEventListener('input', (event) => {
-        asset.name = event.target.value.trim() || 'Unnamed Asset';
-        updateCalculator();
-      });
-
-      row.querySelector('.asset-value').addEventListener('input', (event) => {
-        asset.value = Math.max(0, sanitizeNumber(event.target.value));
-        updateCalculator();
-      });
-
-      row.querySelector('.asset-target').addEventListener('input', (event) => {
-        asset.target = Math.max(0, sanitizeNumber(event.target.value));
-        updateCalculator();
-      });
-
-      row.querySelector('.delete-asset').addEventListener('click', () => {
-        assets = assets.filter(item => item.id !== asset.id);
-        updateCalculator();
-      });
-
-      return row;
-    }
-
-    function renderRows(total) {
-      assetRows.innerHTML = '';
-
-      if (assets.length === 0) {
-        assetRows.innerHTML = `
-          <div class="rounded-3xl bg-slate-50 px-5 py-8 text-center text-sm font-semibold text-slate-500 ring-1 ring-slate-100">
-            No assets yet. Click "Add Asset" to start building your portfolio.
-          </div>
-        `;
-        return;
+      function createId() {
+        if (window.crypto && crypto.randomUUID) {
+          return crypto.randomUUID();
+        }
+        return 'id-' + Math.random().toString(36).slice(2) + Date.now().toString(36);
       }
 
-      assets.forEach((asset, index) => {
-        assetRows.appendChild(createAssetRow(asset, index, total));
-      });
-    }
-
-    function buildReport(total) {
-      latestReportRows = assets.map((asset) => {
-        const currentValue = asset.value;
-        const currentPercent = total > 0 ? (currentValue / total) * 100 : 0;
-        const targetValue = total * (asset.target / 100);
-        const difference = targetValue - currentValue;
-        const action = Math.abs(difference) < 0.01 ? 'Hold' : difference > 0 ? 'Buy' : 'Sell';
-
-        return {
-          name: asset.name || 'Unnamed Asset',
-          currentValue,
-          currentPercent,
-          targetPercent: asset.target,
-          targetValue,
-          difference,
-          action
-        };
-      });
-    }
-
-    function renderReport() {
-      rebalanceTable.innerHTML = '';
-
-      if (latestReportRows.length === 0) {
-        emptyReport.classList.remove('hidden');
-        return;
+      function formatCurrency(value) {
+        const safeValue = Number.isFinite(value) ? value : 0;
+        return new Intl.NumberFormat('en-US', {
+          style: 'currency',
+          currency: 'USD',
+          minimumFractionDigits: 0,
+          maximumFractionDigits: 0
+        }).format(safeValue);
       }
 
-      emptyReport.classList.add('hidden');
+      function formatNumber(value, digits = 2) {
+        const safeValue = Number.isFinite(value) ? value : 0;
+        return new Intl.NumberFormat('en-US', {
+          minimumFractionDigits: 0,
+          maximumFractionDigits: digits
+        }).format(safeValue);
+      }
 
-      latestReportRows.forEach((row) => {
-        const tr = document.createElement('tr');
-        const actionClass = row.action === 'Buy'
-          ? 'bg-emerald-50 text-emerald-700 ring-emerald-100'
-          : row.action === 'Sell'
-            ? 'bg-red-50 text-red-700 ring-red-100'
-            : 'bg-slate-50 text-slate-600 ring-slate-100';
+      function sanitizeNumber(value) {
+        const parsed = parseFloat(String(value).replace(/,/g, ''));
+        return Number.isFinite(parsed) ? parsed : 0;
+      }
 
-        const diffLabel = row.difference >= 0 ? formatCurrency(row.difference) : `-${formatCurrency(Math.abs(row.difference))}`;
+      function setMessage(element, message, show) {
+        element.textContent = message;
+        element.classList.toggle('hidden', !show);
+      }
 
-        tr.innerHTML = `
-          <td class="px-4 py-4">
-            <div class="break-words font-black text-slate-900">${escapeHtml(row.name)}</div>
-            <div class="mt-1 break-words text-xs font-semibold text-slate-500">
-              Current ${formatCurrency(row.currentValue)} · ${formatNumber(row.currentPercent)}%
+      function escapeHtml(value) {
+        return String(value)
+          .replaceAll('&', '&amp;')
+          .replaceAll('<', '&lt;')
+          .replaceAll('>', '&gt;')
+          .replaceAll('"', '&quot;')
+          .replaceAll("'", '&#039;');
+      }
+
+      function createAssetRow(asset, index, total) {
+        const currentPercent = total > 0 ? (asset.value / total) * 100 : 0;
+        const row = document.createElement('div');
+        row.className = 'asset-row fade-in rounded-3xl bg-white px-4 py-4 shadow-sm ring-1 ring-slate-100';
+        row.dataset.id = asset.id;
+
+        row.innerHTML = `
+          <div class="min-w-0">
+            <label class="mb-1 block text-xs font-black uppercase tracking-wide text-slate-500 md:hidden" for="name-${asset.id}">Asset Name</label>
+            <div class="flex min-w-0 items-center gap-2">
+              <span class="h-3 w-3 shrink-0 rounded-full" style="background:${assetColors[index % assetColors.length]}"></span>
+              <input id="name-${asset.id}" type="text" value="${escapeHtml(asset.name)}" class="asset-name min-w-0 w-full rounded-2xl border border-slate-200 bg-slate-50 px-3 py-3 text-base font-bold text-slate-900 outline-none transition focus:border-accent-400 focus:bg-white focus:ring-4 focus:ring-accent-100 md:text-sm" placeholder="Asset name" />
             </div>
-          </td>
-          <td class="px-4 py-4 text-right font-bold text-slate-700">
-            ${formatCurrency(row.targetValue)}
-          </td>
-          <td class="px-4 py-4 text-right font-black ${row.difference >= 0 ? 'text-emerald-700' : 'text-red-700'}">
-            ${diffLabel}
-          </td>
-          <td class="px-4 py-4 text-right">
-            <span class="inline-flex rounded-full px-3 py-1 text-xs font-black ring-1 ${actionClass}">
-              ${row.action}
-            </span>
-          </td>
+          </div>
+
+          <div class="min-w-0">
+            <label class="mb-1 block text-xs font-black uppercase tracking-wide text-slate-500 md:hidden" for="value-${asset.id}">Current Value</label>
+            <input id="value-${asset.id}" type="number" min="0" step="100" inputmode="decimal" value="${asset.value}" class="asset-value min-w-0 w-full rounded-2xl border border-slate-200 bg-slate-50 px-3 py-3 text-base font-bold text-slate-900 outline-none transition focus:border-accent-400 focus:bg-white focus:ring-4 focus:ring-accent-100 md:text-sm" placeholder="0" />
+          </div>
+
+          <div class="min-w-0">
+            <label class="mb-1 block text-xs font-black uppercase tracking-wide text-slate-500 md:hidden" for="target-${asset.id}">Target %</label>
+            <input id="target-${asset.id}" type="number" min="0" max="100" step="0.1" inputmode="decimal" value="${asset.target}" class="asset-target min-w-0 w-full rounded-2xl border border-slate-200 bg-slate-50 px-3 py-3 text-base font-bold text-slate-900 outline-none transition focus:border-accent-400 focus:bg-white focus:ring-4 focus:ring-accent-100 md:text-sm" placeholder="0" />
+          </div>
+
+          <div class="min-w-0">
+            <label class="mb-1 block text-xs font-black uppercase tracking-wide text-slate-500 md:hidden">Current %</label>
+            <div class="min-w-0 rounded-2xl bg-slate-50 px-3 py-3 text-right text-base font-black text-slate-700 ring-1 ring-slate-100 md:text-sm">
+              ${formatNumber(currentPercent)}%
+            </div>
+          </div>
+
+          <button type="button" class="delete-asset w-full rounded-2xl bg-red-50 px-4 py-3 text-sm font-black text-red-600 ring-1 ring-red-100 transition hover:bg-red-100 active:scale-95 md:w-auto" aria-label="Delete asset">
+            Delete
+          </button>
         `;
 
-        rebalanceTable.appendChild(tr);
-      });
-    }
+        row.querySelector('.asset-name').addEventListener('input', function (event) {
+          asset.name = event.target.value.trim() || 'Unnamed Asset';
+          updateCalculator();
+        });
 
-    function updateChart() {
-      const labels = assets.map(asset => asset.name || 'Unnamed Asset');
-      const data = assets.map(asset => Math.max(0, asset.value));
-      const colors = assets.map((_, index) => assetColors[index % assetColors.length]);
+        row.querySelector('.asset-value').addEventListener('input', function (event) {
+          asset.value = Math.max(0, sanitizeNumber(event.target.value));
+          updateCalculator();
+        });
 
-      if (portfolioChart) {
-        portfolioChart.data.labels = labels;
-        portfolioChart.data.datasets[0].data = data;
-        portfolioChart.data.datasets[0].backgroundColor = colors;
-        portfolioChart.update();
-        return;
+        row.querySelector('.asset-target').addEventListener('input', function (event) {
+          asset.target = Math.max(0, sanitizeNumber(event.target.value));
+          updateCalculator();
+        });
+
+        row.querySelector('.delete-asset').addEventListener('click', function () {
+          assets = assets.filter(item => item.id !== asset.id);
+          updateCalculator();
+        });
+
+        return row;
       }
 
-      portfolioChart = new Chart(chartCanvas, {
-        type: 'doughnut',
-        data: {
-          labels,
-          datasets: [
-            {
-              data,
-              backgroundColor: colors,
-              borderColor: '#ffffff',
-              borderWidth: 4,
-              hoverOffset: 8
-            }
-          ]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          cutout: '68%',
-          plugins: {
-            legend: {
-              position: 'bottom',
-              labels: {
-                boxWidth: 12,
-                boxHeight: 12,
-                usePointStyle: true,
-                pointStyle: 'circle',
-                padding: 12,
-                color: '#334155',
-                font: {
-                  size: 11,
-                  weight: '700'
-                }
+      function renderRows(total) {
+        assetRows.innerHTML = '';
+
+        if (assets.length === 0) {
+          assetRows.innerHTML = `
+            <div class="rounded-3xl bg-slate-50 px-5 py-8 text-center text-sm font-semibold text-slate-500 ring-1 ring-slate-100">
+              No assets yet. Click "Add Asset" to start building your portfolio.
+            </div>
+          `;
+          return;
+        }
+
+        assets.forEach(function (asset, index) {
+          assetRows.appendChild(createAssetRow(asset, index, total));
+        });
+      }
+
+      function buildReport(total) {
+        latestReportRows = assets.map(function (asset) {
+          const currentValue = asset.value;
+          const currentPercent = total > 0 ? (currentValue / total) * 100 : 0;
+          const targetValue = total * (asset.target / 100);
+          const difference = targetValue - currentValue;
+          const action = Math.abs(difference) < 0.01 ? 'Hold' : difference > 0 ? 'Buy' : 'Sell';
+
+          return {
+            name: asset.name || 'Unnamed Asset',
+            currentValue,
+            currentPercent,
+            targetPercent: asset.target,
+            targetValue,
+            difference,
+            action
+          };
+        });
+      }
+
+      function renderReport() {
+        rebalanceTable.innerHTML = '';
+
+        if (latestReportRows.length === 0) {
+          emptyReport.classList.remove('hidden');
+          return;
+        }
+
+        emptyReport.classList.add('hidden');
+
+        latestReportRows.forEach(function (row) {
+          const tr = document.createElement('tr');
+          const actionClass = row.action === 'Buy'
+            ? 'bg-emerald-50 text-emerald-700 ring-emerald-100'
+            : row.action === 'Sell'
+              ? 'bg-red-50 text-red-700 ring-red-100'
+              : 'bg-slate-50 text-slate-600 ring-slate-100';
+
+          const diffLabel = row.difference >= 0 ? formatCurrency(row.difference) : '-' + formatCurrency(Math.abs(row.difference));
+
+          tr.innerHTML = `
+            <td class="px-4 py-4">
+              <div class="safe-break font-black text-slate-900">${escapeHtml(row.name)}</div>
+              <div class="mt-1 safe-break text-xs font-semibold text-slate-500">
+                Current ${formatCurrency(row.currentValue)} · ${formatNumber(row.currentPercent)}%
+              </div>
+            </td>
+            <td class="px-4 py-4 text-right font-bold text-slate-700">
+              ${formatCurrency(row.targetValue)}
+            </td>
+            <td class="px-4 py-4 text-right font-black ${row.difference >= 0 ? 'text-emerald-700' : 'text-red-700'}">
+              ${diffLabel}
+            </td>
+            <td class="px-4 py-4 text-right">
+              <span class="inline-flex rounded-full px-3 py-1 text-xs font-black ring-1 ${actionClass}">
+                ${row.action}
+              </span>
+            </td>
+          `;
+
+          rebalanceTable.appendChild(tr);
+        });
+      }
+
+      function updateChart() {
+        const labels = assets.map(asset => asset.name || 'Unnamed Asset');
+        const data = assets.map(asset => Math.max(0, asset.value));
+        const colors = assets.map(function (_, index) {
+          return assetColors[index % assetColors.length];
+        });
+
+        if (portfolioChart) {
+          portfolioChart.data.labels = labels;
+          portfolioChart.data.datasets[0].data = data;
+          portfolioChart.data.datasets[0].backgroundColor = colors;
+          portfolioChart.update();
+          return;
+        }
+
+        portfolioChart = new Chart(chartCanvas, {
+          type: 'doughnut',
+          data: {
+            labels,
+            datasets: [
+              {
+                data,
+                backgroundColor: colors,
+                borderColor: '#ffffff',
+                borderWidth: 4,
+                hoverOffset: 8
               }
-            },
-            tooltip: {
-              callbacks: {
-                label: function(context) {
-                  const total = context.dataset.data.reduce((sum, value) => sum + value, 0);
-                  const value = context.raw || 0;
-                  const percent = total > 0 ? (value / total) * 100 : 0;
-                  return `${context.label}: ${formatCurrency(value)} (${formatNumber(percent)}%)`;
+            ]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            cutout: '68%',
+            plugins: {
+              legend: {
+                position: 'bottom',
+                labels: {
+                  boxWidth: 12,
+                  boxHeight: 12,
+                  usePointStyle: true,
+                  pointStyle: 'circle',
+                  padding: 12,
+                  color: '#334155',
+                  font: {
+                    size: 11,
+                    weight: '700'
+                  }
+                }
+              },
+              tooltip: {
+                callbacks: {
+                  label: function (context) {
+                    const total = context.dataset.data.reduce(function (sum, value) {
+                      return sum + value;
+                    }, 0);
+                    const value = context.raw || 0;
+                    const percent = total > 0 ? (value / total) * 100 : 0;
+                    return context.label + ': ' + formatCurrency(value) + ' (' + formatNumber(percent) + '%)';
+                  }
                 }
               }
             }
           }
-        }
-      });
-    }
-
-    function validateInputs(total, targetSum) {
-      if (assets.length === 0) {
-        setMessage(warningBox, 'Add at least one asset to calculate portfolio allocation.', true);
-        setMessage(errorBox, '', false);
-        return;
+        });
       }
 
-      if (total <= 0) {
-        setMessage(warningBox, 'Total portfolio value must be greater than 0.', true);
-        setMessage(errorBox, '', false);
-        return;
-      }
-
-      if (Math.abs(targetSum - 100) > 0.01) {
-        setMessage(warningBox, `Target allocation should equal 100%. Current target total is ${formatNumber(targetSum)}%.`, true);
-      } else {
-        setMessage(warningBox, '', false);
-      }
-
-      setMessage(errorBox, '', false);
-    }
-
-    function updateCalculator() {
-      try {
-        const total = assets.reduce((sum, asset) => sum + Math.max(0, sanitizeNumber(asset.value)), 0);
-        const targetSum = assets.reduce((sum, asset) => sum + Math.max(0, sanitizeNumber(asset.target)), 0);
-
-        totalAssetValue.textContent = formatCurrency(total);
-        targetWeightSum.textContent = `${formatNumber(targetSum)}%`;
-        assetCount.textContent = assets.length.toString();
-
-        targetWeightSum.className = Math.abs(targetSum - 100) <= 0.01
-          ? 'mt-2 break-words text-2xl font-black text-emerald-700'
-          : 'mt-2 break-words text-2xl font-black text-amber-700';
-
-        validateInputs(total, targetSum);
-        renderRows(total);
-        buildReport(total);
-        renderReport();
-        updateChart();
-      } catch (error) {
-        setMessage(errorBox, 'Something went wrong while calculating your portfolio. Please check your inputs and try again.', true);
-      }
-    }
-
-    function addAsset() {
-      assets.push({
-        id: crypto.randomUUID(),
-        name: `Asset ${assets.length + 1}`,
-        value: 0,
-        target: 0
-      });
-
-      updateCalculator();
-
-      requestAnimationFrame(() => {
-        const lastInput = assetRows.querySelector(`[data-id="${assets[assets.length - 1].id}"] .asset-name`);
-        if (lastInput) lastInput.focus();
-      });
-    }
-
-    async function copyReport() {
-      try {
-        if (latestReportRows.length === 0) {
-          copyFeedback.textContent = 'Nothing to copy yet.';
-          copyFeedback.classList.remove('hidden');
-          setTimeout(() => copyFeedback.classList.add('hidden'), 1600);
+      function validateInputs(total, targetSum) {
+        if (assets.length === 0) {
+          setMessage(warningBox, 'Add at least one asset to calculate portfolio allocation.', true);
+          setMessage(errorBox, '', false);
           return;
         }
 
-        const total = assets.reduce((sum, asset) => sum + Math.max(0, asset.value), 0);
-        const lines = [
-          'Investment Portfolio Rebalancing Report',
-          `Total Portfolio Value: ${formatCurrency(total)}`,
-          '',
-          'Asset | Current Value | Current % | Target % | Target Value | Difference | Action',
-          ...latestReportRows.map(row => {
-            const diff = row.difference >= 0 ? formatCurrency(row.difference) : `-${formatCurrency(Math.abs(row.difference))}`;
-            return `${row.name} | ${formatCurrency(row.currentValue)} | ${formatNumber(row.currentPercent)}% | ${formatNumber(row.targetPercent)}% | ${formatCurrency(row.targetValue)} | ${diff} | ${row.action}`;
-          })
-        ];
+        if (total <= 0) {
+          setMessage(warningBox, 'Total portfolio value must be greater than 0.', true);
+          setMessage(errorBox, '', false);
+          return;
+        }
 
-        await navigator.clipboard.writeText(lines.join('\n'));
-        copyFeedback.textContent = 'Copied!';
-        copyFeedback.classList.remove('hidden');
-        setTimeout(() => copyFeedback.classList.add('hidden'), 1600);
-      } catch (error) {
-        copyFeedback.textContent = 'Copy failed. Please try again.';
-        copyFeedback.classList.remove('hidden');
-        setTimeout(() => copyFeedback.classList.add('hidden'), 1600);
+        if (Math.abs(targetSum - 100) > 0.01) {
+          setMessage(warningBox, 'Target allocation should equal 100%. Current target total is ' + formatNumber(targetSum) + '%.', true);
+        } else {
+          setMessage(warningBox, '', false);
+        }
+
+        setMessage(errorBox, '', false);
       }
-    }
 
-    addAssetBtn.addEventListener('click', addAsset);
-    copyReportBtn.addEventListener('click', copyReport);
+      function updateCalculator() {
+        try {
+          const total = assets.reduce(function (sum, asset) {
+            return sum + Math.max(0, sanitizeNumber(asset.value));
+          }, 0);
 
-    updateCalculator();
+          const targetSum = assets.reduce(function (sum, asset) {
+            return sum + Math.max(0, sanitizeNumber(asset.target));
+          }, 0);
+
+          totalAssetValue.textContent = formatCurrency(total);
+          targetWeightSum.textContent = formatNumber(targetSum) + '%';
+          assetCount.textContent = assets.length.toString();
+
+          targetWeightSum.className = Math.abs(targetSum - 100) <= 0.01
+            ? 'mt-2 safe-break text-2xl font-black text-emerald-700'
+            : 'mt-2 safe-break text-2xl font-black text-amber-700';
+
+          validateInputs(total, targetSum);
+          renderRows(total);
+          buildReport(total);
+          renderReport();
+          updateChart();
+        } catch (error) {
+          setMessage(errorBox, 'Something went wrong while calculating your portfolio. Please check your inputs and try again.', true);
+        }
+      }
+
+      function addAsset() {
+        assets.push({
+          id: createId(),
+          name: 'Asset ' + (assets.length + 1),
+          value: 0,
+          target: 0
+        });
+
+        updateCalculator();
+
+        requestAnimationFrame(function () {
+          const lastInput = assetRows.querySelector('[data-id="' + assets[assets.length - 1].id + '"] .asset-name');
+          if (lastInput) lastInput.focus();
+        });
+      }
+
+      function fallbackCopy(text) {
+        try {
+          const textarea = document.createElement('textarea');
+          textarea.value = text;
+          document.body.appendChild(textarea);
+          textarea.select();
+          document.execCommand('copy');
+          document.body.removeChild(textarea);
+          showCopyMessage('Copied!');
+        } catch (error) {
+          showCopyMessage('Copy failed. Please try again.');
+        }
+      }
+
+      function showCopyMessage(message) {
+        copyFeedback.textContent = message;
+        copyFeedback.classList.remove('hidden');
+        setTimeout(function () {
+          copyFeedback.classList.add('hidden');
+          copyFeedback.textContent = 'Copied!';
+        }, 1600);
+      }
+
+      function copyReport() {
+        try {
+          if (latestReportRows.length === 0) {
+            showCopyMessage('Nothing to copy yet.');
+            return;
+          }
+
+          const total = assets.reduce(function (sum, asset) {
+            return sum + Math.max(0, asset.value);
+          }, 0);
+
+          const lines = [
+            'Investment Portfolio Rebalancing Report',
+            'Total Portfolio Value: ' + formatCurrency(total),
+            '',
+            'Asset | Current Value | Current % | Target % | Target Value | Difference | Action',
+            ...latestReportRows.map(function (row) {
+              const diff = row.difference >= 0 ? formatCurrency(row.difference) : '-' + formatCurrency(Math.abs(row.difference));
+              return row.name + ' | ' + formatCurrency(row.currentValue) + ' | ' + formatNumber(row.currentPercent) + '% | ' + formatNumber(row.targetPercent) + '% | ' + formatCurrency(row.targetValue) + ' | ' + diff + ' | ' + row.action;
+            }),
+            '',
+            'Disclaimer: This report is for informational purposes only and is not financial, tax, legal, or investment advice.'
+          ];
+
+          const report = lines.join('\n');
+
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(report).then(function () {
+              showCopyMessage('Copied!');
+            }).catch(function () {
+              fallbackCopy(report);
+            });
+          } else {
+            fallbackCopy(report);
+          }
+        } catch (error) {
+          showCopyMessage('Copy failed. Please try again.');
+        }
+      }
+
+      addAssetBtn.addEventListener('click', addAsset);
+      copyReportBtn.addEventListener('click', copyReport);
+
+      window.addEventListener('resize', function () {
+        document.body.style.overflowX = 'hidden';
+      });
+
+      updateCalculator();
+    });
   </script>
 </body>
 </html>
