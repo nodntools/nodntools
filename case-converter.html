@@ -4,346 +4,795 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
 
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404"
-     crossorigin="anonymous"></script>
-
-	<meta name="google-adsense-account" content="ca-pub-5282672325821404">	
-
-  <title>Online Text Case Converter | Change Upper, Lower, Camel, Snake Case Free - NodnWebTools</title>
-
-  <meta
-    name="description"
-    content="Use the free NodnWebTools Text Case Converter to instantly change text format between UPPERCASE, lowercase, Title Case, camelCase, and snake_case. 100% secure client-side real-time conversion."
-  />
-  <meta
-    name="keywords"
-    content="text case converter, uppercase, lowercase, title case, camelcase, snakecase, developer case converter, change text case, string formatter, NodnWebTools"
-  />
+  <title>Text Case Converter | Uppercase, Camel & Snake Case</title>
+  <meta name="description" content="Free text case converter to change uppercase, lowercase, title case, camelCase, snake_case, kebab-case, and PascalCase in your browser." />
+  <meta name="keywords" content="text case converter, uppercase converter, lowercase converter, title case converter, camelCase converter, snake_case converter, kebab-case converter, PascalCase converter, sentence case converter, online text formatter, string case converter, developer naming tool, programming case converter, text formatting tool, code variable name converter, client-side text tool, NodnWebTools" />
   <meta name="author" content="NodnWebTools" />
   <meta name="robots" content="index, follow" />
 
-  <meta property="og:title" content="Online Text Case Converter | NodnWebTools" />
-  <meta
-    property="og:description"
-    content="Instantly convert English text into multiple casing configurations and developer naming styles synchronously in your browser."
-  />
+  <meta property="og:title" content="Text Case Converter | Uppercase, Camel & Snake Case" />
+  <meta property="og:description" content="Convert text into uppercase, lowercase, title case, camelCase, snake_case, kebab-case, PascalCase, and sentence case instantly." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://nodntools.com/case-converter.html" />
   <meta property="og:site_name" content="NodnWebTools" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Online Text Case Converter" />
-  <meta
-    name="twitter:description"
-    content="A secure, client-side real-time text style transformer for daily development and text layout styling."
-  />
+  <meta name="twitter:title" content="Text Case Converter" />
+  <meta name="twitter:description" content="A fast browser-based text case converter for writers, developers, editors, and content creators." />
+
+  <meta name="google-adsense-account" content="ca-pub-5282672325821404" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404" crossorigin="anonymous"></script>
 
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            brand: {
-              50: '#fffbeb',
-              100: '#fef3c7',
-              200: '#fde68a',
-              500: '#f59e0b',
-              600: '#d97706',
-              700: '#b45309',
-              800: '#92400e',
-            }
-          }
-        }
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Text Case Converter",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "All",
+    "url": "https://nodntools.com/case-converter.html",
+    "description": "A free browser-based text case converter that changes text into uppercase, lowercase, title case, sentence case, camelCase, PascalCase, snake_case, and kebab-case.",
+    "featureList": [
+      "Convert text to uppercase",
+      "Convert text to lowercase",
+      "Convert text to title case",
+      "Convert text to sentence case",
+      "Convert words to camelCase",
+      "Convert words to PascalCase",
+      "Convert words to snake_case",
+      "Convert words to kebab-case",
+      "Copy converted output",
+      "Client-side browser processing"
+    ],
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "NodnWebTools",
+      "url": "https://nodntools.com"
+    }
+  }
+  </script>
+
+  <style>
+    html,
+    body {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      min-width: 0;
+    }
+
+    main,
+    section,
+    article,
+    aside,
+    div,
+    textarea,
+    input,
+    select,
+    button,
+    table,
+    canvas,
+    img,
+    svg,
+    pre,
+    code,
+    iframe,
+    ins {
+      max-width: 100%;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    .safe-break {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .mobile-card,
+    .mobile-panel,
+    .mobile-preview,
+    .ad-box {
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
+    .mobile-code {
+      max-width: 100%;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .ad-box {
+      width: 100%;
+      min-height: 90px;
+      border: 2px dashed #cbd5e1;
+      background: #f8fafc;
+      color: #94a3b8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-radius: 1rem;
+      padding: 1rem;
+      font-size: 0.875rem;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding-left: 0;
+        padding-right: 0;
+      }
+
+      .mobile-card,
+      .mobile-panel,
+      .mobile-preview {
+        border-radius: 1.25rem !important;
+        padding: 1rem !important;
+      }
+
+      .mobile-button-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .mobile-button-grid button,
+      .mobile-full {
+        width: 100%;
+      }
+
+      h1 {
+        font-size: 2rem !important;
+        line-height: 2.35rem !important;
+      }
+
+      .ad-box {
+        min-height: 90px;
+        border-radius: 0.875rem;
+        padding: 0.875rem;
+        font-size: 0.75rem;
       }
     }
-  </script>
-  <style>
-    html, body { width: 100%; overflow-x: hidden; }
-    * { box-sizing: border-box; }
-    textarea, input, select, button { max-width: 100%; }
-    .adsbygoogle { max-width: 100%; overflow: hidden; }
+
+    @media (max-width: 380px) {
+      .mobile-card,
+      .mobile-panel,
+      .mobile-preview {
+        padding: 0.875rem !important;
+        border-radius: 1rem !important;
+      }
+
+      h1 {
+        font-size: 1.75rem !important;
+      }
+
+      h2 {
+        font-size: 1.35rem !important;
+      }
+
+      textarea,
+      button {
+        font-size: 0.9rem !important;
+      }
+    }
   </style>
 </head>
 
-<body class="min-h-screen bg-slate-100 px-3 py-5 sm:px-4 sm:py-8 lg:py-12">
-  <main class="mx-auto w-full max-w-5xl overflow-hidden">
-
-    <div class="mb-5 text-center sm:mb-8">
-      <a
-        href="https://nodntools.com"
-        class="inline-block transition hover:opacity-80"
-        aria-label="NodnWebTools Home"
-      >
-        <div class="text-xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
-          Nodn<span class="text-blue-600">WebTools</span>
-        </div>
+<body class="min-h-screen bg-slate-50 text-slate-800">
+  <div class="w-full px-4 py-5 sm:px-6 lg:px-8">
+    <header class="mx-auto flex w-full max-w-7xl flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <a href="https://nodntools.com" class="inline-flex items-center gap-2 safe-break" aria-label="NodnWebTools Home">
+        <span class="text-2xl font-black tracking-tight text-slate-950">
+          Nodn<span class="text-indigo-600">WebTools</span>
+        </span>
       </a>
+      <nav class="flex flex-wrap items-center gap-2 text-sm text-slate-500">
+        <a href="https://nodntools.com" class="rounded-full border border-slate-200 bg-white px-4 py-2 font-semibold transition hover:border-indigo-200 hover:text-indigo-700">Home</a>
+        <span class="rounded-full bg-indigo-50 px-4 py-2 font-semibold text-indigo-700">Client-side text utility</span>
+      </nav>
+    </header>
+
+    <div class="mx-auto mt-5 w-full max-w-7xl">
+      <div class="ad-box">AdSense Responsive Ad Area - Top</div>
     </div>
 
-    <div class="mb-5 flex min-h-[72px] w-full items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white px-3 text-center text-xs text-slate-400 sm:mb-8 sm:min-h-[90px] sm:text-sm">
-      AdSense Responsive Ad Area - Top
-    </div>
-
-    <section class="grid grid-cols-1 gap-5 lg:grid-cols-12 lg:gap-6">
-
-      <div class="space-y-5 rounded-3xl bg-white p-4 shadow-xl ring-1 ring-slate-200 sm:p-8 lg:sticky lg:top-10 lg:col-span-5 lg:self-start">
-        <div>
-          <span class="inline-flex rounded-full bg-brand-50 px-4 py-2 text-sm font-semibold text-brand-700">
-            Text Utility
-          </span>
-
-          <h1 class="mt-5 text-2xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+    <main class="mx-auto mt-6 grid w-full max-w-7xl grid-cols-1 gap-6 lg:grid-cols-12">
+      <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:col-span-5 lg:p-8">
+        <div class="mb-6">
+          <p class="mb-3 inline-flex rounded-full bg-indigo-50 px-4 py-2 text-sm font-bold text-indigo-700">
             Text Case Converter
+          </p>
+
+          <h1 class="safe-break text-4xl font-black tracking-tight text-slate-950 sm:text-5xl">
+            Convert Text Case Instantly
           </h1>
 
-          <p class="mt-3 text-sm leading-6 text-slate-600 sm:text-base sm:leading-7">
-            Transform raw strings and text segments into varied architectural programming cases or typography configurations instantly.
+          <p class="mt-4 text-base leading-7 text-slate-600">
+            Paste any text and instantly convert it into uppercase, lowercase, title case,
+            sentence case, camelCase, PascalCase, snake_case, and kebab-case. This tool is useful
+            for writers, developers, editors, marketers, students, and content creators.
           </p>
         </div>
 
-        <div>
-          <div class="mb-2 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-            <label for="sourceText" class="text-sm font-semibold text-slate-700">Source English Text</label>
-            <button id="clearBtn" class="text-xs font-semibold text-slate-500 hover:text-red-600 bg-slate-100 hover:bg-slate-200 px-3 py-1.5 rounded-xl transition">
+        <div class="mobile-panel rounded-2xl border border-slate-200 bg-slate-50 p-4">
+          <div class="mb-3 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+            <label for="sourceText" class="text-sm font-bold text-slate-700">Source text</label>
+            <button id="clearBtn" type="button" class="rounded-xl bg-white px-3 py-2 text-xs font-bold text-slate-600 ring-1 ring-slate-200 transition hover:text-red-600">
               Clear Input
             </button>
           </div>
-          <textarea id="sourceText" rows="8" placeholder="Type or paste your text blocks here to see real-time format changes..." class="w-full min-h-[190px] rounded-2xl border border-slate-300 bg-slate-50 p-3 font-mono text-sm leading-6 text-slate-900 shadow-inner outline-none transition focus:border-brand-600 focus:bg-white focus:ring-4 focus:ring-brand-100 sm:min-h-[260px] sm:p-4 sm:text-xs sm:leading-5"></textarea>
-        </div>
 
-        <div class="rounded-2xl bg-slate-100 p-4 text-sm leading-6 text-slate-600">
-          Parsing calculations process entirely inside JavaScript execution blocks. No private content streams ever leave your workstation.
-        </div>
-      </div>
+          <textarea id="sourceText" rows="12" placeholder="Type or paste your text here to generate multiple case formats..."
+            class="w-full rounded-2xl border border-slate-300 bg-white p-4 font-mono text-sm leading-6 text-slate-900 outline-none transition focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100"></textarea>
 
-      <div class="space-y-5 lg:col-span-7 lg:space-y-6">
-        <div class="rounded-3xl bg-white p-4 shadow-xl ring-1 ring-slate-200 sm:p-8">
-          <div class="mb-6">
-            <h2 class="text-xl font-bold text-slate-900 sm:text-2xl">Transformation Grids</h2>
-            <p class="mt-2 text-sm leading-6 text-slate-500">Review generated outcomes and copy blocks into clipboard storage boards below.</p>
-          </div>
-
-          <div class="space-y-4">
-            
-            <div class="rounded-2xl border border-slate-200 bg-slate-50/50 p-4 flex flex-col space-y-2 relative group">
-              <div class="flex flex-col gap-2 select-none sm:flex-row sm:items-center sm:justify-between">
-                <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400 sm:text-xs sm:tracking-widest">1. UPPERCASE</span>
-                <button data-target="outUppercase" class="copy-trigger w-full rounded-xl bg-brand-50 px-3 py-2 text-xs font-semibold text-brand-700 shadow-sm transition hover:bg-brand-100 active:scale-95 sm:w-auto sm:py-1.5">Copy</button>
-              </div>
-              <textarea id="outUppercase" readonly placeholder="UPPERCASE DATA OUTFLOW" class="h-16 w-full rounded-xl border border-slate-200 bg-white p-3 font-mono text-xs leading-5 text-slate-800 shadow-sm outline-none sm:h-12"></textarea>
+          <div class="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-4">
+            <div class="rounded-2xl bg-white p-3 ring-1 ring-slate-100">
+              <p class="text-xs font-black uppercase tracking-widest text-slate-400">Characters</p>
+              <p id="characterCount" class="mt-1 text-lg font-black text-slate-900">0</p>
             </div>
-
-            <div class="rounded-2xl border border-slate-200 bg-slate-50/50 p-4 flex flex-col space-y-2 relative group">
-              <div class="flex flex-col gap-2 select-none sm:flex-row sm:items-center sm:justify-between">
-                <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400 sm:text-xs sm:tracking-widest">2. lowercase</span>
-                <button data-target="outLowercase" class="copy-trigger w-full rounded-xl bg-brand-50 px-3 py-2 text-xs font-semibold text-brand-700 shadow-sm transition hover:bg-brand-100 active:scale-95 sm:w-auto sm:py-1.5">Copy</button>
-              </div>
-              <textarea id="outLowercase" readonly placeholder="lowercase data outflow" class="h-16 w-full rounded-xl border border-slate-200 bg-white p-3 font-mono text-xs leading-5 text-slate-800 shadow-sm outline-none sm:h-12"></textarea>
+            <div class="rounded-2xl bg-white p-3 ring-1 ring-slate-100">
+              <p class="text-xs font-black uppercase tracking-widest text-slate-400">Words</p>
+              <p id="wordCount" class="mt-1 text-lg font-black text-slate-900">0</p>
             </div>
-
-            <div class="rounded-2xl border border-slate-200 bg-slate-50/50 p-4 flex flex-col space-y-2 relative group">
-              <div class="flex flex-col gap-2 select-none sm:flex-row sm:items-center sm:justify-between">
-                <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400 sm:text-xs sm:tracking-widest">3. Title Case</span>
-                <button data-target="outTitlecase" class="copy-trigger w-full rounded-xl bg-brand-50 px-3 py-2 text-xs font-semibold text-brand-700 shadow-sm transition hover:bg-brand-100 active:scale-95 sm:w-auto sm:py-1.5">Copy</button>
-              </div>
-              <textarea id="outTitlecase" readonly placeholder="Title Case Data Outflow" class="h-16 w-full rounded-xl border border-slate-200 bg-white p-3 font-mono text-xs leading-5 text-slate-800 shadow-sm outline-none sm:h-12"></textarea>
+            <div class="rounded-2xl bg-white p-3 ring-1 ring-slate-100">
+              <p class="text-xs font-black uppercase tracking-widest text-slate-400">Lines</p>
+              <p id="lineCount" class="mt-1 text-lg font-black text-slate-900">0</p>
             </div>
-
-            <div class="rounded-2xl border border-slate-200 bg-slate-50/50 p-4 flex flex-col space-y-2 relative group">
-              <div class="flex flex-col gap-2 select-none sm:flex-row sm:items-center sm:justify-between">
-                <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400 sm:text-xs sm:tracking-widest">4. camelCase (Variables)</span>
-                <button data-target="outCamelcase" class="copy-trigger w-full rounded-xl bg-brand-50 px-3 py-2 text-xs font-semibold text-brand-700 shadow-sm transition hover:bg-brand-100 active:scale-95 sm:w-auto sm:py-1.5">Copy</button>
-              </div>
-              <textarea id="outCamelcase" readonly placeholder="camelCaseDataOutflow" class="h-16 w-full rounded-xl border border-slate-200 bg-white p-3 font-mono text-xs leading-5 text-slate-800 shadow-sm outline-none sm:h-12"></textarea>
+            <div class="rounded-2xl bg-white p-3 ring-1 ring-slate-100">
+              <p class="text-xs font-black uppercase tracking-widest text-slate-400">Formats</p>
+              <p class="mt-1 text-lg font-black text-slate-900">8</p>
             </div>
-
-            <div class="rounded-2xl border border-slate-200 bg-slate-50/50 p-4 flex flex-col space-y-2 relative group">
-              <div class="flex flex-col gap-2 select-none sm:flex-row sm:items-center sm:justify-between">
-                <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400 sm:text-xs sm:tracking-widest">5. snake_case (Databases)</span>
-                <button data-target="outSnakecase" class="copy-trigger w-full rounded-xl bg-brand-50 px-3 py-2 text-xs font-semibold text-brand-700 shadow-sm transition hover:bg-brand-100 active:scale-95 sm:w-auto sm:py-1.5">Copy</button>
-              </div>
-              <textarea id="outSnakecase" readonly placeholder="snake_case_data_outflow" class="h-16 w-full rounded-xl border border-slate-200 bg-white p-3 font-mono text-xs leading-5 text-slate-800 shadow-sm outline-none sm:h-12"></textarea>
-            </div>
-
-          </div>
-
-          <div id="copyToast" class="fixed inset-x-3 bottom-4 z-50 flex translate-y-2 items-center justify-center space-x-2 rounded-xl bg-slate-900 px-4 py-2.5 text-xs font-bold text-white opacity-0 shadow-xl transition-all duration-300 pointer-events-none sm:inset-x-auto sm:right-6 sm:bottom-6">
-            <svg class="w-4 h-4 text-brand-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-            <span>String copied to clipboard!</span>
-          </div>
-
-          <div class="mt-6 flex min-h-[180px] w-full flex-col items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-3 text-center text-xs text-slate-400 sm:min-h-[250px] sm:p-4 sm:text-sm">
-            <span class="text-[10px] font-bold text-slate-300 uppercase tracking-widest mb-2">Advertisement</span>
-            <ins class="adsbygoogle"
-                 style="display:block; width:100%; min-height:160px;"
-                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-                 data-ad-slot="YYYYYYYYYY"
-                 data-ad-format="rectangle, vertical"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-          </div>
-
-          <div class="mt-5 rounded-2xl bg-slate-100 p-3 text-xs leading-5 text-slate-500 sm:p-4">
-            <span class="block font-bold text-slate-700 mb-1">Disclaimer & Legal Notice:</span>
-            This tool is provided on an "as is" and "as available" basis without warranties of any kind. Character remapping algorithms execute 100% inside the user's localized browser application memory container; NodnWebTools never receives, tracks, targets, archives, or logs your text inputs. The operator holds exclusive responsibility to parse structural character sets before code implementation tasks. NodnWebTools, its core authors, and technical partners disclaim all liability for accidental text data deformation, parsing failures, regex omissions, or downstream database integration issues resulting from compiling strings.
           </div>
         </div>
 
-        <section class="rounded-3xl bg-white p-4 shadow-sm ring-1 ring-slate-200 sm:p-8">
-          <span class="inline-flex rounded-full bg-slate-200 px-4 py-2 text-sm font-semibold text-slate-800">
-            Typography Architecture Guide
-          </span>
+        <div class="mobile-button-grid mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2">
+          <button id="sampleBtn" type="button"
+            class="rounded-2xl bg-indigo-600 px-4 py-4 text-base font-black text-white shadow-sm transition hover:bg-indigo-700 active:scale-[0.99]">
+            Load Example
+          </button>
 
-          <h2 class="mt-5 text-xl font-bold tracking-tight text-slate-900 sm:text-3xl">
-            Character Case Formatting: Aligning Syntax Rules for Software Operations
-          </h2>
+          <button id="resetBtn" type="button"
+            class="rounded-2xl border border-slate-200 bg-white px-4 py-4 text-base font-black text-slate-700 transition hover:border-red-200 hover:text-red-600">
+            Reset
+          </button>
+        </div>
 
-          <div class="mt-5 space-y-5 text-sm leading-7 text-slate-600">
-            <p>
-              In contemporary backend architectures and content management configurations, converting text records into strict syntax naming layouts relies heavily on deploying a versatile 
-              <strong class="font-semibold text-slate-800">online text case converter</strong>. When programming teams pass variable inputs, manual typo restructuring across system APIs slows production loops and risks system compilation exceptions.
-            </p>
+        <div class="mt-5 rounded-2xl border border-indigo-100 bg-indigo-50 p-4 text-sm leading-6 text-indigo-900">
+          <strong>Privacy note:</strong> conversion runs locally in your browser. Your text is not intentionally uploaded to a server for case formatting.
+        </div>
+      </section>
 
-            <p>
-              Utilizing a standalone <strong class="font-semibold text-slate-800">camelcase and snakecase tool</strong> shapes incoming multi-word statements into secure coding tokens instantly. Whether organizing global system constants in absolute UPPERCASE, formatting database keys with clean spacers, or preparing blog headers in rich Title Case, this web matrix streamlines layout tasks smoothly.
-            </p>
-
-            <h3 class="text-lg font-bold text-slate-900 pt-2">How Native Client Strings Parse Safely</h3>
-            <p>
-              Many text formatting utilities route character data through external cloud networks, posing potential compliance hazards. Our clean JavaScript architecture restricts execution within your local tab engine:
-            </p>
-
-            <ul class="list-disc pl-5 space-y-2 text-slate-600">
-              <li><strong>Real-Time Tokenization:</strong> The engine bounds inputs directly via the <code>oninput</code> canvas loop, re-compiling output layers without server-side latency or lag metrics.</li>
-              <li><strong>Regex Pattern Safety:</strong> Advanced word boundary isolation loops eliminate stray punctuation, normalizing spacing sequences across camelCase or snake_case arrays safely.</li>
-              <li><strong>Zero External Triggers:</strong> Because conversion logic remains in browser memory, your documents, proprietary code frameworks, and text elements stay fully protected.</li>
-            </ul>
-
-            <p>
-              By leveraging this flexible, standalone <strong class="font-semibold text-slate-800">line and archive check utility</strong> guide, you can optimize your text production tasks without data exposure vectors.
-            </p>
+      <section class="space-y-6 lg:col-span-7">
+        <div class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
+          <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+            <div>
+              <h2 class="text-2xl font-black tracking-tight text-slate-950">Converted Case Results</h2>
+              <p class="mt-1 text-sm leading-6 text-slate-500">
+                Copy any generated text format with one click.
+              </p>
+            </div>
+            <span id="statusBadge" class="inline-flex w-fit rounded-full bg-slate-100 px-4 py-2 text-sm font-bold text-slate-600">
+              Waiting
+            </span>
           </div>
-        </section>
-      </div>
-    </section>
 
-    <div class="mt-6 flex min-h-[72px] w-full items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white px-3 text-center text-xs text-slate-400 sm:mt-8 sm:min-h-[90px] sm:text-sm">
-      AdSense Responsive Ad Area - Bottom
+          <div class="mt-6 space-y-4">
+            <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+              <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                <span class="text-xs font-black uppercase tracking-widest text-slate-400">UPPERCASE</span>
+                <button data-target="outUppercase" class="copy-trigger rounded-xl bg-indigo-50 px-4 py-2 text-xs font-bold text-indigo-700 transition hover:bg-indigo-100">Copy</button>
+              </div>
+              <textarea id="outUppercase" readonly rows="2" placeholder="UPPERCASE OUTPUT" class="mt-3 w-full rounded-xl border border-slate-200 bg-white p-3 font-mono text-xs leading-5 text-slate-800 outline-none"></textarea>
+            </div>
+
+            <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+              <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                <span class="text-xs font-black uppercase tracking-widest text-slate-400">lowercase</span>
+                <button data-target="outLowercase" class="copy-trigger rounded-xl bg-indigo-50 px-4 py-2 text-xs font-bold text-indigo-700 transition hover:bg-indigo-100">Copy</button>
+              </div>
+              <textarea id="outLowercase" readonly rows="2" placeholder="lowercase output" class="mt-3 w-full rounded-xl border border-slate-200 bg-white p-3 font-mono text-xs leading-5 text-slate-800 outline-none"></textarea>
+            </div>
+
+            <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+              <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                <span class="text-xs font-black uppercase tracking-widest text-slate-400">Title Case</span>
+                <button data-target="outTitlecase" class="copy-trigger rounded-xl bg-indigo-50 px-4 py-2 text-xs font-bold text-indigo-700 transition hover:bg-indigo-100">Copy</button>
+              </div>
+              <textarea id="outTitlecase" readonly rows="2" placeholder="Title Case Output" class="mt-3 w-full rounded-xl border border-slate-200 bg-white p-3 font-mono text-xs leading-5 text-slate-800 outline-none"></textarea>
+            </div>
+
+            <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+              <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                <span class="text-xs font-black uppercase tracking-widest text-slate-400">Sentence case</span>
+                <button data-target="outSentencecase" class="copy-trigger rounded-xl bg-indigo-50 px-4 py-2 text-xs font-bold text-indigo-700 transition hover:bg-indigo-100">Copy</button>
+              </div>
+              <textarea id="outSentencecase" readonly rows="2" placeholder="Sentence case output." class="mt-3 w-full rounded-xl border border-slate-200 bg-white p-3 font-mono text-xs leading-5 text-slate-800 outline-none"></textarea>
+            </div>
+
+            <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+              <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                <span class="text-xs font-black uppercase tracking-widest text-slate-400">camelCase</span>
+                <button data-target="outCamelcase" class="copy-trigger rounded-xl bg-indigo-50 px-4 py-2 text-xs font-bold text-indigo-700 transition hover:bg-indigo-100">Copy</button>
+              </div>
+              <textarea id="outCamelcase" readonly rows="2" placeholder="camelCaseOutput" class="mt-3 w-full rounded-xl border border-slate-200 bg-white p-3 font-mono text-xs leading-5 text-slate-800 outline-none"></textarea>
+            </div>
+
+            <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+              <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                <span class="text-xs font-black uppercase tracking-widest text-slate-400">PascalCase</span>
+                <button data-target="outPascalcase" class="copy-trigger rounded-xl bg-indigo-50 px-4 py-2 text-xs font-bold text-indigo-700 transition hover:bg-indigo-100">Copy</button>
+              </div>
+              <textarea id="outPascalcase" readonly rows="2" placeholder="PascalCaseOutput" class="mt-3 w-full rounded-xl border border-slate-200 bg-white p-3 font-mono text-xs leading-5 text-slate-800 outline-none"></textarea>
+            </div>
+
+            <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+              <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                <span class="text-xs font-black uppercase tracking-widest text-slate-400">snake_case</span>
+                <button data-target="outSnakecase" class="copy-trigger rounded-xl bg-indigo-50 px-4 py-2 text-xs font-bold text-indigo-700 transition hover:bg-indigo-100">Copy</button>
+              </div>
+              <textarea id="outSnakecase" readonly rows="2" placeholder="snake_case_output" class="mt-3 w-full rounded-xl border border-slate-200 bg-white p-3 font-mono text-xs leading-5 text-slate-800 outline-none"></textarea>
+            </div>
+
+            <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+              <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                <span class="text-xs font-black uppercase tracking-widest text-slate-400">kebab-case</span>
+                <button data-target="outKebabcase" class="copy-trigger rounded-xl bg-indigo-50 px-4 py-2 text-xs font-bold text-indigo-700 transition hover:bg-indigo-100">Copy</button>
+              </div>
+              <textarea id="outKebabcase" readonly rows="2" placeholder="kebab-case-output" class="mt-3 w-full rounded-xl border border-slate-200 bg-white p-3 font-mono text-xs leading-5 text-slate-800 outline-none"></textarea>
+            </div>
+          </div>
+
+          <div id="copyFeedback" class="mt-4 hidden rounded-2xl bg-emerald-50 px-4 py-3 text-sm font-bold text-emerald-700">
+            Copied!
+          </div>
+        </div>
+
+        <div class="ad-box">AdSense Responsive Ad Area - Below Result</div>
+      </section>
+    </main>
+
+    <div class="mx-auto mt-6 w-full max-w-7xl">
+      <div class="ad-box">AdSense Responsive Ad Area - Below Tool</div>
     </div>
 
-  </main>
+    <section class="mx-auto mt-8 w-full max-w-7xl space-y-6">
+      <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
+        <p class="mb-3 inline-flex rounded-full bg-violet-50 px-4 py-2 text-sm font-bold text-violet-700">
+          Text Formatting Guide
+        </p>
+        <h2 class="text-3xl font-black tracking-tight text-slate-950">
+          Free Text Case Converter for Writers, Developers, and Content Editors
+        </h2>
+        <div class="mt-5 space-y-5 text-base leading-8 text-slate-600">
+          <p>
+            This Text Case Converter is a free online text formatting tool that helps you quickly change
+            raw text into common writing, coding, and data naming styles. Whether you need uppercase for
+            headings, lowercase for cleanup, title case for article titles, sentence case for paragraphs,
+            camelCase for JavaScript variables, PascalCase for class names, snake_case for database fields,
+            or kebab-case for URLs and CSS class names, this browser-based converter gives you instant results.
+          </p>
+          <p>
+            Text case conversion is useful in many daily workflows. Writers may need to fix headlines,
+            editors may need consistent capitalization, marketers may need clean campaign labels, developers
+            may need variable names, and students may need formatted text for assignments. Instead of manually
+            retyping every word, you can paste your content once and copy the exact case format you need.
+          </p>
+          <p>
+            This case converter runs locally in your browser. The conversion logic uses JavaScript on the page,
+            so your text does not need to be intentionally uploaded to a server for formatting. That makes it a
+            practical utility for quick text editing, code preparation, documentation cleanup, blog formatting,
+            spreadsheet label normalization, and web development naming tasks.
+          </p>
+        </div>
+      </article>
+
+      <div class="ad-box">AdSense Responsive Ad Area - Middle Content</div>
+
+      <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
+        <h2 class="text-3xl font-black tracking-tight text-slate-950">
+          What Each Text Case Format Means
+        </h2>
+        <div class="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2">
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <h3 class="text-xl font-black text-slate-950">UPPERCASE and lowercase</h3>
+            <p class="mt-2 text-sm leading-7 text-slate-600">
+              UPPERCASE is often used for emphasis, labels, acronyms, constants, and short interface text.
+              lowercase is useful for cleanup, normalization, search terms, and simple text formatting.
+            </p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <h3 class="text-xl font-black text-slate-950">Title Case and sentence case</h3>
+            <p class="mt-2 text-sm leading-7 text-slate-600">
+              Title Case capitalizes important words and is commonly used for headlines, page titles, and
+              article names. Sentence case capitalizes the first letter of sentences and is useful for natural writing.
+            </p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <h3 class="text-xl font-black text-slate-950">camelCase and PascalCase</h3>
+            <p class="mt-2 text-sm leading-7 text-slate-600">
+              camelCase is commonly used for variables and functions in JavaScript and many programming languages.
+              PascalCase is often used for class names, component names, types, and structured identifiers.
+            </p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <h3 class="text-xl font-black text-slate-950">snake_case and kebab-case</h3>
+            <p class="mt-2 text-sm leading-7 text-slate-600">
+              snake_case is common in database fields, Python variables, and file labels. kebab-case is frequently
+              used for URLs, CSS class names, slugs, and readable web identifiers.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
+        <h2 class="text-3xl font-black tracking-tight text-slate-950">
+          How to Use This Online Text Case Converter
+        </h2>
+        <div class="mt-6 grid grid-cols-1 gap-4 md:grid-cols-3">
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <h3 class="text-lg font-black text-slate-950">1. Paste your text</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-600">
+              Add any sentence, phrase, paragraph, label, variable name, headline, or text block into the source box.
+            </p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <h3 class="text-lg font-black text-slate-950">2. Review every format</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-600">
+              The tool automatically generates uppercase, lowercase, title case, sentence case, camelCase,
+              PascalCase, snake_case, and kebab-case.
+            </p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <h3 class="text-lg font-black text-slate-950">3. Copy the result</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-600">
+              Click the copy button beside the format you want and paste it into your document, code editor,
+              spreadsheet, CMS, or project file.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
+        <h2 class="text-3xl font-black tracking-tight text-slate-950">
+          Popular Uses for a Text Case Converter
+        </h2>
+        <div class="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2">
+          <div class="rounded-2xl border border-slate-200 p-5">
+            <h3 class="text-xl font-black text-slate-950">Blog titles and article headings</h3>
+            <p class="mt-2 text-sm leading-7 text-slate-600">
+              Convert rough article titles into title case, sentence case, or uppercase heading styles for publishing workflows.
+            </p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 p-5">
+            <h3 class="text-xl font-black text-slate-950">Programming variable names</h3>
+            <p class="mt-2 text-sm leading-7 text-slate-600">
+              Quickly generate camelCase, PascalCase, snake_case, or kebab-case names for code variables, functions, components, files, and classes.
+            </p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 p-5">
+            <h3 class="text-xl font-black text-slate-950">Database and spreadsheet labels</h3>
+            <p class="mt-2 text-sm leading-7 text-slate-600">
+              Normalize column names, field names, imported data labels, and structured records into consistent naming styles.
+            </p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 p-5">
+            <h3 class="text-xl font-black text-slate-950">URL slugs and CSS classes</h3>
+            <p class="mt-2 text-sm leading-7 text-slate-600">
+              Generate kebab-case text for clean URLs, CSS class names, front-end component labels, and static page filenames.
+            </p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 p-5">
+            <h3 class="text-xl font-black text-slate-950">Social media and marketing copy</h3>
+            <p class="mt-2 text-sm leading-7 text-slate-600">
+              Adjust promotional text, headlines, captions, campaign labels, and product descriptions into consistent capitalization.
+            </p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 p-5">
+            <h3 class="text-xl font-black text-slate-950">Documentation and technical writing</h3>
+            <p class="mt-2 text-sm leading-7 text-slate-600">
+              Clean up repeated terms, headings, examples, constants, API labels, and developer documentation snippets.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <div class="ad-box">AdSense Responsive Ad Area - Bottom Content</div>
+
+      <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
+        <h2 class="text-3xl font-black tracking-tight text-slate-950">
+          Practical Tips for Clean Text Formatting
+        </h2>
+        <div class="mt-5 space-y-5 text-base leading-8 text-slate-600">
+          <p>
+            Always review converted text before publishing or using it in code. Automated case conversion is helpful,
+            but some phrases require human judgment. Brand names, acronyms, proper nouns, product names, and technical
+            terms may need special capitalization that a general-purpose case converter cannot always detect.
+          </p>
+          <p>
+            For programming names, choose the case style that matches the language, framework, or team convention.
+            JavaScript projects often use camelCase for variables, PascalCase for components, and kebab-case for some
+            filenames or route slugs. Python often uses snake_case for variables and functions. CSS commonly uses
+            kebab-case for class names.
+          </p>
+          <p>
+            For SEO content, avoid using all caps for long headlines because it can reduce readability. Title case or
+            sentence case is usually easier to scan. For URL slugs, kebab-case is often preferred because hyphenated
+            words are readable and search-engine-friendly.
+          </p>
+        </div>
+      </article>
+
+      <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
+        <h2 class="text-3xl font-black tracking-tight text-slate-950">
+          Frequently Asked Questions
+        </h2>
+        <div class="mt-6 space-y-4">
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">What is a text case converter?</summary>
+            <p class="mt-3 text-sm leading-7 text-slate-600">
+              A text case converter changes text capitalization or naming format, such as uppercase, lowercase,
+              title case, camelCase, snake_case, PascalCase, or kebab-case.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">Does this tool upload my text?</summary>
+            <p class="mt-3 text-sm leading-7 text-slate-600">
+              No. The conversion logic runs in your browser. The tool does not intentionally upload your entered
+              text to a backend conversion server.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">What is camelCase used for?</summary>
+            <p class="mt-3 text-sm leading-7 text-slate-600">
+              camelCase is commonly used for variable names and function names in JavaScript and many other programming environments.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">What is snake_case used for?</summary>
+            <p class="mt-3 text-sm leading-7 text-slate-600">
+              snake_case is often used for database fields, Python variables, file names, and structured identifiers.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">Can I use this for SEO titles and URLs?</summary>
+            <p class="mt-3 text-sm leading-7 text-slate-600">
+              Yes. You can use title case or sentence case for headings and kebab-case for URL slugs, but review all output before publishing.
+            </p>
+          </details>
+        </div>
+      </section>
+
+      <section class="mobile-card rounded-3xl bg-slate-950 p-5 text-slate-200 shadow-sm lg:p-8">
+        <h2 class="text-3xl font-black tracking-tight text-white">Legal Disclaimer</h2>
+        <div class="mt-5 space-y-4 text-sm leading-7 text-slate-300">
+          <p>
+            This Text Case Converter is provided for general informational, educational, writing, editing,
+            and development convenience only. It is not a legal, security, compliance, or professional publishing service.
+          </p>
+          <p>
+            Automated text formatting may not preserve all intended capitalization, grammar rules, brand names,
+            acronyms, code conventions, punctuation, special characters, or language-specific rules. Users are responsible
+            for reviewing converted text before using it in documents, websites, databases, codebases, URLs, or public content.
+          </p>
+          <p>
+            This page is designed to process text locally in the browser, but users remain responsible for browser extensions,
+            device security, copied output, and downstream usage. NodnWebTools is not liable for text errors, formatting issues,
+            publishing mistakes, data loss, code defects, SEO problems, or consequences resulting from use of this tool.
+          </p>
+        </div>
+      </section>
+
+      <div class="ad-box">AdSense Responsive Ad Area - Bottom</div>
+    </section>
+
+    <footer class="mx-auto mt-8 w-full max-w-7xl pb-8 text-center text-sm text-slate-500">
+      <p>© <span id="yearText"></span> NodnWebTools. All rights reserved.</p>
+    </footer>
+  </div>
 
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      // Input Interface Elements
+    document.addEventListener("DOMContentLoaded", function () {
       const sourceText = document.getElementById("sourceText");
       const clearBtn = document.getElementById("clearBtn");
+      const resetBtn = document.getElementById("resetBtn");
+      const sampleBtn = document.getElementById("sampleBtn");
+      const copyFeedback = document.getElementById("copyFeedback");
+      const statusBadge = document.getElementById("statusBadge");
+      const characterCount = document.getElementById("characterCount");
+      const wordCount = document.getElementById("wordCount");
+      const lineCount = document.getElementById("lineCount");
+      const yearText = document.getElementById("yearText");
 
-      // Output Target Nodes
-      const outUppercase = document.getElementById("outUppercase");
-      const outLowercase = document.getElementById("outLowercase");
-      const outTitlecase = document.getElementById("outTitlecase");
-      const outCamelcase = document.getElementById("outCamelcase");
-      const outSnakecase = document.getElementById("outSnakecase");
+      const outputs = {
+        uppercase: document.getElementById("outUppercase"),
+        lowercase: document.getElementById("outLowercase"),
+        titlecase: document.getElementById("outTitlecase"),
+        sentencecase: document.getElementById("outSentencecase"),
+        camelcase: document.getElementById("outCamelcase"),
+        pascalcase: document.getElementById("outPascalcase"),
+        snakecase: document.getElementById("outSnakecase"),
+        kebabcase: document.getElementById("outKebabcase")
+      };
 
-      // Global Toast Component Tracker
-      const copyToast = document.getElementById("copyToast");
-      let toastTimer = null;
+      yearText.textContent = new Date().getFullYear();
 
-      // Real-Time Event Listener Synchronization
-      sourceText.addEventListener("input", () => {
-        executeStringTransformations(sourceText.value);
-      });
+      function setStatus(text, tone) {
+        const classes = {
+          waiting: "inline-flex w-fit rounded-full bg-slate-100 px-4 py-2 text-sm font-bold text-slate-600",
+          active: "inline-flex w-fit rounded-full bg-indigo-50 px-4 py-2 text-sm font-bold text-indigo-700",
+          success: "inline-flex w-fit rounded-full bg-emerald-50 px-4 py-2 text-sm font-bold text-emerald-700"
+        };
 
-      // Clear Panel Values Reset Trigger
-      clearBtn.addEventListener("click", () => {
-        sourceText.value = "";
-        executeStringTransformations("");
-      });
+        statusBadge.textContent = text;
+        statusBadge.className = classes[tone] || classes.waiting;
+      }
 
-      // Core Engine Switchboard: Transforms input strings on the fly
-      function executeStringTransformations(text) {
+      function toWords(text) {
+        return text
+          .replace(/([a-z])([A-Z])/g, "$1 $2")
+          .replace(/[_-]+/g, " ")
+          .replace(/[^\p{L}\p{N}\s]+/gu, " ")
+          .trim()
+          .split(/\s+/)
+          .filter(Boolean);
+      }
+
+      function capitalizeWord(word) {
+        if (!word) return "";
+        return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+      }
+
+      function toTitleCase(text) {
+        return text.toLowerCase().replace(/\b[\p{L}\p{N}]/gu, function (char) {
+          return char.toUpperCase();
+        });
+      }
+
+      function toSentenceCase(text) {
+        const lower = text.toLowerCase();
+        return lower.replace(/(^\s*[a-zA-Z])|([.!?]\s*[a-zA-Z])/g, function (match) {
+          return match.toUpperCase();
+        });
+      }
+
+      function toCamelCase(text) {
+        const words = toWords(text);
+        return words.map(function (word, index) {
+          const clean = word.toLowerCase();
+          return index === 0 ? clean : capitalizeWord(clean);
+        }).join("");
+      }
+
+      function toPascalCase(text) {
+        return toWords(text).map(function (word) {
+          return capitalizeWord(word);
+        }).join("");
+      }
+
+      function toSnakeCase(text) {
+        return toWords(text).map(function (word) {
+          return word.toLowerCase();
+        }).join("_");
+      }
+
+      function toKebabCase(text) {
+        return toWords(text).map(function (word) {
+          return word.toLowerCase();
+        }).join("-");
+      }
+
+      function updateStats(text) {
+        characterCount.textContent = String(text.length);
+        wordCount.textContent = String(toWords(text).length);
+        lineCount.textContent = String(text ? text.split(/\r\n|\r|\n/).length : 0);
+      }
+
+      function convertText() {
+        const text = sourceText.value;
+
         if (!text) {
-          outUppercase.value = "";
-          outLowercase.value = "";
-          outTitlecase.value = "";
-          outCamelcase.value = "";
-          outSnakecase.value = "";
+          Object.values(outputs).forEach(function (output) {
+            output.value = "";
+          });
+          updateStats("");
+          setStatus("Waiting", "waiting");
           return;
         }
 
-        // 1. UPPERCASE
-        outUppercase.value = text.toUpperCase();
+        try {
+          outputs.uppercase.value = text.toUpperCase();
+          outputs.lowercase.value = text.toLowerCase();
+          outputs.titlecase.value = toTitleCase(text);
+          outputs.sentencecase.value = toSentenceCase(text);
+          outputs.camelcase.value = toCamelCase(text);
+          outputs.pascalcase.value = toPascalCase(text);
+          outputs.snakecase.value = toSnakeCase(text);
+          outputs.kebabcase.value = toKebabCase(text);
 
-        // 2. lowercase
-        outLowercase.value = text.toLowerCase();
-
-        // 3. Title Case
-        outTitlecase.value = text.toLowerCase().replace(/\b\w/g, (char) => char.toUpperCase());
-
-        // Standardize base tokens array for variable case transformations (Camel / Snake)
-        // This splits by whitespace and filters out alphanumeric fragments safely
-        const wordsArray = text
-          .replace(/[^a-zA-Z0-9\s-_]/g, "") // Strip weird punctuation marks
-          .replace(/[-_]/g, " ")            // Normalize dashes or underscores to spaces
-          .trim()
-          .split(/\s+/);
-
-        if (wordsArray.length > 0 && wordsArray[0] !== "") {
-          // 4. camelCase Matrix Processing
-          const camelCompiled = wordsArray.map((word, index) => {
-            const lowerWord = word.toLowerCase();
-            if (index === 0) return lowerWord;
-            return lowerWord.charAt(0).toUpperCase() + lowerWord.slice(1);
-          }).join("");
-          outCamelcase.value = camelCompiled;
-
-          // 5. snake_case Matrix Processing
-          const snakeCompiled = wordsArray.map(word => word.toLowerCase()).join("_");
-          outSnakecase.value = snakeCompiled;
-        } else {
-          outCamelcase.value = "";
-          outSnakecase.value = "";
+          updateStats(text);
+          setStatus("Updated", "success");
+        } catch (error) {
+          setStatus("Check input", "active");
         }
       }
 
-      // Universal Clipboard Dispatch Event Wireup Loop
-      const copyButtons = document.querySelectorAll(".copy-trigger");
-      copyButtons.forEach(button => {
-        button.addEventListener("click", () => {
-          const targetId = button.getAttribute("data-target");
-          const targetTextArea = document.getElementById(targetId);
+      function resetAll() {
+        sourceText.value = "";
+        convertText();
+        sourceText.focus();
+      }
 
-          if (!targetTextArea || targetTextArea.value === "") return;
+      function loadExample() {
+        sourceText.value = "sample product title for modern web tools and developer naming formats";
+        convertText();
+      }
 
-          navigator.clipboard.writeText(targetTextArea.value)
-            .then(() => {
-              triggerToastFeedback();
-            })
-            .catch(err => {
-              console.error("Clipboard dispatch fault node: ", err);
-            });
+      async function copyTextArea(targetId) {
+        const target = document.getElementById(targetId);
+        if (!target || !target.value) return;
+
+        try {
+          if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(target.value);
+          } else {
+            target.focus();
+            target.select();
+            document.execCommand("copy");
+          }
+
+          copyFeedback.classList.remove("hidden");
+          setTimeout(function () {
+            copyFeedback.classList.add("hidden");
+          }, 1400);
+        } catch (error) {
+          copyFeedback.textContent = "Copy failed. Please select and copy manually.";
+          copyFeedback.classList.remove("hidden");
+          setTimeout(function () {
+            copyFeedback.textContent = "Copied!";
+            copyFeedback.classList.add("hidden");
+          }, 1800);
+        }
+      }
+
+      sourceText.addEventListener("input", convertText);
+
+      clearBtn.addEventListener("click", function () {
+        sourceText.value = "";
+        convertText();
+        sourceText.focus();
+      });
+
+      resetBtn.addEventListener("click", resetAll);
+      sampleBtn.addEventListener("click", loadExample);
+
+      document.querySelectorAll(".copy-trigger").forEach(function (button) {
+        button.addEventListener("click", function () {
+          copyTextArea(button.getAttribute("data-target"));
         });
       });
 
-      // Toast Feedback Animation Management
-      function triggerToastFeedback() {
-        if (toastTimer) clearTimeout(toastTimer);
-
-        copyToast.classList.remove("opacity-0", "translate-y-2");
-        copyToast.classList.add("opacity-100", "translate-y-0");
-
-        toastTimer = setTimeout(() => {
-          copyToast.classList.remove("opacity-100", "translate-y-0");
-          copyToast.classList.add("opacity-0", "translate-y-2");
-        }, 1800);
-      }
+      convertText();
     });
   </script>
-
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
 </body>
 </html>
