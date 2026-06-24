@@ -4,343 +4,973 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
 
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404"
-     crossorigin="anonymous"></script>
-
-	<meta name="google-adsense-account" content="ca-pub-5282672325821404">	
-
-  <title>Online Diff Checker | Compare Text Differences Instantly - NodnWebTools</title>
-
-  <meta
-    name="description"
-    content="Use the free NodnWebTools Online Diff Checker to compare two text files or code snippets instantly. View structural line-by-line differences with secure, client-side highlights."
-  />
-  <meta
-    name="keywords"
-    content="online diff checker, text compare tool, code difference checker, line by line diff, secure text comparison, compare two files, NodnWebTools"
-  />
+  <title>Diff Checker | Text Compare & Code Difference Tool</title>
+  <meta name="description" content="Compare text, code, files, and documents line by line with a free browser-based diff checker and copy-ready results." />
+  <meta name="keywords" content="diff checker, text compare tool, code difference checker, online diff tool, compare text online, compare code online, line by line diff, file comparison tool, document comparison tool, text difference checker, code review tool, developer diff utility, browser diff checker, client-side text compare, secure diff checker, compare two text files, source code comparison, revision comparison, content change checker, NodnWebTools" />
   <meta name="author" content="NodnWebTools" />
   <meta name="robots" content="index, follow" />
 
-  <meta property="og:title" content="Online Diff Checker | NodnWebTools" />
-  <meta
-    property="og:description"
-    content="Compare text or code snippets line-by-line instantly and securely inside your browser."
-  />
+  <meta property="og:title" content="Diff Checker | Text Compare & Code Difference Tool" />
+  <meta property="og:description" content="Compare two text blocks, code snippets, or files line by line with a fast browser-based diff checker." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://nodntools.com/diff-checker.html" />
   <meta property="og:site_name" content="NodnWebTools" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Online Diff Checker" />
-  <meta
-    name="twitter:description"
-    content="A secure, client-side online code and text difference comparison utility for developer workstreams."
-  />
+  <meta name="twitter:title" content="Diff Checker" />
+  <meta name="twitter:description" content="Compare text and code differences locally in your browser." />
+
+  <meta name="google-adsense-account" content="ca-pub-5282672325821404" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404" crossorigin="anonymous"></script>
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jsdiff/5.2.0/diff.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            brand: {
-              50: '#eff6ff',
-              100: '#dbeafe',
-              200: '#bfdbfe',
-              500: '#3b82f6',
-              600: '#2563eb',
-              700: '#1d4ed8',
-              800: '#1e40af',
-            }
-          }
-        }
-      }
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Diff Checker",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "All",
+    "url": "https://nodntools.com/diff-checker.html",
+    "description": "A free browser-based diff checker that compares text, code snippets, files, and documents line by line with highlighted added and removed content.",
+    "featureList": [
+      "Compare two text blocks",
+      "Compare source code changes",
+      "Line-by-line diff highlighting",
+      "Upload original and modified files",
+      "Copy diff report",
+      "Download comparison report",
+      "Client-side browser processing",
+      "Added and removed line summary"
+    ],
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "NodnWebTools",
+      "url": "https://nodntools.com"
     }
+  }
   </script>
 
   <style>
-    html, body {
+    html,
+    body {
       width: 100%;
       max-width: 100%;
       overflow-x: hidden;
     }
-    * {
+
+    *,
+    *::before,
+    *::after {
       box-sizing: border-box;
+      min-width: 0;
     }
-    textarea, input, button, select {
+
+    main,
+    section,
+    article,
+    aside,
+    div,
+    textarea,
+    input,
+    select,
+    button,
+    table,
+    canvas,
+    img,
+    svg,
+    pre,
+    code,
+    iframe,
+    ins {
       max-width: 100%;
     }
-    .adsbygoogle {
-      display: block !important;
-      width: 100% !important;
-      max-width: 100% !important;
-      overflow: hidden;
+
+    textarea {
+      resize: vertical;
     }
+
+    .safe-break {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .mobile-card,
+    .mobile-panel,
+    .mobile-preview,
+    .ad-box {
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
+    .mobile-code {
+      max-width: 100%;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .ad-box {
+      width: 100%;
+      min-height: 90px;
+      border: 2px dashed #cbd5e1;
+      background: #f8fafc;
+      color: #94a3b8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-radius: 1rem;
+      padding: 1rem;
+      font-size: 0.875rem;
+      line-height: 1.5;
+    }
+
+    .diff-line {
+      display: flex;
+      gap: 0.5rem;
+      align-items: flex-start;
+      padding: 0.35rem 0.75rem;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    .diff-prefix {
+      width: 1.5rem;
+      flex: 0 0 1.5rem;
+      user-select: none;
+      font-weight: 900;
+      opacity: 0.85;
+    }
+
     @media (max-width: 640px) {
-      textarea {
-        min-height: 220px;
+      body {
+        padding-left: 0;
+        padding-right: 0;
       }
+
+      .mobile-card,
+      .mobile-panel,
+      .mobile-preview {
+        border-radius: 1.25rem !important;
+        padding: 1rem !important;
+      }
+
+      .mobile-button-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .mobile-button-grid button,
+      .mobile-button-grid label,
+      .mobile-full {
+        width: 100%;
+      }
+
+      h1 {
+        font-size: 2rem !important;
+        line-height: 2.35rem !important;
+      }
+
+      .ad-box {
+        min-height: 90px;
+        border-radius: 0.875rem;
+        padding: 0.875rem;
+        font-size: 0.75rem;
+      }
+
       #diffContent {
-        max-height: 360px;
+        max-height: 420px;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .mobile-card,
+      .mobile-panel,
+      .mobile-preview {
+        padding: 0.875rem !important;
+        border-radius: 1rem !important;
+      }
+
+      h1 {
+        font-size: 1.75rem !important;
+      }
+
+      h2 {
+        font-size: 1.35rem !important;
+      }
+
+      textarea,
+      button,
+      label {
+        font-size: 0.9rem !important;
       }
     }
   </style>
 </head>
 
-<body class="min-h-screen bg-slate-100 px-3 py-5 sm:px-4 sm:py-12">
-  <main class="mx-auto w-full max-w-5xl overflow-hidden">
-
-    <div class="mb-8 text-center">
-      <a
-        href="https://nodntools.com"
-        class="inline-block transition hover:opacity-80"
-        aria-label="NodnWebTools Home"
-      >
-        <div class="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
-          Nodn<span class="text-blue-600">WebTools</span>
-        </div>
+<body class="min-h-screen bg-slate-50 text-slate-800">
+  <div class="w-full px-4 py-5 sm:px-6 lg:px-8">
+    <header class="mx-auto flex w-full max-w-7xl flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <a href="https://nodntools.com" class="inline-flex items-center gap-2 safe-break" aria-label="NodnWebTools Home">
+        <span class="text-2xl font-black tracking-tight text-slate-950">
+          Nodn<span class="text-indigo-600">WebTools</span>
+        </span>
       </a>
+      <nav class="flex flex-wrap items-center gap-2 text-sm text-slate-500">
+        <a href="https://nodntools.com" class="rounded-full border border-slate-200 bg-white px-4 py-2 font-semibold transition hover:border-indigo-200 hover:text-indigo-700">Home</a>
+        <span class="rounded-full bg-indigo-50 px-4 py-2 font-semibold text-indigo-700">Client-side developer utility</span>
+      </nav>
+    </header>
+
+    <div class="mx-auto mt-5 w-full max-w-7xl">
+      <div class="ad-box">AdSense Responsive Ad Area - Top</div>
     </div>
 
-    <div class="mb-6 flex min-h-[80px] w-full items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white px-3 text-center text-xs text-slate-400 sm:mb-8 sm:min-h-[90px] sm:text-sm">
-      AdSense Responsive Ad Area - Top
-    </div>
-
-    <section class="space-y-6">
-      
-      <div class="rounded-3xl bg-white p-4 shadow-xl ring-1 ring-slate-200 sm:p-8">
+    <main class="mx-auto mt-6 grid w-full max-w-7xl grid-cols-1 gap-6 lg:grid-cols-12">
+      <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:col-span-5 lg:p-8">
         <div class="mb-6">
-          <span class="inline-flex rounded-full bg-brand-50 px-4 py-2 text-sm font-semibold text-brand-700">
-            Developer Utility
-          </span>
+          <p class="mb-3 inline-flex rounded-full bg-indigo-50 px-4 py-2 text-sm font-bold text-indigo-700">
+            Diff Checker
+          </p>
 
-          <h1 class="mt-5 text-2xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-            Online Diff Checker
+          <h1 class="safe-break text-4xl font-black tracking-tight text-slate-950 sm:text-5xl">
+            Compare Text and Code Differences
           </h1>
 
-          <p class="mt-3 text-sm leading-6 text-slate-600 sm:text-base sm:leading-7">
-            Compare two text segments or code layers to spot structural adjustments instantly. Processing executes 100% locally in your client runtime sandbox environment.
+          <p class="mt-4 text-base leading-7 text-slate-600">
+            Paste original and modified text, upload local files, and compare differences line by line.
+            Added lines, removed lines, unchanged content, and summary counts are generated directly in your browser.
           </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <div class="flex justify-between items-center mb-2">
-              <label for="originalText" class="text-sm font-semibold text-slate-700">Original Text (Source)</label>
-              <button id="clearOriginalBtn" class="text-[11px] font-semibold text-slate-500 hover:text-red-600 bg-slate-100 hover:bg-slate-200 px-2.5 py-1 rounded-lg transition">Clear</button>
+        <div class="space-y-5">
+          <div class="mobile-panel rounded-2xl border border-slate-200 bg-slate-50 p-4">
+            <div class="mb-3 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <label for="originalText" class="text-sm font-bold text-slate-700">Original text or source code</label>
+              <div class="mobile-button-grid grid grid-cols-2 gap-2 sm:flex sm:w-auto">
+                <label class="cursor-pointer rounded-xl bg-indigo-50 px-3 py-2 text-center text-xs font-bold text-indigo-700 transition hover:bg-indigo-100">
+                  Upload
+                  <input type="file" id="originalFileInput" accept=".txt,.html,.css,.js,.json,.xml,.md,.csv,.log" class="hidden" />
+                </label>
+                <button id="clearOriginalBtn" type="button" class="rounded-xl bg-white px-3 py-2 text-xs font-bold text-slate-600 ring-1 ring-slate-200 transition hover:text-red-600">
+                  Clear
+                </button>
+              </div>
             </div>
-            <textarea id="originalText" rows="10" placeholder="Paste the baseline original source code or text here..." class="w-full min-h-[220px] rounded-2xl border border-slate-300 bg-slate-50 p-3 font-mono text-xs leading-5 text-slate-900 shadow-inner outline-none transition focus:border-brand-600 focus:bg-white focus:ring-4 focus:ring-brand-100 resize-y sm:min-h-[260px] sm:p-4"></textarea>
+
+            <textarea id="originalText" rows="10" placeholder="Paste the original text, document, code snippet, configuration, or file content here..."
+              class="w-full rounded-2xl border border-slate-300 bg-white p-4 font-mono text-sm leading-6 text-slate-900 outline-none transition focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100"></textarea>
           </div>
 
-          <div>
-            <div class="flex justify-between items-center mb-2">
-              <label for="modifiedText" class="text-sm font-semibold text-slate-700">Modified Text (Target)</label>
-              <button id="clearModifiedBtn" class="text-[11px] font-semibold text-slate-500 hover:text-red-600 bg-slate-100 hover:bg-slate-200 px-2.5 py-1 rounded-lg transition">Clear</button>
+          <div class="mobile-panel rounded-2xl border border-slate-200 bg-slate-50 p-4">
+            <div class="mb-3 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <label for="modifiedText" class="text-sm font-bold text-slate-700">Modified text or updated code</label>
+              <div class="mobile-button-grid grid grid-cols-2 gap-2 sm:flex sm:w-auto">
+                <label class="cursor-pointer rounded-xl bg-indigo-50 px-3 py-2 text-center text-xs font-bold text-indigo-700 transition hover:bg-indigo-100">
+                  Upload
+                  <input type="file" id="modifiedFileInput" accept=".txt,.html,.css,.js,.json,.xml,.md,.csv,.log" class="hidden" />
+                </label>
+                <button id="clearModifiedBtn" type="button" class="rounded-xl bg-white px-3 py-2 text-xs font-bold text-slate-600 ring-1 ring-slate-200 transition hover:text-red-600">
+                  Clear
+                </button>
+              </div>
             </div>
-            <textarea id="modifiedText" rows="10" placeholder="Paste the updated modified text configuration here..." class="w-full min-h-[220px] rounded-2xl border border-slate-300 bg-slate-50 p-3 font-mono text-xs leading-5 text-slate-900 shadow-inner outline-none transition focus:border-brand-600 focus:bg-white focus:ring-4 focus:ring-brand-100 resize-y sm:min-h-[260px] sm:p-4"></textarea>
-          </div>
-        </div>
 
-        <div class="mt-5 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <div class="text-xs leading-5 text-slate-500 max-w-md">
-            Clicking compilation mapping analyzes tokens line-by-line. Your proprietary data metrics remain completely hidden from remote external cloud servers.
+            <textarea id="modifiedText" rows="10" placeholder="Paste the modified text, updated code, revised document, or new file content here..."
+              class="w-full rounded-2xl border border-slate-300 bg-white p-4 font-mono text-sm leading-6 text-slate-900 outline-none transition focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100"></textarea>
           </div>
-          <button id="compareBtn" class="w-full rounded-2xl bg-brand-600 px-5 py-4 text-center text-sm font-bold text-white shadow-md transition-all hover:bg-brand-700 active:scale-[0.99] sm:w-auto sm:px-8 sm:text-base whitespace-normal sm:whitespace-nowrap">
-            Find Differences (Diff)
+
+          <div id="warningBox" class="hidden rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm font-semibold leading-6 text-amber-800"></div>
+
+          <div class="mobile-button-grid grid grid-cols-1 gap-3 sm:grid-cols-2">
+            <button id="compareBtn" type="button"
+              class="rounded-2xl bg-indigo-600 px-4 py-4 text-base font-black text-white shadow-sm transition hover:bg-indigo-700 active:scale-[0.99]">
+              Compare Differences
+            </button>
+
+            <button id="sampleBtn" type="button"
+              class="rounded-2xl border border-slate-200 bg-white px-4 py-4 text-base font-black text-slate-700 transition hover:border-indigo-200 hover:text-indigo-700">
+              Load Example
+            </button>
+          </div>
+
+          <div class="mobile-button-grid grid grid-cols-1 gap-3 sm:grid-cols-2">
+            <button id="copyBtn" type="button"
+              class="rounded-2xl border border-slate-200 bg-white px-4 py-4 text-base font-black text-slate-700 transition hover:border-indigo-200 hover:text-indigo-700">
+              Copy Report
+            </button>
+
+            <button id="downloadBtn" type="button"
+              class="rounded-2xl border border-slate-200 bg-white px-4 py-4 text-base font-black text-slate-700 transition hover:border-indigo-200 hover:text-indigo-700">
+              Download Report
+            </button>
+          </div>
+
+          <button id="resetBtn" type="button" class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-4 text-base font-black text-slate-700 transition hover:border-red-200 hover:text-red-600">
+            Reset All
           </button>
-        </div>
-      </div>
 
-      <div class="rounded-3xl bg-white p-4 shadow-xl ring-1 ring-slate-200 sm:p-8">
-        <div class="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <div>
-            <h2 class="text-xl font-bold text-slate-900 sm:text-2xl">Line Comparison Output</h2>
-            <p class="mt-1 text-sm text-slate-500">Color-coded mapping visualization metrics display down below.</p>
+          <div id="copyFeedback" class="hidden rounded-2xl bg-emerald-50 px-4 py-3 text-sm font-bold text-emerald-700">
+            Copied!
           </div>
-          
-          <div class="flex flex-wrap gap-2 text-xs font-semibold">
-            <span class="flex items-center space-x-1.5 px-2.5 py-1.5 rounded-lg bg-red-100 border border-red-200 text-red-800">
-              <span class="w-2 h-2 rounded-full bg-red-500"></span>
-              <span>Removed</span>
+
+          <div class="rounded-2xl border border-indigo-100 bg-indigo-50 p-4 text-sm leading-6 text-indigo-900">
+            <strong>Privacy note:</strong> text comparison runs locally in your browser. Your pasted code,
+            uploaded files, and comparison results are not intentionally sent to a backend server.
+          </div>
+        </div>
+      </section>
+
+      <section class="space-y-6 lg:col-span-7">
+        <div class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
+          <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+            <div>
+              <h2 class="text-2xl font-black tracking-tight text-slate-950">Line Comparison Output</h2>
+              <p class="mt-1 text-sm leading-6 text-slate-500">
+                Added, removed, and unchanged lines appear below.
+              </p>
+            </div>
+            <span id="statusBadge" class="inline-flex w-fit rounded-full bg-slate-100 px-4 py-2 text-sm font-bold text-slate-600">
+              Waiting
             </span>
-            <span class="flex items-center space-x-1.5 px-2.5 py-1.5 rounded-lg bg-green-100 border border-green-200 text-green-800">
-              <span class="w-2 h-2 rounded-full bg-green-500"></span>
-              <span>Added</span>
+          </div>
+
+          <div class="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-4">
+            <div class="rounded-2xl bg-slate-50 p-4 ring-1 ring-slate-100">
+              <p class="text-xs font-black uppercase tracking-widest text-slate-400">Added</p>
+              <p id="addedCount" class="safe-break mt-1 text-2xl font-black text-emerald-600">0</p>
+            </div>
+            <div class="rounded-2xl bg-slate-50 p-4 ring-1 ring-slate-100">
+              <p class="text-xs font-black uppercase tracking-widest text-slate-400">Removed</p>
+              <p id="removedCount" class="safe-break mt-1 text-2xl font-black text-red-600">0</p>
+            </div>
+            <div class="rounded-2xl bg-slate-50 p-4 ring-1 ring-slate-100">
+              <p class="text-xs font-black uppercase tracking-widest text-slate-400">Unchanged</p>
+              <p id="unchangedCount" class="safe-break mt-1 text-2xl font-black text-slate-900">0</p>
+            </div>
+            <div class="rounded-2xl bg-slate-50 p-4 ring-1 ring-slate-100">
+              <p class="text-xs font-black uppercase tracking-widest text-slate-400">Total</p>
+              <p id="totalCount" class="safe-break mt-1 text-2xl font-black text-slate-900">0</p>
+            </div>
+          </div>
+
+          <div class="mt-5 flex flex-wrap gap-2 text-xs font-bold">
+            <span class="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-2 text-emerald-700 ring-1 ring-emerald-100">
+              <span class="h-2 w-2 rounded-full bg-emerald-500"></span>
+              Added
+            </span>
+            <span class="inline-flex items-center gap-2 rounded-full bg-red-50 px-3 py-2 text-red-700 ring-1 ring-red-100">
+              <span class="h-2 w-2 rounded-full bg-red-500"></span>
+              Removed
+            </span>
+            <span class="inline-flex items-center gap-2 rounded-full bg-slate-100 px-3 py-2 text-slate-700 ring-1 ring-slate-200">
+              <span class="h-2 w-2 rounded-full bg-slate-400"></span>
+              Unchanged
             </span>
           </div>
-        </div>
 
-        <div id="diffPlaceholder" class="rounded-3xl border border-slate-200 bg-gradient-to-br from-slate-50 via-zinc-50 to-blue-50/20 p-5 text-center text-sm text-slate-400 sm:p-8">
-          Provide text blocks inside the source dashboards above and execute comparison mappings to compile results here.
-        </div>
-
-        <div id="diffContainer" class="hidden w-full rounded-2xl border border-slate-200 bg-slate-900 overflow-hidden font-mono text-[11px] shadow-2xl sm:text-sm">
-          <div class="flex items-center justify-between gap-3 border-b border-slate-700 bg-slate-800 px-3 py-2 text-[11px] text-slate-400 select-none sm:px-4 sm:text-xs">
-            <span>Terminal View Mode</span>
-            <span>Lines Evaluated</span>
-          </div>
-          <div id="diffContent" class="max-h-[360px] overflow-x-auto divide-y divide-slate-800/40 p-1.5 space-y-0.5 leading-5 text-slate-300 sm:max-h-[500px] sm:p-2 sm:leading-6"></div>
-        </div>
-
-        <div class="mt-6 flex min-h-[180px] w-full flex-col items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-3 text-center text-xs text-slate-400 sm:min-h-[250px] sm:p-4 sm:text-sm">
-          <span class="text-[10px] font-bold text-slate-300 uppercase tracking-widest mb-2">Advertisement</span>
-          <ins class="adsbygoogle"
-               style="display:block; width:100%; max-width:100%; min-height:160px;"
-               data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-               data-ad-slot="YYYYYYYYYY"
-               data-ad-format="rectangle, vertical"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
+          <div id="diffPlaceholder" class="mt-5 rounded-3xl border border-slate-200 bg-gradient-to-br from-slate-50 via-indigo-50/30 to-violet-50/30 p-6 text-center text-sm leading-6 text-slate-500">
+            Paste two text blocks or upload files, then click Compare Differences to generate a line-by-line diff.
           </div>
 
-          <div class="mt-5 rounded-2xl bg-slate-100 p-3 text-[11px] leading-5 text-slate-500 sm:p-4 sm:text-xs">
-            <span class="block font-bold text-slate-700 mb-1">Disclaimer & Legal Notice:</span>
-            This tool is provided on an "as is" and "as available" basis without warranties of any kind. Differential character tracking sequences execute 100% locally inside the user's browser rendering threads; NodnWebTools never mirrors, tracks, uploads, or leaks your payload source codes. The user carries full exclusive liability to manually double-check production code fidelity before engineering software release cycles. NodnWebTools, its core authors, and corporate affiliates reject all claims, financial damages, data deletions, or logical operational crashes arising from compiled outcomes.
+          <div id="diffContainer" class="mt-5 hidden w-full overflow-hidden rounded-2xl border border-slate-800 bg-slate-950 shadow-2xl">
+            <div class="flex items-center justify-between gap-3 border-b border-slate-800 bg-slate-900 px-4 py-3 text-xs font-bold text-slate-400">
+              <span>Diff Output</span>
+              <span id="diffModeLabel">Line-by-line</span>
+            </div>
+            <div id="diffContent" class="mobile-code max-h-[560px] overflow-y-auto p-2 text-xs leading-6 text-slate-300 sm:text-sm"></div>
           </div>
+
+          <div class="ad-box mt-6">AdSense Responsive Ad Area - Below Result</div>
         </div>
+      </section>
+    </main>
 
-        <section class="rounded-3xl bg-white p-4 shadow-sm ring-1 ring-slate-200 sm:p-8">
-          <span class="inline-flex rounded-full bg-slate-200 px-4 py-2 text-sm font-semibold text-slate-800">
-            Structural Code Guide
-          </span>
-
-          <h2 class="mt-5 text-xl font-bold tracking-tight text-slate-900 sm:text-3xl">
-            Line-by-Line Text Comparison: Accurate Code Change Audits
-          </h2>
-
-          <div class="mt-5 space-y-5 text-sm leading-7 text-slate-600">
-            <p>
-              In software development and content management pipelines, auditing minor file updates relies heavily on leveraging an optimized 
-              <strong class="font-semibold text-slate-800">online diff checker</strong>. When engineers handle heavy codebases or legal documents, manual tracking fails to catch hidden character changes, leading to syntax errors or compilation exceptions when files are synchronized.
-            </p>
-
-            <p>
-              Utilizing a fast, client-side <strong class="font-semibold text-slate-800">text compare tool</strong> instantly isolates code variances between files. Our web dashboard runs real-time string analysis to render insertions and deletions. This allows programmers to execute deep inspections using a structured <strong class="font-semibold text-slate-800">code difference checker</strong> interface without exposing corporate assets.
-            </p>
-
-            <h3 class="text-lg font-bold text-slate-900 pt-2">How to Perform a Line-by-Line Diff Check Safely</h3>
-            <p>
-              Traditional online diff utility platforms require uploading your proprietary code scripts to remote external databases, risking leakage of server access strings or security credentials. This application completely subverts that issue by sealing operations inside your local sandbox browser tab:
-            </p>
-
-            <ul class="list-disc pl-5 space-y-2 text-slate-600">
-              <li><strong>Secure Tracking Loops:</strong> The algorithm tokenizes text datasets line-by-line, matching missing nodes and indexing line positions accurately.</li>
-              <li><strong>Semantic Color Highlighting:</strong> Deleted strings automatically receive a red background tint, while newly introduced parameters generate clean green structural code layouts.</li>
-              <li><strong>Zero Cloud Transmissions:</strong> Because no text payloads are transmitted over standard network requests, your database configurations and secret tokens remain 100% confidential.</li>
-            </ul>
-
-            <p>
-              By relying on this standalone <strong class="font-semibold text-slate-800">line by line diff and text compare utility</strong> framework, you can smoothly audit file revision histories and patch logs without data privacy concerns.
-            </p>
-          </div>
-        </section>
-
-    </section>
-
-    <div class="mt-8 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white text-sm text-slate-400">
-      AdSense Responsive Ad Area - Bottom
+    <div class="mx-auto mt-6 w-full max-w-7xl">
+      <div class="ad-box">AdSense Responsive Ad Area - Below Tool</div>
     </div>
 
-  </main>
+    <section class="mx-auto mt-8 w-full max-w-7xl space-y-6">
+      <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
+        <p class="mb-3 inline-flex rounded-full bg-violet-50 px-4 py-2 text-sm font-bold text-violet-700">
+          Text Comparison Guide
+        </p>
+
+        <h2 class="text-3xl font-black tracking-tight text-slate-950">
+          Free Diff Checker for Text, Code, Documents, and File Comparison
+        </h2>
+
+        <div class="mt-5 space-y-5 text-base leading-8 text-slate-600">
+          <p>
+            This Diff Checker is a free online text comparison tool designed to help developers, writers,
+            editors, students, technical teams, legal reviewers, documentation teams, and website owners compare
+            two versions of text line by line. You can paste source code, configuration files, HTML, CSS, JavaScript,
+            JSON, Markdown, plain text, CSV, log files, or document drafts to identify what was added, removed,
+            or left unchanged.
+          </p>
+          <p>
+            A line-by-line diff checker is useful whenever small changes matter. A missing comma in JSON,
+            a changed CSS class, a modified HTML tag, an updated paragraph, a different configuration value,
+            or a removed line of code can affect how a website, app, document, or workflow behaves. Instead of
+            manually reading both versions from top to bottom, this browser-based text compare tool highlights
+            the differences so you can review revisions faster and more accurately.
+          </p>
+          <p>
+            Many users search for terms such as online diff checker, text compare tool, code difference checker,
+            line by line diff, compare two files, document comparison tool, code review utility, file difference
+            checker, and secure text comparison because they need a fast way to understand changes. This page
+            provides that workflow with local browser processing, upload support, copyable reports, and downloadable
+            comparison summaries.
+          </p>
+        </div>
+      </article>
+
+      <div class="ad-box">AdSense Responsive Ad Area - Middle Content</div>
+
+      <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
+        <h2 class="text-3xl font-black tracking-tight text-slate-950">
+          What Is a Diff Checker?
+        </h2>
+
+        <div class="mt-5 space-y-5 text-base leading-8 text-slate-600">
+          <p>
+            A diff checker compares two versions of text and identifies differences between them. The first version
+            is usually called the original, source, baseline, old version, or left side. The second version is usually
+            called the modified, target, updated version, new version, or right side. The tool analyzes both inputs
+            and marks which lines were removed, which lines were added, and which lines stayed the same.
+          </p>
+          <p>
+            Developers often use diff tools during code review, debugging, deployment checks, Git patch inspection,
+            configuration updates, and release preparation. Writers and editors use text comparison tools to review
+            article revisions, rewritten paragraphs, proofreading changes, translation updates, and document edits.
+            Business users may compare contracts, policies, product descriptions, website copy, technical notes,
+            customer support templates, or spreadsheet exports.
+          </p>
+          <p>
+            This diff checker uses line-level comparison, which is ideal for spotting structural changes in text.
+            It is especially helpful for source code, configuration files, logs, documentation, and versioned content
+            where line order and added or removed rows are important.
+          </p>
+        </div>
+      </article>
+
+      <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
+        <h2 class="text-3xl font-black tracking-tight text-slate-950">
+          How to Use This Online Diff Checker
+        </h2>
+
+        <div class="mt-6 grid grid-cols-1 gap-4 md:grid-cols-3">
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <h3 class="text-lg font-black text-slate-950">1. Add the original text</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-600">
+              Paste the old version into the original text box or upload a local file from your device.
+            </p>
+          </div>
+
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <h3 class="text-lg font-black text-slate-950">2. Add the modified text</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-600">
+              Paste the updated version into the modified text box or upload the revised file.
+            </p>
+          </div>
+
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <h3 class="text-lg font-black text-slate-950">3. Review the diff</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-600">
+              Click Compare Differences to see removed lines in red, added lines in green, and unchanged lines in neutral text.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
+        <h2 class="text-3xl font-black tracking-tight text-slate-950">
+          Popular Uses for Text Compare and Code Difference Checking
+        </h2>
+
+        <div class="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2">
+          <div class="rounded-2xl border border-slate-200 p-5">
+            <h3 class="text-xl font-black text-slate-950">Code review and debugging</h3>
+            <p class="mt-2 text-sm leading-7 text-slate-600">
+              Compare JavaScript, HTML, CSS, JSON, XML, Markdown, configuration files, and scripts before deploying updates.
+            </p>
+          </div>
+
+          <div class="rounded-2xl border border-slate-200 p-5">
+            <h3 class="text-xl font-black text-slate-950">Document revision review</h3>
+            <p class="mt-2 text-sm leading-7 text-slate-600">
+              Compare drafts, articles, policies, product copy, website text, help center content, and edited documents.
+            </p>
+          </div>
+
+          <div class="rounded-2xl border border-slate-200 p-5">
+            <h3 class="text-xl font-black text-slate-950">Configuration file comparison</h3>
+            <p class="mt-2 text-sm leading-7 text-slate-600">
+              Check environment files, server settings, build configs, deployment settings, and app options for subtle changes.
+            </p>
+          </div>
+
+          <div class="rounded-2xl border border-slate-200 p-5">
+            <h3 class="text-xl font-black text-slate-950">SEO and content updates</h3>
+            <p class="mt-2 text-sm leading-7 text-slate-600">
+              Review changes in meta descriptions, page titles, article sections, FAQ blocks, schema markup, and landing page copy.
+            </p>
+          </div>
+
+          <div class="rounded-2xl border border-slate-200 p-5">
+            <h3 class="text-xl font-black text-slate-950">Data and log comparison</h3>
+            <p class="mt-2 text-sm leading-7 text-slate-600">
+              Compare logs, CSV exports, error traces, test outputs, debug messages, and generated text reports.
+            </p>
+          </div>
+
+          <div class="rounded-2xl border border-slate-200 p-5">
+            <h3 class="text-xl font-black text-slate-950">Learning and teaching</h3>
+            <p class="mt-2 text-sm leading-7 text-slate-600">
+              Help students understand how code, text, and structured data change from one version to another.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <div class="ad-box">AdSense Responsive Ad Area - Bottom Content</div>
+
+      <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
+        <h2 class="text-3xl font-black tracking-tight text-slate-950">
+          Why Local Browser-Based Diff Checking Matters
+        </h2>
+
+        <div class="mt-5 space-y-5 text-base leading-8 text-slate-600">
+          <p>
+            Some comparison tasks involve sensitive content. Source code may contain API endpoints, internal comments,
+            configuration names, database field names, or business logic. Documents may contain unpublished content,
+            draft policies, customer support language, internal procedures, or confidential edits. A browser-based
+            diff checker that processes text locally can reduce unnecessary exposure because the comparison does not
+            require sending your text to a backend conversion server.
+          </p>
+          <p>
+            However, users should still be careful. Browser extensions, shared devices, clipboard history, downloaded
+            reports, and third-party scripts can affect privacy. Avoid pasting passwords, private keys, access tokens,
+            regulated personal data, confidential legal documents, or highly sensitive production secrets into any web
+            tool unless you fully understand the security environment.
+          </p>
+          <p>
+            For everyday comparison tasks, this local text compare utility provides a fast and practical way to inspect
+            changes without installing desktop software. It is especially useful for quick development checks, content
+            editing workflows, student projects, documentation updates, and technical troubleshooting.
+          </p>
+        </div>
+      </article>
+
+      <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
+        <h2 class="text-3xl font-black tracking-tight text-slate-950">
+          Practical Tips for Accurate Text Comparison
+        </h2>
+
+        <div class="mt-5 space-y-5 text-base leading-8 text-slate-600">
+          <p>
+            Compare complete sections whenever possible. If you paste only a fragment of the old version but a full
+            modified file, the diff result may show more changes than expected. For clean results, compare equivalent
+            sections, files, or document blocks.
+          </p>
+          <p>
+            Watch for whitespace, indentation, and line breaks. Code and configuration files may behave differently
+            if indentation, spacing, or new lines change. A line-by-line diff can show when formatting changes have
+            affected the structure of the file.
+          </p>
+          <p>
+            Review both the summary counts and the highlighted output. A small number of added or removed lines may
+            still be important if the change affects a key function, a legal phrase, a metadata tag, a redirect rule,
+            a security setting, or a pricing value.
+          </p>
+        </div>
+      </article>
+
+      <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
+        <h2 class="text-3xl font-black tracking-tight text-slate-950">
+          Frequently Asked Questions
+        </h2>
+
+        <div class="mt-6 space-y-4">
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">What is a diff checker?</summary>
+            <p class="mt-3 text-sm leading-7 text-slate-600">
+              A diff checker compares two text versions and highlights added, removed, and unchanged lines.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">Can I compare source code with this tool?</summary>
+            <p class="mt-3 text-sm leading-7 text-slate-600">
+              Yes. You can compare HTML, CSS, JavaScript, JSON, Markdown, XML, configuration files, logs, and plain text.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">Does this tool upload my text?</summary>
+            <p class="mt-3 text-sm leading-7 text-slate-600">
+              The comparison logic runs in your browser. Your pasted text and uploaded file content are not intentionally sent to a backend server.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">Can I upload files?</summary>
+            <p class="mt-3 text-sm leading-7 text-slate-600">
+              Yes. You can upload common text-based files such as .txt, .html, .css, .js, .json, .xml, .md, .csv, and .log.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">Why does formatting appear as a change?</summary>
+            <p class="mt-3 text-sm leading-7 text-slate-600">
+              Line breaks, indentation, spaces, and punctuation can affect line comparison results. Formatting changes may appear even when the visible wording is similar.
+            </p>
+          </details>
+        </div>
+      </section>
+
+      <section class="mobile-card rounded-3xl bg-slate-950 p-5 text-slate-200 shadow-sm lg:p-8">
+        <h2 class="text-3xl font-black tracking-tight text-white">Legal Disclaimer</h2>
+        <div class="mt-5 space-y-4 text-sm leading-7 text-slate-300">
+          <p>
+            This Diff Checker is provided for general informational, educational, development, writing, and text-comparison
+            convenience only. It is not a legal review tool, security audit tool, compliance system, version control system,
+            professional code review service, or guaranteed document verification service.
+          </p>
+          <p>
+            Comparison results may not identify every meaningful semantic change, security issue, legal risk, formatting concern,
+            encoding difference, hidden character, or production-impacting modification. Users are responsible for reviewing all
+            diff results before using them in software releases, contracts, websites, databases, documentation, or business workflows.
+          </p>
+          <p>
+            This page is designed to process text locally in the browser, but users remain responsible for browser extensions,
+            device security, third-party scripts, copied output, uploaded files, downloaded reports, and downstream usage.
+            NodnWebTools is not liable for data loss, missed differences, code defects, publishing mistakes, legal issues,
+            security incidents, business interruption, or consequences resulting from use of this tool.
+          </p>
+        </div>
+      </section>
+
+      <div class="ad-box">AdSense Responsive Ad Area - Bottom</div>
+    </section>
+
+    <footer class="mx-auto mt-8 w-full max-w-7xl pb-8 text-center text-sm text-slate-500">
+      <p>© <span id="yearText"></span> NodnWebTools. All rights reserved.</p>
+    </footer>
+  </div>
 
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      // Configuration Interface Selectors
+    document.addEventListener("DOMContentLoaded", function () {
       const originalText = document.getElementById("originalText");
       const modifiedText = document.getElementById("modifiedText");
+      const originalFileInput = document.getElementById("originalFileInput");
+      const modifiedFileInput = document.getElementById("modifiedFileInput");
       const compareBtn = document.getElementById("compareBtn");
       const clearOriginalBtn = document.getElementById("clearOriginalBtn");
       const clearModifiedBtn = document.getElementById("clearModifiedBtn");
+      const sampleBtn = document.getElementById("sampleBtn");
+      const resetBtn = document.getElementById("resetBtn");
+      const copyBtn = document.getElementById("copyBtn");
+      const downloadBtn = document.getElementById("downloadBtn");
+      const warningBox = document.getElementById("warningBox");
+      const copyFeedback = document.getElementById("copyFeedback");
 
-      // Presentation Container Selectors
+      const statusBadge = document.getElementById("statusBadge");
       const diffPlaceholder = document.getElementById("diffPlaceholder");
       const diffContainer = document.getElementById("diffContainer");
       const diffContent = document.getElementById("diffContent");
+      const addedCount = document.getElementById("addedCount");
+      const removedCount = document.getElementById("removedCount");
+      const unchangedCount = document.getElementById("unchangedCount");
+      const totalCount = document.getElementById("totalCount");
+      const yearText = document.getElementById("yearText");
 
-      // Form Control Cleardown Resets
-      clearOriginalBtn.addEventListener("click", () => { originalText.value = ""; });
-      clearModifiedBtn.addEventListener("click", () => { modifiedText.value = ""; });
+      let latestReport = "";
 
-      // Core Action Handler Logic Matrix
-      compareBtn.addEventListener("click", () => {
-        const srcString = originalText.value;
-        const tgtString = modifiedText.value;
+      yearText.textContent = new Date().getFullYear();
 
-        // Reset visual state elements cleanly
+      function setStatus(text, tone) {
+        const classes = {
+          waiting: "inline-flex w-fit rounded-full bg-slate-100 px-4 py-2 text-sm font-bold text-slate-600",
+          success: "inline-flex w-fit rounded-full bg-emerald-50 px-4 py-2 text-sm font-bold text-emerald-700",
+          error: "inline-flex w-fit rounded-full bg-red-50 px-4 py-2 text-sm font-bold text-red-700",
+          active: "inline-flex w-fit rounded-full bg-indigo-50 px-4 py-2 text-sm font-bold text-indigo-700"
+        };
+
+        statusBadge.textContent = text;
+        statusBadge.className = classes[tone] || classes.waiting;
+      }
+
+      function showWarning(message) {
+        warningBox.textContent = message;
+        warningBox.classList.remove("hidden");
+      }
+
+      function clearWarning() {
+        warningBox.textContent = "";
+        warningBox.classList.add("hidden");
+      }
+
+      function resetCounts() {
+        addedCount.textContent = "0";
+        removedCount.textContent = "0";
+        unchangedCount.textContent = "0";
+        totalCount.textContent = "0";
+      }
+
+      function showEmptyState() {
+        diffContent.innerHTML = "";
+        diffContainer.classList.add("hidden");
+        diffPlaceholder.classList.remove("hidden");
+        resetCounts();
+        latestReport = "";
+        setStatus("Waiting", "waiting");
+      }
+
+      function createLineElement(prefix, line, type) {
+        const row = document.createElement("div");
+        const prefixElement = document.createElement("span");
+        const textElement = document.createElement("span");
+
+        row.className = "diff-line";
+        prefixElement.className = "diff-prefix";
+        textElement.className = "flex-1";
+
+        prefixElement.textContent = prefix;
+        textElement.textContent = line || " ";
+
+        if (type === "added") {
+          row.classList.add("bg-emerald-950", "text-emerald-100", "border-l-4", "border-emerald-500");
+          prefixElement.classList.add("text-emerald-300");
+        } else if (type === "removed") {
+          row.classList.add("bg-red-950", "text-red-100", "border-l-4", "border-red-500");
+          prefixElement.classList.add("text-red-300");
+        } else {
+          row.classList.add("text-slate-300");
+          prefixElement.classList.add("text-slate-500");
+        }
+
+        row.appendChild(prefixElement);
+        row.appendChild(textElement);
+        return row;
+      }
+
+      function compareTexts() {
+        clearWarning();
+
+        const source = originalText.value;
+        const target = modifiedText.value;
+
         diffContent.innerHTML = "";
 
-        // Verify if both panels contain empty values
-        if (srcString.trim() === "" && tgtString.trim() === "") {
-          diffPlaceholder.classList.remove("hidden");
-          diffContainer.classList.add("hidden");
+        if (!source.trim() && !target.trim()) {
+          showWarning("Please enter original and modified text before comparing.");
+          showEmptyState();
           return;
         }
 
-        // Harness verified jsDiff library to analyze line structures arrays
-        // Diff.diffLines returns structured node arrays mapping changes cleanly
-        const diffArray = Diff.diffLines(srcString, tgtString);
+        if (typeof Diff === "undefined" || !Diff.diffLines) {
+          showWarning("The diff library could not load. Please check your internet connection and refresh the page.");
+          setStatus("Error", "error");
+          return;
+        }
 
-        // Switch container view state layouts
-        diffPlaceholder.classList.add("hidden");
-        diffContainer.classList.remove("hidden");
+        try {
+          const diffArray = Diff.diffLines(source, target);
+          const fragment = document.createDocumentFragment();
 
-        let displayFragment = document.createDocumentFragment();
+          let added = 0;
+          let removed = 0;
+          let unchanged = 0;
+          const reportLines = ["Diff Checker Report", ""];
 
-        diffArray.forEach((part) => {
-          // Explode chunk strings into precise distinct lines for proper line-item presentation grids
-          const lines = part.value.split('\n');
-          
-          // If trailing character splits cause an empty final index array node, clean it up
-          if (lines[lines.length - 1] === '') {
-            lines.pop();
-          }
+          diffArray.forEach(function (part) {
+            const lines = part.value.split("\n");
 
-          lines.forEach((line) => {
-            const lineRowElement = document.createElement("div");
-            lineRowElement.classList.add("px-2", "py-1", "whitespace-pre-wrap", "font-mono", "flex", "items-start", "gap-1", "sm:px-4", "sm:py-0.5");
-
-            const prefixIndicator = document.createElement("span");
-            prefixIndicator.classList.add("inline-block", "w-4", "shrink-0", "font-bold", "select-none", "opacity-60", "sm:w-6");
-
-            const textPayload = document.createElement("span");
-            textPayload.classList.add("flex-1", "break-all");
-            // Maintain non-breaking structure fields safely
-            textPayload.textContent = line;
-
-            // Apply targeted operational styling parameters based on token flags
-            if (part.added) {
-              lineRowElement.classList.add("bg-green-950/60", "text-green-200", "border-l-4", "border-green-500");
-              prefixIndicator.textContent = "+";
-              prefixIndicator.classList.add("text-green-400");
-            } else if (part.removed) {
-              lineRowElement.classList.add("bg-red-950/60", "text-red-200", "border-l-4", "border-red-500");
-              prefixIndicator.textContent = "-";
-              prefixIndicator.classList.add("text-red-400");
-            } else {
-              lineRowElement.classList.add("text-slate-300");
-              prefixIndicator.textContent = " ";
+            if (lines[lines.length - 1] === "") {
+              lines.pop();
             }
 
-            lineRowElement.appendChild(prefixIndicator);
-            lineRowElement.appendChild(textPayload);
-            displayFragment.appendChild(lineRowElement);
+            lines.forEach(function (line) {
+              if (part.added) {
+                added += 1;
+                fragment.appendChild(createLineElement("+", line, "added"));
+                reportLines.push("+ " + line);
+              } else if (part.removed) {
+                removed += 1;
+                fragment.appendChild(createLineElement("-", line, "removed"));
+                reportLines.push("- " + line);
+              } else {
+                unchanged += 1;
+                fragment.appendChild(createLineElement(" ", line, "unchanged"));
+                reportLines.push("  " + line);
+              }
+            });
           });
-        });
 
-        // Insert compiled document data components into DOM stream nodes
-        diffContent.appendChild(displayFragment);
+          diffContent.appendChild(fragment);
 
-        // Smooth scroll presentation focus right down into terminal block container layout
-        diffContainer.scrollIntoView({ behavior: 'smooth' });
+          addedCount.textContent = String(added);
+          removedCount.textContent = String(removed);
+          unchangedCount.textContent = String(unchanged);
+          totalCount.textContent = String(added + removed + unchanged);
+
+          reportLines.splice(1, 0, "Added lines: " + added, "Removed lines: " + removed, "Unchanged lines: " + unchanged, "Total displayed lines: " + (added + removed + unchanged), "");
+          reportLines.push("");
+          reportLines.push("Disclaimer: This diff report is for informational review only. Verify all changes before publishing, deploying, or relying on the result.");
+
+          latestReport = reportLines.join("\n");
+
+          diffPlaceholder.classList.add("hidden");
+          diffContainer.classList.remove("hidden");
+          setStatus("Compared", "success");
+        } catch (error) {
+          showWarning("Comparison failed. Please check your text and try again.");
+          setStatus("Error", "error");
+        }
+      }
+
+      function readFileToTextarea(fileInput, textarea) {
+        const file = fileInput.files && fileInput.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+
+        reader.onload = function (event) {
+          textarea.value = String(event.target.result || "");
+          clearWarning();
+        };
+
+        reader.onerror = function () {
+          showWarning("File reading failed. Please try another text-based file.");
+        };
+
+        reader.readAsText(file);
+      }
+
+      function loadExample() {
+        originalText.value = [
+          "function calculateTotal(items) {",
+          "  let total = 0;",
+          "  items.forEach(function(item) {",
+          "    total += item.price;",
+          "  });",
+          "  return total;",
+          "}"
+        ].join("\n");
+
+        modifiedText.value = [
+          "function calculateTotal(items) {",
+          "  let total = 0;",
+          "  items.forEach(function(item) {",
+          "    total += item.price * item.quantity;",
+          "  });",
+          "  return Number(total.toFixed(2));",
+          "}"
+        ].join("\n");
+
+        compareTexts();
+      }
+
+      function resetAll() {
+        originalText.value = "";
+        modifiedText.value = "";
+        originalFileInput.value = "";
+        modifiedFileInput.value = "";
+        clearWarning();
+        showEmptyState();
+        originalText.focus();
+      }
+
+      async function copyReport() {
+        if (!latestReport) {
+          showWarning("There is no diff report to copy yet.");
+          return;
+        }
+
+        try {
+          if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(latestReport);
+          } else {
+            const textarea = document.createElement("textarea");
+            textarea.value = latestReport;
+            textarea.style.position = "fixed";
+            textarea.style.left = "-9999px";
+            document.body.appendChild(textarea);
+            textarea.focus();
+            textarea.select();
+            document.execCommand("copy");
+            document.body.removeChild(textarea);
+          }
+
+          copyFeedback.classList.remove("hidden");
+          setTimeout(function () {
+            copyFeedback.classList.add("hidden");
+          }, 1400);
+        } catch (error) {
+          showWarning("Copy failed. Please select and copy the report manually.");
+        }
+      }
+
+      function downloadReport() {
+        if (!latestReport) {
+          showWarning("There is no diff report to download yet.");
+          return;
+        }
+
+        try {
+          const blob = new Blob([latestReport], { type: "text/plain;charset=utf-8" });
+          const url = URL.createObjectURL(blob);
+          const link = document.createElement("a");
+          link.href = url;
+          link.download = "diff-checker-report.txt";
+          document.body.appendChild(link);
+          link.click();
+          link.remove();
+          URL.revokeObjectURL(url);
+        } catch (error) {
+          showWarning("Download failed. Please copy the report instead.");
+        }
+      }
+
+      originalFileInput.addEventListener("change", function () {
+        readFileToTextarea(originalFileInput, originalText);
       });
+
+      modifiedFileInput.addEventListener("change", function () {
+        readFileToTextarea(modifiedFileInput, modifiedText);
+      });
+
+      clearOriginalBtn.addEventListener("click", function () {
+        originalText.value = "";
+        originalFileInput.value = "";
+        originalText.focus();
+      });
+
+      clearModifiedBtn.addEventListener("click", function () {
+        modifiedText.value = "";
+        modifiedFileInput.value = "";
+        modifiedText.focus();
+      });
+
+      compareBtn.addEventListener("click", compareTexts);
+      sampleBtn.addEventListener("click", loadExample);
+      resetBtn.addEventListener("click", resetAll);
+      copyBtn.addEventListener("click", copyReport);
+      downloadBtn.addEventListener("click", downloadReport);
+
+      showEmptyState();
     });
   </script>
-
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
 </body>
 </html>
