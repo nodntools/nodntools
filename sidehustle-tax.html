@@ -1,481 +1,867 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<div class="mb-8 text-center">
-  <a
-    href="https://nodntools.com"
-    class="inline-block transition hover:opacity-80"
-    aria-label="NodnWebTools Home"
-  >
-    <div class="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
-      Nodn<span class="text-blue-600">WebTools</span>
-    </div>
-  </a>
-</div>
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404"
-     crossorigin="anonymous"></script>
-
-	<meta name="google-adsense-account" content="ca-pub-5282672325821404">	
-
-  <title>Side Hustle Tax Calculator | NodnWebTools</title>
-
-  <meta
-    name="description"
-    content="Use the free NodnWebTools Side Hustle Tax Calculator to estimate net side hustle income, self-employment tax, income tax, state tax, and take-home pay from 1099 freelance or gig work. Learn how much to set aside for side hustle taxes, 1099 write offs, tax brackets for side income, and freelance tax planning."
-  />
-  <meta
-    name="keywords"
-    content="side hustle tax calculator, how much to set aside for side hustle taxes, 1099 write offs for side hustles, self-employment tax estimated calculator, tax bracket for side income, taxes on freelance writing side hustle, gig worker tax calculator, freelancer tax calculator, NodnWebTools"
-  />
-  <meta name="author" content="NodnWebTools" />
+  <title>Side Hustle Tax Calculator | 1099 Tax Tool</title>
+  <meta name="description" content="Estimate side hustle taxes, self-employment tax, deductions, and take-home pay with a free 1099 tax calculator." />
+  <meta name="keywords" content="side hustle tax calculator, 1099 tax calculator, self employment tax calculator, freelance tax calculator, gig worker tax calculator, creator tax calculator, independent contractor tax calculator, side income tax calculator, how much to set aside for side hustle taxes, 1099 write offs, freelance deductions, side hustle deductions, estimated quarterly tax calculator, tax set aside calculator, net side hustle income calculator, gig income calculator" />
   <meta name="robots" content="index, follow" />
+  <meta name="author" content="NodnWebTools" />
 
-  <meta property="og:title" content="Side Hustle Tax Calculator | NodnWebTools" />
-  <meta
-    property="og:description"
-    content="Estimate side hustle taxes, self-employment tax, state tax, and take-home pay from freelance, 1099, or gig income."
-  />
+  <meta property="og:title" content="Side Hustle Tax Calculator | 1099 Tax Tool" />
+  <meta property="og:description" content="Estimate side hustle taxes, self-employment tax, deductions, and take-home pay from freelance or gig income." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://nodnwebtools.com/sidehustle-tax.html" />
+  <meta property="og:url" content="https://nodntools.com/sidehustle-tax.html" />
   <meta property="og:site_name" content="NodnWebTools" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Side Hustle Tax Calculator" />
-  <meta
-    name="twitter:description"
-    content="A free side hustle tax calculator for freelancers, 1099 workers, gig workers, creators, and small business side income."
-  />
+  <meta name="twitter:description" content="Estimate taxes, deductions, and take-home pay from 1099, freelance, creator, or gig income." />
+
+  <meta name="google-adsense-account" content="ca-pub-5282672325821404">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404" crossorigin="anonymous"></script>
 
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            accent: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              200: '#c7d2fe',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+              800: '#3730a3',
+              900: '#312e81'
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Side Hustle Tax Calculator",
+    "url": "https://nodntools.com/sidehustle-tax.html",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any modern web browser",
+    "description": "A free browser-based side hustle tax calculator that estimates net side income, self-employment tax, federal tax, state tax, suggested tax set-aside, and take-home pay.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "NodnWebTools",
+      "url": "https://nodntools.com"
+    },
+    "featureList": [
+      "Side hustle tax estimate",
+      "1099 income calculation",
+      "Self-employment tax estimate",
+      "Business expense deduction input",
+      "Federal marginal tax estimate",
+      "State tax rate input",
+      "Suggested tax set-aside percentage",
+      "Copyable tax summary",
+      "Downloadable text report",
+      "Client-side browser processing"
+    ]
+  }
+  </script>
+
+  <style>
+    html, body {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      min-width: 0;
+    }
+
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    main, header, footer, section, article, aside, div, table, canvas, img, svg, pre, code {
+      max-width: 100%;
+    }
+
+    input, button, select, textarea {
+      max-width: 100%;
+      font: inherit;
+    }
+
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    input[type="number"] {
+      -moz-appearance: textfield;
+    }
+
+    .safe-break {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .mobile-code {
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .mobile-preview {
+      max-width: 100%;
+      overflow-x: auto;
+    }
+
+    .ad-box {
+      width: 100%;
+      max-width: 100%;
+      min-height: 90px;
+      overflow: hidden;
+      border: 1px dashed #cbd5e1;
+      background: #f8fafc;
+      color: #94a3b8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-radius: 1.25rem;
+      padding: 1rem;
+    }
+
+    @media (max-width: 640px) {
+      .mobile-card,
+      .mobile-panel,
+      .mobile-preview {
+        border-radius: 1.25rem !important;
+        padding: 1rem !important;
+      }
+
+      .mobile-button-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      button {
+        width: 100%;
+      }
+
+      .ad-box {
+        min-height: 90px;
+        border-radius: 1rem;
+        padding: .875rem;
+        font-size: .875rem;
+      }
+
+      h1 {
+        font-size: 2rem !important;
+        line-height: 1.15 !important;
+      }
+
+      h2 {
+        font-size: 1.5rem !important;
+        line-height: 1.25 !important;
+      }
+
+      h3 {
+        font-size: 1.125rem !important;
+      }
+    }
+
+    @media (max-width: 380px) {
+      body {
+        font-size: 14px;
+      }
+
+      .mobile-card,
+      .mobile-panel,
+      .mobile-preview {
+        padding: .875rem !important;
+        border-radius: 1rem !important;
+      }
+
+      .ad-box {
+        min-height: 82px;
+        font-size: .8rem;
+      }
+
+      h1 {
+        font-size: 1.75rem !important;
+      }
+    }
+  </style>
 </head>
 
-<body class="min-h-screen bg-slate-100 px-4 py-8 sm:py-12">
-  <main class="mx-auto max-w-5xl">
+<body class="min-h-screen bg-slate-50 text-slate-900">
+  <header class="border-b border-slate-200 bg-white/90 backdrop-blur">
+    <div class="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
+      <a href="https://nodntools.com" class="safe-break text-xl font-extrabold tracking-tight text-slate-950 sm:text-2xl" aria-label="NodnWebTools Home">
+        Nodn<span class="text-accent-600">WebTools</span>
+      </a>
+      <a href="https://nodntools.com" class="rounded-full border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-accent-200 hover:bg-accent-50 hover:text-accent-700">
+        Home
+      </a>
+    </div>
+  </header>
 
-    <!-- Google AdSense Responsive Ad - Top -->
-    <div class="mb-8 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white text-sm text-slate-400">
-      AdSense Responsive Ad Area - Top
+  <main class="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
+    <div class="ad-box mb-6">
+      Top Ad Area
     </div>
 
-    <section class="grid gap-6 lg:grid-cols-2">
+    <section class="grid grid-cols-1 gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
+      <aside class="mobile-card rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-8 lg:sticky lg:top-8">
+        <span class="inline-flex rounded-full bg-accent-50 px-4 py-2 text-sm font-bold text-accent-700 ring-1 ring-accent-100">
+          Side Hustle Tax Calculator
+        </span>
 
-      <div class="rounded-3xl bg-white p-5 shadow-xl ring-1 ring-slate-200 sm:p-8 lg:sticky lg:top-10 lg:self-start">
-        <div class="mb-6">
-          <span class="inline-flex rounded-full bg-lime-100 px-4 py-2 text-sm font-semibold text-lime-700">
-            Side Hustle Tax Calculator
-          </span>
+        <h1 class="mt-5 safe-break text-4xl font-black tracking-tight text-slate-950">
+          Estimate Taxes on Your Side Hustle Income
+        </h1>
 
-          <h1 class="mt-5 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-            Estimate Taxes on Your Side Hustle Income
-          </h1>
+        <p class="mt-4 text-base leading-8 text-slate-600">
+          Enter your main job income, side hustle revenue, business expenses, and estimated state tax rate to estimate self-employment tax, income tax, suggested tax savings, and take-home pay from freelance, 1099, creator, or gig work.
+        </p>
 
-          <p class="mt-3 text-base leading-7 text-slate-600">
-            Enter your main job income, side hustle revenue, estimated business expenses, and state tax rate
-            to estimate net side hustle income, self-employment tax, and take-home pay.
-          </p>
-        </div>
-
-        <div class="space-y-5">
+        <div class="mt-6 space-y-5">
           <div>
-            <label for="mainIncome" class="mb-2 block text-sm font-semibold text-slate-700">
-              Main Job Annual Income / W-2
-            </label>
-
+            <label for="mainIncome" class="mb-2 block text-sm font-bold text-slate-700">Main Job Annual Income / W-2</label>
             <div class="relative">
               <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">$</span>
-              <input
-                type="number"
-                id="mainIncome"
-                inputmode="decimal"
-                min="0"
-                step="1000"
-                value="65000"
-                placeholder="65000"
-                class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-8 pr-4 text-lg font-semibold text-slate-900 outline-none transition focus:border-lime-500 focus:bg-white focus:ring-4 focus:ring-lime-100"
-              />
+              <input type="number" id="mainIncome" inputmode="decimal" min="0" step="1000" value="65000" placeholder="65000" class="w-full rounded-2xl border border-slate-200 bg-slate-50 py-4 pl-8 pr-4 text-lg font-bold text-slate-950 outline-none transition focus:border-accent-400 focus:bg-white focus:ring-4 focus:ring-accent-100" />
             </div>
           </div>
 
           <div>
-            <label for="sideGrossIncome" class="mb-2 block text-sm font-semibold text-slate-700">
-              Side Hustle Gross Income / 1099
-            </label>
-
+            <label for="sideGrossIncome" class="mb-2 block text-sm font-bold text-slate-700">Side Hustle Gross Income / 1099</label>
             <div class="relative">
               <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">$</span>
-              <input
-                type="number"
-                id="sideGrossIncome"
-                inputmode="decimal"
-                min="0"
-                step="100"
-                value="12000"
-                placeholder="12000"
-                class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-8 pr-4 text-lg font-semibold text-slate-900 outline-none transition focus:border-lime-500 focus:bg-white focus:ring-4 focus:ring-lime-100"
-              />
+              <input type="number" id="sideGrossIncome" inputmode="decimal" min="0" step="100" value="12000" placeholder="12000" class="w-full rounded-2xl border border-slate-200 bg-slate-50 py-4 pl-8 pr-4 text-lg font-bold text-slate-950 outline-none transition focus:border-accent-400 focus:bg-white focus:ring-4 focus:ring-accent-100" />
             </div>
           </div>
 
           <div>
-            <label for="businessExpenses" class="mb-2 block text-sm font-semibold text-slate-700">
-              Estimated Business Expenses
-            </label>
-
+            <label for="businessExpenses" class="mb-2 block text-sm font-bold text-slate-700">Estimated Business Expenses</label>
             <div class="relative">
               <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">$</span>
-              <input
-                type="number"
-                id="businessExpenses"
-                inputmode="decimal"
-                min="0"
-                step="100"
-                value="2000"
-                placeholder="2000"
-                class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-8 pr-4 text-lg font-semibold text-slate-900 outline-none transition focus:border-lime-500 focus:bg-white focus:ring-4 focus:ring-lime-100"
-              />
+              <input type="number" id="businessExpenses" inputmode="decimal" min="0" step="100" value="2000" placeholder="2000" class="w-full rounded-2xl border border-slate-200 bg-slate-50 py-4 pl-8 pr-4 text-lg font-bold text-slate-950 outline-none transition focus:border-accent-400 focus:bg-white focus:ring-4 focus:ring-accent-100" />
             </div>
-
-            <p class="mt-2 text-xs leading-5 text-slate-500">
-              Examples may include software, laptop, supplies, mileage, home office, phone, internet, advertising, or professional services.
+            <p class="mt-2 text-sm leading-6 text-slate-500">
+              Examples may include software, supplies, mileage, home office, phone, internet, advertising, payment fees, or professional services.
             </p>
           </div>
 
           <div>
-            <label for="stateTaxRate" class="mb-2 block text-sm font-semibold text-slate-700">
-              Estimated State / Provincial Tax Rate
-            </label>
-
+            <label for="stateTaxRate" class="mb-2 block text-sm font-bold text-slate-700">Estimated State Tax Rate</label>
             <div class="relative">
-              <input
-                type="number"
-                id="stateTaxRate"
-                inputmode="decimal"
-                min="0"
-                step="0.1"
-                value="5"
-                placeholder="5"
-                class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-4 pr-10 text-lg font-semibold text-slate-900 outline-none transition focus:border-lime-500 focus:bg-white focus:ring-4 focus:ring-lime-100"
-              />
-              <span class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400">%</span>
+              <input type="number" id="stateTaxRate" inputmode="decimal" min="0" step="0.1" value="5" placeholder="5" class="w-full rounded-2xl border border-slate-200 bg-slate-50 py-4 pl-4 pr-10 text-lg font-bold text-slate-950 outline-none transition focus:border-accent-400 focus:bg-white focus:ring-4 focus:ring-accent-100" />
+              <span class="absolute right-4 top-1/2 -translate-y-1/2 text-sm font-bold text-slate-400">%</span>
             </div>
           </div>
 
-          <div class="rounded-2xl bg-lime-50 p-4 text-sm leading-6 text-slate-600">
-            This calculator uses a simplified U.S.-style model: 15.3% estimated self-employment tax,
-            a simplified federal marginal tax estimate, and your entered state tax rate.
+          <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 mobile-button-grid">
+            <button id="copyBtn" type="button" class="rounded-2xl bg-slate-950 px-5 py-4 text-sm font-black text-white shadow-sm transition hover:bg-accent-700">
+              Copy Result
+            </button>
+            <button id="downloadBtn" type="button" class="rounded-2xl border border-slate-200 bg-white px-5 py-4 text-sm font-black text-slate-700 transition hover:border-accent-200 hover:bg-accent-50 hover:text-accent-700">
+              Download Report
+            </button>
+          </div>
+
+          <button id="resetBtn" type="button" class="w-full rounded-2xl border border-slate-200 bg-white px-5 py-4 text-sm font-black text-slate-700 transition hover:border-rose-200 hover:bg-rose-50 hover:text-rose-700">
+            Reset
+          </button>
+
+          <div id="copyFeedback" class="hidden rounded-2xl bg-emerald-50 px-4 py-3 text-sm font-bold text-emerald-700">
+            Copied!
+          </div>
+
+          <div id="warningBox" class="hidden rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-semibold leading-6 text-amber-800"></div>
+
+          <div class="rounded-2xl border border-accent-100 bg-accent-50 p-4 text-sm leading-6 text-accent-800">
+            <strong>Privacy note:</strong> This side hustle tax estimate runs locally in your browser. Your income and expense inputs are not submitted to a backend server by this tool.
           </div>
         </div>
-      </div>
+      </aside>
 
-      <div class="space-y-6">
-        <div class="rounded-3xl bg-white p-5 shadow-xl ring-1 ring-slate-200 sm:p-8">
+      <section class="space-y-6">
+        <div class="mobile-preview rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-8">
           <div class="mb-6">
-            <h2 class="text-2xl font-bold text-slate-900">
-              Estimated Side Hustle Tax Result
-            </h2>
-
-            <p class="mt-2 text-sm text-slate-500">
+            <h2 class="text-2xl font-black text-slate-950">Estimated Side Hustle Tax Result</h2>
+            <p class="mt-2 text-sm leading-6 text-slate-500">
               Results update automatically as you change income, expenses, or tax assumptions.
             </p>
           </div>
 
-          <div id="result" class="rounded-3xl border border-lime-100 bg-gradient-to-br from-lime-50 via-green-50 to-slate-50 p-5">
-            <p class="text-sm font-semibold uppercase tracking-wide text-lime-700">
-              Take-Home Pay from Side Hustle
-            </p>
+          <div id="result" class="rounded-3xl border border-accent-100 bg-gradient-to-br from-accent-50 via-indigo-50 to-slate-50 p-5">
+            <p class="text-sm font-black uppercase tracking-wide text-accent-700">Take-Home Pay from Side Hustle</p>
+            <p id="takeHomePay" class="mt-2 safe-break text-5xl font-black tracking-tight text-slate-950">$0.00</p>
 
-            <p id="takeHomePay" class="mt-2 text-4xl font-extrabold tracking-tight text-slate-900">
-              $0.00
-            </p>
-
-            <div class="mt-5 grid gap-3 sm:grid-cols-2">
-              <div class="rounded-2xl bg-white p-4 shadow-sm">
-                <p class="text-xs text-slate-500">Side Hustle Gross Income</p>
-                <p id="displaySideGrossIncome" class="mt-1 text-lg font-bold text-slate-900">$0.00</p>
+            <div class="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2">
+              <div class="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-100">
+                <p class="text-xs font-bold uppercase tracking-wide text-slate-400">Side Hustle Gross Income</p>
+                <p id="displaySideGrossIncome" class="mt-1 safe-break text-lg font-black text-slate-950">$0.00</p>
               </div>
 
-              <div class="rounded-2xl bg-white p-4 shadow-sm">
-                <p class="text-xs text-slate-500">Business Expenses</p>
-                <p id="displayBusinessExpenses" class="mt-1 text-lg font-bold text-slate-900">$0.00</p>
+              <div class="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-100">
+                <p class="text-xs font-bold uppercase tracking-wide text-slate-400">Business Expenses</p>
+                <p id="displayBusinessExpenses" class="mt-1 safe-break text-lg font-black text-slate-950">$0.00</p>
               </div>
 
-              <div class="rounded-2xl bg-white p-4 shadow-sm">
-                <p class="text-xs text-slate-500">Net Side Hustle Income</p>
-                <p id="displayNetSideIncome" class="mt-1 text-lg font-bold text-lime-700">$0.00</p>
+              <div class="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-100">
+                <p class="text-xs font-bold uppercase tracking-wide text-slate-400">Net Side Hustle Income</p>
+                <p id="displayNetSideIncome" class="mt-1 safe-break text-lg font-black text-emerald-700">$0.00</p>
               </div>
 
-              <div class="rounded-2xl bg-white p-4 shadow-sm">
-                <p class="text-xs text-slate-500">Estimated Self-Employment Tax</p>
-                <p id="displaySelfEmploymentTax" class="mt-1 text-lg font-bold text-red-600">$0.00</p>
+              <div class="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-100">
+                <p class="text-xs font-bold uppercase tracking-wide text-slate-400">Self-Employment Tax</p>
+                <p id="displaySelfEmploymentTax" class="mt-1 safe-break text-lg font-black text-rose-600">$0.00</p>
               </div>
 
-              <div class="rounded-2xl bg-white p-4 shadow-sm">
-                <p class="text-xs text-slate-500">Estimated Federal Income Tax</p>
-                <p id="displayFederalTax" class="mt-1 text-lg font-bold text-red-600">$0.00</p>
+              <div class="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-100">
+                <p class="text-xs font-bold uppercase tracking-wide text-slate-400">Federal Income Tax</p>
+                <p id="displayFederalTax" class="mt-1 safe-break text-lg font-black text-rose-600">$0.00</p>
               </div>
 
-              <div class="rounded-2xl bg-white p-4 shadow-sm">
-                <p class="text-xs text-slate-500">Estimated State / Provincial Tax</p>
-                <p id="displayStateTax" class="mt-1 text-lg font-bold text-red-600">$0.00</p>
+              <div class="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-100">
+                <p class="text-xs font-bold uppercase tracking-wide text-slate-400">State Tax</p>
+                <p id="displayStateTax" class="mt-1 safe-break text-lg font-black text-rose-600">$0.00</p>
               </div>
             </div>
 
-            <div class="mt-5 grid gap-3 sm:grid-cols-2">
-              <div class="rounded-3xl border border-lime-100 bg-white p-5 shadow-sm">
-                <p class="text-xs font-semibold uppercase tracking-wide text-lime-700">
-                  Suggested Tax Set-Aside
-                </p>
-                <p id="displaySetAsidePercent" class="mt-2 text-3xl font-extrabold text-slate-900">
-                  0.00%
-                </p>
-                <p class="mt-2 text-xs leading-5 text-slate-500">
-                  Percentage of net side income to reserve.
-                </p>
+            <div class="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2">
+              <div class="rounded-3xl border border-accent-100 bg-white p-5 shadow-sm">
+                <p class="text-xs font-black uppercase tracking-wide text-accent-700">Suggested Tax Set-Aside</p>
+                <p id="displaySetAsidePercent" class="mt-2 safe-break text-3xl font-black text-slate-950">0.00%</p>
+                <p class="mt-2 text-xs leading-5 text-slate-500">Percentage of net side income to reserve.</p>
               </div>
 
-              <div class="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
-                <p class="text-xs font-semibold uppercase tracking-wide text-slate-700">
-                  Estimated Total Tax
-                </p>
-                <p id="displayTotalTax" class="mt-2 text-3xl font-extrabold text-red-600">
-                  $0.00
-                </p>
-                <p class="mt-2 text-xs leading-5 text-slate-500">
-                  Self-employment + federal + state estimate.
-                </p>
+              <div class="rounded-3xl border border-rose-100 bg-white p-5 shadow-sm">
+                <p class="text-xs font-black uppercase tracking-wide text-rose-700">Estimated Total Tax</p>
+                <p id="displayTotalTax" class="mt-2 safe-break text-3xl font-black text-rose-600">$0.00</p>
+                <p class="mt-2 text-xs leading-5 text-slate-500">Self-employment + federal + state estimate.</p>
               </div>
             </div>
 
-            <div class="mt-4 rounded-2xl bg-white p-4 text-sm leading-6 text-slate-600 shadow-sm">
+            <div class="mt-4 rounded-2xl bg-white p-4 text-sm leading-6 text-slate-600 shadow-sm ring-1 ring-slate-100">
               Effective take-home rate:
-              <strong id="displayTakeHomeRate">0.00%</strong><br />
+              <strong id="displayTakeHomeRate" class="text-slate-950">0.00%</strong><br />
               Estimated federal marginal rate applied to side income:
-              <strong id="displayFederalMarginalRate">0.00%</strong>
+              <strong id="displayFederalMarginalRate" class="text-slate-950">0.00%</strong>
             </div>
           </div>
 
-          <!-- Google AdSense Responsive Ad - Below Result -->
-          <div class="mt-6 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-slate-50 text-sm text-slate-400">
-            AdSense Responsive Ad Area - Below Result
+          <div class="ad-box mt-6">
+            Ad Area Below Result
           </div>
-
-          <p class="mt-5 text-xs leading-5 text-slate-500">
-            Disclaimer: This calculator is for general educational and informational purposes only.
-            It uses simplified assumptions and should not be considered tax, legal, accounting, payroll, or financial advice.
-            Actual taxes may vary based on filing status, deductions, credits, self-employment adjustments, quarterly estimated payments,
-            state or provincial rules, local taxes, tax treaties, and updated tax laws. Please consult a qualified tax professional.
-          </p>
         </div>
 
-        <section class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-8">
-          <span class="inline-flex rounded-full bg-lime-100 px-4 py-2 text-sm font-semibold text-lime-700">
-            Gig Worker Tax Guide
-          </span>
+        <section class="mobile-card rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-8">
+          <h2 class="text-2xl font-black tracking-tight text-slate-950">Quick Examples</h2>
+          <p class="mt-2 text-sm leading-6 text-slate-500">Use one of these sample scenarios to see how side hustle taxes can change.</p>
 
-          <h2 class="mt-5 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
-            Side Hustle Taxes: How Much Should You Legally Set Aside?
-          </h2>
+          <div class="mt-5 grid grid-cols-1 gap-3">
+            <button type="button" class="exampleBtn rounded-2xl border border-slate-200 bg-slate-50 p-4 text-left transition hover:border-accent-200 hover:bg-accent-50" data-main="65000" data-gross="12000" data-expenses="2000" data-state="5">
+              <span class="block font-black text-slate-950">Freelance Side Income Example</span>
+              <span class="mt-1 block text-sm leading-6 text-slate-500">$12,000 gross side income, $2,000 expenses, 5% state tax.</span>
+            </button>
 
-          <div class="mt-5 space-y-5 text-sm leading-7 text-slate-600">
-            <p>
-              Side hustle income can feel exciting until tax season arrives. If you have a main W-2 job and also earn
-              freelance, creator, delivery, consulting, tutoring, design, resale, or gig income, your side income is usually
-              added on top of your regular job income. That means the
-              <strong class="font-semibold text-slate-800"> tax bracket for side income</strong> may be higher than many new
-              freelancers expect, because the extra income is not taxed in isolation.
-            </p>
+            <button type="button" class="exampleBtn rounded-2xl border border-slate-200 bg-slate-50 p-4 text-left transition hover:border-accent-200 hover:bg-accent-50" data-main="45000" data-gross="6000" data-expenses="900" data-state="4">
+              <span class="block font-black text-slate-950">Part-Time Gig Work Example</span>
+              <span class="mt-1 block text-sm leading-6 text-slate-500">$6,000 gig income with basic deductible expenses.</span>
+            </button>
 
-            <p>
-              A common question is
-              <strong class="font-semibold text-slate-800"> how much to set aside for side hustle taxes</strong>.
-              A practical starting point for many U.S. gig workers is to reserve roughly 25% to 35% of net side hustle profit,
-              depending on income level, state taxes, deductions, and whether quarterly estimated payments are required.
-              Higher earners or people in high-tax states may need to set aside more, while very small side businesses may need less.
-            </p>
-
-            <p>
-              The reason side hustle taxes can feel expensive is that 1099 income often does not have payroll withholding.
-              Employees typically see federal tax, Social Security, and Medicare withheld automatically. By contrast,
-              independent contractors may need a
-              <strong class="font-semibold text-slate-800"> self-employment tax estimated calculator</strong>
-              because they are generally responsible for both the employee and employer portions of Social Security and Medicare.
-              In the United States, the simplified self-employment tax rate is often estimated at 15.3% before other income taxes.
-            </p>
-
-            <p>
-              Legal deductions can make a major difference. Many
-              <strong class="font-semibold text-slate-800"> 1099 write offs for side hustles</strong>
-              reduce taxable business profit when they are ordinary and necessary for the work. Depending on the activity,
-              examples may include a laptop, software subscriptions, advertising, website hosting, bookkeeping tools,
-              business mileage, home office expenses, payment processing fees, shipping supplies, professional services,
-              and a business portion of phone or internet costs.
-            </p>
-
-            <div class="overflow-hidden rounded-2xl border border-slate-200">
-              <table class="w-full text-left text-sm">
-                <thead class="bg-slate-100 text-slate-700">
-                  <tr>
-                    <th class="px-4 py-3 font-bold">Side Hustle Example</th>
-                    <th class="px-4 py-3 font-bold">Possible Write-Offs</th>
-                    <th class="px-4 py-3 font-bold">Tax Planning Tip</th>
-                  </tr>
-                </thead>
-                <tbody class="divide-y divide-slate-200 bg-white">
-                  <tr>
-                    <td class="px-4 py-3 font-semibold text-slate-800">Freelance writing</td>
-                    <td class="px-4 py-3">Laptop, research tools, website, software</td>
-                    <td class="px-4 py-3">Track invoices and platform fees monthly</td>
-                  </tr>
-                  <tr>
-                    <td class="px-4 py-3 font-semibold text-slate-800">Delivery or rideshare</td>
-                    <td class="px-4 py-3">Mileage, phone, tolls, supplies</td>
-                    <td class="px-4 py-3">Keep a detailed mileage log</td>
-                  </tr>
-                  <tr>
-                    <td class="px-4 py-3 font-semibold text-slate-800">Online selling</td>
-                    <td class="px-4 py-3">Inventory, shipping, marketplace fees</td>
-                    <td class="px-4 py-3">Separate cost of goods from profit</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-            <p>
-              For example, <strong class="font-semibold text-slate-800">taxes on freelance writing side hustle</strong>
-              income may depend on more than the amount clients paid you. A writer might deduct writing software,
-              a portfolio website, business-use internet, payment processing fees, courses, and professional services
-              when those expenses are properly documented and directly related to the work. Good records are often the
-              difference between guessing at tax time and confidently reporting income.
-            </p>
-
-            <p>
-              A smart system is to create a separate tax savings account. Each time you receive side hustle income,
-              transfer a percentage of net profit into that account before spending the rest. This habit helps avoid
-              a surprise tax bill and makes quarterly estimated payments easier. Many freelancers also review income
-              and expenses monthly so they can adjust their set-aside percentage before the year ends.
-            </p>
-
-            <p>
-              This Side Hustle Tax Calculator from NodnWebTools is designed for freelancers, creators, gig workers,
-              consultants, delivery drivers, online sellers, and anyone building income outside a main job. Use it as a
-              planning tool to estimate net side hustle income, taxes to reserve, and realistic take-home pay before
-              making business or spending decisions.
-            </p>
+            <button type="button" class="exampleBtn rounded-2xl border border-slate-200 bg-slate-50 p-4 text-left transition hover:border-accent-200 hover:bg-accent-50" data-main="90000" data-gross="30000" data-expenses="7500" data-state="7">
+              <span class="block font-black text-slate-950">Creator Business Example</span>
+              <span class="mt-1 block text-sm leading-6 text-slate-500">$30,000 creator income with software, equipment, and marketing expenses.</span>
+            </button>
           </div>
         </section>
+      </section>
+    </section>
+
+    <div class="ad-box my-8">
+      Ad Area Below Main Tool and Result Section
+    </div>
+
+    <article class="mobile-card rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-8 lg:p-10">
+      <div class="mx-auto max-w-4xl">
+        <span class="inline-flex rounded-full bg-accent-50 px-4 py-2 text-sm font-bold text-accent-700 ring-1 ring-accent-100">
+          1099 and Gig Worker Tax Guide
+        </span>
+
+        <h2 class="mt-5 text-3xl font-black tracking-tight text-slate-950">
+          Side Hustle Tax Calculator for Freelancers, Gig Workers, Creators and 1099 Income
+        </h2>
+
+        <div class="mt-6 space-y-6 text-base leading-8 text-slate-600">
+          <p>
+            A side hustle tax calculator helps freelancers, independent contractors, gig workers, online sellers, creators, tutors, delivery drivers, consultants, designers, writers, developers, coaches, and small business owners estimate how much of their side income may need to be reserved for taxes. Side hustle income can feel simple when payments arrive through a platform, client invoice, marketplace, payment app, or 1099 form, but the tax picture is often more complex than a regular paycheck. Unlike W-2 employment income, many side hustle payments do not automatically withhold federal income tax, self-employment tax, state tax, or local tax. This means the worker may need to plan ahead and save money for tax time.
+          </p>
+
+          <p>
+            The NodnWebTools Side Hustle Tax Calculator is designed for users searching for a side hustle tax calculator, 1099 tax calculator, self-employment tax calculator, freelance tax calculator, gig worker tax calculator, creator tax calculator, independent contractor tax calculator, tax set-aside calculator, net side income calculator, and estimated quarterly tax calculator. It uses a simplified U.S.-style model to estimate net side hustle income, self-employment tax, federal income tax, state tax, suggested tax set-aside percentage, and take-home pay. The goal is to provide a practical planning estimate, not an official tax return calculation.
+          </p>
+
+          <h3 class="text-2xl font-black text-slate-950">How Side Hustle Taxes Work</h3>
+          <p>
+            Side hustle income is usually taxable when it is earned from services, sales, freelance work, platform work, digital products, affiliate income, creator payments, consulting, delivery, rideshare, tutoring, design, writing, programming, resale, or other business activity. If you have a main job and earn side income, the side income is generally added on top of your other income. This matters because the federal tax rate applied to side income may be based on your combined income, not just the side hustle amount alone. A person with a full-time salary may find that side income falls into a higher marginal tax bracket than expected.
+          </p>
+
+          <p>
+            Many side hustlers also need to consider self-employment tax. In a regular employee job, Social Security and Medicare taxes are usually split between the employee and employer. Independent contractors often pay both portions through self-employment tax. A simplified estimate commonly uses 15.3% for Social Security and Medicare before considering detailed adjustments, wage base limits, and deductions. This calculator uses that simplified rate so users can quickly understand why 1099 income may require a larger tax reserve than they first expected.
+          </p>
+
+          <h3 class="text-2xl font-black text-slate-950">How Much Should You Set Aside for Side Hustle Taxes?</h3>
+          <p>
+            A common question is how much to set aside for side hustle taxes. A practical starting point for many U.S. freelancers and gig workers is often 25% to 35% of net side hustle profit, but the right amount depends on main job income, total taxable income, state tax rate, deductions, filing status, credits, local taxes, and whether quarterly estimated payments are required. Higher earners, people in high-tax states, or people with very profitable side businesses may need to reserve more. Smaller side hustles with low profit and meaningful deductions may need less.
+          </p>
+
+          <p>
+            The safest habit is to treat tax savings as a business expense from the moment money is received. Each time you are paid, move a percentage of net profit into a separate tax savings account. This prevents the money from being accidentally spent on personal expenses. It also makes estimated tax payments easier because the funds are already separated. A calculator can help choose a starting percentage, but you should adjust the percentage as your income, expenses, and tax situation change.
+          </p>
+
+          <div class="ad-box my-8">
+            Middle Content Ad Area
+          </div>
+
+          <h3 class="text-2xl font-black text-slate-950">Gross Income, Business Expenses and Net Side Income</h3>
+          <p>
+            Gross side hustle income is the total amount received before expenses. Business expenses are costs that are ordinary and necessary for earning that income. Net side income is gross income minus allowable business expenses. Net income is important because taxes are generally based on profit rather than total revenue. For example, if a freelancer earns $12,000 and has $2,000 of legitimate business expenses, the simplified net side income is $10,000. This net amount is a key starting point for estimating self-employment tax and income tax.
+          </p>
+
+          <p>
+            Expenses can vary widely by side hustle. A freelance writer may have software, research tools, website hosting, courses, professional services, payment processing fees, and business-use internet. A delivery driver may have mileage, parking, tolls, phone costs, insulated bags, and platform fees. An online seller may have inventory, shipping supplies, marketplace fees, packaging, advertising, and storage costs. A creator may have cameras, microphones, editing software, subscriptions, props, hosting, design tools, and production expenses. Good recordkeeping is essential because deductions generally need support.
+          </p>
+
+          <h3 class="text-2xl font-black text-slate-950">Common 1099 Write-Offs for Side Hustles</h3>
+          <p>
+            1099 write-offs can reduce taxable business profit when they are legitimate, properly documented, and directly related to the business. Common deductible categories may include software subscriptions, website hosting, domain names, advertising, office supplies, payment processing fees, platform fees, professional services, bookkeeping tools, business mileage, home office costs, business phone usage, business internet usage, education related to the business, shipping supplies, tools, equipment, and contractor payments. The exact treatment depends on the type of business and current tax rules.
+          </p>
+
+          <p>
+            Deductions should be tracked carefully. Keep receipts, invoices, mileage logs, bank statements, credit card records, platform statements, and notes explaining business purpose. Separating business and personal expenses can make tax filing easier. Many side hustlers use a dedicated business bank account, bookkeeping spreadsheet, accounting app, or receipt storage system. Even if your side hustle is small, organizing records throughout the year is usually easier than reconstructing everything at tax time.
+          </p>
+
+          <h3 class="text-2xl font-black text-slate-950">Popular Uses for This Side Hustle Tax Calculator</h3>
+          <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+            <article class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+              <h4 class="font-black text-slate-950">Freelance Income Planning</h4>
+              <p class="mt-2 text-sm leading-7 text-slate-600">
+                Estimate tax reserves for freelance writing, design, development, consulting, coaching, tutoring, virtual assistant work, and professional services.
+              </p>
+            </article>
+
+            <article class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+              <h4 class="font-black text-slate-950">Gig Worker Tax Estimates</h4>
+              <p class="mt-2 text-sm leading-7 text-slate-600">
+                Plan for tax set-asides from delivery, rideshare, task apps, local services, pet sitting, cleaning, repair work, and platform-based income.
+              </p>
+            </article>
+
+            <article class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+              <h4 class="font-black text-slate-950">Creator and Influencer Income</h4>
+              <p class="mt-2 text-sm leading-7 text-slate-600">
+                Estimate take-home pay from sponsorships, ads, affiliate commissions, digital products, subscriptions, brand deals, and content platforms.
+              </p>
+            </article>
+
+            <article class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+              <h4 class="font-black text-slate-950">Online Seller Profit Planning</h4>
+              <p class="mt-2 text-sm leading-7 text-slate-600">
+                Compare gross revenue, inventory costs, shipping supplies, marketplace fees, and estimated taxes to understand net income more clearly.
+              </p>
+            </article>
+          </div>
+
+          <h3 class="text-2xl font-black text-slate-950">Self-Employment Tax Explained</h3>
+          <p>
+            Self-employment tax generally covers Social Security and Medicare for people who work for themselves. Employees usually see Social Security and Medicare withheld from each paycheck, and employers pay a matching portion. Self-employed people are often responsible for both portions, which is why the tax can surprise new freelancers and gig workers. The simplified 15.3% rate is widely used for rough planning, but actual rules may include adjustments, income thresholds, wage base limits, additional Medicare tax, and other details.
+          </p>
+
+          <p>
+            Because self-employment tax is separate from income tax, side hustlers should not assume that paying federal income tax alone is enough. A side hustle with meaningful profit may require both income tax and self-employment tax. This calculator displays them separately so users can see the difference between business profit, self-employment tax, income tax, total estimated tax, and take-home pay.
+          </p>
+
+          <div class="ad-box my-8">
+            Bottom Content Ad Area
+          </div>
+
+          <h3 class="text-2xl font-black text-slate-950">Quarterly Estimated Tax Payments</h3>
+          <p>
+            Many freelancers, independent contractors, and side business owners may need to make quarterly estimated tax payments if enough tax is not withheld from other income. Estimated payments help cover income tax and self-employment tax throughout the year rather than waiting until the annual tax deadline. If too little tax is paid during the year, penalties may apply. People with a W-2 job may also adjust paycheck withholding to cover side hustle tax instead of making separate estimated payments.
+          </p>
+
+          <p>
+            This tool does not determine whether you are required to make estimated payments. It gives a planning estimate of how much tax might need to be reserved. If your side hustle becomes consistent, profitable, or large enough to affect your annual tax bill, review estimated payment rules, safe harbor rules, withholding options, and professional tax advice.
+          </p>
+
+          <h3 class="text-2xl font-black text-slate-950">Taxes on Freelance Writing, Design, Consulting and Digital Work</h3>
+          <p>
+            Freelance writing, design, consulting, coding, coaching, editing, tutoring, bookkeeping, virtual assistant work, and other digital services often have low physical overhead, but they can still have legitimate business expenses. Software subscriptions, website hosting, portfolio tools, payment processing fees, computer equipment, training, online research tools, business-use internet, marketing, professional memberships, and tax preparation fees may be relevant. The key is whether the expense is ordinary, necessary, and properly documented for the business.
+          </p>
+
+          <p>
+            Service-based freelancers should also track unpaid time. Client acquisition, proposals, invoicing, revisions, email, bookkeeping, learning, and administration may not be billable, but they affect the real value of side income. A side hustle tax calculator shows estimated take-home pay after tax, but business owners should also consider how many hours were required to earn that profit.
+          </p>
+
+          <h3 class="text-2xl font-black text-slate-950">Taxes for Delivery, Rideshare and Local Gig Work</h3>
+          <p>
+            Delivery drivers, rideshare drivers, couriers, task workers, and local service providers often need careful mileage and expense tracking. Mileage can be one of the most important deductions for vehicle-based side work, but it must be documented accurately. Drivers may also have parking, tolls, phone mounts, insulated bags, cleaning supplies, platform fees, and other business-related costs. Fuel and vehicle expenses can be handled differently depending on the deduction method used, so records matter.
+          </p>
+
+          <p>
+            Platform income may be reported on tax forms, but workers should not rely only on the platform summary. Keep your own records of income, miles, expenses, refunds, bonuses, tips, and fees. A good monthly tracking routine can make tax season much easier and can help you understand whether the gig is truly profitable after vehicle costs and taxes.
+          </p>
+
+          <h3 class="text-2xl font-black text-slate-950">Side Hustle Tax Planning Tips</h3>
+          <p>
+            Open a separate savings account for taxes and move money there whenever you receive side hustle income. Track expenses monthly instead of waiting until the end of the year. Save receipts and digital invoices. Separate business and personal spending where possible. Review profit, not just revenue. Consider whether quarterly estimated tax payments are needed. Update your set-aside percentage when your income grows. If your side hustle becomes a business with inventory, employees, contractors, sales tax obligations, or multi-state activity, consider professional guidance.
+          </p>
+
+          <p>
+            A simple habit can make a major difference: calculate net profit each month, multiply it by your chosen tax set-aside percentage, and transfer that amount to tax savings before using the remaining money. This can reduce stress and help avoid surprises at filing time. It also helps you understand the true take-home value of your side hustle.
+          </p>
+
+          <h3 class="text-2xl font-black text-slate-950">Limitations of This Calculator</h3>
+          <p>
+            This calculator uses simplified assumptions. It does not prepare a tax return, apply all deductions or credits, calculate qualified business income deductions, handle filing status, calculate local taxes, determine estimated tax payment requirements, account for Social Security wage base limits, calculate additional Medicare tax, apply state-specific rules, handle depreciation, distinguish personal and business use percentages, or verify whether an expense is deductible. It is not a substitute for tax software, official government guidance, or a qualified tax professional.
+          </p>
+
+          <p>
+            Use this calculator as a planning tool. For exact tax filing, review official forms, current tax rules, platform statements, 1099 forms, bookkeeping records, receipts, and professional advice. Tax rules can change, and individual circumstances matter. The better your records, the more useful any tax estimate becomes.
+          </p>
+        </div>
+      </div>
+    </article>
+
+    <section class="mobile-card mt-8 rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-8 lg:p-10">
+      <div class="mx-auto max-w-4xl">
+        <h2 class="text-3xl font-black tracking-tight text-slate-950">Frequently Asked Questions</h2>
+
+        <div class="mt-6 space-y-4">
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">Do I have to pay taxes on side hustle income?</summary>
+            <p class="mt-3 leading-7 text-slate-600">In many cases, yes. Side hustle income from freelance, 1099, creator, gig, or business activity is generally taxable. The exact rules depend on your situation and location.</p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">How much should I set aside for side hustle taxes?</summary>
+            <p class="mt-3 leading-7 text-slate-600">Many side hustlers use 25% to 35% of net profit as a starting point, but the right amount depends on income, expenses, state taxes, filing status, credits, and other factors.</p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">What is self-employment tax?</summary>
+            <p class="mt-3 leading-7 text-slate-600">Self-employment tax generally covers Social Security and Medicare for people who work for themselves. This tool uses a simplified 15.3% estimate for planning.</p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">Can I deduct side hustle expenses?</summary>
+            <p class="mt-3 leading-7 text-slate-600">Legitimate business expenses may reduce taxable profit when they are ordinary, necessary, and documented. Examples may include software, supplies, mileage, platform fees, advertising, and professional services.</p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">Does this calculator file taxes for me?</summary>
+            <p class="mt-3 leading-7 text-slate-600">No. It is an educational estimate only. It does not prepare tax forms, submit payments, or replace tax software, official guidance, or professional advice.</p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">Should I make quarterly estimated tax payments?</summary>
+            <p class="mt-3 leading-7 text-slate-600">Some side hustlers may need quarterly estimated payments if enough tax is not withheld elsewhere. Review official rules or speak with a tax professional for your situation.</p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">Is gross side income the same as taxable profit?</summary>
+            <p class="mt-3 leading-7 text-slate-600">No. Gross income is total revenue before expenses. Taxable business profit is generally closer to revenue minus allowable business expenses.</p>
+          </details>
+        </div>
       </div>
     </section>
 
-    <!-- Google AdSense Responsive Ad - Bottom -->
-    <div class="mt-8 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white text-sm text-slate-400">
-      AdSense Responsive Ad Area - Bottom
-    </div>
+    <section class="mobile-card mt-8 rounded-3xl bg-slate-900 p-6 text-slate-200 shadow-sm sm:p-8 lg:p-10">
+      <div class="mx-auto max-w-4xl">
+        <h2 class="text-2xl font-black text-white">Legal Disclaimer</h2>
+        <div class="mt-4 space-y-4 text-sm leading-7 text-slate-300">
+          <p>
+            This Side Hustle Tax Calculator is provided for general informational and educational purposes only. It does not provide tax, legal, accounting, payroll, financial, business, employment, or professional advice. The results are simplified estimates based only on user-entered values and internal assumptions.
+          </p>
+          <p>
+            Actual taxes may vary depending on filing status, deductions, credits, qualified business income rules, self-employment adjustments, Social Security wage base limits, additional Medicare tax, estimated payment rules, state and local taxes, business structure, residence, tax treaties, depreciation, expense documentation, and updated tax laws.
+          </p>
+          <p>
+            Users are responsible for verifying income, expenses, deductions, payment obligations, tax forms, and filing requirements with official government resources, tax software, bookkeeping records, and qualified tax professionals. NodnWebTools, its owners, developers, and affiliates are not responsible for errors, omissions, outdated assumptions, tax penalties, underpayment, overpayment, business losses, legal claims, or any direct or indirect damages resulting from use of this calculator.
+          </p>
+        </div>
+      </div>
+    </section>
 
+    <div class="ad-box mt-8">
+      Bottom Ad Area
+    </div>
   </main>
 
+  <footer class="mt-10 border-t border-slate-200 bg-white">
+    <div class="mx-auto flex w-full max-w-7xl flex-col gap-3 px-4 py-6 text-sm text-slate-500 sm:px-6 lg:px-8">
+      <div class="font-extrabold text-slate-900">Nodn<span class="text-accent-600">WebTools</span></div>
+      <p class="leading-6">Free browser-based utilities designed for practical calculations, productivity, and everyday financial planning support.</p>
+    </div>
+  </footer>
+
   <script>
-    const mainIncomeInput = document.getElementById("mainIncome");
-    const sideGrossIncomeInput = document.getElementById("sideGrossIncome");
-    const businessExpensesInput = document.getElementById("businessExpenses");
-    const stateTaxRateInput = document.getElementById("stateTaxRate");
+    document.addEventListener('DOMContentLoaded', function () {
+      const mainIncomeInput = document.getElementById('mainIncome');
+      const sideGrossIncomeInput = document.getElementById('sideGrossIncome');
+      const businessExpensesInput = document.getElementById('businessExpenses');
+      const stateTaxRateInput = document.getElementById('stateTaxRate');
 
-    const takeHomePayEl = document.getElementById("takeHomePay");
-    const displaySideGrossIncomeEl = document.getElementById("displaySideGrossIncome");
-    const displayBusinessExpensesEl = document.getElementById("displayBusinessExpenses");
-    const displayNetSideIncomeEl = document.getElementById("displayNetSideIncome");
-    const displaySelfEmploymentTaxEl = document.getElementById("displaySelfEmploymentTax");
-    const displayFederalTaxEl = document.getElementById("displayFederalTax");
-    const displayStateTaxEl = document.getElementById("displayStateTax");
-    const displaySetAsidePercentEl = document.getElementById("displaySetAsidePercent");
-    const displayTotalTaxEl = document.getElementById("displayTotalTax");
-    const displayTakeHomeRateEl = document.getElementById("displayTakeHomeRate");
-    const displayFederalMarginalRateEl = document.getElementById("displayFederalMarginalRate");
+      const takeHomePayEl = document.getElementById('takeHomePay');
+      const displaySideGrossIncomeEl = document.getElementById('displaySideGrossIncome');
+      const displayBusinessExpensesEl = document.getElementById('displayBusinessExpenses');
+      const displayNetSideIncomeEl = document.getElementById('displayNetSideIncome');
+      const displaySelfEmploymentTaxEl = document.getElementById('displaySelfEmploymentTax');
+      const displayFederalTaxEl = document.getElementById('displayFederalTax');
+      const displayStateTaxEl = document.getElementById('displayStateTax');
+      const displaySetAsidePercentEl = document.getElementById('displaySetAsidePercent');
+      const displayTotalTaxEl = document.getElementById('displayTotalTax');
+      const displayTakeHomeRateEl = document.getElementById('displayTakeHomeRate');
+      const displayFederalMarginalRateEl = document.getElementById('displayFederalMarginalRate');
 
-    function formatCurrency(value) {
-      return new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-      }).format(value);
-    }
+      const copyBtn = document.getElementById('copyBtn');
+      const downloadBtn = document.getElementById('downloadBtn');
+      const resetBtn = document.getElementById('resetBtn');
+      const copyFeedback = document.getElementById('copyFeedback');
+      const warningBox = document.getElementById('warningBox');
+      const exampleButtons = document.querySelectorAll('.exampleBtn');
 
-    function formatNumber(value, decimals = 2) {
-      return new Intl.NumberFormat("en-US", {
-        minimumFractionDigits: decimals,
-        maximumFractionDigits: decimals
-      }).format(value);
-    }
+      let latestReport = '';
 
-    function formatPercent(value, decimals = 2) {
-      return formatNumber(value, decimals) + "%";
-    }
-
-    function sanitizeNumber(value, fallback = 0) {
-      const number = parseFloat(value);
-      return isNaN(number) || number < 0 ? fallback : number;
-    }
-
-    function getEstimatedFederalMarginalRate(income) {
-      if (income <= 11600) return 0.10;
-      if (income <= 47150) return 0.12;
-      if (income <= 100525) return 0.22;
-      if (income <= 191950) return 0.24;
-      if (income <= 243725) return 0.32;
-      if (income <= 609350) return 0.35;
-      return 0.37;
-    }
-
-    function calculateSideHustleTax() {
-      const mainIncome = sanitizeNumber(mainIncomeInput.value);
-      const sideGrossIncome = sanitizeNumber(sideGrossIncomeInput.value);
-      const businessExpenses = sanitizeNumber(businessExpensesInput.value);
-      const stateTaxRate = sanitizeNumber(stateTaxRateInput.value) / 100;
-
-      const netSideIncome = Math.max(0, sideGrossIncome - businessExpenses);
-
-      const federalMarginalRate = getEstimatedFederalMarginalRate(mainIncome + netSideIncome);
-
-      const selfEmploymentTax = netSideIncome * 0.153;
-      const federalIncomeTax = netSideIncome * federalMarginalRate;
-      const stateTax = netSideIncome * stateTaxRate;
-
-      const totalEstimatedTax = selfEmploymentTax + federalIncomeTax + stateTax;
-      const takeHomePay = Math.max(0, netSideIncome - totalEstimatedTax);
-
-      const setAsidePercent = netSideIncome > 0 ? (totalEstimatedTax / netSideIncome) * 100 : 0;
-      const takeHomeRate = netSideIncome > 0 ? (takeHomePay / netSideIncome) * 100 : 0;
-
-      takeHomePayEl.textContent = formatCurrency(takeHomePay);
-      displaySideGrossIncomeEl.textContent = formatCurrency(sideGrossIncome);
-      displayBusinessExpensesEl.textContent = formatCurrency(businessExpenses);
-      displayNetSideIncomeEl.textContent = formatCurrency(netSideIncome);
-      displaySelfEmploymentTaxEl.textContent = formatCurrency(selfEmploymentTax);
-      displayFederalTaxEl.textContent = formatCurrency(federalIncomeTax);
-      displayStateTaxEl.textContent = formatCurrency(stateTax);
-      displaySetAsidePercentEl.textContent = formatPercent(setAsidePercent);
-      displayTotalTaxEl.textContent = formatCurrency(totalEstimatedTax);
-      displayTakeHomeRateEl.textContent = formatPercent(takeHomeRate);
-      displayFederalMarginalRateEl.textContent = formatPercent(federalMarginalRate * 100);
-
-      if (takeHomePay <= 0 && netSideIncome > 0) {
-        takeHomePayEl.className = "mt-2 text-4xl font-extrabold tracking-tight text-red-600";
-      } else {
-        takeHomePayEl.className = "mt-2 text-4xl font-extrabold tracking-tight text-slate-900";
+      function formatCurrency(value) {
+        const safeValue = Number.isFinite(value) ? value : 0;
+        return new Intl.NumberFormat('en-US', {
+          style: 'currency',
+          currency: 'USD',
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        }).format(safeValue);
       }
-    }
 
-    mainIncomeInput.addEventListener("input", calculateSideHustleTax);
-    sideGrossIncomeInput.addEventListener("input", calculateSideHustleTax);
-    businessExpensesInput.addEventListener("input", calculateSideHustleTax);
-    stateTaxRateInput.addEventListener("input", calculateSideHustleTax);
+      function formatNumber(value, decimals) {
+        const safeValue = Number.isFinite(value) ? value : 0;
+        return new Intl.NumberFormat('en-US', {
+          minimumFractionDigits: decimals,
+          maximumFractionDigits: decimals
+        }).format(safeValue);
+      }
 
-    calculateSideHustleTax();
+      function formatPercent(value, decimals) {
+        return formatNumber(value, decimals) + '%';
+      }
+
+      function sanitizeNumber(value, fallback) {
+        const number = parseFloat(String(value).replace(/,/g, ''));
+        return isNaN(number) || number < 0 ? fallback : number;
+      }
+
+      function getEstimatedFederalMarginalRate(income) {
+        if (income <= 11600) return 0.10;
+        if (income <= 47150) return 0.12;
+        if (income <= 100525) return 0.22;
+        if (income <= 191950) return 0.24;
+        if (income <= 243725) return 0.32;
+        if (income <= 609350) return 0.35;
+        return 0.37;
+      }
+
+      function showWarning(message) {
+        warningBox.textContent = message;
+        warningBox.classList.remove('hidden');
+      }
+
+      function hideWarning() {
+        warningBox.textContent = '';
+        warningBox.classList.add('hidden');
+      }
+
+      function calculateSideHustleTax() {
+        try {
+          hideWarning();
+
+          const mainIncome = sanitizeNumber(mainIncomeInput.value, 0);
+          const sideGrossIncome = sanitizeNumber(sideGrossIncomeInput.value, 0);
+          const businessExpenses = sanitizeNumber(businessExpensesInput.value, 0);
+          const stateTaxRate = sanitizeNumber(stateTaxRateInput.value, 0) / 100;
+
+          if (businessExpenses > sideGrossIncome && sideGrossIncome > 0) {
+            showWarning('Business expenses are higher than gross side income. Net side income is shown as zero in this simplified estimate.');
+          }
+
+          const netSideIncome = Math.max(0, sideGrossIncome - businessExpenses);
+          const federalMarginalRate = getEstimatedFederalMarginalRate(mainIncome + netSideIncome);
+
+          const selfEmploymentTax = netSideIncome * 0.153;
+          const federalIncomeTax = netSideIncome * federalMarginalRate;
+          const stateTax = netSideIncome * stateTaxRate;
+
+          const totalEstimatedTax = selfEmploymentTax + federalIncomeTax + stateTax;
+          const takeHomePay = Math.max(0, netSideIncome - totalEstimatedTax);
+
+          const setAsidePercent = netSideIncome > 0 ? (totalEstimatedTax / netSideIncome) * 100 : 0;
+          const takeHomeRate = netSideIncome > 0 ? (takeHomePay / netSideIncome) * 100 : 0;
+
+          takeHomePayEl.textContent = formatCurrency(takeHomePay);
+          displaySideGrossIncomeEl.textContent = formatCurrency(sideGrossIncome);
+          displayBusinessExpensesEl.textContent = formatCurrency(businessExpenses);
+          displayNetSideIncomeEl.textContent = formatCurrency(netSideIncome);
+          displaySelfEmploymentTaxEl.textContent = formatCurrency(selfEmploymentTax);
+          displayFederalTaxEl.textContent = formatCurrency(federalIncomeTax);
+          displayStateTaxEl.textContent = formatCurrency(stateTax);
+          displaySetAsidePercentEl.textContent = formatPercent(setAsidePercent, 2);
+          displayTotalTaxEl.textContent = formatCurrency(totalEstimatedTax);
+          displayTakeHomeRateEl.textContent = formatPercent(takeHomeRate, 2);
+          displayFederalMarginalRateEl.textContent = formatPercent(federalMarginalRate * 100, 2);
+
+          if (takeHomePay <= 0 && netSideIncome > 0) {
+            takeHomePayEl.className = 'mt-2 safe-break text-5xl font-black tracking-tight text-rose-600';
+          } else {
+            takeHomePayEl.className = 'mt-2 safe-break text-5xl font-black tracking-tight text-slate-950';
+          }
+
+          latestReport = [
+            'Side Hustle Tax Estimate',
+            'Main job annual income: ' + formatCurrency(mainIncome),
+            'Side hustle gross income: ' + formatCurrency(sideGrossIncome),
+            'Business expenses: ' + formatCurrency(businessExpenses),
+            'Net side hustle income: ' + formatCurrency(netSideIncome),
+            '',
+            'Estimated self-employment tax: ' + formatCurrency(selfEmploymentTax),
+            'Estimated federal income tax: ' + formatCurrency(federalIncomeTax),
+            'Estimated state tax: ' + formatCurrency(stateTax),
+            'Estimated total tax: ' + formatCurrency(totalEstimatedTax),
+            'Suggested tax set-aside: ' + formatPercent(setAsidePercent, 2),
+            'Estimated take-home pay: ' + formatCurrency(takeHomePay),
+            'Effective take-home rate: ' + formatPercent(takeHomeRate, 2),
+            'Federal marginal rate used: ' + formatPercent(federalMarginalRate * 100, 2),
+            '',
+            'Disclaimer: This report is a simplified educational estimate only and is not tax, legal, accounting, payroll, or financial advice.'
+          ].join('\n');
+        } catch (error) {
+          showWarning('The tax estimate could not be completed. Please check your inputs and try again.');
+        }
+      }
+
+      function showCopyFeedback(message) {
+        copyFeedback.textContent = message;
+        copyFeedback.classList.remove('hidden');
+        setTimeout(function () {
+          copyFeedback.classList.add('hidden');
+          copyFeedback.textContent = 'Copied!';
+        }, 1600);
+      }
+
+      function fallbackCopy(text) {
+        try {
+          const textarea = document.createElement('textarea');
+          textarea.value = text;
+          document.body.appendChild(textarea);
+          textarea.select();
+          document.execCommand('copy');
+          document.body.removeChild(textarea);
+          showCopyFeedback('Copied!');
+        } catch (error) {
+          showCopyFeedback('Copy failed. Please select the result manually.');
+        }
+      }
+
+      function copyReport() {
+        if (!latestReport) {
+          showCopyFeedback('Calculate an estimate before copying.');
+          return;
+        }
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(latestReport).then(function () {
+            showCopyFeedback('Copied!');
+          }).catch(function () {
+            fallbackCopy(latestReport);
+          });
+        } else {
+          fallbackCopy(latestReport);
+        }
+      }
+
+      function downloadReport() {
+        if (!latestReport) {
+          showWarning('Calculate an estimate before downloading a report.');
+          return;
+        }
+
+        try {
+          const blob = new Blob([latestReport], { type: 'text/plain;charset=utf-8' });
+          const url = URL.createObjectURL(blob);
+          const link = document.createElement('a');
+          link.href = url;
+          link.download = 'side-hustle-tax-estimate.txt';
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          URL.revokeObjectURL(url);
+        } catch (error) {
+          showWarning('Download failed. Please copy the result instead.');
+        }
+      }
+
+      function resetTool() {
+        mainIncomeInput.value = '65000';
+        sideGrossIncomeInput.value = '12000';
+        businessExpensesInput.value = '2000';
+        stateTaxRateInput.value = '5';
+        hideWarning();
+        calculateSideHustleTax();
+        mainIncomeInput.focus();
+      }
+
+      mainIncomeInput.addEventListener('input', calculateSideHustleTax);
+      sideGrossIncomeInput.addEventListener('input', calculateSideHustleTax);
+      businessExpensesInput.addEventListener('input', calculateSideHustleTax);
+      stateTaxRateInput.addEventListener('input', calculateSideHustleTax);
+      copyBtn.addEventListener('click', copyReport);
+      downloadBtn.addEventListener('click', downloadReport);
+      resetBtn.addEventListener('click', resetTool);
+
+      exampleButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+          mainIncomeInput.value = button.dataset.main || '65000';
+          sideGrossIncomeInput.value = button.dataset.gross || '12000';
+          businessExpensesInput.value = button.dataset.expenses || '2000';
+          stateTaxRateInput.value = button.dataset.state || '5';
+          calculateSideHustleTax();
+        });
+      });
+
+      window.addEventListener('resize', function () {
+        document.body.style.overflowX = 'hidden';
+      });
+
+      calculateSideHustleTax();
+    });
   </script>
 </body>
 </html>
