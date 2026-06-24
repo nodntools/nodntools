@@ -1,173 +1,262 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<div class="mb-8 text-center">
-  <a
-    href="https://nodntools.com"
-    class="inline-block transition hover:opacity-80"
-    aria-label="NodnWebTools Home"
-  >
-    <div class="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
-      Nodn<span class="text-blue-600">WebTools</span>
-    </div>
-  </a>
-</div>
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404"
-     crossorigin="anonymous"></script>
-
-	<meta name="google-adsense-account" content="ca-pub-5282672325821404">	
-
-  <title>Discount Calculator | NodnWebTools</title>
-
-  <meta
-    name="description"
-    content="Use the free NodnWebTools Discount Calculator to estimate final price, total savings, double discounts, coupons, and optional tax. Learn how to calculate discount percentage, sale price formula, double discount calculator logic, shopping smart on Black Friday, and how to calculate tax and discount."
-  />
-  <meta
-    name="keywords"
-    content="discount calculator, how to calculate discount percentage, sale price formula, double discount calculator, shopping smart on Black Friday, calculate tax and discount, final price calculator, coupon calculator, savings calculator, NodnWebTools"
-  />
+  <title>Discount Calculator | Sale Price & Savings Tool</title>
+  <meta name="description" content="Calculate sale price, discount percentage, coupon savings, tax, final cost, and double discounts with a free browser tool." />
+  <meta name="keywords" content="discount calculator, sale price calculator, final price calculator, discount percentage calculator, coupon calculator, double discount calculator, savings calculator, tax and discount calculator, shopping calculator, percent off calculator, sale savings calculator, Black Friday discount calculator, Cyber Monday savings calculator, retail price calculator, markdown calculator, clearance price calculator, promo code calculator, price reduction calculator, NodnWebTools" />
   <meta name="author" content="NodnWebTools" />
   <meta name="robots" content="index, follow" />
 
-  <meta property="og:title" content="Discount Calculator | NodnWebTools" />
-  <meta
-    property="og:description"
-    content="Calculate final price, total savings, double discounts, coupon discounts, and optional tax with a clean real-time discount calculator."
-  />
+  <meta property="og:title" content="Discount Calculator | Sale Price & Savings Tool" />
+  <meta property="og:description" content="Estimate final sale price, coupon savings, tax, effective discount rate, and total savings instantly." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://nodnwebtools.com/discount.html" />
+  <meta property="og:url" content="https://nodntools.com/discount.html" />
   <meta property="og:site_name" content="NodnWebTools" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Discount Calculator" />
-  <meta
-    name="twitter:description"
-    content="A free discount calculator for sale prices, coupons, double discounts, tax, and smart shopping."
-  />
+  <meta name="twitter:description" content="Calculate sale prices, coupons, double discounts, tax, and total savings." />
+
+  <meta name="google-adsense-account" content="ca-pub-5282672325821404" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404" crossorigin="anonymous"></script>
 
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Discount Calculator",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "All",
+    "url": "https://nodntools.com/discount.html",
+    "description": "A free browser-based discount calculator that estimates sale price, total savings, effective discount rate, coupon savings, tax, final checkout cost, and double discount scenarios.",
+    "featureList": [
+      "Calculate final sale price",
+      "Calculate discount percentage",
+      "Estimate coupon savings",
+      "Calculate double discounts",
+      "Add optional tax rate",
+      "Show total savings",
+      "Show effective discount rate",
+      "Copy shopping result",
+      "Download discount report",
+      "Client-side browser calculation"
+    ],
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "NodnWebTools",
+      "url": "https://nodntools.com"
+    }
+  }
+  </script>
+
+  <style>
+    html,
+    body {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      min-width: 0;
+    }
+
+    main,
+    section,
+    article,
+    aside,
+    div,
+    input,
+    select,
+    button,
+    table,
+    canvas,
+    img,
+    svg,
+    pre,
+    code,
+    iframe,
+    ins {
+      max-width: 100%;
+    }
+
+    .safe-break {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .mobile-card,
+    .mobile-panel,
+    .mobile-preview,
+    .ad-box {
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
+    .mobile-code {
+      max-width: 100%;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .ad-box {
+      width: 100%;
+      min-height: 90px;
+      border: 2px dashed #cbd5e1;
+      background: #f8fafc;
+      color: #94a3b8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-radius: 1rem;
+      padding: 1rem;
+      font-size: 0.875rem;
+      line-height: 1.5;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      max-width: 100%;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding-left: 0;
+        padding-right: 0;
+      }
+
+      .mobile-card,
+      .mobile-panel,
+      .mobile-preview {
+        border-radius: 1.25rem !important;
+        padding: 1rem !important;
+      }
+
+      .mobile-button-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .mobile-button-grid button,
+      .mobile-full {
+        width: 100%;
+      }
+
+      h1 {
+        font-size: 2rem !important;
+        line-height: 2.35rem !important;
+      }
+
+      .ad-box {
+        min-height: 90px;
+        border-radius: 0.875rem;
+        padding: 0.875rem;
+        font-size: 0.75rem;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .mobile-card,
+      .mobile-panel,
+      .mobile-preview {
+        padding: 0.875rem !important;
+        border-radius: 1rem !important;
+      }
+
+      h1 {
+        font-size: 1.75rem !important;
+      }
+
+      h2 {
+        font-size: 1.35rem !important;
+      }
+
+      input,
+      button {
+        font-size: 0.9rem !important;
+      }
+    }
+  </style>
 </head>
 
-<body class="min-h-screen bg-slate-100 px-4 py-8 sm:py-12">
-  <main class="mx-auto max-w-5xl">
+<body class="min-h-screen bg-slate-50 text-slate-800">
+  <div class="w-full px-4 py-5 sm:px-6 lg:px-8">
+    <header class="mx-auto flex w-full max-w-7xl flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <a href="https://nodntools.com" class="inline-flex items-center gap-2 safe-break" aria-label="NodnWebTools Home">
+        <span class="text-2xl font-black tracking-tight text-slate-950">
+          Nodn<span class="text-indigo-600">WebTools</span>
+        </span>
+      </a>
+      <nav class="flex flex-wrap items-center gap-2 text-sm text-slate-500">
+        <a href="https://nodntools.com" class="rounded-full border border-slate-200 bg-white px-4 py-2 font-semibold transition hover:border-indigo-200 hover:text-indigo-700">Home</a>
+        <span class="rounded-full bg-indigo-50 px-4 py-2 font-semibold text-indigo-700">Client-side shopping utility</span>
+      </nav>
+    </header>
 
-    <!-- Google AdSense Responsive Ad - Top -->
-    <div class="mb-8 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white text-sm text-slate-400">
-      AdSense Responsive Ad Area - Top
+    <div class="mx-auto mt-5 w-full max-w-7xl">
+      <div class="ad-box">AdSense Responsive Ad Area - Top</div>
     </div>
 
-    <section class="grid gap-6 lg:grid-cols-2">
-
-      <div class="rounded-3xl bg-white p-5 shadow-xl ring-1 ring-slate-200 sm:p-8 lg:sticky lg:top-10 lg:self-start">
+    <main class="mx-auto mt-6 grid w-full max-w-7xl grid-cols-1 gap-6 lg:grid-cols-12">
+      <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:col-span-5 lg:p-8">
         <div class="mb-6">
-          <span class="inline-flex rounded-full bg-rose-100 px-4 py-2 text-sm font-semibold text-rose-700">
+          <p class="mb-3 inline-flex rounded-full bg-indigo-50 px-4 py-2 text-sm font-bold text-indigo-700">
             Discount Calculator
-          </span>
+          </p>
 
-          <h1 class="mt-5 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+          <h1 class="safe-break text-4xl font-black tracking-tight text-slate-950 sm:text-5xl">
             Calculate Final Sale Price Instantly
           </h1>
 
-          <p class="mt-3 text-base leading-7 text-slate-600">
-            Enter the original price, discount percentage, optional extra coupon, and tax rate to estimate
-            your final price and total savings in real time.
+          <p class="mt-4 text-base leading-7 text-slate-600">
+            Enter the original price, discount percentage, optional coupon, and tax rate to estimate final price,
+            total savings, effective discount rate, and checkout cost in real time.
           </p>
         </div>
 
         <div class="space-y-5">
           <div>
-            <label for="originalPrice" class="mb-2 block text-sm font-semibold text-slate-700">
-              Original Price
-            </label>
-
+            <label for="originalPrice" class="mb-2 block text-sm font-bold text-slate-700">Original Price</label>
             <div class="relative">
               <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">$</span>
-              <input
-                type="number"
-                id="originalPrice"
-                inputmode="decimal"
-                min="0"
-                step="0.01"
-                value="100"
-                placeholder="100.00"
-                class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-8 pr-4 text-lg font-semibold text-slate-900 outline-none transition focus:border-rose-500 focus:bg-white focus:ring-4 focus:ring-rose-100"
-              />
+              <input type="number" id="originalPrice" inputmode="decimal" min="0" step="0.01" value="100" placeholder="100.00"
+                class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-8 pr-4 text-lg font-semibold text-slate-900 outline-none transition focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-100" />
             </div>
           </div>
 
           <div>
             <div class="mb-2 flex items-center justify-between gap-3">
-              <label for="discountSlider" class="block text-sm font-semibold text-slate-700">
-                Discount Percentage
-              </label>
-
-              <span id="discountBadge" class="rounded-full bg-rose-50 px-3 py-1 text-xs font-semibold text-rose-700">
-                20%
-              </span>
+              <label for="discountSlider" class="block text-sm font-bold text-slate-700">Discount Percentage</label>
+              <span id="discountBadge" class="rounded-full bg-indigo-50 px-3 py-1 text-xs font-bold text-indigo-700">20%</span>
             </div>
 
             <div class="grid grid-cols-4 gap-2 sm:gap-3">
-              <button
-                type="button"
-                data-discount="10"
-                class="quick-discount rounded-2xl border border-rose-200 bg-rose-50 px-3 py-3 text-sm font-bold text-rose-700 transition hover:bg-rose-100 active:scale-[0.99]"
-              >
-                10%
-              </button>
-
-              <button
-                type="button"
-                data-discount="20"
-                class="quick-discount rounded-2xl border border-rose-500 bg-rose-500 px-3 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-rose-600 active:scale-[0.99]"
-              >
-                20%
-              </button>
-
-              <button
-                type="button"
-                data-discount="30"
-                class="quick-discount rounded-2xl border border-rose-200 bg-rose-50 px-3 py-3 text-sm font-bold text-rose-700 transition hover:bg-rose-100 active:scale-[0.99]"
-              >
-                30%
-              </button>
-
-              <button
-                type="button"
-                data-discount="50"
-                class="quick-discount rounded-2xl border border-rose-200 bg-rose-50 px-3 py-3 text-sm font-bold text-rose-700 transition hover:bg-rose-100 active:scale-[0.99]"
-              >
-                50%
-              </button>
+              <button type="button" data-discount="10" class="quick-discount rounded-2xl border border-indigo-200 bg-indigo-50 px-3 py-3 text-sm font-bold text-indigo-700 transition hover:bg-indigo-100 active:scale-[0.99]">10%</button>
+              <button type="button" data-discount="20" class="quick-discount rounded-2xl border border-indigo-500 bg-indigo-600 px-3 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-indigo-700 active:scale-[0.99]">20%</button>
+              <button type="button" data-discount="30" class="quick-discount rounded-2xl border border-indigo-200 bg-indigo-50 px-3 py-3 text-sm font-bold text-indigo-700 transition hover:bg-indigo-100 active:scale-[0.99]">30%</button>
+              <button type="button" data-discount="50" class="quick-discount rounded-2xl border border-indigo-200 bg-indigo-50 px-3 py-3 text-sm font-bold text-indigo-700 transition hover:bg-indigo-100 active:scale-[0.99]">50%</button>
             </div>
 
-            <input
-              type="range"
-              id="discountSlider"
-              min="0"
-              max="100"
-              step="1"
-              value="20"
-              class="mt-5 w-full accent-rose-500"
-            />
+            <input type="range" id="discountSlider" min="0" max="100" step="1" value="20" class="mt-5 w-full accent-indigo-600" />
 
-            <div class="mt-3 relative">
-              <input
-                type="number"
-                id="discountPercentage"
-                inputmode="decimal"
-                min="0"
-                max="100"
-                step="1"
-                value="20"
-                placeholder="20"
-                class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-4 pr-10 text-lg font-semibold text-slate-900 outline-none transition focus:border-rose-500 focus:bg-white focus:ring-4 focus:ring-rose-100"
-              />
+            <div class="relative mt-3">
+              <input type="number" id="discountPercentage" inputmode="decimal" min="0" max="100" step="1" value="20" placeholder="20"
+                class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-4 pr-10 text-lg font-semibold text-slate-900 outline-none transition focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-100" />
               <span class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400">%</span>
             </div>
 
@@ -178,119 +267,97 @@
           </div>
 
           <div>
-            <label for="additionalDiscount" class="mb-2 block text-sm font-semibold text-slate-700">
+            <label for="additionalDiscount" class="mb-2 block text-sm font-bold text-slate-700">
               Additional Discount <span class="font-normal text-slate-400">(Coupon or Extra Sale)</span>
             </label>
-
             <div class="relative">
-              <input
-                type="number"
-                id="additionalDiscount"
-                inputmode="decimal"
-                min="0"
-                max="100"
-                step="0.01"
-                value="0"
-                placeholder="0"
-                class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-4 pr-10 text-lg font-semibold text-slate-900 outline-none transition focus:border-rose-500 focus:bg-white focus:ring-4 focus:ring-rose-100"
-              />
+              <input type="number" id="additionalDiscount" inputmode="decimal" min="0" max="100" step="0.01" value="0" placeholder="0"
+                class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-4 pr-10 text-lg font-semibold text-slate-900 outline-none transition focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-100" />
               <span class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400">%</span>
             </div>
           </div>
 
           <div>
-            <label for="taxRate" class="mb-2 block text-sm font-semibold text-slate-700">
+            <label for="taxRate" class="mb-2 block text-sm font-bold text-slate-700">
               Tax Rate <span class="font-normal text-slate-400">(Optional)</span>
             </label>
-
             <div class="relative">
-              <input
-                type="number"
-                id="taxRate"
-                inputmode="decimal"
-                min="0"
-                step="0.01"
-                value="0"
-                placeholder="0"
-                class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-4 pr-10 text-lg font-semibold text-slate-900 outline-none transition focus:border-rose-500 focus:bg-white focus:ring-4 focus:ring-rose-100"
-              />
+              <input type="number" id="taxRate" inputmode="decimal" min="0" step="0.01" value="0" placeholder="0"
+                class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-4 pr-10 text-lg font-semibold text-slate-900 outline-none transition focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-100" />
               <span class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400">%</span>
             </div>
           </div>
 
-          <div class="rounded-2xl bg-rose-50 p-4 text-sm leading-6 text-slate-600">
-            Additional discounts are applied after the first discount. For example, 30% off plus an extra 20% off
-            is not the same as 50% off.
+          <div class="rounded-2xl border border-indigo-100 bg-indigo-50 p-4 text-sm leading-6 text-indigo-900">
+            Additional discounts are applied after the first discount. For example, 30% off plus an extra 20% off is an effective 44% discount, not 50%.
+          </div>
+
+          <div class="mobile-button-grid grid grid-cols-1 gap-3 sm:grid-cols-2">
+            <button id="copyBtn" type="button" class="rounded-2xl bg-indigo-600 px-4 py-4 text-base font-black text-white shadow-sm transition hover:bg-indigo-700 active:scale-[0.99]">
+              Copy Result
+            </button>
+            <button id="downloadBtn" type="button" class="rounded-2xl border border-slate-200 bg-white px-4 py-4 text-base font-black text-slate-700 transition hover:border-indigo-200 hover:text-indigo-700">
+              Download Report
+            </button>
+          </div>
+
+          <button id="resetBtn" type="button" class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-4 text-base font-black text-slate-700 transition hover:border-red-200 hover:text-red-600">
+            Reset Calculator
+          </button>
+
+          <div id="copyFeedback" class="hidden rounded-2xl bg-emerald-50 px-4 py-3 text-sm font-bold text-emerald-700">
+            Copied!
           </div>
         </div>
-      </div>
+      </section>
 
-      <div class="space-y-6">
-        <div class="rounded-3xl bg-white p-5 shadow-xl ring-1 ring-slate-200 sm:p-8">
+      <section class="space-y-6 lg:col-span-7">
+        <div class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
           <div class="mb-6">
-            <h2 class="text-2xl font-bold text-slate-900">
-              Estimated Discount Result
-            </h2>
-
-            <p class="mt-2 text-sm text-slate-500">
+            <h2 class="text-2xl font-black tracking-tight text-slate-950">Estimated Discount Result</h2>
+            <p class="mt-2 text-sm leading-6 text-slate-500">
               Results update automatically as you change price, discount, coupon, or tax.
             </p>
           </div>
 
-          <div id="result" class="rounded-3xl border border-rose-100 bg-gradient-to-br from-rose-50 via-pink-50 to-slate-50 p-5">
-            <p class="text-sm font-semibold uppercase tracking-wide text-rose-700">
-              Final Price
-            </p>
+          <div id="result" class="mobile-preview rounded-3xl border border-indigo-100 bg-gradient-to-br from-indigo-50 via-violet-50 to-slate-50 p-5">
+            <p class="text-sm font-black uppercase tracking-wide text-indigo-700">Final Price</p>
 
-            <p id="finalPrice" class="mt-2 text-4xl font-extrabold tracking-tight text-slate-900">
-              $0.00
-            </p>
+            <p id="finalPrice" class="safe-break mt-2 text-4xl font-extrabold tracking-tight text-slate-900">$0.00</p>
 
             <div class="mt-5 grid gap-3 sm:grid-cols-2">
               <div class="rounded-2xl bg-white p-4 shadow-sm">
                 <p class="text-xs text-slate-500">Original Price</p>
-                <p id="displayOriginalPrice" class="mt-1 text-lg font-bold text-slate-900">$0.00</p>
+                <p id="displayOriginalPrice" class="safe-break mt-1 text-lg font-bold text-slate-900">$0.00</p>
               </div>
 
               <div class="rounded-2xl bg-white p-4 shadow-sm">
                 <p class="text-xs text-slate-500">First Discount</p>
-                <p id="displayDiscount" class="mt-1 text-lg font-bold text-rose-700">0%</p>
+                <p id="displayDiscount" class="safe-break mt-1 text-lg font-bold text-indigo-700">0%</p>
               </div>
 
               <div class="rounded-2xl bg-white p-4 shadow-sm">
                 <p class="text-xs text-slate-500">Additional Discount</p>
-                <p id="displayAdditionalDiscount" class="mt-1 text-lg font-bold text-rose-700">0%</p>
+                <p id="displayAdditionalDiscount" class="safe-break mt-1 text-lg font-bold text-indigo-700">0%</p>
               </div>
 
               <div class="rounded-2xl bg-white p-4 shadow-sm">
                 <p class="text-xs text-slate-500">Estimated Tax</p>
-                <p id="displayTaxAmount" class="mt-1 text-lg font-bold text-slate-900">$0.00</p>
+                <p id="displayTaxAmount" class="safe-break mt-1 text-lg font-bold text-slate-900">$0.00</p>
               </div>
             </div>
 
             <div class="mt-5 grid gap-3 sm:grid-cols-2">
-              <div class="rounded-3xl border border-rose-100 bg-white p-5 shadow-sm">
-                <p class="text-xs font-semibold uppercase tracking-wide text-rose-700">
-                  Total Savings
-                </p>
-                <p id="totalSavings" class="mt-2 text-3xl font-extrabold text-rose-700">
-                  $0.00
-                </p>
-                <p class="mt-2 text-xs leading-5 text-slate-500">
-                  Savings before tax.
-                </p>
+              <div class="rounded-3xl border border-indigo-100 bg-white p-5 shadow-sm">
+                <p class="text-xs font-black uppercase tracking-wide text-indigo-700">Total Savings</p>
+                <p id="totalSavings" class="safe-break mt-2 text-3xl font-extrabold text-indigo-700">$0.00</p>
+                <p class="mt-2 text-xs leading-5 text-slate-500">Savings before tax.</p>
               </div>
 
               <div class="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
-                <p class="text-xs font-semibold uppercase tracking-wide text-slate-700">
-                  Effective Discount
-                </p>
-                <p id="effectiveDiscount" class="mt-2 text-3xl font-extrabold text-slate-900">
-                  0.00%
-                </p>
-                <p class="mt-2 text-xs leading-5 text-slate-500">
-                  Combined discount rate.
-                </p>
+                <p class="text-xs font-black uppercase tracking-wide text-slate-700">Effective Discount</p>
+                <p id="effectiveDiscount" class="safe-break mt-2 text-3xl font-extrabold text-slate-900">0.00%</p>
+                <p class="mt-2 text-xs leading-5 text-slate-500">Combined discount rate.</p>
               </div>
             </div>
 
@@ -302,103 +369,285 @@
             </div>
           </div>
 
-          <!-- Google AdSense Responsive Ad - Below Result -->
-          <div class="mt-6 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-slate-50 text-sm text-slate-400">
-            AdSense Responsive Ad Area - Below Result
-          </div>
-
-          <p class="mt-5 text-xs leading-5 text-slate-500">
-            Disclaimer: This calculator is for general educational and shopping convenience purposes only.
-            Actual prices may vary depending on retailer rules, coupon exclusions, loyalty discounts, shipping fees,
-            regional tax laws, product category, marketplace pricing, and checkout timing. Always review the final
-            retailer checkout page before purchasing.
-          </p>
+          <div class="ad-box mt-6">AdSense Responsive Ad Area - Below Result</div>
         </div>
+      </section>
+    </main>
 
-        <section class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-8">
-          <span class="inline-flex rounded-full bg-rose-100 px-4 py-2 text-sm font-semibold text-rose-700">
-            Smart Shopping Guide
-          </span>
-
-          <h2 class="mt-5 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
-            Smart Shopping: How to Calculate Discounts and Savings Instantly
-          </h2>
-
-          <div class="mt-5 space-y-5 text-sm leading-7 text-slate-600">
-            <p>
-              Understanding discounts can help you shop smarter, compare deals faster, and avoid being misled by
-              flashy sale signs. If you are wondering
-              <strong class="font-semibold text-slate-800"> how to calculate discount percentage</strong>,
-              the basic method is simple: multiply the original price by the discount rate, then subtract that discount
-              from the original price.
-            </p>
-
-            <p>
-              The standard <strong class="font-semibold text-slate-800">sale price formula</strong> is:
-              Sale Price = Original Price × (1 - Discount Rate). For example, if a $100 item is 20% off,
-              the discount is $20 and the sale price is $80 before tax. This calculator also lets you add a second
-              discount or coupon so you can estimate more realistic checkout prices.
-            </p>
-
-            <p>
-              Many shoppers misunderstand double discounts. A
-              <strong class="font-semibold text-slate-800">double discount calculator</strong> is useful because
-              “30% off plus an extra 20% off” does not equal 50% off. The first discount is applied to the original price,
-              and the second discount is applied to the already-reduced price. For example, a $100 item with 30% off becomes
-              $70. An extra 20% off applies to $70, reducing the price by another $14. The final price is $56, which is an
-              effective 44% discount, not 50%.
-            </p>
-
-            <p>
-              It is also important to <strong class="font-semibold text-slate-800">calculate tax and discount</strong>
-              in the right order. In many shopping situations, the discount is applied first, and sales tax is then calculated
-              on the discounted price. However, tax rules can vary by location, product category, and retailer policy.
-              Online marketplaces may also calculate tax based on shipping destination and local sales tax rules.
-            </p>
-
-            <p>
-              When <strong class="font-semibold text-slate-800">shopping smart on Black Friday</strong>, Cyber Monday,
-              Boxing Day, or major clearance events, compare the final price instead of focusing only on the percentage off.
-              A 50% discount on an overpriced item may still be worse than a smaller discount on a better-priced product.
-              Watch for shipping fees, return windows, restocking fees, minimum purchase requirements, and coupon exclusions.
-            </p>
-
-            <div class="rounded-2xl bg-rose-50 p-5">
-              <h3 class="font-bold text-slate-900">
-                Quick tips for smarter discount shopping
-              </h3>
-              <ul class="mt-3 space-y-2">
-                <li>
-                  <strong class="text-slate-800">Compare final prices</strong>, not just discount percentages.
-                </li>
-                <li>
-                  <strong class="text-slate-800">Check coupon order</strong> when multiple discounts are available.
-                </li>
-                <li>
-                  <strong class="text-slate-800">Include tax and shipping</strong> before deciding if a deal is worth it.
-                </li>
-                <li>
-                  <strong class="text-slate-800">Avoid impulse buying</strong> by setting a budget before major sales events.
-                </li>
-              </ul>
-            </div>
-
-            <p>
-              This Discount Calculator from NodnWebTools is designed to help shoppers quickly estimate final price,
-              total savings, effective discount rate, and optional tax before checkout. Use it to compare sales,
-              coupons, clearance deals, and seasonal promotions with more confidence.
-            </p>
-          </div>
-        </section>
-      </div>
-    </section>
-
-    <!-- Google AdSense Responsive Ad - Bottom -->
-    <div class="mt-8 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white text-sm text-slate-400">
-      AdSense Responsive Ad Area - Bottom
+    <div class="mx-auto mt-6 w-full max-w-7xl">
+      <div class="ad-box">AdSense Responsive Ad Area - Below Tool</div>
     </div>
 
-  </main>
+    <section class="mx-auto mt-8 w-full max-w-7xl space-y-6">
+      <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
+        <p class="mb-3 inline-flex rounded-full bg-violet-50 px-4 py-2 text-sm font-bold text-violet-700">
+          Smart Shopping Guide
+        </p>
+
+        <h2 class="text-3xl font-black tracking-tight text-slate-950">
+          Free Discount Calculator for Sale Price, Coupon Savings, Tax, and Final Checkout Cost
+        </h2>
+
+        <div class="mt-5 space-y-5 text-base leading-8 text-slate-600">
+          <p>
+            This Discount Calculator is a free online shopping calculator designed to help you estimate the final price
+            of a product after a percentage discount, an extra coupon discount, and optional sales tax. It is useful for
+            everyday shopping, online checkout comparisons, clearance events, seasonal promotions, Black Friday deals,
+            Cyber Monday sales, Boxing Day discounts, back-to-school shopping, grocery budgeting, electronics purchases,
+            clothing sales, furniture markdowns, and retail price comparison.
+          </p>
+          <p>
+            Many shoppers see a large sale banner and assume the deal is better than it really is. A discount percentage
+            can look impressive, but the final price depends on the original price, the discount rate, whether a coupon
+            stacks with the sale, whether tax is charged before or after discounts, and whether shipping, handling,
+            marketplace fees, or minimum order requirements apply. This sale price calculator helps you focus on the
+            number that matters most: the final amount you may pay at checkout.
+          </p>
+          <p>
+            Users often search for terms such as discount calculator, sale price calculator, final price calculator,
+            percent off calculator, coupon calculator, double discount calculator, savings calculator, tax and discount
+            calculator, markdown calculator, clearance price calculator, and shopping savings calculator. This tool brings
+            those calculations into one clean, mobile-friendly page that runs directly in your browser.
+          </p>
+        </div>
+      </article>
+
+      <div class="ad-box">AdSense Responsive Ad Area - Middle Content</div>
+
+      <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
+        <h2 class="text-3xl font-black tracking-tight text-slate-950">
+          How to Calculate a Discount Percentage
+        </h2>
+
+        <div class="mt-5 space-y-5 text-base leading-8 text-slate-600">
+          <p>
+            The basic discount formula is simple: multiply the original price by the discount percentage, then subtract
+            the discount amount from the original price. If an item costs $100 and the discount is 20%, the savings are
+            $20. The final sale price before tax is $80. Written as a formula, the sale price equals original price
+            multiplied by one minus the discount rate.
+          </p>
+          <p>
+            For example, a $250 jacket with a 30% discount saves $75 because $250 multiplied by 0.30 equals $75.
+            The discounted price before tax is $175. If sales tax is 8%, the estimated tax is $14, and the final price
+            is $189. This discount calculator performs the same process automatically and updates the result as you
+            change the numbers.
+          </p>
+          <p>
+            A percentage discount is not always the only factor. Some retailers also offer fixed-dollar coupons,
+            loyalty rewards, store credit, free shipping thresholds, or category-specific promotions. This version focuses
+            on percentage discounts and optional tax because those are among the most common sale price calculations.
+          </p>
+        </div>
+      </article>
+
+      <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
+        <h2 class="text-3xl font-black tracking-tight text-slate-950">
+          Double Discount Calculator: Why 30% Off Plus 20% Off Is Not 50% Off
+        </h2>
+
+        <div class="mt-5 space-y-5 text-base leading-8 text-slate-600">
+          <p>
+            Double discounts are one of the most misunderstood parts of retail math. When a store advertises an item as
+            30% off plus an extra 20% off, the discounts are usually applied one after the other. The second discount
+            is applied to the already discounted price, not to the original price. That means the effective discount is
+            lower than simply adding the two percentages together.
+          </p>
+          <p>
+            For example, start with a $100 product. A 30% discount lowers the price to $70. An additional 20% coupon
+            then applies to $70, reducing the price by $14. The final price before tax is $56. The total savings are
+            $44, which means the effective discount is 44%, not 50%. This is why a double discount calculator is helpful
+            when comparing stacked coupons, extra sale codes, loyalty discounts, and clearance promotions.
+          </p>
+          <p>
+            Retailers may apply discounts in different orders depending on coupon rules. Some coupons may exclude sale
+            items, some may apply only before tax, some may require a minimum purchase, and some may work only for certain
+            product categories. Always review the final checkout page before deciding whether a discount is truly worth it.
+          </p>
+        </div>
+      </article>
+
+      <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
+        <h2 class="text-3xl font-black tracking-tight text-slate-950">
+          How to Use This Sale Price Calculator
+        </h2>
+
+        <div class="mt-6 grid grid-cols-1 gap-4 md:grid-cols-3">
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <h3 class="text-lg font-black text-slate-950">1. Enter the original price</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-600">
+              Add the regular price shown before any sale, coupon, promotion, or markdown.
+            </p>
+          </div>
+
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <h3 class="text-lg font-black text-slate-950">2. Add discounts and tax</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-600">
+              Enter the main discount, optional extra coupon percentage, and estimated local tax rate.
+            </p>
+          </div>
+
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <h3 class="text-lg font-black text-slate-950">3. Review final price</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-600">
+              Check final price, savings before tax, estimated tax, and effective combined discount.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
+        <h2 class="text-3xl font-black tracking-tight text-slate-950">
+          Popular Uses for a Discount and Coupon Calculator
+        </h2>
+
+        <div class="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2">
+          <div class="rounded-2xl border border-slate-200 p-5">
+            <h3 class="text-xl font-black text-slate-950">Black Friday and Cyber Monday shopping</h3>
+            <p class="mt-2 text-sm leading-7 text-slate-600">
+              Compare headline discounts, stacked promo codes, and tax-included final prices during major shopping events.
+            </p>
+          </div>
+
+          <div class="rounded-2xl border border-slate-200 p-5">
+            <h3 class="text-xl font-black text-slate-950">Clothing and fashion sales</h3>
+            <p class="mt-2 text-sm leading-7 text-slate-600">
+              Estimate final prices for clothing, shoes, accessories, clearance racks, outlet deals, and extra coupon offers.
+            </p>
+          </div>
+
+          <div class="rounded-2xl border border-slate-200 p-5">
+            <h3 class="text-xl font-black text-slate-950">Electronics and appliance deals</h3>
+            <p class="mt-2 text-sm leading-7 text-slate-600">
+              Calculate savings on laptops, phones, tablets, TVs, appliances, cameras, and accessories before checkout.
+            </p>
+          </div>
+
+          <div class="rounded-2xl border border-slate-200 p-5">
+            <h3 class="text-xl font-black text-slate-950">Grocery and household budgeting</h3>
+            <p class="mt-2 text-sm leading-7 text-slate-600">
+              Estimate discounts on household items, bulk purchases, loyalty offers, weekly deals, and store promotions.
+            </p>
+          </div>
+
+          <div class="rounded-2xl border border-slate-200 p-5">
+            <h3 class="text-xl font-black text-slate-950">Business purchasing</h3>
+            <p class="mt-2 text-sm leading-7 text-slate-600">
+              Compare vendor discounts, wholesale offers, tax assumptions, and final purchasing costs for small business supplies.
+            </p>
+          </div>
+
+          <div class="rounded-2xl border border-slate-200 p-5">
+            <h3 class="text-xl font-black text-slate-950">Student and teacher discounts</h3>
+            <p class="mt-2 text-sm leading-7 text-slate-600">
+              Check education pricing, coupon stacking, sale events, and effective savings on software, devices, and school supplies.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <div class="ad-box">AdSense Responsive Ad Area - Bottom Content</div>
+
+      <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
+        <h2 class="text-3xl font-black tracking-tight text-slate-950">
+          Smart Shopping Tips for Better Deal Comparison
+        </h2>
+
+        <div class="mt-5 space-y-5 text-base leading-8 text-slate-600">
+          <p>
+            Always compare the final price, not only the percentage off. A product with a 60% discount may still be
+            expensive if the original price was inflated. Another store with a smaller discount may offer a better
+            final price, better warranty, easier returns, or lower shipping cost. A sale price calculator helps you
+            separate emotional marketing from practical savings.
+          </p>
+          <p>
+            Check whether tax, shipping, and handling are included. Many shoppers calculate the discount correctly but
+            forget taxes or delivery fees. If one store offers free shipping and another charges a shipping fee, the
+            final checkout total may change the better deal. This is especially important for furniture, electronics,
+            large appliances, international orders, and marketplace sellers.
+          </p>
+          <p>
+            Watch for coupon restrictions. Some coupons exclude clearance items, gift cards, electronics, luxury brands,
+            third-party sellers, subscription products, or already-discounted merchandise. Some coupons also expire quickly
+            or require a minimum order value. Review the terms before relying on a coupon percentage.
+          </p>
+          <p>
+            Use a budget before shopping during big sale events. Black Friday, Cyber Monday, Boxing Day, Prime Day,
+            back-to-school sales, and holiday promotions can create urgency. A calculator helps you verify the math,
+            but a budget helps you decide whether the purchase makes sense in the first place.
+          </p>
+        </div>
+      </article>
+
+      <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
+        <h2 class="text-3xl font-black tracking-tight text-slate-950">
+          Frequently Asked Questions
+        </h2>
+
+        <div class="mt-6 space-y-4">
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">How do I calculate a discount?</summary>
+            <p class="mt-3 text-sm leading-7 text-slate-600">
+              Multiply the original price by the discount percentage, then subtract that amount from the original price.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">How does a double discount work?</summary>
+            <p class="mt-3 text-sm leading-7 text-slate-600">
+              A double discount is usually applied in sequence. The first discount reduces the original price, then the second discount applies to the reduced price.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">Is 30% off plus 20% off the same as 50% off?</summary>
+            <p class="mt-3 text-sm leading-7 text-slate-600">
+              No. If discounts are applied one after another, 30% off plus 20% off equals a 44% effective discount.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">Should tax be calculated before or after discount?</summary>
+            <p class="mt-3 text-sm leading-7 text-slate-600">
+              Many retailers apply tax after the discount, but rules vary by location, product type, and retailer policy.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">Can this calculator include shipping fees?</summary>
+            <p class="mt-3 text-sm leading-7 text-slate-600">
+              This version focuses on price, percentage discounts, coupons, and tax. Add shipping separately when comparing final checkout totals.
+            </p>
+          </details>
+        </div>
+      </section>
+
+      <section class="mobile-card rounded-3xl bg-slate-950 p-5 text-slate-200 shadow-sm lg:p-8">
+        <h2 class="text-3xl font-black tracking-tight text-white">Legal Disclaimer</h2>
+        <div class="mt-5 space-y-4 text-sm leading-7 text-slate-300">
+          <p>
+            This Discount Calculator is provided for general educational, informational, and shopping convenience purposes only.
+            It is not financial advice, tax advice, legal advice, pricing advice, retail policy guidance, or a guarantee of a final checkout price.
+          </p>
+          <p>
+            Results are estimates based on the values entered by the user. Actual prices may differ because of retailer coupon rules,
+            loyalty pricing, exclusions, minimum purchase requirements, shipping fees, handling fees, marketplace fees, product category
+            rules, regional tax laws, checkout timing, currency conversion, and promotional changes.
+          </p>
+          <p>
+            Users are responsible for reviewing the final retailer checkout page, coupon terms, return policy, warranty terms, taxes,
+            and total cost before purchasing. NodnWebTools is not liable for pricing errors, missed savings, expired coupons,
+            tax differences, checkout discrepancies, or decisions made based on this calculator.
+          </p>
+        </div>
+      </section>
+
+      <div class="ad-box">AdSense Responsive Ad Area - Bottom</div>
+    </section>
+
+    <footer class="mx-auto mt-8 w-full max-w-7xl pb-8 text-center text-sm text-slate-500">
+      <p>© <span id="yearText"></span> NodnWebTools. All rights reserved.</p>
+    </footer>
+  </div>
 
   <script>
     const originalPriceInput = document.getElementById("originalPrice");
@@ -418,6 +667,16 @@
     const effectiveDiscountEl = document.getElementById("effectiveDiscount");
     const displayPriceBeforeTaxEl = document.getElementById("displayPriceBeforeTax");
     const displayTaxRateEl = document.getElementById("displayTaxRate");
+
+    const copyBtn = document.getElementById("copyBtn");
+    const downloadBtn = document.getElementById("downloadBtn");
+    const resetBtn = document.getElementById("resetBtn");
+    const copyFeedback = document.getElementById("copyFeedback");
+    const yearText = document.getElementById("yearText");
+
+    let latestReport = "";
+
+    yearText.textContent = new Date().getFullYear();
 
     function formatCurrency(value) {
       return new Intl.NumberFormat("en-US", {
@@ -441,7 +700,7 @@
 
     function sanitizeNumber(value, fallback = 0) {
       const number = parseFloat(value);
-      return isNaN(number) || number < 0 ? fallback : number;
+      return Number.isFinite(number) && number >= 0 ? number : fallback;
     }
 
     function clampPercent(value) {
@@ -453,11 +712,72 @@
         const buttonDiscount = parseFloat(button.dataset.discount);
 
         if (buttonDiscount === activeDiscount) {
-          button.className = "quick-discount rounded-2xl border border-rose-500 bg-rose-500 px-3 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-rose-600 active:scale-[0.99]";
+          button.className = "quick-discount rounded-2xl border border-indigo-500 bg-indigo-600 px-3 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-indigo-700 active:scale-[0.99]";
         } else {
-          button.className = "quick-discount rounded-2xl border border-rose-200 bg-rose-50 px-3 py-3 text-sm font-bold text-rose-700 transition hover:bg-rose-100 active:scale-[0.99]";
+          button.className = "quick-discount rounded-2xl border border-indigo-200 bg-indigo-50 px-3 py-3 text-sm font-bold text-indigo-700 transition hover:bg-indigo-100 active:scale-[0.99]";
         }
       });
+    }
+
+    function buildReport(data) {
+      return [
+        "Discount Calculator Result",
+        "Original price: " + formatCurrency(data.originalPrice),
+        "First discount: " + formatPercent(data.discountRate),
+        "Additional discount: " + formatPercent(data.additionalDiscountRate),
+        "Discounted price before tax: " + formatCurrency(data.priceBeforeTax),
+        "Estimated tax rate: " + formatPercent(data.taxRate),
+        "Estimated tax amount: " + formatCurrency(data.taxAmount),
+        "Final price: " + formatCurrency(data.finalPrice),
+        "Total savings before tax: " + formatCurrency(data.totalSavings),
+        "Effective discount rate: " + formatPercent(data.effectiveDiscountRate),
+        "",
+        "Disclaimer: This result is an estimate only. Review the retailer checkout page before purchasing."
+      ].join("\n");
+    }
+
+    function calculateDiscount() {
+      try {
+        const originalPrice = sanitizeNumber(originalPriceInput.value);
+        const discountRate = clampPercent(discountPercentageInput.value);
+        const additionalDiscountRate = clampPercent(additionalDiscountInput.value);
+        const taxRate = sanitizeNumber(taxRateInput.value);
+
+        const priceAfterFirstDiscount = originalPrice * (1 - discountRate / 100);
+        const priceBeforeTax = priceAfterFirstDiscount * (1 - additionalDiscountRate / 100);
+        const taxAmount = priceBeforeTax * (taxRate / 100);
+        const finalPrice = priceBeforeTax + taxAmount;
+        const totalSavings = originalPrice - priceBeforeTax;
+        const effectiveDiscountRate = originalPrice > 0 ? (totalSavings / originalPrice) * 100 : 0;
+
+        discountBadge.textContent = formatPercent(discountRate, discountRate % 1 === 0 ? 0 : 2);
+
+        finalPriceEl.textContent = formatCurrency(finalPrice);
+        displayOriginalPriceEl.textContent = formatCurrency(originalPrice);
+        displayDiscountEl.textContent = formatPercent(discountRate, discountRate % 1 === 0 ? 0 : 2);
+        displayAdditionalDiscountEl.textContent = formatPercent(additionalDiscountRate, additionalDiscountRate % 1 === 0 ? 0 : 2);
+        displayTaxAmountEl.textContent = formatCurrency(taxAmount);
+        totalSavingsEl.textContent = formatCurrency(totalSavings);
+        effectiveDiscountEl.textContent = formatPercent(effectiveDiscountRate);
+        displayPriceBeforeTaxEl.textContent = formatCurrency(priceBeforeTax);
+        displayTaxRateEl.textContent = formatPercent(taxRate);
+
+        updateQuickDiscountButtonStyles(discountRate);
+
+        latestReport = buildReport({
+          originalPrice,
+          discountRate,
+          additionalDiscountRate,
+          priceBeforeTax,
+          taxRate,
+          taxAmount,
+          finalPrice,
+          totalSavings,
+          effectiveDiscountRate
+        });
+      } catch (error) {
+        finalPriceEl.textContent = "$0.00";
+      }
     }
 
     function syncDiscountFromSlider() {
@@ -478,32 +798,59 @@
       calculateDiscount();
     }
 
-    function calculateDiscount() {
-      const originalPrice = sanitizeNumber(originalPriceInput.value);
-      const discountRate = clampPercent(discountPercentageInput.value);
-      const additionalDiscountRate = clampPercent(additionalDiscountInput.value);
-      const taxRate = sanitizeNumber(taxRateInput.value);
+    async function copyReport() {
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(latestReport);
+        } else {
+          const textarea = document.createElement("textarea");
+          textarea.value = latestReport;
+          textarea.style.position = "fixed";
+          textarea.style.left = "-9999px";
+          document.body.appendChild(textarea);
+          textarea.focus();
+          textarea.select();
+          document.execCommand("copy");
+          document.body.removeChild(textarea);
+        }
 
-      const priceAfterFirstDiscount = originalPrice * (1 - discountRate / 100);
-      const priceBeforeTax = priceAfterFirstDiscount * (1 - additionalDiscountRate / 100);
-      const taxAmount = priceBeforeTax * (taxRate / 100);
-      const finalPrice = priceBeforeTax + taxAmount;
-      const totalSavings = originalPrice - priceBeforeTax;
-      const effectiveDiscountRate = originalPrice > 0 ? (totalSavings / originalPrice) * 100 : 0;
+        copyFeedback.classList.remove("hidden");
+        setTimeout(function () {
+          copyFeedback.classList.add("hidden");
+        }, 1400);
+      } catch (error) {
+        copyFeedback.textContent = "Copy failed. Please try again.";
+        copyFeedback.classList.remove("hidden");
+        setTimeout(function () {
+          copyFeedback.textContent = "Copied!";
+          copyFeedback.classList.add("hidden");
+        }, 1800);
+      }
+    }
 
-      discountBadge.textContent = formatPercent(discountRate, discountRate % 1 === 0 ? 0 : 2);
+    function downloadReport() {
+      try {
+        const blob = new Blob([latestReport || "No discount result available."], { type: "text/plain;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "discount-calculator-report.txt";
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        URL.revokeObjectURL(url);
+      } catch (error) {
+        alert("Download failed. Please copy the result instead.");
+      }
+    }
 
-      finalPriceEl.textContent = formatCurrency(finalPrice);
-      displayOriginalPriceEl.textContent = formatCurrency(originalPrice);
-      displayDiscountEl.textContent = formatPercent(discountRate, discountRate % 1 === 0 ? 0 : 2);
-      displayAdditionalDiscountEl.textContent = formatPercent(additionalDiscountRate, additionalDiscountRate % 1 === 0 ? 0 : 2);
-      displayTaxAmountEl.textContent = formatCurrency(taxAmount);
-      totalSavingsEl.textContent = formatCurrency(totalSavings);
-      effectiveDiscountEl.textContent = formatPercent(effectiveDiscountRate);
-      displayPriceBeforeTaxEl.textContent = formatCurrency(priceBeforeTax);
-      displayTaxRateEl.textContent = formatPercent(taxRate);
-
-      updateQuickDiscountButtonStyles(discountRate);
+    function resetCalculator() {
+      originalPriceInput.value = "100";
+      discountSlider.value = "20";
+      discountPercentageInput.value = "20";
+      additionalDiscountInput.value = "0";
+      taxRateInput.value = "0";
+      calculateDiscount();
     }
 
     originalPriceInput.addEventListener("input", calculateDiscount);
@@ -511,6 +858,9 @@
     discountPercentageInput.addEventListener("input", syncDiscountFromInput);
     additionalDiscountInput.addEventListener("input", calculateDiscount);
     taxRateInput.addEventListener("input", calculateDiscount);
+    copyBtn.addEventListener("click", copyReport);
+    downloadBtn.addEventListener("click", downloadReport);
+    resetBtn.addEventListener("click", resetCalculator);
 
     quickDiscountButtons.forEach(function(button) {
       button.addEventListener("click", function() {
