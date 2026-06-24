@@ -4,456 +4,919 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404"
-     crossorigin="anonymous"></script>
+  <title>Canada Mortgage Stress Test Calculator</title>
+  <meta name="description" content="Estimate Canada mortgage stress test results, qualifying rate, down payment, GDS, TDS, and monthly payment in your browser.">
+  <meta name="keywords" content="Canada mortgage stress test calculator, Canadian mortgage calculator, mortgage qualifying rate calculator, OSFI stress test calculator, GDS TDS calculator, Canada down payment calculator, mortgage affordability calculator Canada, Canadian home buyer calculator, mortgage payment calculator Canada, minimum down payment Canada, qualifying mortgage payment, home affordability Canada, mortgage approval estimate, NodnWebTools">
+  <meta name="author" content="NodnWebTools">
+  <meta name="robots" content="index, follow">
 
-	<meta name="google-adsense-account" content="ca-pub-5282672325821404">	
+  <meta property="og:title" content="Canada Mortgage Stress Test Calculator">
+  <meta property="og:description" content="Estimate Canadian mortgage stress test qualification, monthly payment, down payment, GDS ratio, and TDS ratio with a browser-based calculator.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nodntools.com/mortgage-stress-ca.html">
+  <meta property="og:site_name" content="NodnWebTools">
 
-  <title>Canada Mortgage & Stress Test Calculator</title>
-  <meta name="description" content="Canada Mortgage & Stress Test Calculator using OSFI qualifying rate logic, Canadian minimum down payment rules, GDS and TDS ratios." />
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Canada Mortgage Stress Test Calculator">
+  <meta name="twitter:description" content="Calculate Canadian mortgage stress test results, qualifying rate, GDS, TDS, and affordability estimates.">
+
+  <meta name="google-adsense-account" content="ca-pub-5282672325821404">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404" crossorigin="anonymous"></script>
+
   <script src="https://cdn.tailwindcss.com"></script>
+
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            burgundy: {
-              50: '#fff1f2',
-              100: '#ffe4e6',
-              200: '#fecdd3',
-              300: '#fda4af',
-              400: '#fb7185',
-              500: '#e11d48',
-              600: '#be123c',
-              700: '#9f1239',
-              800: '#881337',
-              900: '#4c0519'
+            accent: {
+              50: "#fff1f2",
+              100: "#ffe4e6",
+              200: "#fecdd3",
+              500: "#e11d48",
+              600: "#be123c",
+              700: "#9f1239",
+              800: "#881337"
             }
+          },
+          boxShadow: {
+            soft: "0 20px 45px rgba(15, 23, 42, 0.08)"
           }
         }
       }
-    }
+    };
   </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Canada Mortgage Stress Test Calculator",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "url": "https://nodntools.com/mortgage-stress-ca.html",
+    "description": "A browser-based Canada mortgage stress test calculator for estimating qualifying rate, minimum down payment, monthly mortgage payment, GDS ratio, TDS ratio, and home affordability.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "creator": {
+      "@type": "Organization",
+      "name": "NodnWebTools",
+      "url": "https://nodntools.com"
+    }
+  }
+  </script>
+
+  <style>
+    html, body {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+      background: #f8fafc;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      min-width: 0;
+    }
+
+    input, select, button, textarea {
+      max-width: 100%;
+    }
+
+    img, svg, canvas, iframe, table, pre, code, section, article, aside, main, div {
+      max-width: 100%;
+    }
+
+    .safe-break {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .mobile-card,
+    .mobile-panel,
+    .mobile-preview,
+    .mobile-code,
+    .ad-box {
+      max-width: 100%;
+      overflow-wrap: anywhere;
+    }
+
+    .mobile-code {
+      overflow-x: auto;
+      white-space: pre-wrap;
+    }
+
+    .table-wrap {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .ad-box {
+      width: 100%;
+      min-height: 90px;
+      border: 1px dashed #cbd5e1;
+      background: #f8fafc;
+      color: #94a3b8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-radius: 1rem;
+      padding: 1rem;
+      font-size: 0.875rem;
+      overflow: hidden;
+    }
+
+    @media (max-width: 640px) {
+      .mobile-card {
+        border-radius: 1.25rem !important;
+        padding: 1rem !important;
+      }
+
+      .mobile-panel {
+        padding: 1rem !important;
+      }
+
+      .mobile-button-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .mobile-button-grid button,
+      .mobile-button-grid a {
+        width: 100%;
+      }
+
+      .ratio-row {
+        flex-direction: column;
+        align-items: flex-start !important;
+      }
+
+      .ad-box {
+        min-height: 90px;
+        border-radius: 0.875rem;
+        padding: 0.875rem;
+        font-size: 0.78rem;
+      }
+
+      table {
+        min-width: 680px;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .mobile-card {
+        padding: 0.875rem !important;
+        border-radius: 1rem !important;
+      }
+
+      h1 {
+        font-size: 1.85rem !important;
+        line-height: 2.25rem !important;
+      }
+
+      h2 {
+        font-size: 1.45rem !important;
+        line-height: 1.9rem !important;
+      }
+
+      .ad-box {
+        padding: 0.75rem;
+        font-size: 0.72rem;
+      }
+    }
+  </style>
 </head>
 
-<body class="min-h-screen bg-gradient-to-br from-stone-100 via-rose-50 to-amber-50 px-4 py-8 text-slate-900 sm:py-12">
-  <main class="mx-auto max-w-7xl">
-    <header class="mb-8 text-center">
-      <a href="https://nodntools.com" class="inline-block transition hover:opacity-80" aria-label="NodnWebTools Home">
-        <div class="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
-          Nodn<span class="text-burgundy-700">WebTools</span>
-        </div>
+<body class="min-h-screen bg-slate-50 text-slate-900">
+  <header class="w-full border-b border-slate-200 bg-white/90 backdrop-blur">
+    <div class="mx-auto flex w-full max-w-7xl flex-col gap-4 px-4 py-5 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
+      <a href="https://nodntools.com" class="inline-flex items-center safe-break" aria-label="NodnWebTools Home">
+        <span class="text-2xl font-black tracking-tight text-slate-950">Nodn<span class="text-accent-600">WebTools</span></span>
       </a>
-    </header>
-
-    <div class="mb-8 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-rose-200 bg-white/80 text-sm text-slate-400">
-      AdSense Responsive Ad Area - Top
+      <nav class="flex flex-wrap items-center gap-3 text-sm font-semibold text-slate-600">
+        <a href="https://nodntools.com" class="rounded-full px-4 py-2 transition hover:bg-slate-100 hover:text-accent-700">Home</a>
+        <a href="#how-to-use" class="rounded-full px-4 py-2 transition hover:bg-slate-100 hover:text-accent-700">How to Use</a>
+        <a href="#faq" class="rounded-full px-4 py-2 transition hover:bg-slate-100 hover:text-accent-700">FAQ</a>
+      </nav>
     </div>
+  </header>
 
-    <section class="mb-8 rounded-3xl border border-rose-100 bg-white/90 p-6 shadow-sm sm:p-8">
-      <span class="inline-flex rounded-full bg-burgundy-100 px-4 py-2 text-sm font-bold text-burgundy-800">
-        Canada Mortgage Stress Test Calculator
-      </span>
-      <h1 class="mt-4 text-3xl font-extrabold tracking-tight text-slate-950 sm:text-5xl">
-        Canada Mortgage & Stress Test Calculator
-      </h1>
-      <p class="mt-4 max-w-4xl text-base leading-7 text-slate-600 sm:text-lg">
-        Estimate whether a home purchase may pass Canada’s mortgage stress test by calculating the qualifying rate,
-        minimum down payment, monthly stress-tested payment, GDS and TDS ratios. This tool uses the common stress-test rule:
-        the higher of your contract rate plus 2% or 5.25%.
-      </p>
-    </section>
+  <main class="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+    <div class="ad-box mb-6">Top Ad Area - Responsive AdSense Placeholder</div>
 
-    <section class="grid gap-6 lg:grid-cols-[0.95fr_1.35fr]">
-      <aside class="rounded-3xl border border-rose-100 bg-white p-5 shadow-xl shadow-rose-950/5 sm:p-7 lg:sticky lg:top-8 lg:self-start">
-        <div class="mb-6">
-          <h2 class="text-2xl font-bold text-slate-950">Mortgage Inputs</h2>
-          <p class="mt-2 text-sm leading-6 text-slate-500">
-            Enter your purchase details. Results update automatically as you type.
-          </p>
-        </div>
+    <section class="grid grid-cols-1 gap-6 lg:grid-cols-12">
+      <div class="mobile-card rounded-3xl bg-white p-5 shadow-soft ring-1 ring-slate-200 sm:p-8 lg:col-span-5 lg:sticky lg:top-8 lg:self-start">
+        <span class="inline-flex rounded-full bg-accent-50 px-4 py-2 text-sm font-bold text-accent-700 ring-1 ring-accent-100">Canadian Mortgage Tool</span>
 
-        <div class="space-y-5">
+        <h1 class="mt-5 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">
+          Canada Mortgage Stress Test Calculator
+        </h1>
+
+        <p class="mt-4 text-sm leading-7 text-slate-600">
+          Estimate whether a Canadian home purchase may fit common mortgage stress test guidelines. Enter home price, down payment, income, debts, mortgage rate, amortization, and housing costs to calculate qualifying rate, stress-tested payment, GDS ratio, and TDS ratio.
+        </p>
+
+        <div class="mt-6 space-y-5">
           <div>
-            <label for="homePrice" class="mb-2 block text-sm font-bold text-slate-700">Home Price</label>
+            <label for="homePrice" class="mb-2 block text-sm font-bold text-slate-800">Home Price</label>
             <div class="relative">
-              <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">$</span>
-              <input id="homePrice" type="number" value="850000" min="0" step="1000" inputmode="decimal"
-                class="calc-input w-full rounded-2xl border border-slate-300 bg-stone-50 py-4 pl-8 pr-4 text-lg font-bold outline-none transition focus:border-burgundy-600 focus:bg-white focus:ring-4 focus:ring-burgundy-100" />
+              <span class="absolute left-4 top-1/2 -translate-y-1/2 font-bold text-slate-400">$</span>
+              <input id="homePrice" type="number" value="850000" min="0" step="1000" inputmode="decimal" class="calc-input w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-9 pr-4 text-lg font-bold text-slate-900 outline-none transition focus:border-accent-500 focus:bg-white focus:ring-4 focus:ring-accent-100">
             </div>
           </div>
 
           <div>
-            <label for="downPayment" class="mb-2 block text-sm font-bold text-slate-700">Down Payment</label>
+            <label for="downPayment" class="mb-2 block text-sm font-bold text-slate-800">Down Payment</label>
             <div class="relative">
-              <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">$</span>
-              <input id="downPayment" type="number" value="170000" min="0" step="1000" inputmode="decimal"
-                class="calc-input w-full rounded-2xl border border-slate-300 bg-stone-50 py-4 pl-8 pr-4 text-lg font-bold outline-none transition focus:border-burgundy-600 focus:bg-white focus:ring-4 focus:ring-burgundy-100" />
+              <span class="absolute left-4 top-1/2 -translate-y-1/2 font-bold text-slate-400">$</span>
+              <input id="downPayment" type="number" value="170000" min="0" step="1000" inputmode="decimal" class="calc-input w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-9 pr-4 text-lg font-bold text-slate-900 outline-none transition focus:border-accent-500 focus:bg-white focus:ring-4 focus:ring-accent-100">
             </div>
           </div>
 
           <div>
-            <label for="contractRate" class="mb-2 block text-sm font-bold text-slate-700">Contract Interest Rate</label>
+            <label for="contractRate" class="mb-2 block text-sm font-bold text-slate-800">Contract Interest Rate</label>
             <div class="relative">
-              <input id="contractRate" type="number" value="4.50" min="0" step="0.01" inputmode="decimal"
-                class="calc-input w-full rounded-2xl border border-slate-300 bg-stone-50 py-4 pl-4 pr-10 text-lg font-bold outline-none transition focus:border-burgundy-600 focus:bg-white focus:ring-4 focus:ring-burgundy-100" />
-              <span class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400">%</span>
+              <input id="contractRate" type="number" value="4.50" min="0" step="0.01" inputmode="decimal" class="calc-input w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-4 pr-11 text-lg font-bold text-slate-900 outline-none transition focus:border-accent-500 focus:bg-white focus:ring-4 focus:ring-accent-100">
+              <span class="absolute right-4 top-1/2 -translate-y-1/2 font-bold text-slate-400">%</span>
             </div>
           </div>
 
           <div>
-            <label for="annualIncome" class="mb-2 block text-sm font-bold text-slate-700">Annual Household Income</label>
+            <label for="annualIncome" class="mb-2 block text-sm font-bold text-slate-800">Annual Household Income</label>
             <div class="relative">
-              <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">$</span>
-              <input id="annualIncome" type="number" value="180000" min="0" step="1000" inputmode="decimal"
-                class="calc-input w-full rounded-2xl border border-slate-300 bg-stone-50 py-4 pl-8 pr-4 text-lg font-bold outline-none transition focus:border-burgundy-600 focus:bg-white focus:ring-4 focus:ring-burgundy-100" />
+              <span class="absolute left-4 top-1/2 -translate-y-1/2 font-bold text-slate-400">$</span>
+              <input id="annualIncome" type="number" value="180000" min="0" step="1000" inputmode="decimal" class="calc-input w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-9 pr-4 text-lg font-bold text-slate-900 outline-none transition focus:border-accent-500 focus:bg-white focus:ring-4 focus:ring-accent-100">
             </div>
           </div>
 
           <div>
-            <label for="otherDebts" class="mb-2 block text-sm font-bold text-slate-700">Other Monthly Debts</label>
+            <label for="otherDebts" class="mb-2 block text-sm font-bold text-slate-800">Other Monthly Debts</label>
             <div class="relative">
-              <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">$</span>
-              <input id="otherDebts" type="number" value="600" min="0" step="50" inputmode="decimal"
-                class="calc-input w-full rounded-2xl border border-slate-300 bg-stone-50 py-4 pl-8 pr-4 text-lg font-bold outline-none transition focus:border-burgundy-600 focus:bg-white focus:ring-4 focus:ring-burgundy-100" />
+              <span class="absolute left-4 top-1/2 -translate-y-1/2 font-bold text-slate-400">$</span>
+              <input id="otherDebts" type="number" value="600" min="0" step="50" inputmode="decimal" class="calc-input w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-9 pr-4 text-lg font-bold text-slate-900 outline-none transition focus:border-accent-500 focus:bg-white focus:ring-4 focus:ring-accent-100">
             </div>
           </div>
 
-          <details class="rounded-2xl border border-rose-100 bg-rose-50/50 p-4">
-            <summary class="cursor-pointer text-sm font-bold text-burgundy-900">Advanced housing costs</summary>
+          <details class="rounded-2xl border border-accent-100 bg-accent-50/50 p-4">
+            <summary class="cursor-pointer text-sm font-black text-accent-800">Advanced housing costs</summary>
             <p class="mt-2 text-xs leading-5 text-slate-600">
-              GDS normally includes mortgage payment, property taxes, heating costs and 50% of condo fees. Leave as 0 if unknown.
+              GDS often includes mortgage payment, property taxes, heating costs, and 50% of condo or strata fees. Leave unknown fields as 0 for a simplified estimate.
             </p>
+
             <div class="mt-4 grid gap-4 sm:grid-cols-2">
               <div>
                 <label for="propertyTax" class="mb-2 block text-xs font-bold text-slate-700">Annual Property Tax</label>
                 <div class="relative">
                   <span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">$</span>
-                  <input id="propertyTax" type="number" value="0" min="0" step="100" inputmode="decimal"
-                    class="calc-input w-full rounded-xl border border-slate-300 bg-white py-3 pl-7 pr-3 font-semibold outline-none focus:border-burgundy-600 focus:ring-4 focus:ring-burgundy-100" />
+                  <input id="propertyTax" type="number" value="0" min="0" step="100" inputmode="decimal" class="calc-input w-full rounded-xl border border-slate-300 bg-white py-3 pl-7 pr-3 font-semibold outline-none focus:border-accent-600 focus:ring-4 focus:ring-accent-100">
                 </div>
               </div>
+
               <div>
                 <label for="heatingCost" class="mb-2 block text-xs font-bold text-slate-700">Monthly Heating</label>
                 <div class="relative">
                   <span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">$</span>
-                  <input id="heatingCost" type="number" value="0" min="0" step="25" inputmode="decimal"
-                    class="calc-input w-full rounded-xl border border-slate-300 bg-white py-3 pl-7 pr-3 font-semibold outline-none focus:border-burgundy-600 focus:ring-4 focus:ring-burgundy-100" />
+                  <input id="heatingCost" type="number" value="0" min="0" step="25" inputmode="decimal" class="calc-input w-full rounded-xl border border-slate-300 bg-white py-3 pl-7 pr-3 font-semibold outline-none focus:border-accent-600 focus:ring-4 focus:ring-accent-100">
                 </div>
               </div>
+
               <div class="sm:col-span-2">
                 <label for="condoFees" class="mb-2 block text-xs font-bold text-slate-700">Monthly Condo / Strata Fees</label>
                 <div class="relative">
                   <span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">$</span>
-                  <input id="condoFees" type="number" value="0" min="0" step="25" inputmode="decimal"
-                    class="calc-input w-full rounded-xl border border-slate-300 bg-white py-3 pl-7 pr-3 font-semibold outline-none focus:border-burgundy-600 focus:ring-4 focus:ring-burgundy-100" />
+                  <input id="condoFees" type="number" value="0" min="0" step="25" inputmode="decimal" class="calc-input w-full rounded-xl border border-slate-300 bg-white py-3 pl-7 pr-3 font-semibold outline-none focus:border-accent-600 focus:ring-4 focus:ring-accent-100">
                 </div>
               </div>
             </div>
           </details>
 
           <div>
-            <label for="amortization" class="mb-2 block text-sm font-bold text-slate-700">Amortization</label>
-            <select id="amortization"
-              class="calc-input w-full rounded-2xl border border-slate-300 bg-stone-50 px-4 py-4 font-bold outline-none transition focus:border-burgundy-600 focus:bg-white focus:ring-4 focus:ring-burgundy-100">
+            <label for="amortization" class="mb-2 block text-sm font-bold text-slate-800">Amortization</label>
+            <select id="amortization" class="calc-input w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-4 font-bold outline-none transition focus:border-accent-500 focus:bg-white focus:ring-4 focus:ring-accent-100">
               <option value="25" selected>25 Years</option>
               <option value="30">30 Years</option>
               <option value="20">20 Years</option>
               <option value="15">15 Years</option>
             </select>
           </div>
-        </div>
 
-        <div class="mt-6 rounded-2xl border border-amber-200 bg-amber-50 p-4 text-xs leading-5 text-amber-900">
-          <strong>Note:</strong> This calculator is an educational estimate. Lenders may use additional rules, income adjustments,
-          credit checks, mortgage insurance rules and property-specific costs.
-        </div>
-      </aside>
+          <div class="mobile-button-grid grid grid-cols-1 gap-3 sm:grid-cols-2">
+            <button id="copyResultBtn" type="button" class="rounded-2xl bg-accent-600 px-4 py-3 text-sm font-black text-white shadow-lg shadow-accent-600/20 transition hover:bg-accent-700 active:scale-[0.98]">Copy Result</button>
+            <button id="resetBtn" type="button" class="rounded-2xl bg-white px-4 py-3 text-sm font-black text-slate-800 ring-1 ring-slate-300 transition hover:bg-slate-100 active:scale-[0.98]">Reset</button>
+          </div>
 
-      <section class="rounded-3xl border border-rose-100 bg-white p-5 shadow-xl shadow-rose-950/5 sm:p-8">
-        <div id="statusCard" class="rounded-3xl bg-slate-100 p-6 text-center">
-          <p id="statusLabel" class="text-sm font-extrabold uppercase tracking-[0.25em] text-slate-500">Result</p>
-          <h2 id="statusTitle" class="mt-2 text-3xl font-black tracking-tight sm:text-5xl">Calculating...</h2>
-          <p id="statusSubtitle" class="mt-3 text-sm leading-6 text-slate-600"></p>
-        </div>
+          <div id="statusBox" class="rounded-2xl bg-accent-50 p-4 text-sm font-bold text-accent-700 ring-1 ring-accent-100">Ready</div>
 
-        <div class="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-          <div class="rounded-2xl border border-slate-100 bg-stone-50 p-4">
-            <p class="text-xs font-bold uppercase tracking-wide text-slate-500">Qualifying Rate</p>
-            <p id="qualifyingRate" class="mt-2 text-2xl font-black text-burgundy-800">-</p>
-          </div>
-          <div class="rounded-2xl border border-slate-100 bg-stone-50 p-4">
-            <p class="text-xs font-bold uppercase tracking-wide text-slate-500">Mortgage Amount</p>
-            <p id="mortgageAmount" class="mt-2 text-2xl font-black text-slate-950">-</p>
-          </div>
-          <div class="rounded-2xl border border-slate-100 bg-stone-50 p-4">
-            <p class="text-xs font-bold uppercase tracking-wide text-slate-500">Stress Payment</p>
-            <p id="stressPayment" class="mt-2 text-2xl font-black text-slate-950">-</p>
-          </div>
-          <div class="rounded-2xl border border-slate-100 bg-stone-50 p-4">
-            <p class="text-xs font-bold uppercase tracking-wide text-slate-500">Minimum Down</p>
-            <p id="minimumDown" class="mt-2 text-2xl font-black text-slate-950">-</p>
+          <div class="rounded-2xl border border-amber-200 bg-amber-50 p-4 text-xs leading-5 text-amber-900">
+            This calculator is an educational estimate. Lenders may apply additional underwriting rules, income adjustments, mortgage insurance criteria, credit checks, and property-specific costs.
           </div>
         </div>
+      </div>
 
-        <div id="warningBox" class="mt-6 hidden rounded-2xl border border-red-200 bg-red-50 p-4 text-sm font-semibold leading-6 text-red-800"></div>
+      <div class="space-y-6 lg:col-span-7">
+        <section class="mobile-card rounded-3xl bg-white p-5 shadow-soft ring-1 ring-slate-200 sm:p-8">
+          <div id="statusCard" class="rounded-3xl bg-slate-100 p-6 text-center">
+            <p id="statusLabel" class="text-sm font-black uppercase tracking-[0.25em] text-slate-500">Result</p>
+            <h2 id="statusTitle" class="safe-break mt-2 text-3xl font-black tracking-tight sm:text-5xl">Calculating...</h2>
+            <p id="statusSubtitle" class="mt-3 text-sm leading-6 text-slate-600"></p>
+          </div>
 
-        <div class="mt-8 space-y-6">
-          <div>
-            <div class="flex items-end justify-between gap-4">
-              <div>
-                <h3 class="text-lg font-black text-slate-950">GDS Ratio</h3>
-                <p class="text-sm text-slate-500">Gross Debt Service guideline: under 39%</p>
+          <div class="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+            <div class="rounded-2xl border border-slate-100 bg-slate-50 p-4">
+              <p class="text-xs font-black uppercase tracking-wide text-slate-500">Qualifying Rate</p>
+              <p id="qualifyingRate" class="mt-2 text-2xl font-black text-accent-800">-</p>
+            </div>
+            <div class="rounded-2xl border border-slate-100 bg-slate-50 p-4">
+              <p class="text-xs font-black uppercase tracking-wide text-slate-500">Mortgage Amount</p>
+              <p id="mortgageAmount" class="safe-break mt-2 text-2xl font-black text-slate-950">-</p>
+            </div>
+            <div class="rounded-2xl border border-slate-100 bg-slate-50 p-4">
+              <p class="text-xs font-black uppercase tracking-wide text-slate-500">Stress Payment</p>
+              <p id="stressPayment" class="safe-break mt-2 text-2xl font-black text-slate-950">-</p>
+            </div>
+            <div class="rounded-2xl border border-slate-100 bg-slate-50 p-4">
+              <p class="text-xs font-black uppercase tracking-wide text-slate-500">Minimum Down</p>
+              <p id="minimumDown" class="safe-break mt-2 text-2xl font-black text-slate-950">-</p>
+            </div>
+          </div>
+
+          <div id="warningBox" class="mt-6 hidden rounded-2xl border border-red-200 bg-red-50 p-4 text-sm font-semibold leading-6 text-red-800"></div>
+
+          <div class="mt-8 space-y-6">
+            <div>
+              <div class="ratio-row flex items-end justify-between gap-4">
+                <div>
+                  <h2 class="text-lg font-black text-slate-950">GDS Ratio</h2>
+                  <p class="text-sm text-slate-500">Gross Debt Service guideline: under 39%</p>
+                </div>
+                <p id="gdsValue" class="text-3xl font-black text-slate-950">-</p>
               </div>
-              <p id="gdsValue" class="text-3xl font-black text-slate-950">-</p>
-            </div>
-            <div class="mt-3 h-4 overflow-hidden rounded-full bg-slate-200">
-              <div id="gdsBar" class="h-full rounded-full bg-burgundy-700 transition-all duration-300" style="width:0%"></div>
-            </div>
-            <div class="mt-1 flex justify-between text-xs font-semibold text-slate-400">
-              <span>0%</span><span>39% limit</span><span>60%+</span>
-            </div>
-          </div>
-
-          <div>
-            <div class="flex items-end justify-between gap-4">
-              <div>
-                <h3 class="text-lg font-black text-slate-950">TDS Ratio</h3>
-                <p class="text-sm text-slate-500">Total Debt Service guideline: under 44%</p>
+              <div class="mt-3 h-4 overflow-hidden rounded-full bg-slate-200">
+                <div id="gdsBar" class="h-full rounded-full bg-accent-700 transition-all duration-300" style="width:0%"></div>
               </div>
-              <p id="tdsValue" class="text-3xl font-black text-slate-950">-</p>
+              <div class="mt-1 flex justify-between text-xs font-semibold text-slate-400">
+                <span>0%</span><span>39% limit</span><span>60%+</span>
+              </div>
             </div>
-            <div class="mt-3 h-4 overflow-hidden rounded-full bg-slate-200">
-              <div id="tdsBar" class="h-full rounded-full bg-burgundy-700 transition-all duration-300" style="width:0%"></div>
-            </div>
-            <div class="mt-1 flex justify-between text-xs font-semibold text-slate-400">
-              <span>0%</span><span>44% limit</span><span>60%+</span>
+
+            <div>
+              <div class="ratio-row flex items-end justify-between gap-4">
+                <div>
+                  <h2 class="text-lg font-black text-slate-950">TDS Ratio</h2>
+                  <p class="text-sm text-slate-500">Total Debt Service guideline: under 44%</p>
+                </div>
+                <p id="tdsValue" class="text-3xl font-black text-slate-950">-</p>
+              </div>
+              <div class="mt-3 h-4 overflow-hidden rounded-full bg-slate-200">
+                <div id="tdsBar" class="h-full rounded-full bg-accent-700 transition-all duration-300" style="width:0%"></div>
+              </div>
+              <div class="mt-1 flex justify-between text-xs font-semibold text-slate-400">
+                <span>0%</span><span>44% limit</span><span>60%+</span>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="mt-8 grid gap-4 sm:grid-cols-2">
-          <div class="rounded-2xl border border-slate-100 bg-white p-5 shadow-sm">
-            <h3 class="font-black text-slate-950">Debt Service Breakdown</h3>
-            <dl class="mt-4 space-y-3 text-sm">
-              <div class="flex justify-between gap-4"><dt class="text-slate-500">Monthly income</dt><dd id="monthlyIncome" class="font-bold text-slate-900">-</dd></div>
-              <div class="flex justify-between gap-4"><dt class="text-slate-500">Stress-tested mortgage</dt><dd id="breakMortgage" class="font-bold text-slate-900">-</dd></div>
-              <div class="flex justify-between gap-4"><dt class="text-slate-500">Housing costs in GDS</dt><dd id="breakHousing" class="font-bold text-slate-900">-</dd></div>
-              <div class="flex justify-between gap-4"><dt class="text-slate-500">Other monthly debts</dt><dd id="breakDebts" class="font-bold text-slate-900">-</dd></div>
-            </dl>
+          <div class="mt-8 grid gap-4 sm:grid-cols-2">
+            <div class="rounded-2xl border border-slate-100 bg-white p-5 shadow-sm">
+              <h2 class="font-black text-slate-950">Debt Service Breakdown</h2>
+              <dl class="mt-4 space-y-3 text-sm">
+                <div class="flex justify-between gap-4"><dt class="text-slate-500">Monthly income</dt><dd id="monthlyIncome" class="font-bold text-slate-900">-</dd></div>
+                <div class="flex justify-between gap-4"><dt class="text-slate-500">Stress-tested mortgage</dt><dd id="breakMortgage" class="font-bold text-slate-900">-</dd></div>
+                <div class="flex justify-between gap-4"><dt class="text-slate-500">Housing costs in GDS</dt><dd id="breakHousing" class="font-bold text-slate-900">-</dd></div>
+                <div class="flex justify-between gap-4"><dt class="text-slate-500">Other monthly debts</dt><dd id="breakDebts" class="font-bold text-slate-900">-</dd></div>
+              </dl>
+            </div>
+
+            <div class="rounded-2xl border border-slate-100 bg-white p-5 shadow-sm">
+              <h2 class="font-black text-slate-950">Rate Logic</h2>
+              <dl class="mt-4 space-y-3 text-sm">
+                <div class="flex justify-between gap-4"><dt class="text-slate-500">Contract rate</dt><dd id="contractRateOut" class="font-bold text-slate-900">-</dd></div>
+                <div class="flex justify-between gap-4"><dt class="text-slate-500">Contract + 2%</dt><dd id="bufferRateOut" class="font-bold text-slate-900">-</dd></div>
+                <div class="flex justify-between gap-4"><dt class="text-slate-500">Federal floor</dt><dd class="font-bold text-slate-900">5.25%</dd></div>
+                <div class="flex justify-between gap-4"><dt class="text-slate-500">Down payment %</dt><dd id="downPaymentPercent" class="font-bold text-slate-900">-</dd></div>
+              </dl>
+            </div>
           </div>
-
-          <div class="rounded-2xl border border-slate-100 bg-white p-5 shadow-sm">
-            <h3 class="font-black text-slate-950">Rate Logic</h3>
-            <dl class="mt-4 space-y-3 text-sm">
-              <div class="flex justify-between gap-4"><dt class="text-slate-500">Contract rate</dt><dd id="contractRateOut" class="font-bold text-slate-900">-</dd></div>
-              <div class="flex justify-between gap-4"><dt class="text-slate-500">Contract + 2%</dt><dd id="bufferRateOut" class="font-bold text-slate-900">-</dd></div>
-              <div class="flex justify-between gap-4"><dt class="text-slate-500">Federal floor</dt><dd class="font-bold text-slate-900">5.25%</dd></div>
-              <div class="flex justify-between gap-4"><dt class="text-slate-500">Down payment %</dt><dd id="downPaymentPercent" class="font-bold text-slate-900">-</dd></div>
-            </dl>
-          </div>
-        </div>
-
-        <div class="mt-6 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-rose-200 bg-rose-50/40 text-sm text-slate-400">
-          AdSense Responsive Ad Area - Below Result
-        </div>
-
-        <section class="mt-10 space-y-5 rounded-3xl border border-slate-100 bg-stone-50 p-6 text-sm leading-7 text-slate-600">
-          <h2 class="text-2xl font-black text-slate-950">How This Canada Mortgage Stress Test Calculator Works</h2>
-          <p>
-            The mortgage stress test is designed to check whether a borrower could still afford the mortgage if interest rates
-            were higher than the rate offered by the lender. Instead of qualifying only at the contract rate, the calculator uses
-            a higher qualifying rate and then measures the borrower’s housing costs and total debts against monthly household income.
-          </p>
-          <h3 class="text-lg font-black text-slate-900">1. Qualifying Rate</h3>
-          <p>
-            The qualifying rate is the greater of the contract mortgage rate plus 2 percentage points or the 5.25% federal floor.
-            For example, if the contract rate is 4.50%, the stress-test rate becomes 6.50% because 4.50% + 2.00% is higher than 5.25%.
-          </p>
-          <h3 class="text-lg font-black text-slate-900">2. Minimum Down Payment</h3>
-          <p>
-            The minimum down payment depends on the purchase price. Homes up to $500,000 require at least 5% down.
-            Homes from $500,000 to below $1.5 million use 5% on the first $500,000 and 10% on the amount above $500,000.
-            Homes priced at $1.5 million or more generally require at least 20% down.
-          </p>
-          <h3 class="text-lg font-black text-slate-900">3. GDS and TDS</h3>
-          <p>
-            GDS compares monthly housing costs against monthly income. TDS compares monthly housing costs plus other monthly debts
-            against monthly income. This calculator uses 39% for GDS and 44% for TDS as practical guideline thresholds, but individual
-            lenders may apply different internal policies.
-          </p>
         </section>
 
-        <p class="mt-5 text-xs leading-5 text-slate-500">
-          Disclaimer: This calculator is for general educational and informational purposes only and is not mortgage, legal,
-          financial, tax or lending advice. Actual approval depends on lender underwriting, credit score, income verification,
-          mortgage insurance eligibility, property taxes, heating costs, strata fees, amortization rules and other factors.
-        </p>
-      </section>
+        <div class="ad-box">Ad Area Below Main Tool and Result Section</div>
+
+        <section class="mobile-card rounded-3xl bg-white p-5 shadow-sm ring-1 ring-slate-200 sm:p-8">
+          <h2 class="text-2xl font-black tracking-tight text-slate-950">What This Calculator Shows</h2>
+          <div class="mt-5 grid grid-cols-1 gap-4 md:grid-cols-3">
+            <article class="rounded-2xl bg-slate-50 p-5 ring-1 ring-slate-200">
+              <h3 class="font-black text-slate-950">Qualifying Rate</h3>
+              <p class="mt-2 text-sm leading-6 text-slate-600">The stress-test rate used to estimate qualification, based on contract rate plus 2% or 5.25%, whichever is higher.</p>
+            </article>
+            <article class="rounded-2xl bg-slate-50 p-5 ring-1 ring-slate-200">
+              <h3 class="font-black text-slate-950">GDS Ratio</h3>
+              <p class="mt-2 text-sm leading-6 text-slate-600">A housing cost ratio comparing mortgage and housing expenses with gross monthly income.</p>
+            </article>
+            <article class="rounded-2xl bg-slate-50 p-5 ring-1 ring-slate-200">
+              <h3 class="font-black text-slate-950">TDS Ratio</h3>
+              <p class="mt-2 text-sm leading-6 text-slate-600">A total debt ratio comparing housing costs plus other monthly debts with gross monthly income.</p>
+            </article>
+          </div>
+        </section>
+      </div>
     </section>
 
-    <div class="mt-8 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-rose-200 bg-white/80 text-sm text-slate-400">
-      AdSense Responsive Ad Area - Bottom
-    </div>
+    <section class="mt-8 rounded-3xl bg-white p-5 shadow-sm ring-1 ring-slate-200 sm:p-8">
+      <div class="mx-auto max-w-4xl">
+        <span class="inline-flex rounded-full bg-accent-50 px-4 py-2 text-sm font-black text-accent-700 ring-1 ring-accent-100">Complete Guide</span>
+        <h2 class="mt-5 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">
+          Canada Mortgage Stress Test Calculator Guide for Home Buyers
+        </h2>
+
+        <p class="mt-5 text-base leading-8 text-slate-600">
+          The NodnWebTools Canada Mortgage Stress Test Calculator is a free browser-based mortgage affordability tool designed for Canadian home buyers, first-time buyers, homeowners planning to move, and borrowers who want to understand how a mortgage application may be evaluated. Buying a home in Canada often involves more than comparing the posted mortgage rate and monthly payment. Lenders also test whether a borrower could handle a higher interest rate. This process is commonly known as the mortgage stress test. The goal is to help estimate whether income, down payment, debt obligations, and housing costs may fit common qualification guidelines.
+        </p>
+
+        <p class="mt-5 text-base leading-8 text-slate-600">
+          This calculator estimates several important mortgage numbers in one place: the qualifying rate, minimum down payment, estimated mortgage amount, stress-tested monthly mortgage payment, Gross Debt Service ratio, Total Debt Service ratio, housing cost breakdown, and pass or fail guideline result. The tool is designed to be simple enough for quick planning but detailed enough to show the numbers that matter. It is useful when comparing home prices, testing different down payment amounts, estimating the effect of higher rates, reducing monthly debts, or checking how property taxes and condo fees may change affordability.
+        </p>
+
+        <p class="mt-5 text-base leading-8 text-slate-600">
+          The calculator uses the common Canadian stress-test logic of the greater of the mortgage contract rate plus 2 percentage points or 5.25%. It also uses practical GDS and TDS guideline thresholds of 39% and 44%. These are widely used affordability reference points, but actual approval is never guaranteed by a calculator. Every lender can apply additional underwriting rules, insurance requirements, income verification standards, credit score checks, debt calculations, property-specific costs, and risk policies.
+        </p>
+
+        <div class="ad-box my-8">Middle Content Ad Area Inside the SEO Article Section</div>
+
+        <h2 id="how-to-use" class="mt-10 text-2xl font-black tracking-tight text-slate-950">How to Use the Canada Mortgage Stress Test Calculator</h2>
+        <p class="mt-4 text-base leading-8 text-slate-600">
+          Start by entering the home price. This is the purchase price of the property you want to test. Next, enter the down payment amount. The calculator compares your down payment against the estimated minimum down payment rule. Then enter your contract interest rate, which is the rate you expect from a lender or broker. The calculator adds the stress-test buffer and compares it with the federal qualifying floor. The higher rate becomes the qualifying rate used to estimate the stress-tested mortgage payment.
+        </p>
+
+        <p class="mt-5 text-base leading-8 text-slate-600">
+          After entering price and rate details, add your annual household income and other monthly debts. Other debts may include car loans, student loans, credit card minimum payments, lines of credit, personal loans, support payments, or other recurring debt obligations. If you know your property tax, heating cost, or condo fees, open the advanced housing cost section and enter those numbers. These fields can make the GDS and TDS estimate more realistic because housing affordability is not based on the mortgage payment alone.
+        </p>
+
+        <p class="mt-5 text-base leading-8 text-slate-600">
+          Finally, choose an amortization period. A longer amortization usually lowers the monthly payment, but eligibility can depend on mortgage type, down payment, insurance rules, and borrower profile. The calculator updates automatically as you type. If the down payment is below the estimated minimum or if GDS or TDS is above the guideline, the result panel displays warnings. You can then test a lower home price, higher down payment, lower debts, higher income, or different amortization to see how the result changes.
+        </p>
+
+        <div class="mt-8 grid grid-cols-1 gap-5 md:grid-cols-3">
+          <article class="rounded-2xl bg-slate-50 p-5 ring-1 ring-slate-200">
+            <h3 class="text-lg font-black text-slate-950">Step 1: Enter Purchase Details</h3>
+            <p class="mt-3 text-sm leading-7 text-slate-600">Add home price, down payment, contract rate, and amortization to estimate mortgage size and qualifying payment.</p>
+          </article>
+          <article class="rounded-2xl bg-slate-50 p-5 ring-1 ring-slate-200">
+            <h3 class="text-lg font-black text-slate-950">Step 2: Add Income and Debts</h3>
+            <p class="mt-3 text-sm leading-7 text-slate-600">Enter annual household income and monthly debt payments to calculate GDS and TDS ratios.</p>
+          </article>
+          <article class="rounded-2xl bg-slate-50 p-5 ring-1 ring-slate-200">
+            <h3 class="text-lg font-black text-slate-950">Step 3: Review Stress Test Result</h3>
+            <p class="mt-3 text-sm leading-7 text-slate-600">Check pass or fail guideline status, warnings, qualifying rate, monthly payment, and down payment requirement.</p>
+          </article>
+        </div>
+
+        <h2 class="mt-12 text-2xl font-black tracking-tight text-slate-950">What Is the Canadian Mortgage Stress Test?</h2>
+        <p class="mt-4 text-base leading-8 text-slate-600">
+          The Canadian mortgage stress test is a qualification method used to determine whether a borrower could still afford a mortgage if interest rates were higher than the contract rate. Instead of qualifying only at the rate offered by the lender, the borrower is tested at a higher qualifying rate. This creates a buffer against future rate increases, renewal risk, income pressure, or changes in household expenses. The test is especially important in Canada because many mortgages renew after a shorter term than the full amortization period, meaning borrowers may face new rates at renewal.
+        </p>
+
+        <p class="mt-5 text-base leading-8 text-slate-600">
+          The stress test does not mean your actual payment will be based on the higher qualifying rate. Your real payment is normally based on the contract rate and mortgage terms. However, the qualifying payment is used for affordability calculations. This distinction matters. A buyer may feel comfortable with the payment at the offered rate, but if the stress-tested payment pushes GDS or TDS above lender guidelines, the application may become more difficult.
+        </p>
+
+        <h2 class="mt-12 text-2xl font-black tracking-tight text-slate-950">Qualifying Rate Explained</h2>
+        <p class="mt-4 text-base leading-8 text-slate-600">
+          The qualifying rate is the interest rate used to calculate the stress-tested mortgage payment. This calculator uses the greater of the mortgage contract rate plus 2 percentage points or 5.25%. For example, if the contract rate is 4.50%, adding 2 percentage points gives 6.50%. Since 6.50% is higher than 5.25%, the calculator uses 6.50% as the qualifying rate. If the contract rate were 2.75%, adding 2 percentage points gives 4.75%, so the 5.25% floor would be higher and would be used instead.
+        </p>
+
+        <p class="mt-5 text-base leading-8 text-slate-600">
+          The qualifying rate has a large effect on affordability because the stress-tested payment is higher when the qualifying rate is higher. A buyer may qualify for a smaller mortgage when rates rise, even if their income and down payment stay the same. This is why mortgage affordability can change quickly when rate conditions change. The calculator makes this visible by updating the qualifying rate, payment, GDS, and TDS in real time.
+        </p>
+
+        <div class="ad-box my-8">Bottom Content Ad Area Before FAQ</div>
+
+        <h2 class="mt-12 text-2xl font-black tracking-tight text-slate-950">Minimum Down Payment Rules in Canada</h2>
+        <p class="mt-4 text-base leading-8 text-slate-600">
+          Down payment rules are a major part of Canadian mortgage planning. For homes priced at $500,000 or less, the minimum down payment is generally 5% of the purchase price. For homes priced above $500,000 and below $1.5 million, the minimum is generally 5% on the first $500,000 plus 10% on the portion above $500,000. Homes priced at $1.5 million or more generally require at least 20% down, and mortgage loan insurance is not available for those purchases.
+        </p>
+
+        <p class="mt-5 text-base leading-8 text-slate-600">
+          Minimum down payment is only one part of affordability. A buyer with the minimum down payment may still need enough income to satisfy GDS and TDS ratios. A buyer with a larger down payment may reduce the mortgage amount and lower the stress-tested payment, which can improve debt service ratios. This is why increasing the down payment can sometimes help a borrower qualify even when income stays the same.
+        </p>
+
+        <h2 class="mt-12 text-2xl font-black tracking-tight text-slate-950">GDS Ratio and TDS Ratio Explained</h2>
+        <p class="mt-4 text-base leading-8 text-slate-600">
+          GDS stands for Gross Debt Service. It compares monthly housing costs to gross monthly household income. Housing costs commonly include the stress-tested mortgage payment, property taxes, heating costs, and 50% of condo or strata fees. This calculator uses a 39% guideline for GDS. If the ratio is above the guideline, housing costs may be considered high relative to income.
+        </p>
+
+        <p class="mt-5 text-base leading-8 text-slate-600">
+          TDS stands for Total Debt Service. It compares monthly housing costs plus other monthly debts to gross monthly income. Other debts may include car payments, student loans, credit card minimum payments, lines of credit, personal loans, or other recurring obligations. This calculator uses a 44% guideline for TDS. TDS is often more restrictive for borrowers who already carry significant debt. Reducing monthly debt obligations can improve TDS and may increase estimated affordability.
+        </p>
+
+        <div class="table-wrap mt-8 rounded-2xl border border-slate-200">
+          <table class="w-full text-left text-sm">
+            <thead class="bg-slate-100 text-slate-700">
+              <tr>
+                <th class="px-4 py-3 font-black">Metric</th>
+                <th class="px-4 py-3 font-black">What It Measures</th>
+                <th class="px-4 py-3 font-black">Common Guideline</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200 bg-white">
+              <tr>
+                <td class="px-4 py-3 font-bold text-slate-900">Qualifying Rate</td>
+                <td class="px-4 py-3">Stress-test rate used to calculate mortgage affordability</td>
+                <td class="px-4 py-3">Greater of contract rate + 2% or 5.25%</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-3 font-bold text-slate-900">GDS Ratio</td>
+                <td class="px-4 py-3">Housing costs compared with gross monthly income</td>
+                <td class="px-4 py-3">Often around 39%</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-3 font-bold text-slate-900">TDS Ratio</td>
+                <td class="px-4 py-3">Housing costs plus other debts compared with gross monthly income</td>
+                <td class="px-4 py-3">Often around 44%</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-3 font-bold text-slate-900">Minimum Down Payment</td>
+                <td class="px-4 py-3">Required buyer contribution based on purchase price</td>
+                <td class="px-4 py-3">Depends on price tier and insurance eligibility</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 class="mt-12 text-2xl font-black tracking-tight text-slate-950">Popular Uses for This Canada Mortgage Calculator</h2>
+        <div class="mt-8 grid grid-cols-1 gap-5 md:grid-cols-2">
+          <article class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
+            <h3 class="text-xl font-black text-slate-950">First-Time Home Buyer Planning</h3>
+            <p class="mt-3 text-sm leading-7 text-slate-600">Estimate whether a target home price fits your income, down payment, debts, mortgage rate, and amortization before speaking with a lender.</p>
+          </article>
+          <article class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
+            <h3 class="text-xl font-black text-slate-950">Mortgage Pre-Approval Preparation</h3>
+            <p class="mt-3 text-sm leading-7 text-slate-600">Test different scenarios before a pre-approval appointment so you can understand how GDS, TDS, and qualifying rate affect affordability.</p>
+          </article>
+          <article class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
+            <h3 class="text-xl font-black text-slate-950">Rate Sensitivity Testing</h3>
+            <p class="mt-3 text-sm leading-7 text-slate-600">Compare how a higher contract rate increases the stress-tested payment and may reduce the mortgage amount that fits guideline ratios.</p>
+          </article>
+          <article class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
+            <h3 class="text-xl font-black text-slate-950">Debt Reduction Strategy</h3>
+            <p class="mt-3 text-sm leading-7 text-slate-600">See whether reducing car loans, credit card payments, or other debts improves TDS enough to strengthen your mortgage profile.</p>
+          </article>
+        </div>
+
+        <h2 class="mt-12 text-2xl font-black tracking-tight text-slate-950">Why Property Taxes, Heating, and Condo Fees Matter</h2>
+        <p class="mt-4 text-base leading-8 text-slate-600">
+          Mortgage affordability is not based only on principal and interest. Property taxes, heating costs, and condo or strata fees can materially affect GDS and TDS. A condo with high monthly fees may qualify differently from a freehold property at the same purchase price. A detached home with higher heating costs and property taxes may create a larger housing cost total. Adding these values makes the estimate more realistic.
+        </p>
+
+        <p class="mt-5 text-base leading-8 text-slate-600">
+          Many buyers initially compare homes by purchase price only. However, two homes with the same price can have different monthly affordability profiles. One property may have lower taxes but higher heating. Another may have condo fees, special assessments, or utility costs. A careful buyer should consider the full monthly housing cost, not only the mortgage payment.
+        </p>
+
+        <h2 class="mt-12 text-2xl font-black tracking-tight text-slate-950">How to Improve a Mortgage Stress Test Result</h2>
+        <p class="mt-4 text-base leading-8 text-slate-600">
+          If the calculator shows a fail result, there are several possible ways to improve the estimate. Increasing the down payment reduces the mortgage amount and stress-tested payment. Lowering the purchase price can also reduce the payment and improve GDS and TDS. Reducing monthly debts can improve TDS. Increasing income can improve both ratios. Shopping for a lower contract rate may reduce the qualifying rate if the contract rate plus 2% is the controlling rate.
+        </p>
+
+        <p class="mt-5 text-base leading-8 text-slate-600">
+          Another strategy is to review the type of property being considered. Lower property taxes, lower heating costs, or lower condo fees can improve debt service ratios. Buyers should also consider their comfort level, not only qualification. Passing a stress test does not automatically mean a mortgage is comfortable. A household should also consider emergency savings, childcare, transportation, insurance, groceries, maintenance, retirement savings, and lifestyle costs.
+        </p>
+
+        <h2 class="mt-12 text-2xl font-black tracking-tight text-slate-950">Stress Test Estimates Are Not Mortgage Approval</h2>
+        <p class="mt-4 text-base leading-8 text-slate-600">
+          This calculator provides an educational estimate only. Real mortgage approval depends on more than these ratios. Lenders may review employment type, income stability, credit history, credit score, debt details, down payment source, property type, appraised value, mortgage insurance eligibility, amortization rules, documentation, co-borrower details, and internal risk policies. Self-employed borrowers, variable income earners, commission-based workers, newcomers, investors, or buyers with complex finances may be assessed differently.
+        </p>
+
+        <p class="mt-5 text-base leading-8 text-slate-600">
+          Use this tool as a planning step before speaking with a mortgage broker, lender, or financial advisor. It can help you understand the moving parts and ask better questions, but it should not replace a professional mortgage assessment. If you are actively buying a home, get pre-approved and confirm all numbers with a qualified mortgage professional before making an offer.
+        </p>
+      </div>
+    </section>
+
+    <section id="faq" class="mt-8 rounded-3xl bg-white p-5 shadow-sm ring-1 ring-slate-200 sm:p-8">
+      <div class="mx-auto max-w-4xl">
+        <span class="inline-flex rounded-full bg-slate-100 px-4 py-2 text-sm font-black text-slate-700 ring-1 ring-slate-200">Frequently Asked Questions</span>
+        <h2 class="mt-5 text-3xl font-black tracking-tight text-slate-950">Canada Mortgage Stress Test FAQ</h2>
+
+        <div class="mt-8 space-y-5">
+          <article class="rounded-2xl bg-slate-50 p-5 ring-1 ring-slate-200">
+            <h3 class="text-lg font-black text-slate-950">What is the mortgage stress test in Canada?</h3>
+            <p class="mt-3 text-sm leading-7 text-slate-600">It is a mortgage qualification method that tests affordability at a higher qualifying rate instead of only the contract mortgage rate.</p>
+          </article>
+
+          <article class="rounded-2xl bg-slate-50 p-5 ring-1 ring-slate-200">
+            <h3 class="text-lg font-black text-slate-950">What qualifying rate does this calculator use?</h3>
+            <p class="mt-3 text-sm leading-7 text-slate-600">It uses the greater of the contract mortgage rate plus 2 percentage points or 5.25%.</p>
+          </article>
+
+          <article class="rounded-2xl bg-slate-50 p-5 ring-1 ring-slate-200">
+            <h3 class="text-lg font-black text-slate-950">What are GDS and TDS?</h3>
+            <p class="mt-3 text-sm leading-7 text-slate-600">GDS compares housing costs with gross income. TDS compares housing costs plus other monthly debts with gross income.</p>
+          </article>
+
+          <article class="rounded-2xl bg-slate-50 p-5 ring-1 ring-slate-200">
+            <h3 class="text-lg font-black text-slate-950">Does a pass result mean I will be approved?</h3>
+            <p class="mt-3 text-sm leading-7 text-slate-600">No. A pass result is only an estimate based on simplified inputs. Actual approval depends on lender underwriting and many other factors.</p>
+          </article>
+
+          <article class="rounded-2xl bg-slate-50 p-5 ring-1 ring-slate-200">
+            <h3 class="text-lg font-black text-slate-950">Why does a larger down payment help?</h3>
+            <p class="mt-3 text-sm leading-7 text-slate-600">A larger down payment lowers the mortgage amount, which can reduce the stress-tested monthly payment and improve GDS and TDS ratios.</p>
+          </article>
+
+          <article class="rounded-2xl bg-slate-50 p-5 ring-1 ring-slate-200">
+            <h3 class="text-lg font-black text-slate-950">Should I include condo fees?</h3>
+            <p class="mt-3 text-sm leading-7 text-slate-600">Yes, if known. Many mortgage calculations include 50% of condo or strata fees in housing cost calculations.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="mt-8 rounded-3xl bg-slate-950 p-5 text-white shadow-sm sm:p-8">
+      <div class="mx-auto max-w-4xl">
+        <h2 class="text-2xl font-black tracking-tight">Legal Disclaimer</h2>
+        <div class="mt-5 space-y-4 text-sm leading-7 text-slate-300">
+          <p>
+            This Canada Mortgage Stress Test Calculator is provided for general educational and informational purposes only. It uses simplified assumptions and guideline thresholds based on user-entered information. It is not mortgage advice, lending advice, financial advice, legal advice, tax advice, real estate advice, or a mortgage approval decision.
+          </p>
+          <p>
+            Actual mortgage qualification depends on lender underwriting, credit score, income verification, employment type, property details, mortgage insurance eligibility, down payment source, amortization rules, debt treatment, interest rate type, documentation, taxes, heating costs, condo fees, and other factors. Rules and lender policies can change.
+          </p>
+          <p>
+            NodnWebTools and its operators are not responsible for mortgage denial, inaccurate assumptions, financial loss, missed purchase opportunities, calculation errors, or decisions made based on this tool. Before making a home purchase or financing decision, consult a qualified mortgage broker, lender, accountant, lawyer, or financial professional.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="ad-box mt-8">Bottom Ad Area Near the End of the Page</div>
   </main>
 
+  <footer class="mt-10 border-t border-slate-200 bg-white">
+    <div class="mx-auto flex w-full max-w-7xl flex-col gap-3 px-4 py-8 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
+      <p>© <span id="yearText"></span> NodnWebTools. All rights reserved.</p>
+      <a href="https://nodntools.com" class="font-semibold text-accent-700 hover:text-accent-800">Visit Home</a>
+    </div>
+  </footer>
+
   <script>
-    const FLOOR_RATE = 5.25;
-    const BUFFER_RATE = 2.00;
-    const GDS_LIMIT = 39;
-    const TDS_LIMIT = 44;
+    document.addEventListener("DOMContentLoaded", function () {
+      const FLOOR_RATE = 5.25;
+      const BUFFER_RATE = 2.00;
+      const GDS_LIMIT = 39;
+      const TDS_LIMIT = 44;
 
-    const ids = [
-      "homePrice", "downPayment", "contractRate", "annualIncome", "otherDebts",
-      "propertyTax", "heatingCost", "condoFees", "amortization"
-    ];
+      const ids = [
+        "homePrice", "downPayment", "contractRate", "annualIncome", "otherDebts",
+        "propertyTax", "heatingCost", "condoFees", "amortization"
+      ];
 
-    const money = new Intl.NumberFormat("en-CA", {
-      style: "currency",
-      currency: "CAD",
-      maximumFractionDigits: 0
+      const money = new Intl.NumberFormat("en-CA", {
+        style: "currency",
+        currency: "CAD",
+        maximumFractionDigits: 0
+      });
+
+      const moneyCents = new Intl.NumberFormat("en-CA", {
+        style: "currency",
+        currency: "CAD",
+        maximumFractionDigits: 2
+      });
+
+      const homePriceInput = document.getElementById("homePrice");
+      const downPaymentInput = document.getElementById("downPayment");
+      const contractRateInput = document.getElementById("contractRate");
+      const annualIncomeInput = document.getElementById("annualIncome");
+      const otherDebtsInput = document.getElementById("otherDebts");
+      const propertyTaxInput = document.getElementById("propertyTax");
+      const heatingCostInput = document.getElementById("heatingCost");
+      const condoFeesInput = document.getElementById("condoFees");
+      const amortizationInput = document.getElementById("amortization");
+
+      const copyResultBtn = document.getElementById("copyResultBtn");
+      const resetBtn = document.getElementById("resetBtn");
+      const statusBox = document.getElementById("statusBox");
+      const yearText = document.getElementById("yearText");
+
+      let latestSummary = "";
+
+      function val(id) {
+        const value = parseFloat(document.getElementById(id).value);
+        return Number.isFinite(value) ? value : 0;
+      }
+
+      function setStatus(message, type) {
+        statusBox.textContent = message;
+        if (type === "success") {
+          statusBox.className = "rounded-2xl bg-emerald-50 p-4 text-sm font-bold text-emerald-700 ring-1 ring-emerald-100";
+        } else if (type === "error") {
+          statusBox.className = "rounded-2xl bg-rose-50 p-4 text-sm font-bold text-rose-700 ring-1 ring-rose-100";
+        } else {
+          statusBox.className = "rounded-2xl bg-accent-50 p-4 text-sm font-bold text-accent-700 ring-1 ring-accent-100";
+        }
+      }
+
+      function minimumDownPayment(price) {
+        if (price <= 0) return 0;
+        if (price <= 500000) return price * 0.05;
+        if (price < 1500000) return 25000 + (price - 500000) * 0.10;
+        return price * 0.20;
+      }
+
+      function monthlyPayment(principal, annualRate, years) {
+        if (principal <= 0 || years <= 0) return 0;
+        const months = years * 12;
+        const r = annualRate / 100 / 12;
+        if (r === 0) return principal / months;
+        return principal * (r * Math.pow(1 + r, months)) / (Math.pow(1 + r, months) - 1);
+      }
+
+      function setText(id, text) {
+        document.getElementById(id).textContent = text;
+      }
+
+      function setBar(id, ratio, limit) {
+        const bar = document.getElementById(id);
+        const width = Math.min(Math.max((ratio / 60) * 100, 0), 100);
+        bar.style.width = width + "%";
+        bar.className = "h-full rounded-full transition-all duration-300 " + (ratio <= limit ? "bg-emerald-600" : "bg-red-600");
+      }
+
+      function calculate() {
+        const homePrice = val("homePrice");
+        const downPayment = val("downPayment");
+        const contractRate = val("contractRate");
+        const annualIncome = val("annualIncome");
+        const otherDebts = val("otherDebts");
+        const propertyTax = val("propertyTax");
+        const heatingCost = val("heatingCost");
+        const condoFees = val("condoFees");
+        const amortization = val("amortization");
+
+        const minDown = minimumDownPayment(homePrice);
+        const mortgage = Math.max(homePrice - downPayment, 0);
+        const downPct = homePrice > 0 ? (downPayment / homePrice) * 100 : 0;
+        const qualifyingRate = Math.max(contractRate + BUFFER_RATE, FLOOR_RATE);
+        const stressMortgagePayment = monthlyPayment(mortgage, qualifyingRate, amortization);
+        const monthlyIncome = annualIncome / 12;
+        const monthlyPropertyTax = propertyTax / 12;
+        const housingCosts = stressMortgagePayment + monthlyPropertyTax + heatingCost + (condoFees * 0.5);
+        const gds = monthlyIncome > 0 ? (housingCosts / monthlyIncome) * 100 : 0;
+        const tds = monthlyIncome > 0 ? ((housingCosts + otherDebts) / monthlyIncome) * 100 : 0;
+
+        const hasValidInputs = homePrice > 0 && annualIncome > 0 && downPayment >= 0 && downPayment < homePrice;
+        const downOk = downPayment >= minDown;
+        const gdsOk = gds <= GDS_LIMIT;
+        const tdsOk = tds <= TDS_LIMIT;
+        const pass = hasValidInputs && downOk && gdsOk && tdsOk;
+
+        setText("qualifyingRate", qualifyingRate.toFixed(2) + "%");
+        setText("mortgageAmount", money.format(mortgage));
+        setText("stressPayment", moneyCents.format(stressMortgagePayment) + "/mo");
+        setText("minimumDown", money.format(minDown));
+        setText("gdsValue", gds.toFixed(1) + "%");
+        setText("tdsValue", tds.toFixed(1) + "%");
+        setText("monthlyIncome", moneyCents.format(monthlyIncome));
+        setText("breakMortgage", moneyCents.format(stressMortgagePayment));
+        setText("breakHousing", moneyCents.format(housingCosts));
+        setText("breakDebts", moneyCents.format(otherDebts));
+        setText("contractRateOut", contractRate.toFixed(2) + "%");
+        setText("bufferRateOut", (contractRate + BUFFER_RATE).toFixed(2) + "%");
+        setText("downPaymentPercent", downPct.toFixed(2) + "%");
+
+        setBar("gdsBar", gds, GDS_LIMIT);
+        setBar("tdsBar", tds, TDS_LIMIT);
+
+        const statusCard = document.getElementById("statusCard");
+        const statusLabel = document.getElementById("statusLabel");
+        const statusTitle = document.getElementById("statusTitle");
+        const statusSubtitle = document.getElementById("statusSubtitle");
+        const warningBox = document.getElementById("warningBox");
+
+        warningBox.classList.add("hidden");
+        warningBox.innerHTML = "";
+
+        if (!hasValidInputs) {
+          statusCard.className = "rounded-3xl bg-slate-100 p-6 text-center";
+          statusLabel.className = "text-sm font-black uppercase tracking-[0.25em] text-slate-500";
+          statusTitle.className = "safe-break mt-2 text-3xl font-black tracking-tight text-slate-900 sm:text-5xl";
+          statusTitle.textContent = "Enter valid numbers";
+          statusSubtitle.textContent = "Home price, down payment, and income are required.";
+          latestSummary = "Canada Mortgage Stress Test Result: Enter valid numbers.";
+          setStatus("Check required inputs", "error");
+          return;
+        }
+
+        const warnings = [];
+        if (!downOk) {
+          warnings.push("Minimum down payment is " + money.format(minDown) + ". You are short by " + money.format(minDown - downPayment) + ".");
+        }
+        if (!gdsOk) {
+          warnings.push("GDS is " + gds.toFixed(1) + "%, above the " + GDS_LIMIT + "% guideline.");
+        }
+        if (!tdsOk) {
+          warnings.push("TDS is " + tds.toFixed(1) + "%, above the " + TDS_LIMIT + "% guideline.");
+        }
+        if (amortization > 25 && downPct < 20) {
+          warnings.push("A 30-year amortization may not be available for every insured mortgage scenario. Confirm eligibility with your lender.");
+        }
+
+        if (warnings.length) {
+          warningBox.classList.remove("hidden");
+          warningBox.innerHTML = warnings.map(function (item) {
+            return "<div>• " + item + "</div>";
+          }).join("");
+        }
+
+        latestSummary = [
+          "Canada Mortgage Stress Test Result",
+          "Status: " + (pass ? "PASS guideline estimate" : "FAIL guideline estimate"),
+          "Home Price: " + money.format(homePrice),
+          "Down Payment: " + money.format(downPayment),
+          "Minimum Down Payment: " + money.format(minDown),
+          "Mortgage Amount: " + money.format(mortgage),
+          "Contract Rate: " + contractRate.toFixed(2) + "%",
+          "Qualifying Rate: " + qualifyingRate.toFixed(2) + "%",
+          "Stress-Tested Payment: " + moneyCents.format(stressMortgagePayment) + "/mo",
+          "GDS Ratio: " + gds.toFixed(1) + "%",
+          "TDS Ratio: " + tds.toFixed(1) + "%",
+          "Monthly Income: " + moneyCents.format(monthlyIncome)
+        ].join("\n");
+
+        if (pass) {
+          statusCard.className = "rounded-3xl bg-gradient-to-br from-emerald-50 to-green-100 p-6 text-center ring-1 ring-emerald-200";
+          statusLabel.className = "text-sm font-black uppercase tracking-[0.25em] text-emerald-700";
+          statusTitle.className = "safe-break mt-2 text-3xl font-black tracking-tight text-emerald-800 sm:text-5xl";
+          statusTitle.textContent = "PASS";
+          statusSubtitle.textContent = "Your down payment, GDS, and TDS are within the selected guideline limits.";
+          setStatus("Result calculated", "success");
+        } else {
+          statusCard.className = "rounded-3xl bg-gradient-to-br from-red-50 to-rose-100 p-6 text-center ring-1 ring-red-200";
+          statusLabel.className = "text-sm font-black uppercase tracking-[0.25em] text-red-700";
+          statusTitle.className = "safe-break mt-2 text-3xl font-black tracking-tight text-red-800 sm:text-5xl";
+          statusTitle.textContent = "FAIL";
+          statusSubtitle.textContent = "Review down payment, debts, income, purchase price, or housing costs.";
+          setStatus("Review warnings", "error");
+        }
+      }
+
+      async function copyResult() {
+        try {
+          if (!latestSummary) calculate();
+
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            await navigator.clipboard.writeText(latestSummary);
+          } else {
+            const temp = document.createElement("textarea");
+            temp.value = latestSummary;
+            temp.style.position = "fixed";
+            temp.style.opacity = "0";
+            document.body.appendChild(temp);
+            temp.select();
+            document.execCommand("copy");
+            temp.remove();
+          }
+
+          copyResultBtn.textContent = "Copied!";
+          setStatus("Result copied", "success");
+          window.setTimeout(function () {
+            copyResultBtn.textContent = "Copy Result";
+            setStatus("Ready", "info");
+          }, 1500);
+        } catch (error) {
+          setStatus("Copy failed", "error");
+        }
+      }
+
+      function resetCalculator() {
+        homePriceInput.value = "850000";
+        downPaymentInput.value = "170000";
+        contractRateInput.value = "4.50";
+        annualIncomeInput.value = "180000";
+        otherDebtsInput.value = "600";
+        propertyTaxInput.value = "0";
+        heatingCostInput.value = "0";
+        condoFeesInput.value = "0";
+        amortizationInput.value = "25";
+        calculate();
+        setStatus("Calculator reset", "success");
+      }
+
+      ids.forEach(function (id) {
+        const element = document.getElementById(id);
+        element.addEventListener("input", calculate);
+        element.addEventListener("change", calculate);
+      });
+
+      copyResultBtn.addEventListener("click", copyResult);
+      resetBtn.addEventListener("click", resetCalculator);
+
+      yearText.textContent = new Date().getFullYear();
+      calculate();
     });
-
-    const moneyCents = new Intl.NumberFormat("en-CA", {
-      style: "currency",
-      currency: "CAD",
-      maximumFractionDigits: 2
-    });
-
-    function val(id) {
-      const value = parseFloat(document.getElementById(id).value);
-      return Number.isFinite(value) ? value : 0;
-    }
-
-    function minimumDownPayment(price) {
-      if (price <= 0) return 0;
-      if (price < 500000) return price * 0.05;
-      if (price < 1500000) return 25000 + (price - 500000) * 0.10;
-      return price * 0.20;
-    }
-
-    function monthlyPayment(principal, annualRate, years) {
-      if (principal <= 0 || years <= 0) return 0;
-      const months = years * 12;
-      const r = annualRate / 100 / 12;
-      if (r === 0) return principal / months;
-      return principal * (r * Math.pow(1 + r, months)) / (Math.pow(1 + r, months) - 1);
-    }
-
-    function setText(id, text) {
-      document.getElementById(id).textContent = text;
-    }
-
-    function setBar(id, ratio, limit) {
-      const bar = document.getElementById(id);
-      const width = Math.min(Math.max((ratio / 60) * 100, 0), 100);
-      bar.style.width = width + "%";
-      bar.className = "h-full rounded-full transition-all duration-300 " + (ratio <= limit ? "bg-emerald-600" : "bg-red-600");
-    }
-
-    function calculate() {
-      const homePrice = val("homePrice");
-      const downPayment = val("downPayment");
-      const contractRate = val("contractRate");
-      const annualIncome = val("annualIncome");
-      const otherDebts = val("otherDebts");
-      const propertyTax = val("propertyTax");
-      const heatingCost = val("heatingCost");
-      const condoFees = val("condoFees");
-      const amortization = val("amortization");
-
-      const minDown = minimumDownPayment(homePrice);
-      const mortgage = Math.max(homePrice - downPayment, 0);
-      const downPct = homePrice > 0 ? (downPayment / homePrice) * 100 : 0;
-      const qualifyingRate = Math.max(contractRate + BUFFER_RATE, FLOOR_RATE);
-      const stressMortgagePayment = monthlyPayment(mortgage, qualifyingRate, amortization);
-      const monthlyIncome = annualIncome / 12;
-      const monthlyPropertyTax = propertyTax / 12;
-      const housingCosts = stressMortgagePayment + monthlyPropertyTax + heatingCost + (condoFees * 0.5);
-      const gds = monthlyIncome > 0 ? (housingCosts / monthlyIncome) * 100 : 0;
-      const tds = monthlyIncome > 0 ? ((housingCosts + otherDebts) / monthlyIncome) * 100 : 0;
-
-      const hasValidInputs = homePrice > 0 && annualIncome > 0 && downPayment >= 0 && downPayment < homePrice;
-      const downOk = downPayment >= minDown;
-      const gdsOk = gds <= GDS_LIMIT;
-      const tdsOk = tds <= TDS_LIMIT;
-      const pass = hasValidInputs && downOk && gdsOk && tdsOk;
-
-      setText("qualifyingRate", qualifyingRate.toFixed(2) + "%");
-      setText("mortgageAmount", money.format(mortgage));
-      setText("stressPayment", moneyCents.format(stressMortgagePayment) + "/mo");
-      setText("minimumDown", money.format(minDown));
-      setText("gdsValue", gds.toFixed(1) + "%");
-      setText("tdsValue", tds.toFixed(1) + "%");
-      setText("monthlyIncome", moneyCents.format(monthlyIncome));
-      setText("breakMortgage", moneyCents.format(stressMortgagePayment));
-      setText("breakHousing", moneyCents.format(housingCosts));
-      setText("breakDebts", moneyCents.format(otherDebts));
-      setText("contractRateOut", contractRate.toFixed(2) + "%");
-      setText("bufferRateOut", (contractRate + BUFFER_RATE).toFixed(2) + "%");
-      setText("downPaymentPercent", downPct.toFixed(2) + "%");
-
-      setBar("gdsBar", gds, GDS_LIMIT);
-      setBar("tdsBar", tds, TDS_LIMIT);
-
-      const statusCard = document.getElementById("statusCard");
-      const statusLabel = document.getElementById("statusLabel");
-      const statusTitle = document.getElementById("statusTitle");
-      const statusSubtitle = document.getElementById("statusSubtitle");
-      const warningBox = document.getElementById("warningBox");
-
-      warningBox.classList.add("hidden");
-      warningBox.innerHTML = "";
-
-      if (!hasValidInputs) {
-        statusCard.className = "rounded-3xl bg-slate-100 p-6 text-center";
-        statusLabel.className = "text-sm font-extrabold uppercase tracking-[0.25em] text-slate-500";
-        statusTitle.className = "mt-2 text-3xl font-black tracking-tight text-slate-900 sm:text-5xl";
-        statusTitle.textContent = "Enter valid numbers";
-        statusSubtitle.textContent = "Home price, down payment and income are required.";
-        return;
-      }
-
-      const warnings = [];
-      if (!downOk) {
-        warnings.push(`Minimum down payment is ${money.format(minDown)}. You are short by ${money.format(minDown - downPayment)}.`);
-      }
-      if (!gdsOk) {
-        warnings.push(`GDS is ${gds.toFixed(1)}%, above the ${GDS_LIMIT}% guideline.`);
-      }
-      if (!tdsOk) {
-        warnings.push(`TDS is ${tds.toFixed(1)}%, above the ${TDS_LIMIT}% guideline.`);
-      }
-      if (amortization > 25 && downPct < 20) {
-        warnings.push("A 30-year amortization may not be available for every insured mortgage scenario. Confirm eligibility with your lender.");
-      }
-
-      if (warnings.length) {
-        warningBox.classList.remove("hidden");
-        warningBox.innerHTML = warnings.map(item => `<div>• ${item}</div>`).join("");
-      }
-
-      if (pass) {
-        statusCard.className = "rounded-3xl bg-gradient-to-br from-emerald-50 to-green-100 p-6 text-center ring-1 ring-emerald-200";
-        statusLabel.className = "text-sm font-extrabold uppercase tracking-[0.25em] text-emerald-700";
-        statusTitle.className = "mt-2 text-3xl font-black tracking-tight text-emerald-800 sm:text-5xl";
-        statusTitle.textContent = "PASS";
-        statusSubtitle.textContent = "PASS - 대출 가능 가능성이 높습니다. Your GDS and TDS are within the selected guideline limits.";
-      } else {
-        statusCard.className = "rounded-3xl bg-gradient-to-br from-red-50 to-rose-100 p-6 text-center ring-1 ring-red-200";
-        statusLabel.className = "text-sm font-extrabold uppercase tracking-[0.25em] text-red-700";
-        statusTitle.className = "mt-2 text-3xl font-black tracking-tight text-red-800 sm:text-5xl";
-        statusTitle.textContent = "FAIL";
-        statusSubtitle.textContent = "FAIL - 소득 대비 부채 비율 조절이 필요합니다. Review down payment, debts, income or purchase price.";
-      }
-    }
-
-    ids.forEach(id => {
-      document.getElementById(id).addEventListener("input", calculate);
-      document.getElementById(id).addEventListener("change", calculate);
-    });
-
-    calculate();
   </script>
 </body>
 </html>
