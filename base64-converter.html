@@ -4,344 +4,777 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404"
-     crossorigin="anonymous"></script>
-
-	<meta name="google-adsense-account" content="ca-pub-5282672325821404">	
-
-  <title>Base64 Encoder/Decoder | Free Online Text Converter Tool - NodnWebTools</title>
-
-  <meta
-    name="description"
-    content="Use the free NodnWebTools Base64 Encoder/Decoder to seamlessly convert plain text to Base64 format and decode Base64 back to text instantly. Full UTF-8 and Korean character support included."
-  />
-  <meta
-    name="keywords"
-    content="base64 encoder, base64 decoder, online base64 converter, text to base64, base64 to text, utf8 base64 converter, NodnWebTools"
-  />
+  <title>Base64 Encoder Decoder | Text Converter Tool</title>
+  <meta name="description" content="Free Base64 encoder decoder to convert text to Base64 and decode Base64 to UTF-8 text securely in your browser." />
+  <meta name="keywords" content="base64 encoder, base64 decoder, base64 converter, text to base64, base64 to text, online base64 tool, utf8 base64 converter, encode text online, decode base64 online, client-side base64 encoder, browser base64 decoder, data encoding tool, developer text converter, secure base64 converter, ASCII encoding tool, URL safe encoding, web developer utility, NodnWebTools" />
   <meta name="author" content="NodnWebTools" />
   <meta name="robots" content="index, follow" />
 
-  <meta property="og:title" content="Base64 Encoder/Decoder | NodnWebTools" />
-  <meta
-    property="og:description"
-    content="Encode plain text to Base64 or decode Base64 strings back to clean text instantly and securely in your browser."
-  />
+  <meta property="og:title" content="Base64 Encoder Decoder | Text Converter Tool" />
+  <meta property="og:description" content="Encode text to Base64 or decode Base64 to UTF-8 text instantly with a free browser-based converter." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://nodntools.com/base64-converter.html" />
   <meta property="og:site_name" content="NodnWebTools" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Base64 Encoder/Decoder" />
-  <meta
-    name="twitter:description"
-    content="A secure, client-side online text configuration utility tool for instant Base64 transformations."
-  />
+  <meta name="twitter:title" content="Base64 Encoder Decoder" />
+  <meta name="twitter:description" content="Convert plain text to Base64 or decode Base64 strings locally in your browser." />
+
+  <meta name="google-adsense-account" content="ca-pub-5282672325821404" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404" crossorigin="anonymous"></script>
 
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            brand: {
-              50: '#fffbeb',
-              100: '#fef3c7',
-              200: '#fde68a',
-              500: '#f59e0b',
-              600: '#d97706',
-              700: '#b45309',
-              800: '#92400e',
-            }
-          }
-        }
-      }
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Base64 Encoder Decoder",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "All",
+    "url": "https://nodntools.com/base64-converter.html",
+    "description": "A free browser-based Base64 encoder and decoder for converting plain text to Base64 and decoding Base64 strings back to UTF-8 text locally.",
+    "featureList": [
+      "Encode plain text to Base64",
+      "Decode Base64 to readable UTF-8 text",
+      "Client-side browser processing",
+      "Copy converted output",
+      "UTF-8 safe text handling",
+      "Developer-friendly data conversion"
+    ],
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "NodnWebTools",
+      "url": "https://nodntools.com"
     }
+  }
   </script>
 
   <style>
-    html, body {
+    html,
+    body {
       width: 100%;
+      max-width: 100%;
       overflow-x: hidden;
     }
-    * {
+
+    *,
+    *::before,
+    *::after {
       box-sizing: border-box;
+      min-width: 0;
     }
-    textarea, input, button {
+
+    main,
+    section,
+    article,
+    aside,
+    div,
+    textarea,
+    input,
+    button,
+    pre,
+    code,
+    table,
+    canvas,
+    img,
+    svg,
+    iframe,
+    ins {
       max-width: 100%;
     }
-    .adsbygoogle {
-      display: block;
+
+    textarea {
+      resize: vertical;
+    }
+
+    .safe-break {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .mobile-code {
       max-width: 100%;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .mobile-card,
+    .mobile-panel,
+    .mobile-preview {
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
+    .ad-box {
+      width: 100%;
+      max-width: 100%;
+      min-height: 90px;
+      border: 2px dashed #cbd5e1;
+      background: #f8fafc;
+      color: #94a3b8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-radius: 1rem;
+      padding: 1rem;
       overflow: hidden;
+      font-size: 0.875rem;
+      line-height: 1.5;
     }
-    @media (max-width: 480px) {
-      .mobile-break {
-        flex-direction: column;
-        align-items: stretch;
+
+    @media (max-width: 640px) {
+      body {
+        padding-left: 0;
+        padding-right: 0;
+      }
+
+      .mobile-card,
+      .mobile-panel,
+      .mobile-preview {
+        border-radius: 1.25rem !important;
+        padding: 1rem !important;
+      }
+
+      .mobile-button-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .mobile-button-grid button,
+      .mobile-full {
+        width: 100%;
+      }
+
+      h1 {
+        font-size: 2rem !important;
+        line-height: 2.35rem !important;
+      }
+
+      .ad-box {
+        min-height: 90px;
+        border-radius: 0.875rem;
+        padding: 0.875rem;
+        font-size: 0.75rem;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .mobile-card,
+      .mobile-panel,
+      .mobile-preview {
+        padding: 0.875rem !important;
+        border-radius: 1rem !important;
+      }
+
+      h1 {
+        font-size: 1.75rem !important;
+      }
+
+      h2 {
+        font-size: 1.35rem !important;
+      }
+
+      textarea,
+      button {
+        font-size: 0.9rem !important;
       }
     }
   </style>
 </head>
 
-<body class="min-h-screen bg-slate-100 px-3 py-5 sm:px-4 sm:py-10">
-  <main class="mx-auto w-full max-w-5xl overflow-hidden">
-
-    <div class="mb-6 text-center sm:mb-8">
-      <a
-        href="https://nodntools.com"
-        class="inline-block transition hover:opacity-80"
-        aria-label="NodnWebTools Home"
-      >
-        <div class="text-xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
-          Nodn<span class="text-blue-600">WebTools</span>
-        </div>
+<body class="min-h-screen bg-slate-50 text-slate-800">
+  <div class="w-full px-4 py-5 sm:px-6 lg:px-8">
+    <header class="mx-auto flex w-full max-w-7xl flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <a href="https://nodntools.com" class="inline-flex items-center gap-2 safe-break" aria-label="NodnWebTools Home">
+        <span class="text-2xl font-black tracking-tight text-slate-950">
+          Nodn<span class="text-indigo-600">WebTools</span>
+        </span>
       </a>
+      <nav class="flex flex-wrap items-center gap-2 text-sm text-slate-500">
+        <a href="https://nodntools.com" class="rounded-full border border-slate-200 bg-white px-4 py-2 font-semibold transition hover:border-indigo-200 hover:text-indigo-700">Home</a>
+        <span class="rounded-full bg-indigo-50 px-4 py-2 font-semibold text-indigo-700">Client-side text utility</span>
+      </nav>
+    </header>
+
+    <div class="mx-auto mt-5 w-full max-w-7xl">
+      <div class="ad-box">AdSense Responsive Ad Area - Top</div>
     </div>
 
-    <div class="mb-6 flex min-h-[72px] w-full items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white px-3 text-center text-xs text-slate-400 sm:mb-8 sm:min-h-[90px] sm:text-sm">
-      AdSense Responsive Ad Area - Top
-    </div>
-
-    <section class="grid grid-cols-1 gap-5 lg:grid-cols-2 lg:gap-6">
-
-      <div class="rounded-3xl bg-white p-4 shadow-xl ring-1 ring-slate-200 sm:p-8 lg:sticky lg:top-10 lg:self-start">
+    <main class="mx-auto mt-6 grid w-full max-w-7xl grid-cols-1 gap-6 lg:grid-cols-12">
+      <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:col-span-5 lg:p-8">
         <div class="mb-6">
-          <span class="inline-flex rounded-full bg-brand-50 px-4 py-2 text-sm font-semibold text-brand-700">
-            Data Utility
-          </span>
-
-          <h1 class="mt-5 text-2xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-            Base64 Encoder/Decoder
+          <p class="mb-3 inline-flex rounded-full bg-indigo-50 px-4 py-2 text-sm font-bold text-indigo-700">
+            Base64 Text Utility
+          </p>
+          <h1 class="safe-break text-4xl font-black tracking-tight text-slate-950 sm:text-5xl">
+            Base64 Encoder and Decoder
           </h1>
-
-          <p class="mt-3 text-sm leading-6 text-slate-600 sm:text-base sm:leading-7">
-            Convert plain text to Base64 strings or decode back instantly. Built-in UTF-8 safety controls ensure zero character corruption.
+          <p class="mt-4 text-base leading-7 text-slate-600">
+            Encode plain text into Base64 or decode Base64 strings back into readable UTF-8 text.
+            This free browser-based converter is useful for developers, students, content editors,
+            API testing, data formatting, and quick text transformation tasks.
           </p>
         </div>
 
-        <div class="space-y-5">
-          <div>
-            <div class="mb-2 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-              <label for="inputText" class="text-sm font-semibold text-slate-700">Input Data Block</label>
-              <button id="clearBtn" class="text-xs font-semibold text-slate-500 hover:text-red-600 bg-slate-100 hover:bg-slate-200 px-3 py-1.5 rounded-xl transition active:scale-95">
-                Clear Input
+        <div class="mobile-panel rounded-2xl border border-slate-200 bg-slate-50 p-4">
+          <div class="mb-3 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+            <label for="inputText" class="text-sm font-bold text-slate-700">Input text or Base64 string</label>
+            <button id="clearBtn" type="button" class="rounded-xl bg-white px-3 py-2 text-xs font-bold text-slate-600 ring-1 ring-slate-200 transition hover:text-red-600">
+              Clear Input
+            </button>
+          </div>
+
+          <textarea id="inputText" rows="10" placeholder="Type or paste plain text to encode, or paste a Base64 string to decode..."
+            class="w-full rounded-2xl border border-slate-300 bg-white p-4 font-mono text-sm text-slate-900 outline-none transition focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100"></textarea>
+
+          <p class="mt-2 text-xs leading-5 text-slate-500">
+            Your text is processed locally in your browser. Avoid pasting passwords, private keys, access tokens, or sensitive credentials.
+          </p>
+        </div>
+
+        <div id="warningBox" class="mt-4 hidden rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm font-semibold leading-6 text-amber-800"></div>
+
+        <div class="mobile-button-grid mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2">
+          <button id="encodeBtn" type="button"
+            class="rounded-2xl bg-indigo-600 px-4 py-4 text-base font-black text-white shadow-sm transition hover:bg-indigo-700 active:scale-[0.99]">
+            Encode Text to Base64
+          </button>
+
+          <button id="decodeBtn" type="button"
+            class="rounded-2xl bg-slate-900 px-4 py-4 text-base font-black text-white shadow-sm transition hover:bg-slate-800 active:scale-[0.99]">
+            Decode Base64 to Text
+          </button>
+        </div>
+
+        <div class="mobile-button-grid mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2">
+          <button id="sampleBtn" type="button"
+            class="rounded-2xl border border-slate-200 bg-white px-4 py-4 text-base font-black text-slate-700 transition hover:border-indigo-200 hover:text-indigo-700">
+            Load Example
+          </button>
+
+          <button id="resetBtn" type="button"
+            class="rounded-2xl border border-slate-200 bg-white px-4 py-4 text-base font-black text-slate-700 transition hover:border-red-200 hover:text-red-600">
+            Reset
+          </button>
+        </div>
+
+        <div class="mt-5 rounded-2xl border border-indigo-100 bg-indigo-50 p-4 text-sm leading-6 text-indigo-900">
+          <strong>Privacy note:</strong> Base64 is an encoding format, not encryption. Anyone can decode Base64 text if they have the string.
+        </div>
+      </section>
+
+      <section class="space-y-6 lg:col-span-7">
+        <div class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
+          <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+            <div>
+              <h2 class="text-2xl font-black tracking-tight text-slate-950">Conversion Result</h2>
+              <p class="mt-1 text-sm leading-6 text-slate-500">
+                Encoded or decoded output appears below.
+              </p>
+            </div>
+            <span id="statusBadge" class="inline-flex w-fit rounded-full bg-slate-100 px-4 py-2 text-sm font-bold text-slate-600">
+              Waiting
+            </span>
+          </div>
+
+          <div class="mt-6 rounded-3xl border border-slate-200 bg-gradient-to-br from-slate-50 via-indigo-50/30 to-violet-50/30 p-4">
+            <div class="mb-3 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+              <span id="outputLabel" class="text-sm font-black uppercase tracking-wide text-slate-700">Output</span>
+              <button id="copyBtn" type="button"
+                class="rounded-xl bg-slate-900 px-4 py-2 text-xs font-bold text-white transition hover:bg-slate-800">
+                Copy Result
               </button>
             </div>
-            <textarea id="inputText" rows="7" placeholder="Type or paste your data text / Base64 string here..." class="w-full rounded-2xl border border-slate-300 bg-slate-50 p-3 font-mono text-xs text-slate-900 shadow-inner outline-none transition focus:border-brand-600 focus:bg-white focus:ring-4 focus:ring-brand-100 resize-none sm:p-4 sm:text-sm"></textarea>
-          </div>
 
-          <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4">
-            <button id="encodeBtn" class="flex w-full items-center justify-center rounded-2xl bg-brand-600 px-3 py-3.5 text-center text-sm font-bold text-white shadow-md transition-all hover:bg-brand-700 active:scale-[0.99] sm:py-4 sm:text-base">
-              <span>Encode Text ➔ Base64</span>
-            </button>
-            
-            <button id="decodeBtn" class="flex w-full items-center justify-center rounded-2xl bg-slate-900 px-3 py-3.5 text-center text-sm font-bold text-white shadow-md transition-all hover:bg-slate-800 active:scale-[0.99] sm:py-4 sm:text-base">
-              <span>Decode Base64 ➔ Text</span>
-            </button>
-          </div>
+            <textarea id="outputText" rows="12" readonly placeholder="Your converted output will appear here..."
+              class="w-full rounded-2xl border border-slate-200 bg-white p-4 font-mono text-sm text-slate-900 outline-none"></textarea>
 
-          <div class="rounded-2xl bg-slate-100 p-4 text-sm leading-6 text-slate-600">
-            Processing runs client-side inside native browser sandboxes. Your text contents remain completely hidden and safe from remote clouds.
-          </div>
-        </div>
-      </div>
-
-      <div class="space-y-5 sm:space-y-6">
-        <div class="rounded-3xl bg-white p-4 shadow-xl ring-1 ring-slate-200 sm:p-8">
-          <div class="mb-6">
-            <h2 class="text-xl font-bold text-slate-900 sm:text-2xl">Transformation Outcome</h2>
-            <p class="mt-2 text-sm text-slate-500">View real-time structured binary text mappings downstream.</p>
-          </div>
-
-          <div class="rounded-3xl border border-slate-200 bg-gradient-to-br from-slate-50 via-zinc-50 to-amber-50/20 p-4 sm:p-5">
-            <div class="mb-3 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-              <span class="text-sm font-semibold uppercase tracking-wide text-slate-700" id="outputLabel">Output Stream</span>
-              
-              <div class="relative flex items-center">
-                <button id="copyBtn" class="text-xs font-semibold text-white bg-slate-900 hover:bg-slate-800 px-3 py-1.5 rounded-xl transition active:scale-95 shadow-sm flex items-center space-x-1">
-                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
-                  </svg>
-                  <span>Copy Result</span>
-                </button>
-                <span id="copyToast" class="absolute bottom-full right-0 mb-2 max-w-[70vw] whitespace-nowrap rounded-xl bg-slate-900 px-2.5 py-1 text-xs font-semibold text-white opacity-0 scale-95 pointer-events-none shadow-md transition-all duration-200">
-                  Copied!
-                </span>
+            <div class="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-3">
+              <div class="rounded-2xl bg-white p-4 ring-1 ring-slate-100">
+                <p class="text-xs font-black uppercase tracking-widest text-slate-400">Input length</p>
+                <p id="inputLength" class="safe-break mt-1 text-lg font-black text-slate-900">0</p>
+              </div>
+              <div class="rounded-2xl bg-white p-4 ring-1 ring-slate-100">
+                <p class="text-xs font-black uppercase tracking-widest text-slate-400">Output length</p>
+                <p id="outputLength" class="safe-break mt-1 text-lg font-black text-slate-900">0</p>
+              </div>
+              <div class="rounded-2xl bg-white p-4 ring-1 ring-slate-100">
+                <p class="text-xs font-black uppercase tracking-widest text-slate-400">Mode</p>
+                <p id="modeText" class="safe-break mt-1 text-lg font-black text-slate-900">—</p>
               </div>
             </div>
-            
-            <textarea id="outputText" rows="8" readonly placeholder="Calculated output data array nodes will populate here..." class="w-full rounded-2xl border border-slate-200 bg-white p-3 font-mono text-xs text-slate-900 shadow-inner outline-none transition focus:ring-4 focus:ring-brand-100 resize-none sm:p-4 sm:text-sm lg:rows-10"></textarea>
           </div>
 
-          <div class="mt-6 flex min-h-[170px] w-full flex-col items-center justify-center overflow-hidden rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-3 text-center text-xs text-slate-400 sm:min-h-[250px] sm:p-4 sm:text-sm">
-            <span class="text-[10px] font-bold text-slate-300 uppercase tracking-widest mb-2">Advertisement</span>
-            <ins class="adsbygoogle"
-                 style="display:block; width:100%; max-width:100%; min-height:160px;"
-                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-                 data-ad-slot="YYYYYYYYYY"
-                 data-ad-format="rectangle, vertical"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-          </div>
-
-          <div class="mt-5 rounded-2xl bg-slate-100 p-4 text-xs leading-5 text-slate-500">
-            <span class="block font-bold text-slate-700 mb-1">Disclaimer & Legal Notice:</span>
-            This tool is provided on an "as is" and "as available" basis without warranties of any kind. All string conversion stream routines execute 100% locally within the client user's browser processing threads; NodnWebTools never mirrors, intercepts, captures, or leaks your payload texts. The user maintains absolute personal liability to verify characters or database decoding logs before deployment. NodnWebTools, its creators, and affiliates reject all liability for unexpected character distortion, configuration mismatches, decoding errors, or downstream system damage resulting from compiling strings.
+          <div id="copyFeedback" class="mt-4 hidden rounded-2xl bg-emerald-50 px-4 py-3 text-sm font-bold text-emerald-700">
+            Copied!
           </div>
         </div>
 
-        <section class="rounded-3xl bg-white p-4 shadow-sm ring-1 ring-slate-200 sm:p-8">
-          <span class="inline-flex rounded-full bg-slate-200 px-4 py-2 text-sm font-semibold text-slate-800">
-            Data Formatting Guide
-          </span>
+        <div class="ad-box">AdSense Responsive Ad Area - Below Result</div>
+      </section>
+    </main>
 
-          <h2 class="mt-5 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
-            Binary Text Formatting: Resolving UTF-8 Safe Cloud Payload Arrays
-          </h2>
-
-          <div class="mt-5 space-y-5 text-sm leading-7 text-slate-600">
-            <p>
-              In current microservices architectures, transferring arbitrary raw text fields safely through network protocols requires standard deployment of an 
-              <strong class="font-semibold text-slate-800">online base64 converter</strong>. When data schemas carry complex characters like Korean scripts, passing symbols over classic URL parameters triggers deep byte compilation failure nodes.
-            </p>
-
-            <p>
-              Utilizing a fast <strong class="font-semibold text-slate-800">base64 encoder</strong> transforms your multi-byte strings into an uncorrupted stream of 64 distinct safe ASCII characters. Conversely, web developers frequently harness an integrated <strong class="font-semibold text-slate-800">base64 decoder</strong> pipeline to translate incoming API string packets back into human-readable plain text blocks instantly.
-            </p>
-
-            <h3 class="text-lg font-bold text-slate-900 pt-2">How to Prevent Character Cracking via UTF-8 Escape Vectors</h3>
-            <p>
-              Standard Javascript browser functions like native window `btoa` or `atob` natively drop errors when facing non-Latin1 elements. Our advanced local script toolkit bypasses this structural layout logic:
-            </p>
-
-            <ul class="list-disc pl-5 space-y-2 text-slate-600">
-              <li><strong>Secure Encoding Sequence:</strong> The tool runs URI component parameter encoding loops first, map-binding raw byte nodes smoothly into error-free binary fields.</li>
-              <li><strong>Validation Checking:</strong> If the parser detects invalid data chunks while handling a damaged base64 asset array, the system fires a precise tracking alarm.</li>
-              <li><strong>100% Client-Side Privacy:</strong> All conversions complete safely on your local device hardware graphics blocks, ensuring strict corporate data confidentiality.</li>
-            </ul>
-
-            <p>
-              By leveraging this flexible client-side <strong class="font-semibold text-slate-800">measurement and file guide</strong>, you can safely scale your operational web application workstreams without data leaks.
-            </p>
-          </div>
-        </section>
-      </div>
-    </section>
-
-    <div class="mt-6 flex min-h-[72px] w-full items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white px-3 text-center text-xs text-slate-400 sm:mt-8 sm:min-h-[90px] sm:text-sm">
-      AdSense Responsive Ad Area - Bottom
+    <div class="mx-auto mt-6 w-full max-w-7xl">
+      <div class="ad-box">AdSense Responsive Ad Area - Below Tool</div>
     </div>
 
-  </main>
+    <section class="mx-auto mt-8 w-full max-w-7xl space-y-6">
+      <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
+        <p class="mb-3 inline-flex rounded-full bg-violet-50 px-4 py-2 text-sm font-bold text-violet-700">
+          Developer Encoding Guide
+        </p>
+        <h2 class="text-3xl font-black tracking-tight text-slate-950">
+          Free Base64 Encoder Decoder for Text, Data, and Developer Workflows
+        </h2>
+        <div class="mt-5 space-y-5 text-base leading-8 text-slate-600">
+          <p>
+            This Base64 Encoder Decoder is a free online text conversion tool designed for developers,
+            website owners, students, technical writers, support teams, and anyone who needs to convert
+            plain text into Base64 or decode a Base64 string back into readable text. Base64 encoding is
+            commonly used when text or binary-like data needs to be represented using safe ASCII characters
+            that can travel through systems such as APIs, URLs, JSON documents, configuration files, emails,
+            database fields, and web application forms.
+          </p>
+          <p>
+            The tool is especially useful for quick checks during web development, API testing, front-end
+            debugging, documentation writing, educational practice, and data formatting. You can paste text,
+            encode it into a Base64 string, copy the result, and use it in a test payload or development
+            environment. You can also paste an existing Base64 value and decode it to verify what readable
+            content is inside.
+          </p>
+          <p>
+            Unlike server-based converters, this browser-based Base64 converter performs the transformation
+            locally in the page. The tool does not need to send your input text to a backend conversion API
+            for basic encoding or decoding. This makes it a practical choice for lightweight text conversion,
+            although users should still avoid entering sensitive secrets such as passwords, private keys,
+            production tokens, confidential customer data, or regulated personal information.
+          </p>
+        </div>
+      </article>
+
+      <div class="ad-box">AdSense Responsive Ad Area - Middle Content</div>
+
+      <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
+        <h2 class="text-3xl font-black tracking-tight text-slate-950">
+          What Is Base64 Encoding?
+        </h2>
+        <div class="mt-5 space-y-5 text-base leading-8 text-slate-600">
+          <p>
+            Base64 is an encoding method that represents data using a limited set of characters: uppercase
+            letters, lowercase letters, numbers, plus signs, slashes, and padding characters. This format is
+            widely used because it can safely carry data through text-based systems that may not handle raw
+            binary data or special characters correctly.
+          </p>
+          <p>
+            In simple terms, a Base64 encoder changes readable input into a transport-safe encoded string.
+            A Base64 decoder reverses that process and attempts to reconstruct the original text. This makes
+            Base64 useful for developers working with JSON payloads, HTTP headers, basic authentication examples,
+            embedded assets, email MIME data, configuration values, and testing environments.
+          </p>
+          <p>
+            Base64 does not protect data from being read. It is not encryption, hashing, or password security.
+            Anyone with a Base64 decoder can convert the encoded string back into the original readable text.
+            For security-sensitive data, use proper encryption, access control, secure storage, and professional
+            security practices instead of relying on Base64 encoding.
+          </p>
+        </div>
+      </article>
+
+      <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
+        <h2 class="text-3xl font-black tracking-tight text-slate-950">
+          How to Use This Online Base64 Converter
+        </h2>
+        <div class="mt-6 grid grid-cols-1 gap-4 md:grid-cols-3">
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <h3 class="text-lg font-black text-slate-950">1. Paste your input</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-600">
+              Enter plain text if you want to encode, or paste a Base64 string if you want to decode.
+              The input box supports UTF-8 text, including many non-English characters.
+            </p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <h3 class="text-lg font-black text-slate-950">2. Choose encode or decode</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-600">
+              Click the encode button to convert text to Base64. Click the decode button to convert
+              valid Base64 data back into readable text.
+            </p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <h3 class="text-lg font-black text-slate-950">3. Copy the result</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-600">
+              Review the output, check the length summary, and copy the converted result for use in
+              development, documentation, testing, or data formatting.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
+        <h2 class="text-3xl font-black tracking-tight text-slate-950">
+          Popular Uses for Base64 Encoding and Decoding
+        </h2>
+        <div class="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2">
+          <div class="rounded-2xl border border-slate-200 p-5">
+            <h3 class="text-xl font-black text-slate-950">API testing and JSON payloads</h3>
+            <p class="mt-2 text-sm leading-7 text-slate-600">
+              Developers often use Base64 strings in API payloads, sample requests, test values,
+              and encoded fields. This tool helps verify that encoded content can be decoded correctly.
+            </p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 p-5">
+            <h3 class="text-xl font-black text-slate-950">Web development and debugging</h3>
+            <p class="mt-2 text-sm leading-7 text-slate-600">
+              Base64 can appear in data URLs, browser storage, configuration snippets, authentication
+              examples, and embedded resources. A quick decoder helps inspect these values during debugging.
+            </p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 p-5">
+            <h3 class="text-xl font-black text-slate-950">Educational coding practice</h3>
+            <p class="mt-2 text-sm leading-7 text-slate-600">
+              Students can use this converter to understand how text becomes encoded data and how
+              encoded data can be reversed into readable strings.
+            </p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 p-5">
+            <h3 class="text-xl font-black text-slate-950">Documentation and support notes</h3>
+            <p class="mt-2 text-sm leading-7 text-slate-600">
+              Technical writers and support teams can create safe examples for documentation, tutorials,
+              troubleshooting guides, and internal knowledge bases.
+            </p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 p-5">
+            <h3 class="text-xl font-black text-slate-950">UTF-8 text conversion</h3>
+            <p class="mt-2 text-sm leading-7 text-slate-600">
+              This tool is designed to handle UTF-8 text more safely than basic browser-only examples
+              that fail with non-Latin characters.
+            </p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 p-5">
+            <h3 class="text-xl font-black text-slate-950">Quick local text transformation</h3>
+            <p class="mt-2 text-sm leading-7 text-slate-600">
+              When you need a fast encode or decode operation without installing software, a client-side
+              browser utility can save time.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <div class="ad-box">AdSense Responsive Ad Area - Bottom Content</div>
+
+      <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
+        <h2 class="text-3xl font-black tracking-tight text-slate-950">
+          Base64 Encoding Tips for Developers
+        </h2>
+        <div class="mt-5 space-y-5 text-base leading-8 text-slate-600">
+          <p>
+            Always remember that Base64 increases the size of the encoded data. Because the encoded output
+            represents data using text characters, the result is usually longer than the original input.
+            This is normal and should be considered when using Base64 inside URLs, database fields, API
+            requests, or configuration files.
+          </p>
+          <p>
+            Check padding characters when working with Base64. Many Base64 strings end with one or two
+            equals signs. If the string is copied incorrectly, shortened, wrapped across lines, or modified
+            by another system, decoding may fail. This tool removes whitespace before decoding, but it cannot
+            repair every damaged or incomplete string.
+          </p>
+          <p>
+            Be careful when using Base64 in security-related contexts. Base64 is readable after decoding and
+            should never be treated as a safe way to hide secrets. If you are handling authentication tokens,
+            passwords, API keys, private certificates, financial records, medical information, or personal
+            data, use secure tools and approved security practices.
+          </p>
+        </div>
+      </article>
+
+      <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
+        <h2 class="text-3xl font-black tracking-tight text-slate-950">
+          Frequently Asked Questions
+        </h2>
+        <div class="mt-6 space-y-4">
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">Is Base64 encryption?</summary>
+            <p class="mt-3 text-sm leading-7 text-slate-600">
+              No. Base64 is encoding, not encryption. It makes data easier to transport through text-based
+              systems, but anyone can decode it with a Base64 decoder.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">Does this tool upload my text?</summary>
+            <p class="mt-3 text-sm leading-7 text-slate-600">
+              The encode and decode operations run in your browser. The tool does not intentionally send
+              your entered text to a backend conversion server.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">Can I decode any Base64 string?</summary>
+            <p class="mt-3 text-sm leading-7 text-slate-600">
+              You can decode valid Base64 text when the decoded result is readable UTF-8 text. Damaged,
+              incomplete, encrypted, compressed, or binary-only Base64 data may not display as readable text.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">Why does the encoded text become longer?</summary>
+            <p class="mt-3 text-sm leading-7 text-slate-600">
+              Base64 represents data using a limited text-safe character set. This makes the output more
+              transport-friendly but usually increases the character length.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">Can this convert files to Base64?</summary>
+            <p class="mt-3 text-sm leading-7 text-slate-600">
+              This version focuses on text conversion only. For file-to-Base64 conversion, use a dedicated
+              file encoder that reads files locally and clearly shows file size limits.
+            </p>
+          </details>
+        </div>
+      </section>
+
+      <section class="mobile-card rounded-3xl bg-slate-950 p-5 text-slate-200 shadow-sm lg:p-8">
+        <h2 class="text-3xl font-black tracking-tight text-white">Legal Disclaimer</h2>
+        <div class="mt-5 space-y-4 text-sm leading-7 text-slate-300">
+          <p>
+            This Base64 Encoder Decoder is provided for general informational, educational, development,
+            and text-formatting purposes only. It is not a security tool, encryption tool, password manager,
+            compliance solution, or professional data protection service.
+          </p>
+          <p>
+            Base64 encoding does not make information private or secure. Users are responsible for ensuring
+            that they do not paste confidential credentials, private keys, regulated personal data, financial
+            records, medical information, or other sensitive content into any web-based tool unless they fully
+            understand the privacy and security risks.
+          </p>
+          <p>
+            While this page is designed to process text locally in the browser, users remain responsible for
+            browser extensions, device security, network environment, third-party scripts, copied output, and
+            downstream system usage. NodnWebTools is not liable for data loss, decoding errors, incorrect output,
+            security incidents, misuse, compliance failures, or consequences resulting from use of this tool.
+          </p>
+        </div>
+      </section>
+
+      <div class="ad-box">AdSense Responsive Ad Area - Bottom</div>
+    </section>
+
+    <footer class="mx-auto mt-8 w-full max-w-7xl pb-8 text-center text-sm text-slate-500">
+      <p>© <span id="yearText"></span> NodnWebTools. All rights reserved.</p>
+    </footer>
+  </div>
 
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      // Configuration Node Selectors
+    document.addEventListener("DOMContentLoaded", function () {
       const inputText = document.getElementById("inputText");
       const outputText = document.getElementById("outputText");
       const outputLabel = document.getElementById("outputLabel");
       const encodeBtn = document.getElementById("encodeBtn");
       const decodeBtn = document.getElementById("decodeBtn");
       const clearBtn = document.getElementById("clearBtn");
+      const resetBtn = document.getElementById("resetBtn");
+      const sampleBtn = document.getElementById("sampleBtn");
       const copyBtn = document.getElementById("copyBtn");
-      const copyToast = document.getElementById("copyToast");
+      const copyFeedback = document.getElementById("copyFeedback");
+      const warningBox = document.getElementById("warningBox");
+      const statusBadge = document.getElementById("statusBadge");
+      const inputLength = document.getElementById("inputLength");
+      const outputLength = document.getElementById("outputLength");
+      const modeText = document.getElementById("modeText");
+      const yearText = document.getElementById("yearText");
 
-      // Clear Panel Form Handler
-      clearBtn.addEventListener("click", () => {
-        inputText.value = "";
-        outputText.value = "";
-        resetOutputStyle();
-      });
+      yearText.textContent = new Date().getFullYear();
 
-      // Core Action: Text To Base64 Encoder Engine (UTF-8 Safe)
-      encodeBtn.addEventListener("click", () => {
-        const rawString = inputText.value.trim();
-        if (rawString === "") {
-          outputText.value = "";
-          return;
-        }
+      function showWarning(message) {
+        warningBox.textContent = message;
+        warningBox.classList.remove("hidden");
+      }
 
-        try {
-          resetOutputStyle();
-          // Escape non-latin1 structures cleanly via URI sequences before base64 compilation
-          const encodedPayload = window.btoa(encodeURIComponent(rawString).replace(/%([0-9A-F]{2})/g, function(match, p1) {
-            return String.fromCharCode(parseInt(p1, 16));
-          }));
-          
-          outputText.value = encodedPayload;
-          outputLabel.textContent = "Output Stream: Base64 Encoded";
-        } catch (error) {
-          showErrorState("System Encoding Error: Unable to process the input stream payload metrics.");
-        }
-      });
+      function clearWarning() {
+        warningBox.textContent = "";
+        warningBox.classList.add("hidden");
+      }
 
-      // Core Action: Base64 To Text Decoder Engine (UTF-8 Safe with Robust Error Trapping)
-      decodeBtn.addEventListener("click", () => {
-        const base64String = inputText.value.trim().replace(/\s/g, ""); // Strip whitespace for clean matching
-        if (base64String === "") {
-          outputText.value = "";
-          return;
-        }
+      function setStatus(text, tone) {
+        const classes = {
+          waiting: "inline-flex w-fit rounded-full bg-slate-100 px-4 py-2 text-sm font-bold text-slate-600",
+          success: "inline-flex w-fit rounded-full bg-emerald-50 px-4 py-2 text-sm font-bold text-emerald-700",
+          error: "inline-flex w-fit rounded-full bg-red-50 px-4 py-2 text-sm font-bold text-red-700",
+          active: "inline-flex w-fit rounded-full bg-indigo-50 px-4 py-2 text-sm font-bold text-indigo-700"
+        };
 
-        try {
-          resetOutputStyle();
-          
-          // Decode standard base64 string stream blocks back to binary tokens
-          const decodedBinary = window.atob(base64String);
-          
-          // Re-map escaping vectors out back cleanly to native human text structures
-          const standardText = decodeURIComponent(Array.prototype.map.call(decodedBinary, function(c) {
-            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-          }).join(''));
+        statusBadge.textContent = text;
+        statusBadge.className = classes[tone] || classes.waiting;
+      }
 
-          outputText.value = standardText;
-          outputLabel.textContent = "Output Stream: Decoded Plain Text";
-        } catch (error) {
-          showErrorState("⚠️ Invalid Base64 Format: The incoming characters do not conform to valid Base64 data structures. Please check for truncation or padding errors.");
-        }
-      });
-
-      // Feedback Style Management Utilities
-      function showErrorState(msg) {
-        outputText.value = msg;
-        outputText.classList.remove("text-slate-900", "border-slate-200");
-        outputText.classList.add("text-red-600", "border-red-300", "bg-red-50/50");
-        outputLabel.textContent = "Output Stream: Conversion Error";
-        outputLabel.classList.add("text-red-600");
+      function updateStats(mode) {
+        inputLength.textContent = String(inputText.value.length);
+        outputLength.textContent = String(outputText.value.length);
+        modeText.textContent = mode || "—";
       }
 
       function resetOutputStyle() {
-        outputText.classList.remove("text-red-600", "border-red-300", "bg-red-50/50");
-        outputText.classList.add("text-slate-900", "border-slate-200");
-        outputLabel.textContent = "Output Stream";
+        outputText.classList.remove("text-red-600", "border-red-300", "bg-red-50");
+        outputText.classList.add("text-slate-900", "border-slate-200", "bg-white");
         outputLabel.classList.remove("text-red-600");
         outputLabel.classList.add("text-slate-700");
       }
 
-      // Clipboard Transfer with Visual Toast System Animation
-      copyBtn.addEventListener("click", () => {
-        if (outputText.value === "" || outputText.classList.contains("text-red-600")) return;
+      function showErrorState(message) {
+        outputText.value = message;
+        outputText.classList.remove("text-slate-900", "border-slate-200", "bg-white");
+        outputText.classList.add("text-red-600", "border-red-300", "bg-red-50");
+        outputLabel.textContent = "Conversion Error";
+        outputLabel.classList.add("text-red-600");
+        setStatus("Error", "error");
+        updateStats("Error");
+      }
 
-        navigator.clipboard.writeText(outputText.value).then(() => {
-          // Trigger Visual Toast Layer
-          copyToast.classList.remove("opacity-0", "scale-95");
-          copyToast.classList.add("opacity-100", "scale-100");
+      function encodeUtf8ToBase64(value) {
+        const bytes = new TextEncoder().encode(value);
+        let binary = "";
+        const chunkSize = 0x8000;
 
-          // Auto decay toast visibility
-          setTimeout(() => {
-            copyToast.classList.remove("opacity-100", "scale-100");
-            copyToast.classList.add("opacity-0", "scale-95");
-          }, 1500);
-        }).catch(err => {
-          console.error("System clipboard operational exception node: ", err);
-        });
+        for (let i = 0; i < bytes.length; i += chunkSize) {
+          const chunk = bytes.subarray(i, i + chunkSize);
+          binary += String.fromCharCode.apply(null, chunk);
+        }
+
+        return btoa(binary);
+      }
+
+      function decodeBase64ToUtf8(value) {
+        const clean = value.trim().replace(/\s+/g, "");
+
+        if (!clean) return "";
+
+        const binary = atob(clean);
+        const bytes = new Uint8Array(binary.length);
+
+        for (let i = 0; i < binary.length; i++) {
+          bytes[i] = binary.charCodeAt(i);
+        }
+
+        return new TextDecoder("utf-8", { fatal: false }).decode(bytes);
+      }
+
+      function encodeText() {
+        const raw = inputText.value;
+
+        clearWarning();
+        resetOutputStyle();
+
+        if (!raw.trim()) {
+          showWarning("Please enter text to encode.");
+          outputText.value = "";
+          outputLabel.textContent = "Output";
+          setStatus("Waiting", "waiting");
+          updateStats("—");
+          return;
+        }
+
+        try {
+          outputText.value = encodeUtf8ToBase64(raw);
+          outputLabel.textContent = "Base64 Encoded Output";
+          setStatus("Encoded", "success");
+          updateStats("Encode");
+        } catch (error) {
+          showErrorState("Encoding failed. Please check the input and try again.");
+        }
+      }
+
+      function decodeText() {
+        const raw = inputText.value;
+
+        clearWarning();
+        resetOutputStyle();
+
+        if (!raw.trim()) {
+          showWarning("Please enter a Base64 string to decode.");
+          outputText.value = "";
+          outputLabel.textContent = "Output";
+          setStatus("Waiting", "waiting");
+          updateStats("—");
+          return;
+        }
+
+        try {
+          outputText.value = decodeBase64ToUtf8(raw);
+          outputLabel.textContent = "Decoded UTF-8 Text Output";
+          setStatus("Decoded", "success");
+          updateStats("Decode");
+        } catch (error) {
+          showErrorState("Invalid Base64 input. Please check for missing characters, incorrect padding, or unsupported data.");
+        }
+      }
+
+      function resetAll() {
+        inputText.value = "";
+        outputText.value = "";
+        outputLabel.textContent = "Output";
+        clearWarning();
+        resetOutputStyle();
+        setStatus("Waiting", "waiting");
+        updateStats("—");
+        inputText.focus();
+      }
+
+      function loadExample() {
+        inputText.value = "Hello from NodnWebTools. This text can be encoded safely with Base64.";
+        encodeText();
+      }
+
+      async function copyResult() {
+        if (!outputText.value || outputText.classList.contains("text-red-600")) {
+          showWarning("There is no valid output to copy yet.");
+          return;
+        }
+
+        try {
+          if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(outputText.value);
+          } else {
+            outputText.focus();
+            outputText.select();
+            document.execCommand("copy");
+          }
+
+          copyFeedback.classList.remove("hidden");
+          setTimeout(function () {
+            copyFeedback.classList.add("hidden");
+          }, 1400);
+        } catch (error) {
+          showWarning("Copy failed. Please select and copy the output manually.");
+        }
+      }
+
+      encodeBtn.addEventListener("click", encodeText);
+      decodeBtn.addEventListener("click", decodeText);
+      clearBtn.addEventListener("click", function () {
+        inputText.value = "";
+        updateStats(modeText.textContent === "—" ? "—" : modeText.textContent);
+        inputText.focus();
       });
+      resetBtn.addEventListener("click", resetAll);
+      sampleBtn.addEventListener("click", loadExample);
+      copyBtn.addEventListener("click", copyResult);
+
+      inputText.addEventListener("input", function () {
+        inputLength.textContent = String(inputText.value.length);
+        clearWarning();
+      });
+
+      updateStats("—");
     });
   </script>
-
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
 </body>
 </html>
