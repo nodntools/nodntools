@@ -4,39 +4,24 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404"
-     crossorigin="anonymous"></script>
+  <title>JSON to YAML Converter | Free Developer Tool</title>
+  <meta name="description" content="Convert JSON to YAML or YAML to JSON locally in your browser with validation, copy, download, and private no-upload processing.">
+  <meta name="keywords" content="JSON to YAML converter, YAML to JSON converter, online JSON converter, online YAML converter, JSON formatter, YAML formatter, developer tools, configuration converter, Kubernetes YAML converter, Docker compose YAML, API JSON converter, DevOps configuration tool, client-side converter, no upload JSON tool, no upload YAML tool, NodnWebTools">
+  <meta name="author" content="NodnWebTools">
+  <meta name="robots" content="index, follow">
 
-	<meta name="google-adsense-account" content="ca-pub-5282672325821404">	
+  <meta property="og:title" content="JSON to YAML Converter | Free Developer Tool">
+  <meta property="og:description" content="Convert JSON to YAML or YAML to JSON instantly in your browser with validation, copy, download, and no server upload.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nodntools.com/json-yaml-converter.html">
+  <meta property="og:site_name" content="NodnWebTools">
 
-  <title>Online JSON to YAML Converter | Free Data Formatting Tool - NodnWebTools</title>
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="JSON to YAML Converter">
+  <meta name="twitter:description" content="Convert JSON and YAML data locally with a fast browser-based developer utility.">
 
-  <meta
-    name="description"
-    content="Use the free NodnWebTools JSON to YAML Converter to seamlessly transform JSON objects into clean YAML configurations and vice versa instantly. 100% secure client-side conversion."
-  />
-  <meta
-    name="keywords"
-    content="json to yaml, yaml to json, online yaml converter, json parser, yaml formatter, free data converter, developer tools, nodntools, NodnWebTools"
-  />
-  <meta name="author" content="NodnWebTools" />
-  <meta name="robots" content="index, follow" />
-
-  <meta property="og:title" content="Online JSON to YAML Converter | NodnWebTools" />
-  <meta
-    property="og:description"
-    content="Convert JSON objects to clean YAML configurations or transform YAML data back into formatted JSON instantly and securely in your browser."
-  />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://nodntools.com/json-yaml-converter.html" />
-  <meta property="og:site_name" content="NodnWebTools" />
-
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Online JSON to YAML Converter" />
-  <meta
-    name="twitter:description"
-    content="A secure, client-side online data transformation utility for fast developer configuration conversions."
-  />
+  <meta name="google-adsense-account" content="ca-pub-5282672325821404">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404" crossorigin="anonymous"></script>
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -46,370 +31,687 @@
       theme: {
         extend: {
           colors: {
-            brand: {
-              50: '#ecfeff',
-              100: '#cffafe',
-              200: '#a5f3fc',
-              500: '#06b6d4',
-              600: '#0891b2',
-              700: '#0e7490',
-              800: '#155e75',
+            accent: {
+              50: "#eef2ff",
+              100: "#e0e7ff",
+              500: "#6366f1",
+              600: "#4f46e5",
+              700: "#4338ca",
+              800: "#3730a3"
             }
+          },
+          boxShadow: {
+            soft: "0 20px 45px rgba(15, 23, 42, 0.08)"
           }
         }
       }
+    };
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "JSON to YAML Converter",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "url": "https://nodntools.com/json-yaml-converter.html",
+    "description": "A free browser-based developer tool for converting JSON to YAML and YAML to JSON locally with validation, copy, and download options.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "creator": {
+      "@type": "Organization",
+      "name": "NodnWebTools",
+      "url": "https://nodntools.com"
     }
+  }
   </script>
 
   <style>
-    html, body { width: 100%; overflow-x: hidden; }
-    * { box-sizing: border-box; }
-    textarea, input, button { max-width: 100%; }
-    .adsbygoogle { max-width: 100%; overflow: hidden; }
-    @media (max-width: 420px) {
-      #copyToast { right: 0; left: auto; }
+    html, body {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+      background: #f8fafc;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      min-width: 0;
+    }
+
+    input, textarea, select, button, a {
+      max-width: 100%;
+    }
+
+    img, svg, canvas, video, table, pre, code, section, article, aside, main, div {
+      max-width: 100%;
+    }
+
+    textarea {
+      overflow-wrap: normal;
+      tab-size: 2;
+    }
+
+    .safe-break {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .mobile-card,
+    .mobile-panel,
+    .mobile-preview,
+    .mobile-code,
+    .ad-box {
+      max-width: 100%;
+      overflow-wrap: anywhere;
+    }
+
+    .mobile-code {
+      overflow-x: auto;
+      white-space: pre-wrap;
+    }
+
+    .ad-box {
+      width: 100%;
+      min-height: 90px;
+      border: 1px dashed #cbd5e1;
+      background: #f8fafc;
+      color: #94a3b8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-radius: 1rem;
+      padding: 1rem;
+      font-size: 0.875rem;
+      overflow: hidden;
+    }
+
+    @media (max-width: 640px) {
+      .mobile-card {
+        border-radius: 1.25rem !important;
+        padding: 1rem !important;
+      }
+
+      .mobile-panel {
+        padding: 1rem !important;
+      }
+
+      .mobile-button-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .mobile-button-grid button,
+      .mobile-button-grid a {
+        width: 100%;
+      }
+
+      .editor-textarea {
+        min-height: 300px !important;
+        font-size: 12px !important;
+      }
+
+      .ad-box {
+        min-height: 90px;
+        border-radius: 0.875rem;
+        padding: 0.875rem;
+        font-size: 0.78rem;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .mobile-card {
+        padding: 0.875rem !important;
+        border-radius: 1rem !important;
+      }
+
+      h1 {
+        font-size: 1.85rem !important;
+        line-height: 2.25rem !important;
+      }
+
+      h2 {
+        font-size: 1.45rem !important;
+        line-height: 1.9rem !important;
+      }
+
+      .editor-textarea {
+        min-height: 260px !important;
+        font-size: 11px !important;
+      }
+
+      .ad-box {
+        padding: 0.75rem;
+        font-size: 0.72rem;
+      }
     }
   </style>
 </head>
 
-<body class="min-h-screen bg-slate-900 text-slate-100 px-3 py-5 sm:px-4 sm:py-8 lg:py-12 font-sans overflow-x-hidden">
-  <main class="mx-auto w-full max-w-6xl overflow-hidden">
-
-    <div class="mb-8 text-center">
-      <a
-        href="https://nodntools.com"
-        class="inline-block transition hover:opacity-80"
-        aria-label="NodnWebTools Home"
-      >
-        <div class="text-2xl font-extrabold tracking-tight text-white sm:text-3xl">
-          Nodn<span class="text-cyan-400">WebTools</span>
-        </div>
+<body class="min-h-screen bg-slate-50 text-slate-900">
+  <header class="w-full border-b border-slate-200 bg-white/90 backdrop-blur">
+    <div class="mx-auto flex w-full max-w-7xl flex-col gap-4 px-4 py-5 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
+      <a href="https://nodntools.com" class="inline-flex items-center safe-break" aria-label="NodnWebTools Home">
+        <span class="text-2xl font-black tracking-tight text-slate-950">Nodn<span class="text-accent-600">WebTools</span></span>
       </a>
+      <nav class="flex flex-wrap items-center gap-3 text-sm font-semibold text-slate-600">
+        <a href="https://nodntools.com" class="rounded-full px-4 py-2 transition hover:bg-slate-100 hover:text-accent-700">Home</a>
+        <a href="#how-to-use" class="rounded-full px-4 py-2 transition hover:bg-slate-100 hover:text-accent-700">How to Use</a>
+        <a href="#faq" class="rounded-full px-4 py-2 transition hover:bg-slate-100 hover:text-accent-700">FAQ</a>
+      </nav>
     </div>
+  </header>
 
-    <div class="mb-6 sm:mb-8 flex min-h-[80px] sm:min-h-[90px] w-full items-center justify-center rounded-2xl border border-dashed border-slate-700 bg-slate-800 px-3 text-center text-xs sm:text-sm text-slate-500">
-      AdSense Responsive Ad Area - Top
-    </div>
+  <main class="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+    <div class="ad-box mb-6">Top Ad Area - Responsive AdSense Placeholder</div>
 
-    <div class="mb-5 sm:mb-6 grid grid-cols-1 gap-1.5 rounded-2xl bg-slate-800 p-1.5 shadow-inner w-full max-w-md mx-auto ring-1 ring-slate-700 min-[380px]:grid-cols-2">
-      <button id="tabJsonToYaml" class="w-full rounded-xl px-3 py-2.5 text-center text-xs sm:text-sm font-bold transition-all text-cyan-900 bg-cyan-400 shadow-sm whitespace-nowrap">
-        JSON ➔ YAML
-      </button>
-      <button id="tabYamlToJson" class="w-full rounded-xl px-3 py-2.5 text-center text-xs sm:text-sm font-bold transition-all text-slate-400 hover:text-slate-200 whitespace-nowrap">
-        YAML ➔ JSON
-      </button>
-    </div>
+    <section class="grid grid-cols-1 gap-6 lg:grid-cols-12">
+      <div class="mobile-card rounded-3xl bg-white p-5 shadow-soft ring-1 ring-slate-200 sm:p-8 lg:col-span-5">
+        <span class="inline-flex rounded-full bg-accent-50 px-4 py-2 text-sm font-bold text-accent-700 ring-1 ring-accent-100">Developer Data Tool</span>
 
-    <section class="grid grid-cols-1 gap-5 lg:gap-6 lg:grid-cols-2">
+        <h1 class="mt-5 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">
+          JSON to YAML Converter
+        </h1>
 
-      <div class="rounded-3xl bg-slate-800 p-4 shadow-xl ring-1 ring-slate-700 sm:p-6 flex flex-col space-y-4 min-w-0">
-        <div class="flex flex-col items-stretch gap-3 select-none sm:flex-row sm:items-center sm:justify-between">
-          <div class="flex min-w-0 flex-wrap items-center gap-2">
-            <span class="inline-flex rounded-full bg-cyan-500/10 px-3 py-1 text-xs font-semibold text-cyan-400 ring-1 ring-cyan-500/30">
-              Input Payload
-            </span>
-            <h2 id="inputLabel" class="text-sm font-bold text-slate-300">Raw JSON Structure</h2>
-          </div>
-          
-          <div class="grid grid-cols-2 gap-2 sm:flex sm:items-center sm:space-x-1.5">
-            <button id="pasteBtn" class="w-full sm:w-auto text-xs font-semibold text-slate-300 hover:text-white bg-slate-700 hover:bg-slate-600 px-3 py-2 sm:py-1.5 rounded-xl transition">
-              Paste
-            </button>
-            <button id="clearBtn" class="w-full sm:w-auto text-xs font-semibold text-slate-400 hover:text-red-400 bg-slate-700/50 hover:bg-slate-700 px-3 py-2 sm:py-1.5 rounded-xl transition">
-              Clear
-            </button>
-          </div>
+        <p class="mt-4 text-sm leading-7 text-slate-600">
+          Convert JSON to YAML or YAML to JSON instantly in your browser. Paste structured configuration data, validate syntax, copy the result, and download clean developer-ready files without sending your data to a backend server.
+        </p>
+
+        <div class="mt-6 grid grid-cols-1 gap-2 rounded-2xl bg-slate-100 p-1.5 sm:grid-cols-2">
+          <button id="tabJsonToYaml" type="button" class="rounded-xl bg-accent-600 px-4 py-3 text-sm font-black text-white shadow-sm transition">
+            JSON to YAML
+          </button>
+          <button id="tabYamlToJson" type="button" class="rounded-xl px-4 py-3 text-sm font-black text-slate-600 transition hover:bg-white">
+            YAML to JSON
+          </button>
         </div>
 
-        <div class="flex flex-col min-h-[240px] sm:min-h-[320px] lg:min-h-[450px]">
-          <textarea id="inputText" placeholder="Paste your structured JSON objects here..." class="w-full flex-1 min-h-[240px] sm:min-h-[320px] lg:min-h-[450px] rounded-2xl border border-slate-700 bg-slate-950 p-3 sm:p-4 font-mono text-[11px] sm:text-xs text-slate-200 shadow-inner outline-none transition focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 resize-y leading-5 whitespace-pre overflow-auto"></textarea>
+        <div class="mt-6 space-y-5">
+          <div class="rounded-2xl bg-slate-50 p-4 text-sm leading-6 text-slate-600 ring-1 ring-slate-200">
+            <strong class="text-slate-900">Example use:</strong> Convert API response samples, package metadata, Docker Compose snippets, CI/CD configuration, Kubernetes manifests, and application settings between JSON and YAML formats.
+          </div>
+
+          <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+            <button id="loadExampleBtn" type="button" class="rounded-2xl bg-white px-4 py-3 text-sm font-black text-slate-800 ring-1 ring-slate-300 transition hover:bg-slate-100 active:scale-[0.98]">Load Example</button>
+            <button id="pasteBtn" type="button" class="rounded-2xl bg-white px-4 py-3 text-sm font-black text-slate-800 ring-1 ring-slate-300 transition hover:bg-slate-100 active:scale-[0.98]">Paste</button>
+          </div>
+
+          <div id="statusBox" class="rounded-2xl bg-accent-50 p-4 text-sm font-bold text-accent-700 ring-1 ring-accent-100">Ready</div>
+
+          <div class="rounded-2xl bg-slate-950 p-5 text-white">
+            <h2 class="text-lg font-black">Local Processing Notice</h2>
+            <p class="mt-3 text-sm leading-7 text-slate-300">
+              This tool runs conversion in your browser using client-side JavaScript. It is useful for regular configuration files, but you should avoid pasting production secrets, private keys, passwords, tokens, or sensitive credentials into any online page.
+            </p>
+          </div>
         </div>
       </div>
 
-      <div class="rounded-3xl bg-slate-800 p-4 shadow-xl ring-1 ring-slate-700 sm:p-6 flex flex-col space-y-4 min-w-0">
-        <div class="flex flex-col items-stretch gap-3 select-none sm:flex-row sm:items-center sm:justify-between">
-          <div class="flex min-w-0 flex-wrap items-center gap-2">
-            <span class="inline-flex rounded-full bg-slate-700 px-3 py-1 text-xs font-semibold text-slate-300 ring-1 ring-slate-600">
-              Output Stream
-            </span>
-            <h2 id="outputLabel" class="text-sm font-bold text-slate-300">Compiled YAML Outflow</h2>
+      <div class="space-y-6 lg:col-span-7">
+        <section class="mobile-card rounded-3xl bg-white p-5 shadow-soft ring-1 ring-slate-200 sm:p-7">
+          <div class="grid grid-cols-1 gap-5">
+            <div>
+              <div class="mb-3 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                  <h2 id="inputLabel" class="text-xl font-black tracking-tight text-slate-950">Input JSON</h2>
+                  <p class="mt-1 text-sm text-slate-500">Paste or type your source data below.</p>
+                </div>
+                <button id="clearBtn" type="button" class="rounded-xl bg-slate-100 px-4 py-2 text-sm font-black text-slate-700 transition hover:bg-slate-200">Clear</button>
+              </div>
+              <textarea id="inputText" spellcheck="false" placeholder="Paste JSON here..." class="editor-textarea h-[360px] w-full resize-y rounded-2xl border border-slate-300 bg-slate-950 p-4 font-mono text-sm leading-6 text-slate-100 outline-none transition focus:border-accent-500 focus:ring-4 focus:ring-accent-100"></textarea>
+            </div>
+
+            <div>
+              <div class="mb-3 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                  <h2 id="outputLabel" class="text-xl font-black tracking-tight text-slate-950">Output YAML</h2>
+                  <p class="mt-1 text-sm text-slate-500">Converted output appears automatically.</p>
+                </div>
+                <div class="mobile-button-grid grid grid-cols-1 gap-2 sm:grid-cols-2">
+                  <button id="copyBtn" type="button" class="rounded-xl bg-accent-600 px-4 py-2 text-sm font-black text-white transition hover:bg-accent-700">Copy Result</button>
+                  <button id="downloadBtn" type="button" class="rounded-xl bg-slate-950 px-4 py-2 text-sm font-black text-white transition hover:bg-slate-800">Download</button>
+                </div>
+              </div>
+              <textarea id="outputText" readonly spellcheck="false" placeholder="Converted output will appear here..." class="editor-textarea h-[360px] w-full resize-y rounded-2xl border border-slate-300 bg-slate-50 p-4 font-mono text-sm leading-6 text-slate-800 outline-none"></textarea>
+            </div>
           </div>
-          
-          <div class="grid grid-cols-1 gap-2 relative min-[380px]:grid-cols-2 sm:flex sm:items-center sm:space-x-1.5">
-            <button id="copyBtn" class="w-full sm:w-auto text-xs font-semibold text-slate-900 bg-cyan-400 hover:bg-cyan-300 px-3 py-2 sm:py-1.5 rounded-xl transition shadow-sm font-bold active:scale-95 whitespace-nowrap">
-              Copy Result
-            </button>
-            <button id="downloadBtn" class="w-full sm:w-auto text-xs font-semibold text-slate-300 bg-slate-700 hover:bg-slate-600 border border-slate-600 px-3 py-2 sm:py-1.5 rounded-xl transition shadow-sm active:scale-95 whitespace-nowrap">
-              Download File
-            </button>
+        </section>
 
-            <span id="copyToast" class="absolute bottom-full right-0 mb-2 bg-slate-950 text-cyan-400 text-xs px-2.5 py-1.5 rounded-xl opacity-0 scale-95 pointer-events-none transition-all duration-200 font-semibold shadow-md ring-1 ring-cyan-500/30 whitespace-nowrap">
-              Copied Successfully!
-            </span>
-          </div>
-        </div>
+        <div class="ad-box">Ad Area Below Main Tool and Result Section</div>
 
-        <div class="flex flex-col min-h-[240px] sm:min-h-[320px] lg:min-h-[450px]">
-          <textarea id="outputText" readonly placeholder="Calculated formats populate dynamically down here..." class="w-full flex-1 min-h-[240px] sm:min-h-[320px] lg:min-h-[450px] rounded-2xl border border-slate-700 bg-slate-950 p-3 sm:p-4 font-mono text-[11px] sm:text-xs text-slate-400 shadow-inner outline-none resize-y leading-5 whitespace-pre overflow-auto"></textarea>
-        </div>
-      </div>
-
-    </section>
-
-    <section class="mt-6 sm:mt-8 grid grid-cols-1 gap-5 lg:gap-6 lg:grid-cols-12">
-      
-      <div class="lg:col-span-7 space-y-6">
-        <section class="rounded-3xl bg-slate-800 p-4 shadow-sm ring-1 ring-slate-700 sm:p-8 min-w-0">
-          <span class="inline-flex rounded-full bg-slate-700 px-4 py-1.5 text-xs font-semibold text-slate-300 tracking-wide">
-            Data Architecture Blueprint
-          </span>
-
-          <h1 class="mt-4 text-2xl font-bold tracking-tight text-white sm:text-3xl">
-            JSON ↔ YAML Bidirectional Object Mapping Engine
-          </h1>
-
-          <div class="mt-4 space-y-4 text-sm leading-7 text-slate-400">
-            <p>
-              In decentralized deployment workflows and cloud microservices configurations, converting data payloads between strict formats relies heavily on deploying a client-side 
-              <strong class="font-semibold text-slate-200">online json to yaml converter</strong>. When devops architectures build environment parameters, parsing structural layout models dynamically streamlines pipeline deployment variables.
-            </p>
-
-            <p>
-              Utilizing our integrated, browser-bound <strong class="font-semibold text-slate-200">yaml to json formatting tool</strong> handles complex data token nesting layers easily. Conversely, software configurations rely on an automated <strong class="font-semibold text-slate-200">developer data object converter</strong> structure to adjust continuous integration manifests without server response latency.
-            </p>
-
-            <h3 class="text-base font-bold text-white pt-2">How Data Streams Process Securely Inside Local Scopes</h3>
-            <p>
-              Generic serialization tools route text parameters through cloud endpoint handlers, opening potential compliance vulnerabilities. This sandbox routine completely restricts thread execution to your local tab:
-            </p>
-
-            <ul class="list-disc pl-5 space-y-1.5 text-slate-400">
-              <li><strong>Real-time AST Compiling:</strong> The application monitors characters on input changes, compiling structured target tokens on the fly without trigger buttons.</li>
-              <li><strong>Safe Parsing Containment:</strong> The engine wraps serialization rules within strict try-catch handlers to catch structural exceptions instantly.</li>
-              <li><strong>Local Variable Processing:</strong> No text nodes ever stream to server storage arrays, ensuring corporate credentials, Kubernetes assets, and app keys stay fully protected.</li>
-            </ul>
+        <section class="mobile-card rounded-3xl bg-white p-5 shadow-sm ring-1 ring-slate-200 sm:p-7">
+          <h2 class="text-2xl font-black tracking-tight text-slate-950">Common Conversion Workflows</h2>
+          <div class="mt-4 grid grid-cols-1 gap-4 md:grid-cols-3">
+            <article class="rounded-2xl bg-slate-50 p-4 ring-1 ring-slate-200">
+              <h3 class="font-black text-slate-950">API JSON to YAML</h3>
+              <p class="mt-2 text-sm leading-6 text-slate-600">Convert structured API response examples into readable YAML for documentation and configuration references.</p>
+            </article>
+            <article class="rounded-2xl bg-slate-50 p-4 ring-1 ring-slate-200">
+              <h3 class="font-black text-slate-950">YAML to JSON</h3>
+              <p class="mt-2 text-sm leading-6 text-slate-600">Transform YAML settings into JSON for scripts, applications, tests, and API tooling.</p>
+            </article>
+            <article class="rounded-2xl bg-slate-50 p-4 ring-1 ring-slate-200">
+              <h3 class="font-black text-slate-950">Config Validation</h3>
+              <p class="mt-2 text-sm leading-6 text-slate-600">Catch invalid structure, syntax errors, indentation problems, and parsing issues before using a file.</p>
+            </article>
           </div>
         </section>
       </div>
-
-      <div class="lg:col-span-5 space-y-6">
-        <div class="flex min-h-[180px] sm:min-h-[250px] w-full flex-col items-center justify-center rounded-3xl border border-dashed border-slate-700 bg-slate-800 px-3 py-4 text-center text-xs sm:text-sm text-slate-500">
-          <span class="text-[10px] font-bold text-slate-600 uppercase tracking-widest mb-2">Advertisement</span>
-          <ins class="adsbygoogle"
-               style="display:block; width:100%; max-width:100%; min-height:160px;"
-               data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-               data-ad-slot="YYYYYYYYYY"
-               data-ad-format="rectangle, vertical"
-               data-full-width-responsive="true"></ins>
-          <script>
-               (adsbygoogle = window.adsbygoogle || []).push({});
-          </script>
-        </div>
-
-        <div class="rounded-2xl bg-slate-800/60 border border-slate-700 p-4 text-xs leading-5 text-slate-500">
-          <span class="block font-bold text-slate-400 mb-1">Disclaimer & Legal Notice:</span>
-          This tool is provided on an "as is" and "as available" basis without warranties of any kind. Structural serialization configurations run 100% inside the client browser thread; NodnWebTools never mirrors, intercepts, stores, or logs your variable scripts. The operator carries absolute liability to review key spacing and formatting blocks before deployment. NodnWebTools, its technical operators, and affiliates disclaim all liability for distorted tokens, truncated parameters, formatting faults, or system infrastructure damage resulting from compiling strings.
-        </div>
-      </div>
-
     </section>
 
-    <div class="mt-6 sm:mt-8 flex min-h-[80px] sm:min-h-[90px] w-full items-center justify-center rounded-2xl border border-dashed border-slate-700 bg-slate-800 px-3 text-center text-xs sm:text-sm text-slate-500">
-      AdSense Responsive Ad Area - Bottom
-    </div>
+    <section class="mt-8 rounded-3xl bg-white p-5 shadow-sm ring-1 ring-slate-200 sm:p-8">
+      <div class="mx-auto max-w-4xl">
+        <span class="inline-flex rounded-full bg-accent-50 px-4 py-2 text-sm font-black text-accent-700 ring-1 ring-accent-100">Complete Guide</span>
+        <h2 class="mt-5 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">
+          Free JSON to YAML Converter for Developers, DevOps, and Configuration Files
+        </h2>
 
+        <p class="mt-5 text-base leading-8 text-slate-600">
+          The NodnWebTools JSON to YAML Converter is a free browser-based developer utility designed to convert structured data between JSON and YAML quickly. JSON and YAML are two of the most common formats used in software development, cloud infrastructure, configuration files, API documentation, automation workflows, deployment manifests, package metadata, and application settings. JSON is strict, compact, and widely used by APIs and JavaScript applications. YAML is more human-readable and commonly used for configuration in DevOps, CI/CD pipelines, Docker Compose files, Kubernetes manifests, static site generators, and infrastructure-as-code tools. This converter helps you move between both formats without installing extra software.
+        </p>
+
+        <p class="mt-5 text-base leading-8 text-slate-600">
+          Many developers need to convert JSON to YAML when they receive an API response, a package configuration, a schema example, or a structured object that would be easier to read as YAML. Likewise, YAML to JSON conversion is useful when a tool, test script, API client, browser application, or validation workflow requires JSON instead of YAML. By supporting both directions, this page works as a JSON to YAML converter, YAML to JSON converter, JSON formatter, YAML formatter, configuration converter, and quick developer data transformation tool in one place.
+        </p>
+
+        <p class="mt-5 text-base leading-8 text-slate-600">
+          The tool is designed for convenience and privacy. Conversion happens in your browser using client-side JavaScript. You can paste source data, review the generated output, copy the result, or download it as a .yaml or .json file. Because the conversion logic runs locally in the active page, the tool does not need to send your pasted configuration to a backend server for normal operation. This is helpful for routine configuration work, documentation drafts, sample objects, learning exercises, local development, and quick formatting tasks. However, users should still avoid entering passwords, API keys, private tokens, production secrets, signing keys, database credentials, and other sensitive values into any online page.
+        </p>
+
+        <div class="ad-box my-8">Middle Content Ad Area Inside the SEO Article Section</div>
+
+        <h2 id="how-to-use" class="mt-10 text-2xl font-black tracking-tight text-slate-950">How to Use the JSON to YAML Converter</h2>
+        <p class="mt-4 text-base leading-8 text-slate-600">
+          Start by choosing the conversion direction. Select JSON to YAML when your source data is JSON and you want a readable YAML output. Select YAML to JSON when your source data is YAML and you need formatted JSON. Paste your data into the input area. The converter runs automatically as you type, so you can immediately see whether the structure is valid. If the input cannot be parsed, the output panel shows a clear error message. Once the conversion succeeds, use Copy Result to move the formatted output to your clipboard or Download to save the converted result as a local file.
+        </p>
+
+        <p class="mt-5 text-base leading-8 text-slate-600">
+          For best results, start with valid input. JSON must use double quotes for property names and string values, cannot contain trailing commas, and must follow strict object or array structure. YAML is more flexible but relies heavily on indentation, spacing, and consistent hierarchy. If your YAML file contains tabs, unusual anchors, advanced tags, or tool-specific syntax, review the output carefully after conversion. The converter is built for everyday structured data and configuration conversion, but complex production files should always be tested in the target application before deployment.
+        </p>
+
+        <div class="mt-8 grid grid-cols-1 gap-5 md:grid-cols-3">
+          <article class="rounded-2xl bg-slate-50 p-5 ring-1 ring-slate-200">
+            <h3 class="text-lg font-black text-slate-950">Step 1: Choose Direction</h3>
+            <p class="mt-3 text-sm leading-7 text-slate-600">Switch between JSON to YAML and YAML to JSON depending on the format you currently have and the format you need.</p>
+          </article>
+          <article class="rounded-2xl bg-slate-50 p-5 ring-1 ring-slate-200">
+            <h3 class="text-lg font-black text-slate-950">Step 2: Paste Data</h3>
+            <p class="mt-3 text-sm leading-7 text-slate-600">Paste an API object, configuration snippet, deployment file, or structured data block into the input editor.</p>
+          </article>
+          <article class="rounded-2xl bg-slate-50 p-5 ring-1 ring-slate-200">
+            <h3 class="text-lg font-black text-slate-950">Step 3: Copy or Download</h3>
+            <p class="mt-3 text-sm leading-7 text-slate-600">Copy the converted output to your clipboard or download the result as a YAML or JSON file for later use.</p>
+          </article>
+        </div>
+
+        <h2 class="mt-12 text-2xl font-black tracking-tight text-slate-950">What Is JSON?</h2>
+        <p class="mt-4 text-base leading-8 text-slate-600">
+          JSON stands for JavaScript Object Notation. It is a lightweight data format commonly used to transmit structured information between servers, browsers, mobile apps, APIs, databases, and scripts. JSON is popular because it is easy for machines to parse and easy enough for developers to read. It uses key-value pairs, arrays, strings, numbers, booleans, and null values. Many REST APIs, frontend applications, Node.js projects, package files, analytics tools, and configuration systems rely on JSON because it is strict and predictable.
+        </p>
+
+        <p class="mt-5 text-base leading-8 text-slate-600">
+          JSON is especially useful when data needs to be exchanged programmatically. API clients can parse JSON quickly, JavaScript can read JSON naturally, and many programming languages include built-in JSON support. However, JSON can become hard to read when configuration files are deeply nested or when humans need to edit the structure manually. Because JSON requires quotes and commas, small syntax mistakes can break the file. That is one reason developers often convert JSON to YAML for configuration documentation or readable infrastructure files.
+        </p>
+
+        <h2 class="mt-12 text-2xl font-black tracking-tight text-slate-950">What Is YAML?</h2>
+        <p class="mt-4 text-base leading-8 text-slate-600">
+          YAML stands for YAML Ain’t Markup Language. It is a human-readable data serialization format that is widely used for configuration files. YAML is common in DevOps workflows because it is easier to scan visually than JSON for many nested settings. It uses indentation to represent structure instead of braces and brackets. YAML is used in Kubernetes manifests, Docker Compose files, GitHub Actions workflows, GitLab CI files, Ansible playbooks, OpenAPI references, static site generators, and many cloud deployment tools.
+        </p>
+
+        <p class="mt-5 text-base leading-8 text-slate-600">
+          YAML is powerful because it is concise and readable, but it can also be sensitive to indentation and spacing. A misplaced space can change the meaning of a file or create a parsing error. Developers converting YAML to JSON should check whether the resulting structure matches expectations. This is especially important for deployment files, infrastructure settings, access rules, and automation scripts where a small formatting issue can cause unexpected behavior.
+        </p>
+
+        <div class="ad-box my-8">Bottom Content Ad Area Before FAQ</div>
+
+        <h2 class="mt-12 text-2xl font-black tracking-tight text-slate-950">Popular Uses for JSON and YAML Conversion</h2>
+        <div class="mt-8 grid grid-cols-1 gap-5 md:grid-cols-2">
+          <article class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
+            <h3 class="text-xl font-black text-slate-950">API Documentation</h3>
+            <p class="mt-3 text-sm leading-7 text-slate-600">Convert JSON API examples into YAML-friendly documentation snippets for OpenAPI references, developer guides, and readable technical notes.</p>
+          </article>
+          <article class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
+            <h3 class="text-xl font-black text-slate-950">Kubernetes and DevOps Configs</h3>
+            <p class="mt-3 text-sm leading-7 text-slate-600">Prepare structured YAML configuration for deployment manifests, service definitions, environment settings, and infrastructure workflows.</p>
+          </article>
+          <article class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
+            <h3 class="text-xl font-black text-slate-950">Testing and Debugging</h3>
+            <p class="mt-3 text-sm leading-7 text-slate-600">Convert YAML into JSON when a testing tool, schema validator, script, or API client requires JSON input.</p>
+          </article>
+          <article class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
+            <h3 class="text-xl font-black text-slate-950">Learning Data Structures</h3>
+            <p class="mt-3 text-sm leading-7 text-slate-600">Compare the same object in JSON and YAML to better understand arrays, objects, nested keys, scalar values, and configuration hierarchy.</p>
+          </article>
+        </div>
+
+        <h2 class="mt-12 text-2xl font-black tracking-tight text-slate-950">JSON vs YAML: Which Format Should You Use?</h2>
+        <p class="mt-4 text-base leading-8 text-slate-600">
+          JSON is often the best choice when data is consumed by applications, APIs, browsers, or automated systems. It is strict, predictable, and supported almost everywhere. YAML is often the better choice when humans need to write or read configuration files. It is more concise and easier to scan, especially for nested settings. In many real workflows, both formats appear together. A developer may receive JSON from an API, convert it to YAML for documentation, then convert YAML back to JSON for testing or scripting.
+        </p>
+
+        <p class="mt-5 text-base leading-8 text-slate-600">
+          The right choice depends on your environment. Use JSON for API payloads, structured responses, web application data, and machine-to-machine exchange. Use YAML for DevOps configuration, deployment settings, pipeline files, infrastructure manifests, and readable project configuration. When compatibility is uncertain, check the documentation of the tool that will consume the file. Some platforms support both JSON and YAML, while others require one specific format.
+        </p>
+
+        <h2 class="mt-12 text-2xl font-black tracking-tight text-slate-950">Common JSON and YAML Errors to Watch For</h2>
+        <p class="mt-4 text-base leading-8 text-slate-600">
+          JSON errors often come from missing quotes, trailing commas, unescaped characters, mismatched braces, and incorrect array syntax. YAML errors often come from inconsistent indentation, tabs instead of spaces, missing colons, invalid nesting, and ambiguous values. Because YAML can interpret some unquoted values as booleans, numbers, or nulls, it is a good idea to review the converted JSON output when exact data types matter.
+        </p>
+
+        <p class="mt-5 text-base leading-8 text-slate-600">
+          Before using converted output in production, validate it with the target tool. A Kubernetes manifest should be checked with Kubernetes tooling, a Docker Compose file should be checked with Docker Compose, and an API payload should be tested against the API or schema validator that will actually process it. A general converter helps transform syntax, but it cannot guarantee that every domain-specific rule or platform requirement is correct.
+        </p>
+
+        <h2 class="mt-12 text-2xl font-black tracking-tight text-slate-950">Privacy and Security Tips for Configuration Conversion</h2>
+        <p class="mt-4 text-base leading-8 text-slate-600">
+          Configuration files often contain sensitive values, including API tokens, private URLs, database connection strings, encryption secrets, cloud credentials, access keys, service account information, and internal infrastructure details. Even when a converter is designed to run locally in the browser, you should be cautious about pasting sensitive production data into any online page. For highly confidential files, remove secrets first or use an offline trusted environment.
+        </p>
+
+        <p class="mt-5 text-base leading-8 text-slate-600">
+          A safe workflow is to convert sample data, placeholder values, public documentation examples, or sanitized configuration files. Replace real tokens with fake values before conversion. After converting, review the output for unexpected changes, formatting shifts, or missing values. If you are preparing a file for deployment, test it in a staging environment before applying it to production.
+        </p>
+      </div>
+    </section>
+
+    <section id="faq" class="mt-8 rounded-3xl bg-white p-5 shadow-sm ring-1 ring-slate-200 sm:p-8">
+      <div class="mx-auto max-w-4xl">
+        <span class="inline-flex rounded-full bg-slate-100 px-4 py-2 text-sm font-black text-slate-700 ring-1 ring-slate-200">Frequently Asked Questions</span>
+        <h2 class="mt-5 text-3xl font-black tracking-tight text-slate-950">JSON to YAML Converter FAQ</h2>
+
+        <div class="mt-8 space-y-5">
+          <article class="rounded-2xl bg-slate-50 p-5 ring-1 ring-slate-200">
+            <h3 class="text-lg font-black text-slate-950">Is this JSON to YAML converter free?</h3>
+            <p class="mt-3 text-sm leading-7 text-slate-600">Yes. This tool is free to use for converting JSON to YAML and YAML to JSON in your browser.</p>
+          </article>
+
+          <article class="rounded-2xl bg-slate-50 p-5 ring-1 ring-slate-200">
+            <h3 class="text-lg font-black text-slate-950">Does this tool upload my JSON or YAML?</h3>
+            <p class="mt-3 text-sm leading-7 text-slate-600">The conversion is designed to run locally in your browser. Your pasted data is not intentionally sent to a NodnWebTools backend for conversion.</p>
+          </article>
+
+          <article class="rounded-2xl bg-slate-50 p-5 ring-1 ring-slate-200">
+            <h3 class="text-lg font-black text-slate-950">Why is my JSON invalid?</h3>
+            <p class="mt-3 text-sm leading-7 text-slate-600">JSON requires strict syntax, including double quotes around property names and strings, no trailing commas, and properly matched braces or brackets.</p>
+          </article>
+
+          <article class="rounded-2xl bg-slate-50 p-5 ring-1 ring-slate-200">
+            <h3 class="text-lg font-black text-slate-950">Why is my YAML invalid?</h3>
+            <p class="mt-3 text-sm leading-7 text-slate-600">YAML is indentation-sensitive. Tabs, inconsistent spacing, missing colons, or incorrect nesting can cause parsing errors.</p>
+          </article>
+
+          <article class="rounded-2xl bg-slate-50 p-5 ring-1 ring-slate-200">
+            <h3 class="text-lg font-black text-slate-950">Can I use this for Kubernetes YAML?</h3>
+            <p class="mt-3 text-sm leading-7 text-slate-600">You can convert general Kubernetes-like YAML or JSON structures, but you should still validate manifests with Kubernetes tools before deployment.</p>
+          </article>
+
+          <article class="rounded-2xl bg-slate-50 p-5 ring-1 ring-slate-200">
+            <h3 class="text-lg font-black text-slate-950">Does conversion preserve comments?</h3>
+            <p class="mt-3 text-sm leading-7 text-slate-600">Comments may not be preserved during conversion because JSON does not support comments and parsed data is serialized into a new output format.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="mt-8 rounded-3xl bg-slate-950 p-5 text-white shadow-sm sm:p-8">
+      <div class="mx-auto max-w-4xl">
+        <h2 class="text-2xl font-black tracking-tight">Legal Disclaimer</h2>
+        <div class="mt-5 space-y-4 text-sm leading-7 text-slate-300">
+          <p>
+            This JSON to YAML Converter is provided for general developer productivity, formatting, and educational purposes only. It is not a security auditing system, production deployment validator, compliance tool, secrets scanner, infrastructure management platform, or professional DevOps review service.
+          </p>
+          <p>
+            Users are responsible for reviewing all converted output before using it in applications, servers, repositories, automation pipelines, cloud platforms, containers, Kubernetes clusters, CI/CD systems, or production environments. Formatting conversion does not guarantee that a file is semantically valid for a specific platform or that it satisfies all domain-specific schema requirements.
+          </p>
+          <p>
+            Do not paste private keys, API tokens, passwords, database credentials, cloud secrets, confidential configuration files, or regulated data into any online page unless you fully understand the risks and control the device environment. NodnWebTools and its operators are not responsible for data exposure, misconfiguration, deployment failure, syntax errors, service outages, security incidents, or damages resulting from use of this tool.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="ad-box mt-8">Bottom Ad Area Near the End of the Page</div>
   </main>
 
+  <footer class="mt-10 border-t border-slate-200 bg-white">
+    <div class="mx-auto flex w-full max-w-7xl flex-col gap-3 px-4 py-8 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
+      <p>© <span id="yearText"></span> NodnWebTools. All rights reserved.</p>
+      <a href="https://nodntools.com" class="font-semibold text-accent-700 hover:text-accent-800">Visit Home</a>
+    </div>
+  </footer>
+
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      // Core Tab Interface Selectors
+    document.addEventListener("DOMContentLoaded", function () {
       const tabJsonToYaml = document.getElementById("tabJsonToYaml");
       const tabYamlToJson = document.getElementById("tabYamlToJson");
-      
       const inputLabel = document.getElementById("inputLabel");
       const outputLabel = document.getElementById("outputLabel");
       const inputText = document.getElementById("inputText");
       const outputText = document.getElementById("outputText");
-      
       const pasteBtn = document.getElementById("pasteBtn");
       const clearBtn = document.getElementById("clearBtn");
       const copyBtn = document.getElementById("copyBtn");
       const downloadBtn = document.getElementById("downloadBtn");
-      const copyToast = document.getElementById("copyToast");
+      const loadExampleBtn = document.getElementById("loadExampleBtn");
+      const statusBox = document.getElementById("statusBox");
+      const yearText = document.getElementById("yearText");
 
-      // Global Engine Context Attribute (true = JSON to YAML, false = YAML to JSON)
       let isJsonToYamlMode = true;
+      let outputHasError = false;
 
-      // Mode Navigation Tabs Controllers
-      tabJsonToYaml.addEventListener("click", () => {
-        if (isJsonToYamlMode) return;
-        isJsonToYamlMode = true;
-        toggleTabUi(tabJsonToYaml, tabYamlToJson);
-        updateInterfaceStrings("Raw JSON Structure", "Compiled YAML Outflow", "Paste your structured JSON objects here...");
-      });
-
-      tabYamlToJson.addEventListener("click", () => {
-        if (!isJsonToYamlMode) return;
-        isJsonToYamlMode = false;
-        toggleTabUi(tabYamlToJson, tabJsonToYaml);
-        updateInterfaceStrings("Raw YAML Configuration", "Compiled JSON Outflow", "Paste your structural YAML data blocks here...");
-      });
-
-      function toggleTabUi(activeTab, inactiveTab) {
-        activeTab.classList.add("bg-cyan-400", "text-cyan-900");
-        activeTab.classList.remove("text-slate-400", "hover:text-slate-200");
-        inactiveTab.classList.remove("bg-cyan-400", "text-cyan-900");
-        inactiveTab.classList.add("text-slate-400", "hover:text-slate-200");
-        inputText.value = "";
-        outputText.value = "";
-        resetOutputStyle();
-      }
-
-      function updateInterfaceStrings(inputLbl, outputLbl, inputPlh) {
-        inputLabel.textContent = inputLbl;
-        outputLabel.textContent = outputLbl;
-        inputText.placeholder = inputPlh;
-      }
-
-      // Real-time Event Processing Canvas Core
-      inputText.addEventListener("input", () => {
-        executeTransformationPipeline();
-      });
-
-      // Paste Data Inflow Trigger Utility
-      pasteBtn.addEventListener("click", async () => {
-        try {
-          const clipboardText = await navigator.clipboard.readText();
-          if (clipboardText) {
-            inputText.value = clipboardText;
-            executeTransformationPipeline();
+      const examples = {
+        json: JSON.stringify({
+          app: {
+            name: "NodnWebTools",
+            environment: "production",
+            features: ["conversion", "validation", "download"],
+            settings: {
+              cache: true,
+              timeout: 3000,
+              retries: 2
+            }
           }
-        } catch (err) {
-          console.error("Clipboard reading fault node: ", err);
-        }
-      });
+        }, null, 2),
+        yaml: "app:\n  name: NodnWebTools\n  environment: production\n  features:\n    - conversion\n    - validation\n    - download\n  settings:\n    cache: true\n    timeout: 3000\n    retries: 2"
+      };
 
-      // Clear Workspace Handler
-      clearBtn.addEventListener("click", () => {
+      function setStatus(message, type) {
+        statusBox.textContent = message;
+        if (type === "success") {
+          statusBox.className = "rounded-2xl bg-emerald-50 p-4 text-sm font-bold text-emerald-700 ring-1 ring-emerald-100";
+        } else if (type === "error") {
+          statusBox.className = "rounded-2xl bg-rose-50 p-4 text-sm font-bold text-rose-700 ring-1 ring-rose-100";
+        } else {
+          statusBox.className = "rounded-2xl bg-accent-50 p-4 text-sm font-bold text-accent-700 ring-1 ring-accent-100";
+        }
+      }
+
+      function setMode(jsonToYaml) {
+        isJsonToYamlMode = jsonToYaml;
         inputText.value = "";
         outputText.value = "";
+        outputHasError = false;
         resetOutputStyle();
-      });
-
-      // Core Compilation Switchboard System
-      function executeTransformationPipeline() {
-        const payloadData = inputText.value.trim();
-        if (payloadData === "") {
-          outputText.value = "";
-          resetOutputStyle();
-          return;
-        }
 
         if (isJsonToYamlMode) {
-          processJsonToYaml(payloadData);
+          tabJsonToYaml.className = "rounded-xl bg-accent-600 px-4 py-3 text-sm font-black text-white shadow-sm transition";
+          tabYamlToJson.className = "rounded-xl px-4 py-3 text-sm font-black text-slate-600 transition hover:bg-white";
+          inputLabel.textContent = "Input JSON";
+          outputLabel.textContent = "Output YAML";
+          inputText.placeholder = "Paste JSON here...";
+          setStatus("JSON to YAML mode", "info");
         } else {
-          processYamlToJson(payloadData);
+          tabYamlToJson.className = "rounded-xl bg-accent-600 px-4 py-3 text-sm font-black text-white shadow-sm transition";
+          tabJsonToYaml.className = "rounded-xl px-4 py-3 text-sm font-black text-slate-600 transition hover:bg-white";
+          inputLabel.textContent = "Input YAML";
+          outputLabel.textContent = "Output JSON";
+          inputText.placeholder = "Paste YAML here...";
+          setStatus("YAML to JSON mode", "info");
         }
-      }
-
-      // 1. JSON to YAML Conversion Core Algorithm
-      function processJsonToYaml(rawJson) {
-        try {
-          const parsedObject = JSON.parse(rawJson);
-          
-          if (typeof parsedObject !== 'object' || parsedObject === null) {
-            showErrorState("Invalid JSON Format", "⚠️ Input JSON structure must resolve to an active object node or array configuration layer.");
-            return;
-          }
-
-          resetOutputStyle();
-          // Deploy js-yaml serialization dump configuration
-          outputText.value = jsyaml.dump(parsedObject, {
-            indent: 2,
-            lineWidth: -1, // Avoid unexpected text line cuts
-            noRefs: true
-          });
-        } catch (error) {
-          showErrorState("Invalid JSON Format", `Invalid JSON Format\n\n⚠️ Parsing Error: ${error.message}`);
-        }
-      }
-
-      // 2. YAML to JSON Conversion Core Algorithm
-      function processYamlToJson(rawYaml) {
-        try {
-          // Deploy js-yaml internal safe parsing loader
-          const parsedObject = jsyaml.load(rawYaml);
-          
-          if (parsedObject === undefined || parsedObject === null) {
-            showErrorState("Invalid YAML Format", "⚠️ Input YAML scripts could not compile into valid database tree tokens.");
-            return;
-          }
-
-          resetOutputStyle();
-          // Apply standard formatting tabs to JSON layout outputs
-          outputText.value = JSON.stringify(parsedObject, null, 2);
-        } catch (error) {
-          showErrorState("Invalid YAML Format", `Invalid YAML Format\n\n⚠️ Syntax Error: ${error.message}`);
-        }
-      }
-
-      // Validation Output Color Manipulation Engines
-      function showErrorState(headerMsg, errorLog) {
-        outputText.value = errorLog;
-        outputText.classList.remove("text-slate-400", "border-slate-700");
-        outputText.classList.add("text-red-400", "border-red-500/50", "bg-red-950/20");
-        outputLabel.textContent = headerMsg;
-        outputLabel.classList.add("text-red-400");
       }
 
       function resetOutputStyle() {
-        outputText.classList.remove("text-red-400", "border-red-500/50", "bg-red-950/20");
-        outputText.classList.add("text-slate-400", "border-slate-700");
-        outputLabel.classList.remove("text-red-400");
-        outputLabel.textContent = isJsonToYamlMode ? "Compiled YAML Outflow" : "Compiled JSON Outflow";
+        outputText.className = "editor-textarea h-[360px] w-full resize-y rounded-2xl border border-slate-300 bg-slate-50 p-4 font-mono text-sm leading-6 text-slate-800 outline-none";
       }
 
-      // Clipboard Copier Dispatched Layer
-      copyBtn.addEventListener("click", () => {
-        const textValue = outputText.value;
-        if (textValue === "" || outputLabel.classList.contains("text-red-400")) return;
+      function showError(message) {
+        outputHasError = true;
+        outputText.value = message;
+        outputText.className = "editor-textarea h-[360px] w-full resize-y rounded-2xl border border-rose-300 bg-rose-50 p-4 font-mono text-sm leading-6 text-rose-800 outline-none";
+        setStatus("Syntax error found", "error");
+      }
 
-        navigator.clipboard.writeText(textValue).then(() => {
-          copyToast.classList.remove("opacity-0", "scale-95");
-          copyToast.classList.add("opacity-100", "scale-100");
-          setTimeout(() => {
-            copyToast.classList.remove("opacity-100", "scale-100");
-            copyToast.classList.add("opacity-0", "scale-95");
-          }, 1500);
-        }).catch(err => {
-          console.error("Clipboard routine fault node: ", err);
-        });
+      function transform() {
+        const payload = inputText.value.trim();
+
+        if (!payload) {
+          outputText.value = "";
+          outputHasError = false;
+          resetOutputStyle();
+          setStatus("Ready", "info");
+          return;
+        }
+
+        try {
+          if (typeof jsyaml === "undefined") {
+            showError("Conversion library is unavailable. Please refresh the page and try again.");
+            return;
+          }
+
+          if (isJsonToYamlMode) {
+            const parsed = JSON.parse(payload);
+            outputText.value = jsyaml.dump(parsed, {
+              indent: 2,
+              lineWidth: -1,
+              noRefs: true
+            });
+            outputLabel.textContent = "Output YAML";
+            outputHasError = false;
+            resetOutputStyle();
+            setStatus("JSON converted to YAML", "success");
+          } else {
+            const parsed = jsyaml.load(payload);
+            if (parsed === undefined) {
+              showError("Invalid YAML: no readable data was found.");
+              return;
+            }
+            outputText.value = JSON.stringify(parsed, null, 2);
+            outputLabel.textContent = "Output JSON";
+            outputHasError = false;
+            resetOutputStyle();
+            setStatus("YAML converted to JSON", "success");
+          }
+        } catch (error) {
+          const label = isJsonToYamlMode ? "Invalid JSON" : "Invalid YAML";
+          showError(label + "\n\n" + error.message);
+        }
+      }
+
+      function downloadBlob(filename, content, type) {
+        const blob = new Blob([content], { type: type + ";charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const anchor = document.createElement("a");
+        anchor.href = url;
+        anchor.download = filename;
+        document.body.appendChild(anchor);
+        anchor.click();
+        anchor.remove();
+        window.setTimeout(function () {
+          URL.revokeObjectURL(url);
+        }, 500);
+      }
+
+      tabJsonToYaml.addEventListener("click", function () {
+        setMode(true);
       });
 
-      // Blob Storage Download Routine
-      downloadBtn.addEventListener("click", () => {
-        const fileContentText = outputText.value;
-        if (fileContentText === "" || outputLabel.classList.contains("text-red-400")) return;
+      tabYamlToJson.addEventListener("click", function () {
+        setMode(false);
+      });
+
+      inputText.addEventListener("input", transform);
+
+      pasteBtn.addEventListener("click", async function () {
+        try {
+          if (!navigator.clipboard || !navigator.clipboard.readText) {
+            setStatus("Clipboard read is unavailable", "error");
+            return;
+          }
+          const clipboardText = await navigator.clipboard.readText();
+          if (!clipboardText) {
+            setStatus("Clipboard is empty", "error");
+            return;
+          }
+          inputText.value = clipboardText;
+          transform();
+        } catch (error) {
+          setStatus("Clipboard access was blocked", "error");
+        }
+      });
+
+      clearBtn.addEventListener("click", function () {
+        inputText.value = "";
+        outputText.value = "";
+        outputHasError = false;
+        resetOutputStyle();
+        setStatus("Editor cleared", "success");
+      });
+
+      loadExampleBtn.addEventListener("click", function () {
+        inputText.value = isJsonToYamlMode ? examples.json : examples.yaml;
+        transform();
+      });
+
+      copyBtn.addEventListener("click", async function () {
+        try {
+          if (!outputText.value.trim() || outputHasError) {
+            setStatus("No valid output to copy", "error");
+            return;
+          }
+
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            await navigator.clipboard.writeText(outputText.value);
+          } else {
+            const temp = document.createElement("textarea");
+            temp.value = outputText.value;
+            temp.style.position = "fixed";
+            temp.style.opacity = "0";
+            document.body.appendChild(temp);
+            temp.select();
+            document.execCommand("copy");
+            temp.remove();
+          }
+
+          const originalText = copyBtn.textContent;
+          copyBtn.textContent = "Copied!";
+          setStatus("Copied to clipboard", "success");
+          window.setTimeout(function () {
+            copyBtn.textContent = originalText;
+          }, 1500);
+        } catch (error) {
+          setStatus("Copy failed", "error");
+        }
+      });
+
+      downloadBtn.addEventListener("click", function () {
+        if (!outputText.value.trim() || outputHasError) {
+          setStatus("No valid output to download", "error");
+          return;
+        }
 
         const extension = isJsonToYamlMode ? "yaml" : "json";
         const mimeType = isJsonToYamlMode ? "text/yaml" : "application/json";
-        
-        const blob = new Blob([fileContentText], { type: `${mimeType};charset=utf-8;` });
-        const localUrl = URL.createObjectURL(blob);
-        
-        const virtualAnchor = document.createElement("a");
-        virtualAnchor.href = localUrl;
-        virtualAnchor.download = `nodntools_config_${Date.now()}.${extension}`;
-        
-        document.body.appendChild(virtualAnchor);
-        virtualAnchor.click();
-        
-        document.body.removeChild(virtualAnchor);
-        URL.revokeObjectURL(localUrl);
+        const filename = "nodnwebtools-converted-" + Date.now() + "." + extension;
+        downloadBlob(filename, outputText.value, mimeType);
+        setStatus("Download started", "success");
       });
+
+      yearText.textContent = new Date().getFullYear();
+      setMode(true);
     });
   </script>
-
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
 </body>
 </html>
