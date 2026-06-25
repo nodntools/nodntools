@@ -1,238 +1,373 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<div class="mb-8 text-center">
-  <a
-    href="https://nodntools.com"
-    class="inline-block transition hover:opacity-80"
-    aria-label="NodnWebTools Home"
-  >
-    <div class="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
-      Nodn<span class="text-blue-600">WebTools</span>
-    </div>
-  </a>
-</div>
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404"
-     crossorigin="anonymous"></script>
-
-	<meta name="google-adsense-account" content="ca-pub-5282672325821404">	
-
-  <title>Subscription Cost Calculator | NodnWebTools</title>
-
-  <meta
-    name="description"
-    content="Use the free NodnWebTools Subscription Cost Calculator to estimate your total monthly and annual subscription costs. Track streaming, music, software, SaaS, gym, and recurring payments while learning how to reduce subscription fatigue and hidden monthly expenses."
-  />
-  <meta
-    name="keywords"
-    content="subscription cost calculator, average monthly subscription cost, how to track subscriptions, hidden cost of streaming services, subscription fatigue calculator, cutting down subscription expenses, monthly subscription tracker, annual subscription cost calculator, NodnWebTools"
-  />
-  <meta name="author" content="NodnWebTools" />
+  <title>Subscription Cost Calculator | Monthly Tracker</title>
+  <meta name="description" content="Calculate monthly and annual subscription costs, savings, and long-term opportunity cost in your browser." />
+  <meta name="keywords" content="subscription cost calculator, monthly subscription tracker, annual subscription cost calculator, subscription fatigue calculator, recurring payment calculator, streaming cost calculator, SaaS cost calculator, monthly bill tracker, subscription budget calculator, hidden subscription cost, cancel unused subscriptions, subscription savings calculator, opportunity cost calculator, recurring expenses calculator, household budget tool, streaming services calculator, music subscription cost, software subscription cost, gym membership calculator, subscription audit tool" />
   <meta name="robots" content="index, follow" />
+  <meta name="author" content="NodnWebTools" />
 
-  <meta property="og:title" content="Subscription Cost Calculator | NodnWebTools" />
-  <meta
-    property="og:description"
-    content="Calculate your monthly and annual subscription costs for streaming, music, software, SaaS, gym memberships, and recurring payments."
-  />
+  <meta property="og:title" content="Subscription Cost Calculator | Monthly Tracker" />
+  <meta property="og:description" content="Calculate monthly and annual subscription costs, savings, and long-term opportunity cost in your browser." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://nodnwebtools.com/subscription.html" />
+  <meta property="og:url" content="https://nodntools.com/subscription.html" />
   <meta property="og:site_name" content="NodnWebTools" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Subscription Cost Calculator" />
-  <meta
-    name="twitter:description"
-    content="A free subscription cost calculator for tracking monthly and annual recurring expenses."
-  />
+  <meta name="twitter:description" content="Track streaming, software, music, gym, and recurring subscription costs with a free browser calculator." />
+
+  <meta name="google-adsense-account" content="ca-pub-5282672325821404">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404" crossorigin="anonymous"></script>
 
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            accent: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              200: '#c7d2fe',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+              800: '#3730a3',
+              900: '#312e81'
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Subscription Cost Calculator",
+    "url": "https://nodntools.com/subscription.html",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any modern web browser",
+    "description": "A free browser-based subscription cost calculator that estimates monthly subscription costs, annual recurring expenses, 20 percent savings, and 10-year opportunity cost.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "NodnWebTools",
+      "url": "https://nodntools.com"
+    },
+    "featureList": [
+      "Monthly subscription cost calculator",
+      "Annual subscription cost estimate",
+      "Streaming cost tracker",
+      "Software and SaaS cost tracker",
+      "Music subscription tracker",
+      "Other recurring payment input",
+      "10-year opportunity cost estimate",
+      "20 percent savings estimate",
+      "Copyable subscription report",
+      "Downloadable text report",
+      "Client-side browser processing",
+      "Mobile-safe responsive layout"
+    ]
+  }
+  </script>
+
+  <style>
+    html, body {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      min-width: 0;
+    }
+
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    main, header, footer, section, article, aside, div, table, canvas, img, svg, pre, code {
+      max-width: 100%;
+    }
+
+    input, button, select, textarea {
+      max-width: 100%;
+      font: inherit;
+    }
+
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    input[type="number"] {
+      -moz-appearance: textfield;
+    }
+
+    .safe-break {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .mobile-code {
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .mobile-preview {
+      max-width: 100%;
+      overflow-x: auto;
+    }
+
+    .ad-box {
+      width: 100%;
+      max-width: 100%;
+      min-height: 90px;
+      overflow: hidden;
+      border: 1px dashed #cbd5e1;
+      background: #f8fafc;
+      color: #94a3b8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-radius: 1.25rem;
+      padding: 1rem;
+    }
+
+    @media (max-width: 640px) {
+      .mobile-card,
+      .mobile-panel,
+      .mobile-preview {
+        border-radius: 1.25rem !important;
+        padding: 1rem !important;
+      }
+
+      .mobile-button-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      button {
+        width: 100%;
+      }
+
+      .ad-box {
+        min-height: 90px;
+        border-radius: 1rem;
+        padding: .875rem;
+        font-size: .875rem;
+      }
+
+      h1 {
+        font-size: 2rem !important;
+        line-height: 1.15 !important;
+      }
+
+      h2 {
+        font-size: 1.5rem !important;
+        line-height: 1.25 !important;
+      }
+
+      h3 {
+        font-size: 1.125rem !important;
+      }
+    }
+
+    @media (max-width: 380px) {
+      body {
+        font-size: 14px;
+      }
+
+      .mobile-card,
+      .mobile-panel,
+      .mobile-preview {
+        padding: .875rem !important;
+        border-radius: 1rem !important;
+      }
+
+      .ad-box {
+        min-height: 82px;
+        font-size: .8rem;
+      }
+
+      h1 {
+        font-size: 1.75rem !important;
+      }
+    }
+  </style>
 </head>
 
-<body class="min-h-screen bg-slate-100 px-4 py-8 sm:py-12">
-  <main class="mx-auto max-w-5xl">
+<body class="min-h-screen bg-slate-50 text-slate-900">
+  <header class="border-b border-slate-200 bg-white/90 backdrop-blur">
+    <div class="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
+      <a href="https://nodntools.com" class="safe-break text-xl font-extrabold tracking-tight text-slate-950 sm:text-2xl" aria-label="NodnWebTools Home">
+        Nodn<span class="text-accent-600">WebTools</span>
+      </a>
+      <a href="https://nodntools.com" class="rounded-full border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-accent-200 hover:bg-accent-50 hover:text-accent-700">
+        Home
+      </a>
+    </div>
+  </header>
 
-    <!-- Google AdSense Responsive Ad - Top -->
-    <div class="mb-8 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white text-sm text-slate-400">
-      AdSense Responsive Ad Area - Top
+  <main class="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
+    <div class="ad-box mb-6">
+      Top Ad Area
     </div>
 
-    <section class="grid gap-6 lg:grid-cols-2">
+    <section class="grid grid-cols-1 gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
+      <aside class="mobile-card rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-8 lg:sticky lg:top-8">
+        <span class="inline-flex rounded-full bg-accent-50 px-4 py-2 text-sm font-bold text-accent-700 ring-1 ring-accent-100">
+          Subscription Cost Calculator
+        </span>
 
-      <div class="rounded-3xl bg-white p-5 shadow-xl ring-1 ring-slate-200 sm:p-8 lg:sticky lg:top-10 lg:self-start">
-        <div class="mb-6">
-          <span class="inline-flex rounded-full bg-orange-100 px-4 py-2 text-sm font-semibold text-orange-700">
-            Subscription Cost Calculator
-          </span>
+        <h1 class="mt-5 safe-break text-4xl font-black tracking-tight text-slate-950">
+          Track Your Monthly Subscription Costs
+        </h1>
 
-          <h1 class="mt-5 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-            Track Your Monthly Subscription Costs
-          </h1>
+        <p class="mt-4 text-base leading-8 text-slate-600">
+          Add streaming, music, software, SaaS, gym, cloud storage, memberships, and other recurring payments to estimate your monthly cost, annual subscription total, potential savings, and long-term opportunity cost.
+        </p>
 
-          <p class="mt-3 text-base leading-7 text-slate-600">
-            Add up your streaming, music, software, gym, and other recurring monthly payments to see
-            how much subscriptions really cost every month and every year.
-          </p>
-        </div>
-
-        <div class="space-y-5">
+        <div class="mt-6 space-y-5">
           <div>
-            <label for="videoCost" class="mb-2 block text-sm font-semibold text-slate-700">
-              Video Streaming
-            </label>
-
+            <label for="videoCost" class="mb-2 block text-sm font-bold text-slate-700">Video Streaming</label>
             <div class="relative">
               <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">$</span>
-              <input
-                type="number"
-                id="videoCost"
-                inputmode="decimal"
-                min="0"
-                step="0.01"
-                value="35"
-                placeholder="35.00"
-                class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-8 pr-4 text-lg font-semibold text-slate-900 outline-none transition focus:border-orange-500 focus:bg-white focus:ring-4 focus:ring-orange-100"
-              />
+              <input type="number" id="videoCost" inputmode="decimal" min="0" step="0.01" value="35" placeholder="35.00" class="w-full rounded-2xl border border-slate-200 bg-slate-50 py-4 pl-8 pr-4 text-lg font-bold text-slate-950 outline-none transition focus:border-accent-400 focus:bg-white focus:ring-4 focus:ring-accent-100" />
             </div>
-
-            <p class="mt-2 text-xs leading-5 text-slate-500">
-              Netflix, Disney+, Hulu, YouTube Premium, Prime Video, HBO Max, and other video apps.
+            <p class="mt-2 text-sm leading-6 text-slate-500">
+              Netflix, Disney+, Hulu, YouTube Premium, Prime Video, Max, Apple TV+, sports packages, and other video apps.
             </p>
           </div>
 
           <div>
-            <label for="musicCost" class="mb-2 block text-sm font-semibold text-slate-700">
-              Music Streaming
-            </label>
-
+            <label for="musicCost" class="mb-2 block text-sm font-bold text-slate-700">Music and Audio</label>
             <div class="relative">
               <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">$</span>
-              <input
-                type="number"
-                id="musicCost"
-                inputmode="decimal"
-                min="0"
-                step="0.01"
-                value="12"
-                placeholder="12.00"
-                class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-8 pr-4 text-lg font-semibold text-slate-900 outline-none transition focus:border-orange-500 focus:bg-white focus:ring-4 focus:ring-orange-100"
-              />
+              <input type="number" id="musicCost" inputmode="decimal" min="0" step="0.01" value="12" placeholder="12.00" class="w-full rounded-2xl border border-slate-200 bg-slate-50 py-4 pl-8 pr-4 text-lg font-bold text-slate-950 outline-none transition focus:border-accent-400 focus:bg-white focus:ring-4 focus:ring-accent-100" />
             </div>
-
-            <p class="mt-2 text-xs leading-5 text-slate-500">
-              Spotify, Apple Music, YouTube Music, Amazon Music, podcasts, and audio subscriptions.
+            <p class="mt-2 text-sm leading-6 text-slate-500">
+              Spotify, Apple Music, YouTube Music, Amazon Music, podcasts, audiobook apps, and premium audio memberships.
             </p>
           </div>
 
           <div>
-            <label for="softwareCost" class="mb-2 block text-sm font-semibold text-slate-700">
-              Software / SaaS
-            </label>
-
+            <label for="softwareCost" class="mb-2 block text-sm font-bold text-slate-700">Software / SaaS</label>
             <div class="relative">
               <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">$</span>
-              <input
-                type="number"
-                id="softwareCost"
-                inputmode="decimal"
-                min="0"
-                step="0.01"
-                value="45"
-                placeholder="45.00"
-                class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-8 pr-4 text-lg font-semibold text-slate-900 outline-none transition focus:border-orange-500 focus:bg-white focus:ring-4 focus:ring-orange-100"
-              />
+              <input type="number" id="softwareCost" inputmode="decimal" min="0" step="0.01" value="45" placeholder="45.00" class="w-full rounded-2xl border border-slate-200 bg-slate-50 py-4 pl-8 pr-4 text-lg font-bold text-slate-950 outline-none transition focus:border-accent-400 focus:bg-white focus:ring-4 focus:ring-accent-100" />
             </div>
-
-            <p class="mt-2 text-xs leading-5 text-slate-500">
-              iCloud, Google One, Adobe, Microsoft 365, ChatGPT, Notion, Canva, VPN, and productivity tools.
+            <p class="mt-2 text-sm leading-6 text-slate-500">
+              iCloud, Google One, Adobe, Microsoft 365, ChatGPT, Notion, Canva, VPN, website tools, and productivity apps.
             </p>
           </div>
 
           <div>
-            <label for="otherCost" class="mb-2 block text-sm font-semibold text-slate-700">
-              Other Recurring Payments
-            </label>
-
+            <label for="otherCost" class="mb-2 block text-sm font-bold text-slate-700">Other Recurring Payments</label>
             <div class="relative">
               <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">$</span>
-              <input
-                type="number"
-                id="otherCost"
-                inputmode="decimal"
-                min="0"
-                step="0.01"
-                value="30"
-                placeholder="30.00"
-                class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-8 pr-4 text-lg font-semibold text-slate-900 outline-none transition focus:border-orange-500 focus:bg-white focus:ring-4 focus:ring-orange-100"
-              />
+              <input type="number" id="otherCost" inputmode="decimal" min="0" step="0.01" value="30" placeholder="30.00" class="w-full rounded-2xl border border-slate-200 bg-slate-50 py-4 pl-8 pr-4 text-lg font-bold text-slate-950 outline-none transition focus:border-accent-400 focus:bg-white focus:ring-4 focus:ring-accent-100" />
             </div>
-
-            <p class="mt-2 text-xs leading-5 text-slate-500">
-              Gym memberships, Amazon Prime, delivery passes, news apps, cloud storage, memberships, and lifestyle subscriptions.
+            <p class="mt-2 text-sm leading-6 text-slate-500">
+              Gym memberships, delivery passes, Amazon Prime, news apps, cloud services, clubs, kids apps, memberships, and lifestyle subscriptions.
             </p>
           </div>
 
-          <div class="rounded-2xl bg-orange-50 p-4 text-sm leading-6 text-slate-600">
-            Tiny monthly charges can feel harmless, but recurring subscriptions often become a major annual expense
-            when they are not reviewed regularly.
+          <div>
+            <label for="annualReturn" class="mb-2 block text-sm font-bold text-slate-700">Opportunity Cost Return Assumption</label>
+            <div class="relative">
+              <input type="number" id="annualReturn" inputmode="decimal" min="0" step="0.1" value="7" placeholder="7" class="w-full rounded-2xl border border-slate-200 bg-slate-50 py-4 pl-4 pr-10 text-lg font-bold text-slate-950 outline-none transition focus:border-accent-400 focus:bg-white focus:ring-4 focus:ring-accent-100" />
+              <span class="absolute right-4 top-1/2 -translate-y-1/2 text-sm font-bold text-slate-400">%</span>
+            </div>
+            <p class="mt-2 text-sm leading-6 text-slate-500">
+              Used only for the 10-year opportunity cost estimate. It is not a guaranteed investment return.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 mobile-button-grid">
+            <button id="copyBtn" type="button" class="rounded-2xl bg-slate-950 px-5 py-4 text-sm font-black text-white shadow-sm transition hover:bg-accent-700">
+              Copy Result
+            </button>
+            <button id="downloadBtn" type="button" class="rounded-2xl border border-slate-200 bg-white px-5 py-4 text-sm font-black text-slate-700 transition hover:border-accent-200 hover:bg-accent-50 hover:text-accent-700">
+              Download Report
+            </button>
+          </div>
+
+          <button id="resetBtn" type="button" class="w-full rounded-2xl border border-slate-200 bg-white px-5 py-4 text-sm font-black text-slate-700 transition hover:border-rose-200 hover:bg-rose-50 hover:text-rose-700">
+            Reset
+          </button>
+
+          <div id="copyFeedback" class="hidden rounded-2xl bg-emerald-50 px-4 py-3 text-sm font-bold text-emerald-700">
+            Copied!
+          </div>
+
+          <div class="rounded-2xl border border-accent-100 bg-accent-50 p-4 text-sm leading-6 text-accent-800">
+            <strong>Privacy note:</strong> This calculator runs locally in your browser. Your subscription amounts are not submitted to a backend server by this tool.
           </div>
         </div>
-      </div>
+      </aside>
 
-      <div class="space-y-6">
-        <div class="rounded-3xl bg-white p-5 shadow-xl ring-1 ring-slate-200 sm:p-8">
+      <section class="space-y-6">
+        <div class="mobile-preview rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-8">
           <div class="mb-6">
-            <h2 class="text-2xl font-bold text-slate-900">
-              Subscription Cost Result
-            </h2>
-
-            <p class="mt-2 text-sm text-slate-500">
+            <h2 class="text-2xl font-black text-slate-950">Subscription Cost Result</h2>
+            <p class="mt-2 text-sm leading-6 text-slate-500">
               Results update automatically as you change each monthly subscription category.
             </p>
           </div>
 
-          <div id="result" class="rounded-3xl border border-orange-100 bg-gradient-to-br from-orange-50 via-red-50 to-slate-50 p-5">
-            <p class="text-sm font-semibold uppercase tracking-wide text-orange-700">
+          <div id="result" class="rounded-3xl border border-accent-100 bg-gradient-to-br from-accent-50 via-indigo-50 to-slate-50 p-5">
+            <p class="text-sm font-black uppercase tracking-wide text-accent-700">
               Total Monthly Cost
             </p>
 
-            <p id="monthlyTotal" class="mt-2 text-4xl font-extrabold tracking-tight text-slate-900">
+            <p id="monthlyTotal" class="mt-2 safe-break text-5xl font-black tracking-tight text-slate-950">
               $0.00
             </p>
 
-            <div class="mt-5 grid gap-3 sm:grid-cols-2">
-              <div class="rounded-2xl bg-white p-4 shadow-sm">
-                <p class="text-xs text-slate-500">Video Streaming</p>
-                <p id="displayVideoCost" class="mt-1 text-lg font-bold text-slate-900">$0.00</p>
+            <div class="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2">
+              <div class="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-100">
+                <p class="text-xs font-bold uppercase tracking-wide text-slate-400">Video Streaming</p>
+                <p id="displayVideoCost" class="mt-1 safe-break text-lg font-black text-slate-950">$0.00</p>
               </div>
 
-              <div class="rounded-2xl bg-white p-4 shadow-sm">
-                <p class="text-xs text-slate-500">Music Streaming</p>
-                <p id="displayMusicCost" class="mt-1 text-lg font-bold text-slate-900">$0.00</p>
+              <div class="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-100">
+                <p class="text-xs font-bold uppercase tracking-wide text-slate-400">Music and Audio</p>
+                <p id="displayMusicCost" class="mt-1 safe-break text-lg font-black text-slate-950">$0.00</p>
               </div>
 
-              <div class="rounded-2xl bg-white p-4 shadow-sm">
-                <p class="text-xs text-slate-500">Software / SaaS</p>
-                <p id="displaySoftwareCost" class="mt-1 text-lg font-bold text-slate-900">$0.00</p>
+              <div class="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-100">
+                <p class="text-xs font-bold uppercase tracking-wide text-slate-400">Software / SaaS</p>
+                <p id="displaySoftwareCost" class="mt-1 safe-break text-lg font-black text-slate-950">$0.00</p>
               </div>
 
-              <div class="rounded-2xl bg-white p-4 shadow-sm">
-                <p class="text-xs text-slate-500">Other Payments</p>
-                <p id="displayOtherCost" class="mt-1 text-lg font-bold text-slate-900">$0.00</p>
+              <div class="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-100">
+                <p class="text-xs font-bold uppercase tracking-wide text-slate-400">Other Payments</p>
+                <p id="displayOtherCost" class="mt-1 safe-break text-lg font-black text-slate-950">$0.00</p>
               </div>
             </div>
 
-            <div class="mt-5 grid gap-3 sm:grid-cols-2">
-              <div class="rounded-3xl border border-orange-100 bg-white p-5 shadow-sm">
-                <p class="text-xs font-semibold uppercase tracking-wide text-orange-700">
+            <div class="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2">
+              <div class="rounded-3xl border border-accent-100 bg-white p-5 shadow-sm">
+                <p class="text-xs font-black uppercase tracking-wide text-accent-700">
                   Total Annual Cost
                 </p>
-                <p id="annualTotal" class="mt-2 text-3xl font-extrabold text-slate-900">
+                <p id="annualTotal" class="mt-2 safe-break text-3xl font-black text-slate-950">
                   $0.00
                 </p>
                 <p class="mt-2 text-xs leading-5 text-slate-500">
@@ -240,209 +375,507 @@
                 </p>
               </div>
 
-              <div class="rounded-3xl border border-red-100 bg-white p-5 shadow-sm">
-                <p class="text-xs font-semibold uppercase tracking-wide text-red-700">
+              <div class="rounded-3xl border border-rose-100 bg-white p-5 shadow-sm">
+                <p class="text-xs font-black uppercase tracking-wide text-rose-700">
                   10-Year Opportunity Cost
                 </p>
-                <p id="opportunityCost" class="mt-2 text-3xl font-extrabold text-red-600">
+                <p id="opportunityCost" class="mt-2 safe-break text-3xl font-black text-rose-600">
                   $0.00
                 </p>
                 <p class="mt-2 text-xs leading-5 text-slate-500">
-                  If invested monthly at 7% annually.
+                  If invested monthly at the assumed annual return.
                 </p>
               </div>
             </div>
 
-            <div class="mt-4 rounded-2xl bg-white p-4 text-sm leading-6 text-slate-600 shadow-sm">
+            <div class="mt-4 rounded-2xl bg-white p-4 text-sm leading-6 text-slate-600 shadow-sm ring-1 ring-slate-100">
               If you cut just 20% of these subscriptions, you could save about
-              <strong id="twentyPercentSavings">$0.00</strong>
+              <strong id="twentyPercentSavings" class="text-slate-950">$0.00</strong>
               per year.
             </div>
+
+            <div class="mt-4 rounded-2xl bg-white p-4 text-sm leading-6 text-slate-600 shadow-sm ring-1 ring-slate-100">
+              Estimated daily cost:
+              <strong id="dailyCost" class="text-slate-950">$0.00</strong>
+              based on the current monthly total.
+            </div>
           </div>
 
-          <!-- Google AdSense Responsive Ad - Below Result -->
-          <div class="mt-6 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-slate-50 text-sm text-slate-400">
-            AdSense Responsive Ad Area - Below Result
+          <div class="ad-box mt-6">
+            Ad Area Below Result
           </div>
-
-          <p class="mt-5 text-xs leading-5 text-slate-500">
-            Disclaimer: This calculator is for general educational and budgeting purposes only.
-            It provides simplified estimates and should not be considered financial, investment, tax, or legal advice.
-            Actual subscription costs may vary due to currency, taxes, family plans, annual billing discounts, promotions,
-            price increases, exchange rates, and cancellation policies.
-          </p>
         </div>
 
-        <section class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-8">
-          <span class="inline-flex rounded-full bg-orange-100 px-4 py-2 text-sm font-semibold text-orange-700">
-            Minimal Money Guide
-          </span>
+        <section class="mobile-card rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-8">
+          <h2 class="text-2xl font-black tracking-tight text-slate-950">Quick Examples</h2>
+          <p class="mt-2 text-sm leading-6 text-slate-500">
+            Use a sample setup to understand how recurring payments can add up.
+          </p>
 
-          <h2 class="mt-5 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
-            Subscription Fatigue: The Hidden Drain on Your Monthly Budget
-          </h2>
+          <div class="mt-5 grid grid-cols-1 gap-3">
+            <button type="button" class="exampleBtn rounded-2xl border border-slate-200 bg-slate-50 p-4 text-left transition hover:border-accent-200 hover:bg-accent-50" data-video="35" data-music="12" data-software="45" data-other="30" data-return="7">
+              <span class="block font-black text-slate-950">Typical Household Setup</span>
+              <span class="mt-1 block text-sm leading-6 text-slate-500">Streaming, music, productivity tools, and lifestyle memberships.</span>
+            </button>
 
-          <div class="mt-5 space-y-5 text-sm leading-7 text-slate-600">
-            <p>
-              Subscription fatigue happens when too many small recurring payments quietly pile up in your budget.
-              One streaming app may cost only a few dollars, one cloud storage plan may feel necessary, and one gym
-              membership may seem harmless. But when you add video, music, software, apps, delivery memberships, and
-              lifestyle services together, the
-              <strong class="font-semibold text-slate-800"> average monthly subscription cost</strong>
-              can become much higher than expected.
-            </p>
+            <button type="button" class="exampleBtn rounded-2xl border border-slate-200 bg-slate-50 p-4 text-left transition hover:border-accent-200 hover:bg-accent-50" data-video="80" data-music="25" data-software="95" data-other="60" data-return="7">
+              <span class="block font-black text-slate-950">Heavy Subscription User</span>
+              <span class="mt-1 block text-sm leading-6 text-slate-500">Multiple streaming platforms, SaaS tools, family plans, and recurring memberships.</span>
+            </button>
 
-            <p>
-              The <strong class="font-semibold text-slate-800">hidden cost of streaming services</strong>
-              is not just the listed monthly price. It also includes price increases, overlapping content libraries,
-              forgotten free trials, family plans you no longer use, and annual plans that renew automatically.
-              A $9.99 subscription may not feel important in one month, but it becomes nearly $120 per year.
-              Five similar services can easily become hundreds or even thousands of dollars annually.
-            </p>
-
-            <p>
-              If you are wondering <strong class="font-semibold text-slate-800">how to track subscriptions</strong>,
-              start by checking your credit card and bank statements for the last three months. Search for app stores,
-              streaming platforms, software companies, cloud storage providers, gyms, news sites, meal delivery apps,
-              and membership programs. Then list each service, monthly price, billing date, and whether you still use it.
-            </p>
-
-            <div class="overflow-hidden rounded-2xl border border-slate-200">
-              <table class="w-full text-left text-sm">
-                <thead class="bg-slate-100 text-slate-700">
-                  <tr>
-                    <th class="px-4 py-3 font-bold">Category</th>
-                    <th class="px-4 py-3 font-bold">Common Examples</th>
-                    <th class="px-4 py-3 font-bold">Review Question</th>
-                  </tr>
-                </thead>
-                <tbody class="divide-y divide-slate-200 bg-white">
-                  <tr>
-                    <td class="px-4 py-3 font-semibold text-slate-800">Streaming</td>
-                    <td class="px-4 py-3">Netflix, Disney+, Hulu, YouTube Premium</td>
-                    <td class="px-4 py-3">Do I watch this every week?</td>
-                  </tr>
-                  <tr>
-                    <td class="px-4 py-3 font-semibold text-slate-800">Software</td>
-                    <td class="px-4 py-3">Adobe, iCloud, ChatGPT, Canva, VPN</td>
-                    <td class="px-4 py-3">Does this save time or make money?</td>
-                  </tr>
-                  <tr>
-                    <td class="px-4 py-3 font-semibold text-slate-800">Lifestyle</td>
-                    <td class="px-4 py-3">Gym, delivery passes, news, memberships</td>
-                    <td class="px-4 py-3">Would I resubscribe today?</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-            <p>
-              A <strong class="font-semibold text-slate-800">subscription fatigue calculator</strong>
-              helps turn vague financial stress into a clear number. Seeing the monthly total is useful, but the annual
-              number is often more powerful. A household spending $120 per month on subscriptions is actually spending
-              $1,440 per year. That is a vacation fund, an emergency savings boost, a debt payment, or an investment
-              contribution.
-            </p>
-
-            <p>
-              The best strategy for
-              <strong class="font-semibold text-slate-800">cutting down subscription expenses</strong>
-              is not to cancel everything at once. Instead, divide services into three groups: essential, useful, and
-              forgotten. Keep the essential tools, negotiate or downgrade the useful ones, and cancel the forgotten
-              subscriptions immediately. Rotating streaming services every few months can also reduce costs without
-              giving up entertainment completely.
-            </p>
-
-            <p>
-              This Subscription Cost Calculator from NodnWebTools is designed for people who want a cleaner budget,
-              fewer automatic payments, and more control over recurring spending. Use it once a month to review your
-              subscriptions, spot unnecessary charges, and redirect money toward savings, investing, travel, or debt payoff.
-            </p>
+            <button type="button" class="exampleBtn rounded-2xl border border-slate-200 bg-slate-50 p-4 text-left transition hover:border-accent-200 hover:bg-accent-50" data-video="15" data-music="0" data-software="12" data-other="10" data-return="5">
+              <span class="block font-black text-slate-950">Minimal Subscription Budget</span>
+              <span class="mt-1 block text-sm leading-6 text-slate-500">A lean setup for people who rotate or cancel unused recurring services.</span>
+            </button>
           </div>
         </section>
+      </section>
+    </section>
+
+    <div class="ad-box my-8">
+      Ad Area Below Main Tool and Result Section
+    </div>
+
+    <article class="mobile-card rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-8 lg:p-10">
+      <div class="mx-auto max-w-4xl">
+        <span class="inline-flex rounded-full bg-accent-50 px-4 py-2 text-sm font-bold text-accent-700 ring-1 ring-accent-100">
+          Subscription Budget Guide
+        </span>
+
+        <h2 class="mt-5 text-3xl font-black tracking-tight text-slate-950">
+          Subscription Cost Calculator for Monthly Bills, Annual Expenses and Recurring Payment Tracking
+        </h2>
+
+        <div class="mt-6 space-y-6 text-base leading-8 text-slate-600">
+          <p>
+            A subscription cost calculator helps you understand how much money leaves your budget through recurring monthly payments. Subscriptions are convenient because they turn entertainment, software, cloud storage, fitness, delivery, education, news, productivity tools, and memberships into simple automatic charges. The problem is that small recurring charges can become difficult to notice. A few dollars here and a few dollars there may seem harmless in one month, but the annual total can become surprisingly large. This calculator turns those small charges into a clear monthly total, annual cost, potential savings estimate, and long-term opportunity cost.
+          </p>
+
+          <p>
+            The NodnWebTools Subscription Cost Calculator is designed for users searching for a subscription cost calculator, monthly subscription tracker, annual subscription cost calculator, subscription fatigue calculator, recurring payment calculator, streaming cost calculator, SaaS cost calculator, software subscription tracker, hidden subscription cost calculator, budget tracker for subscriptions, and subscription savings calculator. It is useful for households, students, families, freelancers, small business owners, remote workers, creators, and anyone who wants better control over automatic payments.
+          </p>
+
+          <h3 class="text-2xl font-black text-slate-950">What This Subscription Cost Calculator Does</h3>
+          <p>
+            This tool lets you enter monthly spending for video streaming, music and audio, software or SaaS, and other recurring payments. It automatically calculates the total monthly cost, total annual cost, estimated daily cost, 20 percent annual savings estimate, and 10-year opportunity cost. The opportunity cost estimate shows what could happen if the monthly subscription amount were redirected into savings or investing at the annual return assumption you enter. It is not a guarantee, but it helps visualize the long-term impact of recurring payments.
+          </p>
+
+          <p>
+            The calculator runs directly in your browser. Your subscription amounts are not submitted to a backend server by this tool. It also includes copy and download buttons so you can save a quick subscription audit report. The result can be useful for monthly budgeting, family finance reviews, personal spending audits, subscription cleanup days, debt payoff planning, emergency fund planning, or deciding which services to cancel, rotate, downgrade, or keep.
+          </p>
+
+          <h3 class="text-2xl font-black text-slate-950">Why Subscription Costs Are Easy to Underestimate</h3>
+          <p>
+            Subscription spending is easy to underestimate because most services are priced to feel small. A streaming app may cost less than a meal. A cloud storage plan may seem necessary. A music subscription may feel essential for commuting, studying, or working out. A software tool may save time. A delivery membership may feel convenient. Individually, each payment can look reasonable. Together, they create a recurring expense category that can quietly compete with savings, debt payments, groceries, insurance, utilities, and family priorities.
+          </p>
+
+          <p>
+            Another reason subscriptions are underestimated is billing fragmentation. One charge may appear on a credit card. Another may appear through an app store. A third may renew annually through PayPal. A fourth may be paid through a business card. A fifth may be shared with a family member. Some charges may be monthly, while others renew annually. When charges are spread across different accounts and billing cycles, it becomes difficult to know the true monthly subscription cost without a dedicated tracker.
+          </p>
+
+          <div class="ad-box my-8">
+            Middle Content Ad Area
+          </div>
+
+          <h3 class="text-2xl font-black text-slate-950">Popular Subscription Categories to Review</h3>
+          <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+            <article class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+              <h4 class="font-black text-slate-950">Streaming and Entertainment</h4>
+              <p class="mt-2 text-sm leading-7 text-slate-600">
+                Review video platforms, sports packages, premium channels, anime services, movie apps, gaming subscriptions, and ad-free entertainment bundles.
+              </p>
+            </article>
+
+            <article class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+              <h4 class="font-black text-slate-950">Music, Audio, and Learning</h4>
+              <p class="mt-2 text-sm leading-7 text-slate-600">
+                Track music streaming, audiobook plans, podcast memberships, language apps, education platforms, and premium learning tools.
+              </p>
+            </article>
+
+            <article class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+              <h4 class="font-black text-slate-950">Software and SaaS</h4>
+              <p class="mt-2 text-sm leading-7 text-slate-600">
+                Add productivity apps, cloud storage, design tools, AI tools, VPNs, website services, email tools, accounting software, and creator subscriptions.
+              </p>
+            </article>
+
+            <article class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+              <h4 class="font-black text-slate-950">Lifestyle and Memberships</h4>
+              <p class="mt-2 text-sm leading-7 text-slate-600">
+                Include gym memberships, delivery passes, news apps, kids apps, shopping memberships, meal kits, meditation apps, and community memberships.
+              </p>
+            </article>
+          </div>
+
+          <h3 class="text-2xl font-black text-slate-950">Subscription Fatigue Explained</h3>
+          <p>
+            Subscription fatigue happens when a person has too many recurring payments to track comfortably. It is not only about the dollar amount. It is also about mental clutter. Every subscription creates a decision: keep it, cancel it, downgrade it, pause it, share it, rotate it, or replace it. When there are too many services, the budget becomes harder to understand and the user may feel frustrated by automatic payments. Subscription fatigue is common because modern digital life often includes entertainment, software, cloud storage, security tools, learning platforms, delivery services, and memberships.
+          </p>
+
+          <p>
+            A subscription fatigue calculator helps convert vague frustration into a clear number. Seeing the monthly total is useful, but the annual number is often more powerful. A household spending $150 per month on subscriptions is spending $1,800 per year. A household spending $250 per month is spending $3,000 per year. Over several years, the opportunity cost can be much larger. This does not mean every subscription is bad. It means each subscription should earn its place in your budget.
+          </p>
+
+          <h3 class="text-2xl font-black text-slate-950">How to Track Subscriptions Effectively</h3>
+          <p>
+            The best way to track subscriptions is to start with bank and credit card statements. Review at least the last three months and search for recurring charges. Look for app store payments, streaming platforms, software providers, cloud storage companies, gyms, news sites, education platforms, delivery memberships, shopping memberships, website hosting, payment processors, and annual renewals. Some subscriptions may not have obvious names on statements, so check unfamiliar merchant names carefully.
+          </p>
+
+          <p>
+            Next, create a simple list with the service name, category, monthly price, billing date, payment method, renewal frequency, whether it is used, and whether it is essential. If an annual plan renews once a year, divide the annual amount by 12 so it can be compared with monthly plans. For example, a $120 annual plan equals $10 per month. This monthly equivalent makes the budget more accurate and prevents annual renewals from surprising you later.
+          </p>
+
+          <h3 class="text-2xl font-black text-slate-950">Monthly Cost vs. Annual Cost</h3>
+          <p>
+            Monthly cost is the amount that feels most visible because it affects cash flow. Annual cost is often more revealing because it shows the full impact over a year. A $9.99 subscription is almost $120 per year. A $19.99 subscription is almost $240 per year. A $49.99 software plan is almost $600 per year. If multiple services renew at similar prices, the annual amount can become a meaningful financial category.
+          </p>
+
+          <p>
+            Annual cost is especially important when comparing subscriptions to financial goals. A few cancelled services could fund an emergency account, travel savings, a child’s activity, a debt payment, a professional course, or a retirement contribution. The goal is not to remove every subscription. The goal is to understand whether the value received is worth the ongoing cost.
+          </p>
+
+          <div class="ad-box my-8">
+            Bottom Content Ad Area
+          </div>
+
+          <h3 class="text-2xl font-black text-slate-950">Opportunity Cost of Subscriptions</h3>
+          <p>
+            Opportunity cost is the value of the alternative you give up when you spend money. If you spend $100 per month on subscriptions, that money cannot also be used for investing, emergency savings, debt repayment, travel, education, or other priorities. The 10-year opportunity cost estimate in this calculator shows what the current monthly subscription amount could grow to if redirected monthly at the assumed annual return. This is not a prediction or investment guarantee. It is a planning illustration.
+          </p>
+
+          <p>
+            Opportunity cost is useful because it helps people see recurring spending in a long-term context. A subscription that feels small today may be reasonable if it provides real value. But a forgotten subscription that provides no value has a high opportunity cost because it quietly redirects money away from more important goals. Reviewing opportunity cost can make cancellation decisions easier.
+          </p>
+
+          <h3 class="text-2xl font-black text-slate-950">How to Reduce Subscription Expenses Without Feeling Deprived</h3>
+          <p>
+            The most effective subscription reduction strategy is not always canceling everything at once. A more realistic approach is to divide subscriptions into four groups: essential, valuable, occasional, and unused. Essential services are tools you rely on regularly. Valuable services are worth keeping if the price is reasonable. Occasional services can be rotated or paused. Unused services should usually be cancelled immediately.
+          </p>
+
+          <p>
+            Streaming services are especially easy to rotate. Instead of paying for five platforms every month, you can keep one or two active and switch every few months. Software plans can sometimes be downgraded to a lower tier. Cloud storage can be cleaned up before paying for more space. App subscriptions can be cancelled through the app store if they are no longer used. Gym memberships should be reviewed honestly based on actual visits, not intentions.
+          </p>
+
+          <h3 class="text-2xl font-black text-slate-950">Subscription Audit Checklist</h3>
+          <p>
+            A good subscription audit starts with a full list. Write down every recurring charge, including monthly and annual plans. Confirm the billing date and payment method. Check whether you are still using each service. Ask whether you would sign up again today at the current price. Look for duplicate services that do the same job. Check whether a family plan, student plan, annual discount, or lower tier is available. Cancel free trials before they convert if you do not need them. Review app store subscriptions separately because they can be easy to miss.
+          </p>
+
+          <p>
+            A useful rule is to cancel anything you have not used in the last 30 to 60 days unless it protects important data or provides a clear backup function. Another rule is to review every price increase immediately. If a service raises its price, decide whether the new value is still acceptable. Subscriptions should not remain in your budget by accident.
+          </p>
+
+          <h3 class="text-2xl font-black text-slate-950">Subscriptions for Families and Shared Households</h3>
+          <p>
+            Families often have more subscription complexity because different people use different services. One person may use music streaming, another may use gaming subscriptions, children may use learning apps, and the household may share streaming platforms. Family plans can save money when they replace duplicate individual plans, but they can also hide unused services. A family subscription review should include every adult’s payment methods and app store accounts.
+          </p>
+
+          <p>
+            Shared households should decide which services are truly shared and which are personal. If a service is shared, split the cost transparently. If only one person uses it, it belongs in that person’s personal budget. Clear categories reduce arguments and make household budgeting easier.
+          </p>
+
+          <h3 class="text-2xl font-black text-slate-950">Subscriptions for Freelancers and Small Businesses</h3>
+          <p>
+            Freelancers and small business owners often rely on SaaS tools, website hosting, cloud storage, accounting software, design apps, AI tools, project management platforms, email marketing systems, and premium plugins. These tools can save time and generate income, but they can also multiply quickly. A $20 tool, a $30 tool, and a $50 tool may each feel affordable, but together they become a significant business overhead cost.
+          </p>
+
+          <p>
+            Business subscriptions should be reviewed based on return on value. Does the tool save billable time? Does it help generate revenue? Does it replace manual work? Does it protect data? Does it improve client delivery? If the answer is unclear, consider downgrading or cancelling. A subscription cost calculator can help freelancers identify the minimum monthly revenue needed just to cover recurring software expenses.
+          </p>
+
+          <h3 class="text-2xl font-black text-slate-950">Practical Tips for Managing Recurring Payments</h3>
+          <p>
+            Use one dedicated payment method for subscriptions so they are easier to review. Add renewal dates to your calendar, especially for annual plans. Cancel trials immediately after signing up if the platform allows access until the trial ends. Use reminders before promotional pricing expires. Check whether annual billing actually saves money and whether you are confident you will use the service for the full year. Avoid keeping a subscription simply because cancellation is inconvenient.
+          </p>
+
+          <p>
+            Review subscriptions at least once per quarter. Prices change, habits change, and services change. A tool that was essential last year may no longer matter. A service that looked unnecessary may become important. Budgeting is not about guilt; it is about aligning spending with current priorities.
+          </p>
+
+          <h3 class="text-2xl font-black text-slate-950">Limitations of This Calculator</h3>
+          <p>
+            This calculator provides simplified estimates. It does not connect to your bank account, detect actual subscriptions, verify renewal dates, track taxes, handle currency conversion, account for annual billing discounts, calculate family-sharing splits, or compare every subscription plan available. The opportunity cost estimate is based on a user-entered annual return assumption and is not a guaranteed investment result. Actual returns can be lower, higher, or negative.
+          </p>
+
+          <p>
+            Use the calculator as a planning tool, not as financial advice. For major financial decisions, review your complete budget, debts, emergency fund, investment plan, and personal goals. The most useful result is awareness: once you know the real cost of recurring payments, you can decide which subscriptions deserve to stay.
+          </p>
+        </div>
+      </div>
+    </article>
+
+    <section class="mobile-card mt-8 rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-8 lg:p-10">
+      <div class="mx-auto max-w-4xl">
+        <h2 class="text-3xl font-black tracking-tight text-slate-950">Frequently Asked Questions</h2>
+
+        <div class="mt-6 space-y-4">
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">What is a subscription cost calculator?</summary>
+            <p class="mt-3 leading-7 text-slate-600">A subscription cost calculator adds recurring payments together and estimates monthly cost, annual cost, potential savings, and long-term opportunity cost.</p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">Does this tool connect to my bank account?</summary>
+            <p class="mt-3 leading-7 text-slate-600">No. This tool does not connect to your bank, credit card, app store, or subscription accounts. You enter amounts manually.</p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">How often should I review subscriptions?</summary>
+            <p class="mt-3 leading-7 text-slate-600">A quarterly review is practical for most people. You should also review subscriptions after price increases, free trials, annual renewals, or major budget changes.</p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">What is subscription fatigue?</summary>
+            <p class="mt-3 leading-7 text-slate-600">Subscription fatigue is the frustration and budget pressure that can happen when too many recurring payments accumulate over time.</p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">What should I cancel first?</summary>
+            <p class="mt-3 leading-7 text-slate-600">Start with unused services, duplicate services, forgotten free trials, subscriptions with recent price increases, and services you would not sign up for again today.</p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">Is opportunity cost guaranteed?</summary>
+            <p class="mt-3 leading-7 text-slate-600">No. The opportunity cost result is an illustration based on the annual return assumption you enter. It is not a guaranteed investment return.</p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">Can I use this for business subscriptions?</summary>
+            <p class="mt-3 leading-7 text-slate-600">Yes. Freelancers and small businesses can use it to estimate recurring software, SaaS, hosting, cloud, productivity, and membership costs.</p>
+          </details>
+        </div>
       </div>
     </section>
 
-    <!-- Google AdSense Responsive Ad - Bottom -->
-    <div class="mt-8 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white text-sm text-slate-400">
-      AdSense Responsive Ad Area - Bottom
-    </div>
+    <section class="mobile-card mt-8 rounded-3xl bg-slate-900 p-6 text-slate-200 shadow-sm sm:p-8 lg:p-10">
+      <div class="mx-auto max-w-4xl">
+        <h2 class="text-2xl font-black text-white">Legal Disclaimer</h2>
+        <div class="mt-4 space-y-4 text-sm leading-7 text-slate-300">
+          <p>
+            This Subscription Cost Calculator is provided for general informational, educational, and budgeting purposes only. It does not provide financial, investment, tax, legal, accounting, business, or professional advice. The results are simplified estimates based only on user-entered subscription amounts and assumptions.
+          </p>
+          <p>
+            Actual subscription costs may vary because of taxes, currency conversion, family plans, annual billing discounts, promotional pricing, regional pricing, app store fees, price increases, cancellation policies, refunds, billing errors, and renewal timing. Users are responsible for checking actual billing statements, app store subscriptions, service accounts, and provider terms before making financial decisions.
+          </p>
+          <p>
+            Opportunity cost calculations are hypothetical and do not guarantee investment performance. Real investment returns can be lower, higher, or negative, and may involve risk, fees, taxes, inflation, and market volatility. NodnWebTools, its owners, developers, and affiliates are not responsible for errors, omissions, missed cancellations, subscription charges, investment losses, budget decisions, legal claims, or any direct or indirect damages resulting from use of this calculator.
+          </p>
+        </div>
+      </div>
+    </section>
 
+    <div class="ad-box mt-8">
+      Bottom Ad Area
+    </div>
   </main>
 
+  <footer class="mt-10 border-t border-slate-200 bg-white">
+    <div class="mx-auto flex w-full max-w-7xl flex-col gap-3 px-4 py-6 text-sm text-slate-500 sm:px-6 lg:px-8">
+      <div class="font-extrabold text-slate-900">Nodn<span class="text-accent-600">WebTools</span></div>
+      <p class="leading-6">Free browser-based utilities designed for practical calculations, budgeting, productivity, and everyday digital tasks.</p>
+    </div>
+  </footer>
+
   <script>
-    const videoCostInput = document.getElementById("videoCost");
-    const musicCostInput = document.getElementById("musicCost");
-    const softwareCostInput = document.getElementById("softwareCost");
-    const otherCostInput = document.getElementById("otherCost");
+    document.addEventListener('DOMContentLoaded', function () {
+      const videoCostInput = document.getElementById('videoCost');
+      const musicCostInput = document.getElementById('musicCost');
+      const softwareCostInput = document.getElementById('softwareCost');
+      const otherCostInput = document.getElementById('otherCost');
+      const annualReturnInput = document.getElementById('annualReturn');
 
-    const monthlyTotalEl = document.getElementById("monthlyTotal");
-    const annualTotalEl = document.getElementById("annualTotal");
-    const opportunityCostEl = document.getElementById("opportunityCost");
-    const twentyPercentSavingsEl = document.getElementById("twentyPercentSavings");
+      const monthlyTotalEl = document.getElementById('monthlyTotal');
+      const annualTotalEl = document.getElementById('annualTotal');
+      const opportunityCostEl = document.getElementById('opportunityCost');
+      const twentyPercentSavingsEl = document.getElementById('twentyPercentSavings');
+      const dailyCostEl = document.getElementById('dailyCost');
 
-    const displayVideoCostEl = document.getElementById("displayVideoCost");
-    const displayMusicCostEl = document.getElementById("displayMusicCost");
-    const displaySoftwareCostEl = document.getElementById("displaySoftwareCost");
-    const displayOtherCostEl = document.getElementById("displayOtherCost");
+      const displayVideoCostEl = document.getElementById('displayVideoCost');
+      const displayMusicCostEl = document.getElementById('displayMusicCost');
+      const displaySoftwareCostEl = document.getElementById('displaySoftwareCost');
+      const displayOtherCostEl = document.getElementById('displayOtherCost');
 
-    function formatCurrency(value) {
-      return new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-      }).format(value);
-    }
+      const copyBtn = document.getElementById('copyBtn');
+      const downloadBtn = document.getElementById('downloadBtn');
+      const resetBtn = document.getElementById('resetBtn');
+      const copyFeedback = document.getElementById('copyFeedback');
+      const exampleButtons = document.querySelectorAll('.exampleBtn');
 
-    function sanitizeNumber(value, fallback = 0) {
-      const number = parseFloat(value);
-      return isNaN(number) || number < 0 ? fallback : number;
-    }
+      let latestReport = '';
 
-    function calculateOpportunityCost(monthlyAmount, years = 10, annualRate = 0.07) {
-      const monthlyRate = annualRate / 12;
-      const totalMonths = years * 12;
-
-      if (monthlyAmount <= 0) {
-        return 0;
+      function formatCurrency(value) {
+        const safeValue = Number.isFinite(value) ? value : 0;
+        return new Intl.NumberFormat('en-US', {
+          style: 'currency',
+          currency: 'USD',
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        }).format(safeValue);
       }
 
-      if (monthlyRate === 0) {
-        return monthlyAmount * totalMonths;
+      function formatNumber(value, decimals) {
+        const safeValue = Number.isFinite(value) ? value : 0;
+        return new Intl.NumberFormat('en-US', {
+          minimumFractionDigits: decimals,
+          maximumFractionDigits: decimals
+        }).format(safeValue);
       }
 
-      return monthlyAmount * ((Math.pow(1 + monthlyRate, totalMonths) - 1) / monthlyRate);
-    }
+      function sanitizeNumber(value, fallback) {
+        const number = parseFloat(String(value).replace(/,/g, ''));
+        return isNaN(number) || number < 0 ? fallback : number;
+      }
 
-    function calculateSubscriptions() {
-      const videoCost = sanitizeNumber(videoCostInput.value);
-      const musicCost = sanitizeNumber(musicCostInput.value);
-      const softwareCost = sanitizeNumber(softwareCostInput.value);
-      const otherCost = sanitizeNumber(otherCostInput.value);
+      function calculateOpportunityCost(monthlyAmount, years, annualRate) {
+        const monthlyRate = annualRate / 12;
+        const totalMonths = years * 12;
 
-      const totalMonthlyCost = videoCost + musicCost + softwareCost + otherCost;
-      const totalAnnualCost = totalMonthlyCost * 12;
-      const opportunityCost = calculateOpportunityCost(totalMonthlyCost);
-      const twentyPercentAnnualSavings = totalAnnualCost * 0.20;
+        if (monthlyAmount <= 0) return 0;
+        if (monthlyRate === 0) return monthlyAmount * totalMonths;
 
-      monthlyTotalEl.textContent = formatCurrency(totalMonthlyCost);
-      annualTotalEl.textContent = formatCurrency(totalAnnualCost);
-      opportunityCostEl.textContent = formatCurrency(opportunityCost);
-      twentyPercentSavingsEl.textContent = formatCurrency(twentyPercentAnnualSavings);
+        return monthlyAmount * ((Math.pow(1 + monthlyRate, totalMonths) - 1) / monthlyRate);
+      }
 
-      displayVideoCostEl.textContent = formatCurrency(videoCost);
-      displayMusicCostEl.textContent = formatCurrency(musicCost);
-      displaySoftwareCostEl.textContent = formatCurrency(softwareCost);
-      displayOtherCostEl.textContent = formatCurrency(otherCost);
-    }
+      function calculateSubscriptions() {
+        try {
+          const videoCost = sanitizeNumber(videoCostInput.value, 0);
+          const musicCost = sanitizeNumber(musicCostInput.value, 0);
+          const softwareCost = sanitizeNumber(softwareCostInput.value, 0);
+          const otherCost = sanitizeNumber(otherCostInput.value, 0);
+          const annualReturn = sanitizeNumber(annualReturnInput.value, 0) / 100;
 
-    videoCostInput.addEventListener("input", calculateSubscriptions);
-    musicCostInput.addEventListener("input", calculateSubscriptions);
-    softwareCostInput.addEventListener("input", calculateSubscriptions);
-    otherCostInput.addEventListener("input", calculateSubscriptions);
+          const totalMonthlyCost = videoCost + musicCost + softwareCost + otherCost;
+          const totalAnnualCost = totalMonthlyCost * 12;
+          const opportunityCost = calculateOpportunityCost(totalMonthlyCost, 10, annualReturn);
+          const twentyPercentAnnualSavings = totalAnnualCost * 0.20;
+          const estimatedDailyCost = totalAnnualCost / 365;
 
-    calculateSubscriptions();
+          monthlyTotalEl.textContent = formatCurrency(totalMonthlyCost);
+          annualTotalEl.textContent = formatCurrency(totalAnnualCost);
+          opportunityCostEl.textContent = formatCurrency(opportunityCost);
+          twentyPercentSavingsEl.textContent = formatCurrency(twentyPercentAnnualSavings);
+          dailyCostEl.textContent = formatCurrency(estimatedDailyCost);
+
+          displayVideoCostEl.textContent = formatCurrency(videoCost);
+          displayMusicCostEl.textContent = formatCurrency(musicCost);
+          displaySoftwareCostEl.textContent = formatCurrency(softwareCost);
+          displayOtherCostEl.textContent = formatCurrency(otherCost);
+
+          latestReport = [
+            'Subscription Cost Report',
+            'Video streaming: ' + formatCurrency(videoCost),
+            'Music and audio: ' + formatCurrency(musicCost),
+            'Software / SaaS: ' + formatCurrency(softwareCost),
+            'Other recurring payments: ' + formatCurrency(otherCost),
+            '',
+            'Total monthly cost: ' + formatCurrency(totalMonthlyCost),
+            'Total annual cost: ' + formatCurrency(totalAnnualCost),
+            'Estimated daily cost: ' + formatCurrency(estimatedDailyCost),
+            '20% annual savings estimate: ' + formatCurrency(twentyPercentAnnualSavings),
+            '10-year opportunity cost: ' + formatCurrency(opportunityCost),
+            'Opportunity cost annual return assumption: ' + formatNumber(annualReturn * 100, 2) + '%',
+            '',
+            'Disclaimer: This report is a simplified educational estimate only and is not financial, investment, tax, legal, accounting, or professional advice.'
+          ].join('\n');
+        } catch (error) {
+          latestReport = '';
+        }
+      }
+
+      function showCopyFeedback(message) {
+        copyFeedback.textContent = message;
+        copyFeedback.classList.remove('hidden');
+        setTimeout(function () {
+          copyFeedback.classList.add('hidden');
+          copyFeedback.textContent = 'Copied!';
+        }, 1600);
+      }
+
+      function fallbackCopy(text) {
+        try {
+          const textarea = document.createElement('textarea');
+          textarea.value = text;
+          document.body.appendChild(textarea);
+          textarea.select();
+          document.execCommand('copy');
+          document.body.removeChild(textarea);
+          showCopyFeedback('Copied!');
+        } catch (error) {
+          showCopyFeedback('Copy failed. Please select the result manually.');
+        }
+      }
+
+      function copyReport() {
+        if (!latestReport) {
+          showCopyFeedback('Calculate a result before copying.');
+          return;
+        }
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(latestReport).then(function () {
+            showCopyFeedback('Copied!');
+          }).catch(function () {
+            fallbackCopy(latestReport);
+          });
+        } else {
+          fallbackCopy(latestReport);
+        }
+      }
+
+      function downloadReport() {
+        if (!latestReport) return;
+
+        try {
+          const blob = new Blob([latestReport], { type: 'text/plain;charset=utf-8' });
+          const url = URL.createObjectURL(blob);
+          const link = document.createElement('a');
+          link.href = url;
+          link.download = 'subscription-cost-report.txt';
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          URL.revokeObjectURL(url);
+        } catch (error) {
+          showCopyFeedback('Download failed. Please copy the result instead.');
+        }
+      }
+
+      function resetTool() {
+        videoCostInput.value = '35';
+        musicCostInput.value = '12';
+        softwareCostInput.value = '45';
+        otherCostInput.value = '30';
+        annualReturnInput.value = '7';
+        calculateSubscriptions();
+        videoCostInput.focus();
+      }
+
+      [videoCostInput, musicCostInput, softwareCostInput, otherCostInput, annualReturnInput].forEach(function (input) {
+        input.addEventListener('input', calculateSubscriptions);
+      });
+
+      copyBtn.addEventListener('click', copyReport);
+      downloadBtn.addEventListener('click', downloadReport);
+      resetBtn.addEventListener('click', resetTool);
+
+      exampleButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+          videoCostInput.value = button.dataset.video || '35';
+          musicCostInput.value = button.dataset.music || '12';
+          softwareCostInput.value = button.dataset.software || '45';
+          otherCostInput.value = button.dataset.other || '30';
+          annualReturnInput.value = button.dataset.return || '7';
+          calculateSubscriptions();
+        });
+      });
+
+      window.addEventListener('resize', function () {
+        document.body.style.overflowX = 'hidden';
+      });
+
+      calculateSubscriptions();
+    });
   </script>
 </body>
 </html>
