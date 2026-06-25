@@ -1,308 +1,428 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<div class="mb-8 text-center">
-  <a
-    href="https://nodntools.com"
-    class="inline-block transition hover:opacity-80"
-    aria-label="NodnWebTools Home"
-  >
-    <div class="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
-      Nodn<span class="text-blue-600">WebTools</span>
-    </div>
-  </a>
-</div>
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404"
-     crossorigin="anonymous"></script>
-
-	<meta name="google-adsense-account" content="ca-pub-5282672325821404">	
-
-  <title>Time Cost Calculator | NodnWebTools</title>
-
-  <meta
-    name="description"
-    content="Use the free NodnWebTools Time Cost Calculator to convert any purchase price into hours of work required. Learn how to calculate price in hours worked, understand the money is time philosophy, stop impulse buying, and discover the real cost of things."
-  />
-  <meta
-    name="keywords"
-    content="time cost calculator, calculate price in hours worked, money is time philosophy, how to stop impulse buying, real cost of things, minimalist spending tips, work hours calculator, price in work hours, NodnWebTools"
-  />
-  <meta name="author" content="NodnWebTools" />
+  <title>Time Cost Calculator | Price in Work Hours</title>
+  <meta name="description" content="Free time cost calculator to convert any purchase price into work hours, workdays, and real-life earning time." />
+  <meta name="keywords" content="time cost calculator, price in work hours, work hours calculator, money is time calculator, real cost calculator, impulse buying calculator, after tax hourly wage calculator, minimalist budgeting tool, spending decision calculator, financial mindfulness tool" />
   <meta name="robots" content="index, follow" />
+  <meta name="author" content="NodnWebTools" />
 
-  <meta property="og:title" content="Time Cost Calculator | NodnWebTools" />
-  <meta
-    property="og:description"
-    content="Convert a purchase price into the number of work hours and workdays required to afford it."
-  />
+  <meta property="og:title" content="Time Cost Calculator | Price in Work Hours" />
+  <meta property="og:description" content="Convert a purchase price into hours of work, workdays, and a clearer spending decision." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://nodnwebtools.com/time-cost.html" />
+  <meta property="og:url" content="https://nodntools.com/time-cost.html" />
   <meta property="og:site_name" content="NodnWebTools" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Time Cost Calculator" />
-  <meta
-    name="twitter:description"
-    content="A minimalist spending calculator that shows how many hours of your life a purchase really costs."
-  />
+  <meta name="twitter:description" content="See how many work hours a purchase really costs before you buy." />
+
+  <meta name="google-adsense-account" content="ca-pub-5282672325821404">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404" crossorigin="anonymous"></script>
 
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Time Cost Calculator",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "url": "https://nodntools.com/time-cost.html",
+    "description": "A free browser-based time cost calculator that converts purchase prices into hours of work, minutes of work, and workdays.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "NodnWebTools",
+      "url": "https://nodntools.com"
+    }
+  }
+  </script>
+
+  <style>
+    html, body { width: 100%; max-width: 100%; overflow-x: hidden; }
+    *, *::before, *::after { box-sizing: border-box; min-width: 0; }
+    .safe-break { overflow-wrap: anywhere; word-break: break-word; }
+    .mobile-card, .mobile-panel, .mobile-preview, .ad-box, .mobile-code { max-width: 100%; overflow-x: auto; }
+    .ad-box {
+      min-height: 90px;
+      border: 1px dashed #cbd5e1;
+      background: #f8fafc;
+      color: #94a3b8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-radius: 1rem;
+      padding: 1rem;
+    }
+    @media (max-width: 640px) {
+      body { padding-left: 0.75rem; padding-right: 0.75rem; }
+      .mobile-button-grid { grid-template-columns: 1fr !important; }
+      .mobile-button-grid button, .mobile-button-grid a { width: 100%; }
+      .mobile-card { padding: 1rem !important; border-radius: 1.25rem !important; }
+      .mobile-preview { padding: 1rem !important; border-radius: 1.25rem !important; }
+      .mobile-title { font-size: 2rem !important; line-height: 1.1 !important; }
+    }
+    @media (max-width: 380px) {
+      body { padding-left: 0.5rem; padding-right: 0.5rem; }
+      .mobile-card { padding: 0.875rem !important; border-radius: 1rem !important; }
+      .mobile-title { font-size: 1.75rem !important; }
+      .mobile-small-text { font-size: 0.875rem !important; }
+    }
+  </style>
 </head>
 
-<body class="min-h-screen bg-slate-100 px-4 py-8 sm:py-12">
-  <main class="mx-auto max-w-5xl">
+<body class="min-h-screen bg-slate-50 text-slate-900">
+  <header class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+    <nav class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <a href="https://nodntools.com" class="inline-flex items-center gap-1 text-2xl font-extrabold tracking-tight" aria-label="NodnWebTools Home">
+        <span>Nodn</span><span class="text-indigo-600">WebTools</span>
+      </a>
+      <a href="https://nodntools.com" class="rounded-full border border-slate-200 bg-white px-5 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-indigo-200 hover:text-indigo-700">
+        Home
+      </a>
+    </nav>
 
-    <!-- Google AdSense Responsive Ad - Top -->
-    <div class="mb-8 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white text-sm text-slate-400">
+    <div class="ad-box mt-6">
       AdSense Responsive Ad Area - Top
     </div>
+  </header>
 
-    <section class="grid gap-6 lg:grid-cols-2">
+  <main class="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
+    <section class="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
+      <div class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+        <span class="inline-flex rounded-full bg-indigo-100 px-4 py-2 text-sm font-semibold text-indigo-700">
+          Free Browser Tool
+        </span>
 
-      <div class="rounded-3xl bg-white p-5 shadow-xl ring-1 ring-slate-200 sm:p-8 lg:sticky lg:top-10 lg:self-start">
-        <div class="mb-6">
-          <span class="inline-flex rounded-full bg-indigo-100 px-4 py-2 text-sm font-semibold text-indigo-700">
-            Time Cost Calculator
-          </span>
+        <h1 class="mobile-title mt-5 text-4xl font-extrabold tracking-tight text-slate-950 sm:text-5xl">
+          Time Cost Calculator
+        </h1>
 
-          <h1 class="mt-5 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-            Convert Any Purchase into Hours of Work
-          </h1>
+        <p class="mt-4 text-base leading-7 text-slate-600">
+          Convert any purchase price into the number of hours, minutes, and workdays you need to earn it. This tool helps you think beyond the sticker price and understand the real-life time cost of your spending.
+        </p>
 
-          <p class="mt-3 text-base leading-7 text-slate-600">
-            Enter your real hourly wage and the price of an item to see how much of your working life
-            that purchase actually costs.
+        <div class="mt-8 space-y-5">
+          <div>
+            <label for="hourlyWage" class="mb-2 block text-sm font-bold text-slate-800">Your hourly wage</label>
+            <div class="relative">
+              <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">$</span>
+              <input id="hourlyWage" type="number" inputmode="decimal" min="0" step="0.01" value="25" class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-8 pr-4 text-lg font-bold outline-none transition focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-100" />
+            </div>
+            <p class="mt-2 text-xs leading-5 text-slate-500">For the most realistic result, use your after-tax hourly wage.</p>
+          </div>
+
+          <div>
+            <label for="itemPrice" class="mb-2 block text-sm font-bold text-slate-800">Item or service price</label>
+            <div class="relative">
+              <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">$</span>
+              <input id="itemPrice" type="number" inputmode="decimal" min="0" step="0.01" value="120" class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-8 pr-4 text-lg font-bold outline-none transition focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-100" />
+            </div>
+          </div>
+
+          <div>
+            <label for="hoursPerDay" class="mb-2 block text-sm font-bold text-slate-800">Work hours per day</label>
+            <input id="hoursPerDay" type="number" inputmode="decimal" min="1" step="0.25" value="8" class="w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-4 text-lg font-bold outline-none transition focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-100" />
+          </div>
+
+          <div>
+            <label for="currencySelect" class="mb-2 block text-sm font-bold text-slate-800">Currency display</label>
+            <select id="currencySelect" class="w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-4 text-lg font-bold outline-none transition focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-100">
+              <option value="USD">USD - US Dollar</option>
+              <option value="CAD">CAD - Canadian Dollar</option>
+              <option value="EUR">EUR - Euro</option>
+              <option value="GBP">GBP - British Pound</option>
+              <option value="AUD">AUD - Australian Dollar</option>
+            </select>
+          </div>
+
+          <div class="grid gap-3 sm:grid-cols-3 mobile-button-grid">
+            <button id="copyBtn" class="rounded-2xl bg-indigo-600 px-4 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-indigo-700">
+              Copy Result
+            </button>
+            <button id="downloadBtn" class="rounded-2xl bg-violet-600 px-4 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-violet-700">
+              Download
+            </button>
+            <button id="resetBtn" class="rounded-2xl border border-slate-300 bg-white px-4 py-3 text-sm font-bold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700">
+              Reset
+            </button>
+          </div>
+
+          <p id="copyFeedback" class="hidden rounded-2xl bg-emerald-50 px-4 py-3 text-sm font-semibold text-emerald-700">
+            Copied!
           </p>
         </div>
 
-        <div class="space-y-5">
-          <div>
-            <label for="hourlyWage" class="mb-2 block text-sm font-semibold text-slate-700">
-              Your Hourly Wage
-            </label>
-
-            <div class="relative">
-              <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">$</span>
-              <input
-                type="number"
-                id="hourlyWage"
-                inputmode="decimal"
-                min="0"
-                step="0.01"
-                value="25"
-                placeholder="25.00"
-                class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-8 pr-4 text-lg font-semibold text-slate-900 outline-none transition focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-100"
-              />
-            </div>
-
-            <p class="mt-2 text-xs leading-5 text-slate-500">
-              Use your after-tax hourly wage for a more realistic result.
-            </p>
-          </div>
-
-          <div>
-            <label for="itemPrice" class="mb-2 block text-sm font-semibold text-slate-700">
-              Price of Item or Service
-            </label>
-
-            <div class="relative">
-              <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">$</span>
-              <input
-                type="number"
-                id="itemPrice"
-                inputmode="decimal"
-                min="0"
-                step="0.01"
-                value="120"
-                placeholder="120.00"
-                class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-8 pr-4 text-lg font-semibold text-slate-900 outline-none transition focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-100"
-              />
-            </div>
-
-            <p class="mt-2 text-xs leading-5 text-slate-500">
-              Try entering the price of a gadget, clothing item, subscription, dinner, vacation upgrade, or impulse purchase.
-            </p>
-          </div>
-
-          <div class="rounded-2xl bg-indigo-50 p-4 text-sm leading-6 text-slate-600">
-            This tool reframes spending as time. Instead of asking “Can I afford it?”, ask
-            “Is this worth the hours of life I must trade for it?”
-          </div>
+        <div class="mt-8 rounded-2xl bg-indigo-50 p-5 text-sm leading-6 text-slate-700">
+          Example: if a product costs $120 and you earn $25 per hour after tax, the purchase costs 4.8 hours of work.
         </div>
       </div>
 
-      <div class="space-y-6">
-        <div class="rounded-3xl bg-white p-5 shadow-xl ring-1 ring-slate-200 sm:p-8">
-          <div class="mb-6">
-            <h2 class="text-2xl font-bold text-slate-900">
-              Time Cost Result
-            </h2>
+      <div class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+        <h2 class="text-2xl font-extrabold tracking-tight text-slate-950">Live Time Cost Result</h2>
+        <p class="mt-2 text-sm leading-6 text-slate-500">The result updates automatically as you change the values.</p>
 
-            <p class="mt-2 text-sm text-slate-500">
-              Results update automatically as you change your wage or item price.
-            </p>
-          </div>
+        <div class="mobile-preview mt-6 rounded-3xl border border-indigo-100 bg-gradient-to-br from-indigo-50 via-white to-violet-50 p-6">
+          <p class="text-sm font-bold uppercase tracking-wide text-indigo-700">Hours of Work Required</p>
+          <p id="hoursRequired" class="safe-break mt-3 text-5xl font-extrabold tracking-tight text-indigo-700">0.00 Hours</p>
+          <p id="workSentence" class="mt-4 text-base leading-7 text-slate-700">Enter values to calculate the time cost.</p>
 
-          <div id="result" class="rounded-3xl border border-indigo-100 bg-gradient-to-br from-indigo-50 via-slate-50 to-blue-50 p-5">
-            <p class="text-sm font-semibold uppercase tracking-wide text-indigo-700">
-              Hours of Work Required
-            </p>
-
-            <p id="hoursRequired" class="mt-2 text-5xl font-extrabold tracking-tight text-indigo-700">
-              0.00 Hours
-            </p>
-
-            <p id="workSentence" class="mt-3 text-base leading-7 text-slate-700">
-              You need to work 0.00 hours to afford this item.
-            </p>
-
-            <div class="mt-5 grid gap-3 sm:grid-cols-2">
-              <div class="rounded-2xl bg-white p-4 shadow-sm">
-                <p class="text-xs text-slate-500">Hourly Wage</p>
-                <p id="displayHourlyWage" class="mt-1 text-lg font-bold text-slate-900">$0.00</p>
-              </div>
-
-              <div class="rounded-2xl bg-white p-4 shadow-sm">
-                <p class="text-xs text-slate-500">Item Price</p>
-                <p id="displayItemPrice" class="mt-1 text-lg font-bold text-slate-900">$0.00</p>
-              </div>
-
-              <div class="rounded-2xl bg-white p-4 shadow-sm">
-                <p class="text-xs text-slate-500">Minutes of Work</p>
-                <p id="displayMinutesRequired" class="mt-1 text-lg font-bold text-slate-900">0 Minutes</p>
-              </div>
-
-              <div class="rounded-2xl bg-white p-4 shadow-sm">
-                <p class="text-xs text-slate-500">Days of Work</p>
-                <p id="displayDaysRequired" class="mt-1 text-lg font-bold text-slate-900">0.00 Days</p>
-              </div>
+          <div class="mt-6 grid gap-3 sm:grid-cols-2">
+            <div class="rounded-2xl bg-white p-4 shadow-sm">
+              <p class="text-xs font-semibold text-slate-500">Hourly Wage</p>
+              <p id="displayHourlyWage" class="mt-1 text-xl font-extrabold">$0.00</p>
             </div>
-
-            <div class="mt-5 rounded-3xl border border-indigo-100 bg-white p-5 shadow-sm">
-              <p class="text-xs font-semibold uppercase tracking-wide text-indigo-700">
-                Minimalist Reality Check
-              </p>
-
-              <p id="realityCheck" class="mt-3 text-lg font-bold leading-7 text-slate-900">
-                Is this item really worth 0.00 hours of your life?
-              </p>
-
-              <p class="mt-2 text-sm leading-6 text-slate-500">
-                The point is not to feel guilty. The point is to spend intentionally.
-              </p>
+            <div class="rounded-2xl bg-white p-4 shadow-sm">
+              <p class="text-xs font-semibold text-slate-500">Purchase Price</p>
+              <p id="displayItemPrice" class="mt-1 text-xl font-extrabold">$0.00</p>
             </div>
-
-            <div class="mt-4 rounded-2xl bg-white p-4 text-sm leading-6 text-slate-600 shadow-sm">
-              Workday assumption:
-              <strong>8 hours per day</strong>.
-              For a more realistic result, use after-tax hourly pay.
+            <div class="rounded-2xl bg-white p-4 shadow-sm">
+              <p class="text-xs font-semibold text-slate-500">Minutes of Work</p>
+              <p id="displayMinutesRequired" class="mt-1 text-xl font-extrabold">0 Minutes</p>
+            </div>
+            <div class="rounded-2xl bg-white p-4 shadow-sm">
+              <p class="text-xs font-semibold text-slate-500">Workdays</p>
+              <p id="displayDaysRequired" class="mt-1 text-xl font-extrabold">0.00 Days</p>
             </div>
           </div>
 
-          <!-- Google AdSense Responsive Ad - Below Result -->
-          <div class="mt-6 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-slate-50 text-sm text-slate-400">
-            AdSense Responsive Ad Area - Below Result
+          <div class="mt-6 rounded-2xl border border-indigo-100 bg-white p-5 shadow-sm">
+            <p class="text-xs font-bold uppercase tracking-wide text-indigo-700">Reality Check</p>
+            <p id="realityCheck" class="mt-3 text-xl font-extrabold leading-8 text-slate-950">Is this purchase worth your time?</p>
           </div>
 
-          <p class="mt-5 text-xs leading-5 text-slate-500">
-            Disclaimer: This calculator is for general educational and personal budgeting purposes only.
-            It provides simplified estimates and should not be considered financial, tax, legal, employment, or investment advice.
-            Actual purchasing power may vary depending on taxes, benefits, overtime, commute time, unpaid labor, debt payments,
-            living expenses, and personal circumstances.
-          </p>
+          <div id="warningBox" class="mt-5 hidden rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm font-semibold leading-6 text-amber-800"></div>
         </div>
 
-        <section class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-8">
-          <span class="inline-flex rounded-full bg-indigo-100 px-4 py-2 text-sm font-semibold text-indigo-700">
-            Minimalist Spending Guide
-          </span>
+        <div class="ad-box mt-6">
+          AdSense Responsive Ad Area - Below Tool
+        </div>
 
-          <h2 class="mt-5 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
-            Money is Time: The Real Cost of Your Shopping Habits
-          </h2>
-
-          <div class="mt-5 space-y-5 text-sm leading-7 text-slate-600">
-            <p>
-              The <strong class="font-semibold text-slate-800">money is time philosophy</strong> appears in many forms,
-              from minimalist living to classic reflections like Henry David Thoreau’s <em>Walden</em>. The core idea is
-              powerful: when you buy something, you are not only spending money. You are spending the hours of life it took
-              to earn that money.
-            </p>
-
-            <p>
-              A Time Cost Calculator helps you
-              <strong class="font-semibold text-slate-800">calculate price in hours worked</strong>.
-              A $200 item may feel abstract, but if your real hourly wage is $25 after tax, that purchase costs 8 hours
-              of work. Once spending is translated into time, the
-              <strong class="font-semibold text-slate-800">real cost of things</strong>
-              becomes easier to understand.
-            </p>
-
-            <p>
-              This is especially useful if you want to learn
-              <strong class="font-semibold text-slate-800">how to stop impulse buying</strong>.
-              Impulse purchases often happen because the emotional reward is immediate while the cost feels distant.
-              Converting the price into work hours creates a pause. It gives your rational brain enough time to ask
-              whether the item is truly worth a morning, a full workday, or even several days of effort.
-            </p>
-
-            <div class="rounded-2xl bg-slate-50 p-5">
-              <h3 class="font-bold text-slate-900">
-                Ask these 3 questions before buying
-              </h3>
-
-              <ul class="mt-3 space-y-3">
-                <li>
-                  <strong class="text-slate-800">1. Would I trade this many hours of my life for this item?</strong>
-                </li>
-                <li>
-                  <strong class="text-slate-800">2. Will I still value this purchase 30 days from now?</strong>
-                </li>
-                <li>
-                  <strong class="text-slate-800">3. Is there a cheaper, simpler, or more meaningful alternative?</strong>
-                </li>
-              </ul>
-            </div>
-
-            <p>
-              One of the most practical
-              <strong class="font-semibold text-slate-800">minimalist spending tips</strong>
-              is to use a waiting period. For small purchases, wait 24 hours. For expensive purchases, wait 7 to 30 days.
-              If you still want the item after the waiting period and it fits your budget, the purchase is more likely to be
-              intentional rather than emotional.
-            </p>
-
-            <p>
-              Minimalism does not mean never buying anything. It means buying with clarity. Some purchases save time,
-              improve health, deepen relationships, or support meaningful goals. Others simply add clutter, maintenance,
-              debt, and stress. When you measure purchases in work hours, you begin to see which ones deserve your limited time.
-            </p>
-
-            <p>
-              This Time Cost Calculator from NodnWebTools is designed to help you make calmer, smarter spending decisions.
-              Use it before buying gadgets, clothes, subscriptions, upgrades, furniture, or luxury items. The goal is not
-              deprivation. The goal is freedom: spending your money and your time on what genuinely matters.
-            </p>
-          </div>
-        </section>
+        <p class="mt-5 text-xs leading-5 text-slate-500">
+          This calculator uses simple division and does not include taxes, benefits, unpaid overtime, debt payments, commuting, or personal expenses unless you manually reflect them in your hourly wage.
+        </p>
       </div>
     </section>
 
-    <!-- Google AdSense Responsive Ad - Bottom -->
-    <div class="mt-8 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white text-sm text-slate-400">
-      AdSense Responsive Ad Area - Bottom
+    <div class="ad-box mt-8">
+      AdSense Responsive Ad Area - Below Main Section
     </div>
 
+    <article class="mt-10 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-10">
+      <span class="inline-flex rounded-full bg-indigo-100 px-4 py-2 text-sm font-bold text-indigo-700">SEO Guide</span>
+
+      <h2 class="mt-5 text-3xl font-extrabold tracking-tight text-slate-950">Time Cost Calculator: Understand the Real Cost of Every Purchase</h2>
+
+      <div class="mt-6 space-y-6 text-base leading-8 text-slate-700">
+        <p>
+          A time cost calculator is a practical personal finance tool that converts a purchase price into the number of work hours required to afford it. Most people look at a product and ask whether the price seems high or low. A better question is whether the product is worth the time you must trade to buy it. When you use a price in work hours calculator, a purchase becomes more concrete. A $50 dinner, a $120 subscription renewal, a $900 phone, or a $2,500 vacation upgrade no longer appears as a simple number on a receipt. It becomes minutes, hours, workdays, and a portion of your life.
+        </p>
+
+        <p>
+          This free Time Cost Calculator from NodnWebTools is designed for people who want a clearer way to make spending decisions. It is useful for budgeting, minimalist living, debt reduction, savings planning, personal finance awareness, financial independence planning, and everyday shopping decisions. The tool works directly in your browser, so you can enter a wage, a price, and your normal workday length without sending private information to a server. It is simple, fast, and designed for real-life use before you buy something.
+        </p>
+
+        <h3 class="text-2xl font-extrabold text-slate-950">Why Converting Money into Time Changes the Way You Spend</h3>
+
+        <p>
+          Money can feel abstract because modern purchases happen quickly. A card tap, mobile wallet payment, online checkout, or subscription renewal can make spending almost invisible. Time, however, feels personal. If you earn $25 per hour after tax and want to buy a $200 item, the purchase costs eight hours of work. If your workday is eight hours, that item costs one full workday. This perspective can make impulse buying easier to control because it forces a pause between desire and payment.
+        </p>
+
+        <p>
+          The money is time philosophy is not about guilt, punishment, or refusing every enjoyable purchase. It is about intentional spending. Some purchases are absolutely worth the time they cost. A good mattress, a reliable laptop, a tool that saves hours every week, or a family experience may provide value far beyond the price. Other purchases may only provide a short emotional boost and then become clutter, waste, or another monthly bill. A time cost calculator helps you separate meaningful purchases from automatic spending.
+        </p>
+
+        <div class="ad-box">
+          AdSense Responsive Ad Area - Middle Content
+        </div>
+
+        <h3 class="text-2xl font-extrabold text-slate-950">How the Time Cost Calculator Works</h3>
+
+        <p>
+          The formula is simple: item price divided by hourly wage equals hours of work required. If the item costs $120 and your hourly wage is $25, the result is 4.8 hours. The tool also converts that number into minutes and workdays. The workday calculation depends on the number of hours you enter. Many people use eight hours per day, but you can change the workday length if your schedule is different.
+        </p>
+
+        <p>
+          For a more accurate calculation, use your after-tax hourly wage rather than your gross wage. Gross pay is the amount before income tax, payroll deductions, insurance premiums, retirement contributions, and other deductions. After-tax pay is closer to the money you actually keep. If you use gross income, the tool may underestimate the true time cost of a purchase. If you also want to account for commute time, unpaid preparation time, or work-related expenses, you can estimate a lower effective hourly wage.
+        </p>
+
+        <h3 class="text-2xl font-extrabold text-slate-950">Who Should Use a Price in Work Hours Calculator?</h3>
+
+        <p>
+          This calculator is helpful for students, freelancers, employees, hourly workers, salaried professionals, small business owners, parents, minimalists, budgeters, and anyone trying to improve financial decision-making. Students can use it to understand how many work shifts are needed to pay for textbooks, devices, clothing, or entertainment. Hourly workers can compare purchases directly against their schedule. Salaried workers can estimate an effective hourly wage and use the tool to understand the real cost of lifestyle upgrades.
+        </p>
+
+        <p>
+          Freelancers and self-employed workers may find this tool especially useful because their income can vary. A purchase may look affordable in a good month but feel much heavier during a slower month. By converting expenses into billable hours, freelancers can ask whether a new software subscription, office upgrade, course, or device is likely to pay for itself. Parents can use the calculator to explain money and work to teenagers in a practical, understandable way.
+        </p>
+
+        <h3 class="text-2xl font-extrabold text-slate-950">Popular Uses for the Time Cost Calculator</h3>
+
+        <div class="grid gap-4 md:grid-cols-2">
+          <div class="rounded-2xl bg-slate-50 p-5">
+            <h4 class="font-extrabold text-slate-950">Before Buying Electronics</h4>
+            <p class="mt-2 text-sm leading-7">Phones, laptops, tablets, headphones, monitors, cameras, and gaming devices can cost several workdays. Use the calculator before upgrading to decide whether the improvement is worth the time cost.</p>
+          </div>
+          <div class="rounded-2xl bg-slate-50 p-5">
+            <h4 class="font-extrabold text-slate-950">Before Starting a Subscription</h4>
+            <p class="mt-2 text-sm leading-7">Monthly subscriptions look small, but they repeat. Calculate the monthly time cost and multiply it by twelve to understand the annual impact.</p>
+          </div>
+          <div class="rounded-2xl bg-slate-50 p-5">
+            <h4 class="font-extrabold text-slate-950">Before Impulse Shopping</h4>
+            <p class="mt-2 text-sm leading-7">When a purchase is emotional, converting the price into work hours gives you a short pause and a clearer decision-making frame.</p>
+          </div>
+          <div class="rounded-2xl bg-slate-50 p-5">
+            <h4 class="font-extrabold text-slate-950">Before Planning Travel</h4>
+            <p class="mt-2 text-sm leading-7">Flights, hotel upgrades, rental cars, attractions, and dining can be compared in workdays to prioritize the experiences that matter most.</p>
+          </div>
+        </div>
+
+        <h3 class="text-2xl font-extrabold text-slate-950">How to Use This Tool for Better Budgeting</h3>
+
+        <p>
+          Start by entering your realistic hourly wage. If you are paid hourly, this may be simple. If you are salaried, divide your take-home pay by the number of hours you actually work. Include regular overtime if it is part of your normal life. Next, enter the item price. The result will show the hours, minutes, and workdays needed to buy that item. Then ask a practical question: would you willingly work that amount of time specifically for this purchase?
+        </p>
+
+        <p>
+          You can also use the calculator as part of a monthly budgeting routine. Review recent purchases and convert each one into work hours. This can reveal patterns that are hard to see in a bank statement. A few small purchases may add up to several hours of work. A collection of unused subscriptions may cost one or two full workdays every month. A habit that seems harmless may become expensive when measured in time.
+        </p>
+
+        <div class="ad-box">
+          AdSense Responsive Ad Area - Bottom Content
+        </div>
+
+        <h3 class="text-2xl font-extrabold text-slate-950">Using Time Cost to Reduce Impulse Buying</h3>
+
+        <p>
+          Impulse buying often happens because the reward is immediate and the cost feels delayed. Online stores, limited-time discounts, free shipping thresholds, influencer recommendations, and personalized ads are designed to reduce hesitation. A time cost calculator adds a useful moment of friction. It does not block the purchase. It simply makes the real trade-off visible.
+        </p>
+
+        <p>
+          One effective strategy is to create personal rules based on work hours. For example, you might decide that any purchase costing more than four hours of work requires a 24-hour waiting period. Any purchase costing more than two workdays might require a week of consideration. These rules are easy to understand because they are connected to your actual effort, not just a random dollar amount.
+        </p>
+
+        <h3 class="text-2xl font-extrabold text-slate-950">Gross Wage vs After-Tax Wage</h3>
+
+        <p>
+          A common mistake is using gross hourly pay. If you earn $30 per hour before tax, you may not actually keep $30. Taxes, deductions, benefits, retirement contributions, and other withholdings reduce take-home pay. If your take-home hourly wage is closer to $23, then a $230 item costs ten hours of work, not 7.67 hours. This difference matters, especially for larger purchases.
+        </p>
+
+        <p>
+          The most accurate approach is to calculate your effective hourly wage. Take your net pay for a pay period and divide it by the number of hours you worked during that period. If you want an even deeper view, subtract work-related expenses such as commuting, parking, uniforms, meals purchased because of work, childcare costs connected to work hours, and unpaid preparation time. This produces a more realistic view of what each hour truly earns.
+        </p>
+
+        <h3 class="text-2xl font-extrabold text-slate-950">Practical Tips for Smarter Spending Decisions</h3>
+
+        <p>
+          Use the calculator before buying non-essential items. If the result surprises you, wait before purchasing. Compare the item against your goals. Ask whether the same money could reduce debt, build an emergency fund, support a family experience, improve your health, or save time in a meaningful way. A purchase is not automatically bad because it costs many hours. It simply deserves more thought.
+        </p>
+
+        <p>
+          Another useful method is the cost-per-use approach. A $300 item used daily for several years may be more reasonable than a $60 item used once. The time cost calculator shows the earning side of the decision, while cost per use shows the value side. Together, they can help you make balanced choices without feeling restricted.
+        </p>
+
+        <p>
+          You can also apply the tool to recurring expenses. A $15 subscription may seem minor, but at $25 per hour it costs 36 minutes each month. Five similar subscriptions may cost three hours per month. Over a year, that could become 36 hours of work. Seeing recurring costs as annual work hours can make subscription cleanup much easier.
+        </p>
+
+        <h3 class="text-2xl font-extrabold text-slate-950">Time Cost and Minimalist Living</h3>
+
+        <p>
+          Minimalist living is not only about owning fewer things. It is about choosing what deserves your space, attention, maintenance, and money. Every object you buy may require storage, cleaning, repairs, insurance, upgrades, or replacement. The original price is only part of the cost. By calculating the work hours required to buy something, you begin to notice whether the item supports your life or simply adds another obligation.
+        </p>
+
+        <p>
+          This is why a time cost calculator is popular among people interested in minimalism, simple living, financial independence, and mindful consumption. It turns vague financial advice into a clear question: is this worth my time? That question is powerful because time is limited. Money can sometimes be earned again, but the hours used to earn it cannot be recovered.
+        </p>
+
+        <h3 class="text-2xl font-extrabold text-slate-950">A Better Way to Think About Discounts</h3>
+
+        <p>
+          Discounts can make spending feel like saving, but a discounted purchase still costs work hours. A product reduced from $200 to $120 may be a good deal only if you actually need or deeply value it. If you buy it only because it is on sale, you still traded time for something that may not improve your life. This tool helps you look beyond the discount label and focus on the final price.
+        </p>
+
+        <p>
+          Before buying something on sale, enter the final checkout price, including taxes, shipping, accessories, and required add-ons. Then compare the result to your workday. A sale is only useful when it lowers the cost of something you already planned to buy or something that provides real value.
+        </p>
+
+        <h3 class="text-2xl font-extrabold text-slate-950">Final Thoughts</h3>
+
+        <p>
+          The Time Cost Calculator is a simple tool, but it can change the way you understand money. By converting prices into work hours, it makes spending personal, visible, and easier to evaluate. Whether you are trying to stop impulse buying, build savings, reduce debt, compare purchases, understand subscriptions, or practice minimalist spending, this calculator gives you a clearer way to decide.
+        </p>
+
+        <p>
+          Use it whenever a purchase feels uncertain. Use it when comparing two options. Use it when a subscription renews. Use it when a sale looks tempting. Most importantly, use it as a reminder that your time has value. The goal is not to avoid spending. The goal is to spend with clarity, confidence, and intention.
+        </p>
+      </div>
+    </article>
+
+    <section class="mt-10 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-10">
+      <h2 class="text-3xl font-extrabold tracking-tight text-slate-950">Frequently Asked Questions</h2>
+
+      <div class="mt-6 space-y-5">
+        <div class="rounded-2xl bg-slate-50 p-5">
+          <h3 class="font-extrabold text-slate-950">What is a time cost calculator?</h3>
+          <p class="mt-2 text-sm leading-7 text-slate-700">A time cost calculator converts a purchase price into the number of hours, minutes, or workdays required to earn that amount.</p>
+        </div>
+
+        <div class="rounded-2xl bg-slate-50 p-5">
+          <h3 class="font-extrabold text-slate-950">Should I use gross pay or after-tax pay?</h3>
+          <p class="mt-2 text-sm leading-7 text-slate-700">After-tax pay is usually more realistic because it reflects the money you actually keep after deductions.</p>
+        </div>
+
+        <div class="rounded-2xl bg-slate-50 p-5">
+          <h3 class="font-extrabold text-slate-950">Can this tool help with impulse buying?</h3>
+          <p class="mt-2 text-sm leading-7 text-slate-700">Yes. Seeing a purchase as work hours can create a useful pause and help you decide whether the item is truly worth it.</p>
+        </div>
+
+        <div class="rounded-2xl bg-slate-50 p-5">
+          <h3 class="font-extrabold text-slate-950">Does this calculator store my information?</h3>
+          <p class="mt-2 text-sm leading-7 text-slate-700">No. The calculation runs in your browser. Your entered wage and purchase price are not sent to a backend server by this tool.</p>
+        </div>
+
+        <div class="rounded-2xl bg-slate-50 p-5">
+          <h3 class="font-extrabold text-slate-950">Can I use this for subscriptions?</h3>
+          <p class="mt-2 text-sm leading-7 text-slate-700">Yes. Enter the monthly or annual subscription price to understand how much work time it costs.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="mt-10 rounded-3xl bg-slate-900 p-6 text-slate-100 shadow-sm sm:p-10">
+      <h2 class="text-2xl font-extrabold">Legal Disclaimer</h2>
+      <div class="mt-4 space-y-4 text-sm leading-7 text-slate-300">
+        <p>
+          This Time Cost Calculator is provided for general informational, educational, and personal budgeting purposes only. It is not financial, tax, legal, employment, accounting, investment, or professional advice.
+        </p>
+        <p>
+          Calculations are simplified estimates based only on the numbers entered by the user. Real purchasing power may vary depending on taxes, deductions, benefits, overtime, unpaid work, commuting costs, debt, living expenses, exchange rates, personal obligations, and other circumstances.
+        </p>
+        <p>
+          Users are responsible for verifying their own income, costs, and financial decisions. Do not rely on this tool as the only basis for major financial choices. For personalized advice, consult a qualified professional.
+        </p>
+      </div>
+    </section>
+
+    <div class="ad-box mt-8">
+      AdSense Responsive Ad Area - Bottom
+    </div>
   </main>
 
   <script>
     const hourlyWageInput = document.getElementById("hourlyWage");
     const itemPriceInput = document.getElementById("itemPrice");
+    const hoursPerDayInput = document.getElementById("hoursPerDay");
+    const currencySelect = document.getElementById("currencySelect");
 
     const hoursRequiredEl = document.getElementById("hoursRequired");
     const workSentenceEl = document.getElementById("workSentence");
@@ -311,58 +431,147 @@
     const displayMinutesRequiredEl = document.getElementById("displayMinutesRequired");
     const displayDaysRequiredEl = document.getElementById("displayDaysRequired");
     const realityCheckEl = document.getElementById("realityCheck");
+    const warningBox = document.getElementById("warningBox");
+    const copyBtn = document.getElementById("copyBtn");
+    const downloadBtn = document.getElementById("downloadBtn");
+    const resetBtn = document.getElementById("resetBtn");
+    const copyFeedback = document.getElementById("copyFeedback");
+
+    let latestResultText = "";
+
+    function sanitizeNumber(value, fallback = 0) {
+      const number = Number.parseFloat(value);
+      return Number.isFinite(number) && number >= 0 ? number : fallback;
+    }
 
     function formatCurrency(value) {
-      return new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-      }).format(value);
+      const currency = currencySelect.value || "USD";
+      try {
+        return new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency,
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        }).format(value);
+      } catch (error) {
+        return "$" + value.toFixed(2);
+      }
     }
 
     function formatNumber(value, decimals = 2) {
-      return new Intl.NumberFormat("en-US", {
-        minimumFractionDigits: decimals,
-        maximumFractionDigits: decimals
-      }).format(value);
+      try {
+        return new Intl.NumberFormat("en-US", {
+          minimumFractionDigits: decimals,
+          maximumFractionDigits: decimals
+        }).format(value);
+      } catch (error) {
+        return value.toFixed(decimals);
+      }
     }
 
-    function sanitizeNumber(value, fallback = 0) {
-      const number = parseFloat(value);
-      return isNaN(number) || number < 0 ? fallback : number;
+    function updateWarning(message) {
+      if (!message) {
+        warningBox.classList.add("hidden");
+        warningBox.textContent = "";
+        return;
+      }
+      warningBox.textContent = message;
+      warningBox.classList.remove("hidden");
     }
 
     function calculateTimeCost() {
-      const hourlyWage = sanitizeNumber(hourlyWageInput.value);
-      const itemPrice = sanitizeNumber(itemPriceInput.value);
+      try {
+        const hourlyWage = sanitizeNumber(hourlyWageInput.value);
+        const itemPrice = sanitizeNumber(itemPriceInput.value);
+        const hoursPerDay = Math.max(sanitizeNumber(hoursPerDayInput.value, 8), 1);
 
-      let hoursRequired = 0;
-      let minutesRequired = 0;
-      let daysRequired = 0;
+        if (hourlyWage <= 0 || itemPrice <= 0) {
+          hoursRequiredEl.textContent = "0.00 Hours";
+          workSentenceEl.textContent = "Enter a positive hourly wage and purchase price to calculate the time cost.";
+          displayHourlyWageEl.textContent = formatCurrency(hourlyWage);
+          displayItemPriceEl.textContent = formatCurrency(itemPrice);
+          displayMinutesRequiredEl.textContent = "0 Minutes";
+          displayDaysRequiredEl.textContent = "0.00 Days";
+          realityCheckEl.textContent = "Is this purchase worth your time?";
+          updateWarning("Please enter values greater than zero for both hourly wage and purchase price.");
+          latestResultText = "No valid time cost result yet.";
+          return;
+        }
 
-      if (hourlyWage > 0 && itemPrice > 0) {
-        hoursRequired = itemPrice / hourlyWage;
-        minutesRequired = hoursRequired * 60;
-        daysRequired = hoursRequired / 8;
+        updateWarning("");
+
+        const hoursRequired = itemPrice / hourlyWage;
+        const minutesRequired = hoursRequired * 60;
+        const daysRequired = hoursRequired / hoursPerDay;
+        const hourLabel = Math.abs(hoursRequired - 1) < 0.005 ? "hour" : "hours";
+        const dayLabel = Math.abs(daysRequired - 1) < 0.005 ? "day" : "days";
+
+        hoursRequiredEl.textContent = `${formatNumber(hoursRequired, 2)} ${hoursRequired === 1 ? "Hour" : "Hours"}`;
+        workSentenceEl.innerHTML = `You need to work <strong>${formatNumber(hoursRequired, 2)} ${hourLabel}</strong> to afford this purchase.`;
+        displayHourlyWageEl.textContent = formatCurrency(hourlyWage);
+        displayItemPriceEl.textContent = formatCurrency(itemPrice);
+        displayMinutesRequiredEl.textContent = `${formatNumber(minutesRequired, 0)} ${Math.round(minutesRequired) === 1 ? "Minute" : "Minutes"}`;
+        displayDaysRequiredEl.textContent = `${formatNumber(daysRequired, 2)} ${dayLabel}`;
+        realityCheckEl.textContent = `Is this purchase really worth ${formatNumber(hoursRequired, 2)} ${hourLabel} of your life?`;
+
+        latestResultText =
+          `Time Cost Result\n\n` +
+          `Hourly wage: ${formatCurrency(hourlyWage)}\n` +
+          `Purchase price: ${formatCurrency(itemPrice)}\n` +
+          `Hours required: ${formatNumber(hoursRequired, 2)} ${hourLabel}\n` +
+          `Minutes required: ${formatNumber(minutesRequired, 0)} minutes\n` +
+          `Workdays required: ${formatNumber(daysRequired, 2)} ${dayLabel}\n` +
+          `Workday assumption: ${formatNumber(hoursPerDay, 2)} hours per day\n\n` +
+          `Generated with NodnWebTools Time Cost Calculator.`;
+      } catch (error) {
+        updateWarning("Something went wrong while calculating. Please check your inputs and try again.");
       }
-
-      const hourLabel = Math.abs(hoursRequired - 1) < 0.005 ? "hour" : "hours";
-      const dayLabel = Math.abs(daysRequired - 1) < 0.005 ? "day" : "days";
-
-      hoursRequiredEl.textContent = formatNumber(hoursRequired, 2) + " " + (hoursRequired === 1 ? "Hour" : "Hours");
-      workSentenceEl.innerHTML = "You need to work <strong>" + formatNumber(hoursRequired, 2) + " " + hourLabel + "</strong> to afford this item.";
-      displayHourlyWageEl.textContent = formatCurrency(hourlyWage);
-      displayItemPriceEl.textContent = formatCurrency(itemPrice);
-      displayMinutesRequiredEl.textContent = formatNumber(minutesRequired, 0) + (Math.round(minutesRequired) === 1 ? " Minute" : " Minutes");
-      displayDaysRequiredEl.textContent = formatNumber(daysRequired, 2) + " " + dayLabel;
-
-      realityCheckEl.textContent = "Is this item really worth " + formatNumber(hoursRequired, 2) + " " + hourLabel + " of your life?";
     }
 
-    hourlyWageInput.addEventListener("input", calculateTimeCost);
-    itemPriceInput.addEventListener("input", calculateTimeCost);
+    async function copyResult() {
+      try {
+        await navigator.clipboard.writeText(latestResultText || "No result available.");
+        copyFeedback.classList.remove("hidden");
+        setTimeout(() => copyFeedback.classList.add("hidden"), 1600);
+      } catch (error) {
+        updateWarning("Copy failed. Your browser may not allow clipboard access.");
+      }
+    }
 
+    function downloadResult() {
+      try {
+        const blob = new Blob([latestResultText || "No result available."], { type: "text/plain;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "time-cost-result.txt";
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        URL.revokeObjectURL(url);
+      } catch (error) {
+        updateWarning("Download failed. Please try again.");
+      }
+    }
+
+    function resetTool() {
+      hourlyWageInput.value = "25";
+      itemPriceInput.value = "120";
+      hoursPerDayInput.value = "8";
+      currencySelect.value = "USD";
+      calculateTimeCost();
+    }
+
+    [hourlyWageInput, itemPriceInput, hoursPerDayInput, currencySelect].forEach((element) => {
+      element.addEventListener("input", calculateTimeCost);
+      element.addEventListener("change", calculateTimeCost);
+    });
+
+    copyBtn.addEventListener("click", copyResult);
+    downloadBtn.addEventListener("click", downloadResult);
+    resetBtn.addEventListener("click", resetTool);
+
+    window.addEventListener("resize", calculateTimeCost);
     calculateTimeCost();
   </script>
 </body>
