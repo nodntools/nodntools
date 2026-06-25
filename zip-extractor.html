@@ -4,465 +4,595 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404"
-     crossorigin="anonymous"></script>
-
-	<meta name="google-adsense-account" content="ca-pub-5282672325821404">	
-
-  <title>Online ZIP Extractor | Unzip Files Free in Browser - NodnWebTools</title>
-
-  <meta
-    name="description"
-    content="Use the free NodnWebTools Online ZIP Extractor to unzip files completely in your browser. Open, view, and extract individual files from ZIP archives safely without server uploads."
-  />
-  <meta
-    name="keywords"
-    content="online zip extractor, unzip files online, extract zip free, open zip in browser, secure zip opener, client side unzip tool, NodnWebTools"
-  />
-  <meta name="author" content="NodnWebTools" />
+  <title>Online ZIP Extractor | Unzip Files in Browser</title>
+  <meta name="description" content="Free online ZIP extractor to open, preview, and download files from ZIP archives directly in your browser." />
+  <meta name="keywords" content="online zip extractor, unzip files online, extract zip file, open zip in browser, free zip extractor, client-side zip extractor, private zip opener, secure zip extractor, browser unzip tool, download files from zip, JSZip extractor, no upload zip extractor, archive utility, compressed file extractor, ZIP file viewer, NodnWebTools" />
   <meta name="robots" content="index, follow" />
+  <meta name="author" content="NodnWebTools" />
 
-  <meta property="og:title" content="Online ZIP Extractor | NodnWebTools" />
-  <meta
-    property="og:description"
-    content="Unzip archive extensions and extract internal individual media files instantly and securely inside your browser."
-  />
+  <meta property="og:title" content="Online ZIP Extractor | Unzip Files in Browser" />
+  <meta property="og:description" content="Open ZIP archives locally in your browser, view file contents, and download individual extracted files without server uploads." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://nodntools.com/zip-extractor.html" />
   <meta property="og:site_name" content="NodnWebTools" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Online ZIP Extractor" />
-  <meta
-    name="twitter:description"
-    content="A secure, client-side online zip configuration utility tool for instant compressed archive modifications."
-  />
+  <meta name="twitter:description" content="Extract ZIP files directly in your browser with a private client-side unzip tool." />
+
+  <meta name="google-adsense-account" content="ca-pub-5282672325821404">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404" crossorigin="anonymous"></script>
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            brand: {
-              50: '#f5f3ff',
-              100: '#ede9fe',
-              200: '#ddd6fe',
-              500: '#8b5cf6',
-              600: '#7c3aed',
-              700: '#6d28d9',
-              800: '#5b21b6',
-            }
-          }
-        }
-      }
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Online ZIP Extractor",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "url": "https://nodntools.com/zip-extractor.html",
+    "description": "A free browser-based ZIP extractor that opens ZIP archives locally, displays archive file lists, and lets users download individual files without intentional server uploads.",
+    "featureList": [
+      "Open ZIP files in the browser",
+      "View files inside ZIP archives",
+      "Extract individual files",
+      "Client-side archive processing",
+      "No backend upload required",
+      "Mobile-safe responsive layout"
+    ],
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "NodnWebTools",
+      "url": "https://nodntools.com"
     }
+  }
   </script>
 
   <style>
     html, body {
       width: 100%;
+      max-width: 100%;
       overflow-x: hidden;
     }
-    * {
+
+    *, *::before, *::after {
       box-sizing: border-box;
+      min-width: 0;
     }
-    .adsbygoogle {
+
+    body {
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    main, section, aside, div, table, canvas, img, svg, input, select, textarea, button, pre, code, ins {
       max-width: 100%;
-      overflow: hidden;
     }
+
+    input, select, button, textarea {
+      font: inherit;
+    }
+
+    .safe-break {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .mobile-card,
+    .mobile-panel,
+    .mobile-preview,
+    .mobile-code,
+    .ad-box {
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
+    .mobile-code {
+      overflow-x: auto;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .ad-box {
+      min-height: 90px;
+      border: 2px dashed #cbd5e1;
+      background: #f8fafc;
+      color: #94a3b8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-radius: 1rem;
+      padding: 1rem;
+      font-size: 0.875rem;
+      line-height: 1.5;
+    }
+
+    .drop-active {
+      border-color: #4f46e5 !important;
+      background: #eef2ff !important;
+    }
+
+    .file-list-scroll {
+      max-height: 540px;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding-right: 0.25rem;
+    }
+
     @media (max-width: 640px) {
+      body {
+        padding-left: 0;
+        padding-right: 0;
+      }
+
       textarea, input, select, button {
         font-size: 16px;
       }
+
+      .mobile-card,
+      .mobile-panel,
+      .mobile-preview {
+        padding: 1rem !important;
+        border-radius: 1.25rem !important;
+      }
+
+      .mobile-button-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .mobile-button-grid button,
+      .mobile-button-grid a {
+        width: 100% !important;
+      }
+
+      .mobile-title {
+        font-size: 2rem !important;
+        line-height: 1.12 !important;
+      }
+
+      .file-list-scroll {
+        max-height: 420px;
+      }
+
+      .ad-box {
+        min-height: 90px;
+        border-radius: 0.875rem;
+        padding: 0.875rem;
+        font-size: 0.75rem;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .mobile-card,
+      .mobile-panel,
+      .mobile-preview {
+        padding: 0.875rem !important;
+        border-radius: 1rem !important;
+      }
+
+      .mobile-title {
+        font-size: 1.75rem !important;
+      }
+
+      h2 {
+        font-size: 1.35rem !important;
+      }
+
+      .mobile-small-text {
+        font-size: 0.875rem !important;
+      }
+
+      .ad-box {
+        font-size: 0.7rem;
+      }
     }
   </style>
-
 </head>
 
-<body class="min-h-screen bg-slate-100 px-3 py-5 sm:px-4 sm:py-12">
-  <main class="mx-auto w-full max-w-5xl overflow-hidden">
-
-    <div class="mb-8 text-center">
-      <a
-        href="https://nodntools.com"
-        class="inline-block transition hover:opacity-80"
-        aria-label="NodnWebTools Home"
-      >
-        <div class="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
-          Nodn<span class="text-blue-600">WebTools</span>
-        </div>
+<body class="min-h-screen bg-slate-50 text-slate-900">
+  <header class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+    <nav class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <a href="https://nodntools.com" class="inline-flex items-center gap-1 text-2xl font-extrabold tracking-tight transition hover:opacity-80" aria-label="NodnWebTools Home">
+        <span>Nodn</span><span class="text-indigo-600">WebTools</span>
       </a>
-    </div>
 
-    <div class="mb-6 flex min-h-[80px] w-full items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white px-3 text-center text-xs text-slate-400 sm:mb-8 sm:min-h-[90px] sm:text-sm">
+      <a href="https://nodntools.com" class="inline-flex w-fit rounded-full border border-slate-200 bg-white px-5 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-indigo-200 hover:text-indigo-700">
+        Home
+      </a>
+    </nav>
+
+    <div class="ad-box mt-6">
       AdSense Responsive Ad Area - Top
     </div>
+  </header>
 
-    <section class="grid grid-cols-1 gap-5 lg:grid-cols-2 lg:gap-6">
+  <main class="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
+    <section class="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
+      <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8 lg:sticky lg:top-6 lg:self-start">
+        <span class="inline-flex rounded-full bg-indigo-100 px-4 py-2 text-sm font-bold text-indigo-700">
+          Archive Utility
+        </span>
 
-      <div class="rounded-3xl bg-white p-4 shadow-xl ring-1 ring-slate-200 sm:p-8 lg:sticky lg:top-10 lg:self-start">
-        <div class="mb-6">
-          <span class="inline-flex rounded-full bg-brand-50 px-4 py-2 text-sm font-semibold text-brand-700">
-            Archive Utility
-          </span>
+        <h1 class="mobile-title mt-5 text-4xl font-extrabold tracking-tight text-slate-950 sm:text-5xl">
+          Online ZIP Extractor
+        </h1>
 
-          <h1 class="mt-5 text-2xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-            Online ZIP Extractor
-          </h1>
+        <p class="mt-4 text-base leading-7 text-slate-600">
+          Open ZIP archives directly in your browser, view the internal file list, and download individual extracted files. This tool uses client-side JavaScript processing, so selected ZIP files are handled locally instead of being intentionally uploaded to a backend extraction server.
+        </p>
 
-          <p class="mt-3 text-sm leading-7 text-slate-600 sm:text-base">
-            Open compressed ZIP archives directly on your machine. Binary records are extracted entirely locally within browser storage pools with zero risk of exposure.
-          </p>
-        </div>
+        <div class="mt-8 space-y-5">
+          <div class="mobile-panel rounded-2xl border border-slate-200 bg-slate-50 p-4">
+            <label class="mb-3 block text-sm font-bold text-slate-700">Select ZIP file</label>
 
-        <div class="space-y-5">
-          <div>
-            <label class="mb-2 block text-sm font-semibold text-slate-700">Select Compressed File</label>
-            <div id="dropZone" class="relative flex min-h-[170px] flex-col items-center justify-center rounded-2xl border-2 border-dashed border-slate-300 bg-slate-50 p-4 text-center transition hover:bg-slate-100/70 cursor-pointer select-none sm:p-6">
-              <input type="file" id="fileInput" accept=".zip" class="absolute inset-0 opacity-0 cursor-pointer" />
-              
-              <div id="dropZoneDefault">
-                <svg class="mx-auto h-12 w-12 text-brand-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 19a2 2 0 01-2-2V7a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1M5 19h14a2 2 0 002-2v-5M5 19v-2a2 2 0 002-2h2a2 2 0 002 2v2M9 5h4m1 5l2 2m0 0l2-2m-2 2v6" />
-                </svg>
-                <p class="mt-2 max-w-full break-words px-1 text-sm font-medium text-slate-700" id="fileInputLabel">
-                  Click to browse or drag & drop ZIP file here
+            <div id="dropZone" class="relative flex min-h-[190px] w-full cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed border-slate-300 bg-white p-5 text-center transition hover:border-indigo-300 hover:bg-indigo-50/40">
+              <input type="file" id="fileInput" accept=".zip,application/zip,application/x-zip-compressed" class="absolute inset-0 z-20 h-full w-full cursor-pointer opacity-0" aria-label="Choose ZIP file" />
+
+              <div id="dropZoneDefault" class="pointer-events-none relative z-10 flex flex-col items-center">
+                <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-indigo-50 text-indigo-600">
+                  <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h14a3 3 0 003-3v-1M12 12v8m0-8l-3 3m3-3l3 3M4 8a3 3 0 013-3h3l2 2h5a3 3 0 013 3v2" />
+                  </svg>
+                </div>
+                <p id="fileInputLabel" class="mt-3 max-w-full text-sm font-black text-slate-800 safe-break">
+                  Click to browse or drag and drop a ZIP file here
                 </p>
-                <p class="mt-1 text-xs text-slate-400">Supports standard compressed .zip payload arrays</p>
+                <p class="mt-1 text-xs leading-5 text-slate-500">
+                  Supports standard .zip archives processed locally in your browser.
+                </p>
               </div>
 
-              <div id="dropZoneLoading" class="hidden py-4">
-                <svg class="animate-spin mx-auto h-10 w-10 text-brand-600" fill="none" viewBox="0 0 24 24">
+              <div id="dropZoneLoading" class="pointer-events-none relative z-10 hidden py-4 text-center">
+                <svg class="mx-auto h-10 w-10 animate-spin text-indigo-600" fill="none" viewBox="0 0 24 24" aria-hidden="true">
                   <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                   <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                 </svg>
-                <p class="mt-3 text-sm font-bold text-brand-700">Decompressing Memory Buffers...</p>
-                <p class="mt-1 text-xs text-slate-400">Unpacking binary streams without network transmission</p>
+                <p class="mt-3 text-sm font-bold text-indigo-700">Reading ZIP archive...</p>
+                <p class="mt-1 text-xs text-slate-500">Parsing compressed files locally</p>
               </div>
             </div>
           </div>
 
-          <div id="errorNotification" class="hidden rounded-2xl bg-red-50 border border-red-200 p-4 text-xs font-semibold text-red-600 leading-5"></div>
+          <div id="errorNotification" class="hidden rounded-2xl border border-red-200 bg-red-50 p-4 text-sm font-semibold leading-6 text-red-700"></div>
 
-          <div class="rounded-2xl bg-slate-100 p-4 text-sm leading-6 text-slate-600">
-            This module deploys zero external database triggers. Standard JavaScript sandboxes maintain absolute compliance for operational confidentiality.
+          <div id="archiveInfoBox" class="rounded-2xl bg-indigo-50 p-4 text-sm leading-6 text-slate-700">
+            Your ZIP file is read in this browser tab using JSZip. For sensitive files, use a trusted device and browser environment.
           </div>
+
+          <div class="mobile-button-grid grid grid-cols-2 gap-3">
+            <button id="resetBtn" type="button" class="rounded-2xl border border-slate-300 bg-white px-4 py-3 text-sm font-bold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700">
+              Reset
+            </button>
+            <button id="copyManifestBtn" type="button" class="rounded-2xl bg-indigo-600 px-4 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-indigo-700">
+              Copy File List
+            </button>
+          </div>
+
+          <p id="actionFeedback" class="hidden rounded-2xl bg-emerald-50 px-4 py-3 text-sm font-bold text-emerald-700">
+            Copied!
+          </p>
         </div>
-      </div>
+      </section>
 
-      <div class="space-y-6">
-        <div class="rounded-3xl bg-white p-4 shadow-xl ring-1 ring-slate-200 sm:p-8">
-          <div class="mb-6">
-            <h2 class="text-2xl font-bold text-slate-900">Archive Manifest</h2>
-            <p class="mt-2 text-sm text-slate-500">Extract individual internal files cleanly via localized downloads.</p>
-          </div>
-
-          <div id="manifestPlaceholder" class="rounded-3xl border border-slate-200 bg-gradient-to-br from-slate-50 via-zinc-50 to-purple-50/20 p-5 text-center text-sm leading-6 text-slate-400 sm:p-6">
-            Please select a valid local zip archive structure from the left controller card to analyze historical binary listings.
-          </div>
-
-          <div id="manifestContent" class="hidden max-h-[420px] space-y-3 overflow-y-auto pr-0 sm:max-h-[520px] sm:pr-1">
-            <div class="flex flex-col gap-1 rounded-xl bg-slate-800 px-3 py-2.5 text-xs font-mono text-slate-400 select-none sm:flex-row sm:items-center sm:justify-between sm:px-4">
-              <span id="archiveSummaryLabel">Files Detected: 0</span>
-              <span>Local Storage Blob</span>
+      <section class="space-y-6">
+        <div class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+          <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+            <div>
+              <h2 class="text-2xl font-extrabold tracking-tight text-slate-950">Archive Contents</h2>
+              <p class="mt-2 text-sm leading-6 text-slate-500">
+                View the internal file list and download individual files from the selected ZIP archive.
+              </p>
             </div>
-            
-            <div id="fileRowsDeck" class="space-y-2"></div>
+
+            <span id="statusBadge" class="inline-flex w-fit rounded-full bg-slate-100 px-4 py-2 text-sm font-bold text-slate-600">
+              Waiting for ZIP
+            </span>
           </div>
 
-          <div class="mt-6 flex min-h-[180px] w-full flex-col items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-3 text-center text-xs text-slate-400 sm:min-h-[250px] sm:p-4 sm:text-sm">
-            <span class="text-[10px] font-bold text-slate-300 uppercase tracking-widest mb-2">Advertisement</span>
-            <ins class="adsbygoogle"
-                 style="display:block; width:100%; min-height:200px;"
-                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-                 data-ad-slot="YYYYYYYYYY"
-                 data-ad-format="rectangle, vertical"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
+          <div id="manifestPlaceholder" class="mt-6 rounded-3xl border border-dashed border-slate-300 bg-gradient-to-br from-slate-50 via-white to-indigo-50 p-6 text-center text-sm leading-6 text-slate-500">
+            Select a valid ZIP archive from the left panel to display the file manifest and extraction controls.
           </div>
 
-          <div class="mt-5 rounded-2xl bg-slate-100 p-4 text-xs leading-5 text-slate-500">
-            <span class="block font-bold text-slate-700 mb-1">Disclaimer & Legal Notice:</span>
-            This tool is provided on an "as is" and "as available" basis without warranties of any kind. Unpacking file procedures are triggered 100% inside the client memory compilation matrix; NodnWebTools never receives, tracks, uploads, mirrors, or logs your internal binary directory files. The user maintains exclusive liability to clear compliance checking maps before saving elements down. NodnWebTools, its core technical developers, and affiliates reject all liability for unexpected file damage, missing header arrays, payload errors, or legal data leaks stemming from extraction logs.
+          <div id="manifestContent" class="mt-6 hidden">
+            <div class="grid gap-3 sm:grid-cols-3">
+              <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                <p class="text-xs font-bold uppercase tracking-wide text-slate-400">Files Detected</p>
+                <p id="fileCountMetric" class="mt-1 text-2xl font-extrabold text-slate-950">0</p>
+              </div>
+              <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                <p class="text-xs font-bold uppercase tracking-wide text-slate-400">Archive Name</p>
+                <p id="archiveNameMetric" class="safe-break mt-1 text-sm font-extrabold text-slate-950">None</p>
+              </div>
+              <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                <p class="text-xs font-bold uppercase tracking-wide text-slate-400">ZIP Size</p>
+                <p id="archiveSizeMetric" class="mt-1 text-2xl font-extrabold text-slate-950">0 KB</p>
+              </div>
+            </div>
+
+            <div class="mt-5 rounded-2xl border border-slate-200 bg-slate-950 p-4 text-slate-100">
+              <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                <p id="archiveSummaryLabel" class="text-xs font-bold uppercase tracking-wide text-slate-400">Files Detected: 0</p>
+                <p class="text-xs font-semibold text-slate-400">Local Browser Extraction</p>
+              </div>
+            </div>
+
+            <div id="fileRowsDeck" class="file-list-scroll mt-4 space-y-3"></div>
+          </div>
+
+          <div class="ad-box mt-6">
+            AdSense Responsive Ad Area - Result
+          </div>
+
+          <p class="mt-5 text-xs leading-5 text-slate-500">
+            This tool extracts individual files from ZIP archives. It does not repair corrupted archives, remove malware, bypass passwords, or verify whether extracted files are safe to open.
+          </p>
+        </div>
+      </section>
+    </section>
+
+    <div class="ad-box mt-8">
+      AdSense Responsive Ad Area - Below Main Tool
+    </div>
+
+    <article class="mt-10 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-10">
+      <span class="inline-flex rounded-full bg-indigo-100 px-4 py-2 text-sm font-bold text-indigo-700">
+        ZIP Extraction Guide
+      </span>
+
+      <h2 class="mt-5 text-3xl font-extrabold tracking-tight text-slate-950">
+        Online ZIP Extractor Guide: Open, View, and Extract ZIP Files Directly in Your Browser
+      </h2>
+
+      <div class="mt-6 space-y-6 text-base leading-8 text-slate-700">
+        <p>
+          An online ZIP extractor is a practical tool for anyone who needs to open a compressed ZIP archive without installing desktop software. ZIP files are widely used for sharing documents, website assets, design files, code projects, images, reports, spreadsheets, backups, templates, and downloadable bundles. A ZIP archive can contain one file, hundreds of files, nested folders, or a complete project directory. When you only need one or two files from the archive, extracting the entire folder with a desktop application can be inconvenient. A browser-based ZIP extractor makes it easy to inspect the archive contents and download only the files you need.
+        </p>
+
+        <p>
+          The NodnWebTools Online ZIP Extractor is designed as a client-side unzip tool. That means the selected ZIP file is read by JavaScript in your browser instead of being intentionally uploaded to a backend extraction server. The page uses JSZip to parse the archive structure, display an internal file manifest, show file names and approximate uncompressed sizes, and create local download links for individual files. This approach is useful for quick archive inspection, selective extraction, and privacy-conscious workflows where uploading an archive to an unknown server is not desirable.
+        </p>
+
+        <p>
+          Many traditional online unzip services require the user to upload the archive before extraction. That can be acceptable for public files, but it may be risky for private documents, unpublished website code, business files, school assignments, client work, personal photos, financial files, or confidential media. A no-upload ZIP extractor reduces that exposure because the archive is processed inside the browser tab. While users should still be careful with sensitive information, local processing gives more control than sending the archive to a third-party conversion or extraction server.
+        </p>
+
+        <h3 class="text-2xl font-extrabold text-slate-950">What Is a ZIP File?</h3>
+        <p>
+          A ZIP file is a compressed archive format that can package multiple files and folders into one convenient file. ZIP archives are popular because they reduce file size, preserve folder structure, and make it easier to send multiple items together. Instead of attaching ten separate files to an email, a user can compress them into one ZIP archive. Website owners can download theme packages, image bundles, plugin files, and project backups as ZIP archives. Developers often share code repositories or build outputs as compressed ZIP files.
+        </p>
+
+        <p>
+          ZIP files are convenient, but they must be extracted before the internal files can be used normally. An operating system may include a built-in unzip feature, but users sometimes prefer an online ZIP opener when they are on a shared computer, Chromebook, restricted work device, mobile browser, or temporary environment where installing extra software is not possible. A browser-based ZIP viewer can also be faster when the goal is only to inspect or download a specific file from inside the archive.
+        </p>
+
+        <div class="ad-box">
+          AdSense Responsive Ad Area - Middle Content
+        </div>
+
+        <h3 class="text-2xl font-extrabold text-slate-950">How This Browser ZIP Extractor Works</h3>
+        <p>
+          This tool uses a client-side JavaScript library to read the selected ZIP archive as an ArrayBuffer. After the file is loaded into browser memory, the ZIP structure is parsed locally. The tool then lists the internal files, ignores folder-only entries, and builds an extraction button for each file. When a user clicks Extract, the selected file is converted into a browser Blob and downloaded through a temporary local object URL.
+        </p>
+
+        <p>
+          Because the work happens in the browser, performance depends on your device, browser, available memory, and ZIP file size. Small and medium archives generally open quickly. Very large archives, archives with thousands of files, heavily compressed archives, or files with unusual internal structures may take longer or fail if the browser runs out of memory. For very large backups or mission-critical archives, a desktop archive manager may still be more appropriate.
+        </p>
+
+        <h3 class="text-2xl font-extrabold text-slate-950">Why Use a Client-Side ZIP Extractor?</h3>
+        <p>
+          A client-side ZIP extractor is useful because it combines convenience with a privacy-friendly workflow. You can open a ZIP file directly from the browser, inspect the file list, and download individual files without creating an account or uploading the archive to a remote server. This is helpful when working with personal files, client drafts, educational materials, design resources, code snippets, website assets, or archived documents that you do not want to transfer unnecessarily.
+        </p>
+
+        <p>
+          Client-side extraction is also useful for static websites because the tool can run as a single HTML page. There is no backend storage, no upload queue, no server-side decompression process, and no database requirement. For users, the experience is simple: choose a ZIP file, wait for the archive manifest, and extract the files they need. For site owners, this type of utility is lightweight and easy to host.
+        </p>
+
+        <h3 class="text-2xl font-extrabold text-slate-950">Common Uses for an Online ZIP Extractor</h3>
+        <div class="grid gap-4 md:grid-cols-2">
+          <div class="rounded-2xl bg-slate-50 p-5">
+            <h4 class="font-extrabold text-slate-950">Open Downloaded Resource Packs</h4>
+            <p class="mt-2 text-sm leading-7">Extract design assets, templates, website files, icons, sample projects, and downloadable bundles without installing archive software.</p>
+          </div>
+          <div class="rounded-2xl bg-slate-50 p-5">
+            <h4 class="font-extrabold text-slate-950">Inspect Code Archives</h4>
+            <p class="mt-2 text-sm leading-7">View file names inside a compressed code package before downloading specific HTML, CSS, JavaScript, JSON, or documentation files.</p>
+          </div>
+          <div class="rounded-2xl bg-slate-50 p-5">
+            <h4 class="font-extrabold text-slate-950">Extract Individual Documents</h4>
+            <p class="mt-2 text-sm leading-7">Download only the PDF, spreadsheet, text file, image, or document you need from a larger archive.</p>
+          </div>
+          <div class="rounded-2xl bg-slate-50 p-5">
+            <h4 class="font-extrabold text-slate-950">Use on Restricted Devices</h4>
+            <p class="mt-2 text-sm leading-7">Open ZIP files on computers where installing desktop extraction software is not convenient or allowed.</p>
           </div>
         </div>
 
-        <section class="rounded-3xl bg-white p-4 shadow-sm ring-1 ring-slate-200 sm:p-8">
-          <span class="inline-flex rounded-full bg-slate-200 px-4 py-2 text-sm font-semibold text-slate-800">
-            Archive Formatting Guide
-          </span>
+        <h3 class="text-2xl font-extrabold text-slate-950">How to Use the Online ZIP Extractor</h3>
+        <p>
+          First, click the upload area or drag and drop a ZIP file into the tool. The page checks whether the selected file appears to be a ZIP archive. After that, the browser reads the file locally and parses the compressed archive. If the ZIP file is valid, the tool displays the number of detected files, the archive name, the archive size, and a list of internal files. Each file row includes the internal path, estimated uncompressed size, and an Extract button.
+        </p>
 
-          <h2 class="mt-5 text-xl font-bold tracking-tight text-slate-900 sm:text-3xl">
-            Client-Side Unzipping Utilities: Protecting Proprietary Binary Records
-          </h2>
+        <p>
+          To download a file from the archive, click Extract next to that file. The tool creates a temporary local download link and saves the file through the browser. You can extract multiple files one by one. If you need every file at once, a desktop archive application may be faster for large archives. This tool is optimized for quick inspection and selective extraction.
+        </p>
 
-          <div class="mt-5 space-y-5 text-sm leading-7 text-slate-600">
-            <p>
-              In corporate data environments, unpacking batch project documents securely relies heavily on deploying a versatile 
-              <strong class="font-semibold text-slate-800">online zip extractor</strong>. When workflows require opening heavily compressed extensions, transferring archives through legacy server-based extraction routines presents extreme data liability traps and risks enterprise network breaches.
-            </p>
+        <div class="ad-box">
+          AdSense Responsive Ad Area - Bottom Content
+        </div>
 
-            <p>
-              By choosing our advanced browser-integrated tool, you can <strong class="font-semibold text-slate-800">unzip files online</strong> without uploading data packets anywhere. Our system unpacks raw structures right within your tab instance. This allows remote team members to open compressed assets using an open-source <strong class="font-semibold text-slate-800">view and extract zip free</strong> model, keeping internal file structural logs locked behind local boundaries.
-            </p>
+        <h3 class="text-2xl font-extrabold text-slate-950">Privacy and Security Considerations</h3>
+        <p>
+          A browser-based ZIP extractor can reduce unnecessary file uploads, but users should still follow safe file handling practices. ZIP archives can contain executable files, scripts, macros, unknown documents, or suspicious content. Extracting a file does not mean it is safe to open. Be cautious with archives from unknown senders, unexpected email attachments, downloaded software bundles, or files that ask you to enable macros or run installers.
+        </p>
 
-            <h3 class="text-lg font-bold text-slate-900 pt-2">How to Browse and Save Archive Contents Safely</h3>
-            <p>
-              Most alternative decompression sites pull binary blocks into external server farms, creating unmonitored cache logs. This client-side web utility seals your files inside an isolated, local runtime environment:
-            </p>
+        <p>
+          This tool does not scan files for viruses, verify file authenticity, remove malware, decrypt password-protected files, or inspect whether the contents are safe. It only opens the archive structure and allows local extraction. If a ZIP file contains sensitive information, use a trusted device, updated browser, secure operating system, and appropriate antivirus or endpoint protection before opening extracted files.
+        </p>
 
-            <ul class="list-disc pl-5 space-y-2 text-slate-600">
-              <li><strong>Local Array Mapping:</strong> The extractor uses high-performance memory buffers to parse compression tokens, rebuilding directory paths inside client memory instantly.</li>
-              <li><strong>Selective Extraction Model:</strong> Users view full file lists, check relative storage footprints, and save individual files down without draining mobile system resources.</li>
-              <li><strong>100% Data Confidentiality:</strong> Because operations stay in the client browser canvas pipeline, database schemas, code bundles, and private media assets stay private.</li>
-            </ul>
+        <h3 class="text-2xl font-extrabold text-slate-950">ZIP Extractor vs ZIP Viewer</h3>
+        <p>
+          A ZIP viewer lets you see what is inside an archive. A ZIP extractor lets you save files from that archive. This tool does both for standard ZIP files: it displays the internal manifest and lets you download individual files. However, it does not provide advanced archive editing, recompression, password cracking, file repair, batch extraction into a folder, or malware analysis. The goal is to provide a fast and simple browser utility for common ZIP archive tasks.
+        </p>
 
-            <p>
-              By leveraging this reliable, standalone <strong class="font-semibold text-slate-800">line and archive check utility</strong> guide, you can audit your compressed folders smoothly without data visibility leaks.
-            </p>
-          </div>
-        </section>
+        <h3 class="text-2xl font-extrabold text-slate-950">Why Some ZIP Files May Not Open</h3>
+        <p>
+          Some ZIP archives may fail to open because they are corrupted, incomplete, password-protected, too large for browser memory, or created with features not supported by the JavaScript extraction library. A ZIP file can also be mislabeled if the extension is .zip but the content is actually another archive type. If the tool shows an error, try downloading the file again, testing a smaller archive, or using a desktop archive manager.
+        </p>
+
+        <p>
+          Browser memory limits are another common issue. A very large ZIP archive can require more memory than expected because the archive must be parsed and individual files may need to be decompressed before download. If your browser becomes slow, close other tabs, try a desktop device, or extract the archive with dedicated software.
+        </p>
+
+        <h3 class="text-2xl font-extrabold text-slate-950">Helpful Tips for Safer ZIP Extraction</h3>
+        <p>
+          Only open archives from sources you trust. Review file names before extraction. Be careful with executable file types such as .exe, .bat, .cmd, .scr, .js, .vbs, and unknown scripts. Do not enable macros in documents unless you fully trust the source. Keep your browser and operating system updated. For business, legal, financial, medical, or private client files, follow your organization’s data security policies.
+        </p>
+
+        <p>
+          If you are extracting website files, keep the original folder structure in mind. This tool downloads individual files, so related assets may need to remain in their correct folders when used in a project. For complete project restoration, use a desktop archive utility that can extract the entire folder tree.
+        </p>
+
+        <h3 class="text-2xl font-extrabold text-slate-950">Final Thoughts</h3>
+        <p>
+          The NodnWebTools Online ZIP Extractor is a simple, useful, and privacy-conscious way to open ZIP archives in the browser. It is ideal for quick file inspection, selective extraction, and everyday archive tasks. Whether you are checking a downloaded template, opening a document bundle, reviewing website assets, or extracting one file from a larger archive, this tool helps you complete the task without installing extra software or intentionally uploading the archive to a server.
+        </p>
+
+        <p>
+          For large, encrypted, corrupted, or security-sensitive archives, use a dedicated archive manager and appropriate security tools. For everyday ZIP files, this browser-based extractor provides a fast and convenient solution.
+        </p>
+      </div>
+    </article>
+
+    <section class="mt-10 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-10">
+      <h2 class="text-3xl font-extrabold tracking-tight text-slate-950">Frequently Asked Questions</h2>
+
+      <div class="mt-6 space-y-5">
+        <div class="rounded-2xl bg-slate-50 p-5">
+          <h3 class="font-extrabold text-slate-950">Does this ZIP extractor upload my file?</h3>
+          <p class="mt-2 text-sm leading-7 text-slate-700">No. The ZIP file is processed locally in your browser using client-side JavaScript. The tool does not intentionally upload the archive to a backend extraction server.</p>
+        </div>
+
+        <div class="rounded-2xl bg-slate-50 p-5">
+          <h3 class="font-extrabold text-slate-950">Can I extract every file at once?</h3>
+          <p class="mt-2 text-sm leading-7 text-slate-700">This tool focuses on viewing and extracting individual files. For extracting very large archives or complete folder structures, desktop archive software may be more suitable.</p>
+        </div>
+
+        <div class="rounded-2xl bg-slate-50 p-5">
+          <h3 class="font-extrabold text-slate-950">Does it support password-protected ZIP files?</h3>
+          <p class="mt-2 text-sm leading-7 text-slate-700">No. This tool is intended for standard ZIP archives and does not decrypt password-protected archives.</p>
+        </div>
+
+        <div class="rounded-2xl bg-slate-50 p-5">
+          <h3 class="font-extrabold text-slate-950">Are extracted files automatically safe?</h3>
+          <p class="mt-2 text-sm leading-7 text-slate-700">No. Extracting a file does not guarantee that it is safe. Be careful with unknown files and scan suspicious downloads before opening them.</p>
+        </div>
+
+        <div class="rounded-2xl bg-slate-50 p-5">
+          <h3 class="font-extrabold text-slate-950">Why does a ZIP file fail to open?</h3>
+          <p class="mt-2 text-sm leading-7 text-slate-700">The archive may be corrupted, incomplete, password-protected, too large for browser memory, or created with unsupported compression features.</p>
+        </div>
+
+        <div class="rounded-2xl bg-slate-50 p-5">
+          <h3 class="font-extrabold text-slate-950">Can I use this on mobile?</h3>
+          <p class="mt-2 text-sm leading-7 text-slate-700">Yes. The page is responsive and mobile-safe, but very large ZIP archives may work better on a desktop browser with more memory.</p>
+        </div>
       </div>
     </section>
 
-    <div class="mt-8 flex min-h-[80px] w-full items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white px-3 text-center text-xs text-slate-400 sm:min-h-[90px] sm:text-sm">
+    <section class="mt-10 rounded-3xl bg-slate-900 p-6 text-slate-100 shadow-sm sm:p-10">
+      <h2 class="text-2xl font-extrabold">Legal Disclaimer</h2>
+      <div class="mt-4 space-y-4 text-sm leading-7 text-slate-300">
+        <p>
+          This Online ZIP Extractor is provided for general file utility, educational, and convenience purposes only. It is not a cybersecurity scanner, malware removal tool, forensic tool, legal compliance system, data recovery service, or professional archive repair service.
+        </p>
+        <p>
+          The tool is designed to process standard ZIP archives locally in the browser and does not intentionally upload selected archives to a backend extraction server. However, users remain responsible for their own device security, browser extensions, third-party scripts, local downloads, and handling of extracted files.
+        </p>
+        <p>
+          ZIP archives can contain unsafe, malicious, copyrighted, confidential, or restricted files. Users are responsible for ensuring they have the legal right to extract, download, open, copy, modify, or distribute any file contained in an archive. NodnWebTools is not responsible for data loss, corrupted files, malware exposure, privacy issues, copyright claims, or consequences resulting from use of this tool.
+        </p>
+      </div>
+    </section>
+
+    <div class="ad-box mt-8">
       AdSense Responsive Ad Area - Bottom
     </div>
-
   </main>
 
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      // Form Layout Selectors
+    document.addEventListener("DOMContentLoaded", function () {
       const fileInput = document.getElementById("fileInput");
       const dropZone = document.getElementById("dropZone");
       const fileInputLabel = document.getElementById("fileInputLabel");
       const dropZoneDefault = document.getElementById("dropZoneDefault");
       const dropZoneLoading = document.getElementById("dropZoneLoading");
       const errorNotification = document.getElementById("errorNotification");
-
-      // Output Display Panel Selectors
       const manifestPlaceholder = document.getElementById("manifestPlaceholder");
       const manifestContent = document.getElementById("manifestContent");
       const archiveSummaryLabel = document.getElementById("archiveSummaryLabel");
       const fileRowsDeck = document.getElementById("fileRowsDeck");
+      const fileCountMetric = document.getElementById("fileCountMetric");
+      const archiveNameMetric = document.getElementById("archiveNameMetric");
+      const archiveSizeMetric = document.getElementById("archiveSizeMetric");
+      const statusBadge = document.getElementById("statusBadge");
+      const resetBtn = document.getElementById("resetBtn");
+      const copyManifestBtn = document.getElementById("copyManifestBtn");
+      const actionFeedback = document.getElementById("actionFeedback");
 
-      // Global Memory Tracking Cache
       let activeZipInstance = null;
+      let activeFileList = [];
+      let activeArchiveName = "";
+      let activeArchiveSize = 0;
 
-      // File Size String Formatter Utility
       function formatBytes(bytes, decimals = 2) {
-        if (bytes === 0) return '0 Bytes';
+        if (!Number.isFinite(bytes) || bytes <= 0) return "0 Bytes";
         const k = 1024;
         const dm = decimals < 0 ? 0 : decimals;
-        const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-        const i = Math.floor(Math.log(bytes) / Math.log(k));
-        return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+        const sizes = ["Bytes", "KB", "MB", "GB", "TB"];
+        const index = Math.min(Math.floor(Math.log(bytes) / Math.log(k)), sizes.length - 1);
+        return parseFloat((bytes / Math.pow(k, index)).toFixed(dm)) + " " + sizes[index];
       }
 
-      // Drag and Drop Interceptors
-      ["dragenter", "dragover"].forEach(eventName => {
-        dropZone.addEventListener(eventName, (e) => {
-          e.preventDefault();
-          dropZone.classList.add("bg-purple-50", "border-brand-600");
-        }, false);
-      });
-
-      ["dragleave", "drop"].forEach(eventName => {
-        dropZone.addEventListener(eventName, (e) => {
-          e.preventDefault();
-          dropZone.classList.remove("bg-purple-50", "border-brand-600");
-        }, false);
-      });
-
-      dropZone.addEventListener("drop", (e) => {
-        const dt = e.dataTransfer;
-        const files = dt.files;
-        if (files.length > 0) {
-          triggerIncomingArchive(files[0]);
-        }
-      });
-
-      fileInput.addEventListener("change", (e) => {
-        if (e.target.files.length > 0) {
-          triggerIncomingArchive(e.target.files[0]);
-        }
-      });
-
-      // Core Router: Process Input Archive Stream Payload
-      function triggerIncomingArchive(file) {
-        // Enforce basic naming extension confirmation parameters
-        if (!file.name.endsWith(".zip") && file.type !== "application/zip" && file.type !== "application/x-zip-compressed") {
-          displayErrorState("⚠️ Unusable Extension Type: The target file does not contain a standard valid compressed .zip directory structural header.");
-          return;
-        }
-
-        clearErrorState();
-        switchLoadingState(true);
-        fileInputLabel.textContent = `${file.name} allocated successfully`;
-
-        const reader = new FileReader();
-        reader.onload = function(event) {
-          const rawBufferPayload = event.target.result;
-
-          // Deploy JSZip library instance mapping arrays logic
-          JSZip.loadAsync(rawBufferPayload)
-            .then((zip) => {
-              activeZipInstance = zip;
-              renderArchiveManifest(zip);
-            })
-            .catch((error) => {
-              console.error(error);
-              displayErrorState("⚠️ Decompression Error: Corrupted zip file headers detected. System could not resolve local binary mapping blocks.");
-              switchLoadingState(false);
-            });
+      function setStatus(text, tone) {
+        const toneMap = {
+          slate: "inline-flex w-fit rounded-full bg-slate-100 px-4 py-2 text-sm font-bold text-slate-600",
+          amber: "inline-flex w-fit rounded-full bg-amber-50 px-4 py-2 text-sm font-bold text-amber-700",
+          emerald: "inline-flex w-fit rounded-full bg-emerald-50 px-4 py-2 text-sm font-bold text-emerald-700",
+          red: "inline-flex w-fit rounded-full bg-red-50 px-4 py-2 text-sm font-bold text-red-700",
+          indigo: "inline-flex w-fit rounded-full bg-indigo-50 px-4 py-2 text-sm font-bold text-indigo-700"
         };
 
-        reader.readAsArrayBuffer(file);
+        statusBadge.textContent = text;
+        statusBadge.className = toneMap[tone] || toneMap.slate;
       }
 
-      // Core View Compiler: Build Mobile-Optimized Layout Deck Nodes
-      function renderArchiveManifest(zip) {
-        fileRowsDeck.innerHTML = "";
-        let validFileCount = 0;
-        let documentFragment = document.createDocumentFragment();
-
-        // Object.keys parses all nested path fields inside the active zip file catalog
-        Object.keys(zip.files).forEach((relativePath) => {
-          const fileMetadata = zip.files[relativePath];
-
-          // Skip explicit empty standalone directories components
-          if (fileMetadata.dir) return; 
-
-          validFileCount++;
-
-          // Build Mobile Optimized Flex Card Rows Instead of Fragile Tables
-          const cardRow = document.createElement("div");
-          cardRow.classList.add("p-3", "sm:p-4", "bg-white", "rounded-2xl", "border", "border-slate-200", "flex", "flex-col", "sm:flex-row", "sm:items-center", "justify-between", "gap-3", "hover:shadow-md", "transition-all", "overflow-hidden");
-
-          // File Info Left Layout Node Group
-          const infoBlock = document.createElement("div");
-          infoBlock.classList.add("min-w-0", "flex-1");
-
-          const nameString = document.createElement("p");
-          nameString.classList.add("text-sm", "font-bold", "text-slate-900", "break-all", "font-mono", "leading-5");
-          nameString.textContent = relativePath;
-
-          const sizeString = document.createElement("p");
-          sizeString.classList.add("text-xs", "text-slate-500", "mt-0.5");
-          
-          // Estimate uncompressed storage limits safely
-          // JSZip stores raw uncompressed file sizing fields within the metadata block
-          const byteMetric = fileMetadata._data ? fileMetadata._data.uncompressedSize : 0;
-          sizeString.textContent = `Uncompressed Size: ${formatBytes(byteMetric)}`;
-
-          infoBlock.appendChild(nameString);
-          infoBlock.appendChild(sizeString);
-
-          // Action Processing Download Button Layout Node
-          const actionBlock = document.createElement("div");
-          actionBlock.classList.add("flex", "w-full", "items-center", "sm:w-auto", "self-stretch", "sm:self-center");
-
-          const downloadBtn = document.createElement("button");
-          downloadBtn.classList.add("w-full", "justify-center", "px-4", "py-2.5", "bg-brand-600", "hover:bg-brand-700", "text-xs", "font-bold", "text-white", "rounded-xl", "transition-all", "flex", "items-center", "space-x-1.5", "shadow-sm", "active:scale-95");
-          downloadBtn.innerHTML = `
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-            </svg>
-            <span>Extract</span>
-          `;
-
-          // Bind Trigger Execution Call directly to local download event loop
-          downloadBtn.addEventListener("click", () => {
-            triggerFileExtraction(relativePath, fileMetadata, downloadBtn);
-          });
-
-          actionBlock.appendChild(downloadBtn);
-          cardRow.appendChild(infoBlock);
-          cardRow.appendChild(actionBlock);
-
-          documentFragment.appendChild(cardRow);
-        });
-
-        archiveSummaryLabel.textContent = `Files Detected: ${validFileCount}`;
-        fileRowsDeck.appendChild(documentFragment);
-
-        // Switch System Display States Clear Down
-        switchLoadingState(false);
-        manifestPlaceholder.classList.add("hidden");
-        manifestContent.classList.remove("hidden");
-
-        // Focus window layout smoothly onto active manifest container block
-        manifestContent.scrollIntoView({ behavior: 'smooth' });
+      function displayErrorState(message) {
+        errorNotification.textContent = message;
+        errorNotification.classList.remove("hidden");
+        setStatus("Error", "red");
       }
 
-      // Memory Buffer Extractor Execution Logic Node Route
-      function triggerFileExtraction(filename, fileMetadata, buttonElement) {
-        // Provide user immediate processing visual feedback loop state parameters
-        const baseButtonHtml = buttonElement.innerHTML;
-        buttonElement.disabled = true;
-        buttonElement.classList.remove("bg-brand-600");
-        buttonElement.classList.add("bg-slate-500", "cursor-wait");
-        buttonElement.innerHTML = `
-          <svg class="animate-spin h-3.5 w-3.5 text-white" fill="none" viewBox="0 0 24 24">
-            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-          </svg>
-          <span>Processing...</span>
-        `;
-
-        // Request file block conversion to asynchronous browser binary blob data formats
-        fileMetadata.async("blob")
-          .then((blobContent) => {
-            // Generate temporary local resource mapping strings links
-            const localBlobUrl = window.URL.createObjectURL(blobContent);
-            
-            const virtualLinkAnchor = document.createElement("a");
-            virtualLinkAnchor.href = localBlobUrl;
-            
-            // Clean filename directory slashes prefixes for flat downloads management mappings strings
-            const parsedCleanFilename = filename.split('/').pop() || filename;
-            virtualLinkAnchor.download = parsedCleanFilename;
-            
-            // Fire layout engine trigger link cycle
-            document.body.appendChild(virtualLinkAnchor);
-            virtualLinkAnchor.click();
-            
-            // Clean up allocation pointers metrics from browser cache nodes immediately
-            document.body.removeChild(virtualLinkAnchor);
-            window.URL.revokeObjectURL(localBlobUrl);
-
-            // Restore action button style nodes parameters
-            buttonElement.disabled = false;
-            buttonElement.classList.remove("bg-slate-500", "cursor-wait");
-            buttonElement.classList.add("bg-green-600");
-            buttonElement.innerHTML = `<span>Saved! ✓</span>`;
-
-            setTimeout(() => {
-              buttonElement.classList.remove("bg-green-600");
-              buttonElement.classList.add("bg-brand-600");
-              buttonElement.innerHTML = baseButtonHtml;
-            }, 1800);
-          })
-          .catch((err) => {
-            console.error(err);
-            displayErrorState("⚠️ Extraction Failure: Failed to build download token components from system memory block structures.");
-            buttonElement.disabled = false;
-            buttonElement.innerHTML = baseButtonHtml;
-          });
+      function clearErrorState() {
+        errorNotification.textContent = "";
+        errorNotification.classList.add("hidden");
       }
 
-      // UI Layout Control Utilities
       function switchLoadingState(isLoading) {
         if (isLoading) {
           dropZoneDefault.classList.add("hidden");
           dropZoneLoading.classList.remove("hidden");
           dropZone.classList.add("pointer-events-none");
+          setStatus("Reading ZIP", "amber");
         } else {
           dropZoneDefault.classList.remove("hidden");
           dropZoneLoading.classList.add("hidden");
@@ -470,18 +600,268 @@
         }
       }
 
-      function displayErrorState(msg) {
-        errorNotification.textContent = msg;
-        errorNotification.classList.remove("hidden");
+      function validateZipFile(file) {
+        if (!file) return false;
+        const name = String(file.name || "").toLowerCase();
+        const acceptedTypes = ["application/zip", "application/x-zip-compressed", "application/octet-stream"];
+        return name.endsWith(".zip") || acceptedTypes.includes(file.type);
       }
 
-      function clearErrorState() {
-        errorNotification.textContent = "";
-        errorNotification.classList.add("hidden");
+      function getFileSizeFromMetadata(fileMetadata) {
+        if (fileMetadata && fileMetadata._data && Number.isFinite(fileMetadata._data.uncompressedSize)) {
+          return fileMetadata._data.uncompressedSize;
+        }
+        return 0;
       }
+
+      function sanitizeDownloadName(filename) {
+        const lastPart = String(filename || "extracted-file").split("/").pop() || "extracted-file";
+        return lastPart.replace(/[\\:*?"<>|]+/g, "-");
+      }
+
+      function renderArchiveManifest(zip) {
+        fileRowsDeck.innerHTML = "";
+        activeFileList = [];
+
+        const fragment = document.createDocumentFragment();
+
+        Object.keys(zip.files).forEach(function (relativePath) {
+          const fileMetadata = zip.files[relativePath];
+          if (fileMetadata.dir) return;
+
+          const uncompressedSize = getFileSizeFromMetadata(fileMetadata);
+
+          activeFileList.push({
+            path: relativePath,
+            size: uncompressedSize
+          });
+
+          const cardRow = document.createElement("div");
+          cardRow.className = "rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition hover:border-indigo-200 hover:shadow-md";
+
+          const fileExtension = relativePath.includes(".")
+            ? relativePath.split(".").pop().toUpperCase()
+            : "FILE";
+
+          cardRow.innerHTML = `
+            <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <div class="min-w-0 flex-1">
+                <div class="flex flex-wrap items-center gap-2">
+                  <span class="rounded-full bg-indigo-50 px-3 py-1 text-xs font-extrabold text-indigo-700">${fileExtension}</span>
+                  <span class="text-xs font-semibold text-slate-500">${formatBytes(uncompressedSize)}</span>
+                </div>
+                <p class="safe-break mt-2 font-mono text-sm font-bold leading-6 text-slate-950">${relativePath}</p>
+              </div>
+              <button type="button" class="extract-btn inline-flex w-full items-center justify-center gap-2 rounded-xl bg-indigo-600 px-4 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-indigo-700 sm:w-auto" aria-label="Extract ${relativePath}">
+                <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h14a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+                <span>Extract</span>
+              </button>
+            </div>
+          `;
+
+          const extractBtn = cardRow.querySelector(".extract-btn");
+          extractBtn.addEventListener("click", function () {
+            triggerFileExtraction(relativePath, fileMetadata, extractBtn);
+          });
+
+          fragment.appendChild(cardRow);
+        });
+
+        const fileCount = activeFileList.length;
+        archiveSummaryLabel.textContent = "Files Detected: " + fileCount;
+        fileCountMetric.textContent = String(fileCount);
+        archiveNameMetric.textContent = activeArchiveName || "Selected archive";
+        archiveSizeMetric.textContent = formatBytes(activeArchiveSize);
+
+        fileRowsDeck.appendChild(fragment);
+
+        switchLoadingState(false);
+        manifestPlaceholder.classList.add("hidden");
+        manifestContent.classList.remove("hidden");
+        setStatus("Ready to extract", "emerald");
+
+        if (fileCount === 0) {
+          fileRowsDeck.innerHTML = '<div class="rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm font-semibold text-amber-800">No extractable files were found. The archive may contain only folders or unsupported entries.</div>';
+        }
+      }
+
+      function triggerIncomingArchive(file) {
+        if (!file) return;
+
+        if (!validateZipFile(file)) {
+          displayErrorState("Please select a valid .zip archive file.");
+          return;
+        }
+
+        clearErrorState();
+        switchLoadingState(true);
+        fileInputLabel.textContent = file.name + " selected";
+        activeArchiveName = file.name;
+        activeArchiveSize = file.size;
+
+        const reader = new FileReader();
+
+        reader.onload = function (event) {
+          const rawBufferPayload = event.target.result;
+
+          JSZip.loadAsync(rawBufferPayload)
+            .then(function (zip) {
+              activeZipInstance = zip;
+              renderArchiveManifest(zip);
+            })
+            .catch(function (error) {
+              console.error(error);
+              displayErrorState("The ZIP archive could not be opened. It may be corrupted, incomplete, password-protected, or unsupported.");
+              switchLoadingState(false);
+            });
+        };
+
+        reader.onerror = function () {
+          displayErrorState("The browser could not read this file. Please try another ZIP archive.");
+          switchLoadingState(false);
+        };
+
+        reader.readAsArrayBuffer(file);
+      }
+
+      function triggerFileExtraction(filename, fileMetadata, buttonElement) {
+        const baseButtonHtml = buttonElement.innerHTML;
+        buttonElement.disabled = true;
+        buttonElement.classList.remove("bg-indigo-600", "hover:bg-indigo-700");
+        buttonElement.classList.add("bg-slate-500", "cursor-wait");
+        buttonElement.innerHTML = `
+          <svg class="h-4 w-4 animate-spin text-white" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+          <span>Extracting...</span>
+        `;
+
+        fileMetadata.async("blob")
+          .then(function (blobContent) {
+            const localBlobUrl = URL.createObjectURL(blobContent);
+            const downloadLink = document.createElement("a");
+            downloadLink.href = localBlobUrl;
+            downloadLink.download = sanitizeDownloadName(filename);
+            document.body.appendChild(downloadLink);
+            downloadLink.click();
+            downloadLink.remove();
+            URL.revokeObjectURL(localBlobUrl);
+
+            buttonElement.disabled = false;
+            buttonElement.classList.remove("bg-slate-500", "cursor-wait");
+            buttonElement.classList.add("bg-emerald-600");
+            buttonElement.innerHTML = "<span>Saved!</span>";
+
+            setTimeout(function () {
+              buttonElement.classList.remove("bg-emerald-600");
+              buttonElement.classList.add("bg-indigo-600", "hover:bg-indigo-700");
+              buttonElement.innerHTML = baseButtonHtml;
+            }, 1600);
+          })
+          .catch(function (error) {
+            console.error(error);
+            displayErrorState("The selected file could not be extracted from the archive.");
+            buttonElement.disabled = false;
+            buttonElement.classList.remove("bg-slate-500", "cursor-wait");
+            buttonElement.classList.add("bg-indigo-600", "hover:bg-indigo-700");
+            buttonElement.innerHTML = baseButtonHtml;
+          });
+      }
+
+      function resetTool() {
+        activeZipInstance = null;
+        activeFileList = [];
+        activeArchiveName = "";
+        activeArchiveSize = 0;
+        fileInput.value = "";
+        fileInputLabel.textContent = "Click to browse or drag and drop a ZIP file here";
+        fileRowsDeck.innerHTML = "";
+        archiveSummaryLabel.textContent = "Files Detected: 0";
+        fileCountMetric.textContent = "0";
+        archiveNameMetric.textContent = "None";
+        archiveSizeMetric.textContent = "0 KB";
+        manifestContent.classList.add("hidden");
+        manifestPlaceholder.classList.remove("hidden");
+        clearErrorState();
+        switchLoadingState(false);
+        setStatus("Waiting for ZIP", "slate");
+      }
+
+      async function copyManifest() {
+        if (!activeFileList.length) {
+          displayErrorState("There is no ZIP file list to copy yet.");
+          return;
+        }
+
+        const text = [
+          "ZIP Archive File List",
+          "Archive: " + (activeArchiveName || "Selected archive"),
+          "Archive size: " + formatBytes(activeArchiveSize),
+          "Files detected: " + activeFileList.length,
+          "",
+          ...activeFileList.map(function (item, index) {
+            return (index + 1) + ". " + item.path + " (" + formatBytes(item.size) + ")";
+          })
+        ].join("\n");
+
+        try {
+          if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(text);
+          } else {
+            const textarea = document.createElement("textarea");
+            textarea.value = text;
+            textarea.style.position = "fixed";
+            textarea.style.left = "-9999px";
+            document.body.appendChild(textarea);
+            textarea.focus();
+            textarea.select();
+            document.execCommand("copy");
+            textarea.remove();
+          }
+
+          actionFeedback.classList.remove("hidden");
+          setTimeout(function () {
+            actionFeedback.classList.add("hidden");
+          }, 1600);
+        } catch (error) {
+          displayErrorState("Clipboard access failed. Please copy the file list manually.");
+        }
+      }
+
+      ["dragenter", "dragover"].forEach(function (eventName) {
+        dropZone.addEventListener(eventName, function (event) {
+          event.preventDefault();
+          event.stopPropagation();
+          dropZone.classList.add("drop-active");
+        });
+      });
+
+      ["dragleave", "drop"].forEach(function (eventName) {
+        dropZone.addEventListener(eventName, function (event) {
+          event.preventDefault();
+          event.stopPropagation();
+          dropZone.classList.remove("drop-active");
+        });
+      });
+
+      dropZone.addEventListener("drop", function (event) {
+        const files = event.dataTransfer && event.dataTransfer.files;
+        if (files && files.length > 0) {
+          triggerIncomingArchive(files[0]);
+        }
+      });
+
+      fileInput.addEventListener("change", function (event) {
+        const file = event.target.files && event.target.files[0];
+        triggerIncomingArchive(file);
+      });
+
+      resetBtn.addEventListener("click", resetTool);
+      copyManifestBtn.addEventListener("click", copyManifest);
     });
   </script>
-
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
 </body>
 </html>
