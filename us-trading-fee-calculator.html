@@ -4,13 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>US Trading Fee Calculator | Stock, ETF, Options and Margin Cost Estimator</title>
-  <meta name="description" content="Estimate US trading fees for stocks, ETFs, options, and margin interest. Compare editable broker fee assumptions for Robinhood, Fidelity, Schwab, Interactive Brokers, E*TRADE, Webull, tastytrade, and Merrill Edge." />
-  <meta name="keywords" content="US trading fee calculator, stock trading fees USA, options fee calculator, ETF trading fees, margin interest calculator, Robinhood fees, Fidelity fees, Charles Schwab fees, Webull fees, Interactive Brokers fees, ETRADE fees, tastytrade fees" />
+  <title>US Trading Fee Calculator | Broker Cost Tool</title>
+  <meta name="description" content="Estimate US stock, ETF, options, margin, regulatory, and broker trading fees with editable assumptions." />
+  <meta name="keywords" content="US trading fee calculator, brokerage fee calculator, stock trading fees USA, ETF trading fees USA, options fee calculator, options contract fee calculator, margin interest calculator, broker cost estimator, Robinhood fees, Fidelity trading fees, Charles Schwab fees, Interactive Brokers fees, ETRADE fees, Webull fees, tastytrade fees, Merrill Edge fees, commission calculator, trading cost calculator, broker fee comparison, online brokerage fees, active trader cost calculator, margin APR calculator" />
   <meta name="robots" content="index, follow" />
-  <meta property="og:title" content="US Trading Fee Calculator" />
-  <meta property="og:description" content="Estimate US stock, ETF, options, and margin trading fees using editable broker assumptions." />
+  <meta name="author" content="NodnWebTools" />
+
+  <meta property="og:title" content="US Trading Fee Calculator | Broker Cost Tool" />
+  <meta property="og:description" content="Estimate US stock, ETF, options, margin, regulatory, and broker trading fees with editable assumptions." />
   <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://nodntools.com/us-trading-fee-calculator.html" />
+  <meta property="og:site_name" content="NodnWebTools" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="US Trading Fee Calculator" />
+  <meta name="twitter:description" content="Estimate trading fees, options costs, margin interest, and broker costs." />
 
   <meta name="google-adsense-account" content="ca-pub-5282672325821404">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404" crossorigin="anonymous"></script>
@@ -24,11 +32,17 @@
     "name": "US Trading Fee Calculator",
     "applicationCategory": "FinanceApplication",
     "operatingSystem": "Any",
-    "description": "A client-side US trading fee calculator for estimating stock, ETF, options, and margin costs using editable broker assumptions.",
+    "url": "https://nodntools.com/us-trading-fee-calculator.html",
+    "description": "A free client-side US trading fee calculator for estimating stock, ETF, options, margin, regulatory, annual platform, and other brokerage costs using editable assumptions.",
     "offers": {
       "@type": "Offer",
       "price": "0",
       "priceCurrency": "USD"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "NodnWebTools",
+      "url": "https://nodntools.com"
     }
   }
   </script>
@@ -54,6 +68,7 @@
       text-align:center;
       padding:1rem;
       overflow:hidden;
+      line-height:1.5;
     }
     .table-scroll { width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch; }
     .result-table { width:100%; border-collapse:separate; border-spacing:0; }
@@ -78,7 +93,7 @@
 <body class="bg-slate-50 text-slate-900">
   <header class="border-b border-slate-200 bg-white">
     <div class="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-4 sm:px-6 lg:px-8">
-      <a href="https://nodntools.com" class="safe-break text-xl font-bold tracking-tight text-slate-950">
+      <a href="https://nodntools.com" class="safe-break text-xl font-bold tracking-tight text-slate-950" aria-label="NodnWebTools Home">
         Nodn<span class="text-indigo-600">WebTools</span>
       </a>
       <a href="https://nodntools.com" class="shrink-0 rounded-full border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50">Home</a>
@@ -86,7 +101,7 @@
   </header>
 
   <main class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-    <div class="ad-box mb-6">Top Advertisement Area</div>
+    <div class="ad-box mb-6">AdSense Responsive Ad Area - Top</div>
 
     <section class="grid gap-6 lg:grid-cols-[0.98fr_1.02fr]">
       <div class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
@@ -99,11 +114,11 @@
         </h1>
 
         <p class="mt-4 text-slate-600">
-          Estimate US stock, ETF, options, and margin trading costs. Select a broker, enter your yearly trading activity, and edit fee assumptions directly in the browser.
+          Estimate annual US stock, ETF, options, margin, regulatory, platform, and other brokerage trading costs. Select a broker, enter your yearly trading activity, and edit fee assumptions directly in your browser.
         </p>
 
         <div class="mt-5 rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900">
-          <strong>Important:</strong> Actual fees may vary by account type, product, exchange, order routing, regulatory charges, margin tier, and promotion.
+          <strong>Important:</strong> Actual fees may vary by account type, product, exchange, order routing, regulatory charges, margin tier, promotion, and broker policy. Always verify current pricing with the broker.
         </div>
 
         <div class="mt-6 grid gap-4 sm:grid-cols-2">
@@ -166,7 +181,7 @@
         <div class="mt-6 rounded-2xl bg-slate-50 p-4">
           <h2 class="text-lg font-bold text-slate-950">Selected Broker Fee Assumptions</h2>
           <p class="mt-1 text-sm text-slate-600">
-            Edit the selected broker’s assumptions below. The calculator updates instantly.
+            Edit the selected broker’s assumptions below. The calculator updates instantly and compares the same trading activity across all included brokers.
           </p>
 
           <div class="mt-4 grid gap-3 sm:grid-cols-2">
@@ -255,54 +270,161 @@
             </table>
           </div>
         </div>
+
+        <div class="ad-box mt-6">AdSense Responsive Ad Area - Result</div>
       </aside>
     </section>
 
-    <div class="ad-box my-8">Advertisement Area Below Main Tool</div>
+    <div class="ad-box my-8">AdSense Responsive Ad Area - Below Main Tool</div>
 
-    <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-      <h2 class="text-2xl font-bold text-slate-950">US Trading Fee Calculator Guide</h2>
-      <p class="mt-4 text-slate-700">
-        US trading fees can look simple because many brokers advertise zero-dollar stock and ETF commissions. However, investors may still pay options contract fees, regulatory charges, exchange fees, margin interest, account transfer fees, broker-assisted trade fees, paper statement charges, ADR fees, and product-specific fees. This calculator helps estimate common annual trading costs using your own trading activity.
-      </p>
+    <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+      <span class="inline-flex rounded-full bg-indigo-50 px-4 py-2 text-sm font-bold text-indigo-700">Trading Cost Guide</span>
 
-      <h3 class="mt-6 text-xl font-bold text-slate-900">What This US Trading Fee Calculator Does</h3>
-      <p class="mt-3 text-slate-700">
-        The calculator estimates annual costs for stock orders, ETF orders, options opening contracts, options closing contracts, margin interest, regulatory fees, and other user-entered costs. It also compares the same trading activity across major US brokers so you can see how different fee structures may affect the final result.
-      </p>
+      <h2 class="mt-5 text-3xl font-bold tracking-tight text-slate-950">US Trading Fee Calculator Guide for Stocks, ETFs, Options, Margin Interest, and Brokerage Costs</h2>
 
-      <div class="ad-box my-6">Middle Content Advertisement Area</div>
+      <div class="mt-6 space-y-6 text-slate-700 leading-8">
+        <p>
+          A US trading fee calculator helps investors estimate the true cost of placing trades through an online brokerage account. Many investors assume trading is free because several brokers advertise zero-dollar online stock and ETF commissions. While stock and ETF commissions have become much lower than they were in the past, trading can still involve meaningful costs. Options contract fees, regulatory fees, exchange fees, margin interest, broker-assisted trade fees, transfer fees, account service fees, paper statement fees, ADR fees, subscription charges, and product-specific charges can all affect the total cost of investing or active trading.
+        </p>
 
-      <h3 class="text-xl font-bold text-slate-900">Popular Uses</h3>
-      <div class="mt-4 grid gap-4 md:grid-cols-3">
-        <article class="rounded-2xl border border-slate-200 p-4">
-          <h4 class="font-bold text-slate-950">Options Traders</h4>
-          <p class="mt-2 text-sm text-slate-600">Estimate how per-contract charges, close fees, minimum fees, and capped pricing can affect annual options costs.</p>
-        </article>
-        <article class="rounded-2xl border border-slate-200 p-4">
-          <h4 class="font-bold text-slate-950">Margin Users</h4>
-          <p class="mt-2 text-sm text-slate-600">Add an average margin balance to estimate how annual margin interest can change your total trading cost.</p>
-        </article>
-        <article class="rounded-2xl border border-slate-200 p-4">
-          <h4 class="font-bold text-slate-950">Stock and ETF Investors</h4>
-          <p class="mt-2 text-sm text-slate-600">Estimate annual costs for long-term investors who buy stocks or ETFs on a regular schedule.</p>
-        </article>
+        <p>
+          This US Trading Fee Calculator from NodnWebTools is designed to make those costs easier to understand. The tool lets you choose a broker, enter stock orders, ETF orders, options opening contracts, options closing contracts, an average order value, an average margin balance, estimated regulatory fees, and other annual fees. It then calculates estimated annual commission cost, margin cost, total cost, average cost per order, and cost as a percentage of estimated trading volume. The calculator also compares the same activity across multiple broker fee assumptions so you can see how different pricing models may affect your results.
+        </p>
+
+        <h3 class="text-2xl font-bold text-slate-950">Why Trading Fees Still Matter When Stock Commissions Are Often Zero</h3>
+        <p>
+          Zero-commission trading changed the US brokerage industry, but it did not remove all trading costs. A long-term investor who only buys a few ETFs each year may pay very little in direct commissions. However, an options trader may pay per-contract charges, an active trader may face regulatory and exchange-related pass-through fees, and a margin user may pay significant interest on borrowed funds. Investors who transfer accounts, request wires, trade foreign securities, use broker-assisted orders, or trade specialized products may also encounter costs outside basic online stock commissions.
+        </p>
+
+        <p>
+          Because different investors trade differently, there is no single lowest-cost broker for every person. A broker that is inexpensive for an ETF investor may not be ideal for a high-volume options trader. A platform with no options contract fees may have a different margin rate, different tools, or different product limitations. A broker with slightly higher commissions may offer better research, stronger customer service, advanced trading tools, or lower margin rates. A trading fee calculator helps users compare cost assumptions based on their own behavior rather than relying only on advertising headlines.
+        </p>
+
+        <div class="ad-box">AdSense Responsive Ad Area - Middle Content</div>
+
+        <h3 class="text-2xl font-bold text-slate-950">What This Trading Cost Calculator Estimates</h3>
+        <p>
+          The calculator estimates several categories of trading expenses. Stock order fees are calculated by multiplying the number of stock orders by the selected broker’s assumed stock fee per order. ETF order fees are calculated the same way. Options fees are calculated from opening contracts, closing contracts, base fees, minimum fees, and optional capped pricing assumptions. Margin cost is estimated by multiplying the average margin balance by the broker’s assumed annual margin rate. Regulatory fees, other estimated fees, and annual platform or account fees are then added to produce a total annual trading cost estimate.
+        </p>
+
+        <p>
+          The result is not a live broker quote and should not be treated as a final fee schedule. It is a planning estimate based on simplified, editable inputs. That flexibility is important because many brokerage costs depend on account type, pricing tier, product type, order size, exchange, promotion, and account activity. The calculator gives users a transparent framework: change the assumptions, test different scenarios, and compare the effect on total cost.
+        </p>
+
+        <h3 class="text-2xl font-bold text-slate-950">Stock Trading Fees</h3>
+        <p>
+          Stock trading fees are often the most visible brokerage cost, but for many online brokers, US-listed online stock trades may have a zero-dollar commission. Still, investors should understand what “zero commission” does and does not mean. It may apply only to online self-directed trades of eligible US-listed stocks. It may not apply to broker-assisted trades, foreign ordinary shares, OTC securities, certain ADRs, phone orders, or special transaction types. There may also be regulatory fees on sell orders even when the broker’s own commission is zero.
+        </p>
+
+        <p>
+          For long-term investors, the stock trading fee line in this calculator may remain small. For active traders or investors using a broker with per-order charges, the stock trading fee line can become more important. This tool allows users to enter the expected number of stock orders per year and edit the per-order cost assumption for the selected broker.
+        </p>
+
+        <h3 class="text-2xl font-bold text-slate-950">ETF Trading Fees</h3>
+        <p>
+          ETF trading fees are similar to stock trading fees in many US brokerage accounts. Many brokers offer zero-dollar online commissions for eligible US-listed ETFs. However, ETF investors should also consider indirect costs such as expense ratios, bid-ask spreads, tracking error, liquidity, premium or discount to net asset value, and tax efficiency. A brokerage fee calculator estimates broker-level costs, but the total cost of ETF investing also depends on the ETFs selected.
+        </p>
+
+        <p>
+          For investors using a dollar-cost averaging strategy, recurring ETF purchases may happen monthly, biweekly, or weekly. Even if commissions are zero, the number of ETF orders helps estimate trading volume and average cost per order when other annual fees are included. If a broker charges ETF commissions or special transaction fees, those assumptions can be edited in the tool.
+        </p>
+
+        <h3 class="text-2xl font-bold text-slate-950">Options Trading Fees and Contract Charges</h3>
+        <p>
+          Options trading is one of the most important areas where broker fees still vary. Many brokers charge a per-contract fee for options trades. Some charge the same fee when opening and closing contracts, while others may charge only opening commissions or may cap commissions per leg. Some brokers may advertise commission-free options but still pass through regulatory, exchange, OCC, or product-specific fees. Index options, futures options, complex strategies, assignments, exercises, and professional data subscriptions may also have separate pricing.
+        </p>
+
+        <p>
+          This calculator separates options opening contracts and options closing contracts because some pricing schedules treat them differently. It also includes a base fee, minimum fee, and cap per leg assumption. These settings help users model different broker fee structures. For occasional options traders, a small per-contract fee may not matter much. For active options traders, the annual difference can become significant.
+        </p>
+
+        <div class="ad-box">AdSense Responsive Ad Area - Bottom Content</div>
+
+        <h3 class="text-2xl font-bold text-slate-950">Margin Interest Cost</h3>
+        <p>
+          Margin interest can be one of the largest hidden costs in an active trading account. A broker may advertise zero stock commissions, but if a trader carries a margin balance, the annual interest cost may be far larger than commissions. Margin rates may vary by broker, account size, benchmark interest rates, debit balance tiers, promotional pricing, and client category. They can also change over time.
+        </p>
+
+        <p>
+          This tool estimates margin cost by multiplying the average margin balance by the selected broker’s margin APR assumption. For example, a $10,000 average margin balance at a 10% annual margin rate would produce an estimated $1,000 annual interest cost. Real margin interest may accrue daily and may be affected by balance changes during the year, so this calculator should be used as a simplified planning tool. Margin trading also involves substantial risk, including the possibility of losses greater than the original investment and forced liquidation during market declines.
+        </p>
+
+        <h3 class="text-2xl font-bold text-slate-950">Regulatory Fees, Exchange Fees, and Other Costs</h3>
+        <p>
+          Some fees are not broker commissions but still appear because of trading activity. US sell orders may involve regulatory fees, and options trades may include exchange, clearing, or regulatory pass-through charges. These fees may be small on individual trades, but frequent traders should not ignore them. The calculator includes a manual field for estimated regulatory fees per year because these charges vary by activity, product, and current rules.
+        </p>
+
+        <p>
+          The “Other estimated fees” field is designed for costs that do not fit neatly into commissions or margin interest. Examples may include account transfer fees, wire fees, paper statement charges, data subscriptions, platform charges, inactivity fees, outgoing ACAT fees, ADR custody fees, foreign transaction costs, or broker-assisted order fees. Not every investor will pay these costs, but they can matter when comparing brokers.
+        </p>
+
+        <h3 class="text-2xl font-bold text-slate-950">How to Use This US Trading Fee Calculator</h3>
+        <p>
+          Start by selecting a broker. Then choose a trade pattern: stocks only, ETFs only, options focused, or mixed activity. Enter your expected number of stock orders, ETF orders, options opening contracts, and options closing contracts for the year. Add your average order value to estimate trading volume. If you use margin, enter your average margin balance. Then add any estimated regulatory or other fees. The calculator will show commission cost, margin cost, total cost, and a detailed cost breakdown.
+        </p>
+
+        <p>
+          Next, review the selected broker fee assumptions. If you know your account qualifies for a special pricing tier or if the broker changes its pricing, edit the numbers directly. The result updates instantly. You can copy the summary, download a CSV, print the results, or compare the same activity across all included brokers in the table.
+        </p>
+
+        <h3 class="text-2xl font-bold text-slate-950">Popular Uses for This Calculator</h3>
+        <div class="mt-4 grid gap-4 md:grid-cols-3">
+          <article class="rounded-2xl border border-slate-200 p-4">
+            <h4 class="font-bold text-slate-950">Options Traders</h4>
+            <p class="mt-2 text-sm text-slate-600">Estimate how per-contract charges, close fees, minimum fees, and capped pricing can affect annual options trading costs.</p>
+          </article>
+          <article class="rounded-2xl border border-slate-200 p-4">
+            <h4 class="font-bold text-slate-950">Margin Users</h4>
+            <p class="mt-2 text-sm text-slate-600">Add an average margin balance to estimate how annual margin interest can change your total trading cost.</p>
+          </article>
+          <article class="rounded-2xl border border-slate-200 p-4">
+            <h4 class="font-bold text-slate-950">Stock and ETF Investors</h4>
+            <p class="mt-2 text-sm text-slate-600">Estimate annual costs for investors who buy stocks or ETFs regularly through a taxable or retirement account.</p>
+          </article>
+          <article class="rounded-2xl border border-slate-200 p-4">
+            <h4 class="font-bold text-slate-950">Active Traders</h4>
+            <p class="mt-2 text-sm text-slate-600">Model frequent trading activity and compare how commissions, regulatory fees, and platform charges may add up.</p>
+          </article>
+          <article class="rounded-2xl border border-slate-200 p-4">
+            <h4 class="font-bold text-slate-950">Broker Shoppers</h4>
+            <p class="mt-2 text-sm text-slate-600">Compare the same trading pattern across multiple brokers before opening or transferring an account.</p>
+          </article>
+          <article class="rounded-2xl border border-slate-200 p-4">
+            <h4 class="font-bold text-slate-950">Cost Review</h4>
+            <p class="mt-2 text-sm text-slate-600">Use the tool once or twice a year to check whether your trading habits are creating avoidable brokerage costs.</p>
+          </article>
+        </div>
+
+        <h3 class="text-2xl font-bold text-slate-950">Why Editable Assumptions Are Essential</h3>
+        <p>
+          Broker pricing can change. Margin rates can move with benchmark interest rates. Promotional pricing can expire. Options fees can differ by contract type. Active traders may qualify for different pricing. Some brokers may introduce new platform subscriptions or remove old account fees. A static calculator can become outdated if it pretends that one set of pricing assumptions is permanent.
+        </p>
+
+        <p>
+          This page solves that problem by making assumptions editable. You can use the default numbers as a starting point and then adjust the values to match the current broker pricing page, your account tier, or your own estimate. This is especially useful for financial comparison tools because transparency is more important than pretending to provide live pricing.
+        </p>
+
+        <h3 class="text-2xl font-bold text-slate-950">Cost Is Not the Only Factor When Choosing a Broker</h3>
+        <p>
+          A low-cost broker is not always the best broker for every investor. Platform reliability, trade execution, customer service, account security, cash management, tax reporting, educational resources, retirement account tools, fractional share access, options strategy tools, mobile app quality, and product availability can all matter. A broker that saves a few dollars in annual fees may not be ideal if it lacks the tools you need or increases the chance of mistakes.
+        </p>
+
+        <p>
+          Use this calculator as one part of your research process. After estimating trading costs, review official pricing pages, account agreements, margin disclosures, options risk documents, platform tools, and customer support policies. Investors should also consider their investment goals, experience, tax situation, and risk tolerance before choosing a broker.
+        </p>
+
+        <h3 class="text-2xl font-bold text-slate-950">Final Thoughts</h3>
+        <p>
+          Trading fees are easier to overlook than they used to be, but they have not disappeared. Stock and ETF commissions may be zero at many brokers, yet options fees, regulatory charges, margin interest, and other account costs can still affect returns. The US Trading Fee Calculator provides a practical way to estimate those costs, compare brokers, and understand how trading activity affects annual expenses.
+        </p>
+
+        <p>
+          Use this tool before choosing a broker, changing trading strategy, increasing options activity, borrowing on margin, or reviewing annual brokerage costs. The result is an estimate, not a recommendation, but it can help you ask better questions and make more informed comparisons.
+        </p>
       </div>
-
-      <h3 class="mt-6 text-xl font-bold text-slate-900">How to Use the Calculator</h3>
-      <p class="mt-3 text-slate-700">
-        Choose a broker, select your trading pattern, enter the number of stock orders, ETF orders, options contracts, average order value, and margin balance. The calculator shows a detailed cost breakdown and compares the same activity across all included brokers. You can edit any assumption if your account qualifies for special pricing or if a broker changes fees.
-      </p>
-
-      <div class="ad-box my-6">Bottom Content Advertisement Area</div>
-
-      <h3 class="text-xl font-bold text-slate-900">Why Margin Interest Can Matter More Than Commissions</h3>
-      <p class="mt-3 text-slate-700">
-        For many investors, stock and ETF commissions may be close to zero, but margin interest can become a major cost. A trader carrying a margin balance for a long period may pay more in interest than in trading commissions. This is why the calculator separates commission cost from margin cost and lets users edit the margin APR assumption for each broker.
-      </p>
     </section>
 
-    <section class="mobile-card mt-8 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+    <section class="mobile-card mt-8 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
       <h2 class="text-2xl font-bold text-slate-950">Frequently Asked Questions</h2>
       <div class="mt-5 space-y-5">
         <div>
@@ -315,23 +437,39 @@
         </div>
         <div>
           <h3 class="font-bold text-slate-950">Are options trades free at every broker?</h3>
-          <p class="mt-1 text-slate-700">No. Some brokers charge a per-contract fee, some charge opening fees but not closing fees, and some pass through product-specific or regulatory charges.</p>
+          <p class="mt-1 text-slate-700">No. Some brokers charge a per-contract fee, some charge opening fees but not closing fees, and some pass through product-specific, regulatory, or exchange charges.</p>
         </div>
         <div>
           <h3 class="font-bold text-slate-950">Does this include taxes?</h3>
           <p class="mt-1 text-slate-700">No. This tool estimates trading costs only. It does not calculate income tax, capital gains tax, wash sale effects, retirement account rules, or tax reporting obligations.</p>
         </div>
+        <div>
+          <h3 class="font-bold text-slate-950">Why does margin interest matter?</h3>
+          <p class="mt-1 text-slate-700">Margin interest can become much larger than commissions when a trader carries a meaningful debit balance. This calculator separates margin cost so it is easier to see.</p>
+        </div>
+        <div>
+          <h3 class="font-bold text-slate-950">Can I edit the broker fees?</h3>
+          <p class="mt-1 text-slate-700">Yes. The selected broker’s assumptions can be edited directly on the page, including stock fees, ETF fees, options fees, margin APR, and annual platform fees.</p>
+        </div>
       </div>
     </section>
 
-    <section class="mobile-card mt-8 rounded-3xl bg-slate-900 p-6 text-slate-100 shadow-sm">
+    <section class="mobile-card mt-8 rounded-3xl bg-slate-900 p-6 text-slate-100 shadow-sm sm:p-8">
       <h2 class="text-2xl font-bold">Legal Disclaimer</h2>
-      <p class="mt-4 text-slate-300">
-        This US trading fee calculator is provided for informational and educational purposes only. It is not financial, investment, tax, legal, accounting, or professional advice. Broker fees, margin rates, regulatory charges, exchange fees, options fees, account rules, promotional pricing, and available features may change at any time. The calculator uses simplified assumptions and may not include all possible fees, restrictions, or risks. Users are responsible for verifying all information directly with each broker and consulting a qualified professional before making financial decisions.
-      </p>
+      <div class="mt-4 space-y-4 text-slate-300 leading-7">
+        <p>
+          This US trading fee calculator is provided for general informational and educational purposes only. It is not financial, investment, tax, legal, accounting, brokerage, trading, retirement, or professional advice.
+        </p>
+        <p>
+          Broker fees, margin rates, regulatory charges, exchange fees, options fees, account rules, promotional pricing, product availability, order execution policies, and platform features may change at any time. The calculator uses simplified editable assumptions and may not include all possible fees, restrictions, risks, or account-specific conditions.
+        </p>
+        <p>
+          Investing involves risk, including possible loss of principal. Options trading and margin trading involve additional risks and may not be suitable for every investor. Users are responsible for verifying all information directly with each broker and consulting qualified professionals before making financial decisions.
+        </p>
+      </div>
     </section>
 
-    <div class="ad-box mt-8">Bottom Advertisement Area</div>
+    <div class="ad-box mt-8">AdSense Responsive Ad Area - Bottom</div>
   </main>
 
   <script>
@@ -554,8 +692,8 @@
 
       const commissionCost = stockCost + etfCost + optionsCost;
       const marginCost = marginBalance * (broker.marginRate / 100);
-      const totalOrders = stockOrders + etfOrders;
-      const tradingVolume = totalOrders * orderValue;
+      const totalOrders = tradePattern === "options" ? optionOpenContracts + optionCloseContracts : stockOrders + etfOrders;
+      const tradingVolume = (stockOrders + etfOrders) * orderValue;
       const totalCost = commissionCost + marginCost + regulatoryFees + otherFees + broker.annualFee;
       const averageCostPerOrder = totalOrders > 0 ? totalCost / totalOrders : totalCost;
       const costAsVolumePercent = tradingVolume > 0 ? (totalCost / tradingVolume) * 100 : 0;
@@ -594,8 +732,8 @@
         ["Regulatory fee estimate", money.format(result.regulatoryFees)],
         ["Other estimated fees", money.format(result.otherFees)],
         ["Annual platform/account fee", money.format(result.annualFee)],
-        ["Estimated trading volume", money.format(result.tradingVolume)],
-        ["Average cost per stock/ETF order", money.format(result.averageCostPerOrder)]
+        ["Estimated stock/ETF trading volume", money.format(result.tradingVolume)],
+        ["Average cost per counted order", money.format(result.averageCostPerOrder)]
       ];
 
       document.getElementById("breakdownList").innerHTML = items.map(([label, value]) => `
