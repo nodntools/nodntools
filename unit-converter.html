@@ -1,518 +1,923 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
 
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404"
-     crossorigin="anonymous"></script>
-
-	<meta name="google-adsense-account" content="ca-pub-5282672325821404">	
-
-  <title>Universal Unit Converter | Online Metric to Imperial Tool - NodnWebTools</title>
-
-  <meta
-    name="description"
-    content="Use the free NodnWebTools Universal Unit Converter to seamlessly process metric to imperial conversion. Convert kg to lbs instantly, inches to centimeters, and more with our absolute measurement conversion guide."
-  />
-  <meta
-    name="keywords"
-    content="online unit converter tool, metric to imperial conversion, convert kg to lbs instantly, inches to centimeters calculator, measurement conversion guide, unit converter, NodnWebTools"
-  />
-  <meta name="author" content="NodnWebTools" />
+  <title>Unit Converter | Metric Imperial Calculator</title>
+  <meta name="description" content="Free unit converter for metric and imperial length, weight, volume, area, speed, time, and temperature conversions." />
+  <meta name="keywords" content="unit converter, metric to imperial converter, imperial to metric converter, measurement converter, length converter, weight converter, volume converter, temperature converter, area converter, speed converter, time converter, kg to lbs converter, inches to cm calculator, feet to meters, liters to gallons, Celsius to Fahrenheit, online unit conversion calculator, measurement conversion chart, NodnWebTools" />
   <meta name="robots" content="index, follow" />
+  <meta name="author" content="NodnWebTools" />
 
-  <meta property="og:title" content="Universal Unit Converter | NodnWebTools" />
-  <meta
-    property="og:description"
-    content="Seamlessly convert between metric and imperial systems for length, weight, volume, and temperature instantly."
-  />
+  <meta property="og:title" content="Unit Converter | Metric Imperial Calculator" />
+  <meta property="og:description" content="Convert metric and imperial units for length, weight, volume, area, speed, time, and temperature directly in your browser." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://nodnwebtools.com/unit-converter.html" />
+  <meta property="og:url" content="https://nodntools.com/unit-converter.html" />
   <meta property="og:site_name" content="NodnWebTools" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Universal Unit Converter" />
-  <meta
-    name="twitter:description"
-    content="A client-side high-fidelity online unit converter tool for instant measurement conversion."
-  />
+  <meta name="twitter:title" content="Unit Converter" />
+  <meta name="twitter:description" content="Fast browser-based unit converter for everyday measurement conversions." />
+
+  <meta name="google-adsense-account" content="ca-pub-5282672325821404">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404" crossorigin="anonymous"></script>
 
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            brand: {
-              50: '#f5f3ff',
-              100: '#ede9fe',
-              200: '#ddd6fe',
-              500: '#8b5cf6',
-              600: '#7c3aed',
-              700: '#6d28d9',
-              800: '#5b21b6',
-            }
-          }
-        }
-      }
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Unit Converter",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "url": "https://nodntools.com/unit-converter.html",
+    "description": "A free browser-based unit converter for metric and imperial length, weight, volume, area, speed, time, and temperature conversions.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "NodnWebTools",
+      "url": "https://nodntools.com"
     }
+  }
   </script>
+
   <style>
-    html,
-    body {
+    html, body {
       width: 100%;
+      max-width: 100%;
       overflow-x: hidden;
     }
 
-    * {
+    *, *::before, *::after {
       box-sizing: border-box;
+      min-width: 0;
     }
 
-    select,
-    input,
-    button {
+    .safe-break {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .mobile-card,
+    .mobile-panel,
+    .mobile-preview,
+    .mobile-code,
+    .ad-box,
+    table,
+    canvas,
+    img,
+    svg,
+    pre,
+    code {
       max-width: 100%;
     }
 
-    .scrollbar-none::-webkit-scrollbar {
+    .mobile-code {
+      overflow-x: auto;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+
+    .ad-box {
+      min-height: 90px;
+      border: 1px dashed #cbd5e1;
+      background: #f8fafc;
+      color: #94a3b8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-radius: 1rem;
+      padding: 1rem;
+      line-height: 1.5;
+    }
+
+    .tab-scroll {
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .tab-scroll::-webkit-scrollbar {
       display: none;
     }
 
-    .scrollbar-none {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
+    @media (max-width: 640px) {
+      body {
+        padding-left: 0;
+        padding-right: 0;
+      }
+
+      .mobile-card,
+      .mobile-panel,
+      .mobile-preview {
+        padding: 1rem !important;
+        border-radius: 1.25rem !important;
+      }
+
+      .mobile-button-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .mobile-button-grid button,
+      .mobile-button-grid a {
+        width: 100%;
+      }
+
+      .mobile-title {
+        font-size: 2rem !important;
+        line-height: 1.12 !important;
+      }
+
+      .mobile-result-text {
+        font-size: 2.25rem !important;
+        line-height: 1.1 !important;
+      }
     }
 
-    .adsbygoogle {
-      display: block;
-      width: 100%;
-      max-width: 100%;
-      overflow: hidden;
+    @media (max-width: 380px) {
+      .mobile-card,
+      .mobile-panel,
+      .mobile-preview {
+        padding: 0.875rem !important;
+        border-radius: 1rem !important;
+      }
+
+      .mobile-title {
+        font-size: 1.75rem !important;
+      }
+
+      .mobile-result-text {
+        font-size: 1.875rem !important;
+      }
+
+      .mobile-small-text {
+        font-size: 0.875rem !important;
+      }
     }
   </style>
 </head>
 
-<body class="min-h-screen bg-slate-100 px-3 py-5 sm:px-4 sm:py-8 lg:py-12">
-  <main class="mx-auto w-full max-w-5xl overflow-hidden">
+<body class="min-h-screen bg-slate-50 text-slate-900">
+  <header class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+    <nav class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <a href="https://nodntools.com" class="inline-flex items-center gap-1 text-2xl font-extrabold tracking-tight transition hover:opacity-80" aria-label="NodnWebTools Home">
+        <span>Nodn</span><span class="text-indigo-600">WebTools</span>
+      </a>
 
-    <div class="mb-8 text-center">
-  <a
-    href="https://nodntools.com"
-    class="inline-block transition hover:opacity-80"
-    aria-label="NodnWebTools Home"
-  >
-    <div class="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
-      Nodn<span class="text-blue-600">WebTools</span>
-    </div>
-  </a>
-</div>
+      <a href="https://nodntools.com" class="inline-flex w-fit rounded-full border border-slate-200 bg-white px-5 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-indigo-200 hover:text-indigo-700">
+        Home
+      </a>
+    </nav>
 
-    <div class="mb-5 sm:mb-8 flex min-h-[80px] sm:min-h-[90px] w-full items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white text-sm text-slate-400">
+    <div class="ad-box mt-6">
       AdSense Responsive Ad Area - Top
     </div>
+  </header>
 
-    <section class="grid grid-cols-1 gap-5 lg:grid-cols-2 lg:gap-6">
+  <main class="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
+    <section class="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
+      <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8 lg:sticky lg:top-6 lg:self-start">
+        <span class="inline-flex rounded-full bg-indigo-100 px-4 py-2 text-sm font-bold text-indigo-700">
+          Free Measurement Tool
+        </span>
 
-      <div class="rounded-3xl bg-white p-4 shadow-xl ring-1 ring-slate-200 sm:p-8 lg:sticky lg:top-10 lg:self-start">
-        <div class="mb-6">
-          <span class="inline-flex rounded-full bg-brand-50 px-4 py-2 text-sm font-semibold text-brand-700">
-            Unit Converter
-          </span>
+        <h1 class="mobile-title mt-5 text-4xl font-extrabold tracking-tight text-slate-950 sm:text-5xl">
+          Universal Unit Converter
+        </h1>
 
-          <h1 class="mt-5 text-2xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-            Universal Measurement Converter
-          </h1>
+        <p class="mt-4 text-base leading-7 text-slate-600">
+          Convert metric and imperial units for length, weight, volume, area, speed, time, and temperature. Enter a value, choose your units, and get an instant browser-based conversion with a helpful multi-unit reference matrix.
+        </p>
 
-          <p class="mt-3 text-base leading-7 text-slate-600">
-            Select a category, enter the value, and immediately match parameters across global standards.
-          </p>
+        <div class="mt-8">
+          <div id="tabsContainer" class="tab-scroll flex gap-2 rounded-2xl bg-slate-100 p-1.5"></div>
         </div>
 
-        <div class="mb-6 flex w-full gap-1 border-b border-slate-200 bg-slate-50 p-1.5 rounded-2xl overflow-x-auto scrollbar-none" id="tabs-container">
-          <button onclick="switchCategory('length')" id="tab-length" class="flex-none sm:flex-1 min-w-[74px] sm:min-w-[85px] py-2.5 px-2 sm:px-3 rounded-xl text-xs font-bold tracking-wider uppercase transition-all duration-200 flex items-center justify-center space-x-1 bg-white text-brand-700 shadow-sm border border-slate-200/50">
-            <span>Length</span>
-          </button>
-          <button onclick="switchCategory('weight')" id="tab-weight" class="flex-none sm:flex-1 min-w-[74px] sm:min-w-[85px] py-2.5 px-2 sm:px-3 rounded-xl text-xs font-bold tracking-wider uppercase transition-all duration-200 flex items-center justify-center space-x-1 text-slate-500 hover:text-slate-800">
-            <span>Weight</span>
-          </button>
-          <button onclick="switchCategory('volume')" id="tab-volume" class="flex-none sm:flex-1 min-w-[74px] sm:min-w-[85px] py-2.5 px-2 sm:px-3 rounded-xl text-xs font-bold tracking-wider uppercase transition-all duration-200 flex items-center justify-center space-x-1 text-slate-500 hover:text-slate-800">
-            <span>Volume</span>
-          </button>
-          <button onclick="switchCategory('temperature')" id="tab-temperature" class="flex-none sm:flex-1 min-w-[74px] sm:min-w-[85px] py-2.5 px-2 sm:px-3 rounded-xl text-xs font-bold tracking-wider uppercase transition-all duration-200 flex items-center justify-center space-x-1 text-slate-500 hover:text-slate-800">
-            <span>Temp</span>
-          </button>
-        </div>
-
-        <div class="space-y-5">
+        <div class="mt-6 space-y-5">
           <div>
-            <label for="inputValue" class="mb-2 block text-sm font-semibold text-slate-700">
-              Value to Convert
-            </label>
-            <div class="relative">
-              <input
-                type="number"
-                id="inputValue"
-                inputmode="decimal"
-                value="1"
-                placeholder="1.00"
-                class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 px-4 text-lg font-semibold text-slate-900 outline-none transition focus:border-brand-500 focus:bg-white focus:ring-4 focus:ring-brand-100"
-              />
-            </div>
+            <label for="inputValue" class="mb-2 block text-sm font-bold text-slate-800">Value to convert</label>
+            <input
+              id="inputValue"
+              type="number"
+              inputmode="decimal"
+              value="1"
+              placeholder="Enter a number"
+              class="w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-4 text-lg font-bold text-slate-900 outline-none transition focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-100"
+            />
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="grid gap-4 sm:grid-cols-2">
             <div>
-              <label for="fromUnit" class="mb-2 block text-sm font-semibold text-slate-700">
-                From Unit
-              </label>
+              <label for="fromUnit" class="mb-2 block text-sm font-bold text-slate-800">From unit</label>
               <select
                 id="fromUnit"
-                class="w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-4 text-base font-medium text-slate-900 outline-none transition focus:border-brand-500 focus:bg-white focus:ring-4 focus:ring-brand-100 cursor-pointer"
+                class="w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-4 text-base font-bold text-slate-900 outline-none transition focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-100"
               ></select>
             </div>
 
             <div>
-              <label for="toUnit" class="mb-2 block text-sm font-semibold text-slate-700">
-                To Unit
-              </label>
+              <label for="toUnit" class="mb-2 block text-sm font-bold text-slate-800">To unit</label>
               <select
                 id="toUnit"
-                class="w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-4 text-base font-medium text-slate-900 outline-none transition focus:border-brand-500 focus:bg-white focus:ring-4 focus:ring-brand-100 cursor-pointer"
+                class="w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-4 text-base font-bold text-slate-900 outline-none transition focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-100"
               ></select>
             </div>
           </div>
 
-          <div class="flex justify-end">
-            <button onclick="swapUnits()" class="px-4 py-2.5 text-xs font-bold text-slate-600 hover:text-brand-700 bg-slate-100 hover:bg-brand-50 rounded-xl transition-all flex items-center space-x-1.5">
-              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
-              <span>Swap Units</span>
+          <div class="grid gap-3 sm:grid-cols-4 mobile-button-grid">
+            <button id="swapBtn" type="button" class="rounded-2xl border border-indigo-200 bg-indigo-50 px-4 py-3 text-sm font-bold text-indigo-700 transition hover:bg-indigo-100">
+              Swap Units
+            </button>
+            <button id="copyBtn" type="button" class="rounded-2xl bg-indigo-600 px-4 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-indigo-700">
+              Copy Result
+            </button>
+            <button id="downloadBtn" type="button" class="rounded-2xl bg-violet-600 px-4 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-violet-700">
+              Download
+            </button>
+            <button id="resetBtn" type="button" class="rounded-2xl border border-slate-300 bg-white px-4 py-3 text-sm font-bold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700">
+              Reset
             </button>
           </div>
 
-          <div class="rounded-2xl bg-slate-100 p-4 text-sm leading-6 text-slate-600">
-            Calculations are completed securely in real-time within your web browser using modern high-fidelity mathematical coefficients.
+          <p id="copyFeedback" class="hidden rounded-2xl bg-emerald-50 px-4 py-3 text-sm font-bold text-emerald-700">
+            Copied!
+          </p>
+
+          <div id="warningBox" class="hidden rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm font-semibold leading-6 text-amber-800"></div>
+
+          <div class="rounded-2xl bg-indigo-50 p-4 text-sm leading-6 text-slate-700">
+            All conversions run directly in your browser. No value is uploaded to a backend server.
           </div>
         </div>
-      </div>
+      </section>
 
-      <div class="space-y-6">
-        <div class="rounded-3xl bg-white p-4 shadow-xl ring-1 ring-slate-200 sm:p-8">
-          <div class="mb-6">
-            <h2 class="text-xl font-bold text-slate-900 sm:text-2xl">
-              Conversion Result
-            </h2>
-            <p class="mt-2 text-sm text-slate-500">
-              Results update automatically as you modify the entry inputs or target metrics.
-            </p>
-          </div>
+      <section class="space-y-6">
+        <div class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+          <h2 class="text-2xl font-extrabold tracking-tight text-slate-950">Conversion Result</h2>
+          <p class="mt-2 text-sm leading-6 text-slate-500">
+            Results update automatically when you change the value, category, source unit, or target unit.
+          </p>
 
-          <div id="result" class="rounded-3xl border border-slate-200 bg-gradient-to-br from-slate-50 via-zinc-50 to-purple-50/30 p-4 sm:p-5 overflow-hidden">
-            <p class="text-sm font-semibold uppercase tracking-wide text-slate-700">
-              Converted Output
-            </p>
+          <div class="mobile-preview mt-6 rounded-3xl border border-indigo-100 bg-gradient-to-br from-indigo-50 via-white to-violet-50 p-6">
+            <p class="text-sm font-bold uppercase tracking-wide text-indigo-700">Converted Output</p>
+            <p id="outputValue" class="mobile-result-text safe-break mt-3 text-5xl font-extrabold tracking-tight text-indigo-700">0</p>
+            <p id="summarySentence" class="mt-4 text-base leading-7 text-slate-700">Enter a value to convert.</p>
 
-            <p id="outputValue" class="mt-2 break-words text-3xl font-extrabold tracking-tight text-brand-700 sm:text-4xl">
-              0
-            </p>
-
-            <p id="summarySentence" class="mt-3 break-words text-sm leading-6 text-slate-700 sm:text-base sm:leading-7">
-              Please enter a valid amount.
-            </p>
-
-            <div class="mt-5 grid gap-3 sm:grid-cols-2">
-              <div class="rounded-2xl bg-white p-4 shadow-sm border border-slate-100">
-                <p class="text-xs text-slate-500">Original Base Value</p>
-                <p id="displayOriginalVal" class="mt-1 text-lg font-bold text-slate-900">0</p>
+            <div class="mt-6 grid gap-3 sm:grid-cols-2">
+              <div class="rounded-2xl bg-white p-4 shadow-sm">
+                <p class="text-xs font-semibold text-slate-500">Original Value</p>
+                <p id="displayOriginalVal" class="safe-break mt-1 text-xl font-extrabold text-slate-950">0</p>
               </div>
 
-              <div class="rounded-2xl bg-white p-4 shadow-sm border border-slate-100">
-                <p class="text-xs text-slate-500">Current Category</p>
-                <p id="displayCategory" class="mt-1 text-lg font-bold text-brand-600 capitalize">Length</p>
+              <div class="rounded-2xl bg-white p-4 shadow-sm">
+                <p class="text-xs font-semibold text-slate-500">Current Category</p>
+                <p id="displayCategory" class="safe-break mt-1 text-xl font-extrabold text-slate-950">Length</p>
               </div>
             </div>
 
-            <div class="mt-5">
-              <div class="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm w-full">
-                <p class="text-xs font-semibold uppercase tracking-wide text-slate-700 mb-3">
-                  Quick Conversion Matrix
-                </p>
-                <div id="quick-matrix-list" class="space-y-2">
-                  </div>
-              </div>
+            <div class="mt-6 rounded-2xl border border-indigo-100 bg-white p-5 shadow-sm">
+              <p class="text-xs font-bold uppercase tracking-wide text-indigo-700">Quick Conversion Matrix</p>
+              <div id="quickMatrixList" class="mt-4 space-y-2"></div>
             </div>
           </div>
 
-          <div class="mt-5 sm:mt-6 flex min-h-[180px] sm:min-h-[250px] w-full flex-col items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-slate-50 text-sm text-slate-400 p-4">
-            <span class="text-[10px] font-bold text-slate-300 uppercase tracking-widest mb-2">Advertisement</span>
-            <ins class="adsbygoogle"
-                 style="display:block; width:100%; max-width:100%; min-height:160px;"
-                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-                 data-ad-slot="YYYYYYYYYY"
-                 data-ad-format="rectangle, vertical"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
+          <div class="ad-box mt-6">
+            AdSense Responsive Ad Area - Below Result
           </div>
 
           <p class="mt-5 text-xs leading-5 text-slate-500">
-            Disclaimer: This conversion tool is intended for structural education and general informational pipelines. While equations deploy highly precise international coefficients, small fractional logic anomalies may arise during multi-staged floating computing routines.
+            This converter is for general informational and convenience purposes. Always verify critical engineering, medical, scientific, construction, aviation, legal, or safety-related measurements with an authoritative source.
           </p>
         </div>
 
-        <section class="rounded-3xl bg-white p-4 shadow-sm ring-1 ring-slate-200 sm:p-8">
-          <span class="inline-flex rounded-full bg-slate-200 px-4 py-2 text-sm font-semibold text-slate-800">
-            Measurement Conversion Guide
-          </span>
+        <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+          <span class="inline-flex rounded-full bg-violet-100 px-4 py-2 text-sm font-bold text-violet-700">Quick Examples</span>
+          <h2 class="mt-5 text-2xl font-extrabold tracking-tight text-slate-950">Common Conversion Examples</h2>
 
-          <h2 class="mt-5 text-xl font-bold tracking-tight text-slate-900 sm:text-3xl">
-            Universal Unit Conversion: Bridging Metric and Imperial Systems
-          </h2>
+          <div class="mt-5 grid gap-4">
+            <button type="button" data-example-category="length" data-example-value="12" data-example-from="in" data-example-to="cm" class="example-btn rounded-2xl border border-slate-200 bg-slate-50 p-4 text-left transition hover:border-indigo-300 hover:bg-indigo-50">
+              <span class="block font-bold text-slate-950">12 inches to centimeters</span>
+              <span class="mt-1 block text-sm leading-6 text-slate-600">Useful for product dimensions, clothing, furniture, and DIY measurements.</span>
+            </button>
 
-          <div class="mt-5 space-y-5 text-sm leading-7 text-slate-600">
-            <p>
-              Navigating global communication, international commerce, and accurate documentation requires a reliable 
-              <strong class="font-semibold text-slate-800">online unit converter tool</strong>. Historically, civilization has developed numerous ways to measure weight, distance, and volume. Today, the core challenge lies in seamlessly processing the 
-              <strong class="font-semibold text-slate-800">metric to imperial conversion</strong>. While the majority of countries rely on the International System of Units (SI) or the metric system (meters, grams, liters), the United States and a few other regions persistently utilize the British imperial system (inches, pounds, gallons).
-            </p>
+            <button type="button" data-example-category="weight" data-example-value="70" data-example-from="kg" data-example-to="lb" class="example-btn rounded-2xl border border-slate-200 bg-slate-50 p-4 text-left transition hover:border-indigo-300 hover:bg-indigo-50">
+              <span class="block font-bold text-slate-950">70 kilograms to pounds</span>
+              <span class="mt-1 block text-sm leading-6 text-slate-600">Helpful for body weight, luggage limits, fitness, and shipping estimates.</span>
+            </button>
 
-            <p>
-              This dual-standard reality often introduces unnecessary friction into international business logistics, academic engineering tasks, digital travel planning, or cross-border e-commerce. For instance, if you are analyzing raw materials imported from overseas, you might need to 
-              <strong class="font-semibold text-slate-800">convert kg to lbs instantly</strong> to understand domestic pricing structures or meet localized transportation safety regulations. Similarly, fashion manufacturing, carpentry projects, and electronic schematic designs rely heavily on an accurate, high-fidelity 
-              <strong class="font-semibold text-slate-800">inches to centimeters calculator</strong> to completely bypass costly dimensional calculation errors.
-            </p>
-
-            <h3 class="text-lg font-bold text-slate-900 pt-2">How to Use This Practical Measurement Conversion Guide</h3>
-            <p>
-              Manually working out mathematical conversion factors can be frustrating, especially when dealing with complex fractions or unconventional baselines like Fahrenheit and Celsius. This modern utility simplifies your technical workflow into a simple single-click process:
-            </p>
-
-            <ul class="list-disc pl-5 space-y-2 text-slate-600">
-              <li><strong>Select Your Category:</strong> Click through the top navigation options to choose between Length, Weight, Volume, or Temperature parameters.</li>
-              <li><strong>Define Parameters:</strong> Choose your original source parameters from the left menu drop-down and input your numeric value.</li>
-              <li><strong>Instant Analysis:</strong> Watch the system execute formulas instantly on every keystroke, complete with an updated multi-unit cross-reference grid.</li>
-            </ul>
-
-            <p>
-              By bookmarking this optimized <strong class="font-semibold text-slate-800">measurement conversion guide</strong>, you can confidently process international engineering schematics, recipe ratios, or global commercial inventories without errors.
-            </p>
+            <button type="button" data-example-category="temperature" data-example-value="20" data-example-from="C" data-example-to="F" class="example-btn rounded-2xl border border-slate-200 bg-slate-50 p-4 text-left transition hover:border-indigo-300 hover:bg-indigo-50">
+              <span class="block font-bold text-slate-950">20 Celsius to Fahrenheit</span>
+              <span class="mt-1 block text-sm leading-6 text-slate-600">Common for weather, travel, cooking, and international temperature comparison.</span>
+            </button>
           </div>
         </section>
+      </section>
+    </section>
+
+    <div class="ad-box mt-8">
+      AdSense Responsive Ad Area - Below Main Tool
+    </div>
+
+    <article class="mt-10 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-10">
+      <span class="inline-flex rounded-full bg-indigo-100 px-4 py-2 text-sm font-bold text-indigo-700">
+        Measurement Conversion Guide
+      </span>
+
+      <h2 class="mt-5 text-3xl font-extrabold tracking-tight text-slate-950">
+        Unit Converter Guide for Metric, Imperial, Length, Weight, Volume, Area, Speed, Time, and Temperature
+      </h2>
+
+      <div class="mt-6 space-y-6 text-base leading-8 text-slate-700">
+        <p>
+          A unit converter is one of the most useful everyday tools for people who work with measurements, travel internationally, shop online, cook from recipes, manage shipping details, study science, build home projects, compare product specifications, or communicate across countries that use different measurement systems. The world does not use one single measurement standard in every situation. Many countries rely on the metric system, while the United States and some industries still use imperial or US customary units. Because of this, people often need a fast and reliable way to convert inches to centimeters, feet to meters, miles to kilometers, kilograms to pounds, ounces to grams, liters to gallons, Celsius to Fahrenheit, and many other common measurements.
+        </p>
+
+        <p>
+          This free Unit Converter from NodnWebTools is designed to make measurement conversion quick, clear, and accessible. It works directly in your browser and does not require a backend server. You can enter a number, choose a measurement category, select the starting unit and target unit, and instantly see the converted value. The tool also provides a quick conversion matrix so you can compare the same value across multiple related units at once. This is helpful when you are not sure which unit you need or when you want to understand the scale of a measurement more completely.
+        </p>
+
+        <h3 class="text-2xl font-extrabold text-slate-950">Why Unit Conversion Matters</h3>
+
+        <p>
+          Unit conversion is more than a simple math task. It affects shopping, travel, engineering, healthcare, cooking, logistics, education, sports, construction, design, and everyday decision-making. If you order furniture from an international website, the dimensions may be listed in centimeters while your room measurements are in inches or feet. If you buy luggage, weight limits may be shown in kilograms for one airline and pounds for another. If you follow a recipe from another country, liquid measurements may appear in milliliters, liters, cups, tablespoons, or fluid ounces. Without a reliable measurement converter, small misunderstandings can lead to wrong purchases, incorrect quantities, wasted materials, or confusing comparisons.
+        </p>
+
+        <p>
+          Accurate unit conversion is also important for professional work. Architects, engineers, designers, builders, researchers, educators, shipping coordinators, and product managers often need to translate measurements between metric and imperial systems. Even when software tools handle most calculations, a quick online unit converter can be useful for checking assumptions, reviewing specifications, explaining values to clients, and avoiding manual calculation mistakes. A browser-based measurement converter is especially convenient because it can be used on desktop, tablet, or mobile without installing an app.
+        </p>
+
+        <h3 class="text-2xl font-extrabold text-slate-950">Metric and Imperial Systems Explained</h3>
+
+        <p>
+          The metric system is based on powers of ten. Common metric units include millimeters, centimeters, meters, kilometers, grams, kilograms, milliliters, liters, square meters, and kilometers per hour. Because the system is decimal-based, it is usually easy to scale values up or down. For example, 100 centimeters equals 1 meter, and 1,000 meters equals 1 kilometer. The metric system is widely used in science, medicine, international trade, education, and most countries around the world.
+        </p>
+
+        <p>
+          The imperial and US customary systems use units such as inches, feet, yards, miles, ounces, pounds, cups, pints, quarts, gallons, square feet, and miles per hour. These units remain common in the United States and appear frequently in product descriptions, construction, recipes, travel directions, body measurements, and consumer goods. Because the relationships between imperial units are not always based on powers of ten, manual conversion can be less intuitive. For example, 12 inches equals 1 foot, 3 feet equals 1 yard, and 5,280 feet equals 1 mile. A metric to imperial converter makes these comparisons much easier.
+        </p>
+
+        <div class="ad-box">
+          AdSense Responsive Ad Area - Middle Content
+        </div>
+
+        <h3 class="text-2xl font-extrabold text-slate-950">Length Conversion: Inches, Feet, Meters, Centimeters, and Miles</h3>
+
+        <p>
+          Length conversion is one of the most common uses of a unit converter. People frequently need to convert inches to centimeters, centimeters to inches, feet to meters, meters to feet, miles to kilometers, and kilometers to miles. These conversions are useful for clothing sizes, room layouts, furniture dimensions, screen sizes, home improvement projects, vehicle travel, maps, sports distances, and international product specifications.
+        </p>
+
+        <p>
+          For example, an online product may list a table as 120 centimeters wide, but you may think in feet and inches when checking whether it fits in your room. A suitcase may be listed in inches for airline carry-on rules, while another carrier may use centimeters. A running distance may be shown in miles in one app and kilometers in another. A length converter helps you move between these systems without memorizing formulas or risking mistakes.
+        </p>
+
+        <h3 class="text-2xl font-extrabold text-slate-950">Weight Conversion: Kilograms, Pounds, Grams, and Ounces</h3>
+
+        <p>
+          Weight conversion is essential for fitness, shipping, travel, cooking, science, and product comparison. The most searched examples include kilograms to pounds, pounds to kilograms, grams to ounces, and ounces to grams. If you are traveling, luggage weight limits may be displayed in kilograms or pounds depending on the airline and region. If you are buying food, supplements, pet supplies, or shipping materials, weights may appear in grams, kilograms, ounces, or pounds.
+        </p>
+
+        <p>
+          A kg to lbs converter is especially useful for people comparing body weight, gym equipment, sports data, or medical measurements between countries. A grams to ounces calculator is helpful for recipes, coffee brewing, baking, and small package weights. Because weight values can affect costs, safety limits, and portion sizes, it is helpful to use a clear conversion tool instead of guessing.
+        </p>
+
+        <h3 class="text-2xl font-extrabold text-slate-950">Volume Conversion: Liters, Milliliters, Gallons, Cups, and Fluid Ounces</h3>
+
+        <p>
+          Volume conversion is common in cooking, beverage preparation, fuel estimates, cleaning supplies, gardening, aquariums, automotive fluids, and product packaging. Metric recipes often use milliliters and liters, while US recipes commonly use cups, tablespoons, teaspoons, pints, quarts, and gallons. A volume converter helps you convert liters to gallons, gallons to liters, cups to milliliters, milliliters to cups, and fluid ounces to milliliters.
+        </p>
+
+        <p>
+          Cooking is one of the most practical examples. A recipe may call for 240 milliliters of milk, while your measuring cup is labeled in cups. Another recipe may list 2 liters of water, while your container is marked in gallons. A browser-based volume conversion calculator helps make recipes easier to follow and reduces the chance of using too much or too little liquid.
+        </p>
+
+        <h3 class="text-2xl font-extrabold text-slate-950">Temperature Conversion: Celsius, Fahrenheit, and Kelvin</h3>
+
+        <p>
+          Temperature conversion is useful for weather, travel, cooking, science, HVAC settings, health information, and international communication. Celsius is widely used in most countries, while Fahrenheit remains common in the United States. Kelvin is used in scientific contexts. A temperature converter allows you to convert Celsius to Fahrenheit, Fahrenheit to Celsius, Celsius to Kelvin, and Kelvin to Celsius.
+        </p>
+
+        <p>
+          Temperature conversion is different from many other unit conversions because it is not based only on multiplication. Celsius and Fahrenheit use different zero points and different scale sizes, so the formula requires both multiplication and addition or subtraction. This is one reason a temperature calculator is often easier and safer than mental math. For travel, knowing whether 20°C feels like a mild day or whether 90°F is very warm can make packing and planning much easier.
+        </p>
+
+        <h3 class="text-2xl font-extrabold text-slate-950">Area Conversion for Real Estate, Flooring, and Design</h3>
+
+        <p>
+          Area conversion is important for real estate listings, flooring projects, painting estimates, land measurement, architecture, landscaping, and interior design. Common area conversions include square feet to square meters, square meters to square feet, acres to square meters, square kilometers to square miles, and square yards to square feet. Many home buyers and renters compare property sizes internationally and need to understand how a square meter listing compares with square feet.
+        </p>
+
+        <p>
+          For example, an apartment listed as 75 square meters may be difficult to visualize if you normally think in square feet. A flooring project may require square feet of material, while the room dimensions were measured in meters. A land parcel may be described in acres, hectares, or square meters. A unit converter with an area category helps make these comparisons faster and clearer.
+        </p>
+
+        <div class="ad-box">
+          AdSense Responsive Ad Area - Bottom Content
+        </div>
+
+        <h3 class="text-2xl font-extrabold text-slate-950">Speed Conversion for Travel, Vehicles, Sports, and Weather</h3>
+
+        <p>
+          Speed conversion is useful when comparing kilometers per hour, miles per hour, meters per second, feet per second, and knots. Drivers traveling between countries may need to understand speed limits in kilometers per hour or miles per hour. Weather reports may describe wind speed in kilometers per hour, miles per hour, meters per second, or knots. Sports data may use different speed units depending on the event, device, or country.
+        </p>
+
+        <p>
+          A speed converter can help drivers, cyclists, runners, sailors, aviation enthusiasts, weather watchers, and sports fans quickly understand speed values. For example, 100 kilometers per hour is about 62 miles per hour, which is a useful reference for people moving between metric and imperial road systems.
+        </p>
+
+        <h3 class="text-2xl font-extrabold text-slate-950">Time Conversion for Minutes, Hours, Days, Weeks, and Years</h3>
+
+        <p>
+          Time conversion is helpful for productivity, planning, billing, payroll, study schedules, project management, travel, and personal finance. Common conversions include minutes to hours, hours to days, days to weeks, weeks to months, and hours to years. While many time conversions are simple, they can become confusing when estimating long durations, recurring schedules, work hours, or project timelines.
+        </p>
+
+        <p>
+          Freelancers and consultants may use time conversion to translate minutes into billable hours. Students may convert study minutes into weekly totals. Project managers may estimate how many workdays are required for a task. A time converter gives a quick reference for planning and communication.
+        </p>
+
+        <h3 class="text-2xl font-extrabold text-slate-950">How to Use This Unit Converter</h3>
+
+        <p>
+          Start by choosing a category such as length, weight, volume, temperature, area, speed, or time. Next, enter the value you want to convert. Choose the source unit in the “From unit” field and the target unit in the “To unit” field. The result updates automatically. You can use the Swap Units button to reverse the conversion, copy the result, download a text summary, or reset the tool to the default example.
+        </p>
+
+        <p>
+          The quick conversion matrix is designed to provide extra context. Instead of showing only one output, it displays the entered value in several related units. This is useful when comparing product dimensions, checking travel measurements, understanding recipe quantities, or choosing the most appropriate unit for communication.
+        </p>
+
+        <h3 class="text-2xl font-extrabold text-slate-950">Popular Uses for This Unit Converter</h3>
+
+        <div class="grid gap-4 md:grid-cols-2">
+          <div class="rounded-2xl bg-slate-50 p-5">
+            <h4 class="font-extrabold text-slate-950">Online Shopping</h4>
+            <p class="mt-2 text-sm leading-7">Convert product dimensions, package weights, clothing measurements, furniture sizes, and shipping details before buying.</p>
+          </div>
+
+          <div class="rounded-2xl bg-slate-50 p-5">
+            <h4 class="font-extrabold text-slate-950">Cooking and Recipes</h4>
+            <p class="mt-2 text-sm leading-7">Convert cups, milliliters, liters, fluid ounces, grams, ounces, Celsius, and Fahrenheit for international recipes.</p>
+          </div>
+
+          <div class="rounded-2xl bg-slate-50 p-5">
+            <h4 class="font-extrabold text-slate-950">Travel Planning</h4>
+            <p class="mt-2 text-sm leading-7">Convert kilometers, miles, kilograms, pounds, Celsius, Fahrenheit, liters, gallons, and luggage dimensions while traveling.</p>
+          </div>
+
+          <div class="rounded-2xl bg-slate-50 p-5">
+            <h4 class="font-extrabold text-slate-950">Home Projects</h4>
+            <p class="mt-2 text-sm leading-7">Convert measurements for flooring, painting, carpentry, furniture planning, landscaping, and renovation projects.</p>
+          </div>
+        </div>
+
+        <h3 class="text-2xl font-extrabold text-slate-950">Tips for More Accurate Measurement Conversion</h3>
+
+        <p>
+          Always confirm which unit system is being used before converting. For example, a gallon can mean a US gallon or an imperial gallon, and those are not the same. A cup can also vary depending on region and context. In this tool, common practical conversion factors are used for everyday calculations, but specialized industries may use more specific definitions. When accuracy is critical, check the exact unit standard required for your task.
+        </p>
+
+        <p>
+          Avoid rounding too early in a multi-step calculation. If you are converting measurements for engineering, construction, medicine, aviation, laboratory work, or safety-sensitive planning, use the most precise value available and verify with professional documentation. This tool is excellent for everyday conversions, learning, planning, shopping, and general estimates, but it should not be the only source for high-risk decisions.
+        </p>
+
+        <h3 class="text-2xl font-extrabold text-slate-950">Why a Client-Side Unit Converter Is Useful</h3>
+
+        <p>
+          A client-side unit converter is fast, private, and easy to host on a static website. Because the calculation runs in JavaScript inside the browser, there is no need to upload values or wait for a server response. This is ideal for common conversions because the formulas are straightforward and can be executed instantly. Users can access the tool from a phone, tablet, or desktop and get results immediately.
+        </p>
+
+        <p>
+          This type of browser-based utility also works well for educational websites, tool directories, productivity pages, and AdSense-supported resources because it provides practical value. People searching for “kg to lbs,” “inches to cm,” “Celsius to Fahrenheit,” “liters to gallons,” “square feet to square meters,” or “mph to km/h” often want a direct answer and a simple explanation. This page combines both: a usable calculator and a detailed measurement guide.
+        </p>
+
+        <h3 class="text-2xl font-extrabold text-slate-950">Final Thoughts</h3>
+
+        <p>
+          Measurement conversion is a small task that appears in many parts of daily life. Whether you are reading an international recipe, comparing luggage limits, checking a product size, planning a room layout, studying science, estimating shipping weight, converting weather temperatures, or reviewing travel distances, a reliable unit converter saves time and reduces confusion. The NodnWebTools Unit Converter is built to be simple, responsive, mobile-safe, and useful for everyday metric and imperial conversions.
+        </p>
+
+        <p>
+          Use this page whenever you need a quick conversion, a measurement reference, or a clearer understanding of how one unit relates to another. The more often you work across countries, industries, recipes, products, and measurement systems, the more valuable a dependable unit conversion calculator becomes.
+        </p>
+      </div>
+    </article>
+
+    <section class="mt-10 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-10">
+      <h2 class="text-3xl font-extrabold tracking-tight text-slate-950">Frequently Asked Questions</h2>
+
+      <div class="mt-6 space-y-5">
+        <div class="rounded-2xl bg-slate-50 p-5">
+          <h3 class="font-extrabold text-slate-950">What is a unit converter?</h3>
+          <p class="mt-2 text-sm leading-7 text-slate-700">A unit converter is a calculator that changes a measurement from one unit to another, such as inches to centimeters, kilograms to pounds, liters to gallons, or Celsius to Fahrenheit.</p>
+        </div>
+
+        <div class="rounded-2xl bg-slate-50 p-5">
+          <h3 class="font-extrabold text-slate-950">Can I convert metric to imperial units?</h3>
+          <p class="mt-2 text-sm leading-7 text-slate-700">Yes. This tool supports common metric to imperial and imperial to metric conversions for length, weight, volume, area, speed, time, and temperature.</p>
+        </div>
+
+        <div class="rounded-2xl bg-slate-50 p-5">
+          <h3 class="font-extrabold text-slate-950">Does this converter work on mobile?</h3>
+          <p class="mt-2 text-sm leading-7 text-slate-700">Yes. The layout is responsive and designed to avoid horizontal overflow on mobile screens.</p>
+        </div>
+
+        <div class="rounded-2xl bg-slate-50 p-5">
+          <h3 class="font-extrabold text-slate-950">Are the conversions exact?</h3>
+          <p class="mt-2 text-sm leading-7 text-slate-700">The tool uses standard conversion factors for general use. Some results are rounded for readability, and specialized fields may require additional verification.</p>
+        </div>
+
+        <div class="rounded-2xl bg-slate-50 p-5">
+          <h3 class="font-extrabold text-slate-950">Does this tool send my data to a server?</h3>
+          <p class="mt-2 text-sm leading-7 text-slate-700">No. The calculation runs in your browser. Your entered values are not sent to a backend server by this tool.</p>
+        </div>
+
+        <div class="rounded-2xl bg-slate-50 p-5">
+          <h3 class="font-extrabold text-slate-950">Can I use this for engineering or medical work?</h3>
+          <p class="mt-2 text-sm leading-7 text-slate-700">Use this tool for general reference only. For engineering, medical, scientific, aviation, legal, or safety-critical work, verify values with authoritative sources and professional standards.</p>
+        </div>
       </div>
     </section>
 
-    <div class="mt-5 sm:mt-8 flex min-h-[80px] sm:min-h-[90px] w-full items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white text-sm text-slate-400">
+    <section class="mt-10 rounded-3xl bg-slate-900 p-6 text-slate-100 shadow-sm sm:p-10">
+      <h2 class="text-2xl font-extrabold">Legal Disclaimer</h2>
+      <div class="mt-4 space-y-4 text-sm leading-7 text-slate-300">
+        <p>
+          This Unit Converter is provided for general informational, educational, and convenience purposes only. It is not professional engineering, medical, scientific, legal, construction, aviation, laboratory, safety, or technical advice.
+        </p>
+        <p>
+          Although standard conversion factors are used for common everyday measurements, results may be rounded, simplified, or unsuitable for specialized applications. Some unit names can vary by country, industry, or context, including gallons, cups, tons, and other regional measurements.
+        </p>
+        <p>
+          Users are responsible for verifying all critical measurements with authoritative references, official standards, product documentation, qualified professionals, or applicable regulations. NodnWebTools does not guarantee that any result is accurate, complete, or appropriate for every purpose.
+        </p>
+      </div>
+    </section>
+
+    <div class="ad-box mt-8">
       AdSense Responsive Ad Area - Bottom
     </div>
-
   </main>
 
   <script>
     const conversionData = {
       length: {
+        label: "Length",
         units: {
-          'm': { name: 'Meter (m)', factor: 1 },
-          'cm': { name: 'Centimeter (cm)', factor: 0.01 },
-          'in': { name: 'Inch (in)', factor: 0.0254 },
-          'ft': { name: 'Foot (ft)', factor: 0.3048 },
-          'mi': { name: 'Mile (mi)', factor: 1609.344 }
+          mm: { name: "Millimeter (mm)", factor: 0.001 },
+          cm: { name: "Centimeter (cm)", factor: 0.01 },
+          m: { name: "Meter (m)", factor: 1 },
+          km: { name: "Kilometer (km)", factor: 1000 },
+          in: { name: "Inch (in)", factor: 0.0254 },
+          ft: { name: "Foot (ft)", factor: 0.3048 },
+          yd: { name: "Yard (yd)", factor: 0.9144 },
+          mi: { name: "Mile (mi)", factor: 1609.344 }
         },
-        defaultFrom: 'cm',
-        defaultTo: 'in',
-        matrixUnits: ['m', 'cm', 'in', 'ft']
+        defaultFrom: "in",
+        defaultTo: "cm",
+        matrixUnits: ["mm", "cm", "m", "in", "ft", "mi"]
       },
       weight: {
+        label: "Weight",
         units: {
-          'kg': { name: 'Kilogram (kg)', factor: 1 },
-          'g': { name: 'Gram (g)', factor: 0.001 },
-          'lb': { name: 'Pound (lb)', factor: 0.45359237 },
-          'oz': { name: 'Ounce (oz)', factor: 0.028349523 }
+          mg: { name: "Milligram (mg)", factor: 0.000001 },
+          g: { name: "Gram (g)", factor: 0.001 },
+          kg: { name: "Kilogram (kg)", factor: 1 },
+          oz: { name: "Ounce (oz)", factor: 0.028349523125 },
+          lb: { name: "Pound (lb)", factor: 0.45359237 },
+          st: { name: "Stone (st)", factor: 6.35029318 }
         },
-        defaultFrom: 'kg',
-        defaultTo: 'lb',
-        matrixUnits: ['kg', 'g', 'lb', 'oz']
+        defaultFrom: "kg",
+        defaultTo: "lb",
+        matrixUnits: ["g", "kg", "oz", "lb", "st"]
       },
       volume: {
+        label: "Volume",
         units: {
-          'L': { name: 'Liter (L)', factor: 1 },
-          'mL': { name: 'Milliliter (mL)', factor: 0.001 },
-          'gal': { name: 'Gallon (gal)', factor: 3.785411784 },
-          'cup': { name: 'Cup (cup)', factor: 0.24 }
+          ml: { name: "Milliliter (mL)", factor: 0.001 },
+          l: { name: "Liter (L)", factor: 1 },
+          tsp: { name: "Teaspoon (US)", factor: 0.00492892159375 },
+          tbsp: { name: "Tablespoon (US)", factor: 0.01478676478125 },
+          cup: { name: "Cup (US)", factor: 0.2365882365 },
+          floz: { name: "Fluid Ounce (US)", factor: 0.0295735295625 },
+          pint: { name: "Pint (US)", factor: 0.473176473 },
+          quart: { name: "Quart (US)", factor: 0.946352946 },
+          gal: { name: "Gallon (US)", factor: 3.785411784 }
         },
-        defaultFrom: 'L',
-        defaultTo: 'gal',
-        matrixUnits: ['L', 'mL', 'gal', 'cup']
+        defaultFrom: "l",
+        defaultTo: "gal",
+        matrixUnits: ["ml", "l", "cup", "floz", "quart", "gal"]
       },
       temperature: {
+        label: "Temperature",
         units: {
-          'C': { name: 'Celsius (°C)' },
-          'F': { name: 'Fahrenheit (°F)' }
+          C: { name: "Celsius (°C)" },
+          F: { name: "Fahrenheit (°F)" },
+          K: { name: "Kelvin (K)" }
         },
-        defaultFrom: 'C',
-        defaultTo: 'F',
-        matrixUnits: ['C', 'F']
+        defaultFrom: "C",
+        defaultTo: "F",
+        matrixUnits: ["C", "F", "K"]
+      },
+      area: {
+        label: "Area",
+        units: {
+          sqm: { name: "Square Meter (m²)", factor: 1 },
+          sqft: { name: "Square Foot (ft²)", factor: 0.09290304 },
+          sqyd: { name: "Square Yard (yd²)", factor: 0.83612736 },
+          acre: { name: "Acre", factor: 4046.8564224 },
+          hectare: { name: "Hectare", factor: 10000 },
+          sqkm: { name: "Square Kilometer (km²)", factor: 1000000 },
+          sqmi: { name: "Square Mile (mi²)", factor: 2589988.110336 }
+        },
+        defaultFrom: "sqft",
+        defaultTo: "sqm",
+        matrixUnits: ["sqm", "sqft", "sqyd", "acre", "hectare"]
+      },
+      speed: {
+        label: "Speed",
+        units: {
+          ms: { name: "Meter per Second (m/s)", factor: 1 },
+          kmh: { name: "Kilometer per Hour (km/h)", factor: 0.2777777777777778 },
+          mph: { name: "Mile per Hour (mph)", factor: 0.44704 },
+          fps: { name: "Foot per Second (ft/s)", factor: 0.3048 },
+          knot: { name: "Knot", factor: 0.5144444444444445 }
+        },
+        defaultFrom: "kmh",
+        defaultTo: "mph",
+        matrixUnits: ["ms", "kmh", "mph", "fps", "knot"]
+      },
+      time: {
+        label: "Time",
+        units: {
+          sec: { name: "Second (sec)", factor: 1 },
+          min: { name: "Minute (min)", factor: 60 },
+          hr: { name: "Hour (hr)", factor: 3600 },
+          day: { name: "Day", factor: 86400 },
+          week: { name: "Week", factor: 604800 },
+          month: { name: "Month (30 days)", factor: 2592000 },
+          year: { name: "Year (365 days)", factor: 31536000 }
+        },
+        defaultFrom: "hr",
+        defaultTo: "min",
+        matrixUnits: ["sec", "min", "hr", "day", "week", "year"]
       }
     };
 
-    let currentCategory = 'length';
+    const categories = ["length", "weight", "volume", "temperature", "area", "speed", "time"];
+    let currentCategory = "length";
+    let latestResultText = "";
 
-    // 전역 변수로 선언하되, DOMContentLoaded 이후에 할당
-    let inputValueInput;
-    let fromUnitSelect;
-    let toUnitSelect;
-    let outputValueEl;
-    let summarySentenceEl;
-    let displayOriginalValEl;
-    let displayCategoryEl;
-    let quickMatrixListEl;
-
-    function formatNumber(value, decimals = 4) {
-      if (value === 0) return "0";
-      let rounded = parseFloat(value.toFixed(decimals));
-      let parts = rounded.toString().split(".");
-      parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-      return parts.join(".");
-    }
+    const tabsContainer = document.getElementById("tabsContainer");
+    const inputValueInput = document.getElementById("inputValue");
+    const fromUnitSelect = document.getElementById("fromUnit");
+    const toUnitSelect = document.getElementById("toUnit");
+    const outputValueEl = document.getElementById("outputValue");
+    const summarySentenceEl = document.getElementById("summarySentence");
+    const displayOriginalValEl = document.getElementById("displayOriginalVal");
+    const displayCategoryEl = document.getElementById("displayCategory");
+    const quickMatrixListEl = document.getElementById("quickMatrixList");
+    const warningBox = document.getElementById("warningBox");
+    const copyBtn = document.getElementById("copyBtn");
+    const downloadBtn = document.getElementById("downloadBtn");
+    const resetBtn = document.getElementById("resetBtn");
+    const swapBtn = document.getElementById("swapBtn");
+    const copyFeedback = document.getElementById("copyFeedback");
+    const exampleButtons = document.querySelectorAll(".example-btn");
 
     function sanitizeInput(value, fallback = 0) {
-      const number = parseFloat(value);
-      return isNaN(number) ? fallback : number;
+      const number = Number.parseFloat(value);
+      return Number.isFinite(number) ? number : fallback;
+    }
+
+    function formatNumber(value, decimals = 6) {
+      if (!Number.isFinite(value)) return "Invalid";
+      if (Object.is(value, -0)) value = 0;
+      const abs = Math.abs(value);
+
+      if (abs !== 0 && (abs >= 1000000000 || abs < 0.000001)) {
+        return value.toExponential(6);
+      }
+
+      const rounded = Number.parseFloat(value.toFixed(decimals));
+      return new Intl.NumberFormat("en-US", {
+        maximumFractionDigits: decimals
+      }).format(rounded);
+    }
+
+    function updateWarning(message) {
+      if (!message) {
+        warningBox.classList.add("hidden");
+        warningBox.textContent = "";
+        return;
+      }
+
+      warningBox.textContent = message;
+      warningBox.classList.remove("hidden");
+    }
+
+    function renderTabs() {
+      tabsContainer.innerHTML = categories.map(function(category) {
+        const active = category === currentCategory;
+        const label = conversionData[category].label;
+        const classes = active
+          ? "flex-none rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-xs font-extrabold uppercase tracking-wide text-indigo-700 shadow-sm"
+          : "flex-none rounded-xl px-4 py-2.5 text-xs font-extrabold uppercase tracking-wide text-slate-500 transition hover:bg-white hover:text-indigo-700";
+        return '<button type="button" data-category="' + category + '" class="category-tab ' + classes + '">' + label + '</button>';
+      }).join("");
+
+      document.querySelectorAll(".category-tab").forEach(function(button) {
+        button.addEventListener("click", function() {
+          switchCategory(button.dataset.category);
+        });
+      });
+    }
+
+    function populateDropdowns(category) {
+      const data = conversionData[category];
+      fromUnitSelect.innerHTML = "";
+      toUnitSelect.innerHTML = "";
+
+      Object.keys(data.units).forEach(function(key) {
+        const fromOption = document.createElement("option");
+        fromOption.value = key;
+        fromOption.textContent = data.units[key].name;
+        if (key === data.defaultFrom) fromOption.selected = true;
+        fromUnitSelect.appendChild(fromOption);
+
+        const toOption = document.createElement("option");
+        toOption.value = key;
+        toOption.textContent = data.units[key].name;
+        if (key === data.defaultTo) toOption.selected = true;
+        toUnitSelect.appendChild(toOption);
+      });
+    }
+
+    function temperatureToCelsius(value, unit) {
+      if (unit === "C") return value;
+      if (unit === "F") return (value - 32) * 5 / 9;
+      if (unit === "K") return value - 273.15;
+      return value;
+    }
+
+    function celsiusToTemperature(value, unit) {
+      if (unit === "C") return value;
+      if (unit === "F") return (value * 9 / 5) + 32;
+      if (unit === "K") return value + 273.15;
+      return value;
+    }
+
+    function executeConversion(value, from, to, category) {
+      if (from === to) return value;
+
+      if (category === "temperature") {
+        const celsius = temperatureToCelsius(value, from);
+        return celsiusToTemperature(celsius, to);
+      }
+
+      const units = conversionData[category].units;
+      if (!units[from] || !units[to]) return value;
+
+      const baseValue = value * units[from].factor;
+      return baseValue / units[to].factor;
+    }
+
+    function calculateUnits() {
+      try {
+        const rawValue = inputValueInput.value;
+
+        if (rawValue.trim() === "") {
+          outputValueEl.textContent = "0";
+          summarySentenceEl.textContent = "Please enter a value to convert.";
+          displayOriginalValEl.textContent = "0";
+          updateWarning("Please enter a numeric value.");
+          generateMatrix(0, fromUnitSelect.value);
+          latestResultText = "No valid conversion result yet.";
+          return;
+        }
+
+        updateWarning("");
+
+        const value = sanitizeInput(rawValue);
+        const fromUnit = fromUnitSelect.value;
+        const toUnit = toUnitSelect.value;
+        const result = executeConversion(value, fromUnit, toUnit, currentCategory);
+        const fromName = conversionData[currentCategory].units[fromUnit].name;
+        const toName = conversionData[currentCategory].units[toUnit].name;
+
+        outputValueEl.textContent = formatNumber(result) + " " + toUnit;
+        displayOriginalValEl.textContent = formatNumber(value) + " " + fromUnit;
+        displayCategoryEl.textContent = conversionData[currentCategory].label;
+
+        summarySentenceEl.textContent =
+          formatNumber(value) + " " + fromName + " is approximately equal to " + formatNumber(result) + " " + toName + ".";
+
+        latestResultText =
+          "Unit Converter Result\n\n" +
+          "Category: " + conversionData[currentCategory].label + "\n" +
+          "Original value: " + formatNumber(value) + " " + fromName + "\n" +
+          "Converted value: " + formatNumber(result) + " " + toName + "\n\n" +
+          "Generated with NodnWebTools Unit Converter.";
+
+        generateMatrix(value, fromUnit);
+      } catch (error) {
+        updateWarning("Something went wrong while converting. Please check the selected units and try again.");
+      }
+    }
+
+    function generateMatrix(baseValue, baseUnit) {
+      quickMatrixListEl.innerHTML = "";
+      const data = conversionData[currentCategory];
+
+      data.matrixUnits.forEach(function(unitKey) {
+        const convertedValue = executeConversion(baseValue, baseUnit, unitKey, currentCategory);
+        const row = document.createElement("div");
+        row.className = "flex flex-col gap-1 rounded-xl border border-slate-200 bg-slate-50 px-3 py-3 text-sm sm:flex-row sm:items-center sm:justify-between";
+        row.innerHTML =
+          '<span class="text-slate-500">In ' + data.units[unitKey].name + '</span>' +
+          '<strong class="safe-break text-slate-950">' + formatNumber(convertedValue) + ' <span class="text-indigo-700">' + unitKey + '</span></strong>';
+        quickMatrixListEl.appendChild(row);
+      });
     }
 
     function switchCategory(category) {
       currentCategory = category;
-      
-      const tabs = ['length', 'weight', 'volume', 'temperature'];
-      tabs.forEach(t => {
-        const btn = document.getElementById(`tab-${t}`);
-        if (btn) {
-          if (t === category) {
-            btn.className = "flex-none sm:flex-1 min-w-[74px] sm:min-w-[85px] py-2.5 px-2 sm:px-3 rounded-xl text-xs font-bold tracking-wider uppercase transition-all duration-200 flex items-center justify-center space-x-1 bg-white text-brand-700 shadow-sm border border-slate-200/50";
-          } else {
-            btn.className = "flex-none sm:flex-1 min-w-[74px] sm:min-w-[85px] py-2.5 px-2 sm:px-3 rounded-xl text-xs font-bold tracking-wider uppercase transition-all duration-200 flex items-center justify-center space-x-1 text-slate-500 hover:text-slate-800";
-          }
-        }
-      });
-
-      if (displayCategoryEl) displayCategoryEl.textContent = category;
+      renderTabs();
       populateDropdowns(category);
       calculateUnits();
     }
 
-    function populateDropdowns(category) {
-      if (!fromUnitSelect || !toUnitSelect) return;
-
-      const catData = conversionData[category];
-      fromUnitSelect.innerHTML = '';
-      toUnitSelect.innerHTML = '';
-
-      Object.keys(catData.units).forEach(key => {
-        const optFrom = document.createElement('option');
-        optFrom.value = key;
-        optFrom.textContent = catData.units[key].name;
-        if(key === catData.defaultFrom) optFrom.selected = true;
-        fromUnitSelect.appendChild(optFrom);
-
-        const optTo = document.createElement('option');
-        optTo.value = key;
-        optTo.textContent = catData.units[key].name;
-        if(key === catData.defaultTo) optTo.selected = true;
-        toUnitSelect.appendChild(optTo);
-      });
-    }
-
-    function executeConversionLogic(value, from, to, category) {
-      if (from === to) return value;
-
-      if (category === 'temperature') {
-        if (from === 'C' && to === 'F') return (value * 9/5) + 32;
-        if (from === 'F' && to === 'C') return (value - 32) * 5/9;
-        return value;
-      } else {
-        const baseData = conversionData[category].units;
-        if (!baseData[from] || !baseData[to]) return value;
-        const valueInBase = value * baseData[from].factor;
-        return valueInBase / baseData[to].factor;
-      }
-    }
-
-    function calculateUnits() {
-      if (!inputValueInput || !fromUnitSelect || !toUnitSelect) return;
-
-      const rawValue = inputValueInput.value;
-      if (rawValue === '') {
-        outputValueEl.textContent = "0";
-        summarySentenceEl.textContent = "Please enter a value.";
-        displayOriginalValEl.textContent = "0";
-        generateMatrix(0, fromUnitSelect.value);
-        return;
-      }
-
-      const value = sanitizeInput(rawValue);
-      const fromUnit = fromUnitSelect.value;
-      const toUnit = toUnitSelect.value;
-
-      const result = executeConversionLogic(value, fromUnit, toUnit, currentCategory);
-      
-      outputValueEl.textContent = formatNumber(result);
-      displayOriginalValEl.textContent = formatNumber(value) + " " + fromUnit;
-      
-      const fromName = conversionData[currentCategory].units[fromUnit].name.split(' (')[0];
-      const toName = conversionData[currentCategory].units[toUnit].name.split(' (')[0];
-      summarySentenceEl.textContent = `${formatNumber(value)} ${fromUnit} (${fromName}) is approximately equal to ${formatNumber(result)} ${toUnit} (${toName}).`;
-
-      generateMatrix(value, fromUnit);
-    }
-
-    function generateMatrix(baseVal, baseUnit) {
-      if (!quickMatrixListEl) return;
-      quickMatrixListEl.innerHTML = '';
-      const catData = conversionData[currentCategory];
-
-      catData.matrixUnits.forEach(unitKey => {
-        let convertedValue = executeConversionLogic(baseVal, baseUnit, unitKey, currentCategory);
-        
-        const elementRow = document.createElement('div');
-        elementRow.className = "flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between bg-slate-50 px-3 py-2.5 rounded-xl border border-slate-200/50 text-xs font-medium overflow-hidden";
-        
-        elementRow.innerHTML = `
-          <span class="text-slate-500 font-normal">In ${catData.units[unitKey].name.split(' (')[0]}</span>
-          <span class="break-all text-slate-900 font-bold tracking-tight">${formatNumber(convertedValue)} <span class="text-brand-600 font-semibold">${unitKey}</span></span>
-        `;
-        quickMatrixListEl.appendChild(elementRow);
-      });
-    }
-
     function swapUnits() {
-      if (!fromUnitSelect || !toUnitSelect) return;
-      const temp = fromUnitSelect.value;
+      const originalFrom = fromUnitSelect.value;
       fromUnitSelect.value = toUnitSelect.value;
-      toUnitSelect.value = temp;
+      toUnitSelect.value = originalFrom;
       calculateUnits();
     }
 
-    // HTML 엘리먼트 로드가 완벽히 끝난 시점에 이벤트를 바인딩하도록 강제 안전 조치
-    document.addEventListener("DOMContentLoaded", () => {
-      inputValueInput = document.getElementById("inputValue");
-      fromUnitSelect = document.getElementById("fromUnit");
-      toUnitSelect = document.getElementById("toUnit");
-      outputValueEl = document.getElementById("outputValue");
-      summarySentenceEl = document.getElementById("summarySentence");
-      displayOriginalValEl = document.getElementById("displayOriginalVal");
-      displayCategoryEl = document.getElementById("displayCategory");
-      quickMatrixListEl = document.getElementById("quick-matrix-list");
+    async function copyResult() {
+      try {
+        await navigator.clipboard.writeText(latestResultText || "No result available.");
+        copyFeedback.classList.remove("hidden");
+        setTimeout(function() {
+          copyFeedback.classList.add("hidden");
+        }, 1600);
+      } catch (error) {
+        updateWarning("Copy failed. Your browser may not allow clipboard access.");
+      }
+    }
 
-      inputValueInput.addEventListener("input", calculateUnits);
-      fromUnitSelect.addEventListener("change", calculateUnits);
-      toUnitSelect.addEventListener("change", calculateUnits);
+    function downloadResult() {
+      try {
+        const blob = new Blob([latestResultText || "No result available."], { type: "text/plain;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "unit-converter-result.txt";
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        URL.revokeObjectURL(url);
+      } catch (error) {
+        updateWarning("Download failed. Please try again.");
+      }
+    }
 
-      // DOM 로드가 완료된 후에 초기 카테고리를 설정 및 연산 구동
-      switchCategory('length');
+    function resetTool() {
+      currentCategory = "length";
+      inputValueInput.value = "1";
+      renderTabs();
+      populateDropdowns(currentCategory);
+      calculateUnits();
+    }
+
+    inputValueInput.addEventListener("input", calculateUnits);
+    fromUnitSelect.addEventListener("change", calculateUnits);
+    toUnitSelect.addEventListener("change", calculateUnits);
+    swapBtn.addEventListener("click", swapUnits);
+    copyBtn.addEventListener("click", copyResult);
+    downloadBtn.addEventListener("click", downloadResult);
+    resetBtn.addEventListener("click", resetTool);
+    window.addEventListener("resize", calculateUnits);
+
+    exampleButtons.forEach(function(button) {
+      button.addEventListener("click", function() {
+        currentCategory = button.dataset.exampleCategory || "length";
+        inputValueInput.value = button.dataset.exampleValue || "1";
+        renderTabs();
+        populateDropdowns(currentCategory);
+        fromUnitSelect.value = button.dataset.exampleFrom || conversionData[currentCategory].defaultFrom;
+        toUnitSelect.value = button.dataset.exampleTo || conversionData[currentCategory].defaultTo;
+        calculateUnits();
+      });
     });
-  </script>
 
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+    renderTabs();
+    populateDropdowns(currentCategory);
+    calculateUnits();
+  </script>
 </body>
 </html>
