@@ -1,0 +1,66 @@
+name: Submit changed pages and sitemap to IndexNow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  indexnow:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Collect changed HTML URLs
+        run: |
+          SITE="https://nodntools.com"
+
+          git diff --name-only HEAD~1 HEAD \
+            | grep '\.html$' \
+            | grep -v '^node_modules/' \
+            | grep -v '^.git/' \
+            | sed 's#index.html$##' \
+            | sed "s#^#$SITE/#" \
+            | sed 's#/$##' \
+            | jq -R -s -c 'split("\n") | map(select(length > 0))' \
+            > urls.json || echo "[]" > urls.json
+
+          cat urls.json
+
+      - name: Submit changed URLs to IndexNow
+        run: |
+          KEY="2b4ea57331b5432e8c8ca4d95ae24336"
+          HOST="nodntools.com"
+          KEY_LOCATION="https://nodntools.com/2b4ea57331b5432e8c8ca4d95ae24336.txt"
+
+          URLS=$(cat urls.json)
+
+          if [ "$URLS" = "[]" ]; then
+            echo "No changed HTML pages to submit."
+          else
+            jq -n \
+              --arg host "$HOST" \
+              --arg key "$KEY" \
+              --arg keyLocation "$KEY_LOCATION" \
+              --argjson urlList "$URLS" \
+              '{
+                host: $host,
+                key: $key,
+                keyLocation: $keyLocation,
+                urlList: $urlList
+              }' > payload.json
+
+            cat payload.json
+
+            curl -X POST "https://api.indexnow.org/IndexNow" \
+              -H "Content-Type: application/json; charset=utf-8" \
+              --data @payload.json
+          fi
+
+      - name: Ping Bing Sitemap
+        run: |
+          curl "https://www.bing.com/ping?sitemap=https://nodntools.com/sitemap.xml" || true
