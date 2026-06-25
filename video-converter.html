@@ -4,17 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
 
-  <title>Free Video Converter | Browser-Based WebM and MP4 Tool - NodnWebTools</title>
-  <meta name="description" content="Convert browser-readable video files locally using a client-side video converter. Preview videos, record to WebM, export MP4 when supported by the browser, and download without server uploads." />
-  <meta name="keywords" content="video converter, online video converter, browser video converter, WebM converter, MP4 converter, video format changer, client-side video converter, no upload video converter, private video converter, HTML5 video converter, MediaRecorder video converter, NodnWebTools" />
+  <title>Free Video Converter | WebM MP4 Browser Tool</title>
+  <meta name="description" content="Convert playable videos locally to WebM or supported MP4 with a private browser-based video converter." />
+  <meta name="keywords" content="video converter, free video converter, online video converter, browser video converter, WebM converter, MP4 converter, client-side video converter, no upload video converter, private video converter, HTML5 video converter, MediaRecorder video converter, Canvas video converter, convert video to WebM, convert video to MP4, resize video online, remove audio from video, video format changer, local video converter, NodnWebTools" />
   <meta name="robots" content="index, follow" />
   <meta name="author" content="NodnWebTools" />
 
-  <meta property="og:title" content="Free Video Converter | NodnWebTools" />
-  <meta property="og:description" content="Convert playable video files locally in your browser using a stable client-side recording engine without FFmpeg WebAssembly." />
+  <meta property="og:title" content="Free Video Converter | WebM MP4 Browser Tool" />
+  <meta property="og:description" content="Convert playable video files locally in your browser to WebM or supported MP4 without intentional server uploads." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://nodntools.com/video-converter.html" />
   <meta property="og:site_name" content="NodnWebTools" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Free Video Converter" />
+  <meta name="twitter:description" content="Private browser-based video conversion for WebM and supported MP4 output." />
 
   <meta name="google-adsense-account" content="ca-pub-5282672325821404">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404" crossorigin="anonymous"></script>
@@ -25,17 +29,18 @@
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": "Video Converter",
+    "name": "Free Video Converter",
     "applicationCategory": "MultimediaApplication",
     "operatingSystem": "Any",
     "url": "https://nodntools.com/video-converter.html",
-    "description": "A browser-based video converter that uses MediaRecorder and Canvas to convert playable local videos without intentional server uploads.",
+    "description": "A browser-based video converter that uses HTML5 Video, Canvas, MediaStream, and MediaRecorder to convert playable local videos without intentional server uploads.",
     "featureList": [
       "Client-side video preview",
       "Convert playable videos to WebM",
       "Export MP4 when supported by the browser",
       "Resolution control",
       "Frame rate control",
+      "Audio removal option",
       "Local download without backend upload"
     ],
     "offers": {
@@ -52,16 +57,13 @@
   </script>
 
   <style>
-    html,
-    body {
+    html, body {
       width: 100%;
       max-width: 100%;
       overflow-x: hidden;
     }
 
-    *,
-    *::before,
-    *::after {
+    *, *::before, *::after {
       box-sizing: border-box;
       min-width: 0;
     }
@@ -71,22 +73,11 @@
       text-rendering: optimizeLegibility;
     }
 
-    input,
-    select,
-    button,
-    textarea {
+    input, select, button, textarea {
       max-width: 100%;
     }
 
-    img,
-    canvas,
-    svg,
-    video,
-    iframe,
-    table,
-    pre,
-    code,
-    ins {
+    img, canvas, svg, video, iframe, table, pre, code, ins {
       max-width: 100%;
     }
 
@@ -248,9 +239,9 @@
       <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:col-span-5 lg:p-8">
         <div class="mb-6">
           <p class="mb-3 inline-flex rounded-full bg-indigo-50 px-4 py-2 text-sm font-bold text-indigo-700">Video Converter</p>
-          <h1 class="text-4xl font-black tracking-tight text-slate-950 sm:text-5xl">Convert playable videos without FFmpeg errors.</h1>
+          <h1 class="text-4xl font-black tracking-tight text-slate-950 sm:text-5xl">Convert playable videos without server uploads.</h1>
           <p class="mt-4 text-base leading-7 text-slate-600">
-            Convert browser-playable videos locally using HTML5 Video, Canvas, and MediaRecorder. This version avoids heavy FFmpeg WebAssembly loading problems and focuses on reliable WebM export, with MP4 export only when your browser supports it.
+            Convert browser-playable videos locally using HTML5 Video, Canvas, and MediaRecorder. This tool focuses on reliable WebM export and supported MP4 output without requiring a backend upload or heavy FFmpeg WebAssembly loading.
           </p>
         </div>
 
@@ -315,7 +306,7 @@
             <input id="muteOutput" type="checkbox" class="mt-1 h-4 w-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500" />
             <div>
               <label for="muteOutput" class="block text-sm font-black text-slate-800">Remove audio from output</label>
-              <p class="mt-1 text-sm leading-6 text-slate-500">Enable this when you only need a silent video preview or animation.</p>
+              <p class="mt-1 text-sm leading-6 text-slate-500">Enable this when you only need a silent video preview, animation, or website background clip.</p>
             </div>
           </div>
         </div>
@@ -328,7 +319,7 @@
         </div>
 
         <div class="mt-5 rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm leading-6 text-amber-900">
-          <strong>Important:</strong> this stable version records the video as it plays, so conversion takes about the same time as the video length. For long videos, use a desktop browser and keep this tab open.
+          <strong>Important:</strong> this stable browser version records the video as it plays, so conversion usually takes about the same time as the video length. For long videos, use a desktop browser and keep this tab open.
         </div>
       </section>
 
@@ -410,16 +401,22 @@
     <section class="mx-auto mt-8 w-full max-w-7xl space-y-6">
       <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
         <p class="mb-3 inline-flex rounded-full bg-violet-50 px-4 py-2 text-sm font-bold text-violet-700">Video conversion guide</p>
-        <h2 class="text-3xl font-black tracking-tight text-slate-950">A more stable online video converter for browser-playable files</h2>
+        <h2 class="text-3xl font-black tracking-tight text-slate-950">Free Online Video Converter for WebM, Supported MP4, Local Browser Conversion, and Private Video Processing</h2>
         <div class="mt-5 space-y-5 text-base leading-8 text-slate-600">
           <p>
-            The NodnWebTools Video Converter is a free online video converter designed for users who want a simple, private, browser-based way to change video format without intentionally uploading media to a server. Instead of using a heavy FFmpeg WebAssembly engine that can fail because of memory limits, CDN loading, or security headers, this version uses standard browser features: HTML5 Video, Canvas, MediaStream, and MediaRecorder.
+            A video converter is one of the most useful tools for anyone who works with website media, social media clips, tutorials, classroom projects, product demos, online portfolios, marketing pages, or short personal recordings. Different platforms and browsers support different video formats, and the format that works well in one place may not be ideal for another. A video file may need to be converted to WebM for a modern website, prepared as an MP4 for broader compatibility, resized for faster loading, recorded without audio for a silent background loop, or compressed through lower resolution and bitrate settings for easier sharing.
           </p>
           <p>
-            This approach is especially useful for short clips, product previews, website videos, social media drafts, tutorial samples, personal recordings, and web-ready media preparation. The tool works best with files that already play in your browser, especially MP4 and WebM. MOV files may work in some browsers depending on the codec, while AVI and MKV are often not browser-decodable and may require desktop software.
+            The NodnWebTools Video Converter is designed as a browser-based video converter that works fully on the client side. Instead of sending the selected video to a remote conversion server, the tool uses browser-native technologies such as HTML5 Video, Canvas, MediaStream, and MediaRecorder. This approach is especially useful for people who want a simple no-upload video converter for browser-playable files. When a video can be previewed by your browser, this tool can record that playback into a new output file using the selected settings.
           </p>
           <p>
-            Because the conversion is performed through real-time recording, the conversion duration is usually close to the source video duration. This tradeoff makes the tool more reliable for browser-based use, but it is not intended to replace professional video transcoding software for large files, batch conversion, advanced codec control, or production mastering.
+            Many online video converters rely on server-side uploads. That can be convenient, but it also means the file must leave your device. For personal videos, client previews, unpublished product clips, private drafts, family recordings, classroom assignments, or internal business content, local processing can be more comfortable. This page is designed to avoid intentional backend uploads. The selected file is loaded into your browser, previewed locally, processed locally, and downloaded from a temporary browser-generated file URL.
+          </p>
+          <p>
+            This converter focuses on stability. Some browser video tools use FFmpeg WebAssembly to perform deeper transcoding, but FFmpeg WebAssembly can create practical problems for ordinary users. It may require large script downloads, heavy memory use, SharedArrayBuffer support, strict security headers, browser compatibility workarounds, and enough CPU power to process large media files. When one of those requirements fails, users may see errors such as “FFmpeg is not ready,” failed module loading, blocked WebAssembly, memory exhaustion, or conversion failure. This version avoids those heavy dependencies and uses built-in browser recording features instead.
+          </p>
+          <p>
+            The tradeoff is that conversion usually happens in real time. The tool records the video as it plays through a hidden processing element and canvas stream, so a one-minute video generally takes about one minute to convert. This is slower than a powerful desktop transcoder, but it is easier to keep stable inside a single static HTML page. For short clips, social previews, website demos, product videos, silent loops, and basic format changes, this approach is practical and easy to use.
           </p>
         </div>
       </article>
@@ -427,48 +424,86 @@
       <div class="ad-box">AdSense Responsive Ad Area - Middle Content</div>
 
       <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
-        <h2 class="text-3xl font-black tracking-tight text-slate-950">How to use this browser video converter</h2>
-        <div class="mt-6 grid grid-cols-1 gap-4 md:grid-cols-3">
-          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
-            <h3 class="text-lg font-black text-slate-950">1. Upload a playable video</h3>
-            <p class="mt-2 text-sm leading-6 text-slate-600">Click the upload area or drag and drop a video file. For best results, start with MP4 or WebM files that your browser can preview successfully.</p>
-          </div>
-          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
-            <h3 class="text-lg font-black text-slate-950">2. Choose output settings</h3>
-            <p class="mt-2 text-sm leading-6 text-slate-600">Select WebM for the most reliable browser export. Choose MP4 only when your browser reports that MP4 recording is supported.</p>
-          </div>
-          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
-            <h3 class="text-lg font-black text-slate-950">3. Convert and download</h3>
-            <p class="mt-2 text-sm leading-6 text-slate-600">Click Convert Video and keep the tab open. The tool records the video locally and activates the download button after completion.</p>
-          </div>
+        <h2 class="text-3xl font-black tracking-tight text-slate-950">How This Browser Video Converter Works</h2>
+        <div class="mt-5 space-y-5 text-base leading-8 text-slate-600">
+          <p>
+            This tool starts by loading the video into a standard HTML5 video element. If the browser can decode the file, the preview appears in the output panel. The page reads basic metadata such as file name, original file size, duration, video width, and video height. When you click the convert button, the tool creates a canvas, draws the video frames into that canvas, captures the canvas as a video stream, optionally captures audio when supported, and records the resulting stream with MediaRecorder.
+          </p>
+          <p>
+            The output format depends on browser support. WebM is usually the most reliable choice for browser recording, especially in Chromium-based browsers. MP4 is widely used as a video container, but MediaRecorder MP4 support varies by browser. This is why the tool checks support before conversion. If MP4 recording is unavailable, the page shows a clear warning and recommends WebM instead of failing silently.
+          </p>
+          <p>
+            The quality mode changes the video bitrate used by the recorder. Smaller file mode uses a lower bitrate, balanced mode uses a moderate bitrate, and higher quality mode uses a larger bitrate. Resolution settings can keep the source size or limit output to a maximum height such as 1080p, 720p, or 480p. Lowering resolution can reduce file size, memory use, and processing load. Frame rate settings let you choose 24 fps, 30 fps, or 60 fps. For most web previews, 30 fps is a good balance.
+          </p>
+          <p>
+            Audio handling depends on browser support. If the remove audio option is enabled, the tool creates a silent output. This is useful for website background videos, silent product loops, landing page animations, animated thumbnails, and preview clips where sound is not needed. If audio removal is disabled, the tool attempts to capture audio through the browser audio context. Some browsers or source files may restrict audio capture, so the output may be silent if audio capture is unavailable.
+          </p>
         </div>
       </article>
 
       <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
-        <h2 class="text-3xl font-black tracking-tight text-slate-950">Popular uses for a client-side video format converter</h2>
+        <h2 class="text-3xl font-black tracking-tight text-slate-950">How to Use This Online Video Converter</h2>
+        <div class="mt-6 grid grid-cols-1 gap-4 md:grid-cols-3">
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <h3 class="text-lg font-black text-slate-950">1. Upload a playable video</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-600">Click the upload area or drag and drop a video file. MP4 and WebM usually work best because most modern browsers can preview them. MOV may work on some browsers depending on the codec.</p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <h3 class="text-lg font-black text-slate-950">2. Choose output settings</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-600">Select WebM for the most reliable browser export. Choose MP4 only when your browser supports MP4 recording. Adjust quality, resolution, frame rate, and audio settings.</p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <h3 class="text-lg font-black text-slate-950">3. Convert and download</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-600">Click Convert Video and keep the tab open. The tool records the video locally and activates the download button after the output file is ready.</p>
+          </div>
+        </div>
+        <div class="mt-6 space-y-5 text-base leading-8 text-slate-600">
+          <p>
+            For best results, start with short clips. Browser-based video conversion uses your device CPU, memory, and browser media features. A short video is much less likely to fail than a long high-resolution file. If your original file is large, try choosing 720p or 480p and the smaller file quality mode. This can reduce memory pressure and make conversion more predictable.
+          </p>
+          <p>
+            If the preview does not load, the browser probably cannot decode the file. This can happen with AVI, MKV, older MOV files, unusual codecs, high bit-depth video, or files that use audio and video codecs not supported by your current browser. The file may be valid, but browser-native conversion requires browser-native playback. In those cases, a desktop video editor or a server-side transcoder may be required.
+          </p>
+        </div>
+      </article>
+
+      <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
+        <h2 class="text-3xl font-black tracking-tight text-slate-950">Popular Uses for a Client-Side Video Format Converter</h2>
         <div class="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2">
           <div class="rounded-2xl border border-slate-200 p-5">
             <h3 class="text-xl font-black text-slate-950">WebM video export for websites</h3>
             <p class="mt-2 text-sm leading-7 text-slate-600">
-              WebM is a practical format for modern web pages, landing pages, demos, and lightweight browser previews. A WebM converter can help prepare short clips for publishing and testing.
+              WebM is a practical format for modern web pages, landing pages, web demos, and lightweight previews. A WebM converter can help prepare short clips for publishing, testing, and layout review.
             </p>
           </div>
           <div class="rounded-2xl border border-slate-200 p-5">
             <h3 class="text-xl font-black text-slate-950">MP4 compatibility checks</h3>
             <p class="mt-2 text-sm leading-7 text-slate-600">
-              MP4 is widely used, but browser-based MP4 recording is not supported everywhere. This tool checks browser support and shows a warning instead of failing silently.
+              MP4 is widely used, but browser-based MP4 recording is not supported everywhere. This tool checks browser support and shows a warning instead of pretending every browser can export MP4.
             </p>
           </div>
           <div class="rounded-2xl border border-slate-200 p-5">
             <h3 class="text-xl font-black text-slate-950">Silent preview videos</h3>
             <p class="mt-2 text-sm leading-7 text-slate-600">
-              The remove-audio option is helpful when creating silent website loops, background previews, product animations, and simple visual demos.
+              The remove-audio option is helpful when creating silent website loops, product animations, hero section backgrounds, app demo previews, and visual-only social media drafts.
             </p>
           </div>
           <div class="rounded-2xl border border-slate-200 p-5">
             <h3 class="text-xl font-black text-slate-950">Private draft conversion</h3>
             <p class="mt-2 text-sm leading-7 text-slate-600">
-              Since the selected file is handled locally, the tool is convenient for personal drafts, client previews, class projects, and unpublished video clips.
+              Since the selected file is handled locally, the tool is convenient for personal drafts, client previews, school projects, unpublished clips, and internal review videos.
+            </p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 p-5">
+            <h3 class="text-xl font-black text-slate-950">Video resizing for faster previews</h3>
+            <p class="mt-2 text-sm leading-7 text-slate-600">
+              Reducing output to 720p or 480p can make short preview videos easier to share, test, and upload later to a website or content platform.
+            </p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 p-5">
+            <h3 class="text-xl font-black text-slate-950">Format testing before publishing</h3>
+            <p class="mt-2 text-sm leading-7 text-slate-600">
+              Developers and content creators can test whether WebM or supported MP4 output works well before adding videos to pages, ads, portfolios, or landing pages.
             </p>
           </div>
         </div>
@@ -477,37 +512,51 @@
       <div class="ad-box">AdSense Responsive Ad Area - Bottom Content</div>
 
       <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
-        <h2 class="text-3xl font-black tracking-tight text-slate-950">Video conversion tips for better results</h2>
+        <h2 class="text-3xl font-black tracking-tight text-slate-950">Video Conversion Tips for Better Results</h2>
         <div class="mt-5 space-y-5 text-base leading-8 text-slate-600">
           <p>
-            Use WebM when you want the most reliable output from a browser-based video converter. WebM recording is widely supported in Chromium-based browsers and is often the best choice for web demos, internal previews, and online publishing workflows.
+            Use WebM when you want the most reliable output from a browser-based video converter. WebM recording is widely supported in modern browsers and is often the best choice for web demos, internal previews, online publishing workflows, and static website tools. If your goal is a web-ready file that works well in modern browsers, WebM is often the safest option from a client-side recorder.
           </p>
           <p>
-            Use MP4 only when your browser supports MP4 recording through MediaRecorder. If MP4 is not supported, the tool will explain the limitation clearly. This is a browser limitation, not a server problem.
+            Use MP4 only when your browser supports MP4 recording through MediaRecorder. MP4 is a popular container, but browser recording support is inconsistent. Some browsers can play MP4 but cannot record MP4 through MediaRecorder. That distinction is important. Playback support and recording support are not always the same thing.
           </p>
           <p>
-            For long videos, reduce the resolution to 720p or 480p and choose the smaller file mode. Browser conversion uses local CPU and memory, so smaller output settings can reduce the risk of crashes or slow performance.
+            For long videos, reduce the resolution to 720p or 480p and choose the smaller file mode. Browser conversion uses local CPU and memory, so smaller output settings can reduce the risk of crashes, slow performance, tab freezing, or empty output files. This tool is best for practical short clips rather than multi-gigabyte production footage.
           </p>
           <p>
-            If a video loads but conversion fails, try another source file, a shorter clip, or a modern desktop browser. Files such as AVI or MKV may not play in standard browsers even though they are valid video containers.
+            Keep the browser tab open while converting. Because the conversion happens as the video plays, closing the tab, refreshing the page, putting the device to sleep, or switching to aggressive battery-saving mode may interrupt the recording. On laptops, keep the device plugged in when converting larger clips.
+          </p>
+          <p>
+            If a video loads but conversion fails, try another source file, a shorter clip, WebM output, a lower resolution setting, or a modern desktop browser. Files such as AVI or MKV may not play in standard browsers even though they are valid video containers. A valid video file is not always a browser-playable video file.
+          </p>
+        </div>
+      </article>
+
+      <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
+        <h2 class="text-3xl font-black tracking-tight text-slate-950">WebM vs MP4: Which Format Should You Choose?</h2>
+        <div class="mt-5 space-y-5 text-base leading-8 text-slate-600">
+          <p>
+            WebM is a modern web video format designed for browser delivery. It commonly uses VP8 or VP9 video with Opus audio. It is popular for websites because it can provide good compression and strong browser support in modern environments. For a browser-based video converter that uses MediaRecorder, WebM is often the most dependable output choice.
+          </p>
+          <p>
+            MP4 is one of the most widely recognized video containers. Many devices, apps, and platforms accept MP4, especially when it contains H.264 video and AAC audio. However, browser-based MP4 export is more complicated because MediaRecorder support for MP4 is not universal. A browser may easily play an MP4 file but still be unable to record a new MP4 file. This is why the tool includes MP4 as a supported option only when your browser reports that it can record MP4.
+          </p>
+          <p>
+            If you need maximum compatibility for professional publishing, video editing, client delivery, or social platform uploads, you may still need a desktop transcoder or a dedicated server-side conversion workflow. If you need a fast private browser tool for short web-ready clips, WebM output is usually the best place to start.
           </p>
         </div>
       </article>
 
       <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
-        <h2 class="text-3xl font-black tracking-tight text-slate-950">Frequently asked questions</h2>
+        <h2 class="text-3xl font-black tracking-tight text-slate-950">Frequently Asked Questions</h2>
         <div class="mt-6 space-y-4">
           <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
             <summary class="cursor-pointer font-black text-slate-950">Does this video converter upload my file?</summary>
             <p class="mt-3 text-sm leading-7 text-slate-600">No. This tool is designed to process the selected video locally in your browser. It does not intentionally upload your file to a backend conversion server.</p>
           </details>
           <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
-            <summary class="cursor-pointer font-black text-slate-950">Why did you remove FFmpeg WebAssembly?</summary>
-            <p class="mt-3 text-sm leading-7 text-slate-600">FFmpeg WebAssembly can fail because of CDN loading, browser memory limits, security headers, SharedArrayBuffer restrictions, and large file sizes. This version uses browser-native recording for a more stable single-page tool.</p>
-          </details>
-          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
             <summary class="cursor-pointer font-black text-slate-950">Why does conversion take as long as the video?</summary>
-            <p class="mt-3 text-sm leading-7 text-slate-600">The tool records the video through the browser as it plays into a canvas stream. This is more stable than heavy transcoding, but it usually runs in real time.</p>
+            <p class="mt-3 text-sm leading-7 text-slate-600">The tool records the video through the browser as it plays into a canvas stream. This is more stable than heavy client-side transcoding, but it usually runs in real time.</p>
           </details>
           <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
             <summary class="cursor-pointer font-black text-slate-950">Can this convert AVI or MKV?</summary>
@@ -515,7 +564,15 @@
           </details>
           <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
             <summary class="cursor-pointer font-black text-slate-950">Why is WebM more reliable than MP4?</summary>
-            <p class="mt-3 text-sm leading-7 text-slate-600">Most modern Chromium browsers support WebM recording through MediaRecorder. MP4 recording support varies by browser, so this tool only offers MP4 when the browser supports it.</p>
+            <p class="mt-3 text-sm leading-7 text-slate-600">Most modern browsers support WebM recording through MediaRecorder. MP4 recording support varies by browser, so this tool only offers MP4 when the browser supports it.</p>
+          </details>
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">Can I remove audio from a video?</summary>
+            <p class="mt-3 text-sm leading-7 text-slate-600">Yes. Enable the remove-audio option before converting. This is useful for silent website loops, background videos, product animations, and previews.</p>
+          </details>
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">Is this a replacement for professional video software?</summary>
+            <p class="mt-3 text-sm leading-7 text-slate-600">No. This tool is best for short browser-playable clips and simple output settings. Professional workflows may need dedicated software for advanced codecs, batch conversion, subtitles, color management, and exact bitrate control.</p>
           </details>
         </div>
       </section>
