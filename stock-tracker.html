@@ -4,31 +4,140 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404"
-     crossorigin="anonymous"></script>
+  <title>Global Stock Market Tracker | Live Charts</title>
+  <meta name="description" content="Track global stocks with live TradingView charts, technical analysis, company profiles, and financial widgets." />
+  <meta name="keywords" content="global stock market tracker, stock tracker, live stock chart, stock market dashboard, TradingView stock chart, stock technical analysis, company profile widget, financial overview widget, AAPL stock chart, TSLA stock chart, NVDA stock chart, MSFT stock chart, AMZN stock chart, GOOGL stock chart, META stock chart, Samsung stock chart, Shopify stock chart, global stock search, stock research tool, market chart tool, online stock tracker, free stock dashboard, live market widget, investment research tool, stock price chart, equity research dashboard, stock analysis page, technical indicator widget, company fundamentals, financial statements widget" />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="NodnWebTools" />
 
-	<meta name="google-adsense-account" content="ca-pub-5282672325821404">	
+  <meta property="og:title" content="Global Stock Market Tracker | Live Charts" />
+  <meta property="og:description" content="Track global stocks with live TradingView charts, technical analysis, company profiles, and financial widgets." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://nodntools.com/stock-tracker.html" />
+  <meta property="og:site_name" content="NodnWebTools" />
 
-  <title>Global Stock Market Tracker</title>
-  <meta
-    name="description"
-    content="Free Global Stock Market Tracker powered by TradingView widgets. Search global stocks, view charts, technical analysis, company profile, financial data, and market shortcuts."
-  />
-  <meta
-    name="keywords"
-    content="global stock tracker, stock market tracker, live stock chart, TradingView widget, AAPL stock chart, TSLA stock chart, NVDA stock chart, stock technical analysis, financial overview"
-  />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Global Stock Market Tracker" />
+  <meta name="twitter:description" content="Search global stocks and view live charts, technical signals, company profiles, and financial widgets." />
+
+  <meta name="google-adsense-account" content="ca-pub-5282672325821404">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404" crossorigin="anonymous"></script>
 
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            accent: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              200: '#c7d2fe',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+              800: '#3730a3',
+              900: '#312e81'
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Global Stock Market Tracker",
+    "url": "https://nodntools.com/stock-tracker.html",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any modern web browser",
+    "description": "A browser-based global stock market tracker that embeds TradingView-powered charts, ticker tape, technical analysis, company profile, and financial overview widgets for stock research.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "NodnWebTools",
+      "url": "https://nodntools.com"
+    },
+    "featureList": [
+      "Global stock symbol search",
+      "TradingView advanced chart widget",
+      "Ticker tape market overview",
+      "Technical analysis widget",
+      "Company profile widget",
+      "Financial overview widget",
+      "Large-cap stock shortcuts",
+      "International market symbol support",
+      "Responsive mobile-safe stock dashboard",
+      "Client-side widget loading"
+    ]
+  }
+  </script>
 
   <style>
-    html {
+    html, body {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
       scroll-behavior: smooth;
     }
 
+    *, *::before, *::after {
+      box-sizing: border-box;
+      min-width: 0;
+    }
+
     body {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    main, header, footer, section, article, aside, div, table, canvas, img, svg, video, iframe, pre, code {
+      max-width: 100%;
+    }
+
+    input, button, select, textarea {
+      max-width: 100%;
+      font: inherit;
+    }
+
+    .safe-break {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .mobile-code {
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .mobile-preview {
+      max-width: 100%;
+      overflow-x: auto;
+    }
+
+    .ad-box {
+      width: 100%;
+      max-width: 100%;
+      min-height: 90px;
+      overflow: hidden;
+      border: 1px dashed #cbd5e1;
+      background: #f8fafc;
+      color: #94a3b8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-radius: 1.25rem;
+      padding: 1rem;
     }
 
     .tv-box {
@@ -51,530 +160,738 @@
       max-width: 100% !important;
       border: 0 !important;
       border-radius: 1rem;
+      display: block !important;
+    }
+
+    @media (max-width: 640px) {
+      .mobile-card,
+      .mobile-panel,
+      .mobile-preview {
+        border-radius: 1.25rem !important;
+        padding: 1rem !important;
+      }
+
+      .mobile-button-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      button {
+        width: 100%;
+      }
+
+      .ad-box {
+        min-height: 90px;
+        border-radius: 1rem;
+        padding: .875rem;
+        font-size: .875rem;
+      }
+
+      .tv-box {
+        border-radius: 1rem;
+      }
+
+      h1 {
+        font-size: 2rem !important;
+        line-height: 1.15 !important;
+      }
+
+      h2 {
+        font-size: 1.5rem !important;
+        line-height: 1.25 !important;
+      }
+
+      h3 {
+        font-size: 1.125rem !important;
+      }
+    }
+
+    @media (max-width: 380px) {
+      body {
+        font-size: 14px;
+      }
+
+      .mobile-card,
+      .mobile-panel,
+      .mobile-preview {
+        padding: .875rem !important;
+        border-radius: 1rem !important;
+      }
+
+      .ad-box {
+        min-height: 82px;
+        font-size: .8rem;
+      }
+
+      h1 {
+        font-size: 1.75rem !important;
+      }
     }
   </style>
 </head>
 
-<body class="min-h-screen overflow-x-hidden bg-slate-950 px-3 py-5 text-slate-100 sm:px-4 sm:py-10">
-  <main class="mx-auto w-full max-w-6xl">
-
-    <div class="mb-6 text-center">
-      <a href="https://nodntools.com" class="inline-block transition hover:opacity-80" aria-label="NodnWebTools Home">
-        <div class="text-2xl font-extrabold tracking-tight text-white sm:text-3xl">
-          Nodn<span class="text-cyan-400">WebTools</span>
-        </div>
+<body class="min-h-screen bg-slate-50 text-slate-900">
+  <header class="border-b border-slate-200 bg-white/90 backdrop-blur">
+    <div class="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
+      <a href="https://nodntools.com" class="safe-break text-xl font-extrabold tracking-tight text-slate-950 sm:text-2xl" aria-label="NodnWebTools Home">
+        Nodn<span class="text-accent-600">WebTools</span>
+      </a>
+      <a href="https://nodntools.com" class="rounded-full border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-accent-200 hover:bg-accent-50 hover:text-accent-700">
+        Home
       </a>
     </div>
+  </header>
 
-    <div class="mb-6 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-700 bg-slate-900 text-sm text-slate-500">
-      AdSense Responsive Ad Area - Top
+  <main class="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
+    <div class="ad-box mb-6">
+      Top Ad Area
     </div>
 
-    <section class="w-full overflow-hidden rounded-2xl border border-slate-800 bg-slate-900 shadow-2xl shadow-cyan-950/30 sm:rounded-3xl">
-      <div class="border-b border-slate-800 bg-slate-950/70 px-4 py-5 sm:px-6">
-        <p class="text-xs font-bold uppercase tracking-[0.22em] text-cyan-400">
-          Global Markets
-        </p>
+    <section class="overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-slate-200">
+      <div class="bg-gradient-to-br from-slate-950 via-accent-900 to-indigo-700 px-5 py-8 text-white sm:px-8 sm:py-10">
+        <span class="inline-flex rounded-full bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-[0.16em] text-indigo-100 ring-1 ring-white/15">
+          TradingView-Powered Market Dashboard
+        </span>
 
-        <h1 class="mt-2 text-2xl font-extrabold tracking-tight text-white sm:text-4xl">
+        <h1 class="mt-5 safe-break text-4xl font-black tracking-tight sm:text-5xl">
           Global Stock Market Tracker
         </h1>
 
-        <p class="mt-2 max-w-3xl text-sm leading-6 text-slate-400">
-          Search global stocks and view TradingView-powered charts, symbol info, technical analysis, company profile, and financial data.
+        <p class="mt-4 max-w-3xl text-base leading-8 text-indigo-50/90">
+          Search global stocks and view interactive TradingView-powered charts, technical analysis, company profile information, financial overview widgets, and market ticker shortcuts from one responsive dashboard.
         </p>
       </div>
 
-      <div class="border-b border-slate-800 bg-slate-950 p-2">
+      <div class="border-b border-slate-200 bg-slate-950 p-2">
         <div id="tickerTapeWrap" class="min-h-[46px] w-full overflow-hidden"></div>
       </div>
 
-      <div class="grid w-full min-w-0 gap-5 p-4 sm:p-5 lg:grid-cols-[0.9fr_1.4fr] lg:p-8">
-        <section class="min-w-0 space-y-5">
-          <div class="rounded-2xl border border-slate-800 bg-slate-950 p-4 sm:rounded-3xl sm:p-5">
-            <label for="stockInput" class="mb-3 block text-sm font-bold text-slate-200">
+      <div class="grid w-full grid-cols-1 gap-6 p-4 sm:p-5 lg:grid-cols-[0.9fr_1.4fr] lg:p-8">
+        <aside class="mobile-card space-y-5 rounded-3xl bg-slate-50 p-5 ring-1 ring-slate-200">
+          <div>
+            <label for="stockInput" class="mb-3 block text-sm font-black text-slate-700">
               Search Stock Symbol
             </label>
 
-            <div class="flex flex-col gap-2 sm:flex-row">
+            <div class="grid grid-cols-1 gap-3 sm:grid-cols-[1fr_auto]">
               <input
                 id="stockInput"
                 type="text"
                 value="NASDAQ:AAPL"
                 placeholder="AAPL, TSLA, NVDA, KRX:005930..."
-                class="w-full min-w-0 rounded-2xl border border-slate-700 bg-slate-900 px-4 py-4 text-base font-bold uppercase text-white outline-none transition placeholder:text-slate-600 focus:border-cyan-400 focus:ring-4 focus:ring-cyan-400/10 sm:text-lg"
+                class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-4 text-base font-black uppercase text-slate-950 outline-none transition placeholder:text-slate-400 focus:border-accent-400 focus:ring-4 focus:ring-accent-100"
               />
 
               <button
                 id="searchBtn"
-                class="w-full rounded-2xl bg-cyan-500 px-5 py-4 text-sm font-extrabold text-slate-950 shadow-lg shadow-cyan-500/20 transition hover:bg-cyan-400 active:scale-[0.98] sm:w-auto"
+                type="button"
+                class="rounded-2xl bg-accent-600 px-5 py-4 text-sm font-black text-white shadow-sm transition hover:bg-accent-700 active:scale-[0.98]"
               >
                 Search
               </button>
             </div>
 
             <p class="mt-3 text-xs leading-5 text-slate-500">
-              Examples: AAPL, TSLA, NVDA, MSFT, AMZN, GOOGL, META, NASDAQ:AAPL, NYSE:BRK.B, TSX:SHOP, KRX:005930
+              Examples: AAPL, TSLA, NVDA, MSFT, AMZN, GOOGL, META, NASDAQ:AAPL, NYSE:BRK.B, TSX:SHOP, KRX:005930.
             </p>
+          </div>
 
-            <div class="mt-5">
-              <div class="flex items-center justify-between gap-3">
-                <p class="text-xs font-bold uppercase tracking-wide text-slate-400">
-                  Large Cap Shortcuts
-                </p>
+          <div>
+            <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <p class="text-xs font-black uppercase tracking-wide text-slate-500">
+                Large Cap Shortcuts
+              </p>
 
-                <span id="selectedSymbolLabel" class="rounded-full bg-slate-900 px-3 py-1 text-[11px] font-bold text-cyan-300 ring-1 ring-slate-800">
-                  NASDAQ:AAPL
-                </span>
-              </div>
+              <span id="selectedSymbolLabel" class="safe-break w-fit rounded-full bg-accent-50 px-3 py-1 text-xs font-black text-accent-700 ring-1 ring-accent-100">
+                NASDAQ:AAPL
+              </span>
+            </div>
 
-              <div class="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-3">
-                <button data-symbol="NASDAQ:NVDA" class="shortcutBtn min-w-0 rounded-2xl bg-slate-900 px-3 py-3 text-left ring-1 ring-slate-800 transition hover:bg-slate-800 active:scale-[0.98]">
-                  <span class="block truncate text-sm font-extrabold text-white">NVDA</span>
-                  <span class="mt-1 block truncate text-[11px] text-slate-500">NVIDIA</span>
-                </button>
+            <div class="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-3">
+              <button data-symbol="NASDAQ:NVDA" type="button" class="shortcutBtn rounded-2xl bg-white px-3 py-3 text-left shadow-sm ring-1 ring-slate-200 transition hover:bg-accent-50 hover:ring-accent-100 active:scale-[0.98]">
+                <span class="block truncate text-sm font-black text-slate-950">NVDA</span>
+                <span class="mt-1 block truncate text-xs text-slate-500">NVIDIA</span>
+              </button>
 
-                <button data-symbol="NASDAQ:MSFT" class="shortcutBtn min-w-0 rounded-2xl bg-slate-900 px-3 py-3 text-left ring-1 ring-slate-800 transition hover:bg-slate-800 active:scale-[0.98]">
-                  <span class="block truncate text-sm font-extrabold text-white">MSFT</span>
-                  <span class="mt-1 block truncate text-[11px] text-slate-500">Microsoft</span>
-                </button>
+              <button data-symbol="NASDAQ:MSFT" type="button" class="shortcutBtn rounded-2xl bg-white px-3 py-3 text-left shadow-sm ring-1 ring-slate-200 transition hover:bg-accent-50 hover:ring-accent-100 active:scale-[0.98]">
+                <span class="block truncate text-sm font-black text-slate-950">MSFT</span>
+                <span class="mt-1 block truncate text-xs text-slate-500">Microsoft</span>
+              </button>
 
-                <button data-symbol="NASDAQ:AAPL" class="shortcutBtn min-w-0 rounded-2xl bg-slate-900 px-3 py-3 text-left ring-1 ring-slate-800 transition hover:bg-slate-800 active:scale-[0.98]">
-                  <span class="block truncate text-sm font-extrabold text-white">AAPL</span>
-                  <span class="mt-1 block truncate text-[11px] text-slate-500">Apple</span>
-                </button>
+              <button data-symbol="NASDAQ:AAPL" type="button" class="shortcutBtn rounded-2xl bg-white px-3 py-3 text-left shadow-sm ring-1 ring-slate-200 transition hover:bg-accent-50 hover:ring-accent-100 active:scale-[0.98]">
+                <span class="block truncate text-sm font-black text-slate-950">AAPL</span>
+                <span class="mt-1 block truncate text-xs text-slate-500">Apple</span>
+              </button>
 
-                <button data-symbol="NASDAQ:AMZN" class="shortcutBtn min-w-0 rounded-2xl bg-slate-900 px-3 py-3 text-left ring-1 ring-slate-800 transition hover:bg-slate-800 active:scale-[0.98]">
-                  <span class="block truncate text-sm font-extrabold text-white">AMZN</span>
-                  <span class="mt-1 block truncate text-[11px] text-slate-500">Amazon</span>
-                </button>
+              <button data-symbol="NASDAQ:AMZN" type="button" class="shortcutBtn rounded-2xl bg-white px-3 py-3 text-left shadow-sm ring-1 ring-slate-200 transition hover:bg-accent-50 hover:ring-accent-100 active:scale-[0.98]">
+                <span class="block truncate text-sm font-black text-slate-950">AMZN</span>
+                <span class="mt-1 block truncate text-xs text-slate-500">Amazon</span>
+              </button>
 
-                <button data-symbol="NASDAQ:GOOGL" class="shortcutBtn min-w-0 rounded-2xl bg-slate-900 px-3 py-3 text-left ring-1 ring-slate-800 transition hover:bg-slate-800 active:scale-[0.98]">
-                  <span class="block truncate text-sm font-extrabold text-white">GOOGL</span>
-                  <span class="mt-1 block truncate text-[11px] text-slate-500">Alphabet</span>
-                </button>
+              <button data-symbol="NASDAQ:GOOGL" type="button" class="shortcutBtn rounded-2xl bg-white px-3 py-3 text-left shadow-sm ring-1 ring-slate-200 transition hover:bg-accent-50 hover:ring-accent-100 active:scale-[0.98]">
+                <span class="block truncate text-sm font-black text-slate-950">GOOGL</span>
+                <span class="mt-1 block truncate text-xs text-slate-500">Alphabet</span>
+              </button>
 
-                <button data-symbol="NASDAQ:META" class="shortcutBtn min-w-0 rounded-2xl bg-slate-900 px-3 py-3 text-left ring-1 ring-slate-800 transition hover:bg-slate-800 active:scale-[0.98]">
-                  <span class="block truncate text-sm font-extrabold text-white">META</span>
-                  <span class="mt-1 block truncate text-[11px] text-slate-500">Meta</span>
-                </button>
-              </div>
+              <button data-symbol="NASDAQ:META" type="button" class="shortcutBtn rounded-2xl bg-white px-3 py-3 text-left shadow-sm ring-1 ring-slate-200 transition hover:bg-accent-50 hover:ring-accent-100 active:scale-[0.98]">
+                <span class="block truncate text-sm font-black text-slate-950">META</span>
+                <span class="mt-1 block truncate text-xs text-slate-500">Meta</span>
+              </button>
             </div>
           </div>
 
-          <div class="rounded-2xl border border-slate-800 bg-slate-950 p-4 sm:rounded-3xl sm:p-5">
-            <h2 class="text-sm font-bold uppercase tracking-wide text-slate-400">
+          <div class="rounded-3xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
+            <h2 class="text-sm font-black uppercase tracking-wide text-slate-500">
               Other Markets
             </h2>
 
             <div class="mt-4 grid gap-2">
-              <button data-symbol="NYSE:BRK.B" class="shortcutBtn flex items-center justify-between gap-3 rounded-2xl bg-slate-900 px-4 py-3 text-sm font-bold text-slate-200 ring-1 ring-slate-800 transition hover:bg-slate-800">
+              <button data-symbol="NYSE:BRK.B" type="button" class="shortcutBtn flex items-center justify-between gap-3 rounded-2xl bg-slate-50 px-4 py-3 text-sm font-bold text-slate-700 ring-1 ring-slate-200 transition hover:bg-accent-50 hover:text-accent-700">
                 <span>Berkshire Hathaway</span>
-                <span class="shrink-0 text-xs text-slate-500">NYSE:BRK.B</span>
+                <span class="shrink-0 text-xs text-slate-400">NYSE:BRK.B</span>
               </button>
 
-              <button data-symbol="TSX:SHOP" class="shortcutBtn flex items-center justify-between gap-3 rounded-2xl bg-slate-900 px-4 py-3 text-sm font-bold text-slate-200 ring-1 ring-slate-800 transition hover:bg-slate-800">
+              <button data-symbol="TSX:SHOP" type="button" class="shortcutBtn flex items-center justify-between gap-3 rounded-2xl bg-slate-50 px-4 py-3 text-sm font-bold text-slate-700 ring-1 ring-slate-200 transition hover:bg-accent-50 hover:text-accent-700">
                 <span>Shopify</span>
-                <span class="shrink-0 text-xs text-slate-500">TSX:SHOP</span>
+                <span class="shrink-0 text-xs text-slate-400">TSX:SHOP</span>
               </button>
 
-              <button data-symbol="KRX:005930" class="shortcutBtn flex items-center justify-between gap-3 rounded-2xl bg-slate-900 px-4 py-3 text-sm font-bold text-slate-200 ring-1 ring-slate-800 transition hover:bg-slate-800">
+              <button data-symbol="KRX:005930" type="button" class="shortcutBtn flex items-center justify-between gap-3 rounded-2xl bg-slate-50 px-4 py-3 text-sm font-bold text-slate-700 ring-1 ring-slate-200 transition hover:bg-accent-50 hover:text-accent-700">
                 <span>Samsung Electronics</span>
-                <span class="shrink-0 text-xs text-slate-500">KRX:005930</span>
+                <span class="shrink-0 text-xs text-slate-400">KRX:005930</span>
               </button>
             </div>
           </div>
 
-          <div class="rounded-2xl border border-slate-800 bg-slate-950 p-4 sm:rounded-3xl sm:p-5">
-            <h2 class="text-sm font-bold uppercase tracking-wide text-slate-400">
+          <div class="rounded-3xl border border-amber-200 bg-amber-50 p-5">
+            <h2 class="text-sm font-black uppercase tracking-wide text-amber-800">
               Widget Notice
             </h2>
 
-            <p class="mt-3 text-xs leading-5 text-slate-400">
-              Some TradingView widgets may not support every exchange symbol. If Company Profile or Financial Data is unavailable for a specific market, try a major US-listed ticker such as NASDAQ:AAPL, NASDAQ:MSFT, or NASDAQ:NVDA.
+            <p class="mt-3 text-sm leading-6 text-amber-800">
+              Some TradingView widgets may not support every exchange symbol. If company profile or financial data is unavailable, try a major U.S. ticker such as NASDAQ:AAPL, NASDAQ:MSFT, or NASDAQ:NVDA.
             </p>
           </div>
-        </section>
+        </aside>
 
-        <section class="min-w-0 space-y-5">
-          <div class="rounded-2xl border border-slate-800 bg-slate-950 p-4 sm:rounded-3xl sm:p-5">
-            <div class="mb-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-              <div>
-                <p class="text-xs font-bold uppercase tracking-[0.2em] text-cyan-400">
-                  Selected Symbol
-                </p>
+        <section class="mobile-panel rounded-3xl bg-slate-950 p-5 shadow-sm ring-1 ring-slate-800">
+          <div class="mb-4 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+            <div>
+              <p class="text-xs font-black uppercase tracking-[0.2em] text-indigo-300">
+                Selected Symbol
+              </p>
 
-                <h2 id="mainSymbolTitle" class="mt-1 break-all text-3xl font-black tracking-tight text-white sm:text-5xl">
-                  NASDAQ:AAPL
-                </h2>
-              </div>
-
-              <span class="rounded-full bg-emerald-500/10 px-4 py-2 text-xs font-bold text-emerald-300 ring-1 ring-emerald-400/20">
-                TradingView
-              </span>
+              <h2 id="mainSymbolTitle" class="mt-1 safe-break text-3xl font-black tracking-tight text-white sm:text-5xl">
+                NASDAQ:AAPL
+              </h2>
             </div>
 
-            <div id="advancedChartWrap" class="tv-box h-[460px] sm:h-[560px] lg:h-[620px]"></div>
+            <span class="w-fit rounded-full bg-emerald-500/10 px-4 py-2 text-xs font-black text-emerald-300 ring-1 ring-emerald-400/20">
+              TradingView Widgets
+            </span>
           </div>
 
-          <div class="flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-700 bg-slate-900 text-sm text-slate-500">
-            AdSense Responsive Ad Area - Below Chart
+          <div id="advancedChartWrap" class="tv-box h-[460px] sm:h-[560px] lg:h-[620px]"></div>
+
+          <div class="ad-box mt-6 bg-slate-900 text-slate-500">
+            Ad Area Below Chart
           </div>
         </section>
       </div>
     </section>
 
-    <section class="mt-8 grid gap-5 lg:grid-cols-2">
-      <div class="min-w-0 rounded-2xl border border-slate-800 bg-slate-900 p-4 sm:rounded-3xl sm:p-5">
-        <h2 class="mb-4 text-lg font-extrabold text-white">
+    <section class="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-2">
+      <div class="mobile-card rounded-3xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
+        <h2 class="mb-4 text-2xl font-black text-slate-950">
           Technical Analysis
         </h2>
-
         <div id="technicalAnalysisWrap" class="tv-box h-[430px]"></div>
       </div>
 
-      <div class="min-w-0 rounded-2xl border border-slate-800 bg-slate-900 p-4 sm:rounded-3xl sm:p-5">
-        <h2 class="mb-4 text-lg font-extrabold text-white">
+      <div class="mobile-card rounded-3xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
+        <h2 class="mb-4 text-2xl font-black text-slate-950">
           Company Profile
         </h2>
-
         <div id="companyProfileWrap" class="tv-box h-[430px]"></div>
       </div>
     </section>
 
-    <section class="mt-8 rounded-2xl border border-slate-800 bg-slate-900 p-4 sm:rounded-3xl sm:p-5">
-      <h2 class="mb-4 text-lg font-extrabold text-white">
+    <section class="mobile-card mt-8 rounded-3xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
+      <h2 class="mb-4 text-2xl font-black text-slate-950">
         Financial Overview
       </h2>
-
       <div id="financialsWrap" class="tv-box h-[560px]"></div>
     </section>
 
-    <section class="mt-8 rounded-2xl border border-slate-800 bg-slate-900 p-5 text-sm leading-7 text-slate-300 sm:rounded-3xl sm:p-8">
-      <h2 class="mb-4 flex items-center gap-2 text-xl font-extrabold text-white">
-        <span class="h-5 w-1.5 rounded-full bg-cyan-400"></span>
-        Free Global Stock Market Tracker
-      </h2>
+    <div class="ad-box my-8">
+      Ad Area Below Main Tool and Result Section
+    </div>
 
-      <p>
-        This Global Stock Market Tracker helps users search popular global stocks and view an interactive market chart directly in the browser. It is designed for quick stock research, market monitoring, investment education, and financial content websites that need a lightweight stock chart tool without operating a separate market data server.
-      </p>
+    <article class="mobile-card rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-8 lg:p-10">
+      <div class="mx-auto max-w-4xl">
+        <span class="inline-flex rounded-full bg-accent-50 px-4 py-2 text-sm font-bold text-accent-700 ring-1 ring-accent-100">
+          Stock Market Research Guide
+        </span>
 
-      <div class="mt-6 grid gap-5 md:grid-cols-2">
-        <div class="rounded-2xl bg-slate-950 p-5 ring-1 ring-slate-800">
-          <h3 class="font-bold text-white">TradingView-Powered Chart</h3>
-          <p class="mt-2 text-slate-400">
-            The main chart area uses an embeddable TradingView advanced chart. Users can search common tickers such as AAPL, TSLA, NVDA, MSFT, AMZN, GOOGL, META, or use full exchange symbols like NASDAQ:AAPL, TSX:SHOP, and KRX:005930.
+        <h2 class="mt-5 text-3xl font-black tracking-tight text-slate-950">
+          Global Stock Market Tracker for Live Charts, Technical Analysis and Financial Research
+        </h2>
+
+        <div class="mt-6 space-y-6 text-base leading-8 text-slate-600">
+          <p>
+            A global stock market tracker helps investors, traders, students, financial content creators, business owners, and market watchers follow stocks from different exchanges in one convenient dashboard. Instead of opening multiple finance pages for a chart, technical signal, company profile, and financial overview, this page brings several research widgets into one browser-based layout. Users can search symbols such as AAPL, TSLA, NVDA, MSFT, AMZN, GOOGL, META, TSX:SHOP, NYSE:BRK.B, or KRX:005930 and quickly view a TradingView-powered chart with supporting analysis widgets.
           </p>
-        </div>
 
-        <div class="rounded-2xl bg-slate-950 p-5 ring-1 ring-slate-800">
-          <h3 class="font-bold text-white">Why This Version Is Faster</h3>
-          <p class="mt-2 text-slate-400">
-            Instead of loading several heavy market widgets at the same time, this version focuses on one main chart and supports it with SEO-friendly text content. This can improve mobile usability, reduce layout problems, and make the page easier to maintain.
+          <p>
+            The NodnWebTools Global Stock Market Tracker is designed for people searching for a stock tracker, live stock chart, global stock market tracker, stock market dashboard, TradingView chart tool, stock technical analysis tool, company profile widget, financial overview widget, market ticker tape, online stock research page, and free stock chart dashboard. It is useful for quick market monitoring, educational analysis, watchlist review, basic chart reading, and comparing large-cap stocks across global markets.
+          </p>
+
+          <h3 class="text-2xl font-black text-slate-950">What This Stock Tracker Does</h3>
+          <p>
+            This tool embeds TradingView-powered widgets to display a ticker tape, advanced stock chart, technical analysis panel, symbol profile, and financial overview area. The search field accepts common ticker symbols and exchange-prefixed symbols. If a user enters AAPL, the tool normalizes it to NASDAQ:AAPL. If a user enters an exchange symbol such as TSX:SHOP or KRX:005930, the dashboard attempts to load that symbol directly. The shortcut buttons help users quickly view popular large-cap companies and selected international listings.
+          </p>
+
+          <p>
+            The dashboard is intentionally client-side. It does not operate its own stock data server, does not store portfolio information, and does not require a user account. The market information appears through embedded third-party TradingView widgets. This approach makes the page lightweight to maintain and useful for a static HTML website. However, because the data comes from third-party widgets, availability can vary by exchange, ticker, region, and widget type. Some symbols may support charts but not company profiles or financial statements.
+          </p>
+
+          <h3 class="text-2xl font-black text-slate-950">Why Live Stock Charts Matter</h3>
+          <p>
+            A stock chart helps users understand how a company’s share price has moved over time. Price charts can reveal trends, volatility, support and resistance levels, gaps, breakouts, pullbacks, consolidation patterns, and reactions to earnings or major news. A live chart is often more useful than a static quote because it provides visual context. A stock may be up today but still in a long-term downtrend, or down today but still above a major support zone. Charts help users see the bigger picture.
+          </p>
+
+          <p>
+            Different users read charts differently. A short-term trader may focus on intraday candles, volume spikes, moving averages, and momentum indicators. A long-term investor may prefer daily, weekly, or monthly views to evaluate whether the stock is in a durable trend. A student may use charts to learn how markets respond to earnings, interest rates, economic data, or sector rotation. The purpose of a chart is not to predict the future with certainty, but to organize price information in a way that is easier to interpret.
+          </p>
+
+          <div class="ad-box my-8">
+            Middle Content Ad Area
+          </div>
+
+          <h3 class="text-2xl font-black text-slate-950">Popular Uses for a Global Stock Market Tracker</h3>
+          <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+            <article class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+              <h4 class="font-black text-slate-950">Watchlist Monitoring</h4>
+              <p class="mt-2 text-sm leading-7 text-slate-600">
+                Check popular stocks, global tickers, large-cap companies, and selected exchange symbols from one dashboard.
+              </p>
+            </article>
+
+            <article class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+              <h4 class="font-black text-slate-950">Technical Analysis Review</h4>
+              <p class="mt-2 text-sm leading-7 text-slate-600">
+                Use chart views and technical analysis widgets to review market momentum, trend conditions, and indicator-based summaries.
+              </p>
+            </article>
+
+            <article class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+              <h4 class="font-black text-slate-950">Company Research</h4>
+              <p class="mt-2 text-sm leading-7 text-slate-600">
+                View company profile and financial overview widgets when available for the selected stock symbol.
+              </p>
+            </article>
+
+            <article class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+              <h4 class="font-black text-slate-950">Market Education</h4>
+              <p class="mt-2 text-sm leading-7 text-slate-600">
+                Learn how charts, market capitalization, volume, valuation metrics, and financial data can be reviewed together.
+              </p>
+            </article>
+          </div>
+
+          <h3 class="text-2xl font-black text-slate-950">How to Search Stock Symbols</h3>
+          <p>
+            To use the tracker, type a ticker symbol into the search box and press Search. For common U.S. stocks, you can enter simple symbols such as AAPL, TSLA, NVDA, MSFT, AMZN, GOOGL, or META. The tool will convert many common symbols into a TradingView-compatible exchange format. For international symbols, using the exchange prefix can improve accuracy. Examples include TSX:SHOP for Shopify on the Toronto Stock Exchange and KRX:005930 for Samsung Electronics on the Korea Exchange.
+          </p>
+
+          <p>
+            Exchange prefixes matter because different companies can share similar ticker symbols across markets. A plain ticker may be interpreted as a default U.S. listing, while an exchange-prefixed symbol points the widget toward a specific market. If a symbol does not load, try entering the full TradingView-style symbol or testing a major U.S. listing to confirm that the widget area is working. Some widgets may support chart data for a symbol but not company profile or financial widgets.
+          </p>
+
+          <h3 class="text-2xl font-black text-slate-950">Understanding the Advanced Chart</h3>
+          <p>
+            The advanced chart is the main visual area of the dashboard. It can show price movement over different time periods and intervals. Users can often adjust the chart type, time frame, indicators, and drawing tools inside the TradingView widget interface. Candlestick charts are popular because each candle shows open, high, low, and close values for a period. A green or rising candle usually indicates that the price closed higher than it opened, while a red or falling candle indicates that the price closed lower than it opened.
+          </p>
+
+          <p>
+            Chart analysis is most useful when combined with context. A single candle does not tell the full story. Traders often look for trend direction, support and resistance levels, moving average behavior, volume confirmation, volatility, gaps, and broader market conditions. Investors may use charts to understand entry timing, but they may place greater weight on fundamentals, business quality, valuation, earnings growth, cash flow, debt levels, and competitive advantage.
+          </p>
+
+          <h3 class="text-2xl font-black text-slate-950">Technical Analysis Widget Explained</h3>
+          <p>
+            The technical analysis widget provides a summarized view of selected technical indicators for the chosen symbol. Technical indicators may include moving averages, oscillators, momentum signals, and other market-based calculations. These tools are often used to identify whether a stock appears strong, weak, overbought, oversold, trending, or range-bound. Technical analysis can be useful for market timing, but it should never be treated as guaranteed prediction.
+          </p>
+
+          <p>
+            Indicator summaries can change quickly, especially during volatile markets. A stock may show bullish momentum in the morning and weaken later in the day. A daily technical summary may differ from a weekly or monthly trend. For this reason, users should review multiple time frames and avoid relying on a single signal. Technical analysis is one input among many, not a complete investment decision system.
+          </p>
+
+          <div class="ad-box my-8">
+            Bottom Content Ad Area
+          </div>
+
+          <h3 class="text-2xl font-black text-slate-950">Company Profile and Financial Overview</h3>
+          <p>
+            Company profile information can help users understand what a business does, which sector it belongs to, and how it is categorized in the market. A stock price is only a market quote; the company profile adds business context. Investors often want to know whether they are reviewing a semiconductor company, software provider, ecommerce platform, bank, consumer brand, manufacturer, energy producer, or healthcare business. The same price chart can have different meaning depending on the company’s industry, growth profile, margins, balance sheet, and competitive environment.
+          </p>
+
+          <p>
+            Financial overview widgets can support deeper research by displaying metrics related to revenue, earnings, profitability, balance sheet items, valuation, dividends, or financial statements when available. Fundamental investors often compare revenue growth, earnings growth, free cash flow, debt levels, gross margin, operating margin, return on equity, price-to-earnings ratio, price-to-sales ratio, dividend yield, and analyst expectations. These figures help users evaluate whether a stock’s market price appears supported by business performance.
+          </p>
+
+          <h3 class="text-2xl font-black text-slate-950">Price, Volume and Market Capitalization</h3>
+          <p>
+            Price tells you what the market is currently willing to pay for one share, but price alone does not show company size or valuation. A $500 stock is not automatically more expensive than a $50 stock because companies have different share counts. Market capitalization, often called market cap, multiplies share price by shares outstanding to estimate the company’s total equity market value. Large-cap companies are typically more established, while small-cap companies may have more growth potential but higher volatility and risk.
+          </p>
+
+          <p>
+            Volume shows how many shares trade during a selected period. High volume can suggest strong interest, institutional activity, reaction to news, or important technical levels. Low volume can make price moves less reliable. A breakout with strong volume may be more meaningful than a breakout with weak participation. Volume is also useful when comparing liquidity. Highly liquid stocks may have tighter spreads and easier trade execution than thinly traded securities.
+          </p>
+
+          <h3 class="text-2xl font-black text-slate-950">Fundamental Analysis vs. Technical Analysis</h3>
+          <p>
+            Fundamental analysis studies the business behind the stock. It looks at revenue, earnings, cash flow, debt, margins, management, competitive advantage, market opportunity, dividends, valuation, and long-term growth. Technical analysis studies price and volume behavior. It looks at trends, chart patterns, indicators, momentum, support, resistance, and market psychology. Many investors use both methods, even if they emphasize one more than the other.
+          </p>
+
+          <p>
+            A long-term investor may use fundamental analysis to decide whether a company is worth owning and technical analysis to decide when to buy gradually. A short-term trader may focus mostly on technical analysis but still avoid trading during major earnings or news events. A market student may use both approaches to understand why stocks move. This dashboard supports both styles by combining chart widgets with company profile and financial overview widgets.
+          </p>
+
+          <h3 class="text-2xl font-black text-slate-950">Global Market Research Tips</h3>
+          <p>
+            Global market research requires attention to currency, exchange hours, local regulations, liquidity, accounting standards, reporting dates, and geopolitical risk. A company listed in Canada, Korea, Japan, Europe, or another region may have different trading hours and reporting conventions than a U.S.-listed company. Currency movements can also affect returns for international investors. A stock may rise in local currency but deliver a different return after exchange-rate changes.
+          </p>
+
+          <p>
+            When researching international stocks, verify the exchange, ticker symbol, currency, market capitalization, liquidity, financial reporting language, and investor relations resources. If a TradingView widget does not show all data for a non-U.S. ticker, try the company’s official investor relations website, exchange filings, broker research tools, or other trusted financial platforms. Always confirm data before making decisions.
+          </p>
+
+          <h3 class="text-2xl font-black text-slate-950">How to Use This Stock Tracker Responsibly</h3>
+          <p>
+            Use this dashboard as a starting point for market research, not as a final authority. Search a ticker, review the chart, check technical analysis, read available company information, and compare financial metrics. Then verify important numbers through your brokerage, exchange website, official filings, company investor relations pages, or licensed financial resources. Markets move quickly, and embedded widgets can be delayed, unavailable, or incomplete.
+          </p>
+
+          <p>
+            Avoid making investment decisions based on one indicator, one chart pattern, one headline, or one widget. Consider risk tolerance, time horizon, diversification, valuation, position size, taxes, fees, liquidity, and personal financial goals. Investing and trading involve risk, including possible loss of principal. A stock tracker can organize information, but it cannot remove uncertainty from the market.
+          </p>
+
+          <h3 class="text-2xl font-black text-slate-950">Limitations of This Dashboard</h3>
+          <p>
+            This page uses embedded third-party widgets and does not provide its own market data feed. Data availability, quote timing, exchange support, widget compatibility, financial statement coverage, and company profile details depend on the third-party widget provider. Some symbols may not load in every widget. Some financial data may be delayed, incomplete, unavailable, or different from official filings. The page does not provide personalized portfolio tracking, brokerage integration, order placement, alerts, backtesting, tax analysis, or investment recommendations.
+          </p>
+
+          <p>
+            For professional investment decisions, always confirm information with official and licensed sources. This tool is best used for general market awareness, quick chart review, educational research, and lightweight stock dashboard functionality on a browser-based website.
           </p>
         </div>
       </div>
+    </article>
 
-      <div class="mt-6">
-        <h3 class="font-bold text-white">How to Read a Stock Chart</h3>
-        <p class="mt-2 text-slate-400">
-          A stock chart helps users understand how a stock price has moved over time. Short-term traders may focus on intraday price action and volume, while long-term investors often review weekly or monthly trends. Candlestick charts can show open, high, low, and close prices for each period, while line charts provide a cleaner view of the overall price trend.
-        </p>
-      </div>
+    <section class="mobile-card mt-8 rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-8 lg:p-10">
+      <div class="mx-auto max-w-4xl">
+        <h2 class="text-3xl font-black tracking-tight text-slate-950">Frequently Asked Questions</h2>
 
-      <div class="mt-6">
-        <h3 class="font-bold text-white">Popular Searches</h3>
-        <p class="mt-2 text-slate-400">
-          AAPL stock chart, TSLA stock tracker, NVDA stock price, Microsoft stock analysis, Google stock chart, Samsung stock, TradingView stock widget, global stock market tracker, live stock chart, free stock dashboard, stock price chart, market chart tool, online stock tracker.
-        </p>
+        <div class="mt-6 space-y-4">
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">Is this stock market tracker free?</summary>
+            <p class="mt-3 leading-7 text-slate-600">Yes. This page is free to use and displays stock research widgets directly in your browser.</p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">Does this tool provide real-time market data?</summary>
+            <p class="mt-3 leading-7 text-slate-600">Market data is provided through third-party embedded widgets and may be delayed, limited, or unavailable depending on the exchange, symbol, and widget provider.</p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">Why does a symbol not load?</summary>
+            <p class="mt-3 leading-7 text-slate-600">Some TradingView widgets may not support every exchange symbol. Try using a full exchange prefix, such as NASDAQ:AAPL, TSX:SHOP, or KRX:005930.</p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">Can I buy or sell stocks from this page?</summary>
+            <p class="mt-3 leading-7 text-slate-600">No. This is an informational chart and research dashboard. It does not connect to brokerage accounts or execute trades.</p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">Is technical analysis a guarantee?</summary>
+            <p class="mt-3 leading-7 text-slate-600">No. Technical analysis can help organize price and volume information, but it cannot predict the future with certainty and should not be used alone.</p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">Is this financial advice?</summary>
+            <p class="mt-3 leading-7 text-slate-600">No. This page is for general informational and educational purposes only. It is not financial, investment, trading, tax, accounting, or legal advice.</p>
+          </details>
+        </div>
       </div>
     </section>
 
-    <!-- Google AdSense Responsive Ad - Middle -->
-    <div class="mt-8 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-700 bg-slate-900 text-sm text-slate-500">
-      AdSense Responsive Ad Area - Middle
-    </div>
+    <section class="mobile-card mt-8 rounded-3xl bg-slate-900 p-6 text-slate-200 shadow-sm sm:p-8 lg:p-10">
+      <div class="mx-auto max-w-4xl">
+        <h2 class="text-2xl font-black text-white">Legal Disclaimer</h2>
 
-    <section class="mt-8 rounded-2xl border border-slate-800 bg-slate-900 p-5 text-sm leading-7 text-slate-300 sm:rounded-3xl sm:p-8">
-      <h2 class="mb-4 flex items-center gap-2 text-xl font-extrabold text-white">
-        <span class="h-5 w-1.5 rounded-full bg-indigo-400"></span>
-        Stock Market Research Guide
-      </h2>
-
-      <div class="space-y-6">
-        <div>
-          <h3 class="font-bold text-white">1. Price Trend</h3>
-          <p class="mt-2 text-slate-400">
-            The first thing many users check is whether the stock is moving upward, downward, or sideways. A rising price trend can indicate positive investor sentiment, while a falling trend may suggest weaker momentum, valuation concerns, or broader market pressure.
+        <div class="mt-4 space-y-4 text-sm leading-7 text-slate-300">
+          <p>
+            This Global Stock Market Tracker is provided for general informational and educational purposes only. It does not provide financial, investment, trading, tax, accounting, legal, retirement, portfolio management, or professional advice. No content on this page should be interpreted as a recommendation to buy, sell, hold, short, trade, or invest in any security, fund, asset, cryptocurrency, derivative, or financial product.
           </p>
-        </div>
 
-        <div>
-          <h3 class="font-bold text-white">2. Volume</h3>
-          <p class="mt-2 text-slate-400">
-            Volume shows how many shares are traded during a period. A strong price move with high volume may be more meaningful than a price move with very low volume. Many traders use volume to confirm breakouts, reversals, and momentum changes.
+          <p>
+            Market data, charts, technical analysis, company profiles, financial overview information, quotes, indicators, and related content are provided through third-party embedded widgets and may be delayed, inaccurate, incomplete, unavailable, or unsuitable for your specific purpose. Widget availability can vary by exchange, symbol, country, browser, and third-party provider rules.
           </p>
-        </div>
 
-        <div>
-          <h3 class="font-bold text-white">3. Market Capitalization</h3>
-          <p class="mt-2 text-slate-400">
-            Market capitalization represents the total market value of a company. Large-cap companies are often more established, while smaller companies may have higher growth potential but also higher risk. Market cap is one of the most common ways to compare companies within the same sector.
+          <p>
+            Investing and trading involve risk, including possible loss of principal. Past performance does not guarantee future results. Technical indicators, chart patterns, valuation metrics, analyst data, and financial summaries are not guarantees of future price movement or business performance. Always verify all information with your brokerage, official exchange data, company filings, licensed financial advisor, or another reliable source before making financial decisions.
           </p>
-        </div>
 
-        <div>
-          <h3 class="font-bold text-white">4. Valuation Metrics</h3>
-          <p class="mt-2 text-slate-400">
-            Investors often compare valuation metrics such as price-to-earnings ratio, price-to-sales ratio, dividend yield, and earnings growth. These metrics can help users understand whether a stock appears expensive or inexpensive relative to its earnings, revenue, or future growth expectations.
+          <p>
+            NodnWebTools, its owners, developers, and affiliates are not responsible for errors, omissions, delayed data, unavailable widgets, investment losses, trading losses, tax consequences, missed opportunities, business losses, legal claims, or any direct or indirect damages resulting from use of this stock tracker.
           </p>
         </div>
       </div>
     </section>
 
-    <div class="mt-8 rounded-2xl bg-slate-900 p-5 text-xs leading-5 text-slate-400 ring-1 ring-slate-800">
-      <h3 class="mb-2 text-sm font-semibold text-slate-200">
-        Disclaimer
-      </h3>
-
-      <p>
-        This stock market tracker is provided for general informational and educational purposes only. Market data, charts, indicators, company information, and financial data are provided through third-party embedded widgets and may be delayed, incomplete, unavailable, or inaccurate.
-      </p>
-
-      <p class="mt-3">
-        The information displayed on this page does not constitute financial, investment, trading, tax, accounting, or legal advice. It should not be used as the sole basis for making investment decisions, buying or selling securities, or evaluating financial risk.
-      </p>
-
-      <p class="mt-3">
-        Always verify prices, quotes, charts, financial metrics, and company information with your brokerage, exchange, licensed financial advisor, or another reliable source before making any financial transaction.
-      </p>
-    </div>
-
-    <!-- Google AdSense Responsive Ad - Bottom -->
-    <div class="mt-8 flex min-h-[90px] items-center justify-center rounded-2xl border border-dashed border-slate-700 bg-slate-900 text-sm text-slate-500">
-      AdSense Responsive Ad Area - Bottom
+    <div class="ad-box mt-8">
+      Bottom Ad Area
     </div>
   </main>
 
-   <script>
-    const input = document.getElementById("stockInput");
-    const searchBtn = document.getElementById("searchBtn");
-    const selectedSymbolLabel = document.getElementById("selectedSymbolLabel");
-    const mainSymbolTitle = document.getElementById("mainSymbolTitle");
+  <footer class="mt-10 border-t border-slate-200 bg-white">
+    <div class="mx-auto flex w-full max-w-7xl flex-col gap-3 px-4 py-6 text-sm text-slate-500 sm:px-6 lg:px-8">
+      <div class="font-extrabold text-slate-900">Nodn<span class="text-accent-600">WebTools</span></div>
+      <p class="leading-6">Free browser-based utilities designed for practical calculations, market research, productivity, and everyday digital tasks.</p>
+    </div>
+  </footer>
 
-    const tickerTapeWrap = document.getElementById("tickerTapeWrap");
-    const advancedChartWrap = document.getElementById("advancedChartWrap");
-    const technicalAnalysisWrap = document.getElementById("technicalAnalysisWrap");
-    const companyProfileWrap = document.getElementById("companyProfileWrap");
-    const financialsWrap = document.getElementById("financialsWrap");
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const input = document.getElementById('stockInput');
+      const searchBtn = document.getElementById('searchBtn');
+      const selectedSymbolLabel = document.getElementById('selectedSymbolLabel');
+      const mainSymbolTitle = document.getElementById('mainSymbolTitle');
 
-    const symbolMap = {
-      AAPL: "NASDAQ:AAPL",
-      APPLE: "NASDAQ:AAPL",
-      TSLA: "NASDAQ:TSLA",
-      TESLA: "NASDAQ:TSLA",
-      NVDA: "NASDAQ:NVDA",
-      NVIDIA: "NASDAQ:NVDA",
-      MSFT: "NASDAQ:MSFT",
-      MICROSOFT: "NASDAQ:MSFT",
-      AMZN: "NASDAQ:AMZN",
-      AMAZON: "NASDAQ:AMZN",
-      GOOGL: "NASDAQ:GOOGL",
-      GOOGLE: "NASDAQ:GOOGL",
-      ALPHABET: "NASDAQ:GOOGL",
-      META: "NASDAQ:META",
-      FACEBOOK: "NASDAQ:META",
-      SHOP: "TSX:SHOP",
-      SAMSUNG: "KRX:005930",
-      "005930": "KRX:005930",
-      "005930.KS": "KRX:005930",
-      "BRK.B": "NYSE:BRK.B",
-      "BRK-B": "NYSE:BRK.B"
-    };
+      const tickerTapeWrap = document.getElementById('tickerTapeWrap');
+      const advancedChartWrap = document.getElementById('advancedChartWrap');
+      const technicalAnalysisWrap = document.getElementById('technicalAnalysisWrap');
+      const companyProfileWrap = document.getElementById('companyProfileWrap');
+      const financialsWrap = document.getElementById('financialsWrap');
 
-    function normalizeSymbol(value) {
-      const clean = String(value || "").trim().toUpperCase();
+      const symbolMap = {
+        AAPL: 'NASDAQ:AAPL',
+        APPLE: 'NASDAQ:AAPL',
+        TSLA: 'NASDAQ:TSLA',
+        TESLA: 'NASDAQ:TSLA',
+        NVDA: 'NASDAQ:NVDA',
+        NVIDIA: 'NASDAQ:NVDA',
+        MSFT: 'NASDAQ:MSFT',
+        MICROSOFT: 'NASDAQ:MSFT',
+        AMZN: 'NASDAQ:AMZN',
+        AMAZON: 'NASDAQ:AMZN',
+        GOOGL: 'NASDAQ:GOOGL',
+        GOOGLE: 'NASDAQ:GOOGL',
+        ALPHABET: 'NASDAQ:GOOGL',
+        META: 'NASDAQ:META',
+        FACEBOOK: 'NASDAQ:META',
+        SHOP: 'TSX:SHOP',
+        SAMSUNG: 'KRX:005930',
+        '005930': 'KRX:005930',
+        '005930.KS': 'KRX:005930',
+        'BRK.B': 'NYSE:BRK.B',
+        'BRK-B': 'NYSE:BRK.B'
+      };
 
-      if (!clean) return "NASDAQ:AAPL";
-      if (symbolMap[clean]) return symbolMap[clean];
-      if (clean.includes(":")) return clean;
+      function normalizeSymbol(value) {
+        const clean = String(value || '').trim().toUpperCase();
 
-      return `NASDAQ:${clean}`;
-    }
+        if (!clean) return 'NASDAQ:AAPL';
+        if (symbolMap[clean]) return symbolMap[clean];
+        if (clean.includes(':')) return clean;
 
-    function showLoading(container, label) {
-      container.innerHTML = `
-        <div class="flex h-full min-h-[220px] items-center justify-center rounded-2xl border border-slate-800 bg-slate-950 p-5 text-center">
-          <div>
-            <div class="mx-auto mb-3 h-8 w-8 animate-spin rounded-full border-2 border-slate-700 border-t-cyan-400"></div>
-            <p class="text-sm font-bold text-slate-300">Loading ${label}...</p>
-            <p class="mt-2 text-xs leading-5 text-slate-500">
-              If this area does not load, the selected symbol may not be supported by this specific TradingView widget.
-            </p>
-          </div>
-        </div>
-      `;
-    }
-
-    function createTradingViewWidget(container, src, config, label) {
-      showLoading(container, label);
-
-      setTimeout(() => {
-        container.innerHTML = "";
-
-        const outer = document.createElement("div");
-        outer.className = "tradingview-widget-container";
-        outer.style.width = "100%";
-        outer.style.height = "100%";
-
-        const widget = document.createElement("div");
-        widget.className = "tradingview-widget-container__widget";
-        widget.style.width = "100%";
-        widget.style.height = "100%";
-
-        outer.appendChild(widget);
-
-        const script = document.createElement("script");
-        script.type = "text/javascript";
-        script.src = src;
-        script.async = true;
-        script.text = JSON.stringify(config);
-
-        outer.appendChild(script);
-        container.appendChild(outer);
-      }, 120);
-    }
-
-    function renderTickerTape() {
-      createTradingViewWidget(
-        tickerTapeWrap,
-        "https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js",
-        {
-          symbols: [
-            { proName: "FOREXCOM:SPXUSD", title: "S&P 500" },
-            { proName: "FOREXCOM:NSXUSD", title: "Nasdaq 100" },
-            { proName: "FOREXCOM:DJI", title: "Dow Jones" },
-            { proName: "KRX:KOSPI", title: "KOSPI" },
-            { proName: "TSX:TSX", title: "TSX" },
-            { proName: "NASDAQ:AAPL", title: "Apple" },
-            { proName: "NASDAQ:NVDA", title: "Nvidia" },
-            { proName: "NASDAQ:TSLA", title: "Tesla" }
-          ],
-          showSymbolLogo: true,
-          isTransparent: true,
-          displayMode: "adaptive",
-          colorTheme: "dark",
-          locale: "en"
-        },
-        "Market Ticker"
-      );
-    }
-
-    function renderAdvancedChart(symbol) {
-      createTradingViewWidget(
-        advancedChartWrap,
-        "https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js",
-        {
-          autosize: true,
-          symbol: symbol,
-          interval: "D",
-          timezone: "Etc/UTC",
-          theme: "dark",
-          style: "1",
-          locale: "en",
-          allow_symbol_change: true,
-          save_image: false,
-          calendar: false,
-          support_host: "https://www.tradingview.com"
-        },
-        "Chart"
-      );
-    }
-
-    function renderTechnicalAnalysis(symbol) {
-      createTradingViewWidget(
-        technicalAnalysisWrap,
-        "https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js",
-        {
-          interval: "1D",
-          width: "100%",
-          height: 430,
-          symbol: symbol,
-          showIntervalTabs: true,
-          displayMode: "single",
-          isTransparent: true,
-          locale: "en",
-          colorTheme: "dark"
-        },
-        "Technical Analysis"
-      );
-    }
-
-    function renderCompanyProfile(symbol) {
-      createTradingViewWidget(
-        companyProfileWrap,
-        "https://s3.tradingview.com/external-embedding/embed-widget-symbol-profile.js",
-        {
-          width: "100%",
-          height: 430,
-          symbol: symbol,
-          isTransparent: true,
-          colorTheme: "dark",
-          locale: "en"
-        },
-        "Company Profile"
-      );
-    }
-
-    function renderFinancials(symbol) {
-      createTradingViewWidget(
-        financialsWrap,
-        "https://s3.tradingview.com/external-embedding/embed-widget-financials.js",
-        {
-          width: "100%",
-          height: 560,
-          symbol: symbol,
-          colorTheme: "dark",
-          isTransparent: true,
-          displayMode: "regular",
-          locale: "en"
-        },
-        "Financial Overview"
-      );
-    }
-
-    function updateDashboard(rawSymbol) {
-      const symbol = normalizeSymbol(rawSymbol);
-
-      input.value = symbol;
-      selectedSymbolLabel.textContent = symbol;
-      mainSymbolTitle.textContent = symbol;
-
-      renderAdvancedChart(symbol);
-      renderTechnicalAnalysis(symbol);
-      renderCompanyProfile(symbol);
-      renderFinancials(symbol);
-    }
-
-    searchBtn.addEventListener("click", () => {
-      updateDashboard(input.value);
-    });
-
-    input.addEventListener("keydown", event => {
-      if (event.key === "Enter") {
-        updateDashboard(input.value);
+        return 'NASDAQ:' + clean;
       }
-    });
 
-    document.querySelectorAll(".shortcutBtn").forEach(button => {
-      button.addEventListener("click", () => {
-        updateDashboard(button.dataset.symbol);
+      function showLoading(container, label) {
+        container.innerHTML = `
+          <div class="flex h-full min-h-[220px] items-center justify-center rounded-2xl border border-slate-800 bg-slate-950 p-5 text-center">
+            <div>
+              <div class="mx-auto mb-3 h-8 w-8 animate-spin rounded-full border-2 border-slate-700 border-t-indigo-400"></div>
+              <p class="text-sm font-bold text-slate-300">Loading ${label}...</p>
+              <p class="mt-2 text-xs leading-5 text-slate-500">
+                If this area does not load, the selected symbol may not be supported by this specific TradingView widget.
+              </p>
+            </div>
+          </div>
+        `;
+      }
+
+      function createTradingViewWidget(container, src, config, label) {
+        try {
+          showLoading(container, label);
+
+          setTimeout(function () {
+            container.innerHTML = '';
+
+            const outer = document.createElement('div');
+            outer.className = 'tradingview-widget-container';
+            outer.style.width = '100%';
+            outer.style.height = '100%';
+
+            const widget = document.createElement('div');
+            widget.className = 'tradingview-widget-container__widget';
+            widget.style.width = '100%';
+            widget.style.height = '100%';
+
+            outer.appendChild(widget);
+
+            const script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.src = src;
+            script.async = true;
+            script.text = JSON.stringify(config);
+
+            outer.appendChild(script);
+            container.appendChild(outer);
+          }, 120);
+        } catch (error) {
+          container.innerHTML = `
+            <div class="flex h-full min-h-[220px] items-center justify-center rounded-2xl bg-red-50 p-5 text-center text-red-700">
+              ${label} could not be loaded. Please try another symbol.
+            </div>
+          `;
+        }
+      }
+
+      function renderTickerTape() {
+        createTradingViewWidget(
+          tickerTapeWrap,
+          'https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js',
+          {
+            symbols: [
+              { proName: 'FOREXCOM:SPXUSD', title: 'S&P 500' },
+              { proName: 'FOREXCOM:NSXUSD', title: 'Nasdaq 100' },
+              { proName: 'FOREXCOM:DJI', title: 'Dow Jones' },
+              { proName: 'KRX:KOSPI', title: 'KOSPI' },
+              { proName: 'TSX:TSX', title: 'TSX' },
+              { proName: 'NASDAQ:AAPL', title: 'Apple' },
+              { proName: 'NASDAQ:NVDA', title: 'NVIDIA' },
+              { proName: 'NASDAQ:TSLA', title: 'Tesla' }
+            ],
+            showSymbolLogo: true,
+            isTransparent: true,
+            displayMode: 'adaptive',
+            colorTheme: 'dark',
+            locale: 'en'
+          },
+          'Market Ticker'
+        );
+      }
+
+      function renderAdvancedChart(symbol) {
+        createTradingViewWidget(
+          advancedChartWrap,
+          'https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js',
+          {
+            autosize: true,
+            symbol: symbol,
+            interval: 'D',
+            timezone: 'Etc/UTC',
+            theme: 'dark',
+            style: '1',
+            locale: 'en',
+            allow_symbol_change: true,
+            save_image: false,
+            calendar: false,
+            support_host: 'https://www.tradingview.com'
+          },
+          'Chart'
+        );
+      }
+
+      function renderTechnicalAnalysis(symbol) {
+        createTradingViewWidget(
+          technicalAnalysisWrap,
+          'https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js',
+          {
+            interval: '1D',
+            width: '100%',
+            height: 430,
+            symbol: symbol,
+            showIntervalTabs: true,
+            displayMode: 'single',
+            isTransparent: true,
+            locale: 'en',
+            colorTheme: 'dark'
+          },
+          'Technical Analysis'
+        );
+      }
+
+      function renderCompanyProfile(symbol) {
+        createTradingViewWidget(
+          companyProfileWrap,
+          'https://s3.tradingview.com/external-embedding/embed-widget-symbol-profile.js',
+          {
+            width: '100%',
+            height: 430,
+            symbol: symbol,
+            isTransparent: true,
+            colorTheme: 'dark',
+            locale: 'en'
+          },
+          'Company Profile'
+        );
+      }
+
+      function renderFinancials(symbol) {
+        createTradingViewWidget(
+          financialsWrap,
+          'https://s3.tradingview.com/external-embedding/embed-widget-financials.js',
+          {
+            width: '100%',
+            height: 560,
+            symbol: symbol,
+            colorTheme: 'dark',
+            isTransparent: true,
+            displayMode: 'regular',
+            locale: 'en'
+          },
+          'Financial Overview'
+        );
+      }
+
+      function updateDashboard(rawSymbol) {
+        const symbol = normalizeSymbol(rawSymbol);
+
+        input.value = symbol;
+        selectedSymbolLabel.textContent = symbol;
+        mainSymbolTitle.textContent = symbol;
+
+        renderAdvancedChart(symbol);
+        renderTechnicalAnalysis(symbol);
+        renderCompanyProfile(symbol);
+        renderFinancials(symbol);
+      }
+
+      searchBtn.addEventListener('click', function () {
+        updateDashboard(input.value);
       });
-    });
 
-    renderTickerTape();
-    updateDashboard("NASDAQ:AAPL");
+      input.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter') {
+          updateDashboard(input.value);
+        }
+      });
+
+      document.querySelectorAll('.shortcutBtn').forEach(function (button) {
+        button.addEventListener('click', function () {
+          updateDashboard(button.dataset.symbol);
+        });
+      });
+
+      window.addEventListener('resize', function () {
+        document.body.style.overflowX = 'hidden';
+      });
+
+      renderTickerTape();
+      updateDashboard('NASDAQ:AAPL');
+    });
   </script>
 </body>
 </html>
