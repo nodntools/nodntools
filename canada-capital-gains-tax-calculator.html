@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Canada Capital Gains Tax Calculator</title>
+  <meta name="description" content="Estimate Canadian capital gains tax, taxable gains, inclusion rate, selling costs, and after-tax proceeds." />
+  <meta name="keywords" content="Canada capital gains tax calculator, Canadian capital gains calculator, capital gains tax Canada, taxable capital gain, capital gains inclusion rate, investment tax calculator Canada, real estate capital gains Canada, stock capital gains Canada, crypto capital gains Canada, adjusted cost base calculator, ACB calculator Canada, after tax proceeds calculator" />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="Canada Capital Gains Tax Calculator" />
+  <meta property="og:description" content="Estimate Canadian capital gains tax, taxable gains, inclusion rate, selling costs, and after-tax proceeds." />
+  <meta property="og:type" content="website" />
+  <meta name="google-adsense-account" content="ca-pub-5282672325821404">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404" crossorigin="anonymous"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Canada Capital Gains Tax Calculator",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "description": "A browser-based calculator for estimating Canadian capital gains tax, taxable capital gains, selling costs, adjusted cost base, and after-tax proceeds.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "CAD"
+    }
+  }
+  </script>
+  <style>
+    html, body { width:100%; max-width:100%; overflow-x:hidden; }
+    *, *::before, *::after { box-sizing:border-box; min-width:0; }
+    .safe-break { overflow-wrap:anywhere; word-break:break-word; }
+    .mobile-code { max-width:100%; overflow-x:auto; white-space:pre-wrap; word-break:break-word; }
+    .ad-box {
+      width:100%;
+      max-width:100%;
+      min-height:90px;
+      border:2px dashed #cbd5e1;
+      background:#f8fafc;
+      color:#64748b;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      border-radius:1rem;
+      padding:1rem;
+    }
+    input, select, textarea, button { max-width:100%; }
+    @media (max-width:640px) {
+      .mobile-card { padding:1rem !important; border-radius:1rem !important; }
+      .mobile-panel { padding:1rem !important; }
+      .mobile-preview { padding:1rem !important; }
+      .mobile-button-grid { grid-template-columns:1fr !important; }
+      .ad-box { min-height:90px; font-size:.875rem; }
+    }
+    @media (max-width:380px) {
+      .mobile-card { padding:.875rem !important; border-radius:.875rem !important; }
+      .mobile-panel { padding:.875rem !important; }
+      .mobile-preview { padding:.875rem !important; }
+      h1 { font-size:1.875rem !important; line-height:2.25rem !important; }
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+  <header class="border-b border-slate-200 bg-white">
+    <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
+      <a href="https://nodntools.com" class="text-xl font-bold tracking-tight text-slate-900" aria-label="NodnWebTools Home">
+        Nodn<span class="text-indigo-600">WebTools</span>
+      </a>
+      <a href="https://nodntools.com" class="rounded-full border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700">Home</a>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+    <section class="ad-box mb-6">Advertisement</section>
+
+    <section class="grid gap-6 lg:grid-cols-[1fr_1fr]">
+      <div class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+        <div class="mb-6">
+          <p class="mb-2 text-sm font-semibold uppercase tracking-wide text-indigo-600">Canadian tax estimate tool</p>
+          <h1 class="safe-break text-4xl font-bold tracking-tight text-slate-950">Canada Capital Gains Tax Calculator</h1>
+          <p class="mt-4 text-slate-600">Estimate your capital gain, taxable capital gain, approximate tax owing, and after-tax proceeds for Canadian investments, real estate, crypto, business assets, or other capital property. This tool runs fully in your browser and does not upload your numbers to a server.</p>
+        </div>
+
+        <div class="grid gap-4 sm:grid-cols-2">
+          <label class="block">
+            <span class="mb-1 block text-sm font-semibold text-slate-700">Sale proceeds</span>
+            <input id="saleProceeds" type="number" inputmode="decimal" value="100000" class="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100" />
+          </label>
+          <label class="block">
+            <span class="mb-1 block text-sm font-semibold text-slate-700">Adjusted cost base</span>
+            <input id="costBase" type="number" inputmode="decimal" value="70000" class="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100" />
+          </label>
+          <label class="block">
+            <span class="mb-1 block text-sm font-semibold text-slate-700">Selling costs</span>
+            <input id="sellingCosts" type="number" inputmode="decimal" value="1500" class="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100" />
+          </label>
+          <label class="block">
+            <span class="mb-1 block text-sm font-semibold text-slate-700">Capital losses to apply</span>
+            <input id="capitalLosses" type="number" inputmode="decimal" value="0" class="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100" />
+          </label>
+          <label class="block">
+            <span class="mb-1 block text-sm font-semibold text-slate-700">Inclusion rate</span>
+            <select id="inclusionRate" class="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100">
+              <option value="50">50% current common rate</option>
+              <option value="66.6667">66.67% custom scenario</option>
+              <option value="0">0% exempt scenario</option>
+              <option value="custom">Custom rate</option>
+            </select>
+          </label>
+          <label class="block">
+            <span class="mb-1 block text-sm font-semibold text-slate-700">Custom inclusion rate %</span>
+            <input id="customInclusionRate" type="number" inputmode="decimal" value="50" class="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100" />
+          </label>
+          <label class="block">
+            <span class="mb-1 block text-sm font-semibold text-slate-700">Estimated marginal tax rate %</span>
+            <input id="taxRate" type="number" inputmode="decimal" value="30" class="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100" />
+          </label>
+          <label class="block">
+            <span class="mb-1 block text-sm font-semibold text-slate-700">Province or territory</span>
+            <select id="province" class="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100">
+              <option>Alberta</option>
+              <option>British Columbia</option>
+              <option>Manitoba</option>
+              <option>New Brunswick</option>
+              <option>Newfoundland and Labrador</option>
+              <option>Northwest Territories</option>
+              <option>Nova Scotia</option>
+              <option>Nunavut</option>
+              <option>Ontario</option>
+              <option>Prince Edward Island</option>
+              <option>Quebec</option>
+              <option>Saskatchewan</option>
+              <option>Yukon</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="mt-5 rounded-2xl bg-indigo-50 p-4 text-sm text-indigo-950">
+          <strong>Example:</strong> If you sell an investment for $100,000, your adjusted cost base is $70,000, and selling costs are $1,500, the gross gain is reduced by costs before the inclusion rate is applied.
+        </div>
+
+        <div class="mobile-button-grid mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
+          <button id="calculateBtn" class="rounded-xl bg-indigo-600 px-4 py-3 font-semibold text-white shadow-sm transition hover:bg-indigo-700">Calculate</button>
+          <button id="copyBtn" class="rounded-xl border border-slate-300 bg-white px-4 py-3 font-semibold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700">Copy</button>
+          <button id="downloadBtn" class="rounded-xl border border-slate-300 bg-white px-4 py-3 font-semibold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700">Download</button>
+          <button id="resetBtn" class="rounded-xl border border-slate-300 bg-white px-4 py-3 font-semibold text-slate-700 transition hover:border-rose-300 hover:text-rose-700">Reset</button>
+        </div>
+        <p id="feedback" class="mt-3 min-h-6 text-sm font-medium text-indigo-700"></p>
+      </div>
+
+      <div class="mobile-preview rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+        <div class="mb-4 flex items-start justify-between gap-4">
+          <div>
+            <p class="text-sm font-semibold uppercase tracking-wide text-violet-600">Live estimate</p>
+            <h2 class="mt-1 text-2xl font-bold text-slate-950">Capital Gains Summary</h2>
+          </div>
+          <span class="rounded-full bg-violet-100 px-3 py-1 text-xs font-bold text-violet-700">Client-side</span>
+        </div>
+
+        <div id="warningBox" class="mb-4 hidden rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900"></div>
+
+        <div class="grid gap-4 sm:grid-cols-2">
+          <div class="rounded-2xl bg-slate-50 p-4">
+            <p class="text-sm text-slate-500">Net capital gain</p>
+            <p id="netGain" class="safe-break mt-1 text-2xl font-bold text-slate-950">$0</p>
+          </div>
+          <div class="rounded-2xl bg-slate-50 p-4">
+            <p class="text-sm text-slate-500">Taxable capital gain</p>
+            <p id="taxableGain" class="safe-break mt-1 text-2xl font-bold text-slate-950">$0</p>
+          </div>
+          <div class="rounded-2xl bg-slate-50 p-4">
+            <p class="text-sm text-slate-500">Estimated tax</p>
+            <p id="estimatedTax" class="safe-break mt-1 text-2xl font-bold text-slate-950">$0</p>
+          </div>
+          <div class="rounded-2xl bg-slate-50 p-4">
+            <p class="text-sm text-slate-500">After-tax proceeds</p>
+            <p id="afterTaxProceeds" class="safe-break mt-1 text-2xl font-bold text-slate-950">$0</p>
+          </div>
+        </div>
+
+        <div class="mt-5 rounded-2xl border border-slate-200 p-4">
+          <h3 class="font-bold text-slate-900">Calculation breakdown</h3>
+          <pre id="breakdown" class="mobile-code mt-3 text-sm leading-6 text-slate-700"></pre>
+        </div>
+
+        <div class="mt-5 rounded-2xl bg-slate-900 p-4 text-sm text-slate-200">
+          <strong class="text-white">Important:</strong> This calculator estimates tax using the marginal tax rate you enter. It does not calculate complete federal and provincial tax brackets, credits, AMT, LCGE, principal residence exemption, superficial loss rules, foreign exchange adjustments, or trust and corporate tax rules.
+        </div>
+      </div>
+    </section>
+
+    <section class="ad-box my-8">Advertisement</section>
+
+    <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm lg:p-10">
+      <p class="mb-2 text-sm font-semibold uppercase tracking-wide text-indigo-600">Guide and tax planning education</p>
+      <h2 class="text-3xl font-bold tracking-tight text-slate-950">Canada Capital Gains Tax Calculator Guide</h2>
+      <p class="mt-4 text-slate-700 leading-8">A Canada capital gains tax calculator helps investors, homeowners, crypto traders, business owners, and everyday taxpayers estimate how much tax may apply when a capital asset is sold for more than its adjusted cost base. In Canada, capital gains are generally not taxed in the same way as salary, interest income, or regular business income. Instead, only the taxable portion of the gain is included in income. This makes capital gains tax planning different from ordinary income tax planning, and it is why a clear Canadian capital gains calculator can be useful before selling stocks, exchange-traded funds, mutual funds, rental property, land, cryptocurrency, precious metals, collectibles, or other capital property.</p>
+
+      <p class="mt-4 text-slate-700 leading-8">This browser-based capital gains calculator is designed for quick estimates. It asks for the sale proceeds, adjusted cost base, selling costs, capital losses, inclusion rate, estimated marginal tax rate, and province or territory. The calculator then estimates the net capital gain, the taxable capital gain, the approximate tax owing, and the after-tax proceeds. Because the page is fully client-side, the calculation is performed directly in your browser. Your sale amount, cost base, and tax assumptions are not uploaded to a server by this tool.</p>
+
+      <h3 class="mt-8 text-2xl font-bold text-slate-950">How Canadian capital gains tax usually works</h3>
+      <p class="mt-4 text-slate-700 leading-8">A capital gain generally happens when you dispose of capital property for more than its adjusted cost base plus eligible selling expenses. A disposition can include selling an asset, transferring it, gifting it, converting it, or in some cases being deemed to have sold it. The basic formula is simple: proceeds of disposition minus adjusted cost base minus outlays and expenses equals capital gain or capital loss. The taxable capital gain is then calculated by applying the capital gains inclusion rate. For many individual tax situations, the commonly used inclusion rate has been one-half, meaning only 50% of the net capital gain is included in taxable income. However, tax rules can change, special exemptions can apply, and different rules may apply to corporations, trusts, qualified small business corporation shares, farming property, fishing property, donations, employee stock options, and non-resident situations.</p>
+
+      <p class="mt-4 text-slate-700 leading-8">The calculator uses a flexible inclusion rate field so you can model common, proposed, or custom scenarios. For example, a taxpayer can use a 50% inclusion rate for a common personal capital gain estimate, a custom rate for a special planning scenario, or a 0% scenario when testing the impact of a full exemption. The tool does not decide whether an exemption applies. It simply calculates the numbers based on the inputs you enter. This makes the calculator helpful for comparison, planning, and education, but it should not be treated as a final tax filing result.</p>
+
+      <section class="ad-box my-8">Advertisement</section>
+
+      <h3 class="mt-8 text-2xl font-bold text-slate-950">Adjusted cost base explained</h3>
+      <p class="mt-4 text-slate-700 leading-8">The adjusted cost base, often called ACB, is one of the most important numbers in a Canadian capital gains calculation. For a stock, ETF, or mutual fund, the ACB usually starts with the purchase price plus purchase commissions. It may then be adjusted for reinvested distributions, return of capital, stock splits, mergers, spin-offs, currency conversion, and additional purchases of the same security. For real estate, the adjusted cost base may include the purchase price, land transfer tax, certain legal fees, and capital improvements that increase the value or useful life of the property. Regular repairs and maintenance are usually different from capital improvements, so it is important to keep clear records and speak with a qualified tax professional when the amounts are significant.</p>
+
+      <p class="mt-4 text-slate-700 leading-8">Many capital gains tax errors happen because the sale price is known, but the adjusted cost base is incomplete. A brokerage statement may not always include every adjustment needed for Canadian tax reporting, especially if securities were transferred between institutions, held for many years, purchased in foreign currency, inherited, received as a gift, or affected by corporate actions. A real estate sale can also have a complicated cost base if the property changed use, was partly rented, had renovations, or was jointly owned. Before relying on any capital gains estimate, gather purchase confirmations, investment statements, real estate closing documents, renovation invoices, legal fee receipts, and currency conversion records.</p>
+
+      <h3 class="mt-8 text-2xl font-bold text-slate-950">Selling costs and outlays</h3>
+      <p class="mt-4 text-slate-700 leading-8">Selling costs reduce the capital gain because they are expenses incurred to sell the property. For investments, selling costs may include trading commissions or certain transaction fees. For real estate, selling costs can include realtor commissions, legal fees related to the sale, appraisal fees, advertising expenses, mortgage discharge fees in some cases, and other direct selling expenses. The calculator includes a selling costs field so you can model the gain more accurately. Entering selling costs is important because even a small percentage fee can meaningfully reduce the taxable capital gain on a large transaction.</p>
+
+      <h3 class="mt-8 text-2xl font-bold text-slate-950">Capital losses and tax planning</h3>
+      <p class="mt-4 text-slate-700 leading-8">Capital losses can generally be used to offset capital gains, subject to Canadian tax rules. If you sold an investment at a loss, the allowable capital loss may reduce taxable capital gains in the same year. Net capital losses may also be carried back or forward under certain conditions. This calculator includes a capital losses field so you can see how available losses may reduce the net gain before the inclusion rate is applied. However, capital loss planning can involve important restrictions, including superficial loss rules, affiliated person rules, foreign exchange issues, registered account limitations, and timing considerations. Losses inside RRSPs, TFSAs, FHSAs, RESPs, and other registered plans are generally not treated the same as losses in taxable non-registered accounts.</p>
+
+      <h3 class="mt-8 text-2xl font-bold text-slate-950">Who can use this Canadian capital gains calculator?</h3>
+      <div class="mt-5 grid gap-4 md:grid-cols-3">
+        <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+          <h4 class="font-bold text-slate-950">Investors</h4>
+          <p class="mt-2 text-sm leading-6 text-slate-700">Estimate gains on stocks, ETFs, mutual funds, bonds, options, and other taxable investment account holdings before selling.</p>
+        </div>
+        <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+          <h4 class="font-bold text-slate-950">Property owners</h4>
+          <p class="mt-2 text-sm leading-6 text-slate-700">Model potential capital gains on rental properties, cottages, land, second homes, and partial-use real estate sales.</p>
+        </div>
+        <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+          <h4 class="font-bold text-slate-950">Crypto users</h4>
+          <p class="mt-2 text-sm leading-6 text-slate-700">Estimate taxable gains on cryptocurrency disposals, token sales, swaps, conversions, and taxable digital asset transactions.</p>
+        </div>
+      </div>
+
+      <h3 class="mt-8 text-2xl font-bold text-slate-950">Popular uses for a Canada capital gains tax calculator</h3>
+      <p class="mt-4 text-slate-700 leading-8">Tax planning often begins before a sale is finalized. A calculator can help compare selling now versus later, selling part of a position instead of the entire holding, applying available capital losses, adjusting for selling fees, and estimating after-tax cash flow. Investors may use the tool before rebalancing a portfolio. Property owners may use it before listing a rental property or cottage. Crypto investors may use it before converting tokens or cashing out. Business owners may use it as an early planning estimate before speaking with an accountant about shares, goodwill, or business assets. The calculator can also be useful for financial advisors, mortgage planners, estate planning conversations, and personal budgeting after a major asset sale.</p>
+
+      <p class="mt-4 text-slate-700 leading-8">For example, if an investor has a large unrealized gain in a non-registered account, selling the entire position may push taxable income into a higher tax bracket. A partial sale could spread the gain over more than one tax year, although market risk and personal cash needs must also be considered. If another investment has an unrealized loss, tax-loss harvesting may reduce the taxable gain, but the investor must be careful with superficial loss rules. If a property owner is selling a former principal residence that later became a rental property, the calculation may require change-in-use rules and special elections. These are situations where a calculator gives a useful starting point, but professional advice is strongly recommended.</p>
+
+      <section class="ad-box my-8">Advertisement</section>
+
+      <h3 class="mt-8 text-2xl font-bold text-slate-950">How to use this calculator</h3>
+      <div class="mt-5 grid gap-4 md:grid-cols-2">
+        <div class="rounded-2xl border border-slate-200 p-5">
+          <h4 class="font-bold text-slate-950">1. Enter the sale proceeds</h4>
+          <p class="mt-2 text-slate-700 leading-7">Use the gross amount you expect to receive from the sale before deducting selling costs. For securities, this is usually the sale value. For real estate, this is typically the sale price.</p>
+        </div>
+        <div class="rounded-2xl border border-slate-200 p-5">
+          <h4 class="font-bold text-slate-950">2. Enter the adjusted cost base</h4>
+          <p class="mt-2 text-slate-700 leading-7">Use your purchase cost plus eligible adjustments. For investments, include purchase commissions and ACB adjustments. For property, include eligible acquisition costs and capital improvements where appropriate.</p>
+        </div>
+        <div class="rounded-2xl border border-slate-200 p-5">
+          <h4 class="font-bold text-slate-950">3. Add selling costs</h4>
+          <p class="mt-2 text-slate-700 leading-7">Enter direct selling expenses such as commissions, legal fees, realtor fees, and other eligible outlays. These costs reduce the capital gain estimate.</p>
+        </div>
+        <div class="rounded-2xl border border-slate-200 p-5">
+          <h4 class="font-bold text-slate-950">4. Choose an inclusion and tax rate</h4>
+          <p class="mt-2 text-slate-700 leading-7">Select the inclusion rate and enter your estimated marginal tax rate. The tax rate should reflect your combined federal and provincial or territorial marginal rate for the taxable gain.</p>
+        </div>
+      </div>
+
+      <h3 class="mt-8 text-2xl font-bold text-slate-950">Why the marginal tax rate matters</h3>
+      <p class="mt-4 text-slate-700 leading-8">Canada uses progressive tax brackets, so the tax on a taxable capital gain depends on your other income, deductions, credits, province or territory, and the size of the taxable gain. This tool uses a user-entered marginal tax rate rather than attempting to produce a full tax return calculation. That approach gives you flexibility and keeps the calculator simple, fast, and transparent. If your income is low, the relevant marginal rate may be lower. If the gain is large, part of the taxable capital gain may fall into higher brackets. For a more refined estimate, you can run several scenarios using different marginal tax rates, such as 20%, 30%, 40%, or 50%, and compare the estimated tax impact.</p>
+
+      <p class="mt-4 text-slate-700 leading-8">When planning a major sale, consider how the taxable capital gain interacts with employment income, self-employment income, pension income, Old Age Security recovery tax, Canada Child Benefit, GST/HST credit, provincial benefits, tuition credits, charitable donations, medical expenses, and other tax items. A capital gain can increase net income for tax purposes, which may affect benefits, credits, and income-tested programs. This is especially important for retirees, families receiving income-tested benefits, and individuals with large one-time gains.</p>
+
+      <h3 class="mt-8 text-2xl font-bold text-slate-950">Principal residence, rental property, and real estate gains</h3>
+      <p class="mt-4 text-slate-700 leading-8">A principal residence may qualify for the principal residence exemption, which can reduce or eliminate capital gains tax on a home for years it was designated as a principal residence. However, not every real estate sale is automatically tax-free. Rental properties, cottages, second homes, vacant land, assignment sales, flipped properties, and properties with mixed personal and income-producing use can be more complex. If a property changed from personal use to rental use, or from rental use to personal use, there may be a deemed disposition and special reporting rules. If you are selling real estate in Canada, keep detailed records and consider professional tax advice before relying on any estimate.</p>
+
+      <h3 class="mt-8 text-2xl font-bold text-slate-950">Stocks, ETFs, mutual funds, and non-registered accounts</h3>
+      <p class="mt-4 text-slate-700 leading-8">Capital gains on investments held in a taxable non-registered account are commonly reported when securities are sold. The adjusted cost base can become complicated when you buy the same ETF multiple times, reinvest distributions, receive return of capital, or transfer holdings between brokerages. Canadian-listed ETFs and mutual funds may distribute capital gains to investors, and those distributions can affect tax slips and adjusted cost base tracking. Foreign securities add another layer because transactions must generally be translated into Canadian dollars using appropriate exchange rates. This calculator can estimate the final capital gain once you know the correct Canadian-dollar sale proceeds, cost base, and selling costs.</p>
+
+      <h3 class="mt-8 text-2xl font-bold text-slate-950">Cryptocurrency and digital asset capital gains</h3>
+      <p class="mt-4 text-slate-700 leading-8">Cryptocurrency transactions can trigger capital gains or losses when coins or tokens are sold, swapped, traded, used to buy goods or services, gifted, or converted into another asset. The taxable result depends on whether the activity is considered capital in nature or business income, as well as the adjusted cost base and fair market value in Canadian dollars. Crypto users should keep detailed transaction records, exchange statements, wallet histories, gas fees, transfer fees, and valuation data. This calculator can help estimate a capital gain scenario, but it does not classify crypto activity as capital income or business income and does not reconcile multiple wallet transactions.</p>
+
+      <h3 class="mt-8 text-2xl font-bold text-slate-950">Practical tips for better capital gains estimates</h3>
+      <p class="mt-4 text-slate-700 leading-8">Start by confirming the correct sale date, settlement date, proceeds, and currency. Verify the adjusted cost base using original purchase documents rather than relying only on memory. Include eligible selling expenses. Separate registered and non-registered accounts because tax treatment is different. Track capital losses and consider whether they are available to apply. Run multiple scenarios with different marginal tax rates. Consider whether the sale will affect income-tested benefits. Review whether an exemption, reserve, rollover, or special election may apply. For large transactions, get professional advice before the sale rather than after, because timing and documentation can matter.</p>
+
+      <h2 class="mt-10 text-3xl font-bold tracking-tight text-slate-950">Frequently Asked Questions</h2>
+      <div class="mt-5 space-y-4">
+        <details class="rounded-2xl border border-slate-200 p-5">
+          <summary class="cursor-pointer font-bold text-slate-950">Does this calculator file my Canadian taxes?</summary>
+          <p class="mt-3 text-slate-700 leading-7">No. This tool only provides an estimate. It does not prepare or file a tax return, generate CRA forms, import slips, or verify your eligibility for deductions, exemptions, elections, or credits.</p>
+        </details>
+        <details class="rounded-2xl border border-slate-200 p-5">
+          <summary class="cursor-pointer font-bold text-slate-950">What is a taxable capital gain?</summary>
+          <p class="mt-3 text-slate-700 leading-7">A taxable capital gain is the portion of a net capital gain that is included in taxable income after applying the capital gains inclusion rate. The calculator multiplies the net gain by the inclusion rate you select.</p>
+        </details>
+        <details class="rounded-2xl border border-slate-200 p-5">
+          <summary class="cursor-pointer font-bold text-slate-950">Can I use this for a rental property sale?</summary>
+          <p class="mt-3 text-slate-700 leading-7">Yes, it can estimate a basic rental property capital gain, but real estate can involve depreciation, recapture, change-in-use rules, principal residence issues, and other tax details that require professional review.</p>
+        </details>
+        <details class="rounded-2xl border border-slate-200 p-5">
+          <summary class="cursor-pointer font-bold text-slate-950">Can I use this for stocks and ETFs?</summary>
+          <p class="mt-3 text-slate-700 leading-7">Yes. Enter the sale proceeds, adjusted cost base, and selling costs in Canadian dollars. Make sure your ACB includes reinvested distributions, return of capital adjustments, commissions, and other required changes.</p>
+        </details>
+        <details class="rounded-2xl border border-slate-200 p-5">
+          <summary class="cursor-pointer font-bold text-slate-950">Why does the calculator ask for my marginal tax rate?</summary>
+          <p class="mt-3 text-slate-700 leading-7">The final tax depends on your combined federal and provincial or territorial tax situation. A marginal tax rate input lets you model the estimated tax impact without requiring a full tax return calculation.</p>
+        </details>
+        <details class="rounded-2xl border border-slate-200 p-5">
+          <summary class="cursor-pointer font-bold text-slate-950">Is my data private?</summary>
+          <p class="mt-3 text-slate-700 leading-7">The calculator runs in your browser. It does not send your entered sale price, cost base, or tax assumptions to a backend server. You should still avoid entering sensitive information on shared or public devices.</p>
+        </details>
+      </div>
+
+      <section class="ad-box my-8">Advertisement</section>
+
+      <section class="rounded-3xl bg-slate-900 p-6 text-slate-200">
+        <h2 class="text-2xl font-bold text-white">Legal Disclaimer</h2>
+        <p class="mt-4 leading-8">This Canada Capital Gains Tax Calculator is provided for general informational and educational purposes only. It is not tax, legal, accounting, financial, investment, real estate, or professional advice. The estimate may be incomplete or inaccurate because Canadian tax results depend on current legislation, CRA administrative positions, province or territory, residency, income level, exemptions, elections, ownership structure, adjusted cost base records, currency conversion, transaction timing, capital losses, registered account rules, trust rules, corporate rules, and many other facts. You are responsible for verifying all inputs, keeping proper records, and consulting a qualified Canadian tax professional before making decisions or filing a return. NodnWebTools is not responsible for errors, omissions, tax reassessments, penalties, interest, investment losses, or decisions made using this calculator.</p>
+      </section>
+    </article>
+
+    <section class="ad-box mt-8">Advertisement</section>
+  </main>
+
+  <script>
+    const inputs = {
+      saleProceeds: document.getElementById('saleProceeds'),
+      costBase: document.getElementById('costBase'),
+      sellingCosts: document.getElementById('sellingCosts'),
+      capitalLosses: document.getElementById('capitalLosses'),
+      inclusionRate: document.getElementById('inclusionRate'),
+      customInclusionRate: document.getElementById('customInclusionRate'),
+      taxRate: document.getElementById('taxRate'),
+      province: document.getElementById('province')
+    };
+
+    const output = {
+      netGain: document.getElementById('netGain'),
+      taxableGain: document.getElementById('taxableGain'),
+      estimatedTax: document.getElementById('estimatedTax'),
+      afterTaxProceeds: document.getElementById('afterTaxProceeds'),
+      breakdown: document.getElementById('breakdown'),
+      warningBox: document.getElementById('warningBox'),
+      feedback: document.getElementById('feedback')
+    };
+
+    const money = new Intl.NumberFormat('en-CA', {
+      style: 'currency',
+      currency: 'CAD',
+      maximumFractionDigits: 2
+    });
+
+    function numericValue(el) {
+      const value = Number(el.value);
+      return Number.isFinite(value) ? value : 0;
+    }
+
+    function getInclusionRate() {
+      if (inputs.inclusionRate.value === 'custom') {
+        return Math.max(0, numericValue(inputs.customInclusionRate)) / 100;
+      }
+      return Math.max(0, Number(inputs.inclusionRate.value)) / 100;
+    }
+
+    function calculate() {
+      try {
+        const saleProceeds = numericValue(inputs.saleProceeds);
+        const costBase = numericValue(inputs.costBase);
+        const sellingCosts = numericValue(inputs.sellingCosts);
+        const capitalLosses = numericValue(inputs.capitalLosses);
+        const inclusionRate = getInclusionRate();
+        const taxRate = Math.max(0, numericValue(inputs.taxRate)) / 100;
+
+        const grossGain = saleProceeds - costBase - sellingCosts;
+        const netGainAfterLosses = Math.max(0, grossGain - capitalLosses);
+        const taxableGain = netGainAfterLosses * inclusionRate;
+        const estimatedTax = taxableGain * taxRate;
+        const afterTaxProceeds = saleProceeds - sellingCosts - estimatedTax;
+        const effectiveTaxOnGain = grossGain > 0 ? estimatedTax / grossGain : 0;
+
+        output.netGain.textContent = money.format(netGainAfterLosses);
+        output.taxableGain.textContent = money.format(taxableGain);
+        output.estimatedTax.textContent = money.format(estimatedTax);
+        output.afterTaxProceeds.textContent = money.format(afterTaxProceeds);
+
+        const warnings = [];
+        if (saleProceeds <= 0) warnings.push('Enter sale proceeds greater than zero for a meaningful estimate.');
+        if (grossGain < 0) warnings.push('This scenario produces a capital loss before applying prior losses.');
+        if (taxRate > 0.6) warnings.push('The marginal tax rate entered is high. Confirm that it reflects your combined tax situation.');
+        if (inclusionRate > 1) warnings.push('The inclusion rate is above 100%. Please confirm your custom assumption.');
+
+        if (warnings.length) {
+          output.warningBox.classList.remove('hidden');
+          output.warningBox.textContent = warnings.join(' ');
+        } else {
+          output.warningBox.classList.add('hidden');
+          output.warningBox.textContent = '';
+        }
+
+        output.breakdown.textContent =
+`Province or territory: ${inputs.province.value}
+Sale proceeds: ${money.format(saleProceeds)}
+Adjusted cost base: ${money.format(costBase)}
+Selling costs: ${money.format(sellingCosts)}
+Gross capital gain: ${money.format(grossGain)}
+Capital losses applied: ${money.format(capitalLosses)}
+Net capital gain after losses: ${money.format(netGainAfterLosses)}
+Inclusion rate: ${(inclusionRate * 100).toFixed(2)}%
+Taxable capital gain: ${money.format(taxableGain)}
+Estimated marginal tax rate: ${(taxRate * 100).toFixed(2)}%
+Estimated capital gains tax: ${money.format(estimatedTax)}
+Approximate after-tax proceeds: ${money.format(afterTaxProceeds)}
+Effective tax as a percentage of gross gain: ${(effectiveTaxOnGain * 100).toFixed(2)}%`;
+
+        return output.breakdown.textContent;
+      } catch (error) {
+        output.warningBox.classList.remove('hidden');
+        output.warningBox.textContent = 'The calculator could not complete the estimate. Please check your inputs and try again.';
+        return '';
+      }
+    }
+
+    function showFeedback(message) {
+      output.feedback.textContent = message;
+      window.setTimeout(() => {
+        output.feedback.textContent = '';
+      }, 1800);
+    }
+
+    document.getElementById('calculateBtn').addEventListener('click', () => {
+      calculate();
+      showFeedback('Estimate updated.');
+    });
+
+    document.getElementById('copyBtn').addEventListener('click', async () => {
+      try {
+        const text = calculate();
+        await navigator.clipboard.writeText(text);
+        showFeedback('Copied!');
+      } catch (error) {
+        showFeedback('Copy failed. Please select and copy the breakdown manually.');
+      }
+    });
+
+    document.getElementById('downloadBtn').addEventListener('click', () => {
+      try {
+        const text = calculate();
+        const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'canada-capital-gains-tax-estimate.txt';
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        URL.revokeObjectURL(url);
+        showFeedback('Download created.');
+      } catch (error) {
+        showFeedback('Download failed. Please try again.');
+      }
+    });
+
+    document.getElementById('resetBtn').addEventListener('click', () => {
+      inputs.saleProceeds.value = 100000;
+      inputs.costBase.value = 70000;
+      inputs.sellingCosts.value = 1500;
+      inputs.capitalLosses.value = 0;
+      inputs.inclusionRate.value = '50';
+      inputs.customInclusionRate.value = 50;
+      inputs.taxRate.value = 30;
+      inputs.province.value = 'British Columbia';
+      calculate();
+      showFeedback('Reset complete.');
+    });
+
+    Object.values(inputs).forEach((input) => {
+      input.addEventListener('input', calculate);
+      input.addEventListener('change', calculate);
+    });
+
+    window.addEventListener('resize', () => {
+      document.body.style.maxWidth = '100%';
+    });
+
+    calculate();
+  </script>
+</body>
+</html>
