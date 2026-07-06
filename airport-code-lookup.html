@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Airport Code Lookup Tool | IATA & ICAO Finder</title>
+  <meta name="description" content="Search airport codes, city names, countries, IATA codes, and ICAO identifiers with a fast browser-based lookup tool." />
+  <meta name="keywords" content="airport code lookup, IATA code finder, ICAO code lookup, airport finder, city airport code, airport abbreviation, flight airport code, airline travel tool, airport database, travel planning tool" />
+  <meta name="robots" content="index, follow" />
+  <meta name="google-adsense-account" content="ca-pub-5282672325821404" />
+
+  <meta property="og:title" content="Airport Code Lookup Tool | IATA & ICAO Finder" />
+  <meta property="og:description" content="Find airport codes by city, country, airport name, IATA code, or ICAO identifier with a fast client-side lookup tool." />
+  <meta property="og:type" content="website" />
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404" crossorigin="anonymous"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Airport Code Lookup Tool",
+    "applicationCategory": "TravelApplication",
+    "operatingSystem": "All",
+    "description": "A browser-based airport code lookup tool for searching IATA codes, ICAO identifiers, airport names, cities, regions, and countries.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "NodnWebTools",
+      "url": "https://nodntools.com"
+    }
+  }
+  </script>
+
+  <style>
+    html, body {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      min-width: 0;
+    }
+
+    body {
+      background: #f8fafc;
+    }
+
+    .safe-break {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .mobile-card,
+    .mobile-panel,
+    .mobile-preview,
+    .mobile-code,
+    .ad-box {
+      max-width: 100%;
+      overflow-wrap: anywhere;
+    }
+
+    .mobile-code {
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .ad-box {
+      width: 100%;
+      min-height: 90px;
+      border: 2px dashed #cbd5e1;
+      background: #f1f5f9;
+      color: #64748b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-radius: 1rem;
+      padding: 1rem;
+      font-size: 0.95rem;
+    }
+
+    .result-row:hover {
+      background: #f8fafc;
+    }
+
+    .copy-feedback {
+      transition: opacity 0.2s ease;
+    }
+
+    @media (max-width: 640px) {
+      .mobile-card {
+        padding: 1rem !important;
+        border-radius: 1rem !important;
+      }
+
+      .mobile-panel {
+        padding: 1rem !important;
+      }
+
+      .mobile-preview {
+        padding: 1rem !important;
+      }
+
+      .mobile-button-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .mobile-button-grid button,
+      .mobile-button-grid a {
+        width: 100%;
+      }
+
+      .ad-box {
+        min-height: 90px;
+        font-size: 0.85rem;
+        border-radius: 0.875rem;
+      }
+
+      table {
+        font-size: 0.82rem;
+      }
+
+      th, td {
+        padding-left: 0.5rem !important;
+        padding-right: 0.5rem !important;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .mobile-card {
+        padding: 0.85rem !important;
+      }
+
+      h1 {
+        font-size: 1.85rem !important;
+        line-height: 2.15rem !important;
+      }
+
+      h2 {
+        font-size: 1.45rem !important;
+      }
+
+      .ad-box {
+        min-height: 80px;
+        padding: 0.75rem;
+        font-size: 0.8rem;
+      }
+    }
+  </style>
+</head>
+
+<body class="text-slate-800">
+  <header class="border-b border-slate-200 bg-white/90 backdrop-blur">
+    <div class="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-5 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
+      <a href="https://nodntools.com" class="text-2xl font-extrabold tracking-tight text-slate-900" aria-label="NodnWebTools Home">
+        Nodn<span class="text-indigo-600">WebTools</span>
+      </a>
+      <nav class="flex flex-wrap items-center gap-3 text-sm font-medium text-slate-600">
+        <a href="https://nodntools.com" class="rounded-full px-4 py-2 hover:bg-slate-100 hover:text-indigo-700">Home</a>
+        <a href="#tool" class="rounded-full px-4 py-2 hover:bg-slate-100 hover:text-indigo-700">Lookup Tool</a>
+        <a href="#how-to-use" class="rounded-full px-4 py-2 hover:bg-slate-100 hover:text-indigo-700">How to Use</a>
+        <a href="#faq" class="rounded-full px-4 py-2 hover:bg-slate-100 hover:text-indigo-700">FAQ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+      <div class="ad-box">
+        Advertisement Space
+      </div>
+    </section>
+
+    <section id="tool" class="mx-auto max-w-7xl px-4 pb-10 pt-4 sm:px-6 lg:px-8">
+      <div class="grid gap-6 lg:grid-cols-[0.92fr_1.08fr]">
+        <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+          <div class="mb-6 inline-flex items-center rounded-full bg-indigo-50 px-4 py-2 text-sm font-semibold text-indigo-700">
+            Travel Utility
+          </div>
+
+          <h1 class="safe-break text-4xl font-extrabold tracking-tight text-slate-950 sm:text-5xl">
+            Airport Code Lookup
+          </h1>
+
+          <p class="mt-4 text-lg leading-8 text-slate-600">
+            Search airports by IATA code, ICAO identifier, airport name, city, region, or country. This tool runs fully in your browser and helps you quickly identify common airport abbreviations used in flight searches, tickets, boarding passes, travel documents, and itinerary planning.
+          </p>
+
+          <div class="mt-8 space-y-5">
+            <div>
+              <label for="searchInput" class="mb-2 block text-sm font-semibold text-slate-700">Search airport, city, country, IATA, or ICAO</label>
+              <input
+                id="searchInput"
+                type="text"
+                autocomplete="off"
+                placeholder="Example: Vancouver, JFK, EGLL, Tokyo, Pearson"
+                class="w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none ring-indigo-200 transition focus:border-indigo-500 focus:ring-4"
+              />
+            </div>
+
+            <div class="grid gap-4 sm:grid-cols-2">
+              <div>
+                <label for="regionFilter" class="mb-2 block text-sm font-semibold text-slate-700">Region filter</label>
+                <select id="regionFilter" class="w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 outline-none ring-indigo-200 transition focus:border-indigo-500 focus:ring-4">
+                  <option value="all">All regions</option>
+                  <option value="North America">North America</option>
+                  <option value="Europe">Europe</option>
+                  <option value="Asia">Asia</option>
+                  <option value="Middle East">Middle East</option>
+                  <option value="Oceania">Oceania</option>
+                  <option value="South America">South America</option>
+                  <option value="Africa">Africa</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="sortSelect" class="mb-2 block text-sm font-semibold text-slate-700">Sort results</label>
+                <select id="sortSelect" class="w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 outline-none ring-indigo-200 transition focus:border-indigo-500 focus:ring-4">
+                  <option value="relevance">Best match</option>
+                  <option value="iata">IATA code</option>
+                  <option value="city">City name</option>
+                  <option value="country">Country name</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="rounded-2xl border border-indigo-100 bg-indigo-50 p-4">
+              <h2 class="text-base font-bold text-indigo-950">Quick examples</h2>
+              <div class="mt-3 flex flex-wrap gap-2">
+                <button type="button" class="example-btn rounded-full bg-white px-3 py-2 text-sm font-semibold text-indigo-700 shadow-sm hover:bg-indigo-100" data-example="YVR">YVR</button>
+                <button type="button" class="example-btn rounded-full bg-white px-3 py-2 text-sm font-semibold text-indigo-700 shadow-sm hover:bg-indigo-100" data-example="Toronto">Toronto</button>
+                <button type="button" class="example-btn rounded-full bg-white px-3 py-2 text-sm font-semibold text-indigo-700 shadow-sm hover:bg-indigo-100" data-example="JFK">JFK</button>
+                <button type="button" class="example-btn rounded-full bg-white px-3 py-2 text-sm font-semibold text-indigo-700 shadow-sm hover:bg-indigo-100" data-example="London">London</button>
+                <button type="button" class="example-btn rounded-full bg-white px-3 py-2 text-sm font-semibold text-indigo-700 shadow-sm hover:bg-indigo-100" data-example="Seoul">Seoul</button>
+              </div>
+            </div>
+
+            <div class="mobile-button-grid grid gap-3 sm:grid-cols-2">
+              <button id="copyResultsBtn" type="button" class="rounded-2xl bg-indigo-600 px-5 py-3 font-bold text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-200">
+                Copy Results
+              </button>
+              <button id="downloadCsvBtn" type="button" class="rounded-2xl bg-violet-600 px-5 py-3 font-bold text-white shadow-sm hover:bg-violet-700 focus:outline-none focus:ring-4 focus:ring-violet-200">
+                Download CSV
+              </button>
+              <button id="resetBtn" type="button" class="rounded-2xl border border-slate-300 bg-white px-5 py-3 font-bold text-slate-700 hover:bg-slate-50 focus:outline-none focus:ring-4 focus:ring-slate-200">
+                Reset
+              </button>
+              <button id="showAllBtn" type="button" class="rounded-2xl border border-indigo-200 bg-indigo-50 px-5 py-3 font-bold text-indigo-700 hover:bg-indigo-100 focus:outline-none focus:ring-4 focus:ring-indigo-100">
+                Show Popular Airports
+              </button>
+            </div>
+
+            <p id="copyFeedback" class="copy-feedback min-h-6 text-sm font-semibold text-emerald-600" aria-live="polite"></p>
+          </div>
+        </section>
+
+        <section class="mobile-preview rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+          <div class="flex flex-col gap-4 border-b border-slate-200 pb-5 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <h2 class="text-2xl font-extrabold text-slate-950">Lookup Results</h2>
+              <p id="resultSummary" class="mt-1 text-sm text-slate-500">Enter a city, airport name, IATA code, or ICAO code to begin.</p>
+            </div>
+            <div class="rounded-2xl bg-slate-100 px-4 py-3 text-sm font-bold text-slate-700">
+              <span id="resultCount">0</span> matches
+            </div>
+          </div>
+
+          <div id="emptyState" class="mt-6 rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-8 text-center">
+            <div class="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-indigo-100 text-2xl text-indigo-700">
+              ✈
+            </div>
+            <h3 class="text-lg font-bold text-slate-900">Start with an airport code or destination</h3>
+            <p class="mt-2 text-slate-600">
+              Try searching for “LAX”, “Vancouver”, “Heathrow”, “Tokyo”, “Dubai”, or “YYZ”. Results will appear instantly as you type.
+            </p>
+          </div>
+
+          <div id="warningBox" class="mt-6 hidden rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm font-medium text-amber-800"></div>
+
+          <div id="resultsContainer" class="mt-6 hidden overflow-hidden rounded-2xl border border-slate-200">
+            <div class="max-h-[620px] overflow-auto">
+              <table class="w-full border-collapse text-left">
+                <thead class="sticky top-0 z-10 bg-slate-100 text-xs uppercase tracking-wide text-slate-600">
+                  <tr>
+                    <th class="px-4 py-3">Code</th>
+                    <th class="px-4 py-3">Airport</th>
+                    <th class="px-4 py-3">City</th>
+                    <th class="px-4 py-3">Country</th>
+                    <th class="px-4 py-3">ICAO</th>
+                  </tr>
+                </thead>
+                <tbody id="resultsBody" class="divide-y divide-slate-200 bg-white"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="mt-6 rounded-2xl bg-slate-50 p-5">
+            <h3 class="text-base font-bold text-slate-900">Main page button snippet</h3>
+            <p class="mt-2 text-sm text-slate-600">
+              Add this button to your main tools page. Update the href if your file name or folder path is different.
+            </p>
+            <pre id="mainButtonCode" class="mobile-code mt-4 rounded-2xl bg-slate-950 p-4 text-sm text-slate-100">&lt;a href="/airport-code-lookup.html" class="group block rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-indigo-200 hover:shadow-md"&gt;
+  &lt;div class="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-indigo-50 text-2xl text-indigo-600"&gt;✈&lt;/div&gt;
+  &lt;h3 class="text-lg font-bold text-slate-900 group-hover:text-indigo-700"&gt;Airport Code Lookup&lt;/h3&gt;
+  &lt;p class="mt-2 text-sm leading-6 text-slate-600"&gt;Find IATA and ICAO airport codes by city, airport name, country, or travel destination.&lt;/p&gt;
+&lt;/a&gt;</pre>
+            <button id="copyButtonSnippetBtn" type="button" class="mt-4 rounded-2xl bg-slate-900 px-5 py-3 text-sm font-bold text-white hover:bg-slate-800">
+              Copy Main Page Button
+            </button>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="mx-auto max-w-7xl px-4 pb-10 sm:px-6 lg:px-8">
+      <div class="ad-box">
+        Advertisement Space
+      </div>
+    </section>
+
+    <section class="mx-auto max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
+      <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8 lg:p-10">
+        <div class="max-w-4xl">
+          <p class="text-sm font-bold uppercase tracking-[0.2em] text-indigo-600">Airport Code Guide</p>
+          <h2 class="mt-3 text-3xl font-extrabold tracking-tight text-slate-950 sm:text-4xl">
+            Fast Airport Code Lookup for Travel Planning, Flight Search, and Itinerary Reading
+          </h2>
+          <p class="mt-5 text-lg leading-8 text-slate-600">
+            Airport codes are small pieces of travel information that appear everywhere: airline tickets, flight search engines, boarding passes, baggage tags, travel agency confirmations, airport transfer bookings, hotel shuttle instructions, airport lounge directories, flight status boards, and travel insurance documents. A three-letter IATA code such as YVR, LAX, JFK, YYZ, LHR, CDG, ICN, NRT, HND, DXB, or SIN can instantly identify a major airport, but it can also confuse travelers who are unfamiliar with a region. This Airport Code Lookup Tool is designed to make that process easier by letting you search airport codes by code, city, country, airport name, and ICAO identifier directly in your browser.
+          </p>
+        </div>
+
+        <div class="mt-10 grid gap-5 md:grid-cols-3">
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <h3 class="text-lg font-bold text-slate-950">Search by IATA Code</h3>
+            <p class="mt-3 leading-7 text-slate-600">
+              Enter a three-letter airport code such as JFK, YVR, LAX, YYZ, LHR, ICN, HND, or DXB to identify the related airport, city, and country.
+            </p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <h3 class="text-lg font-bold text-slate-950">Search by City</h3>
+            <p class="mt-3 leading-7 text-slate-600">
+              Type a city name such as Vancouver, Toronto, New York, London, Tokyo, Seoul, Paris, Dubai, or Sydney to find matching airport codes.
+            </p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <h3 class="text-lg font-bold text-slate-950">Search by Airport Name</h3>
+            <p class="mt-3 leading-7 text-slate-600">
+              Look up common airport names such as Heathrow, Pearson, Narita, Changi, Haneda, Incheon, Charles de Gaulle, or O'Hare.
+            </p>
+          </div>
+        </div>
+
+        <section class="mt-12">
+          <h2 class="text-2xl font-extrabold text-slate-950">What Is an Airport Code?</h2>
+          <p class="mt-4 leading-8 text-slate-700">
+            An airport code is a short identifier used to represent an airport in travel, aviation, booking, and logistics systems. The most familiar airport codes are three-letter IATA codes. IATA codes are widely used by airlines, passengers, travel websites, baggage systems, reservation platforms, and ticketing documents. For example, YVR represents Vancouver International Airport, YYZ represents Toronto Pearson International Airport, JFK represents John F. Kennedy International Airport, LAX represents Los Angeles International Airport, LHR represents London Heathrow Airport, CDG represents Paris Charles de Gaulle Airport, ICN represents Incheon International Airport, HND represents Tokyo Haneda Airport, and DXB represents Dubai International Airport.
+          </p>
+          <p class="mt-4 leading-8 text-slate-700">
+            Another important type of airport identifier is the four-letter ICAO code. ICAO codes are used more often in operational aviation contexts such as flight planning, air traffic control, pilot communication, weather reports, aircraft tracking systems, and technical aviation databases. For example, Vancouver International Airport uses CYVR as its ICAO code, Toronto Pearson uses CYYZ, John F. Kennedy International Airport uses KJFK, Los Angeles International Airport uses KLAX, London Heathrow uses EGLL, Paris Charles de Gaulle uses LFPG, Incheon International Airport uses RKSI, and Dubai International Airport uses OMDB.
+          </p>
+          <p class="mt-4 leading-8 text-slate-700">
+            For everyday travelers, the IATA code is usually the code that matters most. It is the code you see when booking a flight, comparing fares, checking a flight number, reading an itinerary, arranging airport pickup, or verifying a baggage tag. For aviation professionals, travel agents, logistics coordinators, frequent flyers, and flight enthusiasts, both IATA and ICAO codes can be useful because each code system serves a different purpose.
+          </p>
+        </section>
+
+        <section class="mt-12">
+          <h2 class="text-2xl font-extrabold text-slate-950">Why Airport Code Lookup Matters</h2>
+          <p class="mt-4 leading-8 text-slate-700">
+            Airport code lookup is useful because many cities have more than one airport, and many airport names are not identical to the city names travelers expect. New York is a perfect example. A traveler searching for New York may see JFK, LGA, and EWR. JFK is John F. Kennedy International Airport, LGA is LaGuardia Airport, and EWR is Newark Liberty International Airport in nearby New Jersey. All three can appear in New York area flight searches, but they are not interchangeable for ground transportation, hotel location, travel time, baggage planning, or connecting flights.
+          </p>
+          <p class="mt-4 leading-8 text-slate-700">
+            London is another common example. London travelers may encounter LHR for Heathrow, LGW for Gatwick, LCY for London City, STN for Stansted, and LTN for Luton. A low fare to a secondary airport may look attractive until you compare the distance to your hotel, train availability, luggage convenience, arrival time, and total travel cost. The same issue appears in Tokyo with HND and NRT, Seoul with ICN and GMP, Paris with CDG and ORY, Chicago with ORD and MDW, Washington with DCA, IAD, and BWI, and the San Francisco Bay Area with SFO, OAK, and SJC.
+          </p>
+          <p class="mt-4 leading-8 text-slate-700">
+            A reliable airport code finder helps avoid confusion before it becomes a travel problem. When you know exactly which airport a code refers to, you can choose better flights, compare realistic connection times, confirm airport transfers, avoid booking the wrong hotel shuttle, and understand whether a flight search result is actually convenient. For families, business travelers, students, cruise passengers, and international visitors, confirming airport codes can prevent expensive mistakes.
+          </p>
+        </section>
+
+        <div class="my-12 ad-box">
+          Advertisement Space
+        </div>
+
+        <section id="how-to-use" class="mt-12">
+          <h2 class="text-2xl font-extrabold text-slate-950">How to Use This Airport Code Lookup Tool</h2>
+          <div class="mt-6 grid gap-5 md:grid-cols-2">
+            <div class="rounded-2xl border border-slate-200 p-5">
+              <h3 class="text-lg font-bold text-slate-950">1. Enter a code, city, or airport name</h3>
+              <p class="mt-3 leading-7 text-slate-600">
+                Start by typing a three-letter IATA code, a four-letter ICAO code, a city name, an airport name, a country, or a region. You can search for codes such as YVR, YYZ, JFK, LAX, LHR, CDG, ICN, HND, NRT, SIN, DXB, AMS, FRA, MEX, GRU, SYD, AKL, or CPT.
+              </p>
+            </div>
+            <div class="rounded-2xl border border-slate-200 p-5">
+              <h3 class="text-lg font-bold text-slate-950">2. Review matching airport details</h3>
+              <p class="mt-3 leading-7 text-slate-600">
+                The results table displays the IATA code, airport name, city, country, ICAO code, and region. This makes it easier to verify whether a flight search result matches the airport you intended to use.
+              </p>
+            </div>
+            <div class="rounded-2xl border border-slate-200 p-5">
+              <h3 class="text-lg font-bold text-slate-950">3. Filter by region</h3>
+              <p class="mt-3 leading-7 text-slate-600">
+                If your search term produces many matches, narrow the results by region. This is helpful when airport names, city names, or abbreviations are similar across different countries.
+              </p>
+            </div>
+            <div class="rounded-2xl border border-slate-200 p-5">
+              <h3 class="text-lg font-bold text-slate-950">4. Copy or download results</h3>
+              <p class="mt-3 leading-7 text-slate-600">
+                Use the copy button to paste results into notes, messages, spreadsheets, or travel plans. You can also download a CSV file for offline reference or itinerary organization.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="mt-12">
+          <h2 class="text-2xl font-extrabold text-slate-950">Popular Uses for an Airport Code Finder</h2>
+          <p class="mt-4 leading-8 text-slate-700">
+            This tool is useful for many travel and planning situations. Travelers often use an airport code lookup before booking flights, especially when a destination has multiple airports or when a ticket shows a code that is unfamiliar. Families may use it to confirm where relatives are arriving. Business travelers may use it to compare the distance between an airport and a meeting location. Students and newcomers may use it to understand international flight itineraries. Travel bloggers, itinerary writers, and tourism content creators may use airport code data to make their content clearer and more accurate.
+          </p>
+
+          <div class="mt-6 grid gap-5 lg:grid-cols-3">
+            <div class="rounded-2xl bg-indigo-50 p-5">
+              <h3 class="text-lg font-bold text-indigo-950">Flight Booking</h3>
+              <p class="mt-3 leading-7 text-indigo-900">
+                Confirm that a low fare is connected to the correct airport. A cheaper ticket may use a secondary airport that adds transportation time and cost.
+              </p>
+            </div>
+            <div class="rounded-2xl bg-violet-50 p-5">
+              <h3 class="text-lg font-bold text-violet-950">Travel Itineraries</h3>
+              <p class="mt-3 leading-7 text-violet-900">
+                Translate airport abbreviations into readable city and airport names when preparing schedules, travel documents, or family trip plans.
+              </p>
+            </div>
+            <div class="rounded-2xl bg-slate-100 p-5">
+              <h3 class="text-lg font-bold text-slate-950">Airport Transfers</h3>
+              <p class="mt-3 leading-7 text-slate-700">
+                Check the exact airport before booking taxis, rideshares, shuttles, hotels, parking, public transit, or car rentals.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="mt-12">
+          <h2 class="text-2xl font-extrabold text-slate-950">Understanding IATA Codes</h2>
+          <p class="mt-4 leading-8 text-slate-700">
+            IATA codes are the three-letter airport codes most travelers recognize. They are commonly used in airline reservation systems, airport departure boards, boarding passes, baggage labels, and flight search websites. Many codes resemble a city name or airport name. For example, LAX is associated with Los Angeles, SFO with San Francisco, SEA with Seattle, BOS with Boston, MIA with Miami, ATL with Atlanta, DFW with Dallas Fort Worth, DEN with Denver, and LAS with Las Vegas. Some codes are less obvious because they reflect historical names, regional conventions, former airport names, or naming restrictions.
+          </p>
+          <p class="mt-4 leading-8 text-slate-700">
+            Canadian airport codes often begin with the letter Y, which can make them look unusual to travelers. Vancouver International Airport is YVR, Toronto Pearson International Airport is YYZ, Montréal-Trudeau International Airport is YUL, Calgary International Airport is YYC, Edmonton International Airport is YEG, Ottawa International Airport is YOW, Winnipeg Richardson International Airport is YWG, and Halifax Stanfield International Airport is YHZ. Knowing this pattern can make Canadian travel codes easier to recognize.
+          </p>
+          <p class="mt-4 leading-8 text-slate-700">
+            Airport codes are not always intuitive. Chicago O'Hare is ORD because the airport site was historically known as Orchard Field. Orlando International Airport is MCO, a code connected to the former McCoy Air Force Base. Some cities use codes that look like their city names, while others use legacy identifiers that are not obvious without a lookup tool. That is why an airport abbreviation finder is useful even for experienced travelers.
+          </p>
+        </section>
+
+        <section class="mt-12">
+          <h2 class="text-2xl font-extrabold text-slate-950">Understanding ICAO Codes</h2>
+          <p class="mt-4 leading-8 text-slate-700">
+            ICAO codes are four-letter identifiers used in aviation operations. While a passenger may search for JFK, a flight plan or aviation weather report may use KJFK. While a traveler may book a ticket through LHR, air traffic and operational systems may refer to EGLL. ICAO codes are especially common in pilot resources, aircraft tracking platforms, meteorological reports, dispatch systems, airport operations, and professional flight planning tools.
+          </p>
+          <p class="mt-4 leading-8 text-slate-700">
+            ICAO codes often include geographic prefixes. In the United States, many major airports have ICAO codes that begin with K, such as KJFK, KLAX, KORD, KATL, KSFO, and KSEA. In Canada, many major airports begin with C, such as CYVR, CYYZ, CYUL, CYYC, and CYOW. In the United Kingdom, many airport ICAO codes begin with EG, such as EGLL for Heathrow and EGKK for Gatwick. These patterns help aviation professionals understand where an airport is located at a glance.
+          </p>
+          <p class="mt-4 leading-8 text-slate-700">
+            Travelers usually do not need ICAO codes for ordinary bookings, but they can still be useful when reading flight tracking websites, weather data, or aviation discussions. This tool includes ICAO identifiers for many popular airports so both casual travelers and aviation-focused users can benefit from the same search interface.
+          </p>
+        </section>
+
+        <div class="my-12 ad-box">
+          Advertisement Space
+        </div>
+
+        <section class="mt-12">
+          <h2 class="text-2xl font-extrabold text-slate-950">Tips for Choosing the Right Airport</h2>
+          <p class="mt-4 leading-8 text-slate-700">
+            When a destination has multiple airports, airport code lookup should be only the first step. After identifying the airport, compare the total travel experience. Look at the distance from the airport to your hotel, cruise port, conference venue, university, family address, or tourist area. Consider public transportation options, arrival time, baggage load, traffic, taxi cost, rideshare availability, rental car pickup, and whether your flight arrives late at night.
+          </p>
+          <p class="mt-4 leading-8 text-slate-700">
+            For example, a flight into a secondary airport may be cheaper, but it may require a longer train ride, a more expensive taxi, or a complicated late-night transfer. A direct flight to a farther airport may sometimes be less convenient than a connecting flight to the airport closest to your final destination. Families with children, older travelers, passengers with large luggage, and travelers arriving after midnight should pay close attention to airport location, not just ticket price.
+          </p>
+          <p class="mt-4 leading-8 text-slate-700">
+            Also consider connection airports carefully. A short layover at a large airport may be risky if you must change terminals, clear immigration, recheck baggage, pass security again, or move between domestic and international areas. Airport code lookup can help you identify the exact connection airport, but you should still review airline minimum connection time, terminal layout, and local entry requirements before booking.
+          </p>
+        </section>
+
+        <section class="mt-12">
+          <h2 class="text-2xl font-extrabold text-slate-950">Airport Code Lookup for Travel Websites and Content Creators</h2>
+          <p class="mt-4 leading-8 text-slate-700">
+            Travel websites, blogs, itinerary builders, comparison tools, and destination guides often use airport codes to keep text concise. However, readers may not know what a code means. Adding full airport names next to airport codes can improve clarity, search engine quality, user experience, and accessibility. For example, writing “Fly into Vancouver International Airport (YVR)” is clearer than using only “YVR.” Writing “Tokyo Haneda Airport (HND) or Narita International Airport (NRT)” helps travelers immediately understand that Tokyo has more than one major airport option.
+          </p>
+          <p class="mt-4 leading-8 text-slate-700">
+            If you operate a travel comparison page, flight planning page, airport transfer guide, hotel shuttle page, cruise port guide, or destination article, airport code accuracy matters. Incorrect airport names can cause confusion, increase bounce rates, and reduce user trust. A simple airport code checker helps writers verify details before publishing. It can also help editors standardize airport references across articles, maps, fare examples, and travel tips.
+          </p>
+        </section>
+
+        <section class="mt-12">
+          <h2 class="text-2xl font-extrabold text-slate-950">Privacy and Client-Side Use</h2>
+          <p class="mt-4 leading-8 text-slate-700">
+            This Airport Code Lookup Tool is designed to run in the browser. The search interaction is processed locally by the page's JavaScript using the airport dataset included inside this file. That means ordinary searches do not require a backend server, account login, or file upload. Client-side tools are useful for quick lookups because they are fast, simple, and privacy-friendly by design.
+          </p>
+          <p class="mt-4 leading-8 text-slate-700">
+            Because this tool is browser-based, it is also easy to save, host, and use as a static page. It can be placed on a personal website, travel resource site, utility collection, or internal planning page without building a database server. The included main page button snippet makes it easy to link this tool from a broader tools directory.
+          </p>
+        </section>
+
+        <section class="mt-12">
+          <h2 class="text-2xl font-extrabold text-slate-950">Common Airport Code Examples</h2>
+          <p class="mt-4 leading-8 text-slate-700">
+            Some of the world's most frequently searched airport codes include JFK for John F. Kennedy International Airport, LAX for Los Angeles International Airport, SFO for San Francisco International Airport, ORD for Chicago O'Hare International Airport, ATL for Hartsfield-Jackson Atlanta International Airport, DFW for Dallas Fort Worth International Airport, DEN for Denver International Airport, SEA for Seattle-Tacoma International Airport, LAS for Harry Reid International Airport, MIA for Miami International Airport, BOS for Boston Logan International Airport, and IAD for Washington Dulles International Airport.
+          </p>
+          <p class="mt-4 leading-8 text-slate-700">
+            In Canada, common airport codes include YVR for Vancouver, YYZ for Toronto Pearson, YUL for Montréal-Trudeau, YYC for Calgary, YEG for Edmonton, YOW for Ottawa, YWG for Winnipeg, YHZ for Halifax, YQB for Québec City, YLW for Kelowna, and YYJ for Victoria. In Europe, popular codes include LHR for London Heathrow, LGW for London Gatwick, CDG for Paris Charles de Gaulle, ORY for Paris Orly, AMS for Amsterdam Schiphol, FRA for Frankfurt, MUC for Munich, MAD for Madrid, BCN for Barcelona, FCO for Rome Fiumicino, ZRH for Zurich, VIE for Vienna, and CPH for Copenhagen.
+          </p>
+          <p class="mt-4 leading-8 text-slate-700">
+            In Asia and Oceania, travelers often search for ICN for Incheon, GMP for Seoul Gimpo, HND for Tokyo Haneda, NRT for Tokyo Narita, KIX for Osaka Kansai, PEK for Beijing Capital, PVG for Shanghai Pudong, HKG for Hong Kong, TPE for Taipei Taoyuan, SIN for Singapore Changi, BKK for Bangkok Suvarnabhumi, KUL for Kuala Lumpur, DEL for Delhi, BOM for Mumbai, SYD for Sydney, MEL for Melbourne, BNE for Brisbane, AKL for Auckland, and CHC for Christchurch. In the Middle East, common codes include DXB for Dubai, AUH for Abu Dhabi, DOH for Doha, and TLV for Tel Aviv.
+          </p>
+        </section>
+
+        <section id="faq" class="mt-14">
+          <h2 class="text-3xl font-extrabold text-slate-950">Frequently Asked Questions</h2>
+
+          <div class="mt-6 space-y-4">
+            <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+              <summary class="cursor-pointer text-lg font-bold text-slate-950">What is the difference between IATA and ICAO airport codes?</summary>
+              <p class="mt-3 leading-7 text-slate-700">
+                IATA codes are three-letter identifiers commonly used by passengers, airlines, booking websites, boarding passes, and baggage tags. ICAO codes are four-letter identifiers commonly used in flight planning, air traffic control, weather reports, and aviation operations.
+              </p>
+            </details>
+
+            <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+              <summary class="cursor-pointer text-lg font-bold text-slate-950">Can I search by city instead of airport code?</summary>
+              <p class="mt-3 leading-7 text-slate-700">
+                Yes. You can search by city name, country, airport name, IATA code, ICAO code, or region. This is helpful for cities with multiple airports, such as New York, London, Tokyo, Seoul, Paris, Chicago, and Washington.
+              </p>
+            </details>
+
+            <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+              <summary class="cursor-pointer text-lg font-bold text-slate-950">Why do many Canadian airport codes start with Y?</summary>
+              <p class="mt-3 leading-7 text-slate-700">
+                Many Canadian IATA airport codes begin with Y because of historical code assignment patterns. Examples include YVR for Vancouver, YYZ for Toronto, YUL for Montréal, YYC for Calgary, and YOW for Ottawa.
+              </p>
+            </details>
+
+            <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+              <summary class="cursor-pointer text-lg font-bold text-slate-950">Does this tool include every airport in the world?</summary>
+              <p class="mt-3 leading-7 text-slate-700">
+                This page includes a practical built-in list of many major and commonly searched airports. It is intended for fast travel lookup and general planning, not as a complete official global aviation database.
+              </p>
+            </details>
+
+            <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+              <summary class="cursor-pointer text-lg font-bold text-slate-950">Can I use the results for flight booking?</summary>
+              <p class="mt-3 leading-7 text-slate-700">
+                You can use the results as a helpful reference, but you should always verify final flight details with your airline, travel agency, airport authority, or booking platform before purchasing tickets or arranging transportation.
+              </p>
+            </details>
+
+            <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+              <summary class="cursor-pointer text-lg font-bold text-slate-950">Does the tool send my search to a server?</summary>
+              <p class="mt-3 leading-7 text-slate-700">
+                No. The lookup runs client-side in your browser using the airport data embedded in this page. No search text needs to be uploaded to a backend server for the tool to work.
+              </p>
+            </details>
+
+            <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+              <summary class="cursor-pointer text-lg font-bold text-slate-950">Why does one city have several airport codes?</summary>
+              <p class="mt-3 leading-7 text-slate-700">
+                Large cities and metropolitan areas often have several airports serving different airlines, flight types, regions, or passenger needs. Airport code lookup helps you identify which specific airport is listed in a fare, itinerary, or ticket.
+              </p>
+            </details>
+          </div>
+        </section>
+
+        <div class="my-12 ad-box">
+          Advertisement Space
+        </div>
+
+        <section class="mt-12 rounded-3xl bg-slate-950 p-6 text-slate-100 sm:p-8">
+          <h2 class="text-2xl font-extrabold">Legal Disclaimer</h2>
+          <p class="mt-4 leading-8 text-slate-300">
+            This Airport Code Lookup Tool is provided for general informational and travel-planning reference only. Airport names, codes, routes, airline operations, terminal assignments, and airport usage can change. While this tool is designed to provide convenient airport code information, it may not include every airport, private airfield, regional airport, renamed airport, closed airport, newly opened airport, temporary airport identifier, or operational change.
+          </p>
+          <p class="mt-4 leading-8 text-slate-300">
+            Do not rely on this tool as the sole source for booking decisions, immigration planning, airport transfers, emergency travel, baggage routing, commercial logistics, aviation operations, flight planning, or legal compliance. Always confirm airport information with the airline, airport authority, official aviation sources, travel agency, government authority, or transportation provider before making travel or financial commitments. Users are responsible for verifying the accuracy, suitability, and timeliness of any information used from this page.
+          </p>
+          <p class="mt-4 leading-8 text-slate-300">
+            This tool does not provide professional aviation advice, legal advice, travel insurance advice, immigration advice, safety advice, or guaranteed routing information. Use of this page is at your own discretion and responsibility.
+          </p>
+        </section>
+      </article>
+    </section>
+
+    <section class="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
+      <div class="ad-box">
+        Advertisement Space
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-slate-200 bg-white">
+    <div class="mx-auto max-w-7xl px-4 py-8 text-center text-sm text-slate-500 sm:px-6 lg:px-8">
+      <p>© <span id="year"></span> NodnWebTools. All rights reserved.</p>
+      <p class="mt-2">
+        <a href="https://nodntools.com" class="font-semibold text-indigo-600 hover:text-indigo-700">Back to Home</a>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    const airports = [
+      { iata: "YVR", icao: "CYVR", airport: "Vancouver International Airport", city: "Vancouver", country: "Canada", region: "North America" },
+      { iata: "YYZ", icao: "CYYZ", airport: "Toronto Pearson International Airport", city: "Toronto", country: "Canada", region: "North America" },
+      { iata: "YUL", icao: "CYUL", airport: "Montréal-Trudeau International Airport", city: "Montreal", country: "Canada", region: "North America" },
+      { iata: "YYC", icao: "CYYC", airport: "Calgary International Airport", city: "Calgary", country: "Canada", region: "North America" },
+      { iata: "YEG", icao: "CYEG", airport: "Edmonton International Airport", city: "Edmonton", country: "Canada", region: "North America" },
+      { iata: "YOW", icao: "CYOW", airport: "Ottawa Macdonald-Cartier International Airport", city: "Ottawa", country: "Canada", region: "North America" },
+      { iata: "YWG", icao: "CYWG", airport: "Winnipeg Richardson International Airport", city: "Winnipeg", country: "Canada", region: "North America" },
+      { iata: "YHZ", icao: "CYHZ", airport: "Halifax Stanfield International Airport", city: "Halifax", country: "Canada", region: "North America" },
+      { iata: "YYJ", icao: "CYYJ", airport: "Victoria International Airport", city: "Victoria", country: "Canada", region: "North America" },
+      { iata: "YLW", icao: "CYLW", airport: "Kelowna International Airport", city: "Kelowna", country: "Canada", region: "North America" },
+      { iata: "YQB", icao: "CYQB", airport: "Québec City Jean Lesage International Airport", city: "Quebec City", country: "Canada", region: "North America" },
+
+      { iata: "JFK", icao: "KJFK", airport: "John F. Kennedy International Airport", city: "New York", country: "United States", region: "North America" },
+      { iata: "LGA", icao: "KLGA", airport: "LaGuardia Airport", city: "New York", country: "United States", region: "North America" },
+      { iata: "EWR", icao: "KEWR", airport: "Newark Liberty International Airport", city: "Newark", country: "United States", region: "North America" },
+      { iata: "LAX", icao: "KLAX", airport: "Los Angeles International Airport", city: "Los Angeles", country: "United States", region: "North America" },
+      { iata: "SFO", icao: "KSFO", airport: "San Francisco International Airport", city: "San Francisco", country: "United States", region: "North America" },
+      { iata: "SEA", icao: "KSEA", airport: "Seattle-Tacoma International Airport", city: "Seattle", country: "United States", region: "North America" },
+      { iata: "ORD", icao: "KORD", airport: "Chicago O'Hare International Airport", city: "Chicago", country: "United States", region: "North America" },
+      { iata: "MDW", icao: "KMDW", airport: "Chicago Midway International Airport", city: "Chicago", country: "United States", region: "North America" },
+      { iata: "ATL", icao: "KATL", airport: "Hartsfield-Jackson Atlanta International Airport", city: "Atlanta", country: "United States", region: "North America" },
+      { iata: "DFW", icao: "KDFW", airport: "Dallas Fort Worth International Airport", city: "Dallas-Fort Worth", country: "United States", region: "North America" },
+      { iata: "DEN", icao: "KDEN", airport: "Denver International Airport", city: "Denver", country: "United States", region: "North America" },
+      { iata: "LAS", icao: "KLAS", airport: "Harry Reid International Airport", city: "Las Vegas", country: "United States", region: "North America" },
+      { iata: "MIA", icao: "KMIA", airport: "Miami International Airport", city: "Miami", country: "United States", region: "North America" },
+      { iata: "BOS", icao: "KBOS", airport: "Boston Logan International Airport", city: "Boston", country: "United States", region: "North America" },
+      { iata: "IAD", icao: "KIAD", airport: "Washington Dulles International Airport", city: "Washington", country: "United States", region: "North America" },
+      { iata: "DCA", icao: "KDCA", airport: "Ronald Reagan Washington National Airport", city: "Washington", country: "United States", region: "North America" },
+      { iata: "PHX", icao: "KPHX", airport: "Phoenix Sky Harbor International Airport", city: "Phoenix", country: "United States", region: "North America" },
+      { iata: "IAH", icao: "KIAH", airport: "George Bush Intercontinental Airport", city: "Houston", country: "United States", region: "North America" },
+      { iata: "MCO", icao: "KMCO", airport: "Orlando International Airport", city: "Orlando", country: "United States", region: "North America" },
+      { iata: "MSP", icao: "KMSP", airport: "Minneapolis-Saint Paul International Airport", city: "Minneapolis-Saint Paul", country: "United States", region: "North America" },
+      { iata: "DTW", icao: "KDTW", airport: "Detroit Metropolitan Wayne County Airport", city: "Detroit", country: "United States", region: "North America" },
+      { iata: "PHL", icao: "KPHL", airport: "Philadelphia International Airport", city: "Philadelphia", country: "United States", region: "North America" },
+      { iata: "CLT", icao: "KCLT", airport: "Charlotte Douglas International Airport", city: "Charlotte", country: "United States", region: "North America" },
+      { iata: "SAN", icao: "KSAN", airport: "San Diego International Airport", city: "San Diego", country: "United States", region: "North America" },
+      { iata: "PDX", icao: "KPDX", airport: "Portland International Airport", city: "Portland", country: "United States", region: "North America" },
+
+      { iata: "MEX", icao: "MMMX", airport: "Mexico City International Airport", city: "Mexico City", country: "Mexico", region: "North America" },
+      { iata: "CUN", icao: "MMUN", airport: "Cancún International Airport", city: "Cancun", country: "Mexico", region: "North America" },
+      { iata: "GDL", icao: "MMGL", airport: "Guadalajara International Airport", city: "Guadalajara", country: "Mexico", region: "North America" },
+
+      { iata: "LHR", icao: "EGLL", airport: "London Heathrow Airport", city: "London", country: "United Kingdom", region: "Europe" },
+      { iata: "LGW", icao: "EGKK", airport: "London Gatwick Airport", city: "London", country: "United Kingdom", region: "Europe" },
+      { iata: "LCY", icao: "EGLC", airport: "London City Airport", city: "London", country: "United Kingdom", region: "Europe" },
+      { iata: "STN", icao: "EGSS", airport: "London Stansted Airport", city: "London", country: "United Kingdom", region: "Europe" },
+      { iata: "LTN", icao: "EGGW", airport: "London Luton Airport", city: "London", country: "United Kingdom", region: "Europe" },
+      { iata: "CDG", icao: "LFPG", airport: "Paris Charles de Gaulle Airport", city: "Paris", country: "France", region: "Europe" },
+      { iata: "ORY", icao: "LFPO", airport: "Paris Orly Airport", city: "Paris", country: "France", region: "Europe" },
+      { iata: "AMS", icao: "EHAM", airport: "Amsterdam Airport Schiphol", city: "Amsterdam", country: "Netherlands", region: "Europe" },
+      { iata: "FRA", icao: "EDDF", airport: "Frankfurt Airport", city: "Frankfurt", country: "Germany", region: "Europe" },
+      { iata: "MUC", icao: "EDDM", airport: "Munich Airport", city: "Munich", country: "Germany", region: "Europe" },
+      { iata: "MAD", icao: "LEMD", airport: "Adolfo Suárez Madrid-Barajas Airport", city: "Madrid", country: "Spain", region: "Europe" },
+      { iata: "BCN", icao: "LEBL", airport: "Barcelona-El Prat Airport", city: "Barcelona", country: "Spain", region: "Europe" },
+      { iata: "FCO", icao: "LIRF", airport: "Rome Fiumicino Airport", city: "Rome", country: "Italy", region: "Europe" },
+      { iata: "MXP", icao: "LIMC", airport: "Milan Malpensa Airport", city: "Milan", country: "Italy", region: "Europe" },
+      { iata: "ZRH", icao: "LSZH", airport: "Zurich Airport", city: "Zurich", country: "Switzerland", region: "Europe" },
+      { iata: "VIE", icao: "LOWW", airport: "Vienna International Airport", city: "Vienna", country: "Austria", region: "Europe" },
+      { iata: "CPH", icao: "EKCH", airport: "Copenhagen Airport", city: "Copenhagen", country: "Denmark", region: "Europe" },
+      { iata: "ARN", icao: "ESSA", airport: "Stockholm Arlanda Airport", city: "Stockholm", country: "Sweden", region: "Europe" },
+      { iata: "OSL", icao: "ENGM", airport: "Oslo Airport", city: "Oslo", country: "Norway", region: "Europe" },
+      { iata: "HEL", icao: "EFHK", airport: "Helsinki Airport", city: "Helsinki", country: "Finland", region: "Europe" },
+      { iata: "DUB", icao: "EIDW", airport: "Dublin Airport", city: "Dublin", country: "Ireland", region: "Europe" },
+      { iata: "IST", icao: "LTFM", airport: "Istanbul Airport", city: "Istanbul", country: "Türkiye", region: "Europe" },
+      { iata: "ATH", icao: "LGAV", airport: "Athens International Airport", city: "Athens", country: "Greece", region: "Europe" },
+      { iata: "LIS", icao: "LPPT", airport: "Lisbon Airport", city: "Lisbon", country: "Portugal", region: "Europe" },
+      { iata: "BRU", icao: "EBBR", airport: "Brussels Airport", city: "Brussels", country: "Belgium", region: "Europe" },
+
+      { iata: "ICN", icao: "RKSI", airport: "Incheon International Airport", city: "Seoul", country: "South Korea", region: "Asia" },
+      { iata: "GMP", icao: "RKSS", airport: "Gimpo International Airport", city: "Seoul", country: "South Korea", region: "Asia" },
+      { iata: "HND", icao: "RJTT", airport: "Tokyo Haneda Airport", city: "Tokyo", country: "Japan", region: "Asia" },
+      { iata: "NRT", icao: "RJAA", airport: "Narita International Airport", city: "Tokyo", country: "Japan", region: "Asia" },
+      { iata: "KIX", icao: "RJBB", airport: "Kansai International Airport", city: "Osaka", country: "Japan", region: "Asia" },
+      { iata: "ITM", icao: "RJOO", airport: "Osaka International Airport", city: "Osaka", country: "Japan", region: "Asia" },
+      { iata: "PEK", icao: "ZBAA", airport: "Beijing Capital International Airport", city: "Beijing", country: "China", region: "Asia" },
+      { iata: "PKX", icao: "ZBAD", airport: "Beijing Daxing International Airport", city: "Beijing", country: "China", region: "Asia" },
+      { iata: "PVG", icao: "ZSPD", airport: "Shanghai Pudong International Airport", city: "Shanghai", country: "China", region: "Asia" },
+      { iata: "SHA", icao: "ZSSS", airport: "Shanghai Hongqiao International Airport", city: "Shanghai", country: "China", region: "Asia" },
+      { iata: "HKG", icao: "VHHH", airport: "Hong Kong International Airport", city: "Hong Kong", country: "Hong Kong", region: "Asia" },
+      { iata: "TPE", icao: "RCTP", airport: "Taiwan Taoyuan International Airport", city: "Taipei", country: "Taiwan", region: "Asia" },
+      { iata: "SIN", icao: "WSSS", airport: "Singapore Changi Airport", city: "Singapore", country: "Singapore", region: "Asia" },
+      { iata: "BKK", icao: "VTBS", airport: "Suvarnabhumi Airport", city: "Bangkok", country: "Thailand", region: "Asia" },
+      { iata: "DMK", icao: "VTBD", airport: "Don Mueang International Airport", city: "Bangkok", country: "Thailand", region: "Asia" },
+      { iata: "KUL", icao: "WMKK", airport: "Kuala Lumpur International Airport", city: "Kuala Lumpur", country: "Malaysia", region: "Asia" },
+      { iata: "CGK", icao: "WIII", airport: "Soekarno-Hatta International Airport", city: "Jakarta", country: "Indonesia", region: "Asia" },
+      { iata: "MNL", icao: "RPLL", airport: "Ninoy Aquino International Airport", city: "Manila", country: "Philippines", region: "Asia" },
+      { iata: "DEL", icao: "VIDP", airport: "Indira Gandhi International Airport", city: "Delhi", country: "India", region: "Asia" },
+      { iata: "BOM", icao: "VABB", airport: "Chhatrapati Shivaji Maharaj International Airport", city: "Mumbai", country: "India", region: "Asia" },
+      { iata: "BLR", icao: "VOBL", airport: "Kempegowda International Airport", city: "Bengaluru", country: "India", region: "Asia" },
+      { iata: "SGN", icao: "VVTS", airport: "Tan Son Nhat International Airport", city: "Ho Chi Minh City", country: "Vietnam", region: "Asia" },
+      { iata: "HAN", icao: "VVNB", airport: "Noi Bai International Airport", city: "Hanoi", country: "Vietnam", region: "Asia" },
+
+      { iata: "DXB", icao: "OMDB", airport: "Dubai International Airport", city: "Dubai", country: "United Arab Emirates", region: "Middle East" },
+      { iata: "AUH", icao: "OMAA", airport: "Zayed International Airport", city: "Abu Dhabi", country: "United Arab Emirates", region: "Middle East" },
+      { iata: "DOH", icao: "OTHH", airport: "Hamad International Airport", city: "Doha", country: "Qatar", region: "Middle East" },
+      { iata: "RUH", icao: "OERK", airport: "King Khalid International Airport", city: "Riyadh", country: "Saudi Arabia", region: "Middle East" },
+      { iata: "JED", icao: "OEJN", airport: "King Abdulaziz International Airport", city: "Jeddah", country: "Saudi Arabia", region: "Middle East" },
+      { iata: "TLV", icao: "LLBG", airport: "Ben Gurion Airport", city: "Tel Aviv", country: "Israel", region: "Middle East" },
+
+      { iata: "SYD", icao: "YSSY", airport: "Sydney Kingsford Smith Airport", city: "Sydney", country: "Australia", region: "Oceania" },
+      { iata: "MEL", icao: "YMML", airport: "Melbourne Airport", city: "Melbourne", country: "Australia", region: "Oceania" },
+      { iata: "BNE", icao: "YBBN", airport: "Brisbane Airport", city: "Brisbane", country: "Australia", region: "Oceania" },
+      { iata: "PER", icao: "YPPH", airport: "Perth Airport", city: "Perth", country: "Australia", region: "Oceania" },
+      { iata: "AKL", icao: "NZAA", airport: "Auckland Airport", city: "Auckland", country: "New Zealand", region: "Oceania" },
+      { iata: "CHC", icao: "NZCH", airport: "Christchurch Airport", city: "Christchurch", country: "New Zealand", region: "Oceania" },
+      { iata: "NAN", icao: "NFFN", airport: "Nadi International Airport", city: "Nadi", country: "Fiji", region: "Oceania" },
+
+      { iata: "GRU", icao: "SBGR", airport: "São Paulo/Guarulhos International Airport", city: "Sao Paulo", country: "Brazil", region: "South America" },
+      { iata: "GIG", icao: "SBGL", airport: "Rio de Janeiro/Galeão International Airport", city: "Rio de Janeiro", country: "Brazil", region: "South America" },
+      { iata: "EZE", icao: "SAEZ", airport: "Ministro Pistarini International Airport", city: "Buenos Aires", country: "Argentina", region: "South America" },
+      { iata: "SCL", icao: "SCEL", airport: "Arturo Merino Benítez International Airport", city: "Santiago", country: "Chile", region: "South America" },
+      { iata: "LIM", icao: "SPJC", airport: "Jorge Chávez International Airport", city: "Lima", country: "Peru", region: "South America" },
+      { iata: "BOG", icao: "SKBO", airport: "El Dorado International Airport", city: "Bogota", country: "Colombia", region: "South America" },
+
+      { iata: "JNB", icao: "FAOR", airport: "O. R. Tambo International Airport", city: "Johannesburg", country: "South Africa", region: "Africa" },
+      { iata: "CPT", icao: "FACT", airport: "Cape Town International Airport", city: "Cape Town", country: "South Africa", region: "Africa" },
+      { iata: "CAI", icao: "HECA", airport: "Cairo International Airport", city: "Cairo", country: "Egypt", region: "Africa" },
+      { iata: "ADD", icao: "HAAB", airport: "Addis Ababa Bole International Airport", city: "Addis Ababa", country: "Ethiopia", region: "Africa" },
+      { iata: "NBO", icao: "HKJK", airport: "Jomo Kenyatta International Airport", city: "Nairobi", country: "Kenya", region: "Africa" },
+      { iata: "CMN", icao: "GMMN", airport: "Mohammed V International Airport", city: "Casablanca", country: "Morocco", region: "Africa" }
+    ];
+
+    const searchInput = document.getElementById("searchInput");
+    const regionFilter = document.getElementById("regionFilter");
+    const sortSelect = document.getElementById("sortSelect");
+    const resultCount = document.getElementById("resultCount");
+    const resultSummary = document.getElementById("resultSummary");
+    const resultsBody = document.getElementById("resultsBody");
+    const resultsContainer = document.getElementById("resultsContainer");
+    const emptyState = document.getElementById("emptyState");
+    const warningBox = document.getElementById("warningBox");
+    const copyResultsBtn = document.getElementById("copyResultsBtn");
+    const downloadCsvBtn = document.getElementById("downloadCsvBtn");
+    const resetBtn = document.getElementById("resetBtn");
+    const showAllBtn = document.getElementById("showAllBtn");
+    const copyFeedback = document.getElementById("copyFeedback");
+    const copyButtonSnippetBtn = document.getElementById("copyButtonSnippetBtn");
+    const mainButtonCode = document.getElementById("mainButtonCode");
+
+    let currentResults = [];
+
+    function normalizeText(value) {
+      return String(value || "")
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .trim();
+    }
+
+    function getRelevanceScore(item, query) {
+      const q = normalizeText(query);
+      const iata = normalizeText(item.iata);
+      const icao = normalizeText(item.icao);
+      const city = normalizeText(item.city);
+      const country = normalizeText(item.country);
+      const airport = normalizeText(item.airport);
+
+      if (!q) return 1;
+      if (iata === q) return 100;
+      if (icao === q) return 95;
+      if (city === q) return 90;
+      if (airport === q) return 85;
+      if (iata.startsWith(q)) return 80;
+      if (icao.startsWith(q)) return 75;
+      if (city.startsWith(q)) return 70;
+      if (airport.includes(q)) return 60;
+      if (country.includes(q)) return 50;
+      return 10;
+    }
+
+    function filterAirports() {
+      try {
+        const query = searchInput.value.trim();
+        const normalizedQuery = normalizeText(query);
+        const selectedRegion = regionFilter.value;
+        const sortMode = sortSelect.value;
+
+        warningBox.classList.add("hidden");
+        warningBox.textContent = "";
+
+        let results = airports.filter((item) => {
+          const regionMatches = selectedRegion === "all" || item.region === selectedRegion;
+          if (!regionMatches) return false;
+
+          if (!normalizedQuery) return false;
+
+          const searchable = [
+            item.iata,
+            item.icao,
+            item.airport,
+            item.city,
+            item.country,
+            item.region
+          ].map(normalizeText).join(" ");
+
+          return searchable.includes(normalizedQuery);
+        });
+
+        results = results.map((item) => ({
+          ...item,
+          score: getRelevanceScore(item, query)
+        }));
+
+        if (sortMode === "relevance") {
+          results.sort((a, b) => b.score - a.score || a.iata.localeCompare(b.iata));
+        } else if (sortMode === "iata") {
+          results.sort((a, b) => a.iata.localeCompare(b.iata));
+        } else if (sortMode === "city") {
+          results.sort((a, b) => a.city.localeCompare(b.city));
+        } else if (sortMode === "country") {
+          results.sort((a, b) => a.country.localeCompare(b.country));
+        }
+
+        currentResults = results;
+        renderResults(results, query);
+      } catch (error) {
+        showWarning("Something went wrong while searching. Please reset the tool and try again.");
+        console.error(error);
+      }
+    }
+
+    function renderResults(results, query) {
+      resultsBody.innerHTML = "";
+      resultCount.textContent = String(results.length);
+
+      if (!query.trim()) {
+        emptyState.classList.remove("hidden");
+        resultsContainer.classList.add("hidden");
+        resultSummary.textContent = "Enter a city, airport name, IATA code, or ICAO code to begin.";
+        return;
+      }
+
+      if (!results.length) {
+        emptyState.classList.remove("hidden");
+        resultsContainer.classList.add("hidden");
+        resultSummary.textContent = "No matching airports found. Try a different spelling, city name, or airport code.";
+        showWarning("No matching airport was found in the built-in list. Check spelling or try a broader search such as country, city, or airport name.");
+        return;
+      }
+
+      emptyState.classList.add("hidden");
+      resultsContainer.classList.remove("hidden");
+      resultSummary.textContent = `Showing airport matches for “${query}”.`;
+
+      const fragment = document.createDocumentFragment();
+
+      results.forEach((item) => {
+        const row = document.createElement("tr");
+        row.className = "result-row";
+
+        row.innerHTML = `
+          <td class="px-4 py-4 align-top">
+            <button type="button" class="copy-code-btn rounded-xl bg-indigo-50 px-3 py-2 font-extrabold text-indigo-700 hover:bg-indigo-100" data-code="${escapeHtml(item.iata)}" aria-label="Copy ${escapeHtml(item.iata)} airport code">
+              ${escapeHtml(item.iata)}
+            </button>
+          </td>
+          <td class="safe-break px-4 py-4 align-top">
+            <div class="font-bold text-slate-900">${escapeHtml(item.airport)}</div>
+            <div class="mt-1 text-xs font-semibold text-slate-500">${escapeHtml(item.region)}</div>
+          </td>
+          <td class="safe-break px-4 py-4 align-top text-slate-700">${escapeHtml(item.city)}</td>
+          <td class="safe-break px-4 py-4 align-top text-slate-700">${escapeHtml(item.country)}</td>
+          <td class="safe-break px-4 py-4 align-top font-semibold text-slate-700">${escapeHtml(item.icao)}</td>
+        `;
+
+        fragment.appendChild(row);
+      });
+
+      resultsBody.appendChild(fragment);
+
+      document.querySelectorAll(".copy-code-btn").forEach((button) => {
+        button.addEventListener("click", () => copyText(button.dataset.code || ""));
+      });
+    }
+
+    function showWarning(message) {
+      warningBox.textContent = message;
+      warningBox.classList.remove("hidden");
+    }
+
+    function escapeHtml(value) {
+      return String(value || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    async function copyText(text) {
+      try {
+        if (!text) {
+          showCopyFeedback("Nothing to copy.");
+          return;
+        }
+
+        await navigator.clipboard.writeText(text);
+        showCopyFeedback("Copied!");
+      } catch (error) {
+        try {
+          const temp = document.createElement("textarea");
+          temp.value = text;
+          temp.setAttribute("readonly", "");
+          temp.style.position = "absolute";
+          temp.style.left = "-9999px";
+          document.body.appendChild(temp);
+          temp.select();
+          document.execCommand("copy");
+          document.body.removeChild(temp);
+          showCopyFeedback("Copied!");
+        } catch (fallbackError) {
+          showCopyFeedback("Copy failed. Please copy manually.");
+        }
+      }
+    }
+
+    function showCopyFeedback(message) {
+      copyFeedback.textContent = message;
+      window.clearTimeout(showCopyFeedback.timer);
+      showCopyFeedback.timer = window.setTimeout(() => {
+        copyFeedback.textContent = "";
+      }, 1800);
+    }
+
+    function resultsToText(results) {
+      if (!results.length) return "";
+      return results.map((item) => `${item.iata} | ${item.icao} | ${item.airport} | ${item.city}, ${item.country} | ${item.region}`).join("\n");
+    }
+
+    function downloadCsv() {
+      try {
+        if (!currentResults.length) {
+          showCopyFeedback("No results to download.");
+          return;
+        }
+
+        const header = ["IATA", "ICAO", "Airport", "City", "Country", "Region"];
+        const rows = currentResults.map((item) => [
+          item.iata,
+          item.icao,
+          item.airport,
+          item.city,
+          item.country,
+          item.region
+        ]);
+
+        const csv = [header, ...rows]
+          .map((row) => row.map((value) => `"${String(value).replace(/"/g, '""')}"`).join(","))
+          .join("\n");
+
+        const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "airport-code-lookup-results.csv";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+
+        showCopyFeedback("CSV downloaded.");
+      } catch (error) {
+        showCopyFeedback("Download failed.");
+        console.error(error);
+      }
+    }
+
+    function showPopularAirports() {
+      try {
+        searchInput.value = "";
+        regionFilter.value = "all";
+        sortSelect.value = "iata";
+
+        currentResults = airports
+          .slice()
+          .sort((a, b) => a.iata.localeCompare(b.iata));
+
+        resultsBody.innerHTML = "";
+        resultCount.textContent = String(currentResults.length);
+        resultSummary.textContent = "Showing popular airports included in the built-in lookup list.";
+        emptyState.classList.add("hidden");
+        resultsContainer.classList.remove("hidden");
+        warningBox.classList.add("hidden");
+
+        const fragment = document.createDocumentFragment();
+
+        currentResults.forEach((item) => {
+          const row = document.createElement("tr");
+          row.className = "result-row";
+          row.innerHTML = `
+            <td class="px-4 py-4 align-top">
+              <button type="button" class="copy-code-btn rounded-xl bg-indigo-50 px-3 py-2 font-extrabold text-indigo-700 hover:bg-indigo-100" data-code="${escapeHtml(item.iata)}" aria-label="Copy ${escapeHtml(item.iata)} airport code">
+                ${escapeHtml(item.iata)}
+              </button>
+            </td>
+            <td class="safe-break px-4 py-4 align-top">
+              <div class="font-bold text-slate-900">${escapeHtml(item.airport)}</div>
+              <div class="mt-1 text-xs font-semibold text-slate-500">${escapeHtml(item.region)}</div>
+            </td>
+            <td class="safe-break px-4 py-4 align-top text-slate-700">${escapeHtml(item.city)}</td>
+            <td class="safe-break px-4 py-4 align-top text-slate-700">${escapeHtml(item.country)}</td>
+            <td class="safe-break px-4 py-4 align-top font-semibold text-slate-700">${escapeHtml(item.icao)}</td>
+          `;
+          fragment.appendChild(row);
+        });
+
+        resultsBody.appendChild(fragment);
+
+        document.querySelectorAll(".copy-code-btn").forEach((button) => {
+          button.addEventListener("click", () => copyText(button.dataset.code || ""));
+        });
+      } catch (error) {
+        showWarning("Unable to show the airport list. Please refresh the page and try again.");
+      }
+    }
+
+    searchInput.addEventListener("input", filterAirports);
+    regionFilter.addEventListener("change", filterAirports);
+    sortSelect.addEventListener("change", filterAirports);
+
+    document.querySelectorAll(".example-btn").forEach((button) => {
+      button.addEventListener("click", () => {
+        searchInput.value = button.dataset.example || "";
+        filterAirports();
+        searchInput.focus();
+      });
+    });
+
+    copyResultsBtn.addEventListener("click", () => {
+      if (!currentResults.length) {
+        showCopyFeedback("No results to copy.");
+        return;
+      }
+      copyText(resultsToText(currentResults));
+    });
+
+    copyButtonSnippetBtn.addEventListener("click", () => {
+      copyText(mainButtonCode.textContent.trim());
+    });
+
+    downloadCsvBtn.addEventListener("click", downloadCsv);
+
+    resetBtn.addEventListener("click", () => {
+      searchInput.value = "";
+      regionFilter.value = "all";
+      sortSelect.value = "relevance";
+      currentResults = [];
+      resultsBody.innerHTML = "";
+      resultCount.textContent = "0";
+      resultSummary.textContent = "Enter a city, airport name, IATA code, or ICAO code to begin.";
+      emptyState.classList.remove("hidden");
+      resultsContainer.classList.add("hidden");
+      warningBox.classList.add("hidden");
+      copyFeedback.textContent = "";
+      searchInput.focus();
+    });
+
+    showAllBtn.addEventListener("click", showPopularAirports);
+
+    window.addEventListener("resize", () => {
+      document.body.style.maxWidth = "100%";
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
