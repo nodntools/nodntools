@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>PDF Merger & Splitter Online Tool</title>
+  <meta name="description" content="Merge PDFs, split pages, extract ranges, and download new PDF files securely in your browser." />
+  <meta name="keywords" content="PDF merger, PDF splitter, merge PDF online, split PDF online, extract PDF pages, combine PDF files, browser PDF tool, client side PDF editor, PDF page range extractor, PDF organizer, PDF utility, online PDF merge split tool" />
+  <meta name="robots" content="index, follow" />
+  <meta name="google-adsense-account" content="ca-pub-5282672325821404" />
+
+  <meta property="og:title" content="PDF Merger & Splitter Online Tool" />
+  <meta property="og:description" content="Merge multiple PDFs or split PDF pages by range directly in your browser with no server upload." />
+  <meta property="og:type" content="website" />
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404" crossorigin="anonymous"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "PDF Merger & Splitter Online Tool",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "All",
+    "description": "A browser-based PDF tool for merging multiple PDF files, splitting selected pages, extracting page ranges, and downloading new PDF files locally.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "NodnWebTools",
+      "url": "https://nodntools.com"
+    }
+  }
+  </script>
+
+  <style>
+    html, body {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      min-width: 0;
+    }
+
+    body {
+      background: #f8fafc;
+    }
+
+    .safe-break {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .mobile-card,
+    .mobile-panel,
+    .mobile-preview,
+    .mobile-code,
+    .ad-box,
+    input,
+    textarea,
+    select,
+    button {
+      max-width: 100%;
+    }
+
+    .mobile-code {
+      overflow-x: auto;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .ad-box {
+      width: 100%;
+      min-height: 90px;
+      border: 2px dashed #cbd5e1;
+      background: #f1f5f9;
+      color: #64748b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-radius: 1rem;
+      padding: 1rem;
+      font-size: 0.95rem;
+      overflow: hidden;
+    }
+
+    .drop-zone {
+      border: 2px dashed #c7d2fe;
+      background: #eef2ff;
+      transition: 0.2s ease;
+    }
+
+    .drop-zone.drag-over {
+      border-color: #4f46e5;
+      background: #e0e7ff;
+      transform: scale(1.01);
+    }
+
+    .file-row {
+      transition: 0.2s ease;
+    }
+
+    .file-row:hover {
+      background: #f8fafc;
+    }
+
+    .tab-active {
+      background: #4f46e5;
+      color: white;
+      box-shadow: 0 10px 20px rgba(79, 70, 229, 0.18);
+    }
+
+    .tab-inactive {
+      background: white;
+      color: #475569;
+      border: 1px solid #e2e8f0;
+    }
+
+    @media (max-width: 640px) {
+      .mobile-card {
+        padding: 1rem !important;
+        border-radius: 1rem !important;
+      }
+
+      .mobile-panel,
+      .mobile-preview {
+        padding: 1rem !important;
+      }
+
+      .mobile-button-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .mobile-button-grid button,
+      .mobile-button-grid a {
+        width: 100%;
+      }
+
+      .ad-box {
+        min-height: 90px;
+        font-size: 0.85rem;
+        border-radius: 0.875rem;
+      }
+
+      .drop-zone {
+        padding: 1rem !important;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .mobile-card {
+        padding: 0.85rem !important;
+      }
+
+      h1 {
+        font-size: 1.85rem !important;
+        line-height: 2.15rem !important;
+      }
+
+      h2 {
+        font-size: 1.45rem !important;
+      }
+
+      .ad-box {
+        min-height: 80px;
+        padding: 0.75rem;
+        font-size: 0.8rem;
+      }
+    }
+  </style>
+</head>
+
+<body class="text-slate-800">
+  <header class="border-b border-slate-200 bg-white/90 backdrop-blur">
+    <div class="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-5 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
+      <a href="https://nodntools.com" class="text-2xl font-extrabold tracking-tight text-slate-900" aria-label="NodnWebTools Home">
+        Nodn<span class="text-indigo-600">WebTools</span>
+      </a>
+      <nav class="flex flex-wrap items-center gap-3 text-sm font-medium text-slate-600">
+        <a href="https://nodntools.com" class="rounded-full px-4 py-2 hover:bg-slate-100 hover:text-indigo-700">Home</a>
+        <a href="#tool" class="rounded-full px-4 py-2 hover:bg-slate-100 hover:text-indigo-700">PDF Tool</a>
+        <a href="#how-to-use" class="rounded-full px-4 py-2 hover:bg-slate-100 hover:text-indigo-700">How to Use</a>
+        <a href="#faq" class="rounded-full px-4 py-2 hover:bg-slate-100 hover:text-indigo-700">FAQ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+      <div class="ad-box">Advertisement Space</div>
+    </section>
+
+    <section id="tool" class="mx-auto max-w-7xl px-4 pb-10 pt-4 sm:px-6 lg:px-8">
+      <div class="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
+        <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+          <div class="mb-6 inline-flex items-center rounded-full bg-indigo-50 px-4 py-2 text-sm font-semibold text-indigo-700">
+            Browser PDF Utility
+          </div>
+
+          <h1 class="safe-break text-4xl font-extrabold tracking-tight text-slate-950 sm:text-5xl">
+            PDF Merger & Splitter
+          </h1>
+
+          <p class="mt-4 text-lg leading-8 text-slate-600">
+            Merge multiple PDF files into one document or split a PDF by selected page ranges. Everything runs directly in your browser using client-side processing, so your files do not need to be uploaded to a server.
+          </p>
+
+          <div class="mt-8 grid grid-cols-2 gap-3 rounded-2xl bg-slate-100 p-2">
+            <button id="mergeTabBtn" type="button" class="tab-active rounded-xl px-4 py-3 text-sm font-bold transition">
+              Merge PDFs
+            </button>
+            <button id="splitTabBtn" type="button" class="tab-inactive rounded-xl px-4 py-3 text-sm font-bold transition">
+              Split PDF
+            </button>
+          </div>
+
+          <section id="mergePanel" class="mobile-panel mt-6 space-y-5">
+            <div id="mergeDropZone" class="drop-zone rounded-3xl p-6 text-center">
+              <div class="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-white text-2xl text-indigo-600 shadow-sm">
+                📄
+              </div>
+              <h2 class="text-xl font-extrabold text-slate-950">Upload PDF files to merge</h2>
+              <p class="mt-2 text-sm leading-6 text-slate-600">
+                Select two or more PDF files. You can reorder files before creating the final merged PDF.
+              </p>
+              <label for="mergeFilesInput" class="mt-5 inline-flex cursor-pointer items-center justify-center rounded-2xl bg-indigo-600 px-5 py-3 text-sm font-bold text-white shadow-sm hover:bg-indigo-700">
+                Choose PDF Files
+              </label>
+              <input id="mergeFilesInput" type="file" accept="application/pdf,.pdf" multiple class="hidden" />
+            </div>
+
+            <div>
+              <label for="mergeFileName" class="mb-2 block text-sm font-semibold text-slate-700">Merged file name</label>
+              <input id="mergeFileName" type="text" value="merged-document.pdf" class="w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 outline-none ring-indigo-200 transition focus:border-indigo-500 focus:ring-4" />
+            </div>
+
+            <div class="mobile-button-grid grid gap-3 sm:grid-cols-2">
+              <button id="mergePdfBtn" type="button" class="rounded-2xl bg-indigo-600 px-5 py-3 font-bold text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-200">
+                Merge & Download
+              </button>
+              <button id="clearMergeBtn" type="button" class="rounded-2xl border border-slate-300 bg-white px-5 py-3 font-bold text-slate-700 hover:bg-slate-50 focus:outline-none focus:ring-4 focus:ring-slate-200">
+                Clear Merge Files
+              </button>
+            </div>
+          </section>
+
+          <section id="splitPanel" class="mobile-panel mt-6 hidden space-y-5">
+            <div id="splitDropZone" class="drop-zone rounded-3xl p-6 text-center">
+              <div class="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-white text-2xl text-indigo-600 shadow-sm">
+                ✂️
+              </div>
+              <h2 class="text-xl font-extrabold text-slate-950">Upload one PDF to split</h2>
+              <p class="mt-2 text-sm leading-6 text-slate-600">
+                Choose one PDF file, then enter page ranges such as 1-3, 5, 7-10.
+              </p>
+              <label for="splitFileInput" class="mt-5 inline-flex cursor-pointer items-center justify-center rounded-2xl bg-violet-600 px-5 py-3 text-sm font-bold text-white shadow-sm hover:bg-violet-700">
+                Choose PDF File
+              </label>
+              <input id="splitFileInput" type="file" accept="application/pdf,.pdf" class="hidden" />
+            </div>
+
+            <div>
+              <label for="pageRanges" class="mb-2 block text-sm font-semibold text-slate-700">Pages or ranges to extract</label>
+              <input id="pageRanges" type="text" placeholder="Example: 1-3, 5, 7-10" class="w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 outline-none ring-indigo-200 transition focus:border-indigo-500 focus:ring-4" />
+              <p class="mt-2 text-xs leading-5 text-slate-500">
+                Use commas to separate pages and ranges. Page numbers start at 1.
+              </p>
+            </div>
+
+            <div>
+              <label for="splitFileName" class="mb-2 block text-sm font-semibold text-slate-700">Split file name</label>
+              <input id="splitFileName" type="text" value="extracted-pages.pdf" class="w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 outline-none ring-indigo-200 transition focus:border-indigo-500 focus:ring-4" />
+            </div>
+
+            <div class="mobile-button-grid grid gap-3 sm:grid-cols-2">
+              <button id="splitPdfBtn" type="button" class="rounded-2xl bg-violet-600 px-5 py-3 font-bold text-white shadow-sm hover:bg-violet-700 focus:outline-none focus:ring-4 focus:ring-violet-200">
+                Split & Download
+              </button>
+              <button id="clearSplitBtn" type="button" class="rounded-2xl border border-slate-300 bg-white px-5 py-3 font-bold text-slate-700 hover:bg-slate-50 focus:outline-none focus:ring-4 focus:ring-slate-200">
+                Clear Split File
+              </button>
+            </div>
+          </section>
+
+          <div id="statusBox" class="mt-6 rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm font-semibold text-slate-600" aria-live="polite">
+            Select a PDF action to begin.
+          </div>
+        </section>
+
+        <section class="mobile-preview rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+          <div class="flex flex-col gap-4 border-b border-slate-200 pb-5 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <h2 class="text-2xl font-extrabold text-slate-950">PDF Workspace</h2>
+              <p id="workspaceSummary" class="mt-1 text-sm text-slate-500">Your selected PDF files and page details will appear here.</p>
+            </div>
+            <div class="rounded-2xl bg-slate-100 px-4 py-3 text-sm font-bold text-slate-700">
+              <span id="fileCount">0</span> file(s)
+            </div>
+          </div>
+
+          <div id="mergeListPanel" class="mt-6">
+            <h3 class="text-base font-bold text-slate-950">Files to merge</h3>
+            <p class="mt-1 text-sm text-slate-500">Use the arrows to adjust the order before merging.</p>
+            <div id="mergeFileList" class="mt-4 space-y-3">
+              <div class="rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-6 text-center text-sm text-slate-500">
+                No merge files selected yet.
+              </div>
+            </div>
+          </div>
+
+          <div id="splitInfoPanel" class="mt-6 hidden">
+            <h3 class="text-base font-bold text-slate-950">Split file details</h3>
+            <div id="splitFileInfo" class="mt-4 rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-6 text-center text-sm text-slate-500">
+              No split file selected yet.
+            </div>
+
+            <div class="mt-6 rounded-2xl border border-indigo-100 bg-indigo-50 p-5">
+              <h3 class="text-base font-bold text-indigo-950">Range examples</h3>
+              <div class="mt-3 grid gap-3 sm:grid-cols-3">
+                <button type="button" class="range-example rounded-xl bg-white px-3 py-2 text-sm font-bold text-indigo-700 shadow-sm hover:bg-indigo-100" data-range="1">Page 1</button>
+                <button type="button" class="range-example rounded-xl bg-white px-3 py-2 text-sm font-bold text-indigo-700 shadow-sm hover:bg-indigo-100" data-range="1-3">Pages 1-3</button>
+                <button type="button" class="range-example rounded-xl bg-white px-3 py-2 text-sm font-bold text-indigo-700 shadow-sm hover:bg-indigo-100" data-range="1, 3, 5">1, 3, 5</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-6 rounded-2xl bg-slate-950 p-5 text-slate-100">
+            <h3 class="text-lg font-extrabold">Privacy-first PDF processing</h3>
+            <p class="mt-3 text-sm leading-6 text-slate-300">
+              This page uses browser-side PDF processing. Your files are read locally by JavaScript and the new PDF is generated for download in your browser. Avoid closing the tab until your download is complete.
+            </p>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="mx-auto max-w-7xl px-4 pb-10 sm:px-6 lg:px-8">
+      <div class="ad-box">Advertisement Space</div>
+    </section>
+
+    <section class="mx-auto max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
+      <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8 lg:p-10">
+        <div class="max-w-4xl">
+          <p class="text-sm font-bold uppercase tracking-[0.2em] text-indigo-600">PDF Productivity Guide</p>
+          <h2 class="mt-3 text-3xl font-extrabold tracking-tight text-slate-950 sm:text-4xl">
+            Merge and Split PDF Files Online Without Uploading Documents
+          </h2>
+          <p class="mt-5 text-lg leading-8 text-slate-600">
+            PDF files are one of the most common document formats for work, school, business, finance, real estate, legal paperwork, travel planning, invoicing, contracts, forms, reports, manuals, and digital archives. Because PDF documents preserve layout and visual structure across devices, they are often used when a file must look consistent on Windows, macOS, iPhone, Android, tablets, and office printers. However, PDFs are not always delivered in the exact structure people need. You may receive several separate PDF files that should become one package, or one large PDF that contains only a few pages you need to share. This PDF Merger and Splitter tool is designed to solve both situations in one browser-based workspace.
+          </p>
+          <p class="mt-4 leading-8 text-slate-700">
+            With the merge feature, you can combine multiple PDF files into a single organized PDF document. With the split feature, you can extract specific pages or page ranges from one PDF and download a new file containing only those selected pages. The tool is useful for combining invoices, organizing application documents, preparing client packets, extracting pages from reports, separating chapters from manuals, creating smaller email attachments, or removing unnecessary pages before sharing a document.
+          </p>
+        </div>
+
+        <div class="mt-10 grid gap-5 md:grid-cols-3">
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <h3 class="text-lg font-bold text-slate-950">Merge PDFs</h3>
+            <p class="mt-3 leading-7 text-slate-600">
+              Combine two or more PDF files into one downloadable document. Reorder files before merging so the final PDF follows the correct sequence.
+            </p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <h3 class="text-lg font-bold text-slate-950">Split PDF Pages</h3>
+            <p class="mt-3 leading-7 text-slate-600">
+              Extract specific pages or ranges from a larger PDF. Use simple page range formatting such as 1-3, 5, 7-10.
+            </p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <h3 class="text-lg font-bold text-slate-950">Local Browser Processing</h3>
+            <p class="mt-3 leading-7 text-slate-600">
+              The tool works client-side in your browser. Files are handled locally and do not require a backend server upload.
+            </p>
+          </div>
+        </div>
+
+        <section id="how-to-use" class="mt-12">
+          <h2 class="text-2xl font-extrabold text-slate-950">How to Merge PDF Files</h2>
+          <p class="mt-4 leading-8 text-slate-700">
+            Merging PDF files is helpful when several related documents need to be delivered as one file. For example, a mortgage application may require pay stubs, identification, bank statements, tax forms, employment letters, and supporting documents. A job application may include a resume, cover letter, portfolio, certificates, and references. A business proposal may include a quote, product brochure, technical appendix, and signed terms. Sending everything as separate attachments can be confusing, but combining them into one PDF makes the package easier to review.
+          </p>
+          <div class="mt-6 grid gap-5 md:grid-cols-2">
+            <div class="rounded-2xl border border-slate-200 p-5">
+              <h3 class="text-lg font-bold text-slate-950">1. Choose multiple PDFs</h3>
+              <p class="mt-3 leading-7 text-slate-600">
+                Open the Merge PDFs tab and select two or more PDF files. You can also drag and drop PDF files into the upload area on supported browsers.
+              </p>
+            </div>
+            <div class="rounded-2xl border border-slate-200 p-5">
+              <h3 class="text-lg font-bold text-slate-950">2. Check the file order</h3>
+              <p class="mt-3 leading-7 text-slate-600">
+                Review the list of selected files. Use the up and down buttons to arrange the order before creating the final merged document.
+              </p>
+            </div>
+            <div class="rounded-2xl border border-slate-200 p-5">
+              <h3 class="text-lg font-bold text-slate-950">3. Name the output file</h3>
+              <p class="mt-3 leading-7 text-slate-600">
+                Enter a clear file name such as application-package.pdf, client-documents.pdf, combined-invoices.pdf, or project-report.pdf.
+              </p>
+            </div>
+            <div class="rounded-2xl border border-slate-200 p-5">
+              <h3 class="text-lg font-bold text-slate-950">4. Merge and download</h3>
+              <p class="mt-3 leading-7 text-slate-600">
+                Click the merge button. The tool will create a new PDF in the browser and download it to your device.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="mt-12">
+          <h2 class="text-2xl font-extrabold text-slate-950">How to Split or Extract PDF Pages</h2>
+          <p class="mt-4 leading-8 text-slate-700">
+            Splitting a PDF is useful when a document contains more pages than you need to share. A large report may contain dozens of pages, but a coworker might need only a specific chart, chapter, appendix, invoice, receipt, or signed page. A contract packet may include several sections, but you might only want to extract the signature page. A travel document may contain multiple reservations, but you may want only the hotel confirmation or flight itinerary. A school document may include an entire textbook chapter, but a student may need only a few selected pages.
+          </p>
+          <p class="mt-4 leading-8 text-slate-700">
+            This tool supports simple page range formatting. A single page can be written as 5. A continuous range can be written as 1-3. Multiple selections can be combined with commas, such as 1-3, 5, 7-10. Page numbers start at 1, matching how people usually count pages in a PDF viewer. If you enter a page number outside the total page count, the tool will show a warning instead of generating an incorrect file.
+          </p>
+        </section>
+
+        <div class="my-12 ad-box">Advertisement Space</div>
+
+        <section class="mt-12">
+          <h2 class="text-2xl font-extrabold text-slate-950">Popular Uses for a PDF Merger and Splitter</h2>
+          <p class="mt-4 leading-8 text-slate-700">
+            A combined PDF merger and PDF splitter is one of the most practical browser utilities because it supports everyday document organization. Many users need to combine files before uploading them to a portal, emailing them to a client, or saving them into a folder. Others need to remove unnecessary pages before sending a document so the recipient receives only the relevant information. A single page that can do both jobs saves time because you do not need separate tools for PDF merging, PDF splitting, PDF page extraction, and PDF file organization.
+          </p>
+
+          <div class="mt-6 grid gap-5 lg:grid-cols-3">
+            <div class="rounded-2xl bg-indigo-50 p-5">
+              <h3 class="text-lg font-bold text-indigo-950">Business Documents</h3>
+              <p class="mt-3 leading-7 text-indigo-900">
+                Merge proposals, invoices, receipts, statements, signed forms, and supporting materials into one organized PDF package.
+              </p>
+            </div>
+            <div class="rounded-2xl bg-violet-50 p-5">
+              <h3 class="text-lg font-bold text-violet-950">School and Study Files</h3>
+              <p class="mt-3 leading-7 text-violet-900">
+                Extract pages from readings, combine assignment materials, organize research papers, and create smaller class documents.
+              </p>
+            </div>
+            <div class="rounded-2xl bg-slate-100 p-5">
+              <h3 class="text-lg font-bold text-slate-950">Personal Organization</h3>
+              <p class="mt-3 leading-7 text-slate-700">
+                Combine scanned records, split travel confirmations, extract receipts, and keep household documents cleaner.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="mt-12">
+          <h2 class="text-2xl font-extrabold text-slate-950">Why Client-Side PDF Tools Are Useful</h2>
+          <p class="mt-4 leading-8 text-slate-700">
+            Traditional online PDF tools often require uploading files to a remote server. That approach may be convenient, but it can create privacy concerns when documents contain personal information, business records, financial data, legal paperwork, student information, medical forms, immigration documents, insurance files, or client materials. A browser-based PDF utility reduces that concern because the file processing happens locally in the browser session. The page reads the selected files, creates the new PDF, and downloads the result without requiring a backend file upload.
+          </p>
+          <p class="mt-4 leading-8 text-slate-700">
+            Client-side PDF processing also makes the tool simple to host as a static page. It does not require a database, user account system, file storage service, server-side conversion queue, or file cleanup job. This is especially useful for personal websites, small utility portals, internal office pages, educational resources, and lightweight productivity tool collections. Users can open the page, choose files, perform the PDF action, and download the result.
+          </p>
+          <p class="mt-4 leading-8 text-slate-700">
+            There are still practical limits. Very large PDFs can require significant memory, especially on older phones, low-power tablets, or browsers with strict memory limits. If a PDF is hundreds of megabytes or contains extremely large scanned images, processing may take longer or fail because the browser does not have enough memory available. For best results, use reasonably sized files, close unnecessary browser tabs, and try a desktop browser if mobile processing is slow.
+          </p>
+        </section>
+
+        <section class="mt-12">
+          <h2 class="text-2xl font-extrabold text-slate-950">Best Practices for Merging PDFs</h2>
+          <p class="mt-4 leading-8 text-slate-700">
+            Before merging PDF files, review the order carefully. The final document will follow the order shown in the workspace. If you are creating a package for a bank, employer, government portal, school, client, or business partner, place the most important overview document first. For example, a cover letter or summary page usually belongs at the beginning, followed by supporting files. If you are combining invoices, order them by date or invoice number. If you are combining chapters, arrange them by chapter number. If you are combining scanned pages, check that each scan is oriented correctly before merging.
+          </p>
+          <p class="mt-4 leading-8 text-slate-700">
+            File names also matter. A clear file name helps both you and the recipient understand the contents. Instead of downloading a file named merged-document.pdf and forgetting what it contains, consider a descriptive name such as tax-documents-2026.pdf, rental-application-package.pdf, client-contract-combined.pdf, monthly-invoices-june.pdf, or travel-documents-family-trip.pdf. Descriptive names improve organization and reduce mistakes when uploading or emailing files.
+          </p>
+          <p class="mt-4 leading-8 text-slate-700">
+            After merging, open the downloaded PDF and review it before sending. Confirm that all pages appear, the page order is correct, and no unrelated document was accidentally included. This is especially important when working with sensitive records, identity documents, financial statements, contracts, medical paperwork, legal documents, or confidential business files.
+          </p>
+        </section>
+
+        <section class="mt-12">
+          <h2 class="text-2xl font-extrabold text-slate-950">Best Practices for Splitting PDFs</h2>
+          <p class="mt-4 leading-8 text-slate-700">
+            When splitting or extracting pages from a PDF, first open the original file in a PDF viewer and confirm the page numbers you want. Some documents include printed page numbers that do not match the PDF viewer's page count. For example, a report may have a cover page, table of contents, and introduction before the numbered content begins. A printed page labeled “Page 1” may actually be page 4 in the PDF viewer. This tool uses the actual PDF page order, so use the viewer's page number for the correct range.
+          </p>
+          <p class="mt-4 leading-8 text-slate-700">
+            If you need several separate files from one PDF, run the split process multiple times with different ranges. For example, you could extract 1-5 as summary.pdf, 6-20 as chapter-one.pdf, and 21-30 as appendix.pdf. If you need a non-continuous selection, use commas, such as 2, 4, 8-10. This is helpful when extracting only signed pages, charts, receipts, or specific forms from a larger document.
+          </p>
+          <p class="mt-4 leading-8 text-slate-700">
+            Always review the extracted file after downloading. Confirm that it includes all required pages and no extra pages that should remain private. Splitting is often used to share a smaller document, and the main benefit is control over what the recipient can see. Taking a few seconds to verify the final PDF can prevent accidental oversharing.
+          </p>
+        </section>
+
+        <div class="my-12 ad-box">Advertisement Space</div>
+
+        <section class="mt-12">
+          <h2 class="text-2xl font-extrabold text-slate-950">PDF Merger and Splitter for Workflows</h2>
+          <p class="mt-4 leading-8 text-slate-700">
+            A PDF merge and split tool can support many professional workflows. Accountants may combine receipts, statements, and tax forms into one client package. Real estate agents may merge disclosures, contracts, inspection reports, and signed addenda. Freelancers may combine proposals, scope documents, invoices, and portfolio samples. Students may extract pages from lecture notes, combine research sources, or create reading packets. Office administrators may prepare onboarding documents, policy packets, meeting handouts, or scanned records.
+          </p>
+          <p class="mt-4 leading-8 text-slate-700">
+            In many workplaces, document portals accept only one upload per category. If a portal requests one PDF but your documents exist as several separate files, a PDF merger solves the issue. In other cases, an email attachment limit may require a smaller file with only relevant pages. A PDF splitter helps reduce unnecessary content. These small document tasks can happen frequently, so having a fast browser-based PDF tool improves productivity.
+          </p>
+          <p class="mt-4 leading-8 text-slate-700">
+            This tool is also useful for people who do not want to install desktop software. Many PDF desktop editors are powerful but can be expensive, heavy, or more complicated than needed for simple merge and split tasks. A lightweight online PDF utility gives users a focused workflow: select files, define the page range if needed, generate the output, and download the result.
+          </p>
+        </section>
+
+        <section class="mt-12">
+          <h2 class="text-2xl font-extrabold text-slate-950">Security and Privacy Tips for PDF Documents</h2>
+          <p class="mt-4 leading-8 text-slate-700">
+            Even though this page processes files locally, users should still handle PDF documents carefully. Before merging or splitting documents, consider whether the file includes personally identifiable information, addresses, phone numbers, account numbers, financial balances, signatures, health information, employment records, immigration details, student records, tax details, passwords, or confidential business content. Local processing reduces upload exposure, but your downloaded output file still exists on your device and should be stored securely.
+          </p>
+          <p class="mt-4 leading-8 text-slate-700">
+            If you are using a shared computer, remember to delete downloaded files from the downloads folder when finished. If your browser stores recent downloads, clear the history if needed. If the file is sensitive, avoid using public computers. If you must share a PDF by email, verify the recipient address carefully. For highly confidential documents, consider password protection, encrypted storage, secure portals, or professional document management systems.
+          </p>
+          <p class="mt-4 leading-8 text-slate-700">
+            Also remember that merging and splitting do not automatically remove hidden metadata, annotations, comments, embedded attachments, form data, or redacted-looking content. If a PDF contains sensitive information that must be permanently removed, use proper redaction software and verify the result. Do not assume that extracting pages or merging files removes all hidden information from the document.
+          </p>
+        </section>
+
+        <section class="mt-12">
+          <h2 class="text-2xl font-extrabold text-slate-950">Common PDF Page Range Examples</h2>
+          <p class="mt-4 leading-8 text-slate-700">
+            Page range formatting is simple once you understand the pattern. To extract only the first page, enter 1. To extract the first three pages, enter 1-3. To extract page five only, enter 5. To extract several separate pages, enter 1, 3, 5. To extract a section and one extra page, enter 2-6, 10. To extract two different sections, enter 1-4, 9-12. The tool will keep the selected pages in the order you enter them.
+          </p>
+          <p class="mt-4 leading-8 text-slate-700">
+            If you enter overlapping ranges such as 1-3, 3-5, page 3 may appear twice because the request explicitly includes it twice. This can be useful in rare cases, but most users should avoid duplicate page entries. If you want a clean extraction, use non-overlapping ranges such as 1-5. If you accidentally enter a page number larger than the document's total pages, the tool will show a warning so you can correct the range.
+          </p>
+        </section>
+
+        <section id="faq" class="mt-14">
+          <h2 class="text-3xl font-extrabold text-slate-950">Frequently Asked Questions</h2>
+
+          <div class="mt-6 space-y-4">
+            <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+              <summary class="cursor-pointer text-lg font-bold text-slate-950">Does this PDF merger upload my files?</summary>
+              <p class="mt-3 leading-7 text-slate-700">
+                No. The tool is designed to process PDFs locally in your browser using client-side JavaScript. Your selected files are read by the browser and the final PDF is generated for download on your device.
+              </p>
+            </details>
+
+            <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+              <summary class="cursor-pointer text-lg font-bold text-slate-950">Can I merge more than two PDF files?</summary>
+              <p class="mt-3 leading-7 text-slate-700">
+                Yes. You can select multiple PDF files and arrange their order before merging. Very large files may take longer depending on your device memory and browser performance.
+              </p>
+            </details>
+
+            <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+              <summary class="cursor-pointer text-lg font-bold text-slate-950">How do I split a PDF into selected pages?</summary>
+              <p class="mt-3 leading-7 text-slate-700">
+                Open the Split PDF tab, upload one PDF, and enter page numbers or ranges. Examples include 1, 1-3, 5, or 1-3, 5, 7-10. Then click the split button to download the extracted pages.
+              </p>
+            </details>
+
+            <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+              <summary class="cursor-pointer text-lg font-bold text-slate-950">Why did my PDF fail to process?</summary>
+              <p class="mt-3 leading-7 text-slate-700">
+                The most common causes are an encrypted PDF, a damaged file, a non-PDF file using a PDF extension, or a file that is too large for your browser memory. Try a smaller file or a different browser.
+              </p>
+            </details>
+
+            <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+              <summary class="cursor-pointer text-lg font-bold text-slate-950">Can I reorder PDFs before merging?</summary>
+              <p class="mt-3 leading-7 text-slate-700">
+                Yes. After selecting files, use the up and down buttons in the workspace to change the merge order. The final PDF follows the order shown in the list.
+              </p>
+            </details>
+
+            <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+              <summary class="cursor-pointer text-lg font-bold text-slate-950">Can this tool remove passwords from PDFs?</summary>
+              <p class="mt-3 leading-7 text-slate-700">
+                No. This tool is not designed to bypass PDF password protection, encryption, permissions, or document security restrictions.
+              </p>
+            </details>
+
+            <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+              <summary class="cursor-pointer text-lg font-bold text-slate-950">Will the output PDF look exactly like the original?</summary>
+              <p class="mt-3 leading-7 text-slate-700">
+                The tool copies existing PDF pages into a new document. Most standard PDFs should preserve page appearance, but unusual files, encrypted files, damaged files, or advanced interactive PDF features may not process as expected.
+              </p>
+            </details>
+          </div>
+        </section>
+
+        <div class="my-12 ad-box">Advertisement Space</div>
+
+        <section class="mt-12 rounded-3xl bg-slate-950 p-6 text-slate-100 sm:p-8">
+          <h2 class="text-2xl font-extrabold">Legal Disclaimer</h2>
+          <p class="mt-4 leading-8 text-slate-300">
+            This PDF Merger and Splitter tool is provided for general document organization and informational utility purposes only. It is not a professional document management system, legal filing system, compliance tool, certified archiving solution, official e-signature platform, security redaction tool, or guaranteed PDF repair service. Users are responsible for verifying that the generated PDF files are accurate, complete, properly ordered, readable, and suitable for their intended use.
+          </p>
+          <p class="mt-4 leading-8 text-slate-300">
+            The tool processes selected PDF files in the browser, but users remain responsible for protecting sensitive information. Do not use this tool as the only method for handling highly confidential, legally regulated, medical, financial, immigration, tax, employment, student, client, or business-critical documents. If a document requires formal redaction, encryption, certification, accessibility validation, official submission formatting, or legal review, consult the appropriate qualified professional or official software provider.
+          </p>
+          <p class="mt-4 leading-8 text-slate-300">
+            PDF file structures can vary. Some files may be encrypted, damaged, password-protected, unusually formatted, or too large for local browser memory. The tool may fail or produce unexpected results with unsupported files. Always review the downloaded output before sharing, uploading, printing, signing, storing, or relying on it.
+          </p>
+        </section>
+      </article>
+    </section>
+
+    <section class="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
+      <div class="ad-box">Advertisement Space</div>
+    </section>
+  </main>
+
+  <footer class="border-t border-slate-200 bg-white">
+    <div class="mx-auto max-w-7xl px-4 py-8 text-center text-sm text-slate-500 sm:px-6 lg:px-8">
+      <p>© <span id="year"></span> NodnWebTools. All rights reserved.</p>
+      <p class="mt-2">
+        <a href="https://nodntools.com" class="font-semibold text-indigo-600 hover:text-indigo-700">Back to Home</a>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    const { PDFDocument } = PDFLib;
+
+    const mergeTabBtn = document.getElementById("mergeTabBtn");
+    const splitTabBtn = document.getElementById("splitTabBtn");
+    const mergePanel = document.getElementById("mergePanel");
+    const splitPanel = document.getElementById("splitPanel");
+    const mergeListPanel = document.getElementById("mergeListPanel");
+    const splitInfoPanel = document.getElementById("splitInfoPanel");
+    const workspaceSummary = document.getElementById("workspaceSummary");
+    const fileCount = document.getElementById("fileCount");
+    const statusBox = document.getElementById("statusBox");
+
+    const mergeDropZone = document.getElementById("mergeDropZone");
+    const mergeFilesInput = document.getElementById("mergeFilesInput");
+    const mergeFileList = document.getElementById("mergeFileList");
+    const mergePdfBtn = document.getElementById("mergePdfBtn");
+    const clearMergeBtn = document.getElementById("clearMergeBtn");
+    const mergeFileName = document.getElementById("mergeFileName");
+
+    const splitDropZone = document.getElementById("splitDropZone");
+    const splitFileInput = document.getElementById("splitFileInput");
+    const splitFileInfo = document.getElementById("splitFileInfo");
+    const pageRanges = document.getElementById("pageRanges");
+    const splitFileName = document.getElementById("splitFileName");
+    const splitPdfBtn = document.getElementById("splitPdfBtn");
+    const clearSplitBtn = document.getElementById("clearSplitBtn");
+
+    let mergeFiles = [];
+    let splitFile = null;
+    let activeMode = "merge";
+
+    function setStatus(message, type = "info") {
+      const styles = {
+        info: "border-slate-200 bg-slate-50 text-slate-600",
+        success: "border-emerald-200 bg-emerald-50 text-emerald-700",
+        warning: "border-amber-200 bg-amber-50 text-amber-800",
+        error: "border-rose-200 bg-rose-50 text-rose-700"
+      };
+
+      statusBox.className = "mt-6 rounded-2xl border p-4 text-sm font-semibold " + (styles[type] || styles.info);
+      statusBox.textContent = message;
+    }
+
+    function setActiveTab(mode) {
+      activeMode = mode;
+
+      if (mode === "merge") {
+        mergeTabBtn.className = "tab-active rounded-xl px-4 py-3 text-sm font-bold transition";
+        splitTabBtn.className = "tab-inactive rounded-xl px-4 py-3 text-sm font-bold transition";
+        mergePanel.classList.remove("hidden");
+        splitPanel.classList.add("hidden");
+        mergeListPanel.classList.remove("hidden");
+        splitInfoPanel.classList.add("hidden");
+        workspaceSummary.textContent = "Selected PDF files for merging will appear here.";
+        fileCount.textContent = String(mergeFiles.length);
+        setStatus("Merge mode selected. Add two or more PDF files to begin.");
+      } else {
+        splitTabBtn.className = "tab-active rounded-xl px-4 py-3 text-sm font-bold transition";
+        mergeTabBtn.className = "tab-inactive rounded-xl px-4 py-3 text-sm font-bold transition";
+        splitPanel.classList.remove("hidden");
+        mergePanel.classList.add("hidden");
+        splitInfoPanel.classList.remove("hidden");
+        mergeListPanel.classList.add("hidden");
+        workspaceSummary.textContent = "Selected PDF file and split details will appear here.";
+        fileCount.textContent = splitFile ? "1" : "0";
+        setStatus("Split mode selected. Add one PDF file and enter a page range.");
+      }
+    }
+
+    function isPdfFile(file) {
+      return file && (file.type === "application/pdf" || file.name.toLowerCase().endsWith(".pdf"));
+    }
+
+    function formatBytes(bytes) {
+      if (!Number.isFinite(bytes)) return "Unknown size";
+      if (bytes < 1024) return bytes + " B";
+      if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + " KB";
+      return (bytes / (1024 * 1024)).toFixed(2) + " MB";
+    }
+
+    function safeFileName(name, fallback) {
+      const cleaned = String(name || "").trim().replace(/[\\/:*?"<>|]+/g, "-");
+      if (!cleaned) return fallback;
+      return cleaned.toLowerCase().endsWith(".pdf") ? cleaned : cleaned + ".pdf";
+    }
+
+    function addMergeFiles(fileList) {
+      try {
+        const selected = Array.from(fileList || []).filter(isPdfFile);
+
+        if (!selected.length) {
+          setStatus("Please select valid PDF files only.", "warning");
+          return;
+        }
+
+        selected.forEach((file) => mergeFiles.push(file));
+        renderMergeFiles();
+        setStatus(`${selected.length} PDF file(s) added for merging.`, "success");
+      } catch (error) {
+        console.error(error);
+        setStatus("Unable to add selected files. Please try again.", "error");
+      }
+    }
+
+    function renderMergeFiles() {
+      fileCount.textContent = activeMode === "merge" ? String(mergeFiles.length) : (splitFile ? "1" : "0");
+
+      if (!mergeFiles.length) {
+        mergeFileList.innerHTML = `
+          <div class="rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-6 text-center text-sm text-slate-500">
+            No merge files selected yet.
+          </div>
+        `;
+        return;
+      }
+
+      mergeFileList.innerHTML = "";
+
+      mergeFiles.forEach((file, index) => {
+        const row = document.createElement("div");
+        row.className = "file-row rounded-2xl border border-slate-200 bg-white p-4";
+
+        row.innerHTML = `
+          <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <div class="safe-break">
+              <div class="text-sm font-extrabold text-slate-950">${index + 1}. ${escapeHtml(file.name)}</div>
+              <div class="mt-1 text-xs font-medium text-slate-500">${formatBytes(file.size)}</div>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <button type="button" class="move-up rounded-xl border border-slate-200 px-3 py-2 text-xs font-bold text-slate-700 hover:bg-slate-50" data-index="${index}">Up</button>
+              <button type="button" class="move-down rounded-xl border border-slate-200 px-3 py-2 text-xs font-bold text-slate-700 hover:bg-slate-50" data-index="${index}">Down</button>
+              <button type="button" class="remove-file rounded-xl bg-rose-50 px-3 py-2 text-xs font-bold text-rose-700 hover:bg-rose-100" data-index="${index}">Remove</button>
+            </div>
+          </div>
+        `;
+
+        mergeFileList.appendChild(row);
+      });
+
+      document.querySelectorAll(".move-up").forEach((button) => {
+        button.addEventListener("click", () => moveMergeFile(Number(button.dataset.index), -1));
+      });
+
+      document.querySelectorAll(".move-down").forEach((button) => {
+        button.addEventListener("click", () => moveMergeFile(Number(button.dataset.index), 1));
+      });
+
+      document.querySelectorAll(".remove-file").forEach((button) => {
+        button.addEventListener("click", () => removeMergeFile(Number(button.dataset.index)));
+      });
+    }
+
+    function moveMergeFile(index, direction) {
+      const newIndex = index + direction;
+      if (newIndex < 0 || newIndex >= mergeFiles.length) return;
+      const temp = mergeFiles[index];
+      mergeFiles[index] = mergeFiles[newIndex];
+      mergeFiles[newIndex] = temp;
+      renderMergeFiles();
+      setStatus("File order updated.", "success");
+    }
+
+    function removeMergeFile(index) {
+      if (index < 0 || index >= mergeFiles.length) return;
+      mergeFiles.splice(index, 1);
+      renderMergeFiles();
+      setStatus("File removed from merge list.", "success");
+    }
+
+    function renderSplitFile() {
+      fileCount.textContent = activeMode === "split" ? (splitFile ? "1" : "0") : String(mergeFiles.length);
+
+      if (!splitFile) {
+        splitFileInfo.innerHTML = "No split file selected yet.";
+        return;
+      }
+
+      splitFileInfo.innerHTML = `
+        <div class="safe-break text-left">
+          <div class="text-sm font-extrabold text-slate-950">${escapeHtml(splitFile.name)}</div>
+          <div class="mt-2 text-xs font-medium text-slate-500">${formatBytes(splitFile.size)}</div>
+          <div id="splitPageCount" class="mt-3 rounded-xl bg-white px-3 py-2 text-xs font-bold text-indigo-700">Reading page count...</div>
+        </div>
+      `;
+
+      readPdfPageCount(splitFile);
+    }
+
+    async function readPdfPageCount(file) {
+      try {
+        const arrayBuffer = await file.arrayBuffer();
+        const pdfDoc = await PDFDocument.load(arrayBuffer, { ignoreEncryption: false });
+        const pageCount = pdfDoc.getPageCount();
+        const pageCountEl = document.getElementById("splitPageCount");
+        if (pageCountEl) {
+          pageCountEl.textContent = `${pageCount} page(s) detected`;
+        }
+        setStatus(`Split file loaded with ${pageCount} page(s). Enter the pages you want to extract.`, "success");
+      } catch (error) {
+        console.error(error);
+        const pageCountEl = document.getElementById("splitPageCount");
+        if (pageCountEl) {
+          pageCountEl.textContent = "Unable to read page count";
+        }
+        setStatus("This PDF could not be read. It may be encrypted, damaged, or unsupported.", "error");
+      }
+    }
+
+    async function mergePdfFiles() {
+      try {
+        if (mergeFiles.length < 2) {
+          setStatus("Please add at least two PDF files to merge.", "warning");
+          return;
+        }
+
+        setStatus("Merging PDFs. Please keep this tab open...", "info");
+        mergePdfBtn.disabled = true;
+        mergePdfBtn.textContent = "Merging...";
+
+        const mergedPdf = await PDFDocument.create();
+
+        for (const file of mergeFiles) {
+          const bytes = await file.arrayBuffer();
+          const sourcePdf = await PDFDocument.load(bytes, { ignoreEncryption: false });
+          const copiedPages = await mergedPdf.copyPages(sourcePdf, sourcePdf.getPageIndices());
+          copiedPages.forEach((page) => mergedPdf.addPage(page));
+        }
+
+        const mergedBytes = await mergedPdf.save();
+        downloadBytes(mergedBytes, safeFileName(mergeFileName.value, "merged-document.pdf"));
+        setStatus("Merged PDF downloaded successfully.", "success");
+      } catch (error) {
+        console.error(error);
+        setStatus("Merge failed. One or more PDFs may be encrypted, damaged, too large, or unsupported.", "error");
+      } finally {
+        mergePdfBtn.disabled = false;
+        mergePdfBtn.textContent = "Merge & Download";
+      }
+    }
+
+    function parsePageRanges(input, totalPages) {
+      const raw = String(input || "").trim();
+
+      if (!raw) {
+        throw new Error("Please enter at least one page number or page range.");
+      }
+
+      const parts = raw.split(",");
+      const pageIndexes = [];
+
+      parts.forEach((part) => {
+        const trimmed = part.trim();
+
+        if (!trimmed) return;
+
+        if (trimmed.includes("-")) {
+          const rangeParts = trimmed.split("-").map((value) => value.trim());
+          if (rangeParts.length !== 2) {
+            throw new Error("Invalid range format. Use examples like 1-3 or 2-5.");
+          }
+
+          const start = Number(rangeParts[0]);
+          const end = Number(rangeParts[1]);
+
+          if (!Number.isInteger(start) || !Number.isInteger(end) || start < 1 || end < 1) {
+            throw new Error("Page ranges must use positive whole numbers.");
+          }
+
+          if (start > end) {
+            throw new Error("Range start cannot be greater than range end.");
+          }
+
+          if (end > totalPages) {
+            throw new Error(`Page range exceeds the PDF page count of ${totalPages}.`);
+          }
+
+          for (let page = start; page <= end; page++) {
+            pageIndexes.push(page - 1);
+          }
+        } else {
+          const page = Number(trimmed);
+
+          if (!Number.isInteger(page) || page < 1) {
+            throw new Error("Page numbers must be positive whole numbers.");
+          }
+
+          if (page > totalPages) {
+            throw new Error(`Page ${page} exceeds the PDF page count of ${totalPages}.`);
+          }
+
+          pageIndexes.push(page - 1);
+        }
+      });
+
+      if (!pageIndexes.length) {
+        throw new Error("No valid pages were selected.");
+      }
+
+      return pageIndexes;
+    }
+
+    async function splitPdfFile() {
+      try {
+        if (!splitFile) {
+          setStatus("Please choose one PDF file to split.", "warning");
+          return;
+        }
+
+        setStatus("Splitting PDF. Please keep this tab open...", "info");
+        splitPdfBtn.disabled = true;
+        splitPdfBtn.textContent = "Splitting...";
+
+        const bytes = await splitFile.arrayBuffer();
+        const sourcePdf = await PDFDocument.load(bytes, { ignoreEncryption: false });
+        const totalPages = sourcePdf.getPageCount();
+        const selectedPageIndexes = parsePageRanges(pageRanges.value, totalPages);
+
+        const outputPdf = await PDFDocument.create();
+        const copiedPages = await outputPdf.copyPages(sourcePdf, selectedPageIndexes);
+        copiedPages.forEach((page) => outputPdf.addPage(page));
+
+        const outputBytes = await outputPdf.save();
+        downloadBytes(outputBytes, safeFileName(splitFileName.value, "extracted-pages.pdf"));
+        setStatus(`Extracted ${selectedPageIndexes.length} page(s) successfully.`, "success");
+      } catch (error) {
+        console.error(error);
+        setStatus(error.message || "Split failed. The PDF may be encrypted, damaged, too large, or unsupported.", "error");
+      } finally {
+        splitPdfBtn.disabled = false;
+        splitPdfBtn.textContent = "Split & Download";
+      }
+    }
+
+    function downloadBytes(bytes, fileName) {
+      const blob = new Blob([bytes], { type: "application/pdf" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = fileName;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    }
+
+    function escapeHtml(value) {
+      return String(value || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    function preventDefaults(event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    function setupDropZone(dropZone, callback) {
+      ["dragenter", "dragover", "dragleave", "drop"].forEach((eventName) => {
+        dropZone.addEventListener(eventName, preventDefaults, false);
+      });
+
+      ["dragenter", "dragover"].forEach((eventName) => {
+        dropZone.addEventListener(eventName, () => dropZone.classList.add("drag-over"), false);
+      });
+
+      ["dragleave", "drop"].forEach((eventName) => {
+        dropZone.addEventListener(eventName, () => dropZone.classList.remove("drag-over"), false);
+      });
+
+      dropZone.addEventListener("drop", (event) => {
+        const files = event.dataTransfer.files;
+        callback(files);
+      });
+    }
+
+    mergeTabBtn.addEventListener("click", () => setActiveTab("merge"));
+    splitTabBtn.addEventListener("click", () => setActiveTab("split"));
+
+    mergeFilesInput.addEventListener("change", (event) => {
+      addMergeFiles(event.target.files);
+      event.target.value = "";
+    });
+
+    splitFileInput.addEventListener("change", (event) => {
+      const file = event.target.files && event.target.files[0];
+
+      if (!isPdfFile(file)) {
+        splitFile = null;
+        renderSplitFile();
+        setStatus("Please select a valid PDF file.", "warning");
+        return;
+      }
+
+      splitFile = file;
+      renderSplitFile();
+      event.target.value = "";
+    });
+
+    setupDropZone(mergeDropZone, addMergeFiles);
+
+    setupDropZone(splitDropZone, (files) => {
+      const file = files && files[0];
+
+      if (!isPdfFile(file)) {
+        splitFile = null;
+        renderSplitFile();
+        setStatus("Please drop one valid PDF file.", "warning");
+        return;
+      }
+
+      splitFile = file;
+      renderSplitFile();
+    });
+
+    mergePdfBtn.addEventListener("click", mergePdfFiles);
+    splitPdfBtn.addEventListener("click", splitPdfFile);
+
+    clearMergeBtn.addEventListener("click", () => {
+      mergeFiles = [];
+      renderMergeFiles();
+      setStatus("Merge file list cleared.", "success");
+    });
+
+    clearSplitBtn.addEventListener("click", () => {
+      splitFile = null;
+      pageRanges.value = "";
+      renderSplitFile();
+      setStatus("Split file cleared.", "success");
+    });
+
+    document.querySelectorAll(".range-example").forEach((button) => {
+      button.addEventListener("click", () => {
+        pageRanges.value = button.dataset.range || "";
+        pageRanges.focus();
+      });
+    });
+
+    window.addEventListener("resize", () => {
+      document.body.style.maxWidth = "100%";
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    renderMergeFiles();
+    renderSplitFile();
+  </script>
+</body>
+</html>
