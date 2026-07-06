@@ -4,14 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Airport Code Lookup Tool | IATA & ICAO Finder</title>
-  <meta name="description" content="Search airport codes, city names, countries, IATA codes, and ICAO identifiers with a fast browser-based lookup tool." />
-  <meta name="keywords" content="airport code lookup, IATA code finder, ICAO code lookup, airport finder, city airport code, airport abbreviation, flight airport code, airline travel tool, airport database, travel planning tool" />
+  <title>Airport Code Lookup | IATA & ICAO Finder</title>
+  <meta name="description" content="Find IATA and ICAO airport codes by city, airport name, country, or destination with a fast browser-based lookup tool." />
+  <meta name="keywords" content="airport code lookup, IATA code finder, ICAO code lookup, airport finder, city airport code, airport abbreviation, flight airport code, airport database, travel planning tool" />
   <meta name="robots" content="index, follow" />
   <meta name="google-adsense-account" content="ca-pub-5282672325821404" />
 
-  <meta property="og:title" content="Airport Code Lookup Tool | IATA & ICAO Finder" />
-  <meta property="og:description" content="Find airport codes by city, country, airport name, IATA code, or ICAO identifier with a fast client-side lookup tool." />
+  <meta property="og:title" content="Airport Code Lookup | IATA & ICAO Finder" />
+  <meta property="og:description" content="Search airport codes by city, airport name, country, IATA code, or ICAO identifier." />
   <meta property="og:type" content="website" />
 
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404" crossorigin="anonymous"></script>
@@ -21,7 +21,7 @@
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": "Airport Code Lookup Tool",
+    "name": "Airport Code Lookup",
     "applicationCategory": "TravelApplication",
     "operatingSystem": "All",
     "description": "A browser-based airport code lookup tool for searching IATA codes, ICAO identifiers, airport names, cities, regions, and countries.",
@@ -63,16 +63,9 @@
     .mobile-card,
     .mobile-panel,
     .mobile-preview,
-    .mobile-code,
     .ad-box {
       max-width: 100%;
       overflow-wrap: anywhere;
-    }
-
-    .mobile-code {
-      overflow-x: auto;
-      white-space: pre-wrap;
-      word-break: break-word;
     }
 
     .ad-box {
@@ -94,20 +87,13 @@
       background: #f8fafc;
     }
 
-    .copy-feedback {
-      transition: opacity 0.2s ease;
-    }
-
     @media (max-width: 640px) {
       .mobile-card {
         padding: 1rem !important;
         border-radius: 1rem !important;
       }
 
-      .mobile-panel {
-        padding: 1rem !important;
-      }
-
+      .mobile-panel,
       .mobile-preview {
         padding: 1rem !important;
       }
@@ -177,9 +163,7 @@
 
   <main>
     <section class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-      <div class="ad-box">
-        Advertisement Space
-      </div>
+      <div class="ad-box">Advertisement Space</div>
     </section>
 
     <section id="tool" class="mx-auto max-w-7xl px-4 pb-10 pt-4 sm:px-6 lg:px-8">
@@ -194,7 +178,7 @@
           </h1>
 
           <p class="mt-4 text-lg leading-8 text-slate-600">
-            Search airports by IATA code, ICAO identifier, airport name, city, region, or country. This tool runs fully in your browser and helps you quickly identify common airport abbreviations used in flight searches, tickets, boarding passes, travel documents, and itinerary planning.
+            Search airports by IATA code, ICAO identifier, airport name, city, region, or country. This tool runs fully in your browser and helps you quickly identify common airport abbreviations used in flight searches, tickets, boarding passes, travel documents, airport transfers, and itinerary planning.
           </p>
 
           <div class="mt-8 space-y-5">
@@ -261,7 +245,7 @@
               </button>
             </div>
 
-            <p id="copyFeedback" class="copy-feedback min-h-6 text-sm font-semibold text-emerald-600" aria-live="polite"></p>
+            <p id="copyFeedback" class="min-h-6 text-sm font-semibold text-emerald-600" aria-live="polite"></p>
           </div>
         </section>
 
@@ -289,7 +273,7 @@
           <div id="warningBox" class="mt-6 hidden rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm font-medium text-amber-800"></div>
 
           <div id="resultsContainer" class="mt-6 hidden overflow-hidden rounded-2xl border border-slate-200">
-            <div class="max-h-[620px] overflow-auto">
+            <div class="max-h-[720px] overflow-auto">
               <table class="w-full border-collapse text-left">
                 <thead class="sticky top-0 z-10 bg-slate-100 text-xs uppercase tracking-wide text-slate-600">
                   <tr>
@@ -304,29 +288,12 @@
               </table>
             </div>
           </div>
-
-          <div class="mt-6 rounded-2xl bg-slate-50 p-5">
-            <h3 class="text-base font-bold text-slate-900">Main page button snippet</h3>
-            <p class="mt-2 text-sm text-slate-600">
-              Add this button to your main tools page. Update the href if your file name or folder path is different.
-            </p>
-            <pre id="mainButtonCode" class="mobile-code mt-4 rounded-2xl bg-slate-950 p-4 text-sm text-slate-100">&lt;a href="/airport-code-lookup.html" class="group block rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-indigo-200 hover:shadow-md"&gt;
-  &lt;div class="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-indigo-50 text-2xl text-indigo-600"&gt;✈&lt;/div&gt;
-  &lt;h3 class="text-lg font-bold text-slate-900 group-hover:text-indigo-700"&gt;Airport Code Lookup&lt;/h3&gt;
-  &lt;p class="mt-2 text-sm leading-6 text-slate-600"&gt;Find IATA and ICAO airport codes by city, airport name, country, or travel destination.&lt;/p&gt;
-&lt;/a&gt;</pre>
-            <button id="copyButtonSnippetBtn" type="button" class="mt-4 rounded-2xl bg-slate-900 px-5 py-3 text-sm font-bold text-white hover:bg-slate-800">
-              Copy Main Page Button
-            </button>
-          </div>
         </section>
       </div>
     </section>
 
     <section class="mx-auto max-w-7xl px-4 pb-10 sm:px-6 lg:px-8">
-      <div class="ad-box">
-        Advertisement Space
-      </div>
+      <div class="ad-box">Advertisement Space</div>
     </section>
 
     <section class="mx-auto max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
@@ -388,9 +355,7 @@
           </p>
         </section>
 
-        <div class="my-12 ad-box">
-          Advertisement Space
-        </div>
+        <div class="my-12 ad-box">Advertisement Space</div>
 
         <section id="how-to-use" class="mt-12">
           <h2 class="text-2xl font-extrabold text-slate-950">How to Use This Airport Code Lookup Tool</h2>
@@ -459,7 +424,7 @@
             Canadian airport codes often begin with the letter Y, which can make them look unusual to travelers. Vancouver International Airport is YVR, Toronto Pearson International Airport is YYZ, Montréal-Trudeau International Airport is YUL, Calgary International Airport is YYC, Edmonton International Airport is YEG, Ottawa International Airport is YOW, Winnipeg Richardson International Airport is YWG, and Halifax Stanfield International Airport is YHZ. Knowing this pattern can make Canadian travel codes easier to recognize.
           </p>
           <p class="mt-4 leading-8 text-slate-700">
-            Airport codes are not always intuitive. Chicago O'Hare is ORD because the airport site was historically known as Orchard Field. Orlando International Airport is MCO, a code connected to the former McCoy Air Force Base. Some cities use codes that look like their city names, while others use legacy identifiers that are not obvious without a lookup tool. That is why an airport abbreviation finder is useful even for experienced travelers.
+            Airport codes are not always intuitive. Chicago O'Hare is ORD because the airport site was historically known as Orchard Field. Orlando International Airport is MCO, a code connected to the former McCoy Air Force Base. Some cities use codes that look like their city names, while others use legacy identifiers that are not obvious without a lookup tool.
           </p>
         </section>
 
@@ -469,16 +434,11 @@
             ICAO codes are four-letter identifiers used in aviation operations. While a passenger may search for JFK, a flight plan or aviation weather report may use KJFK. While a traveler may book a ticket through LHR, air traffic and operational systems may refer to EGLL. ICAO codes are especially common in pilot resources, aircraft tracking platforms, meteorological reports, dispatch systems, airport operations, and professional flight planning tools.
           </p>
           <p class="mt-4 leading-8 text-slate-700">
-            ICAO codes often include geographic prefixes. In the United States, many major airports have ICAO codes that begin with K, such as KJFK, KLAX, KORD, KATL, KSFO, and KSEA. In Canada, many major airports begin with C, such as CYVR, CYYZ, CYUL, CYYC, and CYOW. In the United Kingdom, many airport ICAO codes begin with EG, such as EGLL for Heathrow and EGKK for Gatwick. These patterns help aviation professionals understand where an airport is located at a glance.
-          </p>
-          <p class="mt-4 leading-8 text-slate-700">
-            Travelers usually do not need ICAO codes for ordinary bookings, but they can still be useful when reading flight tracking websites, weather data, or aviation discussions. This tool includes ICAO identifiers for many popular airports so both casual travelers and aviation-focused users can benefit from the same search interface.
+            ICAO codes often include geographic prefixes. In the United States, many major airports have ICAO codes that begin with K, such as KJFK, KLAX, KORD, KATL, KSFO, and KSEA. In Canada, many major airports begin with C, such as CYVR, CYYZ, CYUL, CYYC, and CYOW. In the United Kingdom, many airport ICAO codes begin with EG, such as EGLL for Heathrow and EGKK for Gatwick.
           </p>
         </section>
 
-        <div class="my-12 ad-box">
-          Advertisement Space
-        </div>
+        <div class="my-12 ad-box">Advertisement Space</div>
 
         <section class="mt-12">
           <h2 class="text-2xl font-extrabold text-slate-950">Tips for Choosing the Right Airport</h2>
@@ -509,7 +469,7 @@
             This Airport Code Lookup Tool is designed to run in the browser. The search interaction is processed locally by the page's JavaScript using the airport dataset included inside this file. That means ordinary searches do not require a backend server, account login, or file upload. Client-side tools are useful for quick lookups because they are fast, simple, and privacy-friendly by design.
           </p>
           <p class="mt-4 leading-8 text-slate-700">
-            Because this tool is browser-based, it is also easy to save, host, and use as a static page. It can be placed on a personal website, travel resource site, utility collection, or internal planning page without building a database server. The included main page button snippet makes it easy to link this tool from a broader tools directory.
+            Because this tool is browser-based, it is also easy to save, host, and use as a static page. It can be placed on a personal website, travel resource site, utility collection, or internal planning page without building a database server.
           </p>
         </section>
 
@@ -571,19 +531,10 @@
                 No. The lookup runs client-side in your browser using the airport data embedded in this page. No search text needs to be uploaded to a backend server for the tool to work.
               </p>
             </details>
-
-            <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
-              <summary class="cursor-pointer text-lg font-bold text-slate-950">Why does one city have several airport codes?</summary>
-              <p class="mt-3 leading-7 text-slate-700">
-                Large cities and metropolitan areas often have several airports serving different airlines, flight types, regions, or passenger needs. Airport code lookup helps you identify which specific airport is listed in a fare, itinerary, or ticket.
-              </p>
-            </details>
           </div>
         </section>
 
-        <div class="my-12 ad-box">
-          Advertisement Space
-        </div>
+        <div class="my-12 ad-box">Advertisement Space</div>
 
         <section class="mt-12 rounded-3xl bg-slate-950 p-6 text-slate-100 sm:p-8">
           <h2 class="text-2xl font-extrabold">Legal Disclaimer</h2>
@@ -601,9 +552,7 @@
     </section>
 
     <section class="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
-      <div class="ad-box">
-        Advertisement Space
-      </div>
+      <div class="ad-box">Advertisement Space</div>
     </section>
   </main>
 
@@ -754,8 +703,6 @@
     const resetBtn = document.getElementById("resetBtn");
     const showAllBtn = document.getElementById("showAllBtn");
     const copyFeedback = document.getElementById("copyFeedback");
-    const copyButtonSnippetBtn = document.getElementById("copyButtonSnippetBtn");
-    const mainButtonCode = document.getElementById("mainButtonCode");
 
     let currentResults = [];
 
@@ -801,7 +748,6 @@
         let results = airports.filter((item) => {
           const regionMatches = selectedRegion === "all" || item.region === selectedRegion;
           if (!regionMatches) return false;
-
           if (!normalizedQuery) return false;
 
           const searchable = [
@@ -1052,10 +998,6 @@
         return;
       }
       copyText(resultsToText(currentResults));
-    });
-
-    copyButtonSnippetBtn.addEventListener("click", () => {
-      copyText(mainButtonCode.textContent.trim());
     });
 
     downloadCsvBtn.addEventListener("click", downloadCsv);
