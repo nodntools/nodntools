@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YouTube Thumbnail Downloader | Free HD Tool</title>
+  <meta name="description" content="Download YouTube video thumbnails in HD, SD, and default sizes instantly with a free browser-based tool." />
+  <meta name="keywords" content="YouTube thumbnail downloader, YouTube thumbnail grabber, download YouTube thumbnail, HD thumbnail downloader, YouTube image downloader, video thumbnail extractor, YouTube thumbnail URL, maxresdefault thumbnail, YouTube preview image, free thumbnail tool" />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="YouTube Thumbnail Downloader | Free HD Tool" />
+  <meta property="og:description" content="Paste a YouTube URL and instantly preview, copy, and download available video thumbnail images." />
+  <meta property="og:type" content="website" />
+  <meta name="google-adsense-account" content="ca-pub-5282672325821404" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404" crossorigin="anonymous"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "YouTube Thumbnail Downloader",
+    "applicationCategory": "MultimediaApplication",
+    "operatingSystem": "Any",
+    "description": "A free browser-based YouTube thumbnail downloader that extracts public video thumbnail image URLs from YouTube links and video IDs.",
+    "url": "https://nodntools.com",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+  <style>
+    html, body { width:100%; max-width:100%; overflow-x:hidden; }
+    *, *::before, *::after { box-sizing:border-box; min-width:0; }
+    .safe-break { overflow-wrap:anywhere; word-break:break-word; }
+    .ad-box {
+      border: 2px dashed #cbd5e1;
+      background: #f8fafc;
+      min-height: 90px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #64748b;
+      border-radius: 1rem;
+      padding: 1rem;
+      width: 100%;
+      max-width: 100%;
+    }
+    .mobile-preview img {
+      max-width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+    .mobile-code {
+      max-width: 100%;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+    @media (max-width: 640px) {
+      .mobile-card, .mobile-panel { padding: 1rem !important; border-radius: 1rem !important; }
+      .mobile-button-grid { grid-template-columns: 1fr !important; }
+      .mobile-button-grid button, .mobile-button-grid a { width: 100% !important; }
+      .mobile-preview { padding: .75rem !important; }
+      h1 { font-size: 2rem !important; line-height: 2.35rem !important; }
+      h2 { font-size: 1.5rem !important; line-height: 2rem !important; }
+    }
+    @media (max-width: 380px) {
+      .mobile-card, .mobile-panel { padding: .85rem !important; border-radius: .85rem !important; }
+      body { font-size: 14px; }
+      h1 { font-size: 1.75rem !important; }
+      .ad-box { min-height: 80px; font-size: .85rem; }
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+  <header class="border-b border-slate-200 bg-white">
+    <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-5 sm:px-6 lg:px-8">
+      <a href="https://nodntools.com" class="text-xl font-extrabold tracking-tight text-slate-900" aria-label="NodnWebTools Home">
+        Nodn<span class="text-indigo-600">WebTools</span>
+      </a>
+      <a href="https://nodntools.com" class="rounded-full border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700">Home</a>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+    <section class="ad-box mb-8">
+      Top Advertisement Area
+    </section>
+
+    <section class="grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
+      <div class="mobile-card rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+        <p class="mb-3 inline-flex rounded-full bg-indigo-50 px-3 py-1 text-sm font-semibold text-indigo-700">Free browser-based image tool</p>
+        <h1 class="text-4xl font-extrabold tracking-tight text-slate-950">YouTube Thumbnail Downloader</h1>
+        <p class="mt-4 text-lg leading-8 text-slate-600">
+          Paste a YouTube video link or video ID to instantly generate thumbnail previews in multiple available sizes. Copy image URLs, open previews, or download thumbnails directly in your browser.
+        </p>
+
+        <div class="mt-8 space-y-5">
+          <div>
+            <label for="youtubeInput" class="mb-2 block text-sm font-bold text-slate-800">YouTube URL or Video ID</label>
+            <input id="youtubeInput" type="text" class="w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100" placeholder="Example: https://www.youtube.com/watch?v=dQw4w9WgXcQ" />
+          </div>
+
+          <div class="grid gap-3 sm:grid-cols-2 mobile-button-grid">
+            <button id="generateBtn" class="rounded-2xl bg-indigo-600 px-5 py-3 font-bold text-white shadow-sm transition hover:bg-indigo-700">Generate Thumbnails</button>
+            <button id="resetBtn" class="rounded-2xl border border-slate-300 bg-white px-5 py-3 font-bold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700">Reset</button>
+          </div>
+
+          <div class="rounded-2xl bg-slate-50 p-4">
+            <h2 class="text-base font-bold text-slate-900">Supported YouTube Formats</h2>
+            <ul class="mt-3 space-y-2 text-sm leading-6 text-slate-600">
+              <li class="safe-break">https://www.youtube.com/watch?v=VIDEO_ID</li>
+              <li class="safe-break">https://youtu.be/VIDEO_ID</li>
+              <li class="safe-break">https://www.youtube.com/shorts/VIDEO_ID</li>
+              <li class="safe-break">VIDEO_ID only</li>
+            </ul>
+          </div>
+
+          <div id="statusBox" class="rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm leading-6 text-amber-800">
+            Enter a public YouTube video URL or video ID to preview available thumbnails.
+          </div>
+        </div>
+      </div>
+
+      <div class="mobile-panel rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+        <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <h2 class="text-2xl font-extrabold text-slate-950">Thumbnail Preview</h2>
+            <p class="mt-1 text-sm text-slate-500">Available sizes will appear below.</p>
+          </div>
+          <button id="copyAllBtn" class="rounded-2xl border border-indigo-200 bg-indigo-50 px-4 py-2 text-sm font-bold text-indigo-700 transition hover:bg-indigo-100">Copy All URLs</button>
+        </div>
+
+        <div id="resultArea" class="mt-6 space-y-5">
+          <div class="mobile-preview rounded-2xl border border-slate-200 bg-slate-50 p-6 text-center">
+            <div class="mx-auto flex aspect-video max-w-xl items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white p-6 text-slate-400">
+              Thumbnail previews will be displayed here.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ad-box my-8">
+      Advertisement Area Below Tool
+    </section>
+
+    <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+      <article class="prose prose-slate max-w-none">
+        <h2 class="text-3xl font-extrabold text-slate-950">Free YouTube Thumbnail Downloader for HD Video Images</h2>
+        <p class="mt-4 leading-8 text-slate-700">
+          A YouTube thumbnail is one of the most important visual elements connected to a video. It is the preview image that viewers see before they decide whether to watch, share, save, or ignore a piece of content. This YouTube Thumbnail Downloader is designed to make thumbnail access simple, fast, and convenient. By pasting a YouTube video URL, YouTube Shorts URL, youtu.be short link, or a raw video ID, the tool automatically extracts the public video identifier and builds thumbnail image links in common YouTube sizes. The process happens directly in your browser, which means there is no account login, no file upload, and no backend server required for basic thumbnail preview generation.
+        </p>
+        <p class="mt-4 leading-8 text-slate-700">
+          The tool is useful for creators, bloggers, social media managers, students, researchers, video editors, designers, marketers, website owners, and anyone who needs to view or save a publicly available YouTube thumbnail for legitimate reference, planning, commentary, documentation, or design workflow purposes. Instead of manually searching through page source code or guessing thumbnail URL patterns, you can paste a link and instantly see the common image versions such as maximum resolution, standard definition, high quality, medium quality, default quality, and frame-based preview images.
+        </p>
+
+        <h3 class="mt-8 text-2xl font-bold text-slate-950">Why YouTube Thumbnails Matter</h3>
+        <p class="mt-4 leading-8 text-slate-700">
+          YouTube thumbnails play a major role in click-through rate, content branding, search visibility, and audience perception. A well-designed thumbnail communicates the topic of a video before a viewer reads the full title. It can show the subject, mood, result, tutorial outcome, product, person, location, or story angle. For creators, studying thumbnail styles can help improve future video packaging. For bloggers and writers, referencing a thumbnail can make it easier to identify a video accurately when writing summaries, reviews, educational resources, or comparison articles. For designers, thumbnail previews can be used to analyze composition, contrast, text placement, face positioning, visual hierarchy, and branding consistency.
+        </p>
+        <p class="mt-4 leading-8 text-slate-700">
+          Many videos have several thumbnail image versions. Some videos include a high-resolution image, often known as maxresdefault. Others only include standard or high quality versions, depending on how the video was uploaded, processed, or configured. This downloader displays multiple possible thumbnail URLs so you can quickly check which versions are available. If one thumbnail size does not load, another version may still be available. This is especially helpful for older videos, Shorts, livestream replays, music videos, educational clips, product reviews, tutorials, and videos where YouTube has not generated every image size.
+        </p>
+
+        <div class="ad-box my-8">
+          Middle Content Advertisement Area
+        </div>
+
+        <h3 class="mt-8 text-2xl font-bold text-slate-950">How the YouTube Thumbnail Downloader Works</h3>
+        <p class="mt-4 leading-8 text-slate-700">
+          This tool reads the text you enter and attempts to identify a valid YouTube video ID. You can paste a regular YouTube watch URL, a shortened youtu.be link, a YouTube Shorts link, an embed URL, or the video ID itself. After the ID is detected, the tool creates a list of standard public thumbnail image paths used by YouTube. The generated preview cards let you view the thumbnail, copy the direct image URL, open the image in a new browser tab, or download the image file locally.
+        </p>
+        <p class="mt-4 leading-8 text-slate-700">
+          All core processing runs on the client side. The tool does not need to store the video URL, does not require a database, and does not ask for a YouTube account. Image loading depends on public thumbnail availability from YouTube. If a thumbnail appears broken or unavailable, it may mean that the specific resolution was not generated for that video, the video ID is incorrect, the video is private or removed, or the network blocked the image request. In many normal cases, at least one of the common thumbnail sizes will load successfully.
+        </p>
+
+        <h3 class="mt-8 text-2xl font-bold text-slate-950">Common Thumbnail Sizes You Can Preview</h3>
+        <p class="mt-4 leading-8 text-slate-700">
+          YouTube commonly uses several thumbnail image names. The maximum resolution image is often the largest option and may be suitable when you need a clean preview for design reference or content planning. Standard definition is usually a strong fallback when maximum resolution is unavailable. High quality, medium quality, and default quality versions are useful for quick previews, smaller layouts, documentation, and lightweight pages. Frame images such as 0.jpg, 1.jpg, 2.jpg, and 3.jpg may show different automatically generated video moments. These can be useful when analyzing the default images YouTube provides for a video.
+        </p>
+        <p class="mt-4 leading-8 text-slate-700">
+          Not every video supports every size. Some thumbnails may show a placeholder or fail to load. This is normal behavior and does not always mean the tool is broken. It simply reflects the public image versions available for that specific video ID. For best results, try a public video with a custom thumbnail and compare the maximum resolution, standard, and high quality versions. When downloading an image, always make sure your use follows copyright rules, platform terms, fair use principles where applicable, and the original creator’s rights.
+        </p>
+
+        <h2 class="mt-10 text-3xl font-extrabold text-slate-950">Popular Uses for a YouTube Thumbnail Grabber</h2>
+        <div class="mt-6 grid gap-5 md:grid-cols-3">
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <h3 class="text-lg font-bold text-slate-950">Creator Research</h3>
+            <p class="mt-2 leading-7 text-slate-600">Compare thumbnail layouts, colors, expressions, titles, and visual styles from public videos to improve your own video packaging strategy.</p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <h3 class="text-lg font-bold text-slate-950">Blogging and Writing</h3>
+            <p class="mt-2 leading-7 text-slate-600">Quickly identify the right video image when preparing educational articles, video summaries, reviews, resource pages, and content references.</p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <h3 class="text-lg font-bold text-slate-950">Design Inspiration</h3>
+            <p class="mt-2 leading-7 text-slate-600">Study composition, typography, contrast, spacing, emotion, and branding choices used in successful public YouTube thumbnails.</p>
+          </div>
+        </div>
+
+        <h2 class="mt-10 text-3xl font-extrabold text-slate-950">How to Use This YouTube Thumbnail Downloader</h2>
+        <p class="mt-4 leading-8 text-slate-700">
+          Start by copying the YouTube video URL from your browser address bar or from the share button on YouTube. Paste the link into the input field at the top of this page. You can also paste only the video ID if you already know it. Click the generate button, or simply type and let the live preview update automatically. The result section will display multiple thumbnail cards. Each card includes the image size label, the direct image URL, a copy button, an open button, and a download button. Choose the highest available version that matches your needs.
+        </p>
+        <p class="mt-4 leading-8 text-slate-700">
+          If you need a thumbnail for a presentation, website draft, design mockup, research note, or editorial workflow, the larger image versions are usually easier to view and crop. If you need a lightweight image for a small reference document, a smaller version may be enough. If the maximum resolution image does not load, try the standard definition or high quality option. For YouTube Shorts, the same video ID method is used, although not every Shorts thumbnail will provide every image size.
+        </p>
+
+        <h3 class="mt-8 text-2xl font-bold text-slate-950">Practical Tips for Working with YouTube Thumbnails</h3>
+        <p class="mt-4 leading-8 text-slate-700">
+          When reviewing thumbnails, pay attention to readability at small sizes. Most viewers see thumbnails on mobile screens, search result pages, suggested video shelves, and embedded players. A design that looks attractive at full size may not work well at small size if the text is too thin, the contrast is weak, or the main subject is hard to recognize. Strong thumbnails often use clear subject focus, readable text, high contrast, simple backgrounds, expressive faces where relevant, and consistent brand elements. This tool can help you compare those choices quickly by making public thumbnail images easy to preview.
+        </p>
+        <p class="mt-4 leading-8 text-slate-700">
+          For content planning, you can use this thumbnail extractor to create a swipe file of design inspiration, but you should not copy another creator’s work. Instead, analyze patterns and adapt general design principles ethically. Look at how different niches use thumbnails: technology videos may emphasize product shots and clean typography, travel videos may use landscape imagery and emotional color grading, educational videos may use diagrams or bold keywords, gaming videos may use action scenes and character art, and finance videos may use charts, faces, and clear topic labels. Understanding these patterns can improve your own creative decisions.
+        </p>
+
+        <div class="ad-box my-8">
+          Bottom Content Advertisement Area
+        </div>
+
+        <h2 class="mt-10 text-3xl font-extrabold text-slate-950">Benefits of a Browser-Based Thumbnail Downloader</h2>
+        <p class="mt-4 leading-8 text-slate-700">
+          A browser-based YouTube thumbnail downloader is convenient because it avoids unnecessary software installation. You can open the page, paste a link, and generate thumbnails immediately. Since the tool runs client-side, it is lightweight and simple to use across desktop and mobile browsers. This is especially helpful for quick workflows where you only need a public image URL or a preview file. The single-page design also makes the tool easy to bookmark, share with team members, and use repeatedly during video research or content creation.
+        </p>
+        <p class="mt-4 leading-8 text-slate-700">
+          Another benefit is transparency. The generated URLs follow recognizable public YouTube thumbnail patterns, so you can see exactly where each image comes from. The tool does not modify the original video, does not access private account data, and does not download video content. It only helps locate and display public thumbnail images associated with a provided video ID. This makes it practical for simple editorial, educational, and creative workflows where quick preview access is needed.
+        </p>
+
+        <h2 class="mt-10 text-3xl font-extrabold text-slate-950">FAQ</h2>
+        <div class="mt-6 space-y-4">
+          <div class="rounded-2xl border border-slate-200 bg-white p-5">
+            <h3 class="font-bold text-slate-950">Can I download thumbnails from any YouTube video?</h3>
+            <p class="mt-2 leading-7 text-slate-600">You can generate thumbnail links for public videos when a valid video ID is available. Private, removed, restricted, or unavailable videos may not show usable thumbnail images.</p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 bg-white p-5">
+            <h3 class="font-bold text-slate-950">Why does the maximum resolution thumbnail not appear?</h3>
+            <p class="mt-2 leading-7 text-slate-600">Not every video has a maximum resolution thumbnail. Try the standard definition, high quality, medium quality, or default version instead.</p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 bg-white p-5">
+            <h3 class="font-bold text-slate-950">Does this tool download YouTube videos?</h3>
+            <p class="mt-2 leading-7 text-slate-600">No. This tool only generates and previews public thumbnail image URLs. It does not download, convert, or extract video or audio content.</p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 bg-white p-5">
+            <h3 class="font-bold text-slate-950">Is the tool free?</h3>
+            <p class="mt-2 leading-7 text-slate-600">Yes. The thumbnail downloader is free to use and runs directly in your browser without requiring registration.</p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 bg-white p-5">
+            <h3 class="font-bold text-slate-950">Can I use downloaded thumbnails on my website?</h3>
+            <p class="mt-2 leading-7 text-slate-600">You are responsible for ensuring that your use respects copyright, YouTube terms, creator rights, and applicable laws. When in doubt, request permission or use the image only for legitimate reference purposes.</p>
+          </div>
+        </div>
+
+        <section class="mt-10 rounded-3xl bg-slate-900 p-6 text-slate-100">
+          <h2 class="text-2xl font-extrabold">Legal Disclaimer</h2>
+          <p class="mt-4 leading-8 text-slate-300">
+            This YouTube Thumbnail Downloader is provided for informational, educational, research, and convenience purposes only. It does not grant ownership, copyright permission, licensing rights, or commercial usage rights for any thumbnail image. YouTube thumbnails may be protected by copyright, trademark, publicity rights, platform terms, and other legal restrictions. Users are fully responsible for how they access, download, store, modify, share, publish, or reuse any thumbnail image. The tool only generates public thumbnail URL patterns based on a supplied video ID and does not verify ownership, license status, image accuracy, creator consent, or legal suitability for a specific use. Do not use this tool to misrepresent another creator’s work, impersonate a channel, violate platform policies, or infringe intellectual property rights. For legal questions, consult a qualified professional.
+          </p>
+        </section>
+      </article>
+    </section>
+
+    <section class="ad-box my-8">
+      Bottom Advertisement Area
+    </section>
+  </main>
+
+  <footer class="border-t border-slate-200 bg-white">
+    <div class="mx-auto max-w-7xl px-4 py-8 text-center text-sm text-slate-500 sm:px-6 lg:px-8">
+      © <span id="year"></span> NodnWebTools. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    const input = document.getElementById('youtubeInput');
+    const generateBtn = document.getElementById('generateBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const resultArea = document.getElementById('resultArea');
+    const statusBox = document.getElementById('statusBox');
+    const copyAllBtn = document.getElementById('copyAllBtn');
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const thumbnailTypes = [
+      { label: 'Maximum Resolution', file: 'maxresdefault.jpg' },
+      { label: 'Standard Definition', file: 'sddefault.jpg' },
+      { label: 'High Quality', file: 'hqdefault.jpg' },
+      { label: 'Medium Quality', file: 'mqdefault.jpg' },
+      { label: 'Default Quality', file: 'default.jpg' },
+      { label: 'Frame Preview 0', file: '0.jpg' },
+      { label: 'Frame Preview 1', file: '1.jpg' },
+      { label: 'Frame Preview 2', file: '2.jpg' },
+      { label: 'Frame Preview 3', file: '3.jpg' }
+    ];
+
+    function extractVideoId(value) {
+      try {
+        const text = String(value || '').trim();
+        if (!text) return '';
+
+        if (/^[a-zA-Z0-9_-]{11}$/.test(text)) return text;
+
+        const patterns = [
+          /(?:youtube\.com\/watch\?v=)([a-zA-Z0-9_-]{11})/,
+          /(?:youtu\.be\/)([a-zA-Z0-9_-]{11})/,
+          /(?:youtube\.com\/shorts\/)([a-zA-Z0-9_-]{11})/,
+          /(?:youtube\.com\/embed\/)([a-zA-Z0-9_-]{11})/,
+          /(?:youtube\.com\/live\/)([a-zA-Z0-9_-]{11})/,
+          /(?:v=)([a-zA-Z0-9_-]{11})/
+        ];
+
+        for (const pattern of patterns) {
+          const match = text.match(pattern);
+          if (match && match[1]) return match[1];
+        }
+
+        try {
+          const url = new URL(text);
+          const videoId = url.searchParams.get('v');
+          if (videoId && /^[a-zA-Z0-9_-]{11}$/.test(videoId)) return videoId;
+        } catch (e) {}
+
+        return '';
+      } catch (error) {
+        return '';
+      }
+    }
+
+    function setStatus(message, type = 'info') {
+      const styles = {
+        info: 'rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm leading-6 text-amber-800',
+        success: 'rounded-2xl border border-emerald-200 bg-emerald-50 p-4 text-sm leading-6 text-emerald-800',
+        error: 'rounded-2xl border border-rose-200 bg-rose-50 p-4 text-sm leading-6 text-rose-800'
+      };
+      statusBox.className = styles[type] || styles.info;
+      statusBox.textContent = message;
+    }
+
+    async function copyText(text, button) {
+      try {
+        await navigator.clipboard.writeText(text);
+        const original = button.textContent;
+        button.textContent = 'Copied!';
+        setTimeout(() => button.textContent = original, 1200);
+      } catch (error) {
+        setStatus('Copy failed. Please copy the URL manually.', 'error');
+      }
+    }
+
+    async function downloadImage(url, filename) {
+      try {
+        const response = await fetch(url, { mode: 'cors' });
+        if (!response.ok) throw new Error('Image request failed');
+        const blob = await response.blob();
+        const objectUrl = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = objectUrl;
+        link.download = filename;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        URL.revokeObjectURL(objectUrl);
+      } catch (error) {
+        window.open(url, '_blank', 'noopener,noreferrer');
+        setStatus('Direct download was blocked by the browser. The image opened in a new tab so you can save it manually.', 'info');
+      }
+    }
+
+    function renderThumbnails() {
+      const videoId = extractVideoId(input.value);
+
+      if (!input.value.trim()) {
+        resultArea.innerHTML = `
+          <div class="mobile-preview rounded-2xl border border-slate-200 bg-slate-50 p-6 text-center">
+            <div class="mx-auto flex aspect-video max-w-xl items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white p-6 text-slate-400">
+              Thumbnail previews will be displayed here.
+            </div>
+          </div>
+        `;
+        setStatus('Enter a public YouTube video URL or video ID to preview available thumbnails.', 'info');
+        return;
+      }
+
+      if (!videoId) {
+        resultArea.innerHTML = `
+          <div class="rounded-2xl border border-rose-200 bg-rose-50 p-5 text-rose-700">
+            A valid YouTube video ID could not be detected. Please check the URL and try again.
+          </div>
+        `;
+        setStatus('Invalid YouTube URL or video ID. A YouTube video ID is usually 11 characters long.', 'error');
+        return;
+      }
+
+      const cards = thumbnailTypes.map(item => {
+        const url = `https://img.youtube.com/vi/${videoId}/${item.file}`;
+        return `
+          <div class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+            <div class="mobile-preview overflow-hidden rounded-2xl border border-slate-200 bg-slate-100">
+              <img src="${url}" alt="${item.label} YouTube thumbnail preview" class="w-full" loading="lazy" onerror="this.closest('.rounded-2xl').classList.add('opacity-60');" />
+            </div>
+            <div class="mt-4 flex flex-col gap-3">
+              <div>
+                <h3 class="font-bold text-slate-950">${item.label}</h3>
+                <p class="mobile-code mt-1 rounded-xl bg-slate-50 p-2 text-xs text-slate-500 safe-break">${url}</p>
+              </div>
+              <div class="grid grid-cols-3 gap-2 mobile-button-grid">
+                <button class="copy-url rounded-xl border border-slate-300 px-3 py-2 text-sm font-bold text-slate-700 hover:border-indigo-300 hover:text-indigo-700" data-url="${url}">Copy</button>
+                <a href="${url}" target="_blank" rel="noopener noreferrer" class="rounded-xl border border-slate-300 px-3 py-2 text-center text-sm font-bold text-slate-700 hover:border-indigo-300 hover:text-indigo-700">Open</a>
+                <button class="download-url rounded-xl bg-indigo-600 px-3 py-2 text-sm font-bold text-white hover:bg-indigo-700" data-url="${url}" data-name="youtube-thumbnail-${videoId}-${item.file}">Download</button>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      resultArea.innerHTML = `
+        <div class="rounded-2xl border border-indigo-100 bg-indigo-50 p-4 text-sm leading-6 text-indigo-800">
+          Detected video ID: <strong class="safe-break">${videoId}</strong>
+        </div>
+        <div class="grid gap-5">${cards}</div>
+      `;
+
+      setStatus('Thumbnails generated successfully. Some sizes may not exist for every video.', 'success');
+
+      document.querySelectorAll('.copy-url').forEach(button => {
+        button.addEventListener('click', () => copyText(button.dataset.url, button));
+      });
+
+      document.querySelectorAll('.download-url').forEach(button => {
+        button.addEventListener('click', () => downloadImage(button.dataset.url, button.dataset.name));
+      });
+    }
+
+    generateBtn.addEventListener('click', renderThumbnails);
+    input.addEventListener('input', () => {
+      clearTimeout(input._timer);
+      input._timer = setTimeout(renderThumbnails, 350);
+    });
+
+    resetBtn.addEventListener('click', () => {
+      input.value = '';
+      renderThumbnails();
+      input.focus();
+    });
+
+    copyAllBtn.addEventListener('click', async () => {
+      const videoId = extractVideoId(input.value);
+      if (!videoId) {
+        setStatus('Please enter a valid YouTube URL or video ID before copying thumbnail URLs.', 'error');
+        return;
+      }
+      const urls = thumbnailTypes.map(item => `https://img.youtube.com/vi/${videoId}/${item.file}`).join('\n');
+      await copyText(urls, copyAllBtn);
+    });
+  </script>
+</body>
+</html>
