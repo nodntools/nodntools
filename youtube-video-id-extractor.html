@@ -1,0 +1,1362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>YouTube Video ID Extractor | Free URL Parser</title>
+  <meta name="description" content="Extract YouTube video IDs instantly from watch, Shorts, live, embed, and youtu.be URLs with this free browser-based tool." />
+  <meta name="keywords" content="YouTube video ID extractor, extract YouTube video ID, YouTube URL parser, YouTube video ID finder, get video ID from YouTube URL, YouTube Shorts ID extractor, youtu.be ID extractor, YouTube embed ID, YouTube live video ID, YouTube developer tool, parse YouTube URL, YouTube link extractor" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#4f46e5" />
+
+  <meta property="og:title" content="YouTube Video ID Extractor | Free URL Parser" />
+  <meta property="og:description" content="Paste one or multiple YouTube links and extract valid video IDs instantly in your browser." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://nodntools.com/youtube-video-id-extractor" />
+
+  <meta name="google-adsense-account" content="ca-pub-5282672325821404" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404" crossorigin="anonymous"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "YouTube Video ID Extractor",
+    "url": "https://nodntools.com/youtube-video-id-extractor",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript and a modern web browser",
+    "description": "A free browser-based tool that extracts YouTube video IDs from watch URLs, Shorts links, live URLs, embed links, youtu.be links, and raw text.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "featureList": [
+      "Extract YouTube video IDs from multiple URL formats",
+      "Process multiple links at once",
+      "Validate 11-character YouTube video IDs",
+      "Generate watch, embed, Shorts, thumbnail, and privacy-enhanced URLs",
+      "Copy and export results",
+      "Fully client-side processing"
+    ]
+  }
+  </script>
+
+  <style>
+    html, body {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      min-width: 0;
+    }
+
+    .safe-break {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .mobile-card,
+    .mobile-panel,
+    .mobile-preview,
+    .mobile-code,
+    .ad-box,
+    table,
+    canvas,
+    img,
+    svg {
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .mobile-code {
+      overflow-x: auto;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .ad-box {
+      min-height: 90px;
+      border: 2px dashed #cbd5e1;
+      background: #f8fafc;
+      color: #64748b;
+      border-radius: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .tool-link-card {
+      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+    }
+
+    .tool-link-card:hover {
+      transform: translateY(-4px);
+    }
+
+    details > summary {
+      list-style: none;
+    }
+
+    details > summary::-webkit-details-marker {
+      display: none;
+    }
+
+    @media (max-width: 640px) {
+      .mobile-card,
+      .mobile-panel {
+        padding: 1rem !important;
+        border-radius: 1rem !important;
+      }
+
+      .mobile-button-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .mobile-button-grid button,
+      .mobile-button-grid a {
+        width: 100% !important;
+      }
+
+      .mobile-preview {
+        padding: 0.75rem !important;
+      }
+
+      h1 {
+        font-size: 2rem !important;
+        line-height: 2.35rem !important;
+      }
+
+      h2 {
+        font-size: 1.5rem !important;
+        line-height: 2rem !important;
+      }
+
+      .ad-box {
+        min-height: 86px;
+        font-size: 0.875rem;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .mobile-card,
+      .mobile-panel {
+        padding: 0.8rem !important;
+        border-radius: 0.85rem !important;
+      }
+
+      body {
+        font-size: 14px;
+      }
+
+      h1 {
+        font-size: 1.7rem !important;
+        line-height: 2.05rem !important;
+      }
+
+      .ad-box {
+        min-height: 78px;
+        font-size: 0.8rem;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800 antialiased">
+  <header class="border-b border-slate-200 bg-white">
+    <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-5 sm:px-6 lg:px-8">
+      <a href="https://nodntools.com" class="text-xl font-extrabold tracking-tight text-slate-900" aria-label="NodnWebTools Home">
+        Nodn<span class="text-indigo-600">WebTools</span>
+      </a>
+
+      <a href="https://nodntools.com" class="rounded-full border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700">
+        Home
+      </a>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+    <section class="ad-box mb-8" aria-label="Advertisement">
+      Top Advertisement Area
+    </section>
+
+    <section class="grid gap-8 lg:grid-cols-[0.96fr_1.04fr]">
+      <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+        <p class="mb-3 inline-flex rounded-full bg-indigo-50 px-3 py-1 text-sm font-semibold text-indigo-700">
+          Free YouTube developer utility
+        </p>
+
+        <h1 class="text-4xl font-extrabold tracking-tight text-slate-950">
+          YouTube Video ID Extractor
+        </h1>
+
+        <p class="mt-4 text-lg leading-8 text-slate-600">
+          Paste one or multiple YouTube URLs to extract valid 11-character video IDs from watch pages, Shorts links, live streams, embed URLs, mobile links, and shortened youtu.be addresses.
+        </p>
+
+        <div class="mt-8 space-y-5">
+          <div>
+            <label for="urlInput" class="mb-2 block text-sm font-bold text-slate-800">
+              YouTube URL, Video ID, or Multiple Links
+            </label>
+
+            <textarea
+              id="urlInput"
+              rows="9"
+              class="w-full resize-y rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100"
+              placeholder="Paste one or multiple links, one per line.
+
+Examples:
+https://www.youtube.com/watch?v=dQw4w9WgXcQ
+https://youtu.be/dQw4w9WgXcQ
+https://www.youtube.com/shorts/dQw4w9WgXcQ
+dQw4w9WgXcQ"
+              spellcheck="false"
+            ></textarea>
+          </div>
+
+          <div>
+            <label for="outputFormat" class="mb-2 block text-sm font-bold text-slate-800">
+              Primary Output Format
+            </label>
+
+            <select
+              id="outputFormat"
+              class="w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100"
+            >
+              <option value="id">Video ID Only</option>
+              <option value="watch">Standard Watch URL</option>
+              <option value="short">Short youtu.be URL</option>
+              <option value="embed">Embed URL</option>
+              <option value="privacy">Privacy-Enhanced Embed URL</option>
+              <option value="shorts">YouTube Shorts URL</option>
+              <option value="thumbnail">Maximum Thumbnail URL</option>
+            </select>
+          </div>
+
+          <div class="grid gap-3 sm:grid-cols-2 mobile-button-grid">
+            <label class="flex cursor-pointer items-start gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm leading-6 text-slate-700">
+              <input id="removeDuplicates" type="checkbox" checked class="mt-1 h-4 w-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500" />
+              <span>
+                <strong class="block text-slate-900">Remove duplicate IDs</strong>
+                Keep only the first occurrence of each detected video ID.
+              </span>
+            </label>
+
+            <label class="flex cursor-pointer items-start gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm leading-6 text-slate-700">
+              <input id="liveUpdate" type="checkbox" checked class="mt-1 h-4 w-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500" />
+              <span>
+                <strong class="block text-slate-900">Live extraction</strong>
+                Update results automatically while you type or paste.
+              </span>
+            </label>
+          </div>
+
+          <div class="grid gap-3 sm:grid-cols-2 mobile-button-grid">
+            <button id="extractBtn" class="rounded-2xl bg-indigo-600 px-5 py-3 font-bold text-white shadow-sm transition hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-200">
+              Extract Video IDs
+            </button>
+
+            <button id="resetBtn" class="rounded-2xl border border-slate-300 bg-white px-5 py-3 font-bold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700 focus:outline-none focus:ring-4 focus:ring-slate-100">
+              Reset
+            </button>
+          </div>
+
+          <div id="statusBox" class="rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm leading-6 text-amber-800" role="status" aria-live="polite">
+            Enter a YouTube link or raw 11-character video ID to begin.
+          </div>
+
+          <div class="rounded-2xl bg-slate-50 p-4">
+            <h2 class="text-base font-bold text-slate-900">Supported YouTube Link Formats</h2>
+            <ul class="mt-3 space-y-2 text-sm leading-6 text-slate-600">
+              <li class="safe-break">https://www.youtube.com/watch?v=VIDEO_ID</li>
+              <li class="safe-break">https://youtu.be/VIDEO_ID</li>
+              <li class="safe-break">https://www.youtube.com/shorts/VIDEO_ID</li>
+              <li class="safe-break">https://www.youtube.com/live/VIDEO_ID</li>
+              <li class="safe-break">https://www.youtube.com/embed/VIDEO_ID</li>
+              <li class="safe-break">https://www.youtube-nocookie.com/embed/VIDEO_ID</li>
+              <li class="safe-break">https://m.youtube.com/watch?v=VIDEO_ID</li>
+              <li class="safe-break">VIDEO_ID only</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="mobile-panel rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+        <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <h2 class="text-2xl font-extrabold text-slate-950">Extraction Results</h2>
+            <p class="mt-1 text-sm text-slate-500">Review, copy, open, and export detected video IDs.</p>
+          </div>
+
+          <button id="copyAllBtn" class="rounded-2xl border border-indigo-200 bg-indigo-50 px-4 py-2 text-sm font-bold text-indigo-700 transition hover:bg-indigo-100 disabled:cursor-not-allowed disabled:opacity-50" disabled>
+            Copy All
+          </button>
+        </div>
+
+        <div id="summaryArea" class="mt-6 grid gap-3 sm:grid-cols-3">
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+            <p class="text-xs font-bold uppercase tracking-wide text-slate-400">Detected</p>
+            <p id="detectedCount" class="mt-2 text-2xl font-extrabold text-slate-950">0</p>
+          </div>
+
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+            <p class="text-xs font-bold uppercase tracking-wide text-slate-400">Invalid</p>
+            <p id="invalidCount" class="mt-2 text-2xl font-extrabold text-slate-950">0</p>
+          </div>
+
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+            <p class="text-xs font-bold uppercase tracking-wide text-slate-400">Duplicates</p>
+            <p id="duplicateCount" class="mt-2 text-2xl font-extrabold text-slate-950">0</p>
+          </div>
+        </div>
+
+        <div id="resultArea" class="mt-6">
+          <div class="mobile-preview rounded-3xl border border-slate-200 bg-slate-50 p-6">
+            <div class="flex min-h-72 flex-col items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white px-6 py-10 text-center">
+              <div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-indigo-50 text-indigo-600">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.7" stroke="currentColor" class="h-8 w-8">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 21 3m0 0-3.75-3.75M21 3h-7.5A4.5 4.5 0 0 0 9 7.5v9A4.5 4.5 0 0 1 4.5 21H3m3.75-3.75L3 21m0 0 3.75 3.75" />
+                </svg>
+              </div>
+              <h3 class="mt-5 text-lg font-bold text-slate-900">No video IDs extracted yet</h3>
+              <p class="mt-2 max-w-md text-sm leading-6 text-slate-500">
+                Paste a YouTube URL or raw video ID. Results will appear here automatically when live extraction is enabled.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div id="exportArea" class="mt-6 hidden">
+          <div class="grid gap-3 sm:grid-cols-2 mobile-button-grid">
+            <button id="downloadTextBtn" class="rounded-2xl border border-slate-300 bg-white px-4 py-3 font-bold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700">
+              Download TXT
+            </button>
+
+            <button id="downloadCsvBtn" class="rounded-2xl border border-slate-300 bg-white px-4 py-3 font-bold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700">
+              Download CSV
+            </button>
+
+            <button id="downloadJsonBtn" class="rounded-2xl bg-slate-900 px-4 py-3 font-bold text-white transition hover:bg-slate-800">
+              Download JSON
+            </button>
+
+            <button id="copyJsonBtn" class="rounded-2xl bg-indigo-600 px-4 py-3 font-bold text-white transition hover:bg-indigo-700">
+              Copy JSON
+            </button>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section class="ad-box my-8" aria-label="Advertisement">
+      Advertisement Area Below Tool
+    </section>
+
+    <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+      <article class="max-w-none">
+        <h2 class="text-3xl font-extrabold tracking-tight text-slate-950">
+          Free YouTube Video ID Extractor for Links, Shorts, Embeds, and Live URLs
+        </h2>
+
+        <p class="mt-5 leading-8 text-slate-700">
+          The YouTube Video ID Extractor is a free browser-based developer utility that identifies and extracts the unique video ID from many common YouTube URL formats. Every public YouTube video is associated with a short identifier that normally contains eleven characters. The identifier may include uppercase letters, lowercase letters, numbers, hyphens, and underscores. It is the core value used inside standard watch links, shortened youtu.be links, embed codes, YouTube Shorts addresses, live stream URLs, thumbnail image paths, API requests, playlist tools, content management systems, and analytics workflows.
+        </p>
+
+        <p class="mt-4 leading-8 text-slate-700">
+          This tool is designed for creators, developers, marketers, website owners, video editors, researchers, teachers, students, bloggers, automation specialists, and anyone who regularly works with YouTube links. Instead of manually locating the value after <code>v=</code> or trying to identify it inside different URL structures, you can paste one or many links into the input field and receive clean, validated results immediately. All parsing happens locally in your browser. The tool does not require a backend server, account login, API key, file upload, or browser extension.
+        </p>
+
+        <p class="mt-4 leading-8 text-slate-700">
+          YouTube uses several different link formats depending on where a link was copied. A desktop browser may provide a standard watch URL. The Share button may generate a youtu.be short link. YouTube Shorts use a <code>/shorts/</code> path. Live streams and scheduled broadcasts may use <code>/live/</code>. Embedded players commonly use <code>/embed/</code>, while privacy-enhanced embeds use the youtube-nocookie.com domain. Mobile browsing can produce m.youtube.com links. This extractor recognizes these common patterns and converts them into one consistent video ID.
+        </p>
+
+        <h3 class="mt-10 text-2xl font-bold text-slate-950">What Is a YouTube Video ID?</h3>
+
+        <p class="mt-4 leading-8 text-slate-700">
+          A YouTube video ID is the unique identifier assigned to an individual YouTube video. In a standard YouTube link such as <code>https://www.youtube.com/watch?v=dQw4w9WgXcQ</code>, the video ID is the value after the <code>v=</code> parameter. In a shortened link such as <code>https://youtu.be/dQw4w9WgXcQ</code>, the same ID appears directly after the domain. Although the surrounding URL can change, the video ID usually remains the same for the life of the video.
+        </p>
+
+        <p class="mt-4 leading-8 text-slate-700">
+          The video ID is different from a YouTube channel ID, playlist ID, handle, username, or search query. A video ID identifies one specific video. A channel ID identifies the channel that published content. A playlist ID identifies a playlist or uploads collection. A handle begins with the @ symbol and identifies a public channel profile. These values may appear together in links and API responses, but they serve different purposes.
+        </p>
+
+        <p class="mt-4 leading-8 text-slate-700">
+          YouTube video IDs are valuable because they provide a compact, consistent reference. A developer can store the ID in a database instead of saving a full URL. A website can generate different YouTube link formats from the same ID. A video manager can create embed links, thumbnail URLs, Shorts links, or privacy-enhanced player URLs without asking the user to paste the entire address again. This extractor automates that process and validates the expected identifier structure.
+        </p>
+
+        <h3 class="mt-10 text-2xl font-bold text-slate-950">How the YouTube Video ID Extractor Works</h3>
+
+        <p class="mt-4 leading-8 text-slate-700">
+          The tool reads each line of text and checks it against a collection of common YouTube URL patterns. It looks for standard watch parameters, shortened links, Shorts paths, live paths, embed paths, privacy-enhanced embed paths, older video paths, and raw eleven-character IDs. When a valid ID is found, the tool records the original input, detected format, extracted video ID, and several useful derived URLs.
+        </p>
+
+        <p class="mt-4 leading-8 text-slate-700">
+          If multiple URLs are pasted, the extractor processes them as a batch. Each non-empty line is treated as a separate entry. When the Remove duplicate IDs option is enabled, repeated IDs are removed from the primary result list while the duplicate count remains visible. This is useful when cleaning a list collected from spreadsheets, notes, messages, social media posts, research documents, or exported content.
+        </p>
+
+        <p class="mt-4 leading-8 text-slate-700">
+          The tool also identifies invalid entries. An invalid result may be a non-YouTube URL, incomplete link, unsupported address, missing video identifier, channel URL, playlist URL without a video ID, or text that does not match the expected eleven-character pattern. Invalid entries are not silently converted into guessed results. They remain separate so you can review and correct the source data.
+        </p>
+
+        <div class="ad-box my-8" aria-label="Advertisement">
+          Middle Content Advertisement Area
+        </div>
+
+        <h2 class="mt-12 text-3xl font-extrabold tracking-tight text-slate-950">
+          Supported YouTube URL Formats
+        </h2>
+
+        <h3 class="mt-8 text-2xl font-bold text-slate-950">Standard YouTube Watch URLs</h3>
+
+        <p class="mt-4 leading-8 text-slate-700">
+          The most common desktop URL format uses the YouTube watch page and a <code>v</code> query parameter. The video ID appears after <code>v=</code>. Additional parameters may appear after the ID, including playlist references, timestamps, sharing features, tracking values, and playback settings. The extractor isolates the eleven-character ID while ignoring unrelated parameters.
+        </p>
+
+        <h3 class="mt-8 text-2xl font-bold text-slate-950">Shortened youtu.be Links</h3>
+
+        <p class="mt-4 leading-8 text-slate-700">
+          YouTube’s Share button often produces a compact youtu.be address. The video ID follows the domain as the first path value. A timestamp or tracking query may follow it. This tool recognizes the shortened structure and returns the same ID used in the full watch URL.
+        </p>
+
+        <h3 class="mt-8 text-2xl font-bold text-slate-950">YouTube Shorts URLs</h3>
+
+        <p class="mt-4 leading-8 text-slate-700">
+          Shorts links use the <code>/shorts/VIDEO_ID</code> format. The underlying identifier follows the same eleven-character rules used by standard YouTube videos. After extracting the ID, the tool can generate a normal watch URL, short URL, embed URL, thumbnail URL, or Shorts URL from the same result.
+        </p>
+
+        <h3 class="mt-8 text-2xl font-bold text-slate-950">YouTube Live URLs</h3>
+
+        <p class="mt-4 leading-8 text-slate-700">
+          Live streams, scheduled broadcasts, and some live replay links may use the <code>/live/VIDEO_ID</code> path. The extractor detects this structure and converts it into a clean video ID. The resulting ID can be used to create a standard watch URL or embed player link.
+        </p>
+
+        <h3 class="mt-8 text-2xl font-bold text-slate-950">YouTube Embed URLs</h3>
+
+        <p class="mt-4 leading-8 text-slate-700">
+          Embedded YouTube players normally use <code>youtube.com/embed/VIDEO_ID</code>. Privacy-enhanced embeds may use <code>youtube-nocookie.com/embed/VIDEO_ID</code>. Both formats place the identifier in the URL path. The tool extracts the ID and can regenerate either standard or privacy-enhanced embed links.
+        </p>
+
+        <h3 class="mt-8 text-2xl font-bold text-slate-950">Mobile YouTube URLs</h3>
+
+        <p class="mt-4 leading-8 text-slate-700">
+          Links copied from a phone or tablet may use the m.youtube.com domain. The structure often remains compatible with a normal watch URL, but the domain is different. This extractor supports mobile watch links and ignores the domain variation while isolating the video identifier.
+        </p>
+
+        <h3 class="mt-8 text-2xl font-bold text-slate-950">Raw Video IDs</h3>
+
+        <p class="mt-4 leading-8 text-slate-700">
+          You can paste a raw eleven-character video ID without a URL. The tool validates the allowed character set and generates all supported link formats. This is convenient when working with API output, spreadsheet columns, database exports, code snippets, or text files that already contain clean IDs.
+        </p>
+
+        <h2 class="mt-12 text-3xl font-extrabold tracking-tight text-slate-950">
+          Popular Uses for a YouTube Video ID Finder
+        </h2>
+
+        <div class="mt-6 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          <section class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-indigo-100 text-indigo-700">
+              <span class="text-lg font-black">&lt;/&gt;</span>
+            </div>
+            <h3 class="mt-4 text-lg font-bold text-slate-950">Web Development</h3>
+            <p class="mt-2 leading-7 text-slate-600">
+              Extract clean video IDs for embedded players, dynamic video components, content management systems, website cards, and JavaScript applications.
+            </p>
+          </section>
+
+          <section class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-violet-100 text-violet-700">
+              <span class="text-xl">▦</span>
+            </div>
+            <h3 class="mt-4 text-lg font-bold text-slate-950">Spreadsheet Cleanup</h3>
+            <p class="mt-2 leading-7 text-slate-600">
+              Convert mixed YouTube links into a consistent video ID column for databases, creator lists, editorial calendars, and research records.
+            </p>
+          </section>
+
+          <section class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-sky-100 text-sky-700">
+              <span class="text-xl">▶</span>
+            </div>
+            <h3 class="mt-4 text-lg font-bold text-slate-950">Embed Code Generation</h3>
+            <p class="mt-2 leading-7 text-slate-600">
+              Use extracted IDs to generate standard or privacy-enhanced YouTube embed URLs for websites, blogs, learning systems, and documentation.
+            </p>
+          </section>
+
+          <section class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-100 text-emerald-700">
+              <span class="text-xl">▧</span>
+            </div>
+            <h3 class="mt-4 text-lg font-bold text-slate-950">Thumbnail Generation</h3>
+            <p class="mt-2 leading-7 text-slate-600">
+              Build direct YouTube thumbnail image URLs from an extracted video ID for previews, editorial planning, and content references.
+            </p>
+          </section>
+
+          <section class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-amber-100 text-amber-700">
+              <span class="text-xl">◎</span>
+            </div>
+            <h3 class="mt-4 text-lg font-bold text-slate-950">API Preparation</h3>
+            <p class="mt-2 leading-7 text-slate-600">
+              Prepare clean video identifiers for YouTube Data API requests, analytics services, moderation tools, and video metadata workflows.
+            </p>
+          </section>
+
+          <section class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-rose-100 text-rose-700">
+              <span class="text-xl">✓</span>
+            </div>
+            <h3 class="mt-4 text-lg font-bold text-slate-950">URL Validation</h3>
+            <p class="mt-2 leading-7 text-slate-600">
+              Check whether a pasted link contains a structurally valid YouTube video ID before saving it or passing it into another application.
+            </p>
+          </section>
+        </div>
+
+        <h2 class="mt-12 text-3xl font-extrabold tracking-tight text-slate-950">
+          How to Use the YouTube Video ID Extractor
+        </h2>
+
+        <p class="mt-4 leading-8 text-slate-700">
+          Start by copying a YouTube link from your browser, the YouTube Share menu, an email, a document, a spreadsheet, a social media post, or another source. Paste the link into the input field. You can paste a single link or multiple entries, with one entry per line. The tool automatically checks the content when live extraction is enabled. You can also press the Extract Video IDs button to run the process manually.
+        </p>
+
+        <p class="mt-4 leading-8 text-slate-700">
+          Choose the primary output format before copying all results. Video ID Only returns the clean eleven-character identifiers. Standard Watch URL generates regular YouTube watch links. Short youtu.be URL creates compact sharing links. Embed URL generates player-ready URLs. Privacy-Enhanced Embed URL uses the youtube-nocookie.com domain. YouTube Shorts URL creates a Shorts-style address. Maximum Thumbnail URL generates the commonly used maxresdefault thumbnail image path.
+        </p>
+
+        <p class="mt-4 leading-8 text-slate-700">
+          Each result card shows the original input, detected link type, video ID, watch URL, short URL, embed URL, privacy-enhanced embed URL, Shorts URL, and thumbnail URL. You can copy individual values, open the video, or copy all results in the selected format. Export options include plain text, CSV, and JSON. These formats are useful for developers, analysts, editors, researchers, and content teams that need to move data into another application.
+        </p>
+
+        <h3 class="mt-10 text-2xl font-bold text-slate-950">Batch Extraction Tips</h3>
+
+        <p class="mt-4 leading-8 text-slate-700">
+          For best batch results, place one link or ID on each line. Blank lines are ignored. When duplicate removal is enabled, repeated video IDs appear only once in the main result list. The duplicate counter shows how many repeated entries were identified. Turn duplicate removal off when you need to preserve every original row, including repeated videos.
+        </p>
+
+        <p class="mt-4 leading-8 text-slate-700">
+          If the source data contains extra sentences or punctuation around links, the parser may still detect common YouTube URLs when they are clearly present. However, the most reliable results come from clean links or raw IDs. For large data cleanup projects, remove unrelated text before processing and inspect invalid entries separately.
+        </p>
+
+        <h3 class="mt-10 text-2xl font-bold text-slate-950">Using Extracted IDs in Embed Players</h3>
+
+        <p class="mt-4 leading-8 text-slate-700">
+          A standard embedded player URL follows the format <code>https://www.youtube.com/embed/VIDEO_ID</code>. This link can be used in an iframe when embedding is permitted for the video. A privacy-enhanced embed uses <code>https://www.youtube-nocookie.com/embed/VIDEO_ID</code>. The privacy-enhanced domain can reduce some YouTube cookie activity before the viewer interacts with the player, but website owners are still responsible for consent requirements, privacy disclosures, and applicable laws.
+        </p>
+
+        <h3 class="mt-10 text-2xl font-bold text-slate-950">Using Extracted IDs for Thumbnails</h3>
+
+        <p class="mt-4 leading-8 text-slate-700">
+          YouTube thumbnail image paths can be generated from a video ID. A common maximum-resolution path is <code>https://img.youtube.com/vi/VIDEO_ID/maxresdefault.jpg</code>. Other common filenames include <code>sddefault.jpg</code>, <code>hqdefault.jpg</code>, <code>mqdefault.jpg</code>, and <code>default.jpg</code>. Not every video provides every thumbnail size. If the maximum-resolution image is unavailable, try a smaller version.
+        </p>
+
+        <div class="ad-box my-8" aria-label="Advertisement">
+          Bottom Content Advertisement Area
+        </div>
+
+        <h2 class="mt-12 text-3xl font-extrabold tracking-tight text-slate-950">
+          Benefits of Client-Side YouTube URL Parsing
+        </h2>
+
+        <p class="mt-4 leading-8 text-slate-700">
+          Client-side parsing means that the text you enter is processed directly in your browser using JavaScript. The tool does not need to upload your list to a custom server. This can improve speed, reduce unnecessary data transfer, and make the utility useful for private internal link lists. The tool also works without a YouTube API key because it only extracts information already present in the URL structure.
+        </p>
+
+        <p class="mt-4 leading-8 text-slate-700">
+          Another benefit is immediate validation. The tool checks whether the detected value matches the expected YouTube video ID pattern. This does not confirm that the video currently exists, is public, or is playable, but it does help detect malformed links and incomplete identifiers before they are saved in a project.
+        </p>
+
+        <p class="mt-4 leading-8 text-slate-700">
+          Browser-based extraction also makes the page easy to use on different devices. You can process links on a desktop computer, laptop, tablet, or mobile phone. The responsive layout prevents horizontal overflow, wraps long URLs safely, and provides full-width action buttons on smaller screens.
+        </p>
+
+        <h2 class="mt-12 text-3xl font-extrabold tracking-tight text-slate-950">
+          Frequently Asked Questions
+        </h2>
+
+        <div class="mt-6 space-y-4">
+          <details class="rounded-2xl border border-slate-200 bg-white p-5">
+            <summary class="flex cursor-pointer items-center justify-between gap-4 font-bold text-slate-950">
+              What is the video ID in a YouTube URL?
+              <span class="text-indigo-600">+</span>
+            </summary>
+            <p class="mt-4 leading-7 text-slate-600">
+              The video ID is the unique eleven-character identifier assigned to a YouTube video. In a standard watch URL, it usually appears after <code>v=</code>. In a youtu.be link, it appears after the domain.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-white p-5">
+            <summary class="flex cursor-pointer items-center justify-between gap-4 font-bold text-slate-950">
+              Does this tool support YouTube Shorts?
+              <span class="text-indigo-600">+</span>
+            </summary>
+            <p class="mt-4 leading-7 text-slate-600">
+              Yes. Paste a URL using the <code>youtube.com/shorts/VIDEO_ID</code> format and the tool will extract the underlying video ID.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-white p-5">
+            <summary class="flex cursor-pointer items-center justify-between gap-4 font-bold text-slate-950">
+              Can I extract IDs from multiple YouTube URLs?
+              <span class="text-indigo-600">+</span>
+            </summary>
+            <p class="mt-4 leading-7 text-slate-600">
+              Yes. Paste multiple URLs or raw IDs with one entry per line. The tool processes the list and provides copy and export options.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-white p-5">
+            <summary class="flex cursor-pointer items-center justify-between gap-4 font-bold text-slate-950">
+              Does a valid ID mean the video exists?
+              <span class="text-indigo-600">+</span>
+            </summary>
+            <p class="mt-4 leading-7 text-slate-600">
+              No. Structural validation only confirms that the value matches the expected character pattern. A video may still be private, deleted, restricted, unavailable, or nonexistent.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-white p-5">
+            <summary class="flex cursor-pointer items-center justify-between gap-4 font-bold text-slate-950">
+              Is an API key required?
+              <span class="text-indigo-600">+</span>
+            </summary>
+            <p class="mt-4 leading-7 text-slate-600">
+              No. The tool extracts identifiers already present in YouTube URLs and runs entirely in the browser without using the YouTube Data API.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-white p-5">
+            <summary class="flex cursor-pointer items-center justify-between gap-4 font-bold text-slate-950">
+              Can I create an embed URL from the result?
+              <span class="text-indigo-600">+</span>
+            </summary>
+            <p class="mt-4 leading-7 text-slate-600">
+              Yes. Each result includes standard and privacy-enhanced embed URLs. Embedding still depends on the video owner’s settings and YouTube policies.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-white p-5">
+            <summary class="flex cursor-pointer items-center justify-between gap-4 font-bold text-slate-950">
+              Can I export the extracted video IDs?
+              <span class="text-indigo-600">+</span>
+            </summary>
+            <p class="mt-4 leading-7 text-slate-600">
+              Yes. You can download the results as TXT, CSV, or JSON files, or copy all values in the selected output format.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-white p-5">
+            <summary class="flex cursor-pointer items-center justify-between gap-4 font-bold text-slate-950">
+              Is my input uploaded anywhere?
+              <span class="text-indigo-600">+</span>
+            </summary>
+            <p class="mt-4 leading-7 text-slate-600">
+              No custom backend upload is required. Parsing is performed in your browser. Opening a result or thumbnail will connect to YouTube or Google image servers.
+            </p>
+          </details>
+        </div>
+
+        <section class="mt-12">
+          <h2 class="text-3xl font-extrabold tracking-tight text-slate-950">Related Tools</h2>
+          <p class="mt-3 leading-7 text-slate-600">
+            Explore additional YouTube, developer, media, and browser-based utilities from NodnWebTools.
+          </p>
+
+          <div class="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            <a href="/youtube-channel-id-finder" class="tool-link-card group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm hover:border-indigo-300 hover:shadow-md">
+              <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-indigo-50 text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white">
+                <span class="text-lg font-black">UC</span>
+              </div>
+              <h3 class="mt-4 text-lg font-bold text-slate-950 group-hover:text-indigo-600">YouTube Channel ID Finder</h3>
+              <p class="mt-2 text-sm leading-6 text-slate-500">
+                Extract or resolve permanent YouTube channel IDs from channel URLs, handles, usernames, and video links.
+              </p>
+            </a>
+
+            <a href="/youtube-thumbnail-downloader" class="tool-link-card group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm hover:border-rose-300 hover:shadow-md">
+              <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-rose-50 text-rose-600 group-hover:bg-rose-600 group-hover:text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="h-6 w-6">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                </svg>
+              </div>
+              <h3 class="mt-4 text-lg font-bold text-slate-950 group-hover:text-rose-600">YouTube Thumbnail Downloader</h3>
+              <p class="mt-2 text-sm leading-6 text-slate-500">
+                Preview and save available public YouTube thumbnail images in multiple common sizes.
+              </p>
+            </a>
+
+            <a href="/youtube-thumbnail-viewer" class="tool-link-card group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm hover:border-violet-300 hover:shadow-md">
+              <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-violet-50 text-violet-600 group-hover:bg-violet-600 group-hover:text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="h-6 w-6">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12s3.75-6.75 9.75-6.75S21.75 12 21.75 12 18 18.75 12 18.75 2.25 12 2.25 12Z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                </svg>
+              </div>
+              <h3 class="mt-4 text-lg font-bold text-slate-950 group-hover:text-violet-600">YouTube Thumbnail Viewer</h3>
+              <p class="mt-2 text-sm leading-6 text-slate-500">
+                Inspect YouTube video thumbnails and copy direct image URLs from a public video link.
+              </p>
+            </a>
+
+            <a href="/base64-converter" class="tool-link-card group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm hover:border-amber-300 hover:shadow-md">
+              <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-amber-50 text-amber-600 group-hover:bg-amber-600 group-hover:text-white">
+                <span class="text-sm font-black">64</span>
+              </div>
+              <h3 class="mt-4 text-lg font-bold text-slate-950 group-hover:text-amber-600">Base64 Converter</h3>
+              <p class="mt-2 text-sm leading-6 text-slate-500">
+                Encode text as Base64 or decode Base64 content with full browser-side UTF-8 support.
+              </p>
+            </a>
+
+            <a href="/json-yaml-converter" class="tool-link-card group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm hover:border-cyan-300 hover:shadow-md">
+              <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-cyan-50 text-cyan-600 group-hover:bg-cyan-600 group-hover:text-white">
+                <span class="text-lg font-black">{ }</span>
+              </div>
+              <h3 class="mt-4 text-lg font-bold text-slate-950 group-hover:text-cyan-600">JSON ↔ YAML Converter</h3>
+              <p class="mt-2 text-sm leading-6 text-slate-500">
+                Convert structured developer data between JSON and YAML with browser-side validation.
+              </p>
+            </a>
+
+            <a href="/qr-generator" class="tool-link-card group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm hover:border-emerald-300 hover:shadow-md">
+              <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white">
+                <span class="text-lg font-black">QR</span>
+              </div>
+              <h3 class="mt-4 text-lg font-bold text-slate-950 group-hover:text-emerald-600">QR Code Generator</h3>
+              <p class="mt-2 text-sm leading-6 text-slate-500">
+                Create downloadable QR codes for YouTube links, websites, text, and contact information.
+              </p>
+            </a>
+          </div>
+        </section>
+
+        <section class="mt-12 rounded-3xl bg-slate-900 p-6 text-slate-100 sm:p-8">
+          <h2 class="text-2xl font-extrabold">Legal Disclaimer</h2>
+
+          <p class="mt-4 leading-8 text-slate-300">
+            This YouTube Video ID Extractor is provided for informational, technical, educational, and convenience purposes only. It parses text supplied by the user and checks whether detected values match common YouTube URL structures and the expected video ID character pattern. A structurally valid result does not guarantee that a video exists, remains public, is playable, is available in a specific region, permits embedding, or belongs to a particular creator.
+          </p>
+
+          <p class="mt-4 leading-8 text-slate-300">
+            YouTube, Google, video titles, thumbnails, logos, channels, and related content may be protected by copyright, trademark, privacy rights, publicity rights, platform terms, and other legal restrictions. This tool does not grant ownership, download rights, licensing rights, redistribution rights, commercial rights, access rights, or permission to embed, copy, publish, monitor, scrape, archive, or reuse any YouTube content.
+          </p>
+
+          <p class="mt-4 leading-8 text-slate-300">
+            Users are responsible for verifying extracted identifiers, respecting YouTube’s terms and developer policies, obtaining any necessary permissions, complying with privacy and copyright laws, and confirming that generated URLs are appropriate for their intended use. NodnWebTools is not responsible for invalid inputs, unavailable videos, incorrect records, failed embeds, broken thumbnails, third-party service changes, data loss, copyright disputes, platform enforcement, or decisions made using the output.
+          </p>
+
+          <p class="mt-4 leading-8 text-slate-300">
+            The core extraction process runs in the browser and does not require a custom backend upload. However, opening a generated video, embed, or thumbnail URL connects to YouTube or Google-operated servers and may be subject to their cookies, tracking, privacy policies, availability, and terms. Users handling confidential lists should review the data before opening external links or sharing exported files.
+          </p>
+        </section>
+      </article>
+    </section>
+
+    <section class="ad-box my-8" aria-label="Advertisement">
+      Bottom Advertisement Area
+    </section>
+  </main>
+
+  <footer class="border-t border-slate-200 bg-white">
+    <div class="mx-auto max-w-7xl px-4 py-8 text-center text-sm text-slate-500 sm:px-6 lg:px-8">
+      © <span id="currentYear"></span> NodnWebTools. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      'use strict';
+
+      const urlInput = document.getElementById('urlInput');
+      const outputFormat = document.getElementById('outputFormat');
+      const removeDuplicates = document.getElementById('removeDuplicates');
+      const liveUpdate = document.getElementById('liveUpdate');
+      const extractBtn = document.getElementById('extractBtn');
+      const resetBtn = document.getElementById('resetBtn');
+      const statusBox = document.getElementById('statusBox');
+      const detectedCount = document.getElementById('detectedCount');
+      const invalidCount = document.getElementById('invalidCount');
+      const duplicateCount = document.getElementById('duplicateCount');
+      const resultArea = document.getElementById('resultArea');
+      const exportArea = document.getElementById('exportArea');
+      const copyAllBtn = document.getElementById('copyAllBtn');
+      const downloadTextBtn = document.getElementById('downloadTextBtn');
+      const downloadCsvBtn = document.getElementById('downloadCsvBtn');
+      const downloadJsonBtn = document.getElementById('downloadJsonBtn');
+      const copyJsonBtn = document.getElementById('copyJsonBtn');
+
+      let currentResults = [];
+      let currentInvalid = [];
+      let currentDuplicateCount = 0;
+      let inputTimer = null;
+
+      document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+      function escapeHtml(value) {
+        return String(value ?? '')
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#039;');
+      }
+
+      function isValidVideoId(value) {
+        return /^[a-zA-Z0-9_-]{11}$/.test(String(value || '').trim());
+      }
+
+      function cleanCandidate(value) {
+        return String(value || '')
+          .trim()
+          .replace(/^[<("'`\[]+/, '')
+          .replace(/[>)"'`\],.;!?]+$/, '');
+      }
+
+      function detectVideoId(value) {
+        const text = cleanCandidate(value);
+
+        if (!text) {
+          return null;
+        }
+
+        if (isValidVideoId(text)) {
+          return {
+            videoId: text,
+            format: 'Raw video ID'
+          };
+        }
+
+        const patterns = [
+          {
+            format: 'Standard watch URL',
+            regex: /(?:https?:\/\/)?(?:www\.|m\.)?youtube\.com\/watch\?(?:[^#\s]*&)?v=([a-zA-Z0-9_-]{11})(?:[&#?\s]|$)/i
+          },
+          {
+            format: 'Short youtu.be URL',
+            regex: /(?:https?:\/\/)?(?:www\.)?youtu\.be\/([a-zA-Z0-9_-]{11})(?:[?&#/\s]|$)/i
+          },
+          {
+            format: 'YouTube Shorts URL',
+            regex: /(?:https?:\/\/)?(?:www\.|m\.)?youtube\.com\/shorts\/([a-zA-Z0-9_-]{11})(?:[?&#/\s]|$)/i
+          },
+          {
+            format: 'YouTube Live URL',
+            regex: /(?:https?:\/\/)?(?:www\.|m\.)?youtube\.com\/live\/([a-zA-Z0-9_-]{11})(?:[?&#/\s]|$)/i
+          },
+          {
+            format: 'YouTube embed URL',
+            regex: /(?:https?:\/\/)?(?:www\.)?youtube\.com\/embed\/([a-zA-Z0-9_-]{11})(?:[?&#/\s]|$)/i
+          },
+          {
+            format: 'Privacy-enhanced embed URL',
+            regex: /(?:https?:\/\/)?(?:www\.)?youtube-nocookie\.com\/embed\/([a-zA-Z0-9_-]{11})(?:[?&#/\s]|$)/i
+          },
+          {
+            format: 'Legacy YouTube video URL',
+            regex: /(?:https?:\/\/)?(?:www\.|m\.)?youtube\.com\/v\/([a-zA-Z0-9_-]{11})(?:[?&#/\s]|$)/i
+          },
+          {
+            format: 'YouTube attribution link',
+            regex: /(?:https?:\/\/)?(?:www\.)?youtube\.com\/attribution_link\?.*?[?&]v%3D([a-zA-Z0-9_-]{11})/i
+          },
+          {
+            format: 'YouTube watch parameter',
+            regex: /(?:^|[?&])v=([a-zA-Z0-9_-]{11})(?:[&#\s]|$)/i
+          }
+        ];
+
+        for (const pattern of patterns) {
+          const match = text.match(pattern.regex);
+
+          if (match && isValidVideoId(match[1])) {
+            return {
+              videoId: match[1],
+              format: pattern.format
+            };
+          }
+        }
+
+        try {
+          const normalized = /^https?:\/\//i.test(text) ? text : `https://${text}`;
+          const parsed = new URL(normalized);
+          const host = parsed.hostname.replace(/^www\./i, '').toLowerCase();
+
+          if (host === 'youtube.com' || host === 'm.youtube.com') {
+            const queryId = parsed.searchParams.get('v');
+
+            if (isValidVideoId(queryId)) {
+              return {
+                videoId: queryId,
+                format: 'YouTube watch URL'
+              };
+            }
+
+            const pathParts = parsed.pathname.split('/').filter(Boolean);
+            const supportedPaths = ['shorts', 'live', 'embed', 'v'];
+
+            if (pathParts.length >= 2 && supportedPaths.includes(pathParts[0]) && isValidVideoId(pathParts[1])) {
+              return {
+                videoId: pathParts[1],
+                format: `YouTube ${pathParts[0]} URL`
+              };
+            }
+          }
+
+          if (host === 'youtu.be') {
+            const pathId = parsed.pathname.split('/').filter(Boolean)[0];
+
+            if (isValidVideoId(pathId)) {
+              return {
+                videoId: pathId,
+                format: 'Short youtu.be URL'
+              };
+            }
+          }
+
+          if (host === 'youtube-nocookie.com') {
+            const pathParts = parsed.pathname.split('/').filter(Boolean);
+
+            if (pathParts[0] === 'embed' && isValidVideoId(pathParts[1])) {
+              return {
+                videoId: pathParts[1],
+                format: 'Privacy-enhanced embed URL'
+              };
+            }
+          }
+        } catch (error) {
+          // Continue to invalid result.
+        }
+
+        return null;
+      }
+
+      function createResult(originalInput, detected) {
+        const id = detected.videoId;
+
+        return {
+          originalInput,
+          detectedFormat: detected.format,
+          videoId: id,
+          watchUrl: `https://www.youtube.com/watch?v=${id}`,
+          shortUrl: `https://youtu.be/${id}`,
+          embedUrl: `https://www.youtube.com/embed/${id}`,
+          privacyEmbedUrl: `https://www.youtube-nocookie.com/embed/${id}`,
+          shortsUrl: `https://www.youtube.com/shorts/${id}`,
+          thumbnailUrl: `https://img.youtube.com/vi/${id}/maxresdefault.jpg`
+        };
+      }
+
+      function setStatus(message, type = 'info') {
+        const classes = {
+          info: 'rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm leading-6 text-amber-800',
+          success: 'rounded-2xl border border-emerald-200 bg-emerald-50 p-4 text-sm leading-6 text-emerald-800',
+          error: 'rounded-2xl border border-rose-200 bg-rose-50 p-4 text-sm leading-6 text-rose-800'
+        };
+
+        statusBox.className = classes[type] || classes.info;
+        statusBox.textContent = message;
+      }
+
+      function getOutputValue(result, format = outputFormat.value) {
+        switch (format) {
+          case 'watch':
+            return result.watchUrl;
+          case 'short':
+            return result.shortUrl;
+          case 'embed':
+            return result.embedUrl;
+          case 'privacy':
+            return result.privacyEmbedUrl;
+          case 'shorts':
+            return result.shortsUrl;
+          case 'thumbnail':
+            return result.thumbnailUrl;
+          case 'id':
+          default:
+            return result.videoId;
+        }
+      }
+
+      function resultRow(label, value, copyLabel = 'Copy') {
+        return `
+          <div class="border-t border-slate-100 py-4 first:border-t-0">
+            <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+              <div class="min-w-0">
+                <p class="text-xs font-bold uppercase tracking-wide text-slate-400">${escapeHtml(label)}</p>
+                <p class="safe-break mt-1 font-mono text-sm text-slate-700">${escapeHtml(value)}</p>
+              </div>
+              <button class="copy-value rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs font-bold text-slate-600 transition hover:border-indigo-300 hover:text-indigo-700" data-copy="${escapeHtml(value)}">
+                ${escapeHtml(copyLabel)}
+              </button>
+            </div>
+          </div>
+        `;
+      }
+
+      function renderEmptyState() {
+        currentResults = [];
+        currentInvalid = [];
+        currentDuplicateCount = 0;
+
+        detectedCount.textContent = '0';
+        invalidCount.textContent = '0';
+        duplicateCount.textContent = '0';
+
+        copyAllBtn.disabled = true;
+        exportArea.classList.add('hidden');
+
+        resultArea.innerHTML = `
+          <div class="mobile-preview rounded-3xl border border-slate-200 bg-slate-50 p-6">
+            <div class="flex min-h-72 flex-col items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white px-6 py-10 text-center">
+              <div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-indigo-50 text-indigo-600">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.7" stroke="currentColor" class="h-8 w-8">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 21 3m0 0-3.75-3.75M21 3h-7.5A4.5 4.5 0 0 0 9 7.5v9A4.5 4.5 0 0 1 4.5 21H3m3.75-3.75L3 21m0 0 3.75 3.75" />
+                </svg>
+              </div>
+              <h3 class="mt-5 text-lg font-bold text-slate-900">No video IDs extracted yet</h3>
+              <p class="mt-2 max-w-md text-sm leading-6 text-slate-500">
+                Paste a YouTube URL or raw video ID. Results will appear here automatically when live extraction is enabled.
+              </p>
+            </div>
+          </div>
+        `;
+      }
+
+      function renderResults() {
+        detectedCount.textContent = String(currentResults.length);
+        invalidCount.textContent = String(currentInvalid.length);
+        duplicateCount.textContent = String(currentDuplicateCount);
+
+        if (!currentResults.length) {
+          copyAllBtn.disabled = true;
+          exportArea.classList.add('hidden');
+
+          resultArea.innerHTML = `
+            <div class="rounded-3xl border border-rose-200 bg-rose-50 p-6 text-center">
+              <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-white text-rose-600 shadow-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="h-7 w-7">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9.303 3.376c.866 1.5-.217 3.374-1.948 3.374H4.645c-1.73 0-2.813-1.874-1.948-3.374L10.052 3.38c.865-1.5 3.03-1.5 3.896 0l7.355 12.746ZM12 17.25h.008v.008H12v-.008Z" />
+                </svg>
+              </div>
+              <h3 class="mt-4 text-lg font-bold text-rose-900">No valid YouTube video IDs found</h3>
+              <p class="mt-2 text-sm leading-6 text-rose-700">
+                Check the input for incomplete links, channel URLs, playlist-only links, or unsupported text.
+              </p>
+            </div>
+          `;
+
+          return;
+        }
+
+        copyAllBtn.disabled = false;
+        exportArea.classList.remove('hidden');
+
+        const cards = currentResults.map((result, index) => `
+          <article class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+            <div class="flex flex-col gap-4 border-b border-slate-100 bg-slate-50 p-5 sm:flex-row sm:items-start sm:justify-between">
+              <div class="min-w-0">
+                <p class="text-xs font-bold uppercase tracking-wide text-indigo-600">Result ${index + 1}</p>
+                <h3 class="safe-break mt-2 font-mono text-xl font-extrabold text-slate-950">${escapeHtml(result.videoId)}</h3>
+                <p class="mt-2 text-sm font-semibold text-slate-500">${escapeHtml(result.detectedFormat)}</p>
+              </div>
+
+              <div class="flex flex-col gap-2 sm:flex-row">
+                <button class="copy-id rounded-xl border border-indigo-200 bg-indigo-50 px-4 py-2 text-sm font-bold text-indigo-700 transition hover:bg-indigo-100" data-copy="${escapeHtml(result.videoId)}">
+                  Copy ID
+                </button>
+                <a href="${escapeHtml(result.watchUrl)}" target="_blank" rel="noopener noreferrer" class="rounded-xl bg-indigo-600 px-4 py-2 text-center text-sm font-bold text-white transition hover:bg-indigo-700">
+                  Open Video
+                </a>
+              </div>
+            </div>
+
+            <div class="p-5">
+              <div class="rounded-2xl border border-slate-200 bg-slate-50 px-4">
+                ${resultRow('Original Input', result.originalInput)}
+                ${resultRow('Video ID', result.videoId)}
+                ${resultRow('Watch URL', result.watchUrl)}
+                ${resultRow('Short URL', result.shortUrl)}
+                ${resultRow('Embed URL', result.embedUrl)}
+                ${resultRow('Privacy-Enhanced Embed', result.privacyEmbedUrl)}
+                ${resultRow('Shorts URL', result.shortsUrl)}
+                ${resultRow('Maximum Thumbnail URL', result.thumbnailUrl)}
+              </div>
+            </div>
+          </article>
+        `).join('');
+
+        const invalidSection = currentInvalid.length
+          ? `
+            <section class="rounded-3xl border border-rose-200 bg-rose-50 p-5">
+              <h3 class="text-lg font-bold text-rose-900">Invalid or Unsupported Entries</h3>
+              <p class="mt-1 text-sm leading-6 text-rose-700">These lines did not contain a supported YouTube video ID.</p>
+              <div class="mt-4 space-y-2">
+                ${currentInvalid.map(item => `
+                  <div class="safe-break rounded-xl border border-rose-200 bg-white p-3 font-mono text-xs text-rose-700">${escapeHtml(item)}</div>
+                `).join('')}
+              </div>
+            </section>
+          `
+          : '';
+
+        resultArea.innerHTML = `
+          <div class="space-y-5">
+            ${cards}
+            ${invalidSection}
+          </div>
+        `;
+
+        document.querySelectorAll('.copy-value, .copy-id').forEach(button => {
+          button.addEventListener('click', () => copyText(button.dataset.copy, button));
+        });
+      }
+
+      function extractResults() {
+        const raw = urlInput.value;
+
+        if (!raw.trim()) {
+          renderEmptyState();
+          setStatus('Enter a YouTube link or raw 11-character video ID to begin.', 'info');
+          return;
+        }
+
+        const entries = raw
+          .split(/\r?\n/)
+          .map(item => item.trim())
+          .filter(Boolean);
+
+        const seenIds = new Set();
+        const results = [];
+        const invalid = [];
+        let duplicates = 0;
+
+        for (const entry of entries) {
+          const detected = detectVideoId(entry);
+
+          if (!detected) {
+            invalid.push(entry);
+            continue;
+          }
+
+          if (seenIds.has(detected.videoId)) {
+            duplicates++;
+
+            if (removeDuplicates.checked) {
+              continue;
+            }
+          }
+
+          seenIds.add(detected.videoId);
+          results.push(createResult(entry, detected));
+        }
+
+        currentResults = results;
+        currentInvalid = invalid;
+        currentDuplicateCount = duplicates;
+
+        renderResults();
+
+        if (results.length && !invalid.length) {
+          setStatus(`${results.length} valid YouTube video ID${results.length === 1 ? '' : 's'} extracted successfully.`, 'success');
+        } else if (results.length && invalid.length) {
+          setStatus(`${results.length} valid result${results.length === 1 ? '' : 's'} found. ${invalid.length} entr${invalid.length === 1 ? 'y was' : 'ies were'} invalid or unsupported.`, 'info');
+        } else {
+          setStatus('No valid YouTube video IDs were detected. Review the input and supported link formats.', 'error');
+        }
+      }
+
+      async function copyText(text, button) {
+        try {
+          await navigator.clipboard.writeText(String(text || ''));
+
+          if (button) {
+            const original = button.textContent;
+            button.textContent = 'Copied!';
+
+            setTimeout(() => {
+              button.textContent = original;
+            }, 1200);
+          }
+        } catch (error) {
+          setStatus('Copy failed. Select the value manually and copy it from the result area.', 'error');
+        }
+      }
+
+      function getPrimaryOutputText() {
+        return currentResults.map(result => getOutputValue(result)).join('\n');
+      }
+
+      function getJsonOutput() {
+        return JSON.stringify({
+          generatedAt: new Date().toISOString(),
+          outputFormat: outputFormat.value,
+          detectedCount: currentResults.length,
+          invalidCount: currentInvalid.length,
+          duplicateCount: currentDuplicateCount,
+          results: currentResults,
+          invalidEntries: currentInvalid
+        }, null, 2);
+      }
+
+      function escapeCsv(value) {
+        const text = String(value ?? '');
+
+        if (/[",\n\r]/.test(text)) {
+          return `"${text.replace(/"/g, '""')}"`;
+        }
+
+        return text;
+      }
+
+      function getCsvOutput() {
+        const header = [
+          'original_input',
+          'detected_format',
+          'video_id',
+          'watch_url',
+          'short_url',
+          'embed_url',
+          'privacy_embed_url',
+          'shorts_url',
+          'thumbnail_url'
+        ];
+
+        const rows = currentResults.map(result => [
+          result.originalInput,
+          result.detectedFormat,
+          result.videoId,
+          result.watchUrl,
+          result.shortUrl,
+          result.embedUrl,
+          result.privacyEmbedUrl,
+          result.shortsUrl,
+          result.thumbnailUrl
+        ]);
+
+        return [header, ...rows]
+          .map(row => row.map(escapeCsv).join(','))
+          .join('\n');
+      }
+
+      function downloadFile(filename, content, mimeType) {
+        try {
+          const blob = new Blob([content], { type: mimeType });
+          const objectUrl = URL.createObjectURL(blob);
+          const anchor = document.createElement('a');
+
+          anchor.href = objectUrl;
+          anchor.download = filename;
+          document.body.appendChild(anchor);
+          anchor.click();
+          anchor.remove();
+
+          setTimeout(() => URL.revokeObjectURL(objectUrl), 1000);
+        } catch (error) {
+          setStatus('The export file could not be created in this browser.', 'error');
+        }
+      }
+
+      function resetTool() {
+        urlInput.value = '';
+        outputFormat.value = 'id';
+        removeDuplicates.checked = true;
+        liveUpdate.checked = true;
+        renderEmptyState();
+        setStatus('Enter a YouTube link or raw 11-character video ID to begin.', 'info');
+        urlInput.focus();
+      }
+
+      extractBtn.addEventListener('click', extractResults);
+      resetBtn.addEventListener('click', resetTool);
+
+      urlInput.addEventListener('input', () => {
+        if (!liveUpdate.checked) {
+          return;
+        }
+
+        clearTimeout(inputTimer);
+        inputTimer = setTimeout(extractResults, 300);
+      });
+
+      removeDuplicates.addEventListener('change', () => {
+        if (urlInput.value.trim()) {
+          extractResults();
+        }
+      });
+
+      outputFormat.addEventListener('change', () => {
+        if (currentResults.length) {
+          setStatus(`Primary output changed to ${outputFormat.options[outputFormat.selectedIndex].text}.`, 'success');
+        }
+      });
+
+      copyAllBtn.addEventListener('click', () => {
+        if (!currentResults.length) {
+          return;
+        }
+
+        copyText(getPrimaryOutputText(), copyAllBtn);
+      });
+
+      copyJsonBtn.addEventListener('click', () => {
+        if (!currentResults.length) {
+          return;
+        }
+
+        copyText(getJsonOutput(), copyJsonBtn);
+      });
+
+      downloadTextBtn.addEventListener('click', () => {
+        if (!currentResults.length) {
+          return;
+        }
+
+        downloadFile(
+          'youtube-video-ids.txt',
+          getPrimaryOutputText(),
+          'text/plain;charset=utf-8'
+        );
+      });
+
+      downloadCsvBtn.addEventListener('click', () => {
+        if (!currentResults.length) {
+          return;
+        }
+
+        downloadFile(
+          'youtube-video-id-results.csv',
+          getCsvOutput(),
+          'text/csv;charset=utf-8'
+        );
+      });
+
+      downloadJsonBtn.addEventListener('click', () => {
+        if (!currentResults.length) {
+          return;
+        }
+
+        downloadFile(
+          'youtube-video-id-results.json',
+          getJsonOutput(),
+          'application/json;charset=utf-8'
+        );
+      });
+
+      renderEmptyState();
+    })();
+  </script>
+</body>
+</html>
