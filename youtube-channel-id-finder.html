@@ -1,0 +1,1488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>YouTube Channel ID Finder | Free Lookup Tool</title>
+  <meta name="description" content="Find and verify a YouTube channel ID from channel URLs, handles, usernames, video links, or an optional YouTube API key." />
+  <meta name="keywords" content="YouTube channel ID finder, find YouTube channel ID, YouTube channel ID lookup, get YouTube channel ID, YouTube handle to channel ID, YouTube username to channel ID, YouTube video channel ID, UC channel ID, YouTube API channel lookup, YouTube channel URL parser, YouTube developer tool" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#4f46e5" />
+
+  <meta property="og:title" content="YouTube Channel ID Finder | Free Lookup Tool" />
+  <meta property="og:description" content="Extract or resolve a YouTube channel ID from channel links, handles, usernames, and video URLs." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://nodntools.com/youtube-channel-id-finder" />
+
+  <meta name="google-adsense-account" content="ca-pub-5282672325821404" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404" crossorigin="anonymous"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "YouTube Channel ID Finder",
+    "url": "https://nodntools.com/youtube-channel-id-finder",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript and a modern web browser",
+    "description": "A browser-based YouTube Channel ID Finder that extracts channel IDs from channel URLs and can resolve handles, usernames, search terms, and video URLs with an optional YouTube Data API key.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "featureList": [
+      "Extract YouTube channel IDs from channel URLs",
+      "Validate UC-format channel IDs",
+      "Resolve YouTube handles with an optional API key",
+      "Find channel IDs from video URLs with an optional API key",
+      "Copy channel IDs and canonical URLs",
+      "Export lookup results as JSON or text"
+    ]
+  }
+  </script>
+
+  <style>
+    html, body {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      min-width: 0;
+    }
+
+    .safe-break {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .mobile-card,
+    .mobile-panel,
+    .mobile-preview,
+    .mobile-code,
+    .ad-box {
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .mobile-code {
+      overflow-x: auto;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .ad-box {
+      min-height: 90px;
+      border: 2px dashed #cbd5e1;
+      background: #f8fafc;
+      color: #64748b;
+      border-radius: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .result-value {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .status-dot {
+      width: 0.6rem;
+      height: 0.6rem;
+      border-radius: 9999px;
+      flex: 0 0 auto;
+    }
+
+    .tool-link-card {
+      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+    }
+
+    .tool-link-card:hover {
+      transform: translateY(-4px);
+    }
+
+    details > summary {
+      list-style: none;
+    }
+
+    details > summary::-webkit-details-marker {
+      display: none;
+    }
+
+    @media (max-width: 640px) {
+      .mobile-card,
+      .mobile-panel {
+        padding: 1rem !important;
+        border-radius: 1rem !important;
+      }
+
+      .mobile-button-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .mobile-button-grid button,
+      .mobile-button-grid a {
+        width: 100% !important;
+      }
+
+      .mobile-preview {
+        padding: 0.75rem !important;
+      }
+
+      h1 {
+        font-size: 2rem !important;
+        line-height: 2.35rem !important;
+      }
+
+      h2 {
+        font-size: 1.5rem !important;
+        line-height: 2rem !important;
+      }
+
+      .ad-box {
+        min-height: 86px;
+        font-size: 0.875rem;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .mobile-card,
+      .mobile-panel {
+        padding: 0.8rem !important;
+        border-radius: 0.85rem !important;
+      }
+
+      body {
+        font-size: 14px;
+      }
+
+      h1 {
+        font-size: 1.7rem !important;
+        line-height: 2.05rem !important;
+      }
+
+      .ad-box {
+        min-height: 78px;
+        font-size: 0.8rem;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800 antialiased">
+  <header class="border-b border-slate-200 bg-white">
+    <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-5 sm:px-6 lg:px-8">
+      <a href="https://nodntools.com" class="text-xl font-extrabold tracking-tight text-slate-900" aria-label="NodnWebTools Home">
+        Nodn<span class="text-indigo-600">WebTools</span>
+      </a>
+
+      <a href="https://nodntools.com" class="rounded-full border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700">
+        Home
+      </a>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+    <section class="ad-box mb-8" aria-label="Advertisement">
+      Top Advertisement Area
+    </section>
+
+    <section class="grid gap-8 lg:grid-cols-[0.96fr_1.04fr]">
+      <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+        <p class="mb-3 inline-flex rounded-full bg-indigo-50 px-3 py-1 text-sm font-semibold text-indigo-700">
+          YouTube developer utility
+        </p>
+
+        <h1 class="text-4xl font-extrabold tracking-tight text-slate-950">
+          YouTube Channel ID Finder
+        </h1>
+
+        <p class="mt-4 text-lg leading-8 text-slate-600">
+          Extract a YouTube channel ID from a direct channel URL or resolve a handle, username, search term, or video URL with an optional YouTube Data API key.
+        </p>
+
+        <div class="mt-8 space-y-5">
+          <div>
+            <label for="lookupInput" class="mb-2 block text-sm font-bold text-slate-800">
+              Channel URL, Handle, Username, Video URL, or Channel ID
+            </label>
+
+            <textarea
+              id="lookupInput"
+              rows="4"
+              class="w-full resize-y rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100"
+              placeholder="Examples:
+https://www.youtube.com/channel/UCxxxxxxxxxxxxxxxxxxxxxx
+@YouTube
+https://www.youtube.com/watch?v=VIDEO_ID"
+              spellcheck="false"
+            ></textarea>
+          </div>
+
+          <div>
+            <label for="lookupMode" class="mb-2 block text-sm font-bold text-slate-800">
+              Lookup Method
+            </label>
+
+            <select
+              id="lookupMode"
+              class="w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100"
+            >
+              <option value="auto">Auto Detect</option>
+              <option value="direct">Direct Channel ID Extraction</option>
+              <option value="handle">Resolve a YouTube Handle</option>
+              <option value="username">Resolve a Legacy Username</option>
+              <option value="video">Find Channel from Video URL</option>
+              <option value="search">Search for a Channel</option>
+            </select>
+          </div>
+
+          <div class="rounded-2xl border border-indigo-100 bg-indigo-50 p-4">
+            <div class="flex items-start gap-3">
+              <div class="mt-0.5 flex h-9 w-9 flex-none items-center justify-center rounded-xl bg-white text-indigo-600 shadow-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="h-5 w-5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5A2.25 2.25 0 0 0 19.5 19.5v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
+                </svg>
+              </div>
+
+              <div>
+                <h2 class="text-base font-bold text-indigo-950">Optional YouTube API Key</h2>
+                <p class="mt-1 text-sm leading-6 text-indigo-800">
+                  Direct <code>/channel/UC...</code> URLs work without an API key. Handles, usernames, searches, and video URLs usually require the official YouTube Data API.
+                </p>
+              </div>
+            </div>
+
+            <div class="mt-4">
+              <label for="apiKeyInput" class="mb-2 block text-sm font-bold text-indigo-950">
+                YouTube Data API v3 Key
+              </label>
+
+              <div class="flex flex-col gap-2 sm:flex-row">
+                <input
+                  id="apiKeyInput"
+                  type="password"
+                  class="w-full rounded-xl border border-indigo-200 bg-white px-4 py-3 text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100"
+                  placeholder="Paste an API key for advanced lookups"
+                  autocomplete="off"
+                />
+
+                <button
+                  id="toggleKeyBtn"
+                  type="button"
+                  class="rounded-xl border border-indigo-200 bg-white px-4 py-3 text-sm font-bold text-indigo-700 transition hover:bg-indigo-100 sm:w-auto"
+                  aria-label="Show or hide API key"
+                >
+                  Show
+                </button>
+              </div>
+
+              <label class="mt-3 flex cursor-pointer items-start gap-3 text-sm leading-6 text-indigo-900">
+                <input id="rememberKey" type="checkbox" class="mt-1 h-4 w-4 rounded border-indigo-300 text-indigo-600 focus:ring-indigo-500" />
+                <span>Remember this key in this browser only.</span>
+              </label>
+
+              <p class="mt-2 text-xs leading-5 text-indigo-700">
+                When advanced lookup is used, the query and API key are sent directly from your browser to Google’s YouTube Data API. The key is not sent to NodnWebTools.
+              </p>
+            </div>
+          </div>
+
+          <div class="grid gap-3 sm:grid-cols-2 mobile-button-grid">
+            <button id="findBtn" class="rounded-2xl bg-indigo-600 px-5 py-3 font-bold text-white shadow-sm transition hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-200">
+              Find Channel ID
+            </button>
+
+            <button id="resetBtn" class="rounded-2xl border border-slate-300 bg-white px-5 py-3 font-bold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700 focus:outline-none focus:ring-4 focus:ring-slate-100">
+              Reset
+            </button>
+          </div>
+
+          <div id="statusBox" class="rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm leading-6 text-amber-800" role="status" aria-live="polite">
+            Enter a YouTube channel URL, handle, username, video URL, or channel ID.
+          </div>
+
+          <div class="rounded-2xl bg-slate-50 p-4">
+            <h2 class="text-base font-bold text-slate-900">Supported Examples</h2>
+            <ul class="mt-3 space-y-2 text-sm leading-6 text-slate-600">
+              <li class="safe-break">https://www.youtube.com/channel/UCxxxxxxxxxxxxxxxxxxxxxx</li>
+              <li class="safe-break">UCxxxxxxxxxxxxxxxxxxxxxx</li>
+              <li class="safe-break">@YouTube</li>
+              <li class="safe-break">https://www.youtube.com/@YouTube</li>
+              <li class="safe-break">https://www.youtube.com/user/Google</li>
+              <li class="safe-break">https://www.youtube.com/watch?v=VIDEO_ID</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="mobile-panel rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+        <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <h2 class="text-2xl font-extrabold text-slate-950">Channel ID Result</h2>
+            <p class="mt-1 text-sm text-slate-500">Verified channel details and developer-ready links appear here.</p>
+          </div>
+
+          <button id="copyIdTopBtn" class="rounded-2xl border border-indigo-200 bg-indigo-50 px-4 py-2 text-sm font-bold text-indigo-700 transition hover:bg-indigo-100 disabled:cursor-not-allowed disabled:opacity-50" disabled>
+            Copy Channel ID
+          </button>
+        </div>
+
+        <div id="resultArea" class="mt-6">
+          <div class="mobile-preview rounded-3xl border border-slate-200 bg-slate-50 p-6">
+            <div class="flex min-h-72 flex-col items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white px-6 py-10 text-center">
+              <div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-indigo-50 text-indigo-600">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.7" stroke="currentColor" class="h-8 w-8">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 21 3m0 0-3.75-3.75M21 3h-7.5A4.5 4.5 0 0 0 9 7.5v9A4.5 4.5 0 0 1 4.5 21H3m3.75-3.75L3 21m0 0 3.75 3.75" />
+                </svg>
+              </div>
+              <h3 class="mt-5 text-lg font-bold text-slate-900">No lookup result yet</h3>
+              <p class="mt-2 max-w-md text-sm leading-6 text-slate-500">
+                Direct channel ID URLs can be parsed immediately. Other lookup types require an optional YouTube Data API key.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div id="actionArea" class="mt-6 hidden">
+          <div class="grid gap-3 sm:grid-cols-2 mobile-button-grid">
+            <button id="copyAllBtn" class="rounded-2xl border border-slate-300 bg-white px-4 py-3 font-bold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700">
+              Copy All Details
+            </button>
+
+            <button id="downloadJsonBtn" class="rounded-2xl bg-slate-900 px-4 py-3 font-bold text-white transition hover:bg-slate-800">
+              Download JSON
+            </button>
+
+            <button id="downloadTextBtn" class="rounded-2xl border border-slate-300 bg-white px-4 py-3 font-bold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700">
+              Download Text
+            </button>
+
+            <a id="openChannelBtn" href="#" target="_blank" rel="noopener noreferrer" class="rounded-2xl bg-indigo-600 px-4 py-3 text-center font-bold text-white transition hover:bg-indigo-700">
+              Open Channel
+            </a>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section class="ad-box my-8" aria-label="Advertisement">
+      Advertisement Area Below Tool
+    </section>
+
+    <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+      <article class="max-w-none">
+        <h2 class="text-3xl font-extrabold tracking-tight text-slate-950">
+          Free YouTube Channel ID Finder for Creators, Developers, and Marketers
+        </h2>
+
+        <p class="mt-5 leading-8 text-slate-700">
+          A YouTube channel ID is a permanent identifier assigned to a YouTube channel. It normally begins with the letters UC and is followed by a sequence of letters, numbers, underscores, or hyphens. Unlike a channel display name or handle, the channel ID is designed to remain stable even when the public branding of a channel changes. A creator can update a channel name, profile image, description, or handle, but the underlying channel ID generally continues to identify the same channel. This makes the YouTube channel ID especially useful for developers, website owners, analytics teams, automation workflows, content managers, marketers, researchers, and anyone building tools that need a dependable YouTube channel reference.
+        </p>
+
+        <p class="mt-4 leading-8 text-slate-700">
+          The YouTube Channel ID Finder on this page provides two different lookup methods. First, it can extract a channel ID directly from a URL that already contains a standard <code>/channel/UC...</code> path. This direct method works entirely in the browser and does not require an API key. Second, the tool can use an optional YouTube Data API v3 key to resolve newer channel handles, legacy usernames, video URLs, and general channel searches. This combination gives users a fast no-key option for direct channel URLs and a more powerful official API option for situations where a channel ID is not visibly present in the supplied link.
+        </p>
+
+        <h3 class="mt-10 text-2xl font-bold text-slate-950">What Is a YouTube Channel ID?</h3>
+
+        <p class="mt-4 leading-8 text-slate-700">
+          A YouTube channel ID is a unique string used by YouTube to distinguish one channel from every other channel on the platform. A typical channel ID looks similar to <code>UCxxxxxxxxxxxxxxxxxxxxxx</code>. The exact string is not intended to be memorable, but it is reliable for technical use. Developers often use it in YouTube Data API requests, RSS feed URLs, embed systems, analytics dashboards, moderation tools, channel monitoring applications, internal databases, and content management systems.
+        </p>
+
+        <p class="mt-4 leading-8 text-slate-700">
+          A channel ID should not be confused with a video ID. A video ID identifies one uploaded video and is usually eleven characters long. A channel ID identifies the channel that owns or publishes content. A YouTube handle, such as <code>@ExampleChannel</code>, is a public user-facing name that can be shared more easily. A legacy username may appear in an older URL using the <code>/user/</code> format. A custom channel path may also appear in older links. These different identifiers can all refer to a channel, but they are not interchangeable in every API endpoint or technical integration.
+        </p>
+
+        <h3 class="mt-10 text-2xl font-bold text-slate-950">Why Channel IDs Are Important</h3>
+
+        <p class="mt-4 leading-8 text-slate-700">
+          Channel names are not always unique, and public branding can change. Two channels may use similar names, or a creator may rename a channel after building an audience. Handles are more specific than display names, but they can also be changed. A permanent channel ID gives applications a stable reference that is less dependent on public-facing branding. When building a database of YouTube creators, saving the channel ID alongside the current channel name and handle can reduce duplicate records and prevent incorrect matching.
+        </p>
+
+        <p class="mt-4 leading-8 text-slate-700">
+          The channel ID is also useful when generating a YouTube channel RSS feed. A common feed format uses a channel ID in a URL similar to <code>https://www.youtube.com/feeds/videos.xml?channel_id=CHANNEL_ID</code>. This can help users follow new uploads through an RSS reader, power content monitoring systems, or connect a YouTube channel to an automation workflow. The same channel ID can also be used in API requests for channel metadata, playlists, uploads, statistics, branding information, and related resources, depending on API permissions and available endpoints.
+        </p>
+
+        <div class="ad-box my-8" aria-label="Advertisement">
+          Middle Content Advertisement Area
+        </div>
+
+        <h3 class="mt-10 text-2xl font-bold text-slate-950">How This YouTube Channel ID Finder Works</h3>
+
+        <p class="mt-4 leading-8 text-slate-700">
+          The tool first inspects the text entered into the lookup field. If the value is already a valid UC-format channel ID, the tool returns it immediately. If the value contains a standard YouTube channel URL with a <code>/channel/</code> path, the tool extracts the channel ID directly from the address. These direct lookups happen locally in the browser and do not require communication with a custom server.
+        </p>
+
+        <p class="mt-4 leading-8 text-slate-700">
+          When the input contains a handle, legacy username, video URL, or search phrase, the permanent channel ID may not be included in the visible text. In those cases, the tool can make a request from the browser to the official YouTube Data API v3 using an API key supplied by the user. A handle lookup attempts to resolve the channel through the channel API. A username lookup uses the legacy username parameter. A video lookup first extracts the video ID and requests the video’s snippet information to identify the publishing channel. A channel search uses the search API and returns the most relevant channel result.
+        </p>
+
+        <p class="mt-4 leading-8 text-slate-700">
+          The API key is optional because many users only need to parse a direct channel URL. When an API key is entered, it is sent directly from the browser to Google’s API endpoint as part of the lookup request. NodnWebTools does not operate a backend proxy for this page. Users who enable the remember option should understand that the key is saved in the browser’s local storage on the current device. For stronger security, API keys should be restricted in Google Cloud by website referrer and by the specific API services that need access.
+        </p>
+
+        <h2 class="mt-12 text-3xl font-extrabold tracking-tight text-slate-950">
+          Popular Uses for a YouTube Channel ID Lookup Tool
+        </h2>
+
+        <div class="mt-6 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          <section class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-indigo-100 text-indigo-700">
+              <span class="text-xl">⌘</span>
+            </div>
+            <h3 class="mt-4 text-lg font-bold text-slate-950">YouTube API Development</h3>
+            <p class="mt-2 leading-7 text-slate-600">
+              Retrieve a stable channel identifier for API requests, dashboards, automation scripts, reporting tools, and channel metadata integrations.
+            </p>
+          </section>
+
+          <section class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-violet-100 text-violet-700">
+              <span class="text-xl">RSS</span>
+            </div>
+            <h3 class="mt-4 text-lg font-bold text-slate-950">Channel RSS Feeds</h3>
+            <p class="mt-2 leading-7 text-slate-600">
+              Build a YouTube uploads feed URL for an RSS reader, content tracker, website feed, newsletter workflow, or monitoring system.
+            </p>
+          </section>
+
+          <section class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-sky-100 text-sky-700">
+              <span class="text-xl">↗</span>
+            </div>
+            <h3 class="mt-4 text-lg font-bold text-slate-950">Creator Databases</h3>
+            <p class="mt-2 leading-7 text-slate-600">
+              Store a stable channel ID with creator names, handles, categories, contact records, sponsorship details, and campaign history.
+            </p>
+          </section>
+
+          <section class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-100 text-emerald-700">
+              <span class="text-xl">◎</span>
+            </div>
+            <h3 class="mt-4 text-lg font-bold text-slate-950">Channel Verification</h3>
+            <p class="mt-2 leading-7 text-slate-600">
+              Confirm that multiple URLs, handles, or branding references point to the same underlying YouTube channel.
+            </p>
+          </section>
+
+          <section class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-amber-100 text-amber-700">
+              <span class="text-xl">▦</span>
+            </div>
+            <h3 class="mt-4 text-lg font-bold text-slate-950">Content Monitoring</h3>
+            <p class="mt-2 leading-7 text-slate-600">
+              Track uploads, playlists, channel statistics, metadata changes, and publishing activity across selected YouTube channels.
+            </p>
+          </section>
+
+          <section class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-rose-100 text-rose-700">
+              <span class="text-xl">◆</span>
+            </div>
+            <h3 class="mt-4 text-lg font-bold text-slate-950">Marketing Research</h3>
+            <p class="mt-2 leading-7 text-slate-600">
+              Organize influencer research, competitor lists, channel performance reviews, sponsorship candidates, and campaign reporting.
+            </p>
+          </section>
+        </div>
+
+        <h2 class="mt-12 text-3xl font-extrabold tracking-tight text-slate-950">
+          How to Find a YouTube Channel ID
+        </h2>
+
+        <h3 class="mt-8 text-2xl font-bold text-slate-950">Method 1: Use a Direct Channel URL</h3>
+
+        <p class="mt-4 leading-8 text-slate-700">
+          The easiest lookup is a YouTube URL that already contains the permanent channel ID. A direct channel URL normally uses the structure <code>youtube.com/channel/CHANNEL_ID</code>. Paste the complete URL into the tool and select Auto Detect or Direct Channel ID Extraction. The page will validate the UC-format value and display the canonical channel URL, channel ID, RSS feed URL, and API resource URL. No API key is needed because the ID is already visible in the link.
+        </p>
+
+        <h3 class="mt-8 text-2xl font-bold text-slate-950">Method 2: Resolve a YouTube Handle</h3>
+
+        <p class="mt-4 leading-8 text-slate-700">
+          Modern YouTube channels often use a handle beginning with the @ symbol. A handle is easy to share, but it is not the same as the permanent UC-format channel ID. Enter the handle or paste a URL such as <code>youtube.com/@ExampleHandle</code>. Add a valid YouTube Data API v3 key and select Auto Detect or Resolve a YouTube Handle. The tool will request the associated channel information and return the permanent channel ID when the API provides a matching result.
+        </p>
+
+        <h3 class="mt-8 text-2xl font-bold text-slate-950">Method 3: Find a Channel ID from a Video URL</h3>
+
+        <p class="mt-4 leading-8 text-slate-700">
+          A YouTube video URL contains a video ID rather than a channel ID. However, the YouTube Data API can return the channel that published the video. Paste a regular watch URL, shortened youtu.be URL, Shorts URL, live URL, or video ID into the field. Choose Auto Detect or Find Channel from Video URL and provide an API key. The tool extracts the video ID, requests the video snippet, and returns the publishing channel’s ID and available channel details.
+        </p>
+
+        <h3 class="mt-8 text-2xl font-bold text-slate-950">Method 4: Search by Channel Name</h3>
+
+        <p class="mt-4 leading-8 text-slate-700">
+          A channel search is useful when you only know the public display name. Enter the channel name, choose Search for a Channel, and provide an API key. The search endpoint can return a relevant result, but users should verify the channel carefully because different channels may have similar or identical display names. Check the profile image, channel title, description, handle, subscriber count where available, and canonical channel page before saving the result.
+        </p>
+
+        <h2 class="mt-12 text-3xl font-extrabold tracking-tight text-slate-950">
+          Understanding YouTube Channel Identifiers
+        </h2>
+
+        <h3 class="mt-8 text-2xl font-bold text-slate-950">Channel ID</h3>
+
+        <p class="mt-4 leading-8 text-slate-700">
+          The channel ID is the permanent technical identifier. It is the preferred value for stable databases, API integrations, RSS feeds, and automation workflows. It commonly starts with UC and uses a fixed-length format.
+        </p>
+
+        <h3 class="mt-8 text-2xl font-bold text-slate-950">YouTube Handle</h3>
+
+        <p class="mt-4 leading-8 text-slate-700">
+          A YouTube handle is a public identifier beginning with @. Handles are intended for mentions, sharing, channel URLs, and public discovery. They are more memorable than channel IDs but may be changed by the channel owner.
+        </p>
+
+        <h3 class="mt-8 text-2xl font-bold text-slate-950">Legacy Username</h3>
+
+        <p class="mt-4 leading-8 text-slate-700">
+          Older YouTube channels may still be associated with a username and a URL using the <code>/user/</code> structure. Legacy usernames are supported by some API lookup methods but are no longer the main public identifier used by most channels.
+        </p>
+
+        <h3 class="mt-8 text-2xl font-bold text-slate-950">Custom URL</h3>
+
+        <p class="mt-4 leading-8 text-slate-700">
+          A custom URL is a branded channel path created under older YouTube systems. It may appear in historical links, articles, social profiles, or bookmarks. Custom URLs do not always expose the permanent channel ID directly and may require API resolution, browser inspection, or redirection to a newer handle-based channel page.
+        </p>
+
+        <h3 class="mt-8 text-2xl font-bold text-slate-950">Video ID</h3>
+
+        <p class="mt-4 leading-8 text-slate-700">
+          A video ID identifies an individual video rather than a channel. The ID is commonly found after <code>v=</code> in a YouTube watch URL or after the domain in a youtu.be link. The YouTube Data API can use the video ID to return the channel ID of the uploader.
+        </p>
+
+        <div class="ad-box my-8" aria-label="Advertisement">
+          Bottom Content Advertisement Area
+        </div>
+
+        <h2 class="mt-12 text-3xl font-extrabold tracking-tight text-slate-950">
+          YouTube API Key Safety and Privacy
+        </h2>
+
+        <p class="mt-4 leading-8 text-slate-700">
+          Advanced lookups require a YouTube Data API v3 key because a browser cannot reliably discover the permanent channel ID from every handle, custom URL, username, or video page without accessing an official data source. This page sends advanced lookup requests directly to Google’s YouTube Data API. The API key is not transmitted to a NodnWebTools backend because this tool does not use one.
+        </p>
+
+        <p class="mt-4 leading-8 text-slate-700">
+          API keys should still be treated carefully. A key placed in a browser can be visible to the person using that browser and to browser developer tools. Website owners should create a restricted key for client-side use rather than exposing an unrestricted key. Recommended protections include HTTP referrer restrictions for the website domain, API restrictions that allow only YouTube Data API v3, quota monitoring, and regular review of Google Cloud credentials. Do not paste a private server credential, service account secret, OAuth client secret, or unrestricted production key into a public web page.
+        </p>
+
+        <p class="mt-4 leading-8 text-slate-700">
+          The Remember Key option saves the value in local storage on the current browser. This can be convenient on a private device but should not be used on a public computer, shared workstation, school device, library computer, or any environment where another person may access the browser profile. Leaving the option disabled keeps the key only in the page’s memory until the page is closed or refreshed.
+        </p>
+
+        <h2 class="mt-12 text-3xl font-extrabold tracking-tight text-slate-950">
+          Practical Tips for Accurate Channel ID Results
+        </h2>
+
+        <p class="mt-4 leading-8 text-slate-700">
+          Whenever possible, start with the most specific input available. A direct channel URL containing a UC-format ID is more precise than a display name. A handle is more precise than a general search phrase. A video URL is useful when you need the channel that published a particular video. A legacy username should be used only when the older username is known. General channel search should be treated as a discovery method rather than automatic proof of identity.
+        </p>
+
+        <p class="mt-4 leading-8 text-slate-700">
+          After receiving a result, open the canonical channel link and confirm the title, profile image, handle, description, and recent content. For business databases or marketing campaigns, save the channel ID together with the date of verification. Public channel details may change over time, while the channel ID is intended to remain stable. Storing both permanent and current public identifiers creates a more reliable record.
+        </p>
+
+        <p class="mt-4 leading-8 text-slate-700">
+          API results can also be affected by quota limits, disabled APIs, invalid credentials, referrer restrictions, regional availability, deleted content, private content, suspended channels, and temporary service errors. A lookup failure does not always mean the input is incorrect. Read the status message, verify that the YouTube Data API v3 is enabled for the Google Cloud project, confirm the API key restrictions, and try the most specific lookup method.
+        </p>
+
+        <h2 class="mt-12 text-3xl font-extrabold tracking-tight text-slate-950">
+          Frequently Asked Questions
+        </h2>
+
+        <div class="mt-6 space-y-4">
+          <details class="rounded-2xl border border-slate-200 bg-white p-5">
+            <summary class="flex cursor-pointer items-center justify-between gap-4 font-bold text-slate-950">
+              Can I find a YouTube channel ID without an API key?
+              <span class="text-indigo-600">+</span>
+            </summary>
+            <p class="mt-4 leading-7 text-slate-600">
+              Yes, when the input is already a UC-format channel ID or a direct YouTube URL containing <code>/channel/UC...</code>. Handles, usernames, video URLs, and search phrases normally require an API or another external data source because the permanent ID is not included directly in the visible input.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-white p-5">
+            <summary class="flex cursor-pointer items-center justify-between gap-4 font-bold text-slate-950">
+              Is a YouTube handle the same as a channel ID?
+              <span class="text-indigo-600">+</span>
+            </summary>
+            <p class="mt-4 leading-7 text-slate-600">
+              No. A handle begins with @ and is designed for public sharing and mentions. A channel ID is the permanent UC-format identifier used in API requests, RSS feeds, and technical integrations.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-white p-5">
+            <summary class="flex cursor-pointer items-center justify-between gap-4 font-bold text-slate-950">
+              Can I get a channel ID from a YouTube video link?
+              <span class="text-indigo-600">+</span>
+            </summary>
+            <p class="mt-4 leading-7 text-slate-600">
+              Yes. Paste the video link, provide a YouTube Data API v3 key, and choose Auto Detect or Find Channel from Video URL. The tool retrieves the video’s publishing channel ID from the official API.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-white p-5">
+            <summary class="flex cursor-pointer items-center justify-between gap-4 font-bold text-slate-950">
+              Why does a YouTube channel ID begin with UC?
+              <span class="text-indigo-600">+</span>
+            </summary>
+            <p class="mt-4 leading-7 text-slate-600">
+              UC is the common prefix used for YouTube channel identifiers. It distinguishes channel resources from other YouTube identifier types such as individual video IDs or playlist IDs.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-white p-5">
+            <summary class="flex cursor-pointer items-center justify-between gap-4 font-bold text-slate-950">
+              Does a channel ID change when a channel changes its name?
+              <span class="text-indigo-600">+</span>
+            </summary>
+            <p class="mt-4 leading-7 text-slate-600">
+              The channel ID is intended to remain stable when a creator changes a display name, description, profile image, branding, or handle. This is why it is useful as a permanent technical reference.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-white p-5">
+            <summary class="flex cursor-pointer items-center justify-between gap-4 font-bold text-slate-950">
+              Is my API key stored by this website?
+              <span class="text-indigo-600">+</span>
+            </summary>
+            <p class="mt-4 leading-7 text-slate-600">
+              The tool has no custom backend for API requests. The key is used directly in the browser. It is stored in local browser storage only when you select the Remember Key option. You should use a restricted client-side key and avoid entering sensitive server credentials.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-white p-5">
+            <summary class="flex cursor-pointer items-center justify-between gap-4 font-bold text-slate-950">
+              Why did my API lookup fail?
+              <span class="text-indigo-600">+</span>
+            </summary>
+            <p class="mt-4 leading-7 text-slate-600">
+              Common causes include an invalid key, YouTube Data API v3 not being enabled, incorrect referrer restrictions, exhausted quota, an unavailable channel, a private or deleted video, a misspelled handle, or a temporary network problem.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-white p-5">
+            <summary class="flex cursor-pointer items-center justify-between gap-4 font-bold text-slate-950">
+              Can this tool find private channel information?
+              <span class="text-indigo-600">+</span>
+            </summary>
+            <p class="mt-4 leading-7 text-slate-600">
+              No. The tool is designed for public identifiers and public metadata available through direct URLs or official API responses. It does not bypass privacy settings, authentication, access restrictions, or platform protections.
+            </p>
+          </details>
+        </div>
+
+        <section class="mt-12">
+          <h2 class="text-3xl font-extrabold tracking-tight text-slate-950">Related Tools</h2>
+          <p class="mt-3 leading-7 text-slate-600">
+            Explore additional browser-based YouTube, developer, media, and data utilities from NodnWebTools.
+          </p>
+
+          <div class="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            <a href="/youtube-thumbnail-downloader" class="tool-link-card group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm hover:border-rose-300 hover:shadow-md">
+              <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-rose-50 text-rose-600 group-hover:bg-rose-600 group-hover:text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="h-6 w-6">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                </svg>
+              </div>
+              <h3 class="mt-4 text-lg font-bold text-slate-950 group-hover:text-rose-600">YouTube Thumbnail Downloader</h3>
+              <p class="mt-2 text-sm leading-6 text-slate-500">Preview and download available YouTube video thumbnail images in multiple common sizes.</p>
+            </a>
+
+            <a href="/youtube-thumbnail-viewer" class="tool-link-card group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm hover:border-indigo-300 hover:shadow-md">
+              <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-indigo-50 text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="h-6 w-6">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12s3.75-6.75 9.75-6.75S21.75 12 21.75 12 18 18.75 12 18.75 2.25 12 2.25 12Z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                </svg>
+              </div>
+              <h3 class="mt-4 text-lg font-bold text-slate-950 group-hover:text-indigo-600">YouTube Thumbnail Viewer</h3>
+              <p class="mt-2 text-sm leading-6 text-slate-500">Inspect public YouTube thumbnail previews and copy direct image URLs from a video link.</p>
+            </a>
+
+            <a href="/json-yaml-converter" class="tool-link-card group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm hover:border-cyan-300 hover:shadow-md">
+              <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-cyan-50 text-cyan-600 group-hover:bg-cyan-600 group-hover:text-white">
+                <span class="text-lg font-black">{ }</span>
+              </div>
+              <h3 class="mt-4 text-lg font-bold text-slate-950 group-hover:text-cyan-600">JSON ↔ YAML Converter</h3>
+              <p class="mt-2 text-sm leading-6 text-slate-500">Convert structured configuration data between JSON and YAML with browser-side validation.</p>
+            </a>
+
+            <a href="/base64-converter" class="tool-link-card group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm hover:border-amber-300 hover:shadow-md">
+              <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-amber-50 text-amber-600 group-hover:bg-amber-600 group-hover:text-white">
+                <span class="text-sm font-black">64</span>
+              </div>
+              <h3 class="mt-4 text-lg font-bold text-slate-950 group-hover:text-amber-600">Base64 Converter</h3>
+              <p class="mt-2 text-sm leading-6 text-slate-500">Encode Unicode text as Base64 or decode Base64 data safely in your browser.</p>
+            </a>
+
+            <a href="/qr-generator" class="tool-link-card group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm hover:border-violet-300 hover:shadow-md">
+              <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-violet-50 text-violet-600 group-hover:bg-violet-600 group-hover:text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="h-6 w-6">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 0 1 3.75 9.375v-4.5ZM13.5 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 0 1 13.5 9.375v-4.5ZM3.75 14.625c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5a1.125 1.125 0 0 1-1.125-1.125v-4.5Z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M14.625 13.5h.008v.008h-.008V13.5Zm2.25 0h.008v.008h-.008V13.5Zm2.25 0h.008v.008h-.008V13.5Zm-4.5 2.25h.008v.008h-.008v-.008Zm4.5 0h.008v.008h-.008v-.008Zm-4.5 2.25h.008v.008h-.008V18Zm2.25 0h.008v.008h-.008V18Zm2.25 0h.008v.008h-.008V18Z" />
+                </svg>
+              </div>
+              <h3 class="mt-4 text-lg font-bold text-slate-950 group-hover:text-violet-600">QR Code Generator</h3>
+              <p class="mt-2 text-sm leading-6 text-slate-500">Create downloadable QR codes for channel links, websites, contact details, and text.</p>
+            </a>
+
+            <a href="/diff-checker" class="tool-link-card group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm hover:border-sky-300 hover:shadow-md">
+              <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-sky-50 text-sky-600 group-hover:bg-sky-600 group-hover:text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="h-6 w-6">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5.586a1 1 0 0 1 .707.293l5.414 5.414A1 1 0 0 1 19 9.414V19a2 2 0 0 1-2 2Z" />
+                </svg>
+              </div>
+              <h3 class="mt-4 text-lg font-bold text-slate-950 group-hover:text-sky-600">Diff Checker</h3>
+              <p class="mt-2 text-sm leading-6 text-slate-500">Compare text, API responses, metadata, configuration files, or code changes side by side.</p>
+            </a>
+          </div>
+        </section>
+
+        <section class="mt-12 rounded-3xl bg-slate-900 p-6 text-slate-100 sm:p-8">
+          <h2 class="text-2xl font-extrabold">Legal Disclaimer</h2>
+          <p class="mt-4 leading-8 text-slate-300">
+            This YouTube Channel ID Finder is provided for informational, technical, educational, and convenience purposes only. Direct extraction results depend on the text supplied by the user, while advanced lookup results depend on data returned by the official YouTube Data API. NodnWebTools does not guarantee that every result is complete, current, available, or suitable for a particular business, legal, commercial, analytics, or development purpose. Users are responsible for verifying channel identity, API output, ownership, permissions, and intended use.
+          </p>
+          <p class="mt-4 leading-8 text-slate-300">
+            YouTube, Google, channel names, handles, videos, thumbnails, logos, and related content may be protected by copyright, trademark, privacy rights, publicity rights, platform policies, and other legal restrictions. This tool does not grant ownership, licensing rights, access rights, endorsement, or permission to collect, republish, monitor, scrape, contact, profile, or commercially use channel data. Users must comply with YouTube’s terms, Google API policies, privacy laws, data protection requirements, and all applicable regulations.
+          </p>
+          <p class="mt-4 leading-8 text-slate-300">
+            API keys entered into this page are used in the browser and may be visible through browser tools. Do not enter confidential server credentials, OAuth secrets, service account keys, or unrestricted production keys. Use a properly restricted YouTube Data API key, monitor quota usage, and avoid saving keys on shared devices. The user assumes full responsibility for credential security, API charges or quotas, exported data, automated workflows, and any action taken from the results.
+          </p>
+        </section>
+      </article>
+    </section>
+
+    <section class="ad-box my-8" aria-label="Advertisement">
+      Bottom Advertisement Area
+    </section>
+  </main>
+
+  <footer class="border-t border-slate-200 bg-white">
+    <div class="mx-auto max-w-7xl px-4 py-8 text-center text-sm text-slate-500 sm:px-6 lg:px-8">
+      © <span id="currentYear"></span> NodnWebTools. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      'use strict';
+
+      const lookupInput = document.getElementById('lookupInput');
+      const lookupMode = document.getElementById('lookupMode');
+      const apiKeyInput = document.getElementById('apiKeyInput');
+      const rememberKey = document.getElementById('rememberKey');
+      const toggleKeyBtn = document.getElementById('toggleKeyBtn');
+      const findBtn = document.getElementById('findBtn');
+      const resetBtn = document.getElementById('resetBtn');
+      const statusBox = document.getElementById('statusBox');
+      const resultArea = document.getElementById('resultArea');
+      const actionArea = document.getElementById('actionArea');
+      const copyIdTopBtn = document.getElementById('copyIdTopBtn');
+      const copyAllBtn = document.getElementById('copyAllBtn');
+      const downloadJsonBtn = document.getElementById('downloadJsonBtn');
+      const downloadTextBtn = document.getElementById('downloadTextBtn');
+      const openChannelBtn = document.getElementById('openChannelBtn');
+
+      const STORAGE_KEY = 'nodn_youtube_api_key';
+      let currentResult = null;
+
+      document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+      function escapeHtml(value) {
+        return String(value ?? '')
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#039;');
+      }
+
+      function isValidChannelId(value) {
+        return /^UC[a-zA-Z0-9_-]{22}$/.test(String(value || '').trim());
+      }
+
+      function extractChannelId(value) {
+        const text = String(value || '').trim();
+
+        if (isValidChannelId(text)) {
+          return text;
+        }
+
+        const directMatch = text.match(/(?:youtube\.com\/channel\/|^)(UC[a-zA-Z0-9_-]{22})(?:[/?#&\s]|$)/i);
+        return directMatch ? directMatch[1] : '';
+      }
+
+      function extractHandle(value) {
+        const text = String(value || '').trim();
+
+        const urlMatch = text.match(/youtube\.com\/@([a-zA-Z0-9._-]+)/i);
+        if (urlMatch) {
+          return '@' + urlMatch[1];
+        }
+
+        const handleMatch = text.match(/^@([a-zA-Z0-9._-]+)$/);
+        if (handleMatch) {
+          return '@' + handleMatch[1];
+        }
+
+        return '';
+      }
+
+      function extractLegacyUsername(value) {
+        const text = String(value || '').trim();
+        const match = text.match(/youtube\.com\/user\/([^/?#\s]+)/i);
+        return match ? decodeURIComponent(match[1]) : '';
+      }
+
+      function extractVideoId(value) {
+        const text = String(value || '').trim();
+
+        if (/^[a-zA-Z0-9_-]{11}$/.test(text)) {
+          return text;
+        }
+
+        const patterns = [
+          /(?:youtube\.com\/watch\?[^#\s]*v=)([a-zA-Z0-9_-]{11})/i,
+          /(?:youtu\.be\/)([a-zA-Z0-9_-]{11})/i,
+          /(?:youtube\.com\/shorts\/)([a-zA-Z0-9_-]{11})/i,
+          /(?:youtube\.com\/embed\/)([a-zA-Z0-9_-]{11})/i,
+          /(?:youtube\.com\/live\/)([a-zA-Z0-9_-]{11})/i,
+          /(?:youtube\.com\/v\/)([a-zA-Z0-9_-]{11})/i,
+          /(?:[?&]v=)([a-zA-Z0-9_-]{11})/i
+        ];
+
+        for (const pattern of patterns) {
+          const match = text.match(pattern);
+          if (match && match[1]) {
+            return match[1];
+          }
+        }
+
+        return '';
+      }
+
+      function detectMode(value) {
+        if (extractChannelId(value)) return 'direct';
+        if (extractHandle(value)) return 'handle';
+        if (extractLegacyUsername(value)) return 'username';
+        if (extractVideoId(value)) return 'video';
+        return 'search';
+      }
+
+      function setStatus(message, type = 'info') {
+        const styles = {
+          info: 'rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm leading-6 text-amber-800',
+          success: 'rounded-2xl border border-emerald-200 bg-emerald-50 p-4 text-sm leading-6 text-emerald-800',
+          error: 'rounded-2xl border border-rose-200 bg-rose-50 p-4 text-sm leading-6 text-rose-800',
+          loading: 'rounded-2xl border border-indigo-200 bg-indigo-50 p-4 text-sm leading-6 text-indigo-800'
+        };
+
+        statusBox.className = styles[type] || styles.info;
+        statusBox.textContent = message;
+      }
+
+      function setLoading(isLoading) {
+        findBtn.disabled = isLoading;
+        findBtn.classList.toggle('opacity-60', isLoading);
+        findBtn.classList.toggle('cursor-not-allowed', isLoading);
+        findBtn.textContent = isLoading ? 'Looking Up Channel…' : 'Find Channel ID';
+      }
+
+      function buildUrls(channelId) {
+        return {
+          channelUrl: `https://www.youtube.com/channel/${channelId}`,
+          rssUrl: `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`,
+          apiUrl: `https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics&id=${channelId}`
+        };
+      }
+
+      function normalizeResult(data) {
+        const urls = buildUrls(data.channelId);
+
+        return {
+          channelId: data.channelId,
+          title: data.title || '',
+          handle: data.handle || '',
+          description: data.description || '',
+          thumbnail: data.thumbnail || '',
+          subscriberCount: data.subscriberCount || '',
+          videoCount: data.videoCount || '',
+          viewCount: data.viewCount || '',
+          country: data.country || '',
+          publishedAt: data.publishedAt || '',
+          source: data.source || 'Direct extraction',
+          input: lookupInput.value.trim(),
+          channelUrl: urls.channelUrl,
+          rssUrl: urls.rssUrl,
+          apiResourceUrl: urls.apiUrl,
+          retrievedAt: new Date().toISOString()
+        };
+      }
+
+      function formatNumber(value) {
+        if (value === '' || value === null || value === undefined) return 'Not available';
+        const number = Number(value);
+        if (!Number.isFinite(number)) return String(value);
+        return new Intl.NumberFormat().format(number);
+      }
+
+      function formatDate(value) {
+        if (!value) return 'Not available';
+
+        const date = new Date(value);
+        if (Number.isNaN(date.getTime())) return String(value);
+
+        return new Intl.DateTimeFormat(undefined, {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric'
+        }).format(date);
+      }
+
+      function detailRow(label, value, copyValue = '') {
+        const safeValue = escapeHtml(value || 'Not available');
+        const copyButton = copyValue
+          ? `<button class="copy-detail rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-xs font-bold text-slate-600 transition hover:border-indigo-300 hover:text-indigo-700" data-copy="${escapeHtml(copyValue)}">Copy</button>`
+          : '';
+
+        return `
+          <div class="border-t border-slate-100 py-4 first:border-t-0">
+            <div class="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+              <div class="min-w-0">
+                <p class="text-xs font-bold uppercase tracking-wide text-slate-400">${escapeHtml(label)}</p>
+                <p class="result-value mt-1 text-sm font-semibold text-slate-800">${safeValue}</p>
+              </div>
+              ${copyButton}
+            </div>
+          </div>
+        `;
+      }
+
+      function renderResult(result) {
+        currentResult = result;
+        const hasImage = Boolean(result.thumbnail);
+
+        resultArea.innerHTML = `
+          <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+            <div class="bg-gradient-to-br from-indigo-600 to-violet-700 p-6 text-white">
+              <div class="flex flex-col gap-5 sm:flex-row sm:items-center">
+                <div class="flex h-24 w-24 flex-none items-center justify-center overflow-hidden rounded-2xl border border-white/20 bg-white/10 shadow-lg">
+                  ${
+                    hasImage
+                      ? `<img src="${escapeHtml(result.thumbnail)}" alt="${escapeHtml(result.title || 'YouTube channel')} profile image" class="h-full w-full object-cover" />`
+                      : `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" class="h-12 w-12 text-white/80">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6.75a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.5 20.118a7.5 7.5 0 0 1 15 0A17.933 17.933 0 0 1 12 21.75a17.933 17.933 0 0 1-7.5-1.632Z" />
+                        </svg>`
+                  }
+                </div>
+
+                <div class="min-w-0">
+                  <p class="text-sm font-semibold text-indigo-100">${escapeHtml(result.source)}</p>
+                  <h3 class="safe-break mt-1 text-2xl font-extrabold">${escapeHtml(result.title || 'YouTube Channel')}</h3>
+                  <p class="safe-break mt-2 text-sm text-indigo-100">${escapeHtml(result.handle || result.channelId)}</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-5 sm:p-6">
+              <div class="rounded-2xl border border-emerald-200 bg-emerald-50 p-4">
+                <div class="flex items-start gap-3">
+                  <span class="status-dot mt-1.5 bg-emerald-500"></span>
+                  <div class="min-w-0">
+                    <p class="text-sm font-bold text-emerald-900">YouTube Channel ID</p>
+                    <p class="safe-break mt-1 font-mono text-base font-bold text-emerald-800">${escapeHtml(result.channelId)}</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-5 rounded-2xl border border-slate-200 bg-slate-50 px-4">
+                ${detailRow('Channel Title', result.title || 'Not available')}
+                ${detailRow('Channel Handle', result.handle || 'Not available')}
+                ${detailRow('Channel ID', result.channelId, result.channelId)}
+                ${detailRow('Canonical Channel URL', result.channelUrl, result.channelUrl)}
+                ${detailRow('RSS Feed URL', result.rssUrl, result.rssUrl)}
+                ${detailRow('Subscribers', formatNumber(result.subscriberCount))}
+                ${detailRow('Videos', formatNumber(result.videoCount))}
+                ${detailRow('Total Views', formatNumber(result.viewCount))}
+                ${detailRow('Country', result.country || 'Not available')}
+                ${detailRow('Channel Created', formatDate(result.publishedAt))}
+                ${detailRow('Lookup Source', result.source)}
+              </div>
+
+              ${
+                result.description
+                  ? `<div class="mt-5 rounded-2xl border border-slate-200 bg-white p-4">
+                      <p class="text-xs font-bold uppercase tracking-wide text-slate-400">Channel Description</p>
+                      <p class="safe-break mt-2 whitespace-pre-wrap text-sm leading-7 text-slate-600">${escapeHtml(result.description)}</p>
+                    </div>`
+                  : ''
+              }
+            </div>
+          </div>
+        `;
+
+        actionArea.classList.remove('hidden');
+        copyIdTopBtn.disabled = false;
+        openChannelBtn.href = result.channelUrl;
+
+        document.querySelectorAll('.copy-detail').forEach(button => {
+          button.addEventListener('click', () => copyText(button.dataset.copy, button));
+        });
+      }
+
+      function renderEmptyState() {
+        currentResult = null;
+        actionArea.classList.add('hidden');
+        copyIdTopBtn.disabled = true;
+        openChannelBtn.href = '#';
+
+        resultArea.innerHTML = `
+          <div class="mobile-preview rounded-3xl border border-slate-200 bg-slate-50 p-6">
+            <div class="flex min-h-72 flex-col items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white px-6 py-10 text-center">
+              <div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-indigo-50 text-indigo-600">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.7" stroke="currentColor" class="h-8 w-8">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 21 3m0 0-3.75-3.75M21 3h-7.5A4.5 4.5 0 0 0 9 7.5v9A4.5 4.5 0 0 1 4.5 21H3m3.75-3.75L3 21m0 0 3.75 3.75" />
+                </svg>
+              </div>
+              <h3 class="mt-5 text-lg font-bold text-slate-900">No lookup result yet</h3>
+              <p class="mt-2 max-w-md text-sm leading-6 text-slate-500">
+                Direct channel ID URLs can be parsed immediately. Other lookup types require an optional YouTube Data API key.
+              </p>
+            </div>
+          </div>
+        `;
+      }
+
+      function getApiErrorMessage(payload, fallback) {
+        if (payload && payload.error && payload.error.message) {
+          return payload.error.message;
+        }
+        return fallback || 'The YouTube API request failed.';
+      }
+
+      async function fetchJson(url) {
+        const response = await fetch(url, {
+          method: 'GET',
+          headers: {
+            Accept: 'application/json'
+          }
+        });
+
+        let payload;
+
+        try {
+          payload = await response.json();
+        } catch (error) {
+          throw new Error('The API returned an unreadable response.');
+        }
+
+        if (!response.ok) {
+          throw new Error(getApiErrorMessage(payload, `API request failed with status ${response.status}.`));
+        }
+
+        return payload;
+      }
+
+      async function fetchChannelDetails(channelId, apiKey, source, fallbackData = {}) {
+        const params = new URLSearchParams({
+          part: 'snippet,statistics',
+          id: channelId,
+          key: apiKey
+        });
+
+        const payload = await fetchJson(`https://www.googleapis.com/youtube/v3/channels?${params.toString()}`);
+
+        if (!payload.items || !payload.items.length) {
+          return normalizeResult({
+            channelId,
+            source,
+            ...fallbackData
+          });
+        }
+
+        const item = payload.items[0];
+        const snippet = item.snippet || {};
+        const statistics = item.statistics || {};
+
+        return normalizeResult({
+          channelId: item.id || channelId,
+          title: snippet.title || fallbackData.title || '',
+          handle: snippet.customUrl || fallbackData.handle || '',
+          description: snippet.description || '',
+          thumbnail:
+            snippet.thumbnails?.high?.url ||
+            snippet.thumbnails?.medium?.url ||
+            snippet.thumbnails?.default?.url ||
+            '',
+          subscriberCount: statistics.hiddenSubscriberCount ? '' : statistics.subscriberCount || '',
+          videoCount: statistics.videoCount || '',
+          viewCount: statistics.viewCount || '',
+          country: snippet.country || '',
+          publishedAt: snippet.publishedAt || '',
+          source
+        });
+      }
+
+      async function lookupHandle(handle, apiKey) {
+        const params = new URLSearchParams({
+          part: 'snippet,statistics',
+          forHandle: handle,
+          key: apiKey
+        });
+
+        const payload = await fetchJson(`https://www.googleapis.com/youtube/v3/channels?${params.toString()}`);
+
+        if (!payload.items || !payload.items.length) {
+          throw new Error('No channel was found for that YouTube handle.');
+        }
+
+        const item = payload.items[0];
+        const snippet = item.snippet || {};
+        const statistics = item.statistics || {};
+
+        return normalizeResult({
+          channelId: item.id,
+          title: snippet.title || '',
+          handle: snippet.customUrl || handle,
+          description: snippet.description || '',
+          thumbnail:
+            snippet.thumbnails?.high?.url ||
+            snippet.thumbnails?.medium?.url ||
+            snippet.thumbnails?.default?.url ||
+            '',
+          subscriberCount: statistics.hiddenSubscriberCount ? '' : statistics.subscriberCount || '',
+          videoCount: statistics.videoCount || '',
+          viewCount: statistics.viewCount || '',
+          country: snippet.country || '',
+          publishedAt: snippet.publishedAt || '',
+          source: 'YouTube handle lookup'
+        });
+      }
+
+      async function lookupUsername(username, apiKey) {
+        const params = new URLSearchParams({
+          part: 'snippet,statistics',
+          forUsername: username,
+          key: apiKey
+        });
+
+        const payload = await fetchJson(`https://www.googleapis.com/youtube/v3/channels?${params.toString()}`);
+
+        if (!payload.items || !payload.items.length) {
+          throw new Error('No channel was found for that legacy YouTube username.');
+        }
+
+        const item = payload.items[0];
+        const snippet = item.snippet || {};
+        const statistics = item.statistics || {};
+
+        return normalizeResult({
+          channelId: item.id,
+          title: snippet.title || '',
+          handle: snippet.customUrl || '',
+          description: snippet.description || '',
+          thumbnail:
+            snippet.thumbnails?.high?.url ||
+            snippet.thumbnails?.medium?.url ||
+            snippet.thumbnails?.default?.url ||
+            '',
+          subscriberCount: statistics.hiddenSubscriberCount ? '' : statistics.subscriberCount || '',
+          videoCount: statistics.videoCount || '',
+          viewCount: statistics.viewCount || '',
+          country: snippet.country || '',
+          publishedAt: snippet.publishedAt || '',
+          source: 'Legacy username lookup'
+        });
+      }
+
+      async function lookupVideo(videoId, apiKey) {
+        const params = new URLSearchParams({
+          part: 'snippet',
+          id: videoId,
+          key: apiKey
+        });
+
+        const payload = await fetchJson(`https://www.googleapis.com/youtube/v3/videos?${params.toString()}`);
+
+        if (!payload.items || !payload.items.length) {
+          throw new Error('The video could not be found or is not publicly available.');
+        }
+
+        const snippet = payload.items[0].snippet || {};
+        const channelId = snippet.channelId;
+
+        if (!channelId || !isValidChannelId(channelId)) {
+          throw new Error('The video result did not include a valid channel ID.');
+        }
+
+        return fetchChannelDetails(channelId, apiKey, 'Video publisher lookup', {
+          title: snippet.channelTitle || ''
+        });
+      }
+
+      async function searchChannel(query, apiKey) {
+        const params = new URLSearchParams({
+          part: 'snippet',
+          type: 'channel',
+          maxResults: '1',
+          q: query,
+          key: apiKey
+        });
+
+        const payload = await fetchJson(`https://www.googleapis.com/youtube/v3/search?${params.toString()}`);
+
+        if (!payload.items || !payload.items.length) {
+          throw new Error('No YouTube channel matched that search.');
+        }
+
+        const item = payload.items[0];
+        const channelId = item.id?.channelId;
+        const snippet = item.snippet || {};
+
+        if (!channelId || !isValidChannelId(channelId)) {
+          throw new Error('The search result did not include a valid channel ID.');
+        }
+
+        return fetchChannelDetails(channelId, apiKey, 'YouTube channel search', {
+          title: snippet.channelTitle || snippet.title || '',
+          description: snippet.description || '',
+          thumbnail:
+            snippet.thumbnails?.high?.url ||
+            snippet.thumbnails?.medium?.url ||
+            snippet.thumbnails?.default?.url ||
+            ''
+        });
+      }
+
+      async function performLookup() {
+        const input = lookupInput.value.trim();
+
+        if (!input) {
+          setStatus('Enter a YouTube channel URL, handle, username, video URL, or channel ID.', 'error');
+          renderEmptyState();
+          lookupInput.focus();
+          return;
+        }
+
+        const selectedMode = lookupMode.value;
+        const mode = selectedMode === 'auto' ? detectMode(input) : selectedMode;
+        const apiKey = apiKeyInput.value.trim();
+
+        setLoading(true);
+        setStatus('Checking the input and looking up channel information…', 'loading');
+
+        try {
+          let result;
+
+          if (mode === 'direct') {
+            const channelId = extractChannelId(input);
+
+            if (!channelId) {
+              throw new Error('A valid UC-format channel ID was not found in the input.');
+            }
+
+            if (apiKey) {
+              result = await fetchChannelDetails(channelId, apiKey, 'Direct ID extraction with API verification');
+            } else {
+              result = normalizeResult({
+                channelId,
+                source: 'Direct channel ID extraction'
+              });
+            }
+          } else {
+            if (!apiKey) {
+              throw new Error('This lookup type requires a YouTube Data API v3 key. Direct /channel/UC... URLs can be extracted without a key.');
+            }
+
+            if (mode === 'handle') {
+              const handle = extractHandle(input) || (input.startsWith('@') ? input : '@' + input.replace(/^@/, ''));
+              result = await lookupHandle(handle, apiKey);
+            } else if (mode === 'username') {
+              const username = extractLegacyUsername(input) || input.replace(/^.*\/user\//i, '').replace(/[/?#].*$/, '').trim();
+
+              if (!username) {
+                throw new Error('A valid legacy username could not be detected.');
+              }
+
+              result = await lookupUsername(username, apiKey);
+            } else if (mode === 'video') {
+              const videoId = extractVideoId(input);
+
+              if (!videoId) {
+                throw new Error('A valid YouTube video ID could not be detected.');
+              }
+
+              result = await lookupVideo(videoId, apiKey);
+            } else if (mode === 'search') {
+              result = await searchChannel(input, apiKey);
+            } else {
+              throw new Error('The selected lookup method is not supported.');
+            }
+          }
+
+          if (!result || !isValidChannelId(result.channelId)) {
+            throw new Error('A valid channel ID was not returned.');
+          }
+
+          renderResult(result);
+          setStatus('Channel ID found successfully. Verify the channel details before using the result in a production workflow.', 'success');
+
+          if (rememberKey.checked && apiKey) {
+            localStorage.setItem(STORAGE_KEY, apiKey);
+          } else if (!rememberKey.checked) {
+            localStorage.removeItem(STORAGE_KEY);
+          }
+        } catch (error) {
+          console.error(error);
+          renderEmptyState();
+          setStatus(error.message || 'The channel lookup failed. Check the input, API key, API restrictions, and network connection.', 'error');
+        } finally {
+          setLoading(false);
+        }
+      }
+
+      async function copyText(text, button) {
+        try {
+          await navigator.clipboard.writeText(String(text || ''));
+
+          if (button) {
+            const original = button.textContent;
+            button.textContent = 'Copied!';
+
+            setTimeout(() => {
+              button.textContent = original;
+            }, 1200);
+          }
+        } catch (error) {
+          setStatus('Copy failed. Select the text manually and copy it from the result area.', 'error');
+        }
+      }
+
+      function resultAsText(result) {
+        return [
+          `YouTube Channel ID: ${result.channelId}`,
+          `Channel Title: ${result.title || 'Not available'}`,
+          `Channel Handle: ${result.handle || 'Not available'}`,
+          `Canonical Channel URL: ${result.channelUrl}`,
+          `RSS Feed URL: ${result.rssUrl}`,
+          `Subscribers: ${result.subscriberCount || 'Not available'}`,
+          `Videos: ${result.videoCount || 'Not available'}`,
+          `Total Views: ${result.viewCount || 'Not available'}`,
+          `Country: ${result.country || 'Not available'}`,
+          `Published At: ${result.publishedAt || 'Not available'}`,
+          `Lookup Source: ${result.source}`,
+          `Retrieved At: ${result.retrievedAt}`
+        ].join('\n');
+      }
+
+      function downloadFile(filename, content, mimeType) {
+        try {
+          const blob = new Blob([content], { type: mimeType });
+          const url = URL.createObjectURL(blob);
+          const anchor = document.createElement('a');
+
+          anchor.href = url;
+          anchor.download = filename;
+          document.body.appendChild(anchor);
+          anchor.click();
+          anchor.remove();
+
+          setTimeout(() => URL.revokeObjectURL(url), 1000);
+        } catch (error) {
+          setStatus('The file could not be created in this browser.', 'error');
+        }
+      }
+
+      function resetTool() {
+        lookupInput.value = '';
+        lookupMode.value = 'auto';
+        apiKeyInput.value = rememberKey.checked ? apiKeyInput.value : '';
+        renderEmptyState();
+        setStatus('Enter a YouTube channel URL, handle, username, video URL, or channel ID.', 'info');
+        lookupInput.focus();
+      }
+
+      toggleKeyBtn.addEventListener('click', () => {
+        const isHidden = apiKeyInput.type === 'password';
+        apiKeyInput.type = isHidden ? 'text' : 'password';
+        toggleKeyBtn.textContent = isHidden ? 'Hide' : 'Show';
+      });
+
+      rememberKey.addEventListener('change', () => {
+        if (!rememberKey.checked) {
+          localStorage.removeItem(STORAGE_KEY);
+        } else if (apiKeyInput.value.trim()) {
+          localStorage.setItem(STORAGE_KEY, apiKeyInput.value.trim());
+        }
+      });
+
+      findBtn.addEventListener('click', performLookup);
+      resetBtn.addEventListener('click', resetTool);
+
+      lookupInput.addEventListener('keydown', event => {
+        if ((event.ctrlKey || event.metaKey) && event.key === 'Enter') {
+          performLookup();
+        }
+      });
+
+      copyIdTopBtn.addEventListener('click', () => {
+        if (currentResult) {
+          copyText(currentResult.channelId, copyIdTopBtn);
+        }
+      });
+
+      copyAllBtn.addEventListener('click', () => {
+        if (currentResult) {
+          copyText(resultAsText(currentResult), copyAllBtn);
+        }
+      });
+
+      downloadJsonBtn.addEventListener('click', () => {
+        if (!currentResult) return;
+
+        downloadFile(
+          `youtube-channel-${currentResult.channelId}.json`,
+          JSON.stringify(currentResult, null, 2),
+          'application/json;charset=utf-8'
+        );
+      });
+
+      downloadTextBtn.addEventListener('click', () => {
+        if (!currentResult) return;
+
+        downloadFile(
+          `youtube-channel-${currentResult.channelId}.txt`,
+          resultAsText(currentResult),
+          'text/plain;charset=utf-8'
+        );
+      });
+
+      try {
+        const savedKey = localStorage.getItem(STORAGE_KEY);
+
+        if (savedKey) {
+          apiKeyInput.value = savedKey;
+          rememberKey.checked = true;
+        }
+      } catch (error) {
+        console.warn('Local storage is unavailable.', error);
+      }
+
+      renderEmptyState();
+    })();
+  </script>
+</body>
+</html>
