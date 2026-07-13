@@ -1,0 +1,1651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>YouTube Timestamp Link Generator</title>
+  <meta name="description" content="Create shareable YouTube timestamp links from video URLs and custom start times instantly in your browser.">
+  <meta name="keywords" content="YouTube timestamp link generator, YouTube time link, YouTube start time URL, YouTube timestamp URL, YouTube share link at time, YouTube timestamp maker, YouTube deep link generator, video timestamp link, YouTube URL timestamp, YouTube time code generator">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="bingbot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
+  <link rel="canonical" href="https://nodntools.com/youtube-timestamp-link-generator">
+
+  <meta property="og:title" content="YouTube Timestamp Link Generator">
+  <meta property="og:description" content="Generate YouTube links that open videos at an exact hour, minute, and second.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nodntools.com/youtube-timestamp-link-generator">
+  <meta property="og:site_name" content="NodnWebTools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="YouTube Timestamp Link Generator">
+  <meta name="twitter:description" content="Create precise YouTube timestamp links for videos, Shorts, and shared URLs.">
+
+  <meta name="google-adsense-account" content="ca-pub-5282672325821404">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404" crossorigin="anonymous"></script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "YouTube Timestamp Link Generator",
+    "url": "https://nodntools.com/youtube-timestamp-link-generator",
+    "description": "A free browser-based tool for creating YouTube links that start videos at an exact timestamp.",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "NodnWebTools",
+      "url": "https://nodntools.com"
+    },
+    "featureList": [
+      "Generate YouTube timestamp links",
+      "Support standard YouTube URLs",
+      "Support youtu.be shared links",
+      "Support YouTube Shorts URLs",
+      "Convert hours, minutes, and seconds",
+      "Copy timestamp links",
+      "Download link reports",
+      "Generate Markdown and HTML links"
+    ]
+  }
+  </script>
+
+  <style>
+    html,
+    body {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      min-width: 0;
+    }
+
+    body {
+      background: #f8fafc;
+    }
+
+    input,
+    textarea,
+    select,
+    button,
+    code,
+    pre,
+    table,
+    canvas,
+    img,
+    svg {
+      max-width: 100%;
+    }
+
+    .safe-break {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .mobile-code {
+      overflow-wrap: anywhere;
+      word-break: break-all;
+      white-space: pre-wrap;
+    }
+
+    .ad-box {
+      width: 100%;
+      max-width: 100%;
+      min-height: 90px;
+      overflow: hidden;
+    }
+
+    .tool-card {
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .tool-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .article-content p {
+      margin-top: 1rem;
+      line-height: 1.85;
+      color: #475569;
+    }
+
+    .article-content h2 {
+      margin-top: 2.75rem;
+      font-size: 1.75rem;
+      font-weight: 800;
+      line-height: 1.3;
+      color: #0f172a;
+    }
+
+    .article-content h3 {
+      margin-top: 2rem;
+      font-size: 1.25rem;
+      font-weight: 750;
+      line-height: 1.4;
+      color: #1e293b;
+    }
+
+    .article-content ul,
+    .article-content ol {
+      margin-top: 1rem;
+      padding-left: 1.5rem;
+      color: #475569;
+    }
+
+    .article-content li {
+      margin-top: 0.7rem;
+      line-height: 1.75;
+    }
+
+    .article-content strong {
+      color: #1e293b;
+    }
+
+    .format-tab.active {
+      background: #4f46e5;
+      border-color: #4f46e5;
+      color: #ffffff;
+    }
+
+    .preview-frame {
+      aspect-ratio: 16 / 9;
+    }
+
+    @media (max-width: 640px) {
+      .mobile-card {
+        padding: 1rem !important;
+        border-radius: 1rem !important;
+      }
+
+      .mobile-panel {
+        padding: 1rem !important;
+      }
+
+      .mobile-preview {
+        padding: 1rem !important;
+      }
+
+      .mobile-button-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .mobile-button-grid button,
+      .mobile-button-grid a {
+        width: 100%;
+      }
+
+      .article-content h2 {
+        font-size: 1.45rem;
+      }
+
+      .article-content h3 {
+        font-size: 1.1rem;
+      }
+
+      .preview-frame {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .mobile-card {
+        padding: 0.8rem !important;
+        border-radius: 0.85rem !important;
+      }
+
+      .mobile-panel,
+      .mobile-preview {
+        padding: 0.8rem !important;
+      }
+
+      .mobile-heading {
+        font-size: 1.65rem !important;
+      }
+
+      .mobile-small-text {
+        font-size: 0.78rem !important;
+      }
+
+      .mobile-result {
+        font-size: 1rem !important;
+      }
+    }
+  </style>
+</head>
+
+<body class="min-h-screen bg-slate-50 text-slate-800 antialiased">
+  <header class="border-b border-slate-200 bg-white">
+    <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-5 sm:px-6 lg:px-8">
+      <a href="https://nodntools.com" class="safe-break text-xl font-extrabold tracking-tight text-slate-900" aria-label="NodnWebTools home">
+        Nodn<span class="text-violet-600">WebTools</span>
+      </a>
+
+      <a href="https://nodntools.com" class="rounded-xl border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-600 transition hover:border-violet-300 hover:bg-violet-50 hover:text-violet-700">
+        Home
+      </a>
+    </div>
+  </header>
+
+  <div class="mx-auto max-w-7xl px-4 pt-6 sm:px-6 lg:px-8">
+    <div class="ad-box flex items-center justify-center rounded-2xl border-2 border-dashed border-slate-300 bg-slate-100 px-4 text-center text-sm font-medium text-slate-500">
+      Advertisement
+    </div>
+  </div>
+
+  <main>
+    <section class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+      <div class="mb-8 max-w-4xl">
+        <div class="mb-4 inline-flex items-center gap-2 rounded-full bg-rose-100 px-4 py-2 text-sm font-semibold text-rose-700">
+          <span aria-hidden="true">▶</span>
+          Free YouTube sharing tool
+        </div>
+
+        <h1 class="mobile-heading text-4xl font-black tracking-tight text-slate-950 sm:text-5xl">
+          YouTube Timestamp Link Generator
+        </h1>
+
+        <p class="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
+          Create a YouTube link that opens a video at an exact hour, minute, and second. Paste any supported YouTube URL, choose the start time, and copy a clean shareable timestamp link instantly.
+        </p>
+      </div>
+
+      <div class="grid gap-7 lg:grid-cols-[1.02fr_0.98fr]">
+        <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8" aria-labelledby="tool-input-heading">
+          <div class="mb-7">
+            <h2 id="tool-input-heading" class="text-2xl font-bold text-slate-950">Create your timestamp link</h2>
+            <p class="mt-2 text-sm leading-6 text-slate-500">
+              The generator supports standard YouTube watch URLs, shortened youtu.be links, YouTube Shorts URLs, live links, and embed links.
+            </p>
+          </div>
+
+          <div class="space-y-6">
+            <div>
+              <label for="youtubeUrl" class="mb-2 block text-sm font-semibold text-slate-700">
+                YouTube video URL
+              </label>
+
+              <input
+                id="youtubeUrl"
+                type="url"
+                placeholder="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                autocomplete="off"
+                spellcheck="false"
+                class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3.5 text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-violet-500 focus:ring-4 focus:ring-violet-100"
+              >
+
+              <p class="mt-2 text-xs leading-5 text-slate-500">
+                Existing timestamp parameters will be detected when possible.
+              </p>
+            </div>
+
+            <div>
+              <label for="timestampText" class="mb-2 block text-sm font-semibold text-slate-700">
+                Timestamp
+              </label>
+
+              <input
+                id="timestampText"
+                type="text"
+                value="1:30"
+                placeholder="Examples: 1:30, 01:15:45, 90, 1h 30m 15s"
+                autocomplete="off"
+                spellcheck="false"
+                class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3.5 text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-violet-500 focus:ring-4 focus:ring-violet-100"
+              >
+
+              <p class="mt-2 text-xs leading-5 text-slate-500">
+                Use seconds, MM:SS, HH:MM:SS, or a format such as 1h 20m 30s.
+              </p>
+            </div>
+
+            <div>
+              <p class="mb-3 text-sm font-semibold text-slate-700">Or enter time manually</p>
+
+              <div class="grid grid-cols-3 gap-3">
+                <div>
+                  <label for="hours" class="mb-2 block text-xs font-bold uppercase tracking-wider text-slate-500">Hours</label>
+                  <input
+                    id="hours"
+                    type="number"
+                    min="0"
+                    step="1"
+                    value="0"
+                    inputmode="numeric"
+                    class="w-full rounded-xl border border-slate-300 px-3 py-3 text-center text-slate-900 outline-none transition focus:border-violet-500 focus:ring-4 focus:ring-violet-100"
+                  >
+                </div>
+
+                <div>
+                  <label for="minutes" class="mb-2 block text-xs font-bold uppercase tracking-wider text-slate-500">Minutes</label>
+                  <input
+                    id="minutes"
+                    type="number"
+                    min="0"
+                    step="1"
+                    value="1"
+                    inputmode="numeric"
+                    class="w-full rounded-xl border border-slate-300 px-3 py-3 text-center text-slate-900 outline-none transition focus:border-violet-500 focus:ring-4 focus:ring-violet-100"
+                  >
+                </div>
+
+                <div>
+                  <label for="seconds" class="mb-2 block text-xs font-bold uppercase tracking-wider text-slate-500">Seconds</label>
+                  <input
+                    id="seconds"
+                    type="number"
+                    min="0"
+                    step="1"
+                    value="30"
+                    inputmode="numeric"
+                    class="w-full rounded-xl border border-slate-300 px-3 py-3 text-center text-slate-900 outline-none transition focus:border-violet-500 focus:ring-4 focus:ring-violet-100"
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+              <div class="flex items-start gap-3">
+                <input
+                  id="useShortUrl"
+                  type="checkbox"
+                  class="mt-1 h-4 w-4 rounded border-slate-300 text-violet-600 focus:ring-violet-500"
+                >
+
+                <div>
+                  <label for="useShortUrl" class="cursor-pointer font-semibold text-slate-800">
+                    Use shortened youtu.be link
+                  </label>
+                  <p class="mt-1 text-sm leading-6 text-slate-500">
+                    Generate a compact sharing link instead of a full youtube.com watch URL.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div id="warningBox" class="hidden rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm leading-6 text-amber-800" role="alert"></div>
+
+            <div class="mobile-button-grid grid grid-cols-2 gap-3">
+              <button
+                type="button"
+                id="generateButton"
+                class="rounded-xl bg-violet-600 px-5 py-3.5 font-bold text-white shadow-sm transition hover:bg-violet-700 focus:outline-none focus:ring-4 focus:ring-violet-200"
+              >
+                Generate Link
+              </button>
+
+              <button
+                type="button"
+                id="resetButton"
+                class="rounded-xl border border-slate-300 bg-white px-5 py-3.5 font-bold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50 focus:outline-none focus:ring-4 focus:ring-slate-100"
+              >
+                Reset
+              </button>
+            </div>
+          </div>
+
+          <div class="mt-7 rounded-2xl border border-violet-100 bg-violet-50 p-5">
+            <div class="flex gap-3">
+              <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-violet-600 font-bold text-white" aria-hidden="true">
+                ✓
+              </div>
+
+              <div>
+                <h3 class="font-bold text-violet-950">Private browser-based processing</h3>
+                <p class="mt-1 text-sm leading-6 text-violet-800">
+                  Your URL and timestamp are processed locally in your browser. The tool does not upload your input to a server.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8" aria-labelledby="tool-result-heading">
+          <div class="flex flex-wrap items-start justify-between gap-4">
+            <div>
+              <h2 id="tool-result-heading" class="text-2xl font-bold text-slate-950">Generated result</h2>
+              <p id="videoIdStatus" class="mt-2 text-sm text-slate-500">Enter a valid YouTube URL to begin.</p>
+            </div>
+
+            <span class="rounded-full bg-emerald-100 px-3 py-1.5 text-xs font-bold text-emerald-700">
+              Live preview
+            </span>
+          </div>
+
+          <div class="mobile-preview mt-7 rounded-3xl bg-gradient-to-br from-violet-600 to-indigo-700 p-6 text-white shadow-lg shadow-violet-200 sm:p-8">
+            <p class="text-sm font-semibold text-violet-100">Start time</p>
+
+            <div class="mt-3 flex flex-wrap items-end gap-3">
+              <p id="formattedTime" class="text-4xl font-black tracking-tight sm:text-5xl">00:01:30</p>
+              <p id="totalSecondsLabel" class="pb-1 text-sm font-semibold text-violet-100">90 seconds</p>
+            </div>
+
+            <div class="mt-6 h-2.5 overflow-hidden rounded-full bg-white/20">
+              <div id="timeProgress" class="h-full rounded-full bg-white transition-all duration-300" style="width: 15%"></div>
+            </div>
+          </div>
+
+          <div class="mt-6">
+            <div class="flex flex-wrap gap-2">
+              <button type="button" data-format="url" class="format-tab active rounded-lg border border-violet-200 px-3 py-2 text-xs font-bold transition">
+                URL
+              </button>
+
+              <button type="button" data-format="markdown" class="format-tab rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs font-bold text-slate-600 transition hover:border-violet-300 hover:text-violet-700">
+                Markdown
+              </button>
+
+              <button type="button" data-format="html" class="format-tab rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs font-bold text-slate-600 transition hover:border-violet-300 hover:text-violet-700">
+                HTML
+              </button>
+
+              <button type="button" data-format="plain" class="format-tab rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs font-bold text-slate-600 transition hover:border-violet-300 hover:text-violet-700">
+                Text
+              </button>
+            </div>
+
+            <div class="mt-4 rounded-2xl border border-slate-200 bg-slate-950 p-5">
+              <p class="mb-3 text-xs font-bold uppercase tracking-wider text-slate-400">Generated output</p>
+              <code id="generatedOutput" class="mobile-code block min-h-16 text-sm leading-7 text-emerald-300">Paste a YouTube URL to generate a timestamp link.</code>
+            </div>
+          </div>
+
+          <div class="mobile-button-grid mt-5 grid grid-cols-2 gap-3">
+            <button
+              type="button"
+              id="copyButton"
+              disabled
+              class="rounded-xl border border-violet-200 bg-violet-50 px-5 py-3.5 font-bold text-violet-700 transition hover:bg-violet-100 focus:outline-none focus:ring-4 focus:ring-violet-100 disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              Copy Link
+            </button>
+
+            <button
+              type="button"
+              id="openButton"
+              disabled
+              class="rounded-xl border border-slate-300 bg-white px-5 py-3.5 font-bold text-slate-700 transition hover:bg-slate-50 focus:outline-none focus:ring-4 focus:ring-slate-100 disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              Open Video
+            </button>
+          </div>
+
+          <div class="mobile-button-grid mt-3 grid grid-cols-2 gap-3">
+            <button
+              type="button"
+              id="downloadButton"
+              disabled
+              class="rounded-xl border border-slate-300 bg-white px-5 py-3.5 font-bold text-slate-700 transition hover:bg-slate-50 focus:outline-none focus:ring-4 focus:ring-slate-100 disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              Download TXT
+            </button>
+
+            <button
+              type="button"
+              id="copyTimestampButton"
+              class="rounded-xl border border-slate-300 bg-white px-5 py-3.5 font-bold text-slate-700 transition hover:bg-slate-50 focus:outline-none focus:ring-4 focus:ring-slate-100"
+            >
+              Copy Timestamp
+            </button>
+          </div>
+
+          <p id="actionFeedback" class="mt-3 min-h-5 text-center text-sm font-semibold text-emerald-600" aria-live="polite"></p>
+
+          <div class="mt-6 rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <h3 class="font-bold text-slate-900">Video preview</h3>
+
+            <div id="previewPlaceholder" class="preview-frame mt-4 flex items-center justify-center rounded-2xl border-2 border-dashed border-slate-300 bg-white px-6 text-center text-sm leading-6 text-slate-500">
+              A preview will appear after you enter a valid YouTube URL.
+            </div>
+
+            <div id="previewContainer" class="preview-frame mt-4 hidden overflow-hidden rounded-2xl bg-slate-950">
+              <iframe
+                id="videoPreview"
+                class="h-full w-full"
+                src=""
+                title="YouTube timestamp preview"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+              ></iframe>
+            </div>
+          </div>
+
+          <div class="mt-6 rounded-xl border border-amber-200 bg-amber-50 p-4 text-xs leading-6 text-amber-800">
+            The preview uses YouTube's embedded player and may connect to YouTube when a valid video URL is entered. Availability depends on the video's privacy and embedding settings.
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="mx-auto max-w-7xl px-4 pb-10 sm:px-6 lg:px-8">
+      <div class="ad-box flex items-center justify-center rounded-2xl border-2 border-dashed border-slate-300 bg-slate-100 px-4 text-center text-sm font-medium text-slate-500">
+        Advertisement
+      </div>
+    </section>
+
+    <section class="border-y border-slate-200 bg-white">
+      <div class="article-content mx-auto max-w-5xl px-4 py-14 sm:px-6 lg:px-8">
+        <div class="max-w-3xl">
+          <p class="text-sm font-bold uppercase tracking-[0.18em] text-violet-600">
+            YouTube sharing guide
+          </p>
+          <h2 class="mt-3 text-3xl font-black text-slate-950">
+            How to Create a YouTube Timestamp Link
+          </h2>
+        </div>
+
+        <p>
+          A YouTube timestamp link is a special video URL that tells YouTube to begin playback at a specific point rather than at the beginning. Instead of sending someone a long video and asking them to skip forward manually, you can create a link that opens the video at the exact hour, minute, and second you want to highlight. This is useful for tutorials, lectures, podcasts, product demonstrations, interviews, music performances, webinars, gaming videos, educational lessons, reviews, news clips, and any other long-form video where only one section is immediately relevant.
+        </p>
+
+        <p>
+          The YouTube Timestamp Link Generator on this page converts a normal YouTube URL and a chosen time into a clean shareable link. You can paste a standard YouTube watch URL, a shortened youtu.be link, a YouTube Shorts URL, an embed URL, or a supported live video URL. The tool extracts the unique video ID, converts the entered time into total seconds, and adds the correct timestamp parameter to the generated link.
+        </p>
+
+        <p>
+          Everything required to build the link runs directly in your browser. You do not need to sign in to YouTube, install an extension, upload a file, or provide access to your Google account. The resulting URL can be copied into email, social media, messaging apps, online courses, support documentation, blog posts, website comments, or project notes.
+        </p>
+
+        <h2>What Is a YouTube Timestamp?</h2>
+
+        <p>
+          A timestamp is a reference to a particular moment in a video. It is normally written using hours, minutes, and seconds. A short video might use a timestamp such as 2:35, which means two minutes and thirty-five seconds. A longer podcast or livestream may use a timestamp such as 1:12:45, which means one hour, twelve minutes, and forty-five seconds.
+        </p>
+
+        <p>
+          YouTube can interpret timestamp information when it is added to a URL in a supported format. For standard watch links, the time is commonly represented with a query parameter such as <strong>t=90s</strong>. For shortened youtu.be links, the timestamp is added after a question mark or combined with other query parameters. The generator handles these details automatically so you do not have to manually edit the URL.
+        </p>
+
+        <p>
+          A timestamp does not edit, trim, download, or duplicate the original video. It simply changes the point where playback begins when someone opens the link. Viewers can still move backward, restart the video, or watch other sections unless YouTube itself restricts playback.
+        </p>
+
+        <h2>How the YouTube Timestamp Link Generator Works</h2>
+
+        <p>
+          The generator performs three main tasks. First, it analyzes the pasted YouTube address and extracts the video ID. The video ID is the unique sequence that identifies a specific video on YouTube. It appears in different places depending on the type of URL. In a normal watch link, it follows the <strong>v=</strong> parameter. In a youtu.be link, it appears directly after the domain. In a Shorts URL, it appears after the <strong>/shorts/</strong> path.
+        </p>
+
+        <p>
+          Second, the tool converts your time entry into total seconds. You can enter a time as plain seconds, MM:SS, HH:MM:SS, or a readable expression such as 1h 20m 15s. The tool also includes separate hour, minute, and second fields for users who prefer manual controls.
+        </p>
+
+        <p>
+          Third, the tool combines the extracted video ID with the timestamp value. You can choose a full youtube.com watch link or a shorter youtu.be address. The result can also be displayed as Markdown, HTML, or plain descriptive text for use in documentation, websites, content management systems, and developer projects.
+        </p>
+
+        <h2>How to Use This Tool</h2>
+
+        <div class="mt-7 grid gap-5 md:grid-cols-2">
+          <article class="rounded-2xl border border-slate-200 bg-slate-50 p-6">
+            <div class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-violet-100 font-black text-violet-700">1</div>
+            <h3 class="mt-0 text-lg font-bold text-slate-900">Paste the YouTube URL</h3>
+            <p class="mt-2 text-sm">
+              Copy the address of the YouTube video from your browser or the YouTube sharing menu, then paste it into the video URL field.
+            </p>
+          </article>
+
+          <article class="rounded-2xl border border-slate-200 bg-slate-50 p-6">
+            <div class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-violet-100 font-black text-violet-700">2</div>
+            <h3 class="mt-0 text-lg font-bold text-slate-900">Enter the start time</h3>
+            <p class="mt-2 text-sm">
+              Type a timestamp such as 4:20, 01:15:30, 260, or 1h 15m 30s. You can also use the separate hour, minute, and second boxes.
+            </p>
+          </article>
+
+          <article class="rounded-2xl border border-slate-200 bg-slate-50 p-6">
+            <div class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-violet-100 font-black text-violet-700">3</div>
+            <h3 class="mt-0 text-lg font-bold text-slate-900">Generate the link</h3>
+            <p class="mt-2 text-sm">
+              The tool creates a URL that starts playback at your selected moment. Choose the shortened link option when you want a compact address.
+            </p>
+          </article>
+
+          <article class="rounded-2xl border border-slate-200 bg-slate-50 p-6">
+            <div class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-violet-100 font-black text-violet-700">4</div>
+            <h3 class="mt-0 text-lg font-bold text-slate-900">Copy or export the result</h3>
+            <p class="mt-2 text-sm">
+              Copy the generated URL, open the video for testing, download a text report, or switch to Markdown and HTML output formats.
+            </p>
+          </article>
+        </div>
+
+        <h2>Supported YouTube URL Formats</h2>
+
+        <p>
+          YouTube uses several URL styles across desktop browsers, mobile apps, sharing menus, embedded players, and Shorts. A reliable timestamp tool should recognize the most common formats rather than requiring one exact link structure.
+        </p>
+
+        <ul>
+          <li><strong>Standard watch URLs:</strong> youtube.com/watch?v=VIDEO_ID</li>
+          <li><strong>Short sharing URLs:</strong> youtu.be/VIDEO_ID</li>
+          <li><strong>YouTube Shorts URLs:</strong> youtube.com/shorts/VIDEO_ID</li>
+          <li><strong>Embedded player URLs:</strong> youtube.com/embed/VIDEO_ID</li>
+          <li><strong>Live video URLs:</strong> youtube.com/live/VIDEO_ID</li>
+          <li><strong>Mobile URLs:</strong> m.youtube.com/watch?v=VIDEO_ID</li>
+          <li><strong>Privacy-enhanced embed URLs:</strong> youtube-nocookie.com/embed/VIDEO_ID</li>
+        </ul>
+
+        <p>
+          The generator normalizes supported inputs into a consistent output. Extra parameters such as playlists, tracking codes, feature labels, and existing timestamps are removed from the final clean link unless they are required for the video itself. This creates a simpler URL that is easier to share and understand.
+        </p>
+
+        <div class="ad-box my-12 flex items-center justify-center rounded-2xl border-2 border-dashed border-slate-300 bg-slate-100 px-4 text-center text-sm font-medium text-slate-500">
+          Advertisement
+        </div>
+
+        <h2>Popular Uses for YouTube Timestamp Links</h2>
+
+        <h3>Sharing a specific tutorial step</h3>
+
+        <p>
+          Long tutorials often contain introductions, setup instructions, troubleshooting sections, and multiple demonstrations. A timestamp link lets you direct a viewer to the exact step that answers a question. This is especially useful in customer support, software documentation, classroom assignments, and community forums where repeated explanations can be replaced with a precise video reference.
+        </p>
+
+        <h3>Highlighting a podcast quote</h3>
+
+        <p>
+          Video podcasts can last one or more hours. Sharing the full episode without context may make it difficult for a recipient to locate the relevant discussion. A timestamp link can open the podcast at a particular answer, quote, interview segment, or topic transition. You can include the generated link in a newsletter, research note, social post, or internal team message.
+        </p>
+
+        <h3>Referencing lectures and educational videos</h3>
+
+        <p>
+          Teachers and students can use timestamp links to reference definitions, worked examples, explanations, and important statements. A study guide can include several links to different moments in the same lecture. This makes review more efficient and reduces the need to repeatedly search through the full recording.
+        </p>
+
+        <h3>Creating meeting and webinar notes</h3>
+
+        <p>
+          Recorded webinars, presentations, and meetings may contain action items, decisions, demonstrations, and audience questions. Timestamp links can be added to meeting summaries so team members can reopen the recording at the relevant moment. This is particularly useful for remote teams, product training, onboarding, and recorded conference sessions.
+        </p>
+
+        <h3>Sharing music and performance moments</h3>
+
+        <p>
+          A concert video, DJ set, rehearsal, dance performance, or music compilation may contain multiple tracks or sections. A timestamp link can point directly to a song, solo, transition, or performance highlight. Viewers can still watch the complete video, but they begin at the moment that matters most.
+        </p>
+
+        <h3>Documenting bugs and software behavior</h3>
+
+        <p>
+          Developers and quality assurance teams often record screen captures that demonstrate bugs, interface problems, or unexpected behavior. A timestamp link can point directly to the moment when an error appears. The link can be included in an issue tracker, bug report, project management task, or team chat message.
+        </p>
+
+        <h3>Reviewing gaming videos and livestreams</h3>
+
+        <p>
+          Gaming videos and livestream replays can be several hours long. Timestamp links help players share important matches, strategies, mistakes, speedrun sections, boss battles, or funny moments. Coaches and esports teams can also use timestamps when reviewing gameplay footage.
+        </p>
+
+        <h3>Supporting content research</h3>
+
+        <p>
+          Writers, journalists, analysts, and researchers may need to cite a specific statement from a video source. A timestamp link provides a convenient way to preserve the location of that statement. Formal citation requirements vary, so users should still follow the appropriate citation style and verify the reliability of the source.
+        </p>
+
+        <h2>Understanding YouTube Timestamp URL Parameters</h2>
+
+        <p>
+          YouTube timestamp links generally use a time parameter that represents the starting point. A full watch link may look like a standard video URL followed by <strong>&t=90s</strong>. A short youtu.be link may use <strong>?t=90s</strong>. The letter <strong>s</strong> indicates that the value represents seconds.
+        </p>
+
+        <p>
+          Ninety seconds is equal to one minute and thirty seconds. A timestamp of one hour, two minutes, and three seconds becomes 3,723 total seconds. Converting the complete time into seconds creates a simple value that YouTube can interpret consistently.
+        </p>
+
+        <p>
+          Some YouTube interfaces generate timestamps using combinations such as 1h2m3s. These can also work in many situations, but total seconds are compact, predictable, and convenient for programmatic link generation. This tool therefore uses total seconds for the final URL while displaying a readable HH:MM:SS version in the result area.
+        </p>
+
+        <h2>Timestamp Links for YouTube Shorts</h2>
+
+        <p>
+          YouTube Shorts use a different page path from standard videos, but each Short still has a unique video ID. The generator extracts that ID and creates a standard watch link or shortened youtu.be link with a timestamp. This can be useful when a Short contains several quick moments and you want to highlight a specific point.
+        </p>
+
+        <p>
+          Because Shorts are usually brief, very large timestamps may exceed the video's length. YouTube may ignore the value, start near the end, or behave differently depending on the player. The generator cannot determine the duration of every video without requesting external data, so users should test the generated link before publishing it.
+        </p>
+
+        <h2>Using Timestamp Links in Markdown</h2>
+
+        <p>
+          Markdown is commonly used in GitHub, documentation systems, note-taking applications, forums, and content platforms. A Markdown link places readable text inside square brackets and the URL inside parentheses. This tool can automatically produce a Markdown link that includes the formatted timestamp.
+        </p>
+
+        <p>
+          For example, a Markdown result might display text such as “Watch at 00:04:20” while linking to the generated YouTube address. This is cleaner than pasting a raw URL into technical documentation or a project README file.
+        </p>
+
+        <h2>Using Timestamp Links in HTML</h2>
+
+        <p>
+          Website owners and developers can use the HTML output to create a clickable anchor element. The generated code includes a link that opens the timestamped YouTube video in a new browser tab and uses secure relationship attributes for external navigation.
+        </p>
+
+        <p>
+          The HTML output is intended for websites, blog editors, content management systems, help centers, and web applications that allow custom markup. Some platforms remove or sanitize HTML, so the plain URL or Markdown format may be more appropriate when direct HTML is not supported.
+        </p>
+
+        <h2>Why a Timestamp Link May Not Start at the Exact Time</h2>
+
+        <p>
+          Most valid public YouTube videos should open near the requested moment, but several factors can affect playback. The video may be private, deleted, age-restricted, region-restricted, unavailable, or disabled for embedding. The viewer may need to sign in before watching. Advertisements, player settings, mobile app behavior, or browser state may also affect the initial playback position.
+        </p>
+
+        <p>
+          Very short videos may not contain the requested time. Livestreams and premieres can behave differently while they are active. A timestamp created during a livestream may not correspond to the same point after the stream is processed or edited. Always test important links before including them in published content.
+        </p>
+
+        <h2>Best Practices for Sharing YouTube Time Links</h2>
+
+        <h3>Include a short description</h3>
+
+        <p>
+          A timestamp link is more useful when the recipient knows why the moment matters. Instead of sending only the URL, add a sentence such as “The installation step begins here” or “This answer explains the pricing change.” Context improves clarity and makes the link more likely to be opened.
+        </p>
+
+        <h3>Test the generated link</h3>
+
+        <p>
+          Use the Open Video button to confirm that the link starts at the expected moment. Testing is especially important for long videos, livestream replays, age-restricted content, and URLs copied from mobile apps.
+        </p>
+
+        <h3>Use readable timestamps in notes</h3>
+
+        <p>
+          The total-second value is useful for the URL, but HH:MM:SS is easier for people to read. The generator displays both forms and can produce descriptive plain text that includes the readable timestamp.
+        </p>
+
+        <h3>Avoid misleading context</h3>
+
+        <p>
+          A short clip or timestamped statement may not represent the complete meaning of a longer conversation. When accuracy matters, viewers should be encouraged to review enough surrounding content to understand the speaker's intent and context.
+        </p>
+
+        <h3>Respect copyright and platform rules</h3>
+
+        <p>
+          Sharing a normal link to publicly available content is different from downloading, copying, or republishing the video. Users remain responsible for complying with copyright law, YouTube's terms, privacy rules, workplace policies, and any restrictions that apply to the content.
+        </p>
+
+        <div class="ad-box my-12 flex items-center justify-center rounded-2xl border-2 border-dashed border-slate-300 bg-slate-100 px-4 text-center text-sm font-medium text-slate-500">
+          Advertisement
+        </div>
+
+        <h2>Frequently Asked Questions</h2>
+
+        <div class="mt-7 space-y-4">
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-bold text-slate-900">
+              How do I link to a specific time in a YouTube video?
+            </summary>
+            <p class="mt-3 text-sm">
+              Paste the YouTube URL into this generator, enter the desired hour, minute, and second, and copy the generated timestamp link.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-bold text-slate-900">
+              Can I use a timestamp longer than one hour?
+            </summary>
+            <p class="mt-3 text-sm">
+              Yes. Enter the time as HH:MM:SS, use a readable value such as 2h 10m 5s, or use the separate hour, minute, and second fields.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-bold text-slate-900">
+              Does the tool support youtu.be links?
+            </summary>
+            <p class="mt-3 text-sm">
+              Yes. It can read youtu.be sharing links and can also generate a new shortened youtu.be timestamp link.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-bold text-slate-900">
+              Does it work with YouTube Shorts?
+            </summary>
+            <p class="mt-3 text-sm">
+              Yes. The tool extracts the video ID from supported Shorts URLs and generates a timestamped watch or shortened link.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-bold text-slate-900">
+              Can I create a timestamp link on mobile?
+            </summary>
+            <p class="mt-3 text-sm">
+              Yes. The page is responsive and works in modern mobile browsers. Paste the copied YouTube sharing URL and enter the timestamp.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-bold text-slate-900">
+              Does this tool download the YouTube video?
+            </summary>
+            <p class="mt-3 text-sm">
+              No. It only creates a link to the original YouTube video. It does not download, copy, edit, or store the video.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-bold text-slate-900">
+              Why does the preview not load?
+            </summary>
+            <p class="mt-3 text-sm">
+              The video may be private, unavailable, region-restricted, age-restricted, or disabled for embedding. The timestamp link may still work when opened directly on YouTube.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-bold text-slate-900">
+              Can I use an existing timestamped URL?
+            </summary>
+            <p class="mt-3 text-sm">
+              Yes. The generator attempts to detect existing time parameters and places the detected value into the timestamp controls.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-bold text-slate-900">
+              What timestamp formats are accepted?
+            </summary>
+            <p class="mt-3 text-sm">
+              You can use seconds, MM:SS, HH:MM:SS, or text formats such as 1h 30m 15s.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-bold text-slate-900">
+              Is my YouTube URL uploaded to a server?
+            </summary>
+            <p class="mt-3 text-sm">
+              The generator processes the URL locally in your browser. The optional video preview loads YouTube's embedded player after a valid video is detected.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+      <div class="mb-8">
+        <p class="text-sm font-bold uppercase tracking-[0.18em] text-violet-600">
+          More YouTube utilities
+        </p>
+
+        <h2 class="mt-2 text-3xl font-black text-slate-950">Related Tools</h2>
+
+        <p class="mt-3 max-w-3xl leading-7 text-slate-600">
+          Explore more browser-based YouTube tools for embedding, video IDs, channel IDs, and thumbnail management.
+        </p>
+      </div>
+
+      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <a href="/youtube-embed-generator" class="tool-card group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm hover:border-rose-300 hover:shadow-lg">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-rose-50 text-2xl transition group-hover:bg-rose-600 group-hover:text-white">
+            &lt;/&gt;
+          </div>
+          <h3 class="mt-5 text-lg font-bold text-slate-900 group-hover:text-rose-700">
+            YouTube Embed Generator
+          </h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">
+            Create responsive YouTube iframe embed code with playback and display options.
+          </p>
+        </a>
+
+        <a href="/youtube-video-id-extractor" class="tool-card group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm hover:border-rose-300 hover:shadow-lg">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-rose-50 text-2xl transition group-hover:bg-rose-600 group-hover:text-white">
+            ID
+          </div>
+          <h3 class="mt-5 text-lg font-bold text-slate-900 group-hover:text-rose-700">
+            YouTube Video ID Extractor
+          </h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">
+            Extract the unique 11-character video ID from common YouTube URL formats.
+          </p>
+        </a>
+
+        <a href="/youtube-channel-id-finder" class="tool-card group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm hover:border-rose-300 hover:shadow-lg">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-rose-50 text-2xl transition group-hover:bg-rose-600 group-hover:text-white">
+            UC
+          </div>
+          <h3 class="mt-5 text-lg font-bold text-slate-900 group-hover:text-rose-700">
+            YouTube Channel ID Finder
+          </h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">
+            Find a YouTube channel's permanent UC-style identifier from a supported URL.
+          </p>
+        </a>
+
+        <a href="/youtube-thumbnail-viewer" class="tool-card group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm hover:border-rose-300 hover:shadow-lg">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-rose-50 text-2xl transition group-hover:bg-rose-600 group-hover:text-white">
+            👁
+          </div>
+          <h3 class="mt-5 text-lg font-bold text-slate-900 group-hover:text-rose-700">
+            YouTube Thumbnail Viewer
+          </h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">
+            Preview available YouTube thumbnail resolutions from a video URL.
+          </p>
+        </a>
+
+        <a href="/youtube-thumbnail-downloader" class="tool-card group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm hover:border-rose-300 hover:shadow-lg">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-rose-50 text-2xl transition group-hover:bg-rose-600 group-hover:text-white">
+            ↓
+          </div>
+          <h3 class="mt-5 text-lg font-bold text-slate-900 group-hover:text-rose-700">
+            YouTube Thumbnail Downloader
+          </h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">
+            View and save publicly available YouTube thumbnail images in multiple sizes.
+          </p>
+        </a>
+
+        <a href="/qr-generator" class="tool-card group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm hover:border-violet-300 hover:shadow-lg">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-violet-50 text-2xl transition group-hover:bg-violet-600 group-hover:text-white">
+            ▦
+          </div>
+          <h3 class="mt-5 text-lg font-bold text-slate-900 group-hover:text-violet-700">
+            QR Code Generator
+          </h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">
+            Turn a timestamped YouTube URL into a downloadable QR code for easy sharing.
+          </p>
+        </a>
+      </div>
+    </section>
+
+    <section class="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
+      <div class="ad-box flex items-center justify-center rounded-2xl border-2 border-dashed border-slate-300 bg-slate-100 px-4 text-center text-sm font-medium text-slate-500">
+        Advertisement
+      </div>
+    </section>
+
+    <section class="mx-auto max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
+      <div class="rounded-3xl border border-slate-700 bg-slate-900 p-6 text-slate-300 shadow-xl sm:p-8">
+        <h2 class="text-2xl font-black text-white">Legal Disclaimer</h2>
+
+        <p class="mt-4 leading-7">
+          This YouTube Timestamp Link Generator is provided for general informational and convenience purposes only. It creates links to content hosted by YouTube and does not host, download, copy, modify, store, or redistribute YouTube videos.
+        </p>
+
+        <p class="mt-4 leading-7">
+          Generated links may not work as expected when videos are private, removed, age-restricted, region-restricted, unavailable, edited, blocked from embedding, or otherwise limited by YouTube or the content owner. Timestamp accuracy can also vary based on advertisements, livestream processing, application behavior, browser settings, and platform changes.
+        </p>
+
+        <p class="mt-4 leading-7">
+          Users are responsible for verifying generated links before publishing or distributing them. Users must comply with applicable copyright laws, privacy requirements, workplace policies, YouTube terms, community guidelines, and any restrictions imposed by the video owner.
+        </p>
+
+        <p class="mt-4 leading-7">
+          The generator processes entered URLs locally in the browser. Loading the optional preview may connect directly to YouTube and may be subject to YouTube and Google privacy practices. Do not enter private, confidential, restricted, or sensitive URLs on a shared or untrusted device.
+        </p>
+
+        <p class="mt-4 leading-7">
+          NodnWebTools is not affiliated with, endorsed by, or sponsored by YouTube or Google. YouTube is a trademark of Google LLC.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-slate-200 bg-white">
+    <div class="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-8 text-sm text-slate-500 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
+      <p>© <span id="currentYear"></span> NodnWebTools. All rights reserved.</p>
+
+      <a href="https://nodntools.com" class="font-semibold text-slate-600 transition hover:text-violet-700">
+        Visit NodnWebTools
+      </a>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const elements = {
+        youtubeUrl: document.getElementById("youtubeUrl"),
+        timestampText: document.getElementById("timestampText"),
+        hours: document.getElementById("hours"),
+        minutes: document.getElementById("minutes"),
+        seconds: document.getElementById("seconds"),
+        useShortUrl: document.getElementById("useShortUrl"),
+        generateButton: document.getElementById("generateButton"),
+        resetButton: document.getElementById("resetButton"),
+        warningBox: document.getElementById("warningBox"),
+        videoIdStatus: document.getElementById("videoIdStatus"),
+        formattedTime: document.getElementById("formattedTime"),
+        totalSecondsLabel: document.getElementById("totalSecondsLabel"),
+        timeProgress: document.getElementById("timeProgress"),
+        generatedOutput: document.getElementById("generatedOutput"),
+        copyButton: document.getElementById("copyButton"),
+        openButton: document.getElementById("openButton"),
+        downloadButton: document.getElementById("downloadButton"),
+        copyTimestampButton: document.getElementById("copyTimestampButton"),
+        actionFeedback: document.getElementById("actionFeedback"),
+        previewPlaceholder: document.getElementById("previewPlaceholder"),
+        previewContainer: document.getElementById("previewContainer"),
+        videoPreview: document.getElementById("videoPreview"),
+        formatTabs: document.querySelectorAll(".format-tab")
+      };
+
+      let activeFormat = "url";
+      let latestResult = null;
+      let isUpdatingFromText = false;
+      let isUpdatingFromFields = false;
+      let feedbackTimer = null;
+
+      function safeInteger(value) {
+        const parsed = Number.parseInt(value, 10);
+        return Number.isFinite(parsed) && parsed >= 0 ? parsed : 0;
+      }
+
+      function normalizeVideoId(candidate) {
+        if (typeof candidate !== "string") {
+          return "";
+        }
+
+        const clean = candidate.trim().split(/[?&#/]/)[0];
+        return /^[a-zA-Z0-9_-]{11}$/.test(clean) ? clean : "";
+      }
+
+      function extractVideoId(input) {
+        if (!input || typeof input !== "string") {
+          return "";
+        }
+
+        const raw = input.trim();
+
+        if (/^[a-zA-Z0-9_-]{11}$/.test(raw)) {
+          return raw;
+        }
+
+        let value = raw;
+
+        if (!/^https?:\/\//i.test(value)) {
+          value = `https://${value}`;
+        }
+
+        try {
+          const url = new URL(value);
+          const hostname = url.hostname.replace(/^www\./, "").replace(/^m\./, "");
+
+          if (hostname === "youtu.be") {
+            return normalizeVideoId(url.pathname.split("/").filter(Boolean)[0] || "");
+          }
+
+          if (
+            hostname === "youtube.com" ||
+            hostname.endsWith(".youtube.com") ||
+            hostname === "youtube-nocookie.com" ||
+            hostname.endsWith(".youtube-nocookie.com")
+          ) {
+            const watchId = url.searchParams.get("v");
+
+            if (watchId) {
+              return normalizeVideoId(watchId);
+            }
+
+            const parts = url.pathname.split("/").filter(Boolean);
+            const supportedPrefixes = ["shorts", "embed", "live", "v"];
+
+            if (parts.length >= 2 && supportedPrefixes.includes(parts[0])) {
+              return normalizeVideoId(parts[1]);
+            }
+          }
+        } catch (error) {
+          console.warn("URL parsing failed:", error);
+        }
+
+        const patterns = [
+          /(?:youtube\.com\/watch\?.*v=)([a-zA-Z0-9_-]{11})/,
+          /(?:youtu\.be\/)([a-zA-Z0-9_-]{11})/,
+          /(?:youtube\.com\/shorts\/)([a-zA-Z0-9_-]{11})/,
+          /(?:youtube\.com\/embed\/)([a-zA-Z0-9_-]{11})/,
+          /(?:youtube\.com\/live\/)([a-zA-Z0-9_-]{11})/
+        ];
+
+        for (const pattern of patterns) {
+          const match = raw.match(pattern);
+
+          if (match && match[1]) {
+            return match[1];
+          }
+        }
+
+        return "";
+      }
+
+      function extractExistingTimestamp(input) {
+        if (!input || typeof input !== "string") {
+          return null;
+        }
+
+        let value = input.trim();
+
+        if (!/^https?:\/\//i.test(value)) {
+          value = `https://${value}`;
+        }
+
+        try {
+          const url = new URL(value);
+          const timestamp =
+            url.searchParams.get("t") ||
+            url.searchParams.get("start") ||
+            url.hash.replace(/^#t=/, "");
+
+          if (timestamp) {
+            const seconds = parseTimestamp(timestamp);
+            return Number.isFinite(seconds) ? seconds : null;
+          }
+        } catch (error) {
+          return null;
+        }
+
+        return null;
+      }
+
+      function parseTimestamp(value) {
+        if (value === null || value === undefined) {
+          return 0;
+        }
+
+        const input = String(value).trim().toLowerCase();
+
+        if (!input) {
+          return 0;
+        }
+
+        if (/^\d+$/.test(input)) {
+          return Math.max(0, Number.parseInt(input, 10));
+        }
+
+        if (/^\d{1,4}:\d{1,2}(?::\d{1,2})?$/.test(input)) {
+          const parts = input.split(":").map((part) => safeInteger(part));
+
+          if (parts.length === 2) {
+            return (parts[0] * 60) + parts[1];
+          }
+
+          if (parts.length === 3) {
+            return (parts[0] * 3600) + (parts[1] * 60) + parts[2];
+          }
+        }
+
+        const hourMatch = input.match(/(\d+)\s*h/);
+        const minuteMatch = input.match(/(\d+)\s*m/);
+        const secondMatch = input.match(/(\d+)\s*s/);
+
+        if (hourMatch || minuteMatch || secondMatch) {
+          const hours = hourMatch ? safeInteger(hourMatch[1]) : 0;
+          const minutes = minuteMatch ? safeInteger(minuteMatch[1]) : 0;
+          const seconds = secondMatch ? safeInteger(secondMatch[1]) : 0;
+
+          return (hours * 3600) + (minutes * 60) + seconds;
+        }
+
+        return NaN;
+      }
+
+      function totalSecondsFromFields() {
+        return (
+          safeInteger(elements.hours.value) * 3600 +
+          safeInteger(elements.minutes.value) * 60 +
+          safeInteger(elements.seconds.value)
+        );
+      }
+
+      function splitSeconds(totalSeconds) {
+        const safeSeconds = Math.max(0, safeInteger(totalSeconds));
+        const hours = Math.floor(safeSeconds / 3600);
+        const minutes = Math.floor((safeSeconds % 3600) / 60);
+        const seconds = safeSeconds % 60;
+
+        return { hours, minutes, seconds };
+      }
+
+      function formatTimestamp(totalSeconds) {
+        const parts = splitSeconds(totalSeconds);
+
+        return [
+          String(parts.hours).padStart(2, "0"),
+          String(parts.minutes).padStart(2, "0"),
+          String(parts.seconds).padStart(2, "0")
+        ].join(":");
+      }
+
+      function formatReadableTimestamp(totalSeconds) {
+        const parts = splitSeconds(totalSeconds);
+        const segments = [];
+
+        if (parts.hours > 0) {
+          segments.push(`${parts.hours} hour${parts.hours === 1 ? "" : "s"}`);
+        }
+
+        if (parts.minutes > 0) {
+          segments.push(`${parts.minutes} minute${parts.minutes === 1 ? "" : "s"}`);
+        }
+
+        if (parts.seconds > 0 || segments.length === 0) {
+          segments.push(`${parts.seconds} second${parts.seconds === 1 ? "" : "s"}`);
+        }
+
+        return segments.join(", ");
+      }
+
+      function buildUrls(videoId, totalSeconds) {
+        const seconds = Math.max(0, safeInteger(totalSeconds));
+
+        return {
+          full: `https://www.youtube.com/watch?v=${videoId}&t=${seconds}s`,
+          short: `https://youtu.be/${videoId}?t=${seconds}s`,
+          embed: `https://www.youtube.com/embed/${videoId}?start=${seconds}`
+        };
+      }
+
+      function getOutputForFormat(result, format) {
+        const selectedUrl = result.selectedUrl;
+        const time = result.formattedTime;
+
+        switch (format) {
+          case "markdown":
+            return `[Watch on YouTube at ${time}](${selectedUrl})`;
+
+          case "html":
+            return `<a href="${selectedUrl}" target="_blank" rel="noopener noreferrer">Watch on YouTube at ${time}</a>`;
+
+          case "plain":
+            return `Watch this YouTube video at ${time}: ${selectedUrl}`;
+
+          case "url":
+          default:
+            return selectedUrl;
+        }
+      }
+
+      function setWarning(message) {
+        if (!message) {
+          elements.warningBox.textContent = "";
+          elements.warningBox.classList.add("hidden");
+          return;
+        }
+
+        elements.warningBox.textContent = message;
+        elements.warningBox.classList.remove("hidden");
+      }
+
+      function showFeedback(message, isError = false) {
+        clearTimeout(feedbackTimer);
+
+        elements.actionFeedback.textContent = message;
+        elements.actionFeedback.className = `mt-3 min-h-5 text-center text-sm font-semibold ${isError ? "text-rose-600" : "text-emerald-600"}`;
+
+        feedbackTimer = setTimeout(() => {
+          elements.actionFeedback.textContent = "";
+        }, 2500);
+      }
+
+      function updateTimeDisplay(totalSeconds) {
+        const formatted = formatTimestamp(totalSeconds);
+        elements.formattedTime.textContent = formatted;
+        elements.totalSecondsLabel.textContent = `${totalSeconds.toLocaleString("en-US")} second${totalSeconds === 1 ? "" : "s"}`;
+
+        const progress = Math.min(100, Math.max(4, (totalSeconds % 600) / 6));
+        elements.timeProgress.style.width = `${progress}%`;
+      }
+
+      function updateFieldsFromSeconds(totalSeconds) {
+        const parts = splitSeconds(totalSeconds);
+
+        isUpdatingFromText = true;
+        elements.hours.value = String(parts.hours);
+        elements.minutes.value = String(parts.minutes);
+        elements.seconds.value = String(parts.seconds);
+        isUpdatingFromText = false;
+      }
+
+      function updateTextFromFields() {
+        const totalSeconds = totalSecondsFromFields();
+        const parts = splitSeconds(totalSeconds);
+
+        isUpdatingFromFields = true;
+
+        if (parts.hours > 0) {
+          elements.timestampText.value =
+            `${parts.hours}:${String(parts.minutes).padStart(2, "0")}:${String(parts.seconds).padStart(2, "0")}`;
+        } else {
+          elements.timestampText.value =
+            `${parts.minutes}:${String(parts.seconds).padStart(2, "0")}`;
+        }
+
+        isUpdatingFromFields = false;
+        updateTimeDisplay(totalSeconds);
+      }
+
+      function setActionState(enabled) {
+        elements.copyButton.disabled = !enabled;
+        elements.openButton.disabled = !enabled;
+        elements.downloadButton.disabled = !enabled;
+      }
+
+      function updatePreview(videoId, totalSeconds) {
+        if (!videoId) {
+          elements.videoPreview.src = "";
+          elements.previewContainer.classList.add("hidden");
+          elements.previewPlaceholder.classList.remove("hidden");
+          return;
+        }
+
+        const embedUrl = `https://www.youtube.com/embed/${videoId}?start=${totalSeconds}&rel=0`;
+        elements.videoPreview.src = embedUrl;
+        elements.previewPlaceholder.classList.add("hidden");
+        elements.previewContainer.classList.remove("hidden");
+      }
+
+      function renderOutput() {
+        if (!latestResult) {
+          elements.generatedOutput.textContent = "Paste a YouTube URL to generate a timestamp link.";
+          return;
+        }
+
+        elements.generatedOutput.textContent = getOutputForFormat(latestResult, activeFormat);
+      }
+
+      function generateLink(options = {}) {
+        try {
+          const rawUrl = elements.youtubeUrl.value.trim();
+          const videoId = extractVideoId(rawUrl);
+          const parsedTimestamp = parseTimestamp(elements.timestampText.value);
+          const totalSeconds = Number.isFinite(parsedTimestamp)
+            ? parsedTimestamp
+            : totalSecondsFromFields();
+
+          updateTimeDisplay(totalSeconds);
+
+          if (!rawUrl) {
+            setWarning("Enter a YouTube video URL to generate a timestamp link.");
+            elements.videoIdStatus.textContent = "Enter a valid YouTube URL to begin.";
+            latestResult = null;
+            setActionState(false);
+            updatePreview("", 0);
+            renderOutput();
+            return;
+          }
+
+          if (!videoId) {
+            setWarning("The URL does not contain a valid YouTube video ID. Check the link and try again.");
+            elements.videoIdStatus.textContent = "No valid YouTube video ID detected.";
+            latestResult = null;
+            setActionState(false);
+            updatePreview("", 0);
+            renderOutput();
+            return;
+          }
+
+          if (!Number.isFinite(parsedTimestamp)) {
+            setWarning("The timestamp format is not valid. Use seconds, MM:SS, HH:MM:SS, or a format such as 1h 30m 15s.");
+            elements.videoIdStatus.textContent = `Video ID: ${videoId}`;
+            latestResult = null;
+            setActionState(false);
+            updatePreview("", 0);
+            renderOutput();
+            return;
+          }
+
+          setWarning("");
+
+          const urls = buildUrls(videoId, totalSeconds);
+          const selectedUrl = elements.useShortUrl.checked ? urls.short : urls.full;
+
+          latestResult = {
+            videoId,
+            totalSeconds,
+            formattedTime: formatTimestamp(totalSeconds),
+            readableTime: formatReadableTimestamp(totalSeconds),
+            fullUrl: urls.full,
+            shortUrl: urls.short,
+            embedUrl: urls.embed,
+            selectedUrl
+          };
+
+          elements.videoIdStatus.textContent = `Video ID: ${videoId}`;
+          setActionState(true);
+          renderOutput();
+
+          if (options.updatePreview !== false) {
+            updatePreview(videoId, totalSeconds);
+          }
+        } catch (error) {
+          console.error("Generation error:", error);
+          setWarning("The link could not be generated. Check your input and try again.");
+          latestResult = null;
+          setActionState(false);
+          renderOutput();
+        }
+      }
+
+      async function copyText(text, successMessage) {
+        try {
+          if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(text);
+          } else {
+            const textarea = document.createElement("textarea");
+            textarea.value = text;
+            textarea.style.position = "fixed";
+            textarea.style.opacity = "0";
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand("copy");
+            textarea.remove();
+          }
+
+          showFeedback(successMessage);
+        } catch (error) {
+          console.error("Copy error:", error);
+          showFeedback("Unable to copy the text.", true);
+        }
+      }
+
+      function copyGeneratedOutput() {
+        if (!latestResult) {
+          showFeedback("Generate a valid link first.", true);
+          return;
+        }
+
+        const value = getOutputForFormat(latestResult, activeFormat);
+        const originalText = elements.copyButton.textContent;
+
+        copyText(value, "Copied!").then(() => {
+          elements.copyButton.textContent = "Copied!";
+
+          setTimeout(() => {
+            elements.copyButton.textContent = originalText;
+          }, 1800);
+        });
+      }
+
+      function openVideo() {
+        if (!latestResult) {
+          showFeedback("Generate a valid link first.", true);
+          return;
+        }
+
+        window.open(latestResult.selectedUrl, "_blank", "noopener,noreferrer");
+      }
+
+      function downloadReport() {
+        if (!latestResult) {
+          showFeedback("Generate a valid link first.", true);
+          return;
+        }
+
+        try {
+          const report = [
+            "YOUTUBE TIMESTAMP LINK REPORT",
+            "NodnWebTools",
+            "",
+            `Video ID: ${latestResult.videoId}`,
+            `Timestamp: ${latestResult.formattedTime}`,
+            `Readable time: ${latestResult.readableTime}`,
+            `Total seconds: ${latestResult.totalSeconds}`,
+            "",
+            `Full URL: ${latestResult.fullUrl}`,
+            `Short URL: ${latestResult.shortUrl}`,
+            `Embed URL: ${latestResult.embedUrl}`,
+            "",
+            `Generated: ${new Date().toLocaleString("en-CA")}`,
+            "https://nodntools.com"
+          ].join("\n");
+
+          const blob = new Blob([report], { type: "text/plain;charset=utf-8" });
+          const objectUrl = URL.createObjectURL(blob);
+          const link = document.createElement("a");
+
+          link.href = objectUrl;
+          link.download = `youtube-timestamp-${latestResult.videoId}-${latestResult.totalSeconds}s.txt`;
+
+          document.body.appendChild(link);
+          link.click();
+          link.remove();
+
+          setTimeout(() => URL.revokeObjectURL(objectUrl), 1000);
+          showFeedback("Text report downloaded.");
+        } catch (error) {
+          console.error("Download error:", error);
+          showFeedback("Unable to download the report.", true);
+        }
+      }
+
+      function copyTimestamp() {
+        const totalSeconds = Number.isFinite(parseTimestamp(elements.timestampText.value))
+          ? parseTimestamp(elements.timestampText.value)
+          : totalSecondsFromFields();
+
+        copyText(formatTimestamp(totalSeconds), "Timestamp copied!");
+      }
+
+      function resetTool() {
+        elements.youtubeUrl.value = "";
+        elements.timestampText.value = "1:30";
+        elements.hours.value = "0";
+        elements.minutes.value = "1";
+        elements.seconds.value = "30";
+        elements.useShortUrl.checked = false;
+
+        activeFormat = "url";
+        latestResult = null;
+
+        elements.formatTabs.forEach((tab) => {
+          const isActive = tab.dataset.format === "url";
+          tab.classList.toggle("active", isActive);
+        });
+
+        setWarning("");
+        setActionState(false);
+        updateTimeDisplay(90);
+        updatePreview("", 0);
+
+        elements.videoIdStatus.textContent = "Enter a valid YouTube URL to begin.";
+        elements.generatedOutput.textContent = "Paste a YouTube URL to generate a timestamp link.";
+        elements.actionFeedback.textContent = "";
+      }
+
+      elements.timestampText.addEventListener("input", () => {
+        if (isUpdatingFromFields) {
+          return;
+        }
+
+        const totalSeconds = parseTimestamp(elements.timestampText.value);
+
+        if (Number.isFinite(totalSeconds)) {
+          updateFieldsFromSeconds(totalSeconds);
+          updateTimeDisplay(totalSeconds);
+        }
+
+        generateLink({ updatePreview: false });
+      });
+
+      [elements.hours, elements.minutes, elements.seconds].forEach((input) => {
+        input.addEventListener("input", () => {
+          if (isUpdatingFromText) {
+            return;
+          }
+
+          updateTextFromFields();
+          generateLink({ updatePreview: false });
+        });
+      });
+
+      elements.youtubeUrl.addEventListener("input", () => {
+        const existingTime = extractExistingTimestamp(elements.youtubeUrl.value);
+
+        if (existingTime !== null && existingTime >= 0) {
+          updateFieldsFromSeconds(existingTime);
+
+          const parts = splitSeconds(existingTime);
+          isUpdatingFromFields = true;
+
+          elements.timestampText.value = parts.hours > 0
+            ? `${parts.hours}:${String(parts.minutes).padStart(2, "0")}:${String(parts.seconds).padStart(2, "0")}`
+            : `${parts.minutes}:${String(parts.seconds).padStart(2, "0")}`;
+
+          isUpdatingFromFields = false;
+        }
+
+        generateLink();
+      });
+
+      elements.useShortUrl.addEventListener("change", () => {
+        generateLink({ updatePreview: false });
+      });
+
+      elements.generateButton.addEventListener("click", () => {
+        generateLink();
+      });
+
+      elements.resetButton.addEventListener("click", resetTool);
+      elements.copyButton.addEventListener("click", copyGeneratedOutput);
+      elements.openButton.addEventListener("click", openVideo);
+      elements.downloadButton.addEventListener("click", downloadReport);
+      elements.copyTimestampButton.addEventListener("click", copyTimestamp);
+
+      elements.formatTabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          activeFormat = tab.dataset.format || "url";
+
+          elements.formatTabs.forEach((item) => {
+            item.classList.toggle("active", item === tab);
+          });
+
+          renderOutput();
+        });
+      });
+
+      window.addEventListener("resize", () => {
+        document.documentElement.style.setProperty("--viewport-width", `${window.innerWidth}px`);
+      });
+
+      document.getElementById("currentYear").textContent = new Date().getFullYear();
+      resetTool();
+    })();
+  </script>
+</body>
+</html>
