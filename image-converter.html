@@ -1,36 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
-	<link rel="icon" type="image/png" href="/favicon.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
 
-  <title>Free Image Converter | PNG, JPG, WebP Photo Format Tool - NodnWebTools</title>
- <meta name="description" content="Convert PNG, JPG, and WebP images locally in your browser with preview, resize, quality control, and secure download." />
-  <meta name="keywords" content="image converter, PNG to JPG, JPG to PNG, WebP converter, photo format converter, online image converter, client-side image tool, image quality compressor, NodnWebTools" />
-  <meta name="robots" content="index, follow" />
-  <meta name="author" content="NodnWebTools" />
-
-  <meta property="og:title" content="Free Image Converter | NodnWebTools" />
-  <meta property="og:description" content="Convert PNG, JPG, and WebP images safely in your browser with live preview, quality control, resizing, and one-click download." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://nodntools.com/image-converter.html" />
-  <meta property="og:site_name" content="NodnWebTools" />
-
+  <title>Free Image Converter: PNG, JPG & WebP | NodnWebTools</title>
+  <meta name="description" content="Convert PNG, JPG, JPEG, and WebP images online with local processing, resizing, quality control, preview, and secure browser downloads.">
+  <meta name="keywords" content="free image converter, online image converter, PNG to JPG converter, JPG to PNG converter, JPEG to WebP converter, WebP to JPG converter, PNG to WebP converter, WebP to PNG converter, image format converter, photo format converter, picture converter, convert image online, browser image converter, private image converter, local image conversion, no upload image converter, image resize tool, photo quality converter, image compression tool, JPG converter, JPEG converter, PNG converter, WebP converter, secure image converter, image file converter, online photo converter, image optimizer, website image optimization, compress image online">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="NodnWebTools">
   <meta name="google-adsense-account" content="ca-pub-5282672325821404">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404" crossorigin="anonymous"></script>
 
+  <meta property="og:title" content="Free Image Converter: PNG, JPG and WebP">
+  <meta property="og:description" content="Convert and resize PNG, JPG, JPEG, and WebP images locally in your browser with quality controls and instant downloads.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nodntools.com/image-converter">
+  <meta property="og:site_name" content="NodnWebTools">
+
+  <link rel="canonical" href="https://nodntools.com/image-converter">
+  <link rel="icon" type="image/png" href="/favicon.png">
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404" crossorigin="anonymous"></script>
   <script src="https://cdn.tailwindcss.com"></script>
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": "Image Converter",
+    "name": "Free Image Converter",
+    "alternateName": "PNG, JPG and WebP Image Converter",
+    "url": "https://nodntools.com/image-converter",
+    "description": "A free client-side image converter for converting, resizing, previewing, and downloading PNG, JPG, JPEG, and WebP images.",
     "applicationCategory": "MultimediaApplication",
+    "applicationSubCategory": "Image Conversion Tool",
     "operatingSystem": "Any",
-    "url": "https://nodntools.com/image-converter.html",
-    "description": "A free browser-based image converter for converting PNG, JPG, and WebP files with preview, quality adjustment, resizing, and local download.",
+    "browserRequirements": "Requires JavaScript and a modern web browser",
+    "isAccessibleForFree": true,
+    "featureList": [
+      "PNG to JPG conversion",
+      "JPG to PNG conversion",
+      "JPG to WebP conversion",
+      "PNG to WebP conversion",
+      "WebP to JPG conversion",
+      "WebP to PNG conversion",
+      "Image resizing",
+      "Image quality adjustment",
+      "Local browser processing",
+      "Instant image download"
+    ],
     "offers": {
       "@type": "Offer",
       "price": "0",
@@ -41,6 +58,55 @@
       "name": "NodnWebTools",
       "url": "https://nodntools.com"
     }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Are images uploaded to a server?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. The converter processes selected images locally in the browser using JavaScript and canvas."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which image formats can I convert?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The tool accepts common browser-readable formats including PNG, JPG, JPEG, WebP, BMP, and many static GIF files. Output formats include JPG, PNG, and WebP."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does converting JPG to PNG improve image quality?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Converting JPG to PNG cannot restore image details that were previously removed by JPG compression."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What happens to transparency when converting to JPG?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "JPG does not support transparency. Transparent areas are placed over a white background during conversion."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can this image converter reduce file size?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Reducing image dimensions or exporting to JPG or WebP with a lower quality setting can reduce file size."
+        }
+      }
+    ]
   }
   </script>
 
@@ -67,10 +133,7 @@
     input,
     select,
     button,
-    textarea {
-      max-width: 100%;
-    }
-
+    textarea,
     img,
     canvas,
     svg,
@@ -91,6 +154,7 @@
     .mobile-preview,
     .mobile-code,
     .ad-box {
+      width: 100%;
       max-width: 100%;
       overflow-x: hidden;
     }
@@ -109,11 +173,22 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      padding: 1rem;
       text-align: center;
       border-radius: 1rem;
-      padding: 1rem;
       font-size: 0.875rem;
       line-height: 1.5;
+    }
+
+    .checkerboard {
+      background-color: #f8fafc;
+      background-image:
+        linear-gradient(45deg, #e2e8f0 25%, transparent 25%),
+        linear-gradient(-45deg, #e2e8f0 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #e2e8f0 75%),
+        linear-gradient(-45deg, transparent 75%, #e2e8f0 75%);
+      background-position: 0 0, 0 9px, 9px -9px, -9px 0;
+      background-size: 18px 18px;
     }
 
     .drop-active {
@@ -121,38 +196,31 @@
       background: #eef2ff !important;
     }
 
-    .checkerboard {
-      background-image:
-        linear-gradient(45deg, #e2e8f0 25%, transparent 25%),
-        linear-gradient(-45deg, #e2e8f0 25%, transparent 25%),
-        linear-gradient(45deg, transparent 75%, #e2e8f0 75%),
-        linear-gradient(-45deg, transparent 75%, #e2e8f0 75%);
-      background-size: 18px 18px;
-      background-position: 0 0, 0 9px, 9px -9px, -9px 0;
-    }
-
     .range-slider {
       accent-color: #4f46e5;
     }
 
-    @media (max-width: 640px) {
-      body {
-        padding-left: 0;
-        padding-right: 0;
-      }
+    .article-copy p {
+      margin-top: 1.1rem;
+    }
 
+    .article-copy p:first-child {
+      margin-top: 0;
+    }
+
+    @media (max-width: 640px) {
       .mobile-card {
-        border-radius: 1.25rem;
-        padding: 1rem;
+        padding: 1rem !important;
+        border-radius: 1.25rem !important;
       }
 
       .mobile-panel {
-        border-radius: 1rem;
-        padding: 0.875rem;
+        padding: 0.875rem !important;
+        border-radius: 1rem !important;
       }
 
       .mobile-preview {
-        min-height: 190px;
+        min-height: 190px !important;
       }
 
       .mobile-button-grid {
@@ -170,20 +238,20 @@
 
       .ad-box {
         min-height: 90px;
-        border-radius: 0.875rem;
         padding: 0.875rem;
+        border-radius: 0.875rem;
         font-size: 0.75rem;
       }
     }
 
     @media (max-width: 380px) {
       .mobile-card {
-        padding: 0.875rem;
-        border-radius: 1rem;
+        padding: 0.875rem !important;
+        border-radius: 1rem !important;
       }
 
       .mobile-panel {
-        padding: 0.75rem;
+        padding: 0.75rem !important;
       }
 
       h1 {
@@ -191,11 +259,11 @@
       }
 
       h2 {
-        font-size: 1.35rem !important;
+        font-size: 1.4rem !important;
       }
 
       .mobile-preview {
-        min-height: 165px;
+        min-height: 165px !important;
       }
 
       .ad-box {
@@ -208,14 +276,19 @@
 <body class="bg-slate-50 text-slate-800">
   <div class="w-full px-4 py-5 sm:px-6 lg:px-8">
     <header class="mx-auto flex w-full max-w-7xl flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-      <a href="https://nodntools.com" class="inline-flex items-center gap-2 safe-break" aria-label="NodnWebTools Home">
+      <a href="https://nodntools.com" class="inline-flex items-center safe-break" aria-label="NodnWebTools Home">
         <span class="text-2xl font-black tracking-tight text-slate-950">
           Nodn<span class="text-indigo-600">WebTools</span>
         </span>
       </a>
-      <nav class="flex flex-wrap items-center gap-2 text-sm text-slate-500">
-        <a href="https://nodntools.com" class="rounded-full border border-slate-200 bg-white px-4 py-2 font-semibold transition hover:border-indigo-200 hover:text-indigo-700">Home</a>
-        <span class="rounded-full bg-indigo-50 px-4 py-2 font-semibold text-indigo-700">Client-side image utility</span>
+
+      <nav class="flex flex-wrap items-center gap-2 text-sm">
+        <a href="https://nodntools.com" class="rounded-full border border-slate-200 bg-white px-4 py-2 font-semibold text-slate-600 transition hover:border-indigo-300 hover:text-indigo-700">
+          Home
+        </a>
+        <span class="rounded-full bg-indigo-50 px-4 py-2 font-semibold text-indigo-700">
+          Private browser image tool
+        </span>
       </nav>
     </header>
 
@@ -225,34 +298,59 @@
 
     <main class="mx-auto mt-6 grid w-full max-w-7xl grid-cols-1 gap-6 lg:grid-cols-12">
       <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:col-span-5 lg:p-8">
-        <div class="mb-6">
-          <p class="mb-3 inline-flex rounded-full bg-indigo-50 px-4 py-2 text-sm font-bold text-indigo-700">Image Converter</p>
-          <h1 class="text-4xl font-black tracking-tight text-slate-950 sm:text-5xl">Convert images safely in your browser.</h1>
+        <div>
+          <p class="inline-flex rounded-full bg-indigo-50 px-4 py-2 text-sm font-bold text-indigo-700">
+            Free Image Converter
+          </p>
+
+          <h1 class="mt-4 text-4xl font-black tracking-tight text-slate-950 sm:text-5xl">
+            Convert PNG, JPG, and WebP images online.
+          </h1>
+
           <p class="mt-4 text-base leading-7 text-slate-600">
-            Convert PNG, JPG, and WebP files without uploading your images to a server. Preview the image, adjust quality, optionally resize it, and download the converted file locally.
+            Convert image files directly in your browser without intentionally uploading them to a conversion server. Choose JPG, PNG, or WebP, adjust quality, resize the image, preview the source file, and download the converted result.
           </p>
         </div>
 
-        <div class="mobile-panel rounded-2xl border border-slate-200 bg-slate-50 p-4">
-          <label class="mb-3 block text-sm font-bold text-slate-700">Select an image file</label>
-          <div id="dropZone" class="relative flex min-h-[190px] w-full cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed border-slate-300 bg-white p-5 text-center transition hover:border-indigo-300 hover:bg-indigo-50/40">
-            <input id="fileInput" type="file" accept="image/png,image/jpeg,image/webp,image/bmp,image/gif" class="absolute inset-0 z-20 h-full w-full cursor-pointer opacity-0" aria-label="Choose image file" />
+        <div class="mobile-panel mt-6 rounded-2xl border border-slate-200 bg-slate-50 p-4">
+          <label class="mb-3 block text-sm font-bold text-slate-700" for="fileInput">
+            Select an image
+          </label>
+
+          <div id="dropZone" class="relative flex min-h-[190px] cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed border-slate-300 bg-white p-5 text-center transition hover:border-indigo-300 hover:bg-indigo-50/50">
+            <input
+              id="fileInput"
+              type="file"
+              accept="image/png,image/jpeg,image/webp,image/bmp,image/gif"
+              class="absolute inset-0 z-20 h-full w-full cursor-pointer opacity-0"
+              aria-label="Choose an image file"
+            >
+
             <div class="pointer-events-none relative z-10 flex flex-col items-center">
               <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-indigo-50 text-indigo-600">
                 <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.6-4.6a2 2 0 012.8 0L16 16m-2-2l1.6-1.6a2 2 0 012.8 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                 </svg>
               </div>
-              <p id="fileInputLabel" class="mt-3 max-w-full text-sm font-black text-slate-800 safe-break">Click to browse or drag and drop an image here</p>
-              <p class="mt-1 text-xs leading-5 text-slate-500">Supports PNG, JPG, JPEG, WebP, BMP, and most static GIF files.</p>
+
+              <p id="fileInputLabel" class="mt-3 max-w-full text-sm font-black text-slate-800 safe-break">
+                Click to browse or drag and drop an image
+              </p>
+
+              <p class="mt-1 text-xs leading-5 text-slate-500">
+                Supports PNG, JPG, JPEG, WebP, BMP, and many static GIF files.
+              </p>
             </div>
           </div>
         </div>
 
         <div class="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div>
-            <label for="targetFormat" class="mb-2 block text-sm font-bold text-slate-700">Convert to</label>
-            <select id="targetFormat" class="w-full rounded-2xl border border-slate-300 bg-white px-4 py-4 text-base font-semibold text-slate-900 outline-none transition focus:border-indigo-400 focus:ring-4 focus:ring-indigo-100">
+            <label for="targetFormat" class="mb-2 block text-sm font-bold text-slate-700">
+              Output format
+            </label>
+
+            <select id="targetFormat" class="w-full rounded-2xl border border-slate-300 bg-white px-4 py-4 font-semibold text-slate-900 outline-none transition focus:border-indigo-400 focus:ring-4 focus:ring-indigo-100">
               <option value="image/jpeg">JPEG (.jpg)</option>
               <option value="image/png">PNG (.png)</option>
               <option value="image/webp" selected>WebP (.webp)</option>
@@ -260,43 +358,64 @@
           </div>
 
           <div>
-            <label for="imageQuality" class="mb-2 block text-sm font-bold text-slate-700">Quality: <span id="qualityDisplay">90%</span></label>
+            <label for="imageQuality" class="mb-2 block text-sm font-bold text-slate-700">
+              Quality: <span id="qualityDisplay">90%</span>
+            </label>
+
             <div class="flex h-[58px] items-center rounded-2xl border border-slate-300 bg-white px-4">
-              <input id="imageQuality" type="range" min="10" max="100" value="90" class="range-slider w-full cursor-pointer" />
+              <input id="imageQuality" type="range" min="10" max="100" value="90" class="range-slider w-full cursor-pointer">
             </div>
           </div>
         </div>
 
         <div class="mt-5 rounded-2xl border border-slate-200 bg-white p-4">
           <div class="flex items-start gap-3">
-            <input id="resizeToggle" type="checkbox" class="mt-1 h-4 w-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500" />
+            <input id="resizeToggle" type="checkbox" class="mt-1 h-4 w-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500">
+
             <div>
-              <label for="resizeToggle" class="block text-sm font-black text-slate-800">Resize image</label>
-              <p class="mt-1 text-sm leading-6 text-slate-500">Keep this off to preserve the original image dimensions.</p>
+              <label for="resizeToggle" class="block text-sm font-black text-slate-800">
+                Resize image
+              </label>
+
+              <p class="mt-1 text-sm leading-6 text-slate-500">
+                Leave this option disabled to preserve the original pixel dimensions.
+              </p>
             </div>
           </div>
 
-          <div id="resizeControls" class="mt-4 hidden grid grid-cols-1 gap-3 sm:grid-cols-2">
+          <div id="resizeControls" class="mt-4 hidden grid-cols-1 gap-3 sm:grid-cols-2">
             <div>
-              <label for="resizeWidth" class="mb-2 block text-xs font-black uppercase tracking-widest text-slate-400">Width</label>
-              <input id="resizeWidth" type="number" min="1" step="1" class="w-full rounded-xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm font-semibold outline-none transition focus:border-indigo-400 focus:ring-4 focus:ring-indigo-100" placeholder="Width in px" />
+              <label for="resizeWidth" class="mb-2 block text-xs font-black uppercase tracking-widest text-slate-400">
+                Width
+              </label>
+
+              <input id="resizeWidth" type="number" min="1" step="1" placeholder="Width in pixels" class="w-full rounded-xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm font-semibold outline-none transition focus:border-indigo-400 focus:ring-4 focus:ring-indigo-100">
             </div>
+
             <div>
-              <label for="resizeHeight" class="mb-2 block text-xs font-black uppercase tracking-widest text-slate-400">Height</label>
-              <input id="resizeHeight" type="number" min="1" step="1" class="w-full rounded-xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm font-semibold outline-none transition focus:border-indigo-400 focus:ring-4 focus:ring-indigo-100" placeholder="Height in px" />
+              <label for="resizeHeight" class="mb-2 block text-xs font-black uppercase tracking-widest text-slate-400">
+                Height
+              </label>
+
+              <input id="resizeHeight" type="number" min="1" step="1" placeholder="Height in pixels" class="w-full rounded-xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm font-semibold outline-none transition focus:border-indigo-400 focus:ring-4 focus:ring-indigo-100">
             </div>
           </div>
         </div>
 
-        <div id="alertBox" class="mt-5 hidden rounded-2xl border border-red-200 bg-red-50 p-4 text-sm font-semibold leading-6 text-red-700"></div>
+        <div id="alertBox" class="mt-5 hidden rounded-2xl border border-red-200 bg-red-50 p-4 text-sm font-semibold leading-6 text-red-700" role="alert"></div>
 
         <div class="mobile-button-grid mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2">
-          <button id="convertBtn" type="button" class="rounded-2xl bg-indigo-600 px-4 py-4 text-base font-black text-white shadow-sm transition hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-50" disabled>Convert Image</button>
-          <button id="resetBtn" type="button" class="rounded-2xl border border-slate-200 bg-white px-4 py-4 text-base font-black text-slate-700 transition hover:border-indigo-200 hover:text-indigo-700">Reset</button>
+          <button id="convertBtn" type="button" disabled class="rounded-2xl bg-indigo-600 px-4 py-4 text-base font-black text-white shadow-sm transition hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-50">
+            Convert Image
+          </button>
+
+          <button id="resetBtn" type="button" class="rounded-2xl border border-slate-200 bg-white px-4 py-4 text-base font-black text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700">
+            Reset
+          </button>
         </div>
 
         <div class="mt-5 rounded-2xl border border-indigo-100 bg-indigo-50 p-4 text-sm leading-6 text-indigo-900">
-          <strong>Privacy note:</strong> this tool uses your browser canvas to process images locally. The selected file is not uploaded by this converter.
+          <strong>Privacy note:</strong> The conversion process runs locally through your browser canvas. The selected image is not intentionally uploaded to a backend conversion service.
         </div>
       </section>
 
@@ -304,50 +423,67 @@
         <div class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
           <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
             <div>
-              <h2 class="text-2xl font-black tracking-tight text-slate-950">Preview and output</h2>
-              <p class="mt-1 text-sm leading-6 text-slate-500">Preview your source image, then convert it to the selected format.</p>
+              <h2 class="text-2xl font-black tracking-tight text-slate-950">
+                Image preview and output
+              </h2>
+
+              <p class="mt-1 text-sm leading-6 text-slate-500">
+                Review the source image, conversion settings, output size, and download details.
+              </p>
             </div>
-            <span id="statusBadge" class="inline-flex w-fit rounded-full bg-slate-100 px-4 py-2 text-sm font-bold text-slate-600">Waiting for image</span>
+
+            <span id="statusBadge" class="inline-flex w-fit rounded-full bg-slate-100 px-4 py-2 text-sm font-bold text-slate-600">
+              Waiting for image
+            </span>
           </div>
 
           <div id="resultPlaceholder" class="mt-6 rounded-3xl border border-dashed border-slate-300 bg-slate-50 p-6 text-center text-sm leading-6 text-slate-500">
-            Choose an image file from the left panel to display the preview and conversion details.
+            Select an image in the converter panel to display a preview and file information.
           </div>
 
           <div id="resultContent" class="mt-6 hidden">
             <div class="checkerboard mobile-preview flex min-h-[260px] w-full items-center justify-center overflow-hidden rounded-3xl border border-slate-200 p-3 shadow-inner">
-              <img id="previewImage" src="" alt="Selected image preview" class="max-h-[360px] w-auto max-w-full rounded-2xl object-contain" />
+              <img id="previewImage" src="" alt="Selected image preview" class="max-h-[390px] w-auto max-w-full rounded-2xl object-contain">
             </div>
 
             <div class="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2">
               <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
-                <p class="text-xs font-black uppercase tracking-widest text-slate-400">Source name</p>
+                <p class="text-xs font-black uppercase tracking-widest text-slate-400">Source file</p>
                 <p id="displayFileName" class="mt-1 text-sm font-black text-slate-900 safe-break">No file selected</p>
               </div>
+
               <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
                 <p class="text-xs font-black uppercase tracking-widest text-slate-400">Original size</p>
-                <p id="displayFileSize" class="mt-1 text-sm font-black text-slate-900">0 KB</p>
+                <p id="displayFileSize" class="mt-1 text-sm font-black text-slate-900">0 Bytes</p>
               </div>
+
               <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
                 <p class="text-xs font-black uppercase tracking-widest text-slate-400">Dimensions</p>
                 <p id="displayDimensions" class="mt-1 text-sm font-black text-slate-900">0 × 0 px</p>
               </div>
+
               <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
-                <p class="text-xs font-black uppercase tracking-widest text-slate-400">Output estimate</p>
+                <p class="text-xs font-black uppercase tracking-widest text-slate-400">Converted size</p>
                 <p id="displayOutputSize" class="mt-1 text-sm font-black text-slate-900">Convert to calculate</p>
               </div>
             </div>
 
             <div class="mt-5 rounded-2xl border border-slate-200 bg-slate-950 p-4 text-slate-100">
-              <p class="text-xs font-black uppercase tracking-widest text-slate-400">Conversion summary</p>
+              <p class="text-xs font-black uppercase tracking-widest text-slate-400">
+                Conversion summary
+              </p>
+
               <pre id="summaryOutput" class="mobile-code mt-3 text-sm leading-6"></pre>
             </div>
 
             <div class="mobile-button-grid mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2">
-              <a id="downloadBtn" href="#" download="converted-image" class="pointer-events-none flex items-center justify-center rounded-2xl bg-slate-300 px-4 py-4 text-center text-base font-black text-white shadow-sm transition" aria-disabled="true">
-                Download Converted File
+              <a id="downloadBtn" href="#" class="pointer-events-none flex items-center justify-center rounded-2xl bg-slate-300 px-4 py-4 text-center text-base font-black text-white shadow-sm transition" aria-disabled="true">
+                Download Converted Image
               </a>
-              <button id="copySummaryBtn" type="button" class="rounded-2xl border border-slate-200 bg-white px-4 py-4 text-base font-black text-slate-700 transition hover:border-indigo-200 hover:text-indigo-700">Copy Summary</button>
+
+              <button id="copySummaryBtn" type="button" class="rounded-2xl border border-slate-200 bg-white px-4 py-4 text-base font-black text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700">
+                Copy Summary
+              </button>
             </div>
           </div>
         </div>
@@ -357,19 +493,76 @@
     </main>
 
     <div class="mx-auto mt-6 w-full max-w-7xl">
-      <div class="ad-box">AdSense Responsive Ad Area - Below Tool</div>
+      <div class="ad-box">AdSense Responsive Ad Area - Below Image Converter</div>
     </div>
 
     <section class="mx-auto mt-8 w-full max-w-7xl space-y-6">
       <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
-        <p class="mb-3 inline-flex rounded-full bg-violet-50 px-4 py-2 text-sm font-bold text-violet-700">Image conversion guide</p>
-        <h2 class="text-3xl font-black tracking-tight text-slate-950">A private online image converter for PNG, JPG, and WebP workflows</h2>
-        <div class="mt-5 space-y-5 text-base leading-8 text-slate-600">
+        <p class="inline-flex rounded-full bg-violet-50 px-4 py-2 text-sm font-bold text-violet-700">
+          Complete Image Conversion Guide
+        </p>
+
+        <h2 class="mt-4 text-3xl font-black tracking-tight text-slate-950">
+          Free online image converter for PNG, JPG, JPEG, and WebP files
+        </h2>
+
+        <div class="article-copy mt-5 text-base leading-8 text-slate-600">
           <p>
-            The NodnWebTools Image Converter is designed for people who need a fast and simple way to change photo formats without sending their files to a remote server. It works directly in your browser using standard client-side image processing. That makes it useful for website owners, students, designers, bloggers, social media creators, and anyone who wants to prepare image files for everyday digital use.
+            The NodnWebTools Image Converter is a free browser-based utility for changing common image formats without installing desktop software or intentionally uploading the selected picture to a remote conversion server. It supports popular image conversion workflows such as PNG to JPG, JPG to PNG, JPEG to WebP, PNG to WebP, WebP to JPG, and WebP to PNG. The converter also includes image resizing, output quality adjustment, a source image preview, file size information, and an instant local download.
           </p>
+
           <p>
-            Different platforms often require different file formats. A website may benefit from WebP because it can reduce file size, a document upload form may require JPG, and a design workflow may need PNG for transparency. This tool helps you move between these common formats while keeping the interface simple and mobile-friendly.
+            Different websites, applications, content management systems, social networks, online marketplaces, document portals, and design tools accept different image file formats. One platform may require a JPG photograph, another may require a transparent PNG logo, and a website owner may prefer WebP images to reduce page weight. Instead of opening a complicated photo editor for a simple format change, this image file converter provides a focused workflow that can be completed in a few steps.
+          </p>
+
+          <p>
+            The tool is suitable for bloggers, website owners, online sellers, designers, students, office workers, developers, content creators, photographers, marketers, and general computer users. It can help prepare images for blog posts, online stores, presentation slides, email attachments, digital assignments, website banners, profile photos, product listings, social media posts, thumbnails, newsletters, and online forms.
+          </p>
+
+          <p>
+            Image processing takes place with browser technology, including JavaScript, canvas, Blob objects, and local object URLs. This client-side design means the main conversion task happens on the user's device. Processing an image locally can be useful when convenience and privacy are important, although users should still consider the security of their device, browser, extensions, operating system, and any third-party scripts loaded on the page.
+          </p>
+        </div>
+      </article>
+
+      <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
+        <h2 class="text-3xl font-black tracking-tight text-slate-950">
+          How to use the online image converter
+        </h2>
+
+        <div class="mt-6 grid grid-cols-1 gap-4 md:grid-cols-3">
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <div class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-indigo-100 text-lg font-black text-indigo-700">1</div>
+            <h3 class="text-lg font-black text-slate-950">Select an image file</h3>
+            <p class="mt-2 text-sm leading-7 text-slate-600">
+              Click the upload area or drag and drop an image. The browser will load the file and display its name, size, dimensions, and visual preview.
+            </p>
+          </div>
+
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <div class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-indigo-100 text-lg font-black text-indigo-700">2</div>
+            <h3 class="text-lg font-black text-slate-950">Choose output settings</h3>
+            <p class="mt-2 text-sm leading-7 text-slate-600">
+              Select JPG, PNG, or WebP. Adjust the image quality slider and enable resizing when you need different pixel dimensions.
+            </p>
+          </div>
+
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <div class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-indigo-100 text-lg font-black text-indigo-700">3</div>
+            <h3 class="text-lg font-black text-slate-950">Convert and download</h3>
+            <p class="mt-2 text-sm leading-7 text-slate-600">
+              Press Convert Image. Review the converted size and summary, then download the generated image directly to your device.
+            </p>
+          </div>
+        </div>
+
+        <div class="article-copy mt-7 text-base leading-8 text-slate-600">
+          <p>
+            When resizing an image, enter both the desired width and height in pixels. To avoid distortion, keep the new width and height proportional to the original dimensions. For example, an image measuring 1600 by 900 pixels has a 16:9 aspect ratio. A proportional smaller version could be 1280 by 720, 960 by 540, or 800 by 450 pixels.
+          </p>
+
+          <p>
+            The quality slider primarily affects JPG and WebP output. Higher values generally retain more visual detail while producing a larger file. Lower values can reduce file size but may introduce visible compression artifacts. PNG normally uses lossless browser canvas export, so changing the quality slider may have little or no effect on PNG output.
           </p>
         </div>
       </article>
@@ -377,175 +570,565 @@
       <div class="ad-box">AdSense Responsive Ad Area - Middle Content</div>
 
       <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
-        <h2 class="text-3xl font-black tracking-tight text-slate-950">How to use the image converter</h2>
-        <div class="mt-6 grid grid-cols-1 gap-4 md:grid-cols-3">
+        <h2 class="text-3xl font-black tracking-tight text-slate-950">
+          Understanding JPG, JPEG, PNG, and WebP image formats
+        </h2>
+
+        <div class="article-copy mt-5 text-base leading-8 text-slate-600">
+          <p>
+            Choosing the correct image format is an important part of preparing photos and graphics for websites, documents, email, social media, online stores, mobile apps, and digital archives. JPG, JPEG, PNG, and WebP can all display visual content, but each format has different strengths, limitations, compression methods, transparency support, and compatibility characteristics.
+          </p>
+
+          <h3 class="mt-7 text-2xl font-black text-slate-950">JPG and JPEG images</h3>
+
+          <p>
+            JPG and JPEG refer to the same general image format. The different file extensions developed because older operating systems commonly limited extensions to three characters. JPG is widely used for photographs, camera images, scanned pictures, product photography, travel photos, real estate images, and other graphics containing many colors and smooth gradients.
+          </p>
+
+          <p>
+            JPG uses lossy compression. This means that some image information is removed to create a smaller file. The amount of removed information depends on the quality setting. A high-quality JPG can look very similar to the original while remaining smaller than a lossless image. A heavily compressed JPG may show blockiness, blurred details, color banding, halos, or visible artifacts around text and sharp edges.
+          </p>
+
+          <p>
+            JPG does not support transparent backgrounds. Any transparent area must be replaced with a solid color during conversion. This image converter uses a white background when creating JPG output from an image containing transparent pixels.
+          </p>
+
+          <h3 class="mt-7 text-2xl font-black text-slate-950">PNG images</h3>
+
+          <p>
+            PNG is a lossless image format that preserves pixel information without using the same destructive compression method as JPG. It is particularly useful for screenshots, logos, icons, interface elements, text-heavy graphics, diagrams, charts, illustrations, and images that need transparent backgrounds.
+          </p>
+
+          <p>
+            PNG often produces clean edges and clear text, making it suitable for software screenshots, educational graphics, infographics, digital signatures, interface mockups, and brand assets. However, PNG photographs can be considerably larger than JPG or WebP versions of the same picture. When transparency and lossless storage are unnecessary, converting PNG to JPG or PNG to WebP may reduce file size.
+          </p>
+
+          <h3 class="mt-7 text-2xl font-black text-slate-950">WebP images</h3>
+
+          <p>
+            WebP is a modern image format created for efficient digital delivery. It supports lossy compression, lossless compression, and transparency. For many website images, WebP can provide smaller files than JPG or PNG while maintaining acceptable visual quality. This makes WebP useful for blog photographs, product images, website banners, landing pages, thumbnails, online portfolios, and responsive website assets.
+          </p>
+
+          <p>
+            Current major browsers support WebP, but some older applications, legacy systems, specialized document tools, or marketplace upload forms may not accept it. Before selecting WebP as the final format, confirm that the destination platform supports WebP files. JPG and PNG remain valuable when maximum compatibility is required.
+          </p>
+        </div>
+      </article>
+
+      <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
+        <h2 class="text-3xl font-black tracking-tight text-slate-950">
+          PNG to JPG converter: benefits, limitations, and best practices
+        </h2>
+
+        <div class="article-copy mt-5 text-base leading-8 text-slate-600">
+          <p>
+            PNG to JPG conversion is commonly used when a PNG file is too large, when a website or form only accepts JPG images, or when transparency is not necessary. Photographs saved as PNG can consume significantly more storage than equivalent JPG files. Converting these files to JPG with a carefully selected quality setting can reduce file size and make them easier to upload, email, store, or publish.
+          </p>
+
+          <p>
+            A PNG to JPEG converter is especially useful for photographs, scanned pictures, product photos, property images, travel images, and large visual files with many colors. JPG compression works well with natural photographic detail and smooth gradients. It is usually less suitable for graphics containing very small text, sharp interface lines, or flat areas of color.
+          </p>
+
+          <p>
+            Transparency is the most important consideration. PNG can contain transparent pixels, but JPG cannot. When a transparent PNG is converted to JPG, the transparent area needs a replacement background. This tool fills the JPG canvas with white before drawing the image. This prevents transparent regions from appearing black in the exported file.
+          </p>
+
+          <p>
+            The white background may not be appropriate for every design. A light logo intended for a dark website may become difficult to see after conversion. Review the preview and downloaded image before publishing it. If you require a custom background color, detailed layer control, or precise compositing, use a full image editor before completing the JPG conversion.
+          </p>
+
+          <p>
+            Start with a quality setting between approximately 80 and 90 percent for general web photographs. Convert the image, check the resulting file size, and inspect the image for visible artifacts. If the file remains larger than desired, lower the quality gradually. If fine texture, hair, text, packaging labels, or product detail becomes unclear, increase the quality.
+          </p>
+
+          <p>
+            Converting PNG screenshots or diagrams to JPG can make text and lines appear softer. For screenshots, logos, charts, and interface graphics, keeping PNG or converting PNG to lossless WebP may provide better results. File format selection should be based on image content rather than simply choosing the smallest output.
+          </p>
+        </div>
+      </article>
+
+      <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
+        <h2 class="text-3xl font-black tracking-tight text-slate-950">
+          JPG to PNG converter: what the conversion can and cannot do
+        </h2>
+
+        <div class="article-copy mt-5 text-base leading-8 text-slate-600">
+          <p>
+            A JPG to PNG converter changes the encoding and file container, but it does not recreate information that was removed during earlier JPG compression. This is an important distinction. A low-quality or blurry JPG will not become sharper simply because it is saved as PNG. The PNG file preserves the currently visible pixels without adding another layer of lossy JPG compression, but missing detail cannot be recovered through format conversion alone.
+          </p>
+
+          <p>
+            JPG to PNG conversion is useful when a website, application, document system, software project, learning platform, or design workflow specifically requires PNG. Developers may need PNG files for interface testing, browser canvas experiments, documentation, or sample upload assets. Students and office users may need PNG screenshots or images for presentation software and document portals.
+          </p>
+
+          <p>
+            Converting a JPG to PNG does not automatically create transparency. JPG files do not contain transparent pixel data. The visible background in the JPG remains part of the resulting PNG. Removing a white or colored background requires background removal, masking, object selection, or another image editing process.
+          </p>
+
+          <p>
+            PNG files generated from photographs are often larger than the source JPG. This happens because PNG lossless compression is not always efficient for complex photographic detail. If the goal is to reduce file size, converting JPG to PNG may produce the opposite result. Consider keeping the JPG, resizing the image, selecting a different JPG quality, or converting JPG to WebP.
+          </p>
+
+          <p>
+            PNG may be useful before adding text, shapes, arrows, annotations, or interface elements in another program. Repeatedly editing and saving a JPG can add new compression damage each time. Saving intermediate editing files as PNG can avoid additional lossy compression, although professional projects may benefit from layered source formats supported by dedicated editing software.
+          </p>
+        </div>
+      </article>
+
+      <div class="ad-box">AdSense Responsive Ad Area - Conversion Guide</div>
+
+      <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
+        <h2 class="text-3xl font-black tracking-tight text-slate-950">
+          JPG to WebP and PNG to WebP conversion for website optimization
+        </h2>
+
+        <div class="article-copy mt-5 text-base leading-8 text-slate-600">
+          <p>
+            Website images can account for a large percentage of the total data downloaded when a page loads. Large photographs, background images, banners, product galleries, and article illustrations can slow down a website, particularly for visitors using mobile data or slower network connections. Converting JPG or PNG files to WebP can help reduce image weight while maintaining suitable visual quality.
+          </p>
+
+          <p>
+            JPG to WebP conversion is commonly used for photographic website content. WebP can often provide comparable visual quality at a smaller file size, although results vary according to the source image and quality setting. Images with smooth gradients, natural scenes, people, food, travel locations, buildings, and products may compress efficiently.
+          </p>
+
+          <p>
+            PNG to WebP conversion can be valuable for graphics that require transparency. WebP can preserve transparent pixels while potentially creating a smaller output than PNG. Logos, icons, badges, interface assets, overlays, and website decorations may benefit from WebP when browser compatibility requirements are satisfied.
+          </p>
+
+          <p>
+            Format conversion should be combined with appropriate dimensions. A 5000-pixel-wide photograph is usually unnecessary when the image will only appear at 800 pixels on a web page. Use the resize option to create an output that matches the largest expected display size. Responsive websites may use several versions of the same image so the browser can select an appropriate file for different devices.
+          </p>
+
+          <p>
+            Quality values between approximately 75 and 90 percent are common starting points for lossy WebP website images. The correct setting depends on the content. Images containing hair, fabric, foliage, small text, detailed product surfaces, or complex texture may require higher quality. Test the output at normal viewing size and examine important areas closely before replacing a production image.
+          </p>
+
+          <p>
+            Faster images can support a better browsing experience, but image performance also depends on lazy loading, caching, responsive image markup, server configuration, content delivery networks, page layout, and the number of images loaded. A WebP converter is one part of a broader website optimization strategy.
+          </p>
+        </div>
+      </article>
+
+      <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
+        <h2 class="text-3xl font-black tracking-tight text-slate-950">
+          WebP to JPG and WebP to PNG conversion
+        </h2>
+
+        <div class="article-copy mt-5 text-base leading-8 text-slate-600">
+          <p>
+            WebP files are widely supported by modern browsers, but they may not work with every older application, document editor, upload form, printing service, marketplace, or legacy content system. A WebP to JPG converter can create a broadly compatible photographic file, while a WebP to PNG converter can be useful when transparency or PNG-specific compatibility is required.
+          </p>
+
+          <p>
+            Choose JPG when the WebP image is a photograph, transparency is unnecessary, and broad compatibility is the main goal. JPG files can be opened by nearly every common photo viewer, office application, website platform, and operating system. Adjust the JPG quality carefully because conversion from one lossy format to another can add additional compression artifacts.
+          </p>
+
+          <p>
+            Choose PNG when the WebP source has transparency, sharp interface graphics, text, line art, or flat-color elements. PNG can retain transparent pixels and crisp edges, but the resulting file may be significantly larger. A WebP photograph converted to PNG may require much more storage without showing a visual improvement.
+          </p>
+
+          <p>
+            Animated WebP files are not preserved as animations by this static canvas converter. The browser may load a frame, but the exported JPG, PNG, or WebP result is intended to be a static image. Specialized animation software is required to preserve, edit, or convert animated frames.
+          </p>
+
+          <p>
+            Color appearance can vary slightly after browser-based conversion because canvas export may not preserve all embedded color profiles or advanced image properties. For normal online use, the output may be adequate. For professional printing, archival work, brand-critical color, photography production, or prepress workflows, use color-managed image editing software.
+          </p>
+        </div>
+      </article>
+
+      <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
+        <h2 class="text-3xl font-black tracking-tight text-slate-950">
+          Image resizing, pixel dimensions, and aspect ratio
+        </h2>
+
+        <div class="article-copy mt-5 text-base leading-8 text-slate-600">
+          <p>
+            Image resizing changes the number of pixels in a picture. Reducing pixel dimensions is one of the most effective ways to lower file size. A modern phone or digital camera may produce images that are more than 4000 pixels wide, even when the final picture will only appear as a small website thumbnail, email attachment, online listing, or presentation image.
+          </p>
+
+          <p>
+            A smaller image generally requires less storage and downloads more quickly. For example, reducing a 4000 by 3000 pixel photograph to 1200 by 900 pixels removes a large amount of unnecessary pixel data for typical web display. The exact file size reduction depends on the format, quality setting, and visual complexity.
+          </p>
+
+          <p>
+            Width and height determine an image's aspect ratio. Changing the values without maintaining the original ratio can stretch or compress the picture. Faces may become too wide, circular objects may become oval, and product photos may look distorted. To maintain proportions, calculate the ratio between the original width and height and apply the same relationship to the new dimensions.
+          </p>
+
+          <p>
+            For example, an image measuring 2400 by 1600 pixels has a 3:2 aspect ratio. Proportional resized versions include 1800 by 1200, 1500 by 1000, 1200 by 800, 900 by 600, and 600 by 400 pixels. An image measuring 1920 by 1080 has a 16:9 ratio, with proportional sizes such as 1280 by 720 and 960 by 540.
+          </p>
+
+          <p>
+            Enlarging an image does not create real detail that was absent from the source. The browser interpolates new pixels, which can make the result look soft or blurry. Minor enlargement may be acceptable in some situations, but substantial upscaling usually requires specialized enhancement software and still cannot guarantee accurate details.
+          </p>
+
+          <p>
+            Very large images can consume considerable device memory while being decoded and drawn to canvas. Mobile browsers may have lower practical limits than desktop browsers. If conversion fails, try smaller dimensions, close memory-intensive tabs, restart the browser, or process the image on a device with more available memory.
+          </p>
+        </div>
+      </article>
+
+      <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
+        <h2 class="text-3xl font-black tracking-tight text-slate-950">
+          Image quality, compression, and output file size
+        </h2>
+
+        <div class="article-copy mt-5 text-base leading-8 text-slate-600">
+          <p>
+            Image quality and file size are closely connected. Higher-quality JPG and WebP output generally retains more visual information, but it also requires more storage. Lower-quality output usually creates a smaller file but may produce artifacts. The goal is not always to create the smallest possible image. A practical target is the smallest file that still looks clean and appropriate for its intended purpose.
+          </p>
+
+          <p>
+            Compression artifacts can appear as blocks, ringing around edges, blurry text, reduced texture, color banding, or rough gradients. These problems are more noticeable in images containing small text, logos, product labels, hair, grass, leaves, fabric patterns, architecture, and detailed illustrations. Simple photographs with smooth backgrounds may tolerate stronger compression.
+          </p>
+
+          <p>
+            For blog photos, landing page images, and social media graphics, begin with a quality setting near 85 or 90 percent. Convert the image and compare the file size. If the result is too large, reduce the setting in small increments. If important details become unclear, return to a higher value.
+          </p>
+
+          <p>
+            PNG works differently because it is normally exported losslessly through browser canvas. The quality slider may not substantially change a PNG file. To reduce PNG size, resize the image, remove unnecessary transparent space, simplify the design, reduce the number of colors in a specialized optimizer, or convert to JPG or WebP when the image content allows it.
+          </p>
+
+          <p>
+            A converted file can sometimes be larger than the original. The original may already be highly optimized, or the selected output format may be inefficient for the image content. For example, converting a compressed JPG photograph to PNG often produces a much larger file. Converting a simple transparent logo from PNG to high-quality JPG may also increase size while removing transparency.
+          </p>
+
+          <p>
+            Browser encoders can produce slightly different results across devices and browsers. Output file sizes, color rendering, and compression characteristics are not guaranteed to be identical everywhere. Review the actual downloaded image rather than relying only on assumptions about a format or quality value.
+          </p>
+        </div>
+      </article>
+
+      <div class="ad-box">AdSense Responsive Ad Area - Image Optimization</div>
+
+      <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
+        <h2 class="text-3xl font-black tracking-tight text-slate-950">
+          Popular uses for an online photo and image format converter
+        </h2>
+
+        <div class="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
-            <h3 class="text-lg font-black text-slate-950">1. Choose your image</h3>
-            <p class="mt-2 text-sm leading-6 text-slate-600">Click the upload area or drag and drop a file. The preview appears immediately after the image loads.</p>
+            <h3 class="text-lg font-black text-slate-950">Website images</h3>
+            <p class="mt-2 text-sm leading-7 text-slate-600">
+              Convert photographs and graphics to WebP, resize oversized uploads, and create lighter visual assets for blogs, landing pages, portfolios, and business websites.
+            </p>
           </div>
+
           <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
-            <h3 class="text-lg font-black text-slate-950">2. Select format and quality</h3>
-            <p class="mt-2 text-sm leading-6 text-slate-600">Choose JPG, PNG, or WebP. For JPG and WebP, use the quality slider to balance clarity and file size.</p>
+            <h3 class="text-lg font-black text-slate-950">Online store photos</h3>
+            <p class="mt-2 text-sm leading-7 text-slate-600">
+              Prepare product photographs for marketplace listings, ecommerce product pages, digital catalogs, promotional banners, and customer email campaigns.
+            </p>
           </div>
+
           <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
-            <h3 class="text-lg font-black text-slate-950">3. Convert and download</h3>
-            <p class="mt-2 text-sm leading-6 text-slate-600">Click Convert Image, then download the generated file directly from your browser.</p>
+            <h3 class="text-lg font-black text-slate-950">Document uploads</h3>
+            <p class="mt-2 text-sm leading-7 text-slate-600">
+              Change images to formats accepted by school portals, workplace systems, online applications, presentation software, and document submission forms.
+            </p>
+          </div>
+
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <h3 class="text-lg font-black text-slate-950">Social media content</h3>
+            <p class="mt-2 text-sm leading-7 text-slate-600">
+              Create JPG, PNG, or WebP versions of thumbnails, profile images, post graphics, promotional images, and content calendar assets.
+            </p>
+          </div>
+
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <h3 class="text-lg font-black text-slate-950">Software testing</h3>
+            <p class="mt-2 text-sm leading-7 text-slate-600">
+              Generate sample files for upload forms, image components, responsive layouts, browser compatibility checks, and front-end development projects.
+            </p>
+          </div>
+
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <h3 class="text-lg font-black text-slate-950">Email attachments</h3>
+            <p class="mt-2 text-sm leading-7 text-slate-600">
+              Resize and compress large pictures before sending them by email, reducing attachment size while maintaining usable visual quality.
+            </p>
           </div>
         </div>
       </article>
 
       <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
-        <h2 class="text-3xl font-black tracking-tight text-slate-950">Popular uses for online image format conversion</h2>
-        <div class="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2">
-          <div class="rounded-2xl border border-slate-200 p-5">
-            <h3 class="text-xl font-black text-slate-950">Website performance optimization</h3>
-            <p class="mt-2 text-sm leading-7 text-slate-600">Converting large photos to WebP can help reduce image weight for websites, landing pages, portfolios, and blogs. Smaller images may load faster and improve the user experience.</p>
-          </div>
-          <div class="rounded-2xl border border-slate-200 p-5">
-            <h3 class="text-xl font-black text-slate-950">Document and form uploads</h3>
-            <p class="mt-2 text-sm leading-7 text-slate-600">Some forms only accept JPG or PNG files. A browser-based converter makes it easier to prepare images before uploading them to school, work, government, or business portals.</p>
-          </div>
-          <div class="rounded-2xl border border-slate-200 p-5">
-            <h3 class="text-xl font-black text-slate-950">Transparent image handling</h3>
-            <p class="mt-2 text-sm leading-7 text-slate-600">PNG and WebP can support transparency, while standard JPG does not. When converting transparent images to JPG, transparent areas may become a flat background.</p>
-          </div>
-          <div class="rounded-2xl border border-slate-200 p-5">
-            <h3 class="text-xl font-black text-slate-950">Content creation and publishing</h3>
-            <p class="mt-2 text-sm leading-7 text-slate-600">Creators often need image versions for thumbnails, blog graphics, newsletters, product pages, and social posts. Converting locally can make this workflow quicker and safer.</p>
-          </div>
+        <h2 class="text-3xl font-black tracking-tight text-slate-950">
+          Privacy and security considerations for local image conversion
+        </h2>
+
+        <div class="article-copy mt-5 text-base leading-8 text-slate-600">
+          <p>
+            This image converter is designed to perform its main processing locally in the browser. The selected file is read through browser APIs, drawn to a temporary canvas, exported to the selected image format, and made available through a temporary local object URL. The conversion feature does not intentionally send the source image to a dedicated backend conversion service.
+          </p>
+
+          <p>
+            Local processing can be useful for personal photos, unpublished graphics, internal screenshots, draft client materials, identification pictures, and other files that users may prefer not to upload to an unknown conversion server. It can also make conversion faster because the browser does not need to transfer a large file to a remote processor and wait for the converted file to be returned.
+          </p>
+
+          <p>
+            Local processing does not eliminate every possible security risk. Browser extensions, compromised devices, malicious software, shared computers, screen recording utilities, operating system vulnerabilities, and third-party scripts can affect privacy. Use a trusted device and an updated browser when processing sensitive material.
+          </p>
+
+          <p>
+            Avoid working with confidential images on public computers. If you use a shared device, delete downloaded files after use, empty the recycle bin where appropriate, sign out of accounts, and clear temporary browser data according to your security needs. Do not assume that private browsing mode securely removes every local trace.
+          </p>
+
+          <p>
+            This converter is not a secure redaction tool. Covering private information with a visible object in an image editor may not be sufficient for legal, medical, financial, or regulated documents. Use approved redaction software and established organizational procedures when information must be permanently removed.
+          </p>
+
+          <p>
+            Canvas-based conversion may remove some metadata, but it should not be used as a guaranteed metadata removal system. Users who need to verify or permanently remove GPS coordinates, camera information, timestamps, copyright fields, or other metadata should inspect the final file with a dedicated metadata tool.
+          </p>
         </div>
       </article>
 
-      <div class="ad-box">AdSense Responsive Ad Area - Bottom Content</div>
-
       <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
-        <h2 class="text-3xl font-black tracking-tight text-slate-950">Practical tips for better image conversion</h2>
-        <div class="mt-5 space-y-5 text-base leading-8 text-slate-600">
+        <h2 class="text-3xl font-black tracking-tight text-slate-950">
+          Practical tips for better image conversion results
+        </h2>
+
+        <div class="article-copy mt-5 text-base leading-8 text-slate-600">
           <p>
-            Use JPG for regular photos when transparency is not needed. JPG is widely supported and often produces smaller files for photographs. Use PNG when you need sharp edges, screenshots, icons, or transparency. Use WebP when you want modern compression for websites and supported platforms.
+            Always keep the original image until the converted result has been reviewed. Format conversion can affect visual quality, transparency, file size, metadata, dimensions, and color appearance. Save the converted file under a new name so the original remains available if you need to try different settings.
           </p>
+
           <p>
-            Quality settings affect output size and visible detail. A higher quality value keeps more detail but usually creates a larger file. A lower value can reduce file size, but it may add visible artifacts. For web images, testing several quality values can help you find the right balance between clarity and speed.
+            Select the output format based on the content. Use JPG for ordinary photographs when transparency is unnecessary. Use PNG for screenshots, logos, diagrams, text-heavy graphics, and transparent backgrounds. Use WebP for modern web delivery when the destination platform supports it.
           </p>
+
           <p>
-            Resizing is useful when the image is much larger than necessary. For example, a 4000-pixel-wide photo may be excessive for a small blog thumbnail. Reducing dimensions before publishing can lower file size and make the page feel faster on mobile devices.
+            Resize images before publishing them when the original dimensions are much larger than the display area. A website thumbnail does not need the same dimensions as a full-resolution camera photo. Appropriate dimensions can improve loading speed, reduce storage requirements, and make media libraries easier to manage.
+          </p>
+
+          <p>
+            Avoid excessive compression. A very small file may load quickly, but visible artifacts can make a business website, product listing, portfolio, or presentation appear unprofessional. Review detailed areas such as faces, text, product labels, thin lines, and gradients.
+          </p>
+
+          <p>
+            Use descriptive filenames when preparing web content. A filename such as handmade-wood-table.webp is easier to organize than IMG_7932.webp. Avoid including private names, account numbers, document identifiers, or other sensitive information in filenames that may become publicly accessible.
+          </p>
+
+          <p>
+            Check the destination requirements before converting. Some forms impose maximum dimensions, maximum file size, required aspect ratio, or a specific extension. A file with the correct extension may still be rejected if it exceeds the size limit or uses unsupported encoding features.
+          </p>
+
+          <p>
+            Test downloaded images on the device or platform where they will be used. A WebP file may work perfectly in a current browser but fail in an old desktop application. A transparent PNG may display correctly on a website but appear against an unexpected background in presentation software.
+          </p>
+
+          <p>
+            For professional printing, archival preservation, forensic use, medical imaging, legal evidence, or color-critical production, use specialized software. A general browser converter is designed for everyday image preparation and is not a replacement for professional imaging systems.
           </p>
         </div>
       </article>
 
       <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
-        <h2 class="text-3xl font-black tracking-tight text-slate-950">Frequently asked questions</h2>
+        <h2 class="text-3xl font-black tracking-tight text-slate-950">
+          Frequently asked questions
+        </h2>
+
         <div class="mt-6 space-y-4">
           <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
-            <summary class="cursor-pointer font-black text-slate-950">Are my images uploaded to a server?</summary>
-            <p class="mt-3 text-sm leading-7 text-slate-600">No. This converter processes files locally in your browser using JavaScript and canvas. The tool does not intentionally upload your selected images to a backend server.</p>
+            <summary class="cursor-pointer font-black text-slate-950">
+              Are my images uploaded to a server?
+            </summary>
+            <p class="mt-3 text-sm leading-7 text-slate-600">
+              The main conversion process runs locally in your browser using JavaScript and canvas. The selected image is not intentionally uploaded to a dedicated backend conversion server.
+            </p>
           </details>
+
           <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
-            <summary class="cursor-pointer font-black text-slate-950">Which image formats are supported?</summary>
-            <p class="mt-3 text-sm leading-7 text-slate-600">The tool accepts common browser-readable image files such as PNG, JPG, JPEG, WebP, BMP, and many static GIF files. Output formats are JPG, PNG, and WebP.</p>
+            <summary class="cursor-pointer font-black text-slate-950">
+              Which image formats are supported?
+            </summary>
+            <p class="mt-3 text-sm leading-7 text-slate-600">
+              The converter accepts common browser-readable images including PNG, JPG, JPEG, WebP, BMP, and many static GIF files. Available output formats are JPG, PNG, and WebP.
+            </p>
           </details>
+
           <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
-            <summary class="cursor-pointer font-black text-slate-950">Why does the quality slider not affect PNG much?</summary>
-            <p class="mt-3 text-sm leading-7 text-slate-600">PNG is generally a lossless format in browser canvas export, so the quality setting mainly affects JPG and WebP output.</p>
+            <summary class="cursor-pointer font-black text-slate-950">
+              Does converting JPG to PNG improve quality?
+            </summary>
+            <p class="mt-3 text-sm leading-7 text-slate-600">
+              No. Converting JPG to PNG cannot restore image information that was removed by earlier JPG compression. The PNG may be larger without appearing sharper.
+            </p>
           </details>
+
           <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
-            <summary class="cursor-pointer font-black text-slate-950">What happens to transparency when converting to JPG?</summary>
-            <p class="mt-3 text-sm leading-7 text-slate-600">JPG does not support transparency. Transparent areas are drawn over a white background before export to avoid black or unexpected transparent regions.</p>
+            <summary class="cursor-pointer font-black text-slate-950">
+              What happens to transparency when converting to JPG?
+            </summary>
+            <p class="mt-3 text-sm leading-7 text-slate-600">
+              JPG does not support transparent pixels. This converter places transparent areas over a white background before creating the JPG file.
+            </p>
           </details>
+
           <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
-            <summary class="cursor-pointer font-black text-slate-950">Can I use this on a phone?</summary>
-            <p class="mt-3 text-sm leading-7 text-slate-600">Yes. The layout is responsive and designed to avoid horizontal overflow on mobile screens.</p>
+            <summary class="cursor-pointer font-black text-slate-950">
+              Why does the quality slider have little effect on PNG?
+            </summary>
+            <p class="mt-3 text-sm leading-7 text-slate-600">
+              Browser canvas normally exports PNG as a lossless format. The quality parameter mainly affects JPG and lossy WebP output.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">
+              Can this tool compress an image?
+            </summary>
+            <p class="mt-3 text-sm leading-7 text-slate-600">
+              Yes. Reducing dimensions or exporting to JPG or WebP with a lower quality value can reduce the output file size. Results depend on the source image and selected format.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">
+              Why is my converted image larger than the original?
+            </summary>
+            <p class="mt-3 text-sm leading-7 text-slate-600">
+              The original may already be optimized, or the new format may not suit the image content. For example, converting a JPG photograph to PNG often creates a much larger file.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">
+              Does the converter preserve EXIF metadata?
+            </summary>
+            <p class="mt-3 text-sm leading-7 text-slate-600">
+              Canvas-based conversion commonly removes many metadata fields, including some camera details, timestamps, and GPS information. Metadata preservation is not guaranteed.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">
+              Can I convert multiple images at once?
+            </summary>
+            <p class="mt-3 text-sm leading-7 text-slate-600">
+              This version processes one image at a time. This makes it easier to review the dimensions, quality setting, converted size, and output format for each file.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">
+              Does the converter preserve GIF or WebP animation?
+            </summary>
+            <p class="mt-3 text-sm leading-7 text-slate-600">
+              No. The tool is intended for static image conversion. Animated GIF or animated WebP files may be loaded as a frame, but animation is not preserved in the output.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">
+              Is WebP better than JPG?
+            </summary>
+            <p class="mt-3 text-sm leading-7 text-slate-600">
+              WebP can provide efficient compression for modern websites, while JPG offers extremely broad software compatibility. The better format depends on the destination and image requirements.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-black text-slate-950">
+              Can I use the image converter on a phone or tablet?
+            </summary>
+            <p class="mt-3 text-sm leading-7 text-slate-600">
+              Yes. The interface is responsive and designed to fit mobile screens. Very large images may be limited by the available memory of the mobile device or browser.
+            </p>
           </details>
         </div>
       </section>
 
-<!-- Related Tools -->
-<section class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
-    <div class="max-w-3xl">
+      <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
         <p class="inline-flex rounded-full bg-indigo-50 px-4 py-2 text-sm font-bold text-indigo-700">
-            More Image & File Tools
+          More Browser Utilities
         </p>
 
         <h2 class="mt-4 text-3xl font-black tracking-tight text-slate-950">
-            Related Tools
+          Related Tools
         </h2>
 
-        <p class="mt-3 text-base leading-7 text-slate-600">
-            Discover more browser-based tools for converting, resizing, editing, and managing images, videos, documents, and other files—all processed locally for better privacy.
+        <p class="mt-3 max-w-3xl text-base leading-7 text-slate-600">
+          Explore related NodnWebTools utilities for converting photos, editing images, preparing documents, and managing multimedia files directly from your browser.
         </p>
-    </div>
 
-    <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-
-        <a href="/heic-to-jpg"
-           class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-indigo-300 hover:shadow-lg">
+        <div class="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <a href="/heic-to-jpg" class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-indigo-300 hover:shadow-lg">
             <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-50 text-2xl">📷</div>
-            <h3 class="text-lg font-bold text-slate-900 group-hover:text-indigo-700">
-                HEIC to JPG
-            </h3>
+            <h3 class="text-lg font-bold text-slate-900 transition group-hover:text-indigo-700">HEIC to JPG Converter</h3>
             <p class="mt-2 text-sm leading-6 text-slate-600">
-                Convert Apple HEIC and HEIF photos into standard JPG images with local browser processing.
+              Convert Apple HEIC and HEIF photos into broadly compatible JPG images.
             </p>
-        </a>
+          </a>
 
-        <a href="/image-mosaic"
-           class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-sky-300 hover:shadow-lg">
-            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-sky-50 text-2xl">🧩</div>
-            <h3 class="text-lg font-bold text-slate-900 group-hover:text-sky-700">
-                Photo Mosaic
-            </h3>
+          <a href="/image-mosaic" class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-indigo-300 hover:shadow-lg">
+            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-50 text-2xl">🧩</div>
+            <h3 class="text-lg font-bold text-slate-900 transition group-hover:text-indigo-700">Image Mosaic Tool</h3>
             <p class="mt-2 text-sm leading-6 text-slate-600">
-                Apply mosaic effects to images for privacy protection or creative editing.
+              Apply adjustable mosaic effects to selected areas of an image for privacy or design.
             </p>
-        </a>
+          </a>
 
-        <a href="/document-converter"
-           class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-violet-300 hover:shadow-lg">
-            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-violet-50 text-2xl">📄</div>
-            <h3 class="text-lg font-bold text-slate-900 group-hover:text-violet-700">
-                Document Converter
-            </h3>
+          <a href="/file-converter" class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-indigo-300 hover:shadow-lg">
+            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-50 text-2xl">📁</div>
+            <h3 class="text-lg font-bold text-slate-900 transition group-hover:text-indigo-700">File Converter</h3>
             <p class="mt-2 text-sm leading-6 text-slate-600">
-                Convert documents between common formats such as PDF, DOCX, and TXT directly in your browser.
+              Convert common file types with a simple browser-based file conversion interface.
             </p>
-        </a>
+          </a>
 
-        <a href="/video-converter"
-           class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-amber-300 hover:shadow-lg">
-            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-amber-50 text-2xl">🎥</div>
-            <h3 class="text-lg font-bold text-slate-900 group-hover:text-amber-700">
-                Video Converter
-            </h3>
+          <a href="/document-converter" class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-indigo-300 hover:shadow-lg">
+            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-50 text-2xl">📄</div>
+            <h3 class="text-lg font-bold text-slate-900 transition group-hover:text-indigo-700">Document Converter</h3>
             <p class="mt-2 text-sm leading-6 text-slate-600">
-                Convert videos into different formats for playback, editing, and sharing.
+              Prepare and convert common document formats for work, school, and personal use.
             </p>
-        </a>
+          </a>
 
-        <a href="/file-converter"
-           class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-rose-300 hover:shadow-lg">
-            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-rose-50 text-2xl">📁</div>
-            <h3 class="text-lg font-bold text-slate-900 group-hover:text-rose-700">
-                File Converter
-            </h3>
+          <a href="/video-converter" class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-indigo-300 hover:shadow-lg">
+            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-50 text-2xl">🎥</div>
+            <h3 class="text-lg font-bold text-slate-900 transition group-hover:text-indigo-700">Video Converter</h3>
             <p class="mt-2 text-sm leading-6 text-slate-600">
-                Convert a variety of file formats quickly with an easy browser-based interface.
+              Convert video files into formats suitable for playback, editing, and sharing.
             </p>
-        </a>
+          </a>
 
-    </div>
-</section>
+          <a href="/photo-slideshow-maker" class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-indigo-300 hover:shadow-lg">
+            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-50 text-2xl">🎞️</div>
+            <h3 class="text-lg font-bold text-slate-900 transition group-hover:text-indigo-700">Photo Slideshow Maker</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-600">
+              Arrange selected pictures into a downloadable browser-generated photo slideshow.
+            </p>
+          </a>
+        </div>
+      </section>
 
       <section class="mobile-card rounded-3xl bg-slate-950 p-5 text-slate-200 shadow-sm lg:p-8">
-        <h2 class="text-3xl font-black tracking-tight text-white">Legal Disclaimer</h2>
-        <div class="mt-5 space-y-4 text-sm leading-7 text-slate-300">
+        <h2 class="text-3xl font-black tracking-tight text-white">
+          Legal Disclaimer
+        </h2>
+
+        <div class="article-copy mt-5 text-sm leading-7 text-slate-300">
           <p>
-            This Image Converter is provided for general file-format convenience only. While the tool attempts to convert images accurately, output quality, file size, transparency behavior, color appearance, metadata retention, and browser compatibility may vary depending on the source image, device, and browser implementation.
+            This Image Converter is provided for general image format conversion, resizing, compression, and file preparation purposes. The tool attempts to generate usable JPG, PNG, and WebP output, but conversion accuracy, image quality, transparency behavior, color appearance, metadata handling, file size, and compatibility may vary according to the source image, browser, device, operating system, and selected settings.
           </p>
+
           <p>
-            This tool is not a professional archival, forensic, legal, medical, security, or production-proof imaging system. Users are responsible for reviewing converted files before using them in commercial, legal, professional, or high-stakes contexts.
+            NodnWebTools does not guarantee that converted files will be suitable for professional printing, archival preservation, forensic analysis, medical imaging, legal evidence, regulatory compliance, security redaction, or color-critical commercial production. Users are responsible for reviewing downloaded files and confirming that they meet the requirements of the intended website, application, document, organization, marketplace, or service.
           </p>
+
           <p>
-            The converter runs locally in your browser and does not intentionally upload images to a backend server. However, users remain responsible for their own device security, browser extensions, local files, network environment, and third-party scripts. NodnWebTools is not liable for data loss, formatting errors, quality degradation, privacy issues, or any consequences resulting from use of this tool.
+            The core conversion process runs locally in the browser and does not intentionally upload the selected image to a dedicated conversion server. However, users remain responsible for device security, browser extensions, operating system security, third-party scripts, shared computer access, local file storage, and network conditions.
+          </p>
+
+          <p>
+            Always retain a backup copy of important source images. NodnWebTools is not responsible for data loss, overwritten files, quality degradation, missing metadata, altered transparency, color differences, rejected uploads, browser limitations, device performance problems, or any direct or indirect consequences arising from use of this tool.
+          </p>
+
+          <p>
+            Users must have the legal right to process, convert, download, publish, or distribute the selected images. The tool must not be used to infringe copyright, privacy rights, trademarks, contractual restrictions, or applicable laws.
           </p>
         </div>
       </section>
@@ -564,6 +1147,8 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
+      "use strict";
+
       const fileInput = document.getElementById("fileInput");
       const dropZone = document.getElementById("dropZone");
       const fileInputLabel = document.getElementById("fileInputLabel");
@@ -596,6 +1181,8 @@
       let sourceDataUrl = "";
       let outputObjectUrl = "";
       let toastTimer = null;
+      let aspectRatio = 1;
+      let dimensionUpdateLock = false;
 
       yearText.textContent = new Date().getFullYear();
 
@@ -612,74 +1199,136 @@
       function showToast(message) {
         toast.textContent = message || "Copied!";
         toast.classList.remove("hidden");
-        clearTimeout(toastTimer);
-        toastTimer = setTimeout(function () {
+
+        window.clearTimeout(toastTimer);
+
+        toastTimer = window.setTimeout(function () {
           toast.classList.add("hidden");
-        }, 1600);
+        }, 1700);
       }
 
       function formatBytes(bytes) {
-        if (!Number.isFinite(bytes) || bytes <= 0) return "0 Bytes";
+        if (!Number.isFinite(bytes) || bytes <= 0) {
+          return "0 Bytes";
+        }
+
         const units = ["Bytes", "KB", "MB", "GB"];
-        const index = Math.min(Math.floor(Math.log(bytes) / Math.log(1024)), units.length - 1);
-        return (bytes / Math.pow(1024, index)).toFixed(index === 0 ? 0 : 2) + " " + units[index];
+        const unitIndex = Math.min(
+          Math.floor(Math.log(bytes) / Math.log(1024)),
+          units.length - 1
+        );
+
+        const value = bytes / Math.pow(1024, unitIndex);
+        const decimals = unitIndex === 0 ? 0 : 2;
+
+        return value.toFixed(decimals) + " " + units[unitIndex];
       }
 
-      function getExtension(mime) {
-        if (mime === "image/jpeg") return "jpg";
-        if (mime === "image/png") return "png";
-        if (mime === "image/webp") return "webp";
+      function getExtension(mimeType) {
+        if (mimeType === "image/jpeg") {
+          return "jpg";
+        }
+
+        if (mimeType === "image/png") {
+          return "png";
+        }
+
+        if (mimeType === "image/webp") {
+          return "webp";
+        }
+
         return "img";
       }
 
-      function getBaseName(filename) {
-        const clean = String(filename || "image").replace(/[\\/:*?"<>|]+/g, "-");
-        const dotIndex = clean.lastIndexOf(".");
-        return dotIndex > 0 ? clean.slice(0, dotIndex) : clean;
+      function getFormatLabel(mimeType) {
+        if (mimeType === "image/jpeg") {
+          return "JPEG";
+        }
+
+        if (mimeType === "image/png") {
+          return "PNG";
+        }
+
+        if (mimeType === "image/webp") {
+          return "WebP";
+        }
+
+        return "Image";
       }
 
-      function setDownloadDisabled() {
+      function getBaseName(fileName) {
+        const safeName = String(fileName || "image").replace(/[\\/:*?"<>|]+/g, "-");
+        const lastDot = safeName.lastIndexOf(".");
+
+        return lastDot > 0 ? safeName.slice(0, lastDot) : safeName;
+      }
+
+      function setStatus(text, state) {
+        const classes = {
+          neutral: "bg-slate-100 text-slate-600",
+          loading: "bg-amber-50 text-amber-700",
+          ready: "bg-emerald-50 text-emerald-700",
+          error: "bg-red-50 text-red-700"
+        };
+
+        statusBadge.textContent = text;
+        statusBadge.className =
+          "inline-flex w-fit rounded-full px-4 py-2 text-sm font-bold " +
+          (classes[state] || classes.neutral);
+      }
+
+      function disableDownload() {
         downloadBtn.href = "#";
         downloadBtn.removeAttribute("download");
         downloadBtn.classList.add("pointer-events-none", "bg-slate-300");
-        downloadBtn.classList.remove("bg-slate-900", "hover:bg-indigo-700");
+        downloadBtn.classList.remove("bg-slate-950", "hover:bg-indigo-700");
         downloadBtn.setAttribute("aria-disabled", "true");
       }
 
-      function setDownloadEnabled(url, filename) {
+      function enableDownload(url, fileName) {
         downloadBtn.href = url;
-        downloadBtn.download = filename;
+        downloadBtn.download = fileName;
         downloadBtn.classList.remove("pointer-events-none", "bg-slate-300");
-        downloadBtn.classList.add("bg-slate-900", "hover:bg-indigo-700");
+        downloadBtn.classList.add("bg-slate-950", "hover:bg-indigo-700");
         downloadBtn.setAttribute("aria-disabled", "false");
       }
 
-      function resetOutputOnly() {
+      function releaseOutputUrl() {
         if (outputObjectUrl) {
           URL.revokeObjectURL(outputObjectUrl);
           outputObjectUrl = "";
         }
-        displayOutputSize.textContent = "Convert to calculate";
-        setDownloadDisabled();
       }
 
-      function resetAll() {
-        loadedFile = null;
-        loadedImage = null;
-        sourceDataUrl = "";
-        fileInput.value = "";
-        fileInputLabel.textContent = "Click to browse or drag and drop an image here";
-        previewImage.src = "";
-        resultPlaceholder.classList.remove("hidden");
-        resultContent.classList.add("hidden");
-        convertBtn.disabled = true;
-        statusBadge.textContent = "Waiting for image";
-        statusBadge.className = "inline-flex w-fit rounded-full bg-slate-100 px-4 py-2 text-sm font-bold text-slate-600";
-        resizeWidth.value = "";
-        resizeHeight.value = "";
-        summaryOutput.textContent = "";
-        clearAlert();
-        resetOutputOnly();
+      function resetConvertedOutput() {
+        releaseOutputUrl();
+        displayOutputSize.textContent = "Convert to calculate";
+        disableDownload();
+
+        if (loadedImage) {
+          setStatus("Ready to convert", "ready");
+        }
+      }
+
+      function getOutputDimensions() {
+        if (!loadedImage) {
+          return {
+            width: 0,
+            height: 0
+          };
+        }
+
+        if (!resizeToggle.checked) {
+          return {
+            width: loadedImage.naturalWidth,
+            height: loadedImage.naturalHeight
+          };
+        }
+
+        return {
+          width: Math.round(Number(resizeWidth.value)),
+          height: Math.round(Number(resizeHeight.value))
+        };
       }
 
       function updateSummary(extraText) {
@@ -688,29 +1337,68 @@
           return;
         }
 
-        const targetExt = getExtension(targetFormat.value);
-        const quality = Number(imageQuality.value);
-        const width = resizeToggle.checked && Number(resizeWidth.value) > 0 ? Number(resizeWidth.value) : loadedImage.naturalWidth;
-        const height = resizeToggle.checked && Number(resizeHeight.value) > 0 ? Number(resizeHeight.value) : loadedImage.naturalHeight;
+        const outputDimensions = getOutputDimensions();
+        const formatLabel = getFormatLabel(targetFormat.value);
 
-        summaryOutput.textContent =
+        let summary =
           "Source file: " + loadedFile.name + "\n" +
           "Original size: " + formatBytes(loadedFile.size) + "\n" +
-          "Original dimensions: " + loadedImage.naturalWidth + " × " + loadedImage.naturalHeight + " px\n" +
-          "Output format: " + targetExt.toUpperCase() + "\n" +
-          "Quality setting: " + quality + "%\n" +
-          "Output dimensions: " + width + " × " + height + " px" +
-          (extraText ? "\n" + extraText : "");
+          "Original dimensions: " +
+          loadedImage.naturalWidth +
+          " × " +
+          loadedImage.naturalHeight +
+          " px\n" +
+          "Output format: " +
+          formatLabel +
+          "\n" +
+          "Quality setting: " +
+          imageQuality.value +
+          "%\n" +
+          "Output dimensions: " +
+          outputDimensions.width +
+          " × " +
+          outputDimensions.height +
+          " px";
+
+        if (extraText) {
+          summary += "\n" + extraText;
+        }
+
+        summaryOutput.textContent = summary;
+      }
+
+      function validateImageFile(file) {
+        if (!file) {
+          return "No image file was selected.";
+        }
+
+        if (!file.type || !file.type.startsWith("image/")) {
+          return "Please select a valid image file.";
+        }
+
+        const supportedTypes = [
+          "image/png",
+          "image/jpeg",
+          "image/webp",
+          "image/bmp",
+          "image/gif"
+        ];
+
+        if (!supportedTypes.includes(file.type)) {
+          return "This image type may not be supported. Please use PNG, JPG, JPEG, WebP, BMP, or a static GIF.";
+        }
+
+        return "";
       }
 
       function loadImageFile(file) {
         clearAlert();
-        resetOutputOnly();
+        resetConvertedOutput();
 
-        if (!file) return;
+        const validationError = validateImageFile(file);
 
-        if (!file.type || !file.type.startsWith("image/")) {
-          showAlert("Please select a valid image file.");
+        if (validationError) {
+          showAlert(validationError);
           return;
         }
 
@@ -718,84 +1406,129 @@
         fileInputLabel.textContent = file.name;
         displayFileName.textContent = file.name;
         displayFileSize.textContent = formatBytes(file.size);
-        statusBadge.textContent = "Loading image";
-        statusBadge.className = "inline-flex w-fit rounded-full bg-amber-50 px-4 py-2 text-sm font-bold text-amber-700";
+        setStatus("Loading image", "loading");
 
         const reader = new FileReader();
 
         reader.onload = function (event) {
-          sourceDataUrl = event.target.result;
+          sourceDataUrl = String(event.target.result || "");
 
           const image = new Image();
+
           image.onload = function () {
             loadedImage = image;
+            aspectRatio = image.naturalWidth / image.naturalHeight;
+
             previewImage.src = sourceDataUrl;
-            displayDimensions.textContent = image.naturalWidth + " × " + image.naturalHeight + " px";
+            displayDimensions.textContent =
+              image.naturalWidth + " × " + image.naturalHeight + " px";
+
             resizeWidth.value = image.naturalWidth;
             resizeHeight.value = image.naturalHeight;
+
             resultPlaceholder.classList.add("hidden");
             resultContent.classList.remove("hidden");
             convertBtn.disabled = false;
-            statusBadge.textContent = "Ready to convert";
-            statusBadge.className = "inline-flex w-fit rounded-full bg-emerald-50 px-4 py-2 text-sm font-bold text-emerald-700";
+
+            setStatus("Ready to convert", "ready");
             updateSummary("");
           };
 
           image.onerror = function () {
-            showAlert("This image could not be loaded. Please try a different file.");
             resetAll();
+            showAlert("The selected image could not be decoded. Please choose a different file.");
+            setStatus("Image loading failed", "error");
           };
 
           image.src = sourceDataUrl;
         };
 
         reader.onerror = function () {
-          showAlert("The selected file could not be read. Please try again.");
+          resetAll();
+          showAlert("The selected file could not be read. Please try another image.");
+          setStatus("File reading failed", "error");
         };
 
-        reader.readAsDataURL(file);
+        try {
+          reader.readAsDataURL(file);
+        } catch (error) {
+          resetAll();
+          showAlert("The browser could not open this image file.");
+          setStatus("File loading failed", "error");
+        }
       }
 
-      function drawImageToCanvas() {
-        if (!loadedImage || !loadedFile) {
-          showAlert("Please choose an image before converting.");
+      function validateOutputDimensions() {
+        if (!resizeToggle.checked) {
+          return true;
+        }
+
+        const width = Number(resizeWidth.value);
+        const height = Number(resizeHeight.value);
+
+        if (
+          !Number.isFinite(width) ||
+          !Number.isFinite(height) ||
+          width < 1 ||
+          height < 1
+        ) {
+          showAlert("Enter valid width and height values greater than zero.");
+          return false;
+        }
+
+        const maximumDimension = 20000;
+
+        if (width > maximumDimension || height > maximumDimension) {
+          showAlert("For browser stability, keep each output dimension at or below 20,000 pixels.");
+          return false;
+        }
+
+        return true;
+      }
+
+      function createOutputCanvas() {
+        if (!loadedFile || !loadedImage) {
+          showAlert("Select an image before starting the conversion.");
           return null;
         }
 
-        let outputWidth = loadedImage.naturalWidth;
-        let outputHeight = loadedImage.naturalHeight;
-
-        if (resizeToggle.checked) {
-          outputWidth = Number(resizeWidth.value);
-          outputHeight = Number(resizeHeight.value);
-
-          if (!Number.isFinite(outputWidth) || !Number.isFinite(outputHeight) || outputWidth < 1 || outputHeight < 1) {
-            showAlert("Please enter valid resize dimensions greater than 0.");
-            return null;
-          }
-
-          outputWidth = Math.round(outputWidth);
-          outputHeight = Math.round(outputHeight);
+        if (!validateOutputDimensions()) {
+          return null;
         }
 
+        const outputDimensions = getOutputDimensions();
         const canvas = document.createElement("canvas");
-        canvas.width = outputWidth;
-        canvas.height = outputHeight;
 
-        const ctx = canvas.getContext("2d", { alpha: true });
-        if (!ctx) {
-          showAlert("Your browser does not support the required canvas features.");
+        canvas.width = outputDimensions.width;
+        canvas.height = outputDimensions.height;
+
+        const context = canvas.getContext("2d", {
+          alpha: true,
+          willReadFrequently: false
+        });
+
+        if (!context) {
+          showAlert("Your browser does not support the canvas features required for conversion.");
           return null;
         }
+
+        context.imageSmoothingEnabled = true;
+        context.imageSmoothingQuality = "high";
 
         if (targetFormat.value === "image/jpeg") {
-          ctx.fillStyle = "#ffffff";
-          ctx.fillRect(0, 0, outputWidth, outputHeight);
+          context.fillStyle = "#ffffff";
+          context.fillRect(0, 0, canvas.width, canvas.height);
         } else {
-          ctx.clearRect(0, 0, outputWidth, outputHeight);
+          context.clearRect(0, 0, canvas.width, canvas.height);
         }
 
-        ctx.drawImage(loadedImage, 0, 0, outputWidth, outputHeight);
+        context.drawImage(
+          loadedImage,
+          0,
+          0,
+          outputDimensions.width,
+          outputDimensions.height
+        );
 
         return canvas;
       }
@@ -803,39 +1536,55 @@
       function convertImage() {
         clearAlert();
 
-        const canvas = drawImageToCanvas();
-        if (!canvas) return;
+        const canvas = createOutputCanvas();
 
-        const mime = targetFormat.value;
+        if (!canvas) {
+          return;
+        }
+
+        const mimeType = targetFormat.value;
         const quality = Number(imageQuality.value) / 100;
-        const ext = getExtension(mime);
-        const filename = getBaseName(loadedFile.name) + "_converted." + ext;
+        const extension = getExtension(mimeType);
+        const outputFileName =
+          getBaseName(loadedFile.name) + "-converted." + extension;
 
-        statusBadge.textContent = "Converting";
-        statusBadge.className = "inline-flex w-fit rounded-full bg-amber-50 px-4 py-2 text-sm font-bold text-amber-700";
+        setStatus("Converting image", "loading");
+        convertBtn.disabled = true;
 
         try {
-          canvas.toBlob(function (blob) {
-            if (!blob) {
-              showAlert("Conversion failed. This browser may not support the selected output format.");
-              statusBadge.textContent = "Conversion failed";
-              statusBadge.className = "inline-flex w-fit rounded-full bg-red-50 px-4 py-2 text-sm font-bold text-red-700";
-              return;
-            }
+          canvas.toBlob(
+            function (blob) {
+              convertBtn.disabled = false;
 
-            if (outputObjectUrl) URL.revokeObjectURL(outputObjectUrl);
-            outputObjectUrl = URL.createObjectURL(blob);
-            setDownloadEnabled(outputObjectUrl, filename);
-            displayOutputSize.textContent = formatBytes(blob.size);
-            statusBadge.textContent = "Conversion complete";
-            statusBadge.className = "inline-flex w-fit rounded-full bg-emerald-50 px-4 py-2 text-sm font-bold text-emerald-700";
-            updateSummary("Converted size: " + formatBytes(blob.size) + "\nDownload name: " + filename);
-            showToast("Conversion complete!");
-          }, mime, quality);
+              if (!blob) {
+                showAlert("The browser could not create the selected output format.");
+                setStatus("Conversion failed", "error");
+                return;
+              }
+
+              releaseOutputUrl();
+
+              outputObjectUrl = URL.createObjectURL(blob);
+              enableDownload(outputObjectUrl, outputFileName);
+              displayOutputSize.textContent = formatBytes(blob.size);
+
+              updateSummary(
+                "Converted size: " +
+                formatBytes(blob.size) +
+                "\nDownload name: " +
+                outputFileName
+              );
+
+              setStatus("Conversion complete", "ready");
+              showToast("Conversion complete!");
+            },
+            mimeType,
+            quality
+          );
         } catch (error) {
-          showAlert("Conversion failed. Please try a smaller image or another output format.");
-          statusBadge.textContent = "Conversion failed";
-          statusBadge.className = "inline-flex w-fit rounded-full bg-red-50 px-4 py-2 text-sm font-bold text-red-700";
+          convertBtn.disabled = false;
+          showAlert("Conversion failed. Try a smaller image or another output format.");
+          setStatus("Conversion failed", "error");
         }
       }
 
@@ -844,52 +1593,73 @@
           if (navigator.clipboard && window.isSecureContext) {
             await navigator.clipboard.writeText(text);
           } else {
-            const textarea = document.createElement("textarea");
-            textarea.value = text;
-            textarea.style.position = "fixed";
-            textarea.style.left = "-9999px";
-            document.body.appendChild(textarea);
-            textarea.focus();
-            textarea.select();
-            document.execCommand("copy");
-            document.body.removeChild(textarea);
+            const temporaryTextarea = document.createElement("textarea");
+            temporaryTextarea.value = text;
+            temporaryTextarea.style.position = "fixed";
+            temporaryTextarea.style.left = "-9999px";
+            temporaryTextarea.setAttribute("readonly", "");
+
+            document.body.appendChild(temporaryTextarea);
+            temporaryTextarea.select();
+
+            const copied = document.execCommand("copy");
+            document.body.removeChild(temporaryTextarea);
+
+            if (!copied) {
+              throw new Error("Legacy clipboard command failed.");
+            }
           }
+
           showToast("Copied!");
         } catch (error) {
-          showAlert("Clipboard access failed. Please copy the summary manually.");
+          showAlert("Clipboard access failed. Please select and copy the summary manually.");
         }
       }
 
-      imageQuality.addEventListener("input", function () {
-        qualityDisplay.textContent = imageQuality.value + "%";
-        resetOutputOnly();
-        updateSummary("");
-      });
+      function resetAll() {
+        releaseOutputUrl();
 
-      targetFormat.addEventListener("change", function () {
-        resetOutputOnly();
-        updateSummary("");
-      });
+        loadedFile = null;
+        loadedImage = null;
+        sourceDataUrl = "";
+        aspectRatio = 1;
 
-      resizeToggle.addEventListener("change", function () {
-        resizeControls.classList.toggle("hidden", !resizeToggle.checked);
-        resetOutputOnly();
-        updateSummary("");
-      });
+        fileInput.value = "";
+        fileInputLabel.textContent = "Click to browse or drag and drop an image";
+        previewImage.src = "";
 
-      resizeWidth.addEventListener("input", function () {
-        resetOutputOnly();
-        updateSummary("");
-      });
+        targetFormat.value = "image/webp";
+        imageQuality.value = "90";
+        qualityDisplay.textContent = "90%";
 
-      resizeHeight.addEventListener("input", function () {
-        resetOutputOnly();
-        updateSummary("");
-      });
+        resizeToggle.checked = false;
+        resizeControls.classList.add("hidden");
+        resizeControls.classList.remove("grid");
+        resizeWidth.value = "";
+        resizeHeight.value = "";
+
+        displayFileName.textContent = "No file selected";
+        displayFileSize.textContent = "0 Bytes";
+        displayDimensions.textContent = "0 × 0 px";
+        displayOutputSize.textContent = "Convert to calculate";
+        summaryOutput.textContent = "";
+
+        resultPlaceholder.classList.remove("hidden");
+        resultContent.classList.add("hidden");
+
+        convertBtn.disabled = true;
+        clearAlert();
+        disableDownload();
+        setStatus("Waiting for image", "neutral");
+      }
 
       fileInput.addEventListener("change", function (event) {
-        const file = event.target.files && event.target.files[0];
-        loadImageFile(file);
+        const selectedFile =
+          event.target.files && event.target.files.length
+            ? event.target.files[0]
+            : null;
+
+        loadImageFile(selectedFile);
       });
 
       ["dragenter", "dragover"].forEach(function (eventName) {
@@ -909,28 +1679,117 @@
       });
 
       dropZone.addEventListener("drop", function (event) {
-        const files = event.dataTransfer && event.dataTransfer.files;
-        if (files && files.length > 0) {
-          loadImageFile(files[0]);
+        const droppedFiles =
+          event.dataTransfer && event.dataTransfer.files
+            ? event.dataTransfer.files
+            : null;
+
+        if (droppedFiles && droppedFiles.length) {
+          loadImageFile(droppedFiles[0]);
         }
+      });
+
+      targetFormat.addEventListener("change", function () {
+        clearAlert();
+        resetConvertedOutput();
+        updateSummary("");
+      });
+
+      imageQuality.addEventListener("input", function () {
+        qualityDisplay.textContent = imageQuality.value + "%";
+        clearAlert();
+        resetConvertedOutput();
+        updateSummary("");
+      });
+
+      resizeToggle.addEventListener("change", function () {
+        clearAlert();
+
+        if (resizeToggle.checked) {
+          resizeControls.classList.remove("hidden");
+          resizeControls.classList.add("grid");
+        } else {
+          resizeControls.classList.add("hidden");
+          resizeControls.classList.remove("grid");
+        }
+
+        resetConvertedOutput();
+        updateSummary("");
+      });
+
+      resizeWidth.addEventListener("input", function () {
+        if (
+          dimensionUpdateLock ||
+          !loadedImage ||
+          !resizeToggle.checked ||
+          !Number.isFinite(aspectRatio) ||
+          aspectRatio <= 0
+        ) {
+          resetConvertedOutput();
+          updateSummary("");
+          return;
+        }
+
+        const width = Number(resizeWidth.value);
+
+        if (Number.isFinite(width) && width > 0) {
+          dimensionUpdateLock = true;
+          resizeHeight.value = Math.max(1, Math.round(width / aspectRatio));
+          dimensionUpdateLock = false;
+        }
+
+        resetConvertedOutput();
+        updateSummary("");
+      });
+
+      resizeHeight.addEventListener("input", function () {
+        if (
+          dimensionUpdateLock ||
+          !loadedImage ||
+          !resizeToggle.checked ||
+          !Number.isFinite(aspectRatio) ||
+          aspectRatio <= 0
+        ) {
+          resetConvertedOutput();
+          updateSummary("");
+          return;
+        }
+
+        const height = Number(resizeHeight.value);
+
+        if (Number.isFinite(height) && height > 0) {
+          dimensionUpdateLock = true;
+          resizeWidth.value = Math.max(1, Math.round(height * aspectRatio));
+          dimensionUpdateLock = false;
+        }
+
+        resetConvertedOutput();
+        updateSummary("");
       });
 
       convertBtn.addEventListener("click", convertImage);
-      resetBtn.addEventListener("click", resetAll);
+
+      resetBtn.addEventListener("click", function () {
+        resetAll();
+        showToast("Converter reset");
+      });
 
       copySummaryBtn.addEventListener("click", function () {
-        if (!summaryOutput.textContent.trim()) {
-          showAlert("There is no summary to copy yet.");
+        const summary = summaryOutput.textContent.trim();
+
+        if (!summary) {
+          showAlert("There is no conversion summary to copy yet.");
           return;
         }
-        copyText(summaryOutput.textContent);
+
+        copyText(summary);
       });
 
       window.addEventListener("beforeunload", function () {
-        if (outputObjectUrl) URL.revokeObjectURL(outputObjectUrl);
+        releaseOutputUrl();
       });
 
-      setDownloadDisabled();
+      disableDownload();
     });
   </script>
 </body>
