@@ -1,0 +1,1414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>YouTube Playlist Duration Calculator | NodnWebTools</title>
+  <meta name="description" content="Calculate total YouTube playlist length, adjusted watch time, finish time, and daily viewing plans at any playback speed.">
+  <meta name="keywords" content="YouTube playlist duration calculator, playlist length calculator, YouTube watch time calculator, video duration calculator, playback speed calculator, playlist finish time, YouTube time calculator, total playlist time">
+  <meta name="robots" content="index, follow">
+  <meta name="google-adsense-account" content="ca-pub-5282672325821404">
+
+  <meta property="og:title" content="YouTube Playlist Duration Calculator">
+  <meta property="og:description" content="Calculate total playlist length, adjusted watch time, finish time, and a practical viewing schedule.">
+  <meta property="og:type" content="website">
+
+  <link rel="icon" type="image/png" href="/favicon.png">
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404" crossorigin="anonymous"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "YouTube Playlist Duration Calculator",
+    "description": "A browser-based calculator for totaling YouTube playlist durations, adjusting watch time by playback speed, estimating completion time, and creating daily viewing plans.",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires a modern web browser with JavaScript enabled.",
+    "url": "https://nodntools.com/youtube-playlist-duration-calculator",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "NodnWebTools",
+      "url": "https://nodntools.com"
+    }
+  }
+  </script>
+
+  <style>
+    html, body {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      min-width: 0;
+    }
+
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .safe-break {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .ad-box {
+      width: 100%;
+      max-width: 100%;
+      min-height: 90px;
+      overflow: hidden;
+    }
+
+    .mobile-code {
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    textarea,
+    input,
+    select,
+    button {
+      max-width: 100%;
+    }
+
+    .result-number {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .fade-in {
+      animation: fadeIn 0.3s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(4px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .mobile-card {
+        padding: 1rem !important;
+        border-radius: 1rem !important;
+      }
+
+      .mobile-panel {
+        padding: 0.875rem !important;
+      }
+
+      .mobile-preview {
+        padding: 0.875rem !important;
+      }
+
+      .mobile-button-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .mobile-button-grid button,
+      .mobile-button-grid a {
+        width: 100%;
+      }
+
+      .mobile-code {
+        font-size: 0.8rem !important;
+      }
+
+      .ad-box {
+        min-height: 90px;
+        padding: 0.75rem !important;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .mobile-card {
+        padding: 0.75rem !important;
+        border-radius: 0.875rem !important;
+      }
+
+      .mobile-panel,
+      .mobile-preview {
+        padding: 0.75rem !important;
+      }
+
+      .small-screen-title {
+        font-size: 1.7rem !important;
+        line-height: 2rem !important;
+      }
+
+      .small-screen-stat {
+        font-size: 1.35rem !important;
+      }
+
+      .mobile-code {
+        font-size: 0.75rem !important;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800 antialiased">
+  <header class="border-b border-slate-200 bg-white">
+    <div class="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-4 py-5 sm:px-6 lg:px-8">
+      <a href="https://nodntools.com" class="safe-break text-xl font-black tracking-tight text-slate-900" aria-label="NodnWebTools home">
+        Nodn<span class="text-indigo-600">WebTools</span>
+      </a>
+
+      <a href="https://nodntools.com" class="rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700">
+        Home
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <section class="mx-auto w-full max-w-7xl px-4 pt-6 sm:px-6 lg:px-8">
+      <div class="ad-box flex items-center justify-center rounded-2xl border-2 border-dashed border-slate-300 bg-slate-100 px-4 text-center text-sm font-medium text-slate-500">
+        Advertisement
+      </div>
+    </section>
+
+    <section class="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+      <div class="mb-8 max-w-3xl">
+        <div class="mb-4 inline-flex items-center gap-2 rounded-full border border-indigo-200 bg-indigo-50 px-3 py-1 text-sm font-semibold text-indigo-700">
+          <span aria-hidden="true">▶</span>
+          Free browser-based calculator
+        </div>
+
+        <h1 class="small-screen-title safe-break text-4xl font-black tracking-tight text-slate-900 sm:text-5xl">
+          YouTube Playlist Duration Calculator
+        </h1>
+
+        <p class="mt-5 text-base leading-8 text-slate-600 sm:text-lg">
+          Add video durations to calculate the total length of a YouTube playlist, compare watch time at different playback speeds, estimate your finish time, and create a practical daily viewing schedule.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
+        <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8" aria-labelledby="calculator-input-heading">
+          <div class="mb-6">
+            <h2 id="calculator-input-heading" class="text-2xl font-bold text-slate-900">Playlist Input</h2>
+            <p class="mt-2 text-sm leading-6 text-slate-600">
+              Enter one duration per line, or paste text containing durations such as <strong>12:45</strong>, <strong>1:05:30</strong>, or <strong>2h 15m 10s</strong>.
+            </p>
+          </div>
+
+          <div>
+            <label for="durationInput" class="mb-2 block text-sm font-bold text-slate-800">
+              Video durations
+            </label>
+            <textarea
+              id="durationInput"
+              rows="12"
+              class="mobile-code w-full resize-y rounded-2xl border border-slate-300 bg-white px-4 py-4 font-mono text-sm leading-7 text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100"
+              placeholder="12:45&#10;8:21&#10;1:05:30&#10;23m 10s&#10;45:08"
+              aria-describedby="durationHelp"
+            ></textarea>
+            <p id="durationHelp" class="mt-2 text-xs leading-5 text-slate-500">
+              Supported formats include MM:SS, HH:MM:SS, 1h 20m 15s, 45m, and text copied from a playlist page.
+            </p>
+          </div>
+
+          <div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div>
+              <label for="playbackSpeed" class="mb-2 block text-sm font-bold text-slate-800">
+                Playback speed
+              </label>
+              <select id="playbackSpeed" class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-semibold text-slate-800 outline-none transition focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100">
+                <option value="0.25">0.25×</option>
+                <option value="0.5">0.5×</option>
+                <option value="0.75">0.75×</option>
+                <option value="1" selected>1× Normal</option>
+                <option value="1.25">1.25×</option>
+                <option value="1.5">1.5×</option>
+                <option value="1.75">1.75×</option>
+                <option value="2">2×</option>
+                <option value="2.5">2.5×</option>
+                <option value="3">3×</option>
+                <option value="custom">Custom speed</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="customSpeed" class="mb-2 block text-sm font-bold text-slate-800">
+                Custom speed
+              </label>
+              <input
+                id="customSpeed"
+                type="number"
+                min="0.1"
+                max="10"
+                step="0.05"
+                value="1"
+                disabled
+                class="w-full rounded-xl border border-slate-300 bg-slate-100 px-4 py-3 text-sm font-semibold text-slate-800 outline-none transition disabled:cursor-not-allowed disabled:text-slate-400 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100"
+                aria-label="Custom playback speed"
+              >
+            </div>
+          </div>
+
+          <div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div>
+              <label for="dailyMinutes" class="mb-2 block text-sm font-bold text-slate-800">
+                Daily viewing time
+              </label>
+              <div class="relative">
+                <input
+                  id="dailyMinutes"
+                  type="number"
+                  min="1"
+                  max="1440"
+                  step="1"
+                  value="60"
+                  class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 pr-20 text-sm font-semibold text-slate-800 outline-none transition focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100"
+                >
+                <span class="pointer-events-none absolute inset-y-0 right-4 flex items-center text-sm text-slate-500">minutes</span>
+              </div>
+            </div>
+
+            <div>
+              <label for="startTime" class="mb-2 block text-sm font-bold text-slate-800">
+                Start watching at
+              </label>
+              <input
+                id="startTime"
+                type="datetime-local"
+                class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-semibold text-slate-800 outline-none transition focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100"
+              >
+            </div>
+          </div>
+
+          <div class="mt-6">
+            <label for="breakMinutes" class="mb-2 block text-sm font-bold text-slate-800">
+              Break time between videos
+            </label>
+            <div class="relative">
+              <input
+                id="breakMinutes"
+                type="number"
+                min="0"
+                max="120"
+                step="0.5"
+                value="0"
+                class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 pr-20 text-sm font-semibold text-slate-800 outline-none transition focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100"
+              >
+              <span class="pointer-events-none absolute inset-y-0 right-4 flex items-center text-sm text-slate-500">minutes</span>
+            </div>
+          </div>
+
+          <div class="mobile-button-grid mt-6 grid grid-cols-1 gap-3 sm:grid-cols-3">
+            <button id="calculateButton" type="button" class="rounded-xl bg-indigo-600 px-5 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-200">
+              Calculate
+            </button>
+            <button id="exampleButton" type="button" class="rounded-xl border border-violet-200 bg-violet-50 px-5 py-3 text-sm font-bold text-violet-700 transition hover:bg-violet-100 focus:outline-none focus:ring-4 focus:ring-violet-100">
+              Load Example
+            </button>
+            <button id="resetButton" type="button" class="rounded-xl border border-slate-300 bg-white px-5 py-3 text-sm font-bold text-slate-700 transition hover:bg-slate-100 focus:outline-none focus:ring-4 focus:ring-slate-100">
+              Reset
+            </button>
+          </div>
+
+          <div id="inputWarning" class="mt-5 hidden rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm leading-6 text-amber-800" role="alert"></div>
+
+          <div class="mt-8 rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <h3 class="font-bold text-slate-900">Accepted input examples</h3>
+            <div class="mt-3 grid grid-cols-1 gap-3 text-sm text-slate-600 sm:grid-cols-2">
+              <div class="rounded-xl bg-white p-3 font-mono shadow-sm">12:34</div>
+              <div class="rounded-xl bg-white p-3 font-mono shadow-sm">1:25:40</div>
+              <div class="rounded-xl bg-white p-3 font-mono shadow-sm">45m 20s</div>
+              <div class="rounded-xl bg-white p-3 font-mono shadow-sm">2h 5m 8s</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8" aria-labelledby="calculator-results-heading">
+          <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+            <div>
+              <h2 id="calculator-results-heading" class="text-2xl font-bold text-slate-900">Playlist Results</h2>
+              <p class="mt-2 text-sm leading-6 text-slate-600">
+                Results update automatically whenever your durations or options change.
+              </p>
+            </div>
+            <div id="resultStatus" class="inline-flex items-center self-start rounded-full bg-slate-100 px-3 py-1 text-xs font-bold text-slate-500">
+              Waiting for input
+            </div>
+          </div>
+
+          <div id="emptyState" class="mobile-preview mt-6 flex min-h-64 flex-col items-center justify-center rounded-2xl border-2 border-dashed border-slate-300 bg-slate-50 p-8 text-center">
+            <div class="flex h-16 w-16 items-center justify-center rounded-full bg-indigo-100 text-3xl text-indigo-700" aria-hidden="true">▶</div>
+            <h3 class="mt-5 text-lg font-bold text-slate-900">Enter playlist durations</h3>
+            <p class="mt-2 max-w-md text-sm leading-6 text-slate-600">
+              Add one or more video durations to see total watch time, adjusted playback time, finish time, and viewing schedule estimates.
+            </p>
+          </div>
+
+          <div id="resultContent" class="mt-6 hidden fade-in">
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              <article class="mobile-panel rounded-2xl border border-indigo-100 bg-indigo-50 p-5">
+                <p class="text-sm font-bold text-indigo-700">Original playlist length</p>
+                <p id="originalDuration" class="small-screen-stat result-number mt-2 text-2xl font-black text-slate-900">0 seconds</p>
+                <p id="originalDurationCompact" class="mt-2 text-xs font-medium text-slate-500">00:00:00</p>
+              </article>
+
+              <article class="mobile-panel rounded-2xl border border-violet-100 bg-violet-50 p-5">
+                <p class="text-sm font-bold text-violet-700">Adjusted watch time</p>
+                <p id="adjustedDuration" class="small-screen-stat result-number mt-2 text-2xl font-black text-slate-900">0 seconds</p>
+                <p id="adjustedDurationCompact" class="mt-2 text-xs font-medium text-slate-500">00:00:00</p>
+              </article>
+
+              <article class="mobile-panel rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+                <p class="text-sm font-bold text-slate-600">Videos detected</p>
+                <p id="videoCount" class="small-screen-stat result-number mt-2 text-2xl font-black text-slate-900">0</p>
+                <p id="averageDuration" class="mt-2 text-xs font-medium text-slate-500">Average: 0 seconds</p>
+              </article>
+
+              <article class="mobile-panel rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+                <p class="text-sm font-bold text-slate-600">Time saved or added</p>
+                <p id="timeDifference" class="small-screen-stat result-number mt-2 text-2xl font-black text-slate-900">0 seconds</p>
+                <p id="speedSummary" class="mt-2 text-xs font-medium text-slate-500">At 1× playback speed</p>
+              </article>
+            </div>
+
+            <div class="mt-6 rounded-2xl border border-slate-200 bg-slate-50 p-5">
+              <h3 class="text-lg font-bold text-slate-900">Completion Estimate</h3>
+
+              <dl class="mt-4 space-y-4">
+                <div class="flex flex-col gap-1 border-b border-slate-200 pb-4 sm:flex-row sm:items-center sm:justify-between">
+                  <dt class="text-sm font-semibold text-slate-600">Estimated finish time</dt>
+                  <dd id="finishTime" class="safe-break text-sm font-bold text-slate-900">Not available</dd>
+                </div>
+
+                <div class="flex flex-col gap-1 border-b border-slate-200 pb-4 sm:flex-row sm:items-center sm:justify-between">
+                  <dt class="text-sm font-semibold text-slate-600">Daily viewing plan</dt>
+                  <dd id="dailyPlan" class="safe-break text-sm font-bold text-slate-900">Not available</dd>
+                </div>
+
+                <div class="flex flex-col gap-1 border-b border-slate-200 pb-4 sm:flex-row sm:items-center sm:justify-between">
+                  <dt class="text-sm font-semibold text-slate-600">Break time included</dt>
+                  <dd id="totalBreakTime" class="safe-break text-sm font-bold text-slate-900">0 seconds</dd>
+                </div>
+
+                <div class="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
+                  <dt class="text-sm font-semibold text-slate-600">Invalid lines ignored</dt>
+                  <dd id="invalidLineCount" class="safe-break text-sm font-bold text-slate-900">0</dd>
+                </div>
+              </dl>
+            </div>
+
+            <div class="mt-6">
+              <h3 class="text-lg font-bold text-slate-900">Playback Speed Comparison</h3>
+              <div class="mt-4 overflow-x-auto rounded-2xl border border-slate-200">
+                <table class="w-full min-w-[560px] text-left text-sm">
+                  <thead class="bg-slate-100 text-xs uppercase tracking-wide text-slate-600">
+                    <tr>
+                      <th class="px-4 py-3">Speed</th>
+                      <th class="px-4 py-3">Watch Time</th>
+                      <th class="px-4 py-3">Difference</th>
+                      <th class="px-4 py-3">Percent Saved</th>
+                    </tr>
+                  </thead>
+                  <tbody id="speedTableBody" class="divide-y divide-slate-200 bg-white"></tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="mobile-button-grid mt-6 grid grid-cols-1 gap-3 sm:grid-cols-3">
+              <button id="copyButton" type="button" class="rounded-xl bg-slate-900 px-5 py-3 text-sm font-bold text-white transition hover:bg-slate-700 focus:outline-none focus:ring-4 focus:ring-slate-200">
+                Copy Results
+              </button>
+              <button id="downloadButton" type="button" class="rounded-xl border border-indigo-200 bg-indigo-50 px-5 py-3 text-sm font-bold text-indigo-700 transition hover:bg-indigo-100 focus:outline-none focus:ring-4 focus:ring-indigo-100">
+                Download Report
+              </button>
+              <button id="copyDurationsButton" type="button" class="rounded-xl border border-slate-300 bg-white px-5 py-3 text-sm font-bold text-slate-700 transition hover:bg-slate-100 focus:outline-none focus:ring-4 focus:ring-slate-100">
+                Copy Clean List
+              </button>
+            </div>
+
+            <div id="actionFeedback" class="mt-4 hidden rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-center text-sm font-bold text-emerald-700" role="status"></div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="mx-auto w-full max-w-7xl px-4 pb-10 sm:px-6 lg:px-8">
+      <div class="ad-box flex items-center justify-center rounded-2xl border-2 border-dashed border-slate-300 bg-slate-100 px-4 text-center text-sm font-medium text-slate-500">
+        Advertisement
+      </div>
+    </section>
+
+    <article class="mx-auto w-full max-w-5xl px-4 py-10 sm:px-6 lg:px-8">
+      <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-10">
+        <div class="prose prose-slate max-w-none">
+          <h2 class="text-3xl font-black tracking-tight text-slate-900">What Is a YouTube Playlist Duration Calculator?</h2>
+
+          <p class="mt-5 text-base leading-8 text-slate-700">
+            A YouTube playlist duration calculator is a practical time-planning tool that adds together the length of multiple videos and converts the total into an easy-to-understand viewing estimate. Instead of manually adding minutes and seconds from every video, you can paste a list of durations into the calculator and instantly see the complete playlist length. The tool also adjusts the result for different playback speeds, which is especially useful for viewers who regularly watch educational videos, tutorials, lectures, podcasts, interviews, reviews, or training material at 1.25×, 1.5×, 1.75×, or 2× speed.
+          </p>
+
+          <p class="mt-5 text-base leading-8 text-slate-700">
+            YouTube playlists can contain a few short clips or hundreds of long videos. A playlist that appears manageable at first may require many hours or even several days to complete. Knowing the total YouTube playlist duration helps you decide whether you can finish the content in one sitting, over a weekend, during a school term, or as part of a daily study routine. This calculator turns a collection of individual video lengths into a realistic plan that can be used for learning, entertainment, professional development, content research, or project scheduling.
+          </p>
+
+          <p class="mt-5 text-base leading-8 text-slate-700">
+            The calculator works entirely in your browser. The durations you enter are processed locally on your device and are not uploaded to NodnWebTools. It does not require a YouTube login, channel access, or a private playlist connection. This browser-based design makes the tool suitable for public playlists, private course lists, manually collected video durations, offline lesson plans, and other situations where users prefer not to provide account permissions.
+          </p>
+
+          <h2 class="mt-12 text-3xl font-black tracking-tight text-slate-900">How the Playlist Length Calculation Works</h2>
+
+          <p class="mt-5 text-base leading-8 text-slate-700">
+            Each video duration is converted into seconds before the calculator produces a final total. For example, a duration of 12 minutes and 30 seconds becomes 750 seconds. A longer video listed as 1 hour, 5 minutes, and 20 seconds becomes 3,920 seconds. After all recognized durations are converted, the calculator adds them together and then formats the result as days, hours, minutes, and seconds.
+          </p>
+
+          <p class="mt-5 text-base leading-8 text-slate-700">
+            This method avoids common manual calculation mistakes. Time values use groups of 60 rather than groups of 100, so adding them with an ordinary calculator can be confusing. For example, 45 minutes plus 35 minutes is not 80 minutes in final time notation. It is 1 hour and 20 minutes. A dedicated video duration calculator automatically performs these conversions and presents the answer in standard time format.
+          </p>
+
+          <p class="mt-5 text-base leading-8 text-slate-700">
+            The adjusted watch time is calculated by dividing the original playlist duration by the selected playback speed. A two-hour playlist watched at 2× speed requires approximately one hour, while the same playlist at 1.5× speed requires approximately one hour and twenty minutes. Slower playback settings increase the required time. For example, a one-hour video at 0.5× speed takes two hours to watch.
+          </p>
+
+          <h3 class="mt-10 text-2xl font-bold text-slate-900">Supported Duration Formats</h3>
+
+          <p class="mt-4 text-base leading-8 text-slate-700">
+            The tool recognizes common YouTube-style timestamps such as MM:SS and HH:MM:SS. You can also enter written time formats such as “25m 40s,” “1h 10m,” or “2h 15m 30s.” Each duration can be placed on a separate line. The parser can also find duration values inside larger blocks of copied text, making it easier to work with playlist notes, video lists, course outlines, or exported information.
+          </p>
+
+          <div class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div class="rounded-2xl border border-indigo-100 bg-indigo-50 p-5">
+              <h3 class="font-bold text-indigo-900">Standard timestamps</h3>
+              <p class="mt-2 text-sm leading-6 text-indigo-800">
+                Enter values such as 08:42, 45:19, or 1:14:35. These formats are commonly shown on YouTube thumbnails and playlist pages.
+              </p>
+            </div>
+
+            <div class="rounded-2xl border border-violet-100 bg-violet-50 p-5">
+              <h3 class="font-bold text-violet-900">Written durations</h3>
+              <p class="mt-2 text-sm leading-6 text-violet-800">
+                Enter values such as 40m, 1h 15m, or 2h 4m 30s when you are preparing a custom lesson or viewing schedule.
+              </p>
+            </div>
+          </div>
+
+          <h2 class="mt-12 text-3xl font-black tracking-tight text-slate-900">How to Use the YouTube Playlist Duration Calculator</h2>
+
+          <div class="mt-6 grid grid-cols-1 gap-5 md:grid-cols-2">
+            <article class="rounded-2xl border border-slate-200 bg-slate-50 p-6">
+              <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-600 font-black text-white">1</div>
+              <h3 class="mt-4 text-lg font-bold text-slate-900">Collect the video durations</h3>
+              <p class="mt-2 text-sm leading-7 text-slate-600">
+                Open your playlist or video list and copy the displayed durations. You may also type them manually. Place one duration per line for the clearest results.
+              </p>
+            </article>
+
+            <article class="rounded-2xl border border-slate-200 bg-slate-50 p-6">
+              <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-600 font-black text-white">2</div>
+              <h3 class="mt-4 text-lg font-bold text-slate-900">Paste them into the input box</h3>
+              <p class="mt-2 text-sm leading-7 text-slate-600">
+                The calculator scans your input and identifies valid MM:SS, HH:MM:SS, and written hour-minute-second values.
+              </p>
+            </article>
+
+            <article class="rounded-2xl border border-slate-200 bg-slate-50 p-6">
+              <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-600 font-black text-white">3</div>
+              <h3 class="mt-4 text-lg font-bold text-slate-900">Choose a playback speed</h3>
+              <p class="mt-2 text-sm leading-7 text-slate-600">
+                Select normal speed or compare faster and slower settings. A custom field is available for playback rates not included in the standard menu.
+              </p>
+            </article>
+
+            <article class="rounded-2xl border border-slate-200 bg-slate-50 p-6">
+              <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-600 font-black text-white">4</div>
+              <h3 class="mt-4 text-lg font-bold text-slate-900">Review your completion plan</h3>
+              <p class="mt-2 text-sm leading-7 text-slate-600">
+                Check the total length, adjusted watch time, estimated finish time, daily schedule, average video duration, and time saved.
+              </p>
+            </article>
+          </div>
+
+          <div class="ad-box mt-10 flex items-center justify-center rounded-2xl border-2 border-dashed border-slate-300 bg-slate-100 px-4 text-center text-sm font-medium text-slate-500">
+            Advertisement
+          </div>
+
+          <h2 class="mt-12 text-3xl font-black tracking-tight text-slate-900">Popular Uses for a Playlist Time Calculator</h2>
+
+          <h3 class="mt-8 text-2xl font-bold text-slate-900">Online Courses and Study Playlists</h3>
+
+          <p class="mt-4 text-base leading-8 text-slate-700">
+            Students frequently use YouTube for mathematics lessons, language courses, exam preparation, science explanations, coding tutorials, history lectures, and professional certification training. A playlist may be labeled as a complete course without stating how many hours are required. By calculating the total playlist length, students can compare the course with their available study time and set realistic completion goals.
+          </p>
+
+          <p class="mt-5 text-base leading-8 text-slate-700">
+            For example, a 30-hour programming playlist may seem difficult to finish. However, at 1.5× playback speed, the active viewing time drops to about 20 hours before breaks. A learner who studies for 60 minutes each day could complete the material in approximately 20 days. This makes the workload easier to understand and helps prevent unrealistic planning.
+          </p>
+
+          <h3 class="mt-8 text-2xl font-bold text-slate-900">Podcast and Interview Playlists</h3>
+
+          <p class="mt-4 text-base leading-8 text-slate-700">
+            Long-form interviews, video podcasts, documentaries, and commentary channels often publish episodes lasting one to three hours. Viewers may save many episodes into a watch-later playlist and underestimate the total commitment. A total playlist time calculator provides a clear picture of the accumulated duration and shows how much time can be saved by using a faster playback rate.
+          </p>
+
+          <h3 class="mt-8 text-2xl font-bold text-slate-900">Professional Training and Employee Learning</h3>
+
+          <p class="mt-4 text-base leading-8 text-slate-700">
+            Businesses and independent professionals can use playlist duration estimates when creating onboarding programs, software training, product education, compliance lessons, or continuing education schedules. Knowing the approximate completion time helps managers assign reasonable deadlines and allows employees to reserve adequate calendar space.
+          </p>
+
+          <h3 class="mt-8 text-2xl font-bold text-slate-900">Content Research and Competitor Analysis</h3>
+
+          <p class="mt-4 text-base leading-8 text-slate-700">
+            Video creators, marketers, researchers, and editors may need to review many videos before producing an article, presentation, comparison, or new piece of content. The playlist duration calculator can estimate the total research workload. Adding break time between videos also creates a more realistic schedule that includes note-taking, navigation, and brief pauses.
+          </p>
+
+          <h3 class="mt-8 text-2xl font-bold text-slate-900">Entertainment and Watch-Later Planning</h3>
+
+          <p class="mt-4 text-base leading-8 text-slate-700">
+            The calculator is not limited to educational content. It can also be used for music playlists, travel videos, gaming series, comedy collections, sports highlights, product reviews, movie analysis, and other entertainment playlists. A finish-time estimate can help you determine whether a playlist fits into an evening, a flight, a road trip, or a weekend.
+          </p>
+
+          <h2 class="mt-12 text-3xl font-black tracking-tight text-slate-900">Understanding Playback Speed and Time Savings</h2>
+
+          <p class="mt-5 text-base leading-8 text-slate-700">
+            Playback speed changes how quickly a video is presented without changing the amount of recorded content. At 1× speed, a 60-minute video takes 60 minutes. At 1.25× speed, it takes approximately 48 minutes. At 1.5× speed, it takes 40 minutes. At 2× speed, it takes 30 minutes.
+          </p>
+
+          <div class="mt-6 overflow-x-auto rounded-2xl border border-slate-200">
+            <table class="w-full min-w-[620px] text-left text-sm">
+              <thead class="bg-slate-100 text-slate-700">
+                <tr>
+                  <th class="px-5 py-4">Playback Speed</th>
+                  <th class="px-5 py-4">Time for a 60-Minute Video</th>
+                  <th class="px-5 py-4">Approximate Time Saved</th>
+                  <th class="px-5 py-4">Common Use</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-200 bg-white">
+                <tr>
+                  <td class="px-5 py-4 font-bold">0.5×</td>
+                  <td class="px-5 py-4">120 minutes</td>
+                  <td class="px-5 py-4">60 minutes added</td>
+                  <td class="px-5 py-4">Detailed listening or language practice</td>
+                </tr>
+                <tr>
+                  <td class="px-5 py-4 font-bold">1×</td>
+                  <td class="px-5 py-4">60 minutes</td>
+                  <td class="px-5 py-4">No change</td>
+                  <td class="px-5 py-4">Normal viewing</td>
+                </tr>
+                <tr>
+                  <td class="px-5 py-4 font-bold">1.25×</td>
+                  <td class="px-5 py-4">48 minutes</td>
+                  <td class="px-5 py-4">12 minutes saved</td>
+                  <td class="px-5 py-4">Lectures and tutorials</td>
+                </tr>
+                <tr>
+                  <td class="px-5 py-4 font-bold">1.5×</td>
+                  <td class="px-5 py-4">40 minutes</td>
+                  <td class="px-5 py-4">20 minutes saved</td>
+                  <td class="px-5 py-4">Efficient study and research</td>
+                </tr>
+                <tr>
+                  <td class="px-5 py-4 font-bold">2×</td>
+                  <td class="px-5 py-4">30 minutes</td>
+                  <td class="px-5 py-4">30 minutes saved</td>
+                  <td class="px-5 py-4">Reviewing familiar material</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p class="mt-6 text-base leading-8 text-slate-700">
+            Faster is not always better. The most useful speed depends on the speaker, subject, language, audio quality, and your familiarity with the material. Technical lessons with formulas, diagrams, or code may require normal speed or frequent pauses. Conversational videos may remain understandable at higher speeds. The calculator helps you compare time estimates, but the best playback rate is the one that allows you to understand and retain the content.
+          </p>
+
+          <h2 class="mt-12 text-3xl font-black tracking-tight text-slate-900">Why Break Time Matters</h2>
+
+          <p class="mt-5 text-base leading-8 text-slate-700">
+            Pure video duration does not always represent the real time needed to complete a playlist. Viewers often pause between videos, take notes, review comments, open related resources, refill a drink, or move to another location. Even a short break can become significant in a large playlist. For example, adding a two-minute break between 50 videos creates nearly 100 additional minutes of total schedule time.
+          </p>
+
+          <p class="mt-5 text-base leading-8 text-slate-700">
+            The break-time option allows you to include this overhead in the adjusted watch-time calculation. Breaks are added between videos rather than after the final video. This produces a more realistic completion estimate for study sessions, training programs, research projects, and long entertainment playlists.
+          </p>
+
+          <h2 class="mt-12 text-3xl font-black tracking-tight text-slate-900">Creating a Daily YouTube Viewing Schedule</h2>
+
+          <p class="mt-5 text-base leading-8 text-slate-700">
+            A daily viewing plan divides the adjusted playlist duration by the number of minutes you intend to watch each day. This can transform an intimidating playlist into a manageable routine. Instead of focusing on a 40-hour total, you can decide to watch 45 minutes each day and receive an estimate of the number of days required.
+          </p>
+
+          <p class="mt-5 text-base leading-8 text-slate-700">
+            A good schedule should leave room for unexpected delays and difficult videos. Educational playlists may require additional time for practice exercises, note-taking, quizzes, or review. Consider using a daily target that is slightly lower than your maximum available time. A sustainable plan is usually more effective than an aggressive schedule that becomes difficult to maintain.
+          </p>
+
+          <h3 class="mt-8 text-2xl font-bold text-slate-900">Practical Scheduling Tips</h3>
+
+          <div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+              <h4 class="font-bold text-slate-900">Use shorter daily sessions</h4>
+              <p class="mt-2 text-sm leading-7 text-slate-600">
+                Consistent 30- to 60-minute sessions may be easier to maintain than occasional multi-hour viewing sessions.
+              </p>
+            </div>
+
+            <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+              <h4 class="font-bold text-slate-900">Include review time</h4>
+              <p class="mt-2 text-sm leading-7 text-slate-600">
+                Add extra time when your playlist includes exercises, complex explanations, or information you need to remember.
+              </p>
+            </div>
+
+            <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+              <h4 class="font-bold text-slate-900">Choose speed by topic</h4>
+              <p class="mt-2 text-sm leading-7 text-slate-600">
+                Use faster speeds for familiar sections and slower speeds for new, technical, or highly detailed material.
+              </p>
+            </div>
+
+            <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+              <h4 class="font-bold text-slate-900">Update the calculation</h4>
+              <p class="mt-2 text-sm leading-7 text-slate-600">
+                Recalculate after videos are added, removed, skipped, or replaced so your schedule remains accurate.
+              </p>
+            </div>
+          </div>
+
+          <div class="ad-box mt-10 flex items-center justify-center rounded-2xl border-2 border-dashed border-slate-300 bg-slate-100 px-4 text-center text-sm font-medium text-slate-500">
+            Advertisement
+          </div>
+
+          <h2 class="mt-12 text-3xl font-black tracking-tight text-slate-900">Benefits of Using This Free Browser Tool</h2>
+
+          <p class="mt-5 text-base leading-8 text-slate-700">
+            The NodnWebTools YouTube Playlist Duration Calculator is designed for fast calculations without unnecessary setup. It does not require registration, software installation, browser extensions, or a YouTube API key. You can open the page, paste durations, adjust your settings, and immediately review the results.
+          </p>
+
+          <p class="mt-5 text-base leading-8 text-slate-700">
+            Because the calculation runs locally, the page can also be used with private planning notes that you do not want to submit to a remote service. The input is not automatically saved to an online account. Users should still avoid entering confidential information on shared or public devices, but the browser-based design provides a straightforward and privacy-conscious workflow.
+          </p>
+
+          <p class="mt-5 text-base leading-8 text-slate-700">
+            The downloadable report can be useful for course planning, project documentation, study calendars, content research records, or team training estimates. The clean duration list option removes surrounding text and produces a standardized list that can be copied into notes, spreadsheets, messages, or other planning tools.
+          </p>
+
+          <h2 class="mt-12 text-3xl font-black tracking-tight text-slate-900">Accuracy and Calculation Limitations</h2>
+
+          <p class="mt-5 text-base leading-8 text-slate-700">
+            The calculator is accurate when the entered duration values are accurate. Results may differ from your actual viewing time because YouTube videos can include advertisements, sponsorship segments, intros, outros, loading delays, buffering, pauses, rewinds, skipped sections, and interactions with comments or descriptions. Videos may also be deleted, replaced, trimmed, or updated after you collect their durations.
+          </p>
+
+          <p class="mt-5 text-base leading-8 text-slate-700">
+            Playback speed calculations are mathematical estimates. They assume the video plays continuously at the selected rate. If you frequently pause, rewind, take notes, or switch speeds, the real completion time will be longer. Break-time settings can improve the estimate, but no calculator can predict every interruption or viewing habit.
+          </p>
+
+          <p class="mt-5 text-base leading-8 text-slate-700">
+            The parser may ignore text lines that do not contain a recognizable duration. Review the detected video count and invalid-line count before relying on the result. When possible, enter one clear duration per line and compare the detected count with the number of videos in your playlist.
+          </p>
+        </div>
+      </section>
+    </article>
+
+    <section class="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 lg:px-8" aria-labelledby="related-tools-heading">
+      <div class="mb-7">
+        <h2 id="related-tools-heading" class="text-3xl font-black tracking-tight text-slate-900">Related Tools</h2>
+        <p class="mt-3 text-base leading-7 text-slate-600">
+          Explore more browser-based tools for working with YouTube videos, links, embeds, thumbnails, and timestamps.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <a href="/youtube-timestamp-link-generator" class="group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-indigo-300 hover:shadow-md">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-50 text-2xl text-indigo-600 transition group-hover:bg-indigo-600 group-hover:text-white">⏱</div>
+          <h3 class="mt-4 text-lg font-bold text-slate-900 group-hover:text-indigo-700">YouTube Timestamp Link Generator</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">Create shareable YouTube links that open a video at a specific hour, minute, or second.</p>
+        </a>
+
+        <a href="/youtube-video-id-extractor" class="group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-indigo-300 hover:shadow-md">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-50 text-2xl text-indigo-600 transition group-hover:bg-indigo-600 group-hover:text-white">🔗</div>
+          <h3 class="mt-4 text-lg font-bold text-slate-900 group-hover:text-indigo-700">YouTube Video ID Extractor</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">Extract a clean YouTube video ID from standard, shortened, embedded, or mobile URLs.</p>
+        </a>
+
+        <a href="/youtube-embed-generator" class="group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-indigo-300 hover:shadow-md">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-50 text-2xl text-indigo-600 transition group-hover:bg-indigo-600 group-hover:text-white"></></div>
+          <h3 class="mt-4 text-lg font-bold text-slate-900 group-hover:text-indigo-700">YouTube Embed Generator</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">Generate responsive YouTube embed code with useful player and privacy options.</p>
+        </a>
+
+        <a href="/youtube-thumbnail-downloader" class="group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-indigo-300 hover:shadow-md">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-50 text-2xl text-indigo-600 transition group-hover:bg-indigo-600 group-hover:text-white">🖼</div>
+          <h3 class="mt-4 text-lg font-bold text-slate-900 group-hover:text-indigo-700">YouTube Thumbnail Downloader</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">Preview and download available thumbnail images from a public YouTube video.</p>
+        </a>
+
+        <a href="/youtube-thumbnail-viewer" class="group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-indigo-300 hover:shadow-md">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-50 text-2xl text-indigo-600 transition group-hover:bg-indigo-600 group-hover:text-white">👁</div>
+          <h3 class="mt-4 text-lg font-bold text-slate-900 group-hover:text-indigo-700">YouTube Thumbnail Viewer</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">View available YouTube thumbnail sizes and compare image quality before downloading.</p>
+        </a>
+
+        <a href="/youtube-channel-id-finder" class="group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-indigo-300 hover:shadow-md">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-50 text-2xl text-indigo-600 transition group-hover:bg-indigo-600 group-hover:text-white">📺</div>
+          <h3 class="mt-4 text-lg font-bold text-slate-900 group-hover:text-indigo-700">YouTube Channel ID Finder</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">Find and identify a YouTube channel ID from supported channel links and page information.</p>
+        </a>
+      </div>
+    </section>
+
+    <section class="mx-auto w-full max-w-5xl px-4 py-10 sm:px-6 lg:px-8" aria-labelledby="faq-heading">
+      <div class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-10">
+        <h2 id="faq-heading" class="text-3xl font-black tracking-tight text-slate-900">Frequently Asked Questions</h2>
+
+        <div class="mt-8 space-y-4">
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-bold text-slate-900">Can I paste an entire YouTube playlist URL?</summary>
+            <p class="mt-4 text-sm leading-7 text-slate-600">
+              This version calculates durations from the time values you enter. It does not automatically access a playlist URL or request data from YouTube. Paste the displayed video durations, copied playlist text, or a manually prepared list.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-bold text-slate-900">Does the calculator require a YouTube API key?</summary>
+            <p class="mt-4 text-sm leading-7 text-slate-600">
+              No. The tool works without an API key, account login, browser extension, or server connection. All duration calculations are completed locally in your browser.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-bold text-slate-900">How do I calculate playlist duration at 1.5× speed?</summary>
+            <p class="mt-4 text-sm leading-7 text-slate-600">
+              Enter the video durations and select 1.5× from the playback speed menu. The adjusted watch-time result shows the estimated time needed at that speed.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-bold text-slate-900">Can I use a custom playback speed?</summary>
+            <p class="mt-4 text-sm leading-7 text-slate-600">
+              Yes. Choose Custom speed and enter a value between 0.1× and 10×. Extremely high speeds may not be available in every video player, but they can still be used for mathematical comparisons.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-bold text-slate-900">Are breaks included in the total time?</summary>
+            <p class="mt-4 text-sm leading-7 text-slate-600">
+              Breaks are included only when you enter a value in the break-time field. The calculator adds the selected break between each detected video, excluding the end of the final video.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-bold text-slate-900">Why were some lines ignored?</summary>
+            <p class="mt-4 text-sm leading-7 text-slate-600">
+              Lines without a recognizable duration are ignored. Use formats such as 12:45, 1:05:30, 40m 20s, or 2h 15m. Check the invalid-line count after calculating.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-bold text-slate-900">Is my playlist information uploaded or stored?</summary>
+            <p class="mt-4 text-sm leading-7 text-slate-600">
+              The calculator processes your entered durations inside your browser. It does not intentionally upload the duration list to NodnWebTools or store it in an online account.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer font-bold text-slate-900">Can I download the calculation?</summary>
+            <p class="mt-4 text-sm leading-7 text-slate-600">
+              Yes. Use the Download Report button to create a local text file containing the detected durations, playlist totals, playback speed, finish estimate, and daily viewing plan.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="mx-auto w-full max-w-5xl px-4 pb-10 sm:px-6 lg:px-8">
+      <div class="rounded-3xl border border-slate-700 bg-slate-900 p-6 text-slate-200 shadow-sm sm:p-8">
+        <h2 class="text-2xl font-black text-white">Legal Disclaimer</h2>
+        <p class="mt-4 text-sm leading-7 text-slate-300">
+          This YouTube Playlist Duration Calculator is provided for general informational, scheduling, and estimation purposes only. Results depend on the accuracy and completeness of the durations entered by the user. Actual viewing time may vary because of advertisements, buffering, pauses, rewinds, skipped content, playback-speed changes, deleted videos, modified videos, breaks, note-taking, or other interruptions.
+        </p>
+        <p class="mt-4 text-sm leading-7 text-slate-300">
+          NodnWebTools does not guarantee that every duration format will be recognized or that every calculated finish time will match real-world viewing conditions. Users are responsible for reviewing the detected video count, validating important calculations, protecting sensitive information, and deciding whether the results are appropriate for their study, work, training, or personal schedule.
+        </p>
+        <p class="mt-4 text-sm leading-7 text-slate-300">
+          This tool is not affiliated with, endorsed by, or sponsored by YouTube or Google. YouTube is a trademark of Google LLC. Users must comply with applicable platform terms, copyright rules, privacy requirements, and local laws when accessing, sharing, embedding, downloading, or otherwise using online video content.
+        </p>
+      </div>
+    </section>
+
+    <section class="mx-auto w-full max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
+      <div class="ad-box flex items-center justify-center rounded-2xl border-2 border-dashed border-slate-300 bg-slate-100 px-4 text-center text-sm font-medium text-slate-500">
+        Advertisement
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-slate-200 bg-white">
+    <div class="mx-auto flex w-full max-w-7xl flex-col gap-3 px-4 py-8 text-center text-sm text-slate-500 sm:px-6 md:flex-row md:items-center md:justify-between md:text-left lg:px-8">
+      <p>© <span id="currentYear"></span> NodnWebTools. All rights reserved.</p>
+      <a href="https://nodntools.com" class="font-semibold text-indigo-600 hover:text-indigo-700">Explore more free web tools</a>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const durationInput = document.getElementById("durationInput");
+      const playbackSpeed = document.getElementById("playbackSpeed");
+      const customSpeed = document.getElementById("customSpeed");
+      const dailyMinutes = document.getElementById("dailyMinutes");
+      const startTime = document.getElementById("startTime");
+      const breakMinutes = document.getElementById("breakMinutes");
+
+      const calculateButton = document.getElementById("calculateButton");
+      const exampleButton = document.getElementById("exampleButton");
+      const resetButton = document.getElementById("resetButton");
+      const copyButton = document.getElementById("copyButton");
+      const downloadButton = document.getElementById("downloadButton");
+      const copyDurationsButton = document.getElementById("copyDurationsButton");
+
+      const emptyState = document.getElementById("emptyState");
+      const resultContent = document.getElementById("resultContent");
+      const resultStatus = document.getElementById("resultStatus");
+      const inputWarning = document.getElementById("inputWarning");
+      const actionFeedback = document.getElementById("actionFeedback");
+
+      const originalDuration = document.getElementById("originalDuration");
+      const originalDurationCompact = document.getElementById("originalDurationCompact");
+      const adjustedDuration = document.getElementById("adjustedDuration");
+      const adjustedDurationCompact = document.getElementById("adjustedDurationCompact");
+      const videoCount = document.getElementById("videoCount");
+      const averageDuration = document.getElementById("averageDuration");
+      const timeDifference = document.getElementById("timeDifference");
+      const speedSummary = document.getElementById("speedSummary");
+      const finishTime = document.getElementById("finishTime");
+      const dailyPlan = document.getElementById("dailyPlan");
+      const totalBreakTime = document.getElementById("totalBreakTime");
+      const invalidLineCount = document.getElementById("invalidLineCount");
+      const speedTableBody = document.getElementById("speedTableBody");
+
+      let currentResult = null;
+      let feedbackTimer = null;
+
+      function pad(value) {
+        return String(value).padStart(2, "0");
+      }
+
+      function formatCompact(totalSeconds) {
+        const safeSeconds = Math.max(0, Math.round(totalSeconds));
+        const days = Math.floor(safeSeconds / 86400);
+        const hours = Math.floor((safeSeconds % 86400) / 3600);
+        const minutes = Math.floor((safeSeconds % 3600) / 60);
+        const seconds = safeSeconds % 60;
+
+        if (days > 0) {
+          return `${days}d ${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+        }
+
+        return `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+      }
+
+      function formatReadable(totalSeconds) {
+        const safeSeconds = Math.max(0, Math.round(totalSeconds));
+        const days = Math.floor(safeSeconds / 86400);
+        const hours = Math.floor((safeSeconds % 86400) / 3600);
+        const minutes = Math.floor((safeSeconds % 3600) / 60);
+        const seconds = safeSeconds % 60;
+
+        const parts = [];
+
+        if (days > 0) {
+          parts.push(`${days} ${days === 1 ? "day" : "days"}`);
+        }
+
+        if (hours > 0) {
+          parts.push(`${hours} ${hours === 1 ? "hour" : "hours"}`);
+        }
+
+        if (minutes > 0) {
+          parts.push(`${minutes} ${minutes === 1 ? "minute" : "minutes"}`);
+        }
+
+        if (seconds > 0 || parts.length === 0) {
+          parts.push(`${seconds} ${seconds === 1 ? "second" : "seconds"}`);
+        }
+
+        return parts.join(", ");
+      }
+
+      function parseColonDuration(value) {
+        const clean = value.trim();
+        const parts = clean.split(":").map(Number);
+
+        if (parts.some((part) => !Number.isFinite(part) || part < 0)) {
+          return null;
+        }
+
+        if (parts.length === 2) {
+          const [minutes, seconds] = parts;
+          if (seconds >= 60) return null;
+          return (minutes * 60) + seconds;
+        }
+
+        if (parts.length === 3) {
+          const [hours, minutes, seconds] = parts;
+          if (minutes >= 60 || seconds >= 60) return null;
+          return (hours * 3600) + (minutes * 60) + seconds;
+        }
+
+        return null;
+      }
+
+      function parseWrittenDuration(value) {
+        const clean = value.toLowerCase().trim();
+        const hoursMatch = clean.match(/(\d+(?:\.\d+)?)\s*(?:h|hr|hrs|hour|hours)\b/);
+        const minutesMatch = clean.match(/(\d+(?:\.\d+)?)\s*(?:m|min|mins|minute|minutes)\b/);
+        const secondsMatch = clean.match(/(\d+(?:\.\d+)?)\s*(?:s|sec|secs|second|seconds)\b/);
+
+        if (!hoursMatch && !minutesMatch && !secondsMatch) {
+          return null;
+        }
+
+        const hours = hoursMatch ? Number(hoursMatch[1]) : 0;
+        const minutes = minutesMatch ? Number(minutesMatch[1]) : 0;
+        const seconds = secondsMatch ? Number(secondsMatch[1]) : 0;
+
+        if (![hours, minutes, seconds].every(Number.isFinite)) {
+          return null;
+        }
+
+        const total = (hours * 3600) + (minutes * 60) + seconds;
+        return total > 0 ? total : null;
+      }
+
+      function extractDurations(text) {
+        const lines = text.split(/\r?\n/);
+        const durations = [];
+        const invalidLines = [];
+        const cleanValues = [];
+
+        lines.forEach((rawLine) => {
+          const line = rawLine.trim();
+          if (!line) return;
+
+          const foundOnLine = [];
+
+          const colonPattern = /(?:^|[^\d])(\d{1,4}:\d{2}(?::\d{2})?)(?!\d)/g;
+          let colonMatch;
+
+          while ((colonMatch = colonPattern.exec(line)) !== null) {
+            const candidate = colonMatch[1];
+            const seconds = parseColonDuration(candidate);
+
+            if (seconds !== null && seconds > 0) {
+              foundOnLine.push({
+                seconds,
+                clean: formatCompact(seconds).replace(/^00:/, "")
+              });
+            }
+          }
+
+          if (foundOnLine.length === 0) {
+            const writtenSeconds = parseWrittenDuration(line);
+
+            if (writtenSeconds !== null && writtenSeconds > 0) {
+              foundOnLine.push({
+                seconds: writtenSeconds,
+                clean: formatCompact(writtenSeconds).replace(/^00:/, "")
+              });
+            }
+          }
+
+          if (foundOnLine.length > 0) {
+            foundOnLine.forEach((item) => {
+              durations.push(item.seconds);
+              cleanValues.push(item.clean);
+            });
+          } else {
+            invalidLines.push(line);
+          }
+        });
+
+        return {
+          durations,
+          cleanValues,
+          invalidLines
+        };
+      }
+
+      function getSelectedSpeed() {
+        if (playbackSpeed.value === "custom") {
+          const speed = Number(customSpeed.value);
+          return Number.isFinite(speed) && speed > 0 ? speed : null;
+        }
+
+        const speed = Number(playbackSpeed.value);
+        return Number.isFinite(speed) && speed > 0 ? speed : null;
+      }
+
+      function setDefaultStartTime() {
+        const date = new Date();
+        date.setSeconds(0, 0);
+        const offset = date.getTimezoneOffset();
+        const localDate = new Date(date.getTime() - offset * 60000);
+        startTime.value = localDate.toISOString().slice(0, 16);
+      }
+
+      function showWarning(message) {
+        inputWarning.textContent = message;
+        inputWarning.classList.remove("hidden");
+      }
+
+      function hideWarning() {
+        inputWarning.textContent = "";
+        inputWarning.classList.add("hidden");
+      }
+
+      function showFeedback(message) {
+        window.clearTimeout(feedbackTimer);
+        actionFeedback.textContent = message;
+        actionFeedback.classList.remove("hidden");
+
+        feedbackTimer = window.setTimeout(() => {
+          actionFeedback.classList.add("hidden");
+        }, 2200);
+      }
+
+      function buildSpeedComparison(originalSeconds, breakSeconds) {
+        const speeds = [0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.5];
+        speedTableBody.innerHTML = "";
+
+        speeds.forEach((speed) => {
+          const watchSeconds = (originalSeconds / speed) + breakSeconds;
+          const difference = originalSeconds + breakSeconds - watchSeconds;
+          const percentSaved = ((originalSeconds + breakSeconds - watchSeconds) / (originalSeconds + breakSeconds)) * 100;
+
+          let differenceText = "No change";
+          if (difference > 0.5) {
+            differenceText = `${formatReadable(difference)} saved`;
+          } else if (difference < -0.5) {
+            differenceText = `${formatReadable(Math.abs(difference))} added`;
+          }
+
+          const row = document.createElement("tr");
+          row.className = "text-slate-700";
+
+          row.innerHTML = `
+            <td class="px-4 py-3 font-bold text-slate-900">${speed}×</td>
+            <td class="px-4 py-3 result-number">${formatReadable(watchSeconds)}</td>
+            <td class="px-4 py-3">${differenceText}</td>
+            <td class="px-4 py-3">${percentSaved > 0 ? percentSaved.toFixed(1) + "%" : percentSaved < 0 ? percentSaved.toFixed(1) + "%" : "0%"}</td>
+          `;
+
+          speedTableBody.appendChild(row);
+        });
+      }
+
+      function calculate() {
+        try {
+          const rawText = durationInput.value.trim();
+
+          if (!rawText) {
+            currentResult = null;
+            resultContent.classList.add("hidden");
+            emptyState.classList.remove("hidden");
+            resultStatus.textContent = "Waiting for input";
+            resultStatus.className = "inline-flex items-center self-start rounded-full bg-slate-100 px-3 py-1 text-xs font-bold text-slate-500";
+            hideWarning();
+            return;
+          }
+
+          const parsed = extractDurations(rawText);
+
+          if (parsed.durations.length === 0) {
+            currentResult = null;
+            resultContent.classList.add("hidden");
+            emptyState.classList.remove("hidden");
+            resultStatus.textContent = "No valid durations";
+            resultStatus.className = "inline-flex items-center self-start rounded-full bg-amber-100 px-3 py-1 text-xs font-bold text-amber-700";
+            showWarning("No valid video durations were detected. Try formats such as 12:45, 1:05:30, or 45m 20s.");
+            return;
+          }
+
+          const speed = getSelectedSpeed();
+          if (!speed) {
+            showWarning("Enter a valid custom playback speed greater than zero.");
+            return;
+          }
+
+          const dailyValue = Number(dailyMinutes.value);
+          const validDailyMinutes = Number.isFinite(dailyValue) && dailyValue > 0 ? dailyValue : 60;
+
+          const breakValue = Number(breakMinutes.value);
+          const validBreakMinutes = Number.isFinite(breakValue) && breakValue >= 0 ? breakValue : 0;
+
+          const totalSeconds = parsed.durations.reduce((sum, seconds) => sum + seconds, 0);
+          const breakCount = Math.max(0, parsed.durations.length - 1);
+          const breakSeconds = validBreakMinutes * 60 * breakCount;
+          const adjustedVideoSeconds = totalSeconds / speed;
+          const adjustedTotalSeconds = adjustedVideoSeconds + breakSeconds;
+          const originalWithBreaks = totalSeconds + breakSeconds;
+          const differenceSeconds = originalWithBreaks - adjustedTotalSeconds;
+          const averageSeconds = totalSeconds / parsed.durations.length;
+          const requiredDays = Math.ceil(adjustedTotalSeconds / (validDailyMinutes * 60));
+
+          let finishDate = null;
+          const startValue = startTime.value;
+          if (startValue) {
+            const parsedStart = new Date(startValue);
+            if (!Number.isNaN(parsedStart.getTime())) {
+              finishDate = new Date(parsedStart.getTime() + adjustedTotalSeconds * 1000);
+            }
+          }
+
+          originalDuration.textContent = formatReadable(totalSeconds);
+          originalDurationCompact.textContent = formatCompact(totalSeconds);
+          adjustedDuration.textContent = formatReadable(adjustedTotalSeconds);
+          adjustedDurationCompact.textContent = formatCompact(adjustedTotalSeconds);
+          videoCount.textContent = parsed.durations.length.toLocaleString();
+          averageDuration.textContent = `Average: ${formatReadable(averageSeconds)}`;
+
+          if (differenceSeconds > 0.5) {
+            timeDifference.textContent = `${formatReadable(differenceSeconds)} saved`;
+          } else if (differenceSeconds < -0.5) {
+            timeDifference.textContent = `${formatReadable(Math.abs(differenceSeconds))} added`;
+          } else {
+            timeDifference.textContent = "No change";
+          }
+
+          speedSummary.textContent = `At ${speed}× playback speed`;
+          finishTime.textContent = finishDate
+            ? finishDate.toLocaleString([], {
+                year: "numeric",
+                month: "short",
+                day: "numeric",
+                hour: "numeric",
+                minute: "2-digit"
+              })
+            : "Choose a valid start date and time";
+
+          dailyPlan.textContent = `${requiredDays.toLocaleString()} ${requiredDays === 1 ? "day" : "days"} at ${validDailyMinutes} minutes per day`;
+          totalBreakTime.textContent = formatReadable(breakSeconds);
+          invalidLineCount.textContent = parsed.invalidLines.length.toLocaleString();
+
+          buildSpeedComparison(totalSeconds, breakSeconds);
+
+          currentResult = {
+            totalSeconds,
+            adjustedTotalSeconds,
+            adjustedVideoSeconds,
+            breakSeconds,
+            speed,
+            videoCount: parsed.durations.length,
+            averageSeconds,
+            differenceSeconds,
+            validDailyMinutes,
+            requiredDays,
+            finishDate,
+            cleanValues: parsed.cleanValues,
+            invalidLines: parsed.invalidLines
+          };
+
+          emptyState.classList.add("hidden");
+          resultContent.classList.remove("hidden");
+          resultStatus.textContent = "Calculation complete";
+          resultStatus.className = "inline-flex items-center self-start rounded-full bg-emerald-100 px-3 py-1 text-xs font-bold text-emerald-700";
+
+          if (parsed.invalidLines.length > 0) {
+            showWarning(`${parsed.invalidLines.length} line${parsed.invalidLines.length === 1 ? " was" : "s were"} ignored because no supported duration was found.`);
+          } else {
+            hideWarning();
+          }
+        } catch (error) {
+          console.error(error);
+          showWarning("The calculation could not be completed. Review your entries and try again.");
+        }
+      }
+
+      function getReportText() {
+        if (!currentResult) return "";
+
+        const finishText = currentResult.finishDate
+          ? currentResult.finishDate.toLocaleString()
+          : "Not available";
+
+        let differenceText = "No change";
+        if (currentResult.differenceSeconds > 0.5) {
+          differenceText = `${formatReadable(currentResult.differenceSeconds)} saved`;
+        } else if (currentResult.differenceSeconds < -0.5) {
+          differenceText = `${formatReadable(Math.abs(currentResult.differenceSeconds))} added`;
+        }
+
+        return [
+          "YouTube Playlist Duration Report",
+          "Generated by NodnWebTools",
+          "",
+          `Videos detected: ${currentResult.videoCount}`,
+          `Original playlist length: ${formatReadable(currentResult.totalSeconds)} (${formatCompact(currentResult.totalSeconds)})`,
+          `Playback speed: ${currentResult.speed}×`,
+          `Adjusted video time: ${formatReadable(currentResult.adjustedVideoSeconds)}`,
+          `Break time included: ${formatReadable(currentResult.breakSeconds)}`,
+          `Total adjusted watch time: ${formatReadable(currentResult.adjustedTotalSeconds)} (${formatCompact(currentResult.adjustedTotalSeconds)})`,
+          `Average video duration: ${formatReadable(currentResult.averageSeconds)}`,
+          `Time saved or added: ${differenceText}`,
+          `Estimated finish time: ${finishText}`,
+          `Daily plan: ${currentResult.requiredDays} day${currentResult.requiredDays === 1 ? "" : "s"} at ${currentResult.validDailyMinutes} minutes per day`,
+          `Invalid lines ignored: ${currentResult.invalidLines.length}`,
+          "",
+          "Detected Durations",
+          "------------------",
+          ...currentResult.cleanValues.map((value, index) => `${index + 1}. ${value}`),
+          "",
+          "Note: Results are estimates and may not include advertisements, pauses, buffering, rewinds, or skipped content."
+        ].join("\n");
+      }
+
+      async function copyText(text, successMessage) {
+        try {
+          if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(text);
+          } else {
+            const temporaryTextarea = document.createElement("textarea");
+            temporaryTextarea.value = text;
+            temporaryTextarea.setAttribute("readonly", "");
+            temporaryTextarea.style.position = "fixed";
+            temporaryTextarea.style.opacity = "0";
+            document.body.appendChild(temporaryTextarea);
+            temporaryTextarea.select();
+            document.execCommand("copy");
+            temporaryTextarea.remove();
+          }
+
+          showFeedback(successMessage);
+        } catch (error) {
+          console.error(error);
+          showFeedback("Copy failed. Please copy the text manually.");
+        }
+      }
+
+      function downloadReport() {
+        if (!currentResult) {
+          showWarning("Calculate a playlist before downloading a report.");
+          return;
+        }
+
+        try {
+          const report = getReportText();
+          const blob = new Blob([report], { type: "text/plain;charset=utf-8" });
+          const url = URL.createObjectURL(blob);
+          const anchor = document.createElement("a");
+
+          anchor.href = url;
+          anchor.download = "youtube-playlist-duration-report.txt";
+          document.body.appendChild(anchor);
+          anchor.click();
+          anchor.remove();
+
+          window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+          showFeedback("Report downloaded!");
+        } catch (error) {
+          console.error(error);
+          showFeedback("The report could not be downloaded.");
+        }
+      }
+
+      playbackSpeed.addEventListener("change", () => {
+        const customSelected = playbackSpeed.value === "custom";
+        customSpeed.disabled = !customSelected;
+        customSpeed.classList.toggle("bg-slate-100", !customSelected);
+        customSpeed.classList.toggle("bg-white", customSelected);
+
+        if (customSelected) {
+          customSpeed.focus();
+        }
+
+        calculate();
+      });
+
+      [
+        durationInput,
+        customSpeed,
+        dailyMinutes,
+        startTime,
+        breakMinutes
+      ].forEach((element) => {
+        element.addEventListener("input", calculate);
+        element.addEventListener("change", calculate);
+      });
+
+      calculateButton.addEventListener("click", calculate);
+
+      exampleButton.addEventListener("click", () => {
+        durationInput.value = [
+          "Introduction to the Course — 12:45",
+          "Lesson 1: Essential Concepts — 24:18",
+          "Lesson 2: Practical Examples — 35:42",
+          "Lesson 3: Advanced Techniques — 1:05:30",
+          "Case Study — 48m 15s",
+          "Final Review — 18:50"
+        ].join("\n");
+
+        playbackSpeed.value = "1.5";
+        customSpeed.disabled = true;
+        dailyMinutes.value = "45";
+        breakMinutes.value = "2";
+        setDefaultStartTime();
+        calculate();
+      });
+
+      resetButton.addEventListener("click", () => {
+        durationInput.value = "";
+        playbackSpeed.value = "1";
+        customSpeed.value = "1";
+        customSpeed.disabled = true;
+        customSpeed.classList.add("bg-slate-100");
+        customSpeed.classList.remove("bg-white");
+        dailyMinutes.value = "60";
+        breakMinutes.value = "0";
+        setDefaultStartTime();
+        currentResult = null;
+        hideWarning();
+        actionFeedback.classList.add("hidden");
+        calculate();
+        durationInput.focus();
+      });
+
+      copyButton.addEventListener("click", () => {
+        if (!currentResult) {
+          showWarning("Calculate a playlist before copying the results.");
+          return;
+        }
+
+        copyText(getReportText(), "Copied!");
+      });
+
+      copyDurationsButton.addEventListener("click", () => {
+        if (!currentResult) {
+          showWarning("Calculate a playlist before copying the clean duration list.");
+          return;
+        }
+
+        copyText(currentResult.cleanValues.join("\n"), "Clean duration list copied!");
+      });
+
+      downloadButton.addEventListener("click", downloadReport);
+
+      document.getElementById("currentYear").textContent = new Date().getFullYear();
+      setDefaultStartTime();
+      calculate();
+    })();
+  </script>
+</body>
+</html>
