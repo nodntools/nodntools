@@ -1,0 +1,1645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Document Viewer for DOCX, PDF and TXT Files</title>
+  <meta name="description" content="Open and preview DOCX, PDF, and TXT files securely in your browser with this free online document viewer.">
+  <meta name="keywords" content="document viewer, DOCX viewer, PDF viewer, TXT viewer, online document viewer, open DOCX online, view PDF online, text file viewer, browser document reader, free document viewer, private document viewer, client-side file viewer">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Document Viewer for DOCX, PDF and TXT Files">
+  <meta property="og:description" content="Preview Word, PDF, and text documents directly in your browser without uploading files to a server.">
+  <meta property="og:type" content="website">
+
+  <link rel="icon" type="image/png" href="/favicon.png">
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404" crossorigin="anonymous"></script>
+  <meta name="google-adsense-account" content="ca-pub-5282672325821404">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.min.mjs" type="module"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.9.0/mammoth.browser.min.js"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Document Viewer",
+    "description": "A free browser-based document viewer for opening DOCX, PDF, and TXT files locally.",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires a modern web browser with JavaScript enabled.",
+    "url": "https://nodntools.com/document-viewer",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "featureList": [
+      "View PDF documents",
+      "Open DOCX files",
+      "Read TXT files",
+      "Copy extracted text",
+      "Search document text",
+      "Zoom PDF pages",
+      "Download original files",
+      "Local browser processing"
+    ]
+  }
+  </script>
+
+  <style>
+    html,
+    body {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      min-width: 0;
+    }
+
+    body {
+      background: #f8fafc;
+      color: #0f172a;
+    }
+
+    .safe-break {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .mobile-card,
+    .mobile-panel,
+    .mobile-preview,
+    .mobile-code,
+    .ad-box,
+    input,
+    textarea,
+    select,
+    button,
+    canvas,
+    img,
+    svg,
+    table,
+    pre,
+    code {
+      max-width: 100%;
+    }
+
+    .ad-box {
+      min-height: 90px;
+      border: 2px dashed #cbd5e1;
+      background: #f8fafc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #64748b;
+      padding: 1rem;
+      border-radius: 1rem;
+      overflow: hidden;
+    }
+
+    .drop-zone.drag-active {
+      border-color: #6366f1;
+      background: #eef2ff;
+      box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.12);
+    }
+
+    .docx-output {
+      color: #1e293b;
+      line-height: 1.75;
+      overflow-wrap: anywhere;
+    }
+
+    .docx-output h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      margin: 1.5rem 0 1rem;
+    }
+
+    .docx-output h2 {
+      font-size: 1.6rem;
+      font-weight: 750;
+      margin: 1.4rem 0 0.85rem;
+    }
+
+    .docx-output h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin: 1.2rem 0 0.75rem;
+    }
+
+    .docx-output p {
+      margin: 0.8rem 0;
+    }
+
+    .docx-output ul,
+    .docx-output ol {
+      padding-left: 1.5rem;
+      margin: 0.8rem 0;
+    }
+
+    .docx-output ul {
+      list-style: disc;
+    }
+
+    .docx-output ol {
+      list-style: decimal;
+    }
+
+    .docx-output table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      display: block;
+      overflow-x: auto;
+    }
+
+    .docx-output th,
+    .docx-output td {
+      border: 1px solid #cbd5e1;
+      padding: 0.65rem;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .docx-output img {
+      height: auto;
+      display: block;
+      margin: 1rem auto;
+    }
+
+    .docx-output a {
+      color: #4f46e5;
+      text-decoration: underline;
+    }
+
+    .txt-output {
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+      tab-size: 4;
+    }
+
+    .pdf-canvas-wrap {
+      width: 100%;
+      overflow: auto;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 1rem;
+      background: #e2e8f0;
+      border-radius: 1rem;
+    }
+
+    #pdfCanvas {
+      display: block;
+      width: auto;
+      height: auto;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.18);
+      background: white;
+    }
+
+    .search-highlight {
+      background: #fef08a;
+      color: #713f12;
+      border-radius: 0.2rem;
+      padding: 0 0.08rem;
+    }
+
+    .fullscreen-preview {
+      position: fixed !important;
+      inset: 0 !important;
+      z-index: 9999 !important;
+      border-radius: 0 !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      max-width: none !important;
+      background: #f8fafc !important;
+      overflow: auto !important;
+      padding: 1rem !important;
+    }
+
+    @media (max-width: 640px) {
+      .mobile-card,
+      .mobile-panel,
+      .mobile-preview {
+        border-radius: 1rem;
+      }
+
+      .mobile-card {
+        padding: 1rem !important;
+      }
+
+      .mobile-panel {
+        padding: 0.875rem !important;
+      }
+
+      .mobile-preview {
+        padding: 0.75rem !important;
+      }
+
+      .mobile-button-grid {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        width: 100%;
+      }
+
+      .mobile-button-grid button,
+      .mobile-button-grid a {
+        width: 100%;
+      }
+
+      .pdf-canvas-wrap {
+        padding: 0.5rem;
+      }
+
+      #pdfCanvas {
+        max-width: 100%;
+        height: auto !important;
+      }
+
+      .docx-output h1 {
+        font-size: 1.55rem;
+      }
+
+      .docx-output h2 {
+        font-size: 1.35rem;
+      }
+
+      .docx-output h3 {
+        font-size: 1.15rem;
+      }
+    }
+
+    @media (max-width: 380px) {
+      body {
+        font-size: 0.95rem;
+      }
+
+      .mobile-card {
+        padding: 0.75rem !important;
+        border-radius: 0.85rem;
+      }
+
+      .mobile-panel,
+      .mobile-preview {
+        padding: 0.65rem !important;
+        border-radius: 0.85rem;
+      }
+
+      .ad-box {
+        border-radius: 0.75rem;
+        min-height: 82px;
+        font-size: 0.8rem;
+      }
+
+      button,
+      input,
+      select {
+        font-size: 0.9rem;
+      }
+
+      .pdf-canvas-wrap {
+        padding: 0.35rem;
+      }
+    }
+  </style>
+</head>
+
+<body class="min-h-screen bg-slate-50 text-slate-900">
+  <header class="border-b border-slate-200 bg-white">
+    <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
+      <a href="https://nodntools.com" class="safe-break text-xl font-extrabold tracking-tight text-slate-900" aria-label="NodnWebTools home">
+        Nodn<span class="text-indigo-600">WebTools</span>
+      </a>
+
+      <a href="https://nodntools.com" class="rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700">
+        Home
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <section class="mx-auto max-w-7xl px-4 pt-6 sm:px-6 lg:px-8">
+      <div class="ad-box">
+        <div>
+          <div class="font-semibold text-slate-600">Advertisement</div>
+          <div class="mt-1 text-xs text-slate-500">Top ad area</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+      <div class="mb-8 max-w-4xl">
+        <div class="mb-3 inline-flex items-center gap-2 rounded-full bg-indigo-50 px-3 py-1 text-sm font-semibold text-indigo-700">
+          <span aria-hidden="true">📄</span>
+          Browser-Based File Viewer
+        </div>
+
+        <h1 class="safe-break text-3xl font-extrabold tracking-tight text-slate-950 sm:text-4xl lg:text-5xl">
+          Document Viewer for DOCX, PDF and TXT Files
+        </h1>
+
+        <p class="mt-4 max-w-3xl text-base leading-7 text-slate-600 sm:text-lg">
+          Open and preview Word documents, PDF files, and plain text files directly in your browser. Your selected file is processed locally on your device and is not uploaded by this tool.
+        </p>
+      </div>
+
+      <div class="grid gap-6 lg:grid-cols-[380px_minmax(0,1fr)]">
+        <aside class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+          <div class="mb-5">
+            <h2 class="text-xl font-bold text-slate-900">Open a Document</h2>
+            <p class="mt-2 text-sm leading-6 text-slate-600">
+              Choose a DOCX, PDF, or TXT file from your device. Legacy DOC files are not supported.
+            </p>
+          </div>
+
+          <div id="dropZone" class="drop-zone rounded-2xl border-2 border-dashed border-slate-300 bg-slate-50 p-6 text-center transition">
+            <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-indigo-100 text-2xl text-indigo-700">
+              ↑
+            </div>
+
+            <h3 class="mt-4 font-bold text-slate-900">Drop your document here</h3>
+            <p class="mt-2 text-sm text-slate-500">or select a file from your device</p>
+
+            <label for="fileInput" class="mt-5 inline-flex cursor-pointer items-center justify-center rounded-xl bg-indigo-600 px-5 py-3 font-semibold text-white shadow-sm transition hover:bg-indigo-700 focus-within:ring-4 focus-within:ring-indigo-100">
+              Browse Files
+            </label>
+
+            <input id="fileInput" type="file" class="sr-only" accept=".pdf,.docx,.txt,text/plain,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+          </div>
+
+          <div id="warningBox" class="mt-4 hidden rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm leading-6 text-amber-800" role="alert"></div>
+
+          <div class="mt-5 rounded-2xl border border-slate-200 bg-slate-50 p-4">
+            <h3 class="text-sm font-bold uppercase tracking-wide text-slate-500">Supported Formats</h3>
+            <div class="mt-3 grid grid-cols-3 gap-2">
+              <div class="rounded-xl bg-white px-3 py-3 text-center shadow-sm">
+                <div class="font-bold text-indigo-700">PDF</div>
+                <div class="mt-1 text-xs text-slate-500">Page preview</div>
+              </div>
+              <div class="rounded-xl bg-white px-3 py-3 text-center shadow-sm">
+                <div class="font-bold text-violet-700">DOCX</div>
+                <div class="mt-1 text-xs text-slate-500">Word preview</div>
+              </div>
+              <div class="rounded-xl bg-white px-3 py-3 text-center shadow-sm">
+                <div class="font-bold text-slate-700">TXT</div>
+                <div class="mt-1 text-xs text-slate-500">Plain text</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-5">
+            <h3 class="text-sm font-bold uppercase tracking-wide text-slate-500">File Information</h3>
+
+            <dl class="mt-3 space-y-3 rounded-2xl border border-slate-200 bg-white p-4 text-sm">
+              <div class="flex items-start justify-between gap-4">
+                <dt class="text-slate-500">Name</dt>
+                <dd id="fileName" class="safe-break text-right font-semibold text-slate-800">No file selected</dd>
+              </div>
+
+              <div class="flex items-start justify-between gap-4">
+                <dt class="text-slate-500">Type</dt>
+                <dd id="fileType" class="safe-break text-right font-semibold text-slate-800">—</dd>
+              </div>
+
+              <div class="flex items-start justify-between gap-4">
+                <dt class="text-slate-500">Size</dt>
+                <dd id="fileSize" class="text-right font-semibold text-slate-800">—</dd>
+              </div>
+
+              <div class="flex items-start justify-between gap-4">
+                <dt class="text-slate-500">Pages</dt>
+                <dd id="pageCount" class="text-right font-semibold text-slate-800">—</dd>
+              </div>
+            </dl>
+          </div>
+
+          <div class="mt-5">
+            <label for="searchInput" class="mb-2 block text-sm font-bold text-slate-700">
+              Search Extracted Text
+            </label>
+
+            <div class="flex gap-2">
+              <input id="searchInput" type="search" placeholder="Enter a word or phrase" class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm outline-none transition placeholder:text-slate-400 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100">
+              <button id="searchButton" type="button" class="rounded-xl bg-slate-900 px-4 py-3 text-sm font-semibold text-white transition hover:bg-slate-800">
+                Find
+              </button>
+            </div>
+
+            <p id="searchStatus" class="mt-2 text-xs text-slate-500"></p>
+          </div>
+
+          <div class="mobile-button-grid mt-5 grid grid-cols-2 gap-3">
+            <button id="copyButton" type="button" class="rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700">
+              Copy Text
+            </button>
+
+            <button id="downloadButton" type="button" class="rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700">
+              Download File
+            </button>
+
+            <button id="fullscreenButton" type="button" class="rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700">
+              Fullscreen
+            </button>
+
+            <button id="resetButton" type="button" class="rounded-xl bg-rose-50 px-4 py-3 text-sm font-semibold text-rose-700 transition hover:bg-rose-100">
+              Reset
+            </button>
+          </div>
+        </aside>
+
+        <section id="previewCard" class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+          <div class="flex flex-col gap-4 border-b border-slate-200 pb-5 xl:flex-row xl:items-center xl:justify-between">
+            <div>
+              <h2 class="text-xl font-bold text-slate-900">Document Preview</h2>
+              <p id="previewStatus" class="mt-1 text-sm text-slate-500">
+                Select a supported document to begin.
+              </p>
+            </div>
+
+            <div id="pdfControls" class="mobile-button-grid hidden flex-wrap items-center gap-2">
+              <button id="previousPageButton" type="button" class="rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700">
+                Previous
+              </button>
+
+              <div class="rounded-xl bg-slate-100 px-3 py-2 text-sm font-semibold text-slate-700">
+                Page <span id="currentPageNumber">1</span> of <span id="totalPageNumber">1</span>
+              </div>
+
+              <button id="nextPageButton" type="button" class="rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700">
+                Next
+              </button>
+
+              <button id="zoomOutButton" type="button" class="rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700">
+                Zoom −
+              </button>
+
+              <button id="zoomInButton" type="button" class="rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700">
+                Zoom +
+              </button>
+
+              <button id="fitWidthButton" type="button" class="rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700">
+                Fit Width
+              </button>
+            </div>
+          </div>
+
+          <div id="emptyState" class="flex min-h-[520px] flex-col items-center justify-center px-4 py-12 text-center">
+            <div class="flex h-24 w-24 items-center justify-center rounded-3xl bg-indigo-50 text-5xl">
+              📑
+            </div>
+
+            <h3 class="mt-6 text-xl font-bold text-slate-900">Your document preview will appear here</h3>
+
+            <p class="mt-3 max-w-xl text-sm leading-6 text-slate-500">
+              Open a PDF to navigate pages and zoom, a DOCX file to view converted Word content, or a TXT file to read plain text.
+            </p>
+
+            <div class="mt-6 grid w-full max-w-2xl gap-3 sm:grid-cols-3">
+              <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                <div class="font-bold text-slate-800">Private</div>
+                <p class="mt-1 text-xs leading-5 text-slate-500">Files stay on your device during viewing.</p>
+              </div>
+
+              <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                <div class="font-bold text-slate-800">Fast</div>
+                <p class="mt-1 text-xs leading-5 text-slate-500">Preview files without creating an account.</p>
+              </div>
+
+              <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                <div class="font-bold text-slate-800">Responsive</div>
+                <p class="mt-1 text-xs leading-5 text-slate-500">Designed for desktop, tablet, and mobile use.</p>
+              </div>
+            </div>
+          </div>
+
+          <div id="loadingState" class="hidden min-h-[520px] items-center justify-center">
+            <div class="text-center">
+              <div class="mx-auto h-12 w-12 animate-spin rounded-full border-4 border-indigo-200 border-t-indigo-600"></div>
+              <p class="mt-4 font-semibold text-slate-700">Preparing your document preview…</p>
+            </div>
+          </div>
+
+          <div id="pdfPreview" class="mobile-preview hidden pt-5">
+            <div class="pdf-canvas-wrap">
+              <canvas id="pdfCanvas" aria-label="PDF page preview"></canvas>
+            </div>
+
+            <div class="mt-5 rounded-2xl border border-slate-200 bg-slate-50 p-4">
+              <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                  <h3 class="font-bold text-slate-900">Extracted PDF Text</h3>
+                  <p class="mt-1 text-xs text-slate-500">Text extraction quality depends on how the PDF was created.</p>
+                </div>
+
+                <button id="togglePdfTextButton" type="button" class="rounded-xl border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700">
+                  Show Text
+                </button>
+              </div>
+
+              <div id="pdfTextOutput" class="txt-output mobile-code mt-4 hidden max-h-96 overflow-auto rounded-xl bg-white p-4 font-mono text-sm leading-6 text-slate-700"></div>
+            </div>
+          </div>
+
+          <div id="docxPreview" class="mobile-preview hidden pt-5">
+            <div id="docxOutput" class="docx-output min-h-[500px] rounded-2xl border border-slate-200 bg-white p-4 sm:p-8"></div>
+          </div>
+
+          <div id="txtPreview" class="mobile-preview hidden pt-5">
+            <pre id="txtOutput" class="txt-output mobile-code min-h-[500px] overflow-auto rounded-2xl border border-slate-200 bg-slate-950 p-4 font-mono text-sm leading-7 text-slate-100 sm:p-6"></pre>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="mx-auto max-w-7xl px-4 pb-8 sm:px-6 lg:px-8">
+      <div class="ad-box">
+        <div>
+          <div class="font-semibold text-slate-600">Advertisement</div>
+          <div class="mt-1 text-xs text-slate-500">Ad area below the document viewer</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8 lg:p-12">
+        <div class="max-w-4xl">
+          <p class="text-sm font-bold uppercase tracking-[0.18em] text-indigo-600">Online Document Reader Guide</p>
+
+          <h2 class="mt-3 text-3xl font-extrabold tracking-tight text-slate-950">
+            Free Online Document Viewer for Everyday File Reading
+          </h2>
+
+          <p class="mt-5 leading-8 text-slate-700">
+            A document viewer is a practical browser utility that helps you open, read, inspect, and preview common document files without installing a full office suite. This free online document viewer is designed for PDF documents, Microsoft Word DOCX files, and plain TXT files. It runs directly in a modern web browser, making it useful when you need quick access to a report, letter, contract draft, instruction manual, exported note, school assignment, business document, or downloaded attachment.
+          </p>
+
+          <p class="mt-5 leading-8 text-slate-700">
+            The tool is especially convenient for users who only need to read a document rather than edit it. Instead of opening a large desktop program, creating an account, or uploading a private file to an unknown service, you can select a supported document and view it locally. PDF pages are rendered with navigation and zoom controls, DOCX content is converted into browser-friendly HTML, and TXT documents are displayed in a clear monospaced reading area that preserves line breaks and spacing.
+          </p>
+
+          <p class="mt-5 leading-8 text-slate-700">
+            Because different document formats store information in different ways, the viewing experience varies by file type. A PDF is a fixed-layout format intended to preserve page appearance. A DOCX file is a structured Word document that may contain headings, paragraphs, tables, lists, images, hyperlinks, and formatting. A TXT file is a lightweight plain-text format without advanced layout or styling. This browser document reader provides a specialized preview for each supported format so that the controls remain relevant and the interface stays easy to use.
+          </p>
+        </div>
+
+        <div class="mt-10 grid gap-5 md:grid-cols-3">
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-100 text-2xl">📕</div>
+            <h3 class="mt-4 text-lg font-bold text-slate-900">PDF Viewer</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-600">
+              Open PDF pages, move between pages, zoom in, zoom out, fit the page to the available width, and extract readable text when the PDF contains a text layer.
+            </p>
+          </div>
+
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-violet-100 text-2xl">📝</div>
+            <h3 class="mt-4 text-lg font-bold text-slate-900">DOCX Viewer</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-600">
+              Read modern Microsoft Word documents in the browser with support for common paragraphs, headings, lists, tables, hyperlinks, and embedded images.
+            </p>
+          </div>
+
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-slate-200 text-2xl">📃</div>
+            <h3 class="mt-4 text-lg font-bold text-slate-900">TXT Viewer</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-600">
+              Display plain text documents with preserved line breaks, safe wrapping, browser search support, and a dark reading panel for long text files.
+            </p>
+          </div>
+        </div>
+
+        <div class="ad-box mt-10">
+          <div>
+            <div class="font-semibold text-slate-600">Advertisement</div>
+            <div class="mt-1 text-xs text-slate-500">Middle content ad area</div>
+          </div>
+        </div>
+
+        <div class="mt-12 max-w-4xl space-y-10">
+          <section>
+            <h2 class="text-2xl font-extrabold text-slate-950">What Is an Online Document Viewer?</h2>
+
+            <p class="mt-4 leading-8 text-slate-700">
+              An online document viewer is a web-based file reader that displays document content inside a browser. It can be used as an alternative to desktop software when a user needs a quick preview rather than full editing capabilities. The term covers many categories, including online PDF viewers, Word document viewers, text file viewers, spreadsheet viewers, presentation viewers, image viewers, and multipurpose file preview tools.
+            </p>
+
+            <p class="mt-4 leading-8 text-slate-700">
+              This document viewer focuses specifically on three widely used formats: PDF, DOCX, and TXT. These formats cover a broad range of everyday documents. PDF files are common for invoices, forms, manuals, academic papers, government notices, receipts, statements, and downloadable guides. DOCX files are often used for resumes, business letters, reports, meeting notes, essays, proposals, templates, and editable office documents. TXT files are frequently used for logs, code snippets, exported notes, configuration instructions, plain drafts, and simple data records.
+            </p>
+
+            <p class="mt-4 leading-8 text-slate-700">
+              A browser-based document viewer can be useful on shared computers, restricted workstations, school devices, tablets, Chromebooks, and computers without Microsoft Word or Adobe Acrobat installed. It can also reduce friction when checking whether a file contains the expected content before deciding whether to save, share, print, convert, or edit it.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-2xl font-extrabold text-slate-950">How to Use the DOCX, PDF and TXT Viewer</h2>
+
+            <div class="mt-5 grid gap-5 sm:grid-cols-2">
+              <div class="rounded-2xl border border-slate-200 p-5">
+                <div class="text-sm font-extrabold text-indigo-600">STEP 1</div>
+                <h3 class="mt-2 text-lg font-bold text-slate-900">Choose a Supported File</h3>
+                <p class="mt-2 leading-7 text-slate-600">
+                  Click the Browse Files button or drag a PDF, DOCX, or TXT file into the upload area. The tool checks the file extension and prepares the correct document preview.
+                </p>
+              </div>
+
+              <div class="rounded-2xl border border-slate-200 p-5">
+                <div class="text-sm font-extrabold text-indigo-600">STEP 2</div>
+                <h3 class="mt-2 text-lg font-bold text-slate-900">Wait for the Local Preview</h3>
+                <p class="mt-2 leading-7 text-slate-600">
+                  The browser reads the selected file on your device. Large documents or image-heavy Word files may require additional processing time.
+                </p>
+              </div>
+
+              <div class="rounded-2xl border border-slate-200 p-5">
+                <div class="text-sm font-extrabold text-indigo-600">STEP 3</div>
+                <h3 class="mt-2 text-lg font-bold text-slate-900">Navigate or Search</h3>
+                <p class="mt-2 leading-7 text-slate-600">
+                  For PDFs, use the page and zoom controls. For DOCX and TXT files, scroll through the content. Use the search box to locate words or phrases in extracted text.
+                </p>
+              </div>
+
+              <div class="rounded-2xl border border-slate-200 p-5">
+                <div class="text-sm font-extrabold text-indigo-600">STEP 4</div>
+                <h3 class="mt-2 text-lg font-bold text-slate-900">Copy or Download</h3>
+                <p class="mt-2 leading-7 text-slate-600">
+                  Copy extracted document text to your clipboard, download the original selected file again, switch to fullscreen mode, or reset the viewer to open another document.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <h2 class="text-2xl font-extrabold text-slate-950">Why Use a Browser-Based PDF Viewer?</h2>
+
+            <p class="mt-4 leading-8 text-slate-700">
+              PDF is one of the most common document formats on the web because it preserves page layout across devices. A PDF may include selectable text, embedded fonts, images, vector graphics, annotations, scanned pages, form fields, and complex page dimensions. This online PDF viewer renders each page onto a browser canvas, allowing you to inspect the document without relying on a separate PDF application.
+            </p>
+
+            <p class="mt-4 leading-8 text-slate-700">
+              Page navigation is helpful for multi-page documents such as annual reports, legal agreements, ebooks, research papers, financial statements, policy manuals, and product guides. Zoom controls help users inspect small text, signatures, footnotes, charts, diagrams, and scanned details. The fit-width control is particularly useful on smaller screens because it automatically scales the current PDF page to the width of the available preview panel.
+            </p>
+
+            <p class="mt-4 leading-8 text-slate-700">
+              Text extraction is also available when the PDF contains machine-readable text. This can make it easier to copy content or search for a phrase. However, a scanned PDF may only contain page images. In that situation, the PDF can still be displayed visually, but extracted text may be empty because optical character recognition is not performed by this tool.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-2xl font-extrabold text-slate-950">How the Online DOCX Viewer Works</h2>
+
+            <p class="mt-4 leading-8 text-slate-700">
+              DOCX is the modern Microsoft Word document format. Internally, a DOCX file is a package of XML files, media assets, style definitions, numbering rules, relationships, and document metadata. A browser cannot display a DOCX file directly in the same way it displays an HTML page. To create a readable preview, this tool converts supported Word document content into HTML inside the browser.
+            </p>
+
+            <p class="mt-4 leading-8 text-slate-700">
+              Common elements such as paragraphs, bold text, italic text, headings, bullet lists, numbered lists, tables, links, and many embedded images can be displayed. This makes the viewer useful for reading resumes, cover letters, reports, assignments, proposals, meeting minutes, instructions, templates, and other Microsoft Word documents.
+            </p>
+
+            <p class="mt-4 leading-8 text-slate-700">
+              Word is a sophisticated publishing environment, so not every visual effect can be reproduced perfectly in a browser conversion. Advanced page layouts, floating text boxes, custom fonts, macros, comments, tracked changes, headers, footers, page borders, SmartArt, equations, embedded objects, and complex columns may appear differently or may not be included. The purpose of the DOCX viewer is to provide a clear content preview rather than a pixel-perfect replacement for Microsoft Word.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-2xl font-extrabold text-slate-950">Advantages of a Plain Text File Viewer</h2>
+
+            <p class="mt-4 leading-8 text-slate-700">
+              TXT files are simple, portable, and widely compatible. They contain characters without advanced document formatting, which makes them useful for notes, exported records, transcripts, logs, instructions, draft content, plain lists, configuration details, and lightweight data. A browser TXT viewer gives users a distraction-free way to inspect these files while preserving line breaks and spacing.
+            </p>
+
+            <p class="mt-4 leading-8 text-slate-700">
+              Long text files can be difficult to read when opened in a small default editor. This tool uses a dedicated scrollable preview area with safe line wrapping, a monospaced font, and responsive sizing. The viewer also supports copy and search actions, which are useful when reviewing exported chat logs, application logs, server reports, plain-text documentation, source fragments, and notes created on another device.
+            </p>
+
+            <p class="mt-4 leading-8 text-slate-700">
+              Most modern text files use UTF-8 encoding, and this viewer reads TXT content using the browser's standard text handling. Files saved with an older or unusual character encoding may display incorrect symbols. In that case, opening the file in a dedicated text editor and resaving it as UTF-8 can improve compatibility.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-2xl font-extrabold text-slate-950">Privacy Benefits of Local Document Processing</h2>
+
+            <p class="mt-4 leading-8 text-slate-700">
+              Privacy is an important consideration when viewing documents that may include names, addresses, account numbers, employment information, internal company details, personal notes, school records, invoices, contracts, or other confidential material. This tool is designed to process selected files inside the browser. The document content is not intentionally transmitted to a server by the viewer itself.
+            </p>
+
+            <p class="mt-4 leading-8 text-slate-700">
+              Local browser processing can reduce exposure compared with tools that require file uploads. It also makes the viewer convenient when dealing with temporary documents that you do not want to store in an online account. However, users should still follow normal security practices. Do not open files from untrusted sources without considering the risks, keep your browser updated, and avoid using public or shared computers for highly sensitive documents.
+            </p>
+
+            <p class="mt-4 leading-8 text-slate-700">
+              The presence of advertising scripts, browser extensions, device monitoring software, or other third-party components may affect the overall privacy environment of a webpage or computer. For extremely sensitive legal, financial, medical, identity, or business documents, consider using a trusted offline application on a secured device.
+            </p>
+          </section>
+        </div>
+
+        <div class="ad-box mt-10">
+          <div>
+            <div class="font-semibold text-slate-600">Advertisement</div>
+            <div class="mt-1 text-xs text-slate-500">Bottom content ad area</div>
+          </div>
+        </div>
+
+        <div class="mt-12 max-w-4xl space-y-10">
+          <section>
+            <h2 class="text-2xl font-extrabold text-slate-950">Popular Uses for This Document Viewer</h2>
+
+            <div class="mt-6 grid gap-5 md:grid-cols-2">
+              <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+                <h3 class="text-lg font-bold text-slate-900">Review Email Attachments</h3>
+                <p class="mt-2 leading-7 text-slate-600">
+                  Open downloaded PDF, DOCX, or TXT attachments to verify their content before forwarding, printing, editing, or archiving them.
+                </p>
+              </div>
+
+              <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+                <h3 class="text-lg font-bold text-slate-900">Read Documents Without Office Software</h3>
+                <p class="mt-2 leading-7 text-slate-600">
+                  Preview Word files on a device that does not have Microsoft Word, LibreOffice, or another desktop office application installed.
+                </p>
+              </div>
+
+              <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+                <h3 class="text-lg font-bold text-slate-900">Check Reports and Manuals</h3>
+                <p class="mt-2 leading-7 text-slate-600">
+                  Quickly inspect PDF reports, user manuals, policies, forms, product guides, research documents, and downloadable instructions.
+                </p>
+              </div>
+
+              <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+                <h3 class="text-lg font-bold text-slate-900">Extract and Copy Text</h3>
+                <p class="mt-2 leading-7 text-slate-600">
+                  Copy readable content from supported DOCX, TXT, and text-based PDF files for use in notes, messages, research, or another document.
+                </p>
+              </div>
+
+              <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+                <h3 class="text-lg font-bold text-slate-900">Preview Student Assignments</h3>
+                <p class="mt-2 leading-7 text-slate-600">
+                  Read essays, project files, lecture notes, research papers, and assignment drafts on a laptop, tablet, Chromebook, or phone.
+                </p>
+              </div>
+
+              <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+                <h3 class="text-lg font-bold text-slate-900">Inspect Downloaded Files</h3>
+                <p class="mt-2 leading-7 text-slate-600">
+                  Confirm that a downloaded document is complete, readable, and relevant before keeping it in your permanent files.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <h2 class="text-2xl font-extrabold text-slate-950">Tips for Better Document Preview Results</h2>
+
+            <h3 class="mt-5 text-xl font-bold text-slate-900">Use modern file formats</h3>
+            <p class="mt-3 leading-8 text-slate-700">
+              Choose DOCX instead of legacy DOC whenever possible. DOCX is based on an open XML package and is more suitable for browser conversion. Legacy DOC files use an older binary structure and require specialized processing that is not included in this viewer.
+            </p>
+
+            <h3 class="mt-5 text-xl font-bold text-slate-900">Allow time for large files</h3>
+            <p class="mt-3 leading-8 text-slate-700">
+              Documents with many pages, high-resolution images, complex formatting, or large embedded media may take longer to process. Browser memory limitations can also affect very large files, particularly on mobile devices.
+            </p>
+
+            <h3 class="mt-5 text-xl font-bold text-slate-900">Use text-based PDFs when copying content</h3>
+            <p class="mt-3 leading-8 text-slate-700">
+              A PDF created by exporting from Word, a web browser, or a design application often includes selectable text. A scanned PDF may only contain images, which means text extraction will not work without OCR.
+            </p>
+
+            <h3 class="mt-5 text-xl font-bold text-slate-900">Save TXT files as UTF-8</h3>
+            <p class="mt-3 leading-8 text-slate-700">
+              UTF-8 provides broad character compatibility across operating systems and languages. Resaving a text document as UTF-8 can resolve unreadable characters caused by older encodings.
+            </p>
+
+            <h3 class="mt-5 text-xl font-bold text-slate-900">Use the original application for exact formatting</h3>
+            <p class="mt-3 leading-8 text-slate-700">
+              A browser preview is ideal for reading and inspection, but it is not a substitute for a full editing program when exact page breaks, custom fonts, layout measurements, comments, tracked revisions, form fields, or print output must be preserved.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-2xl font-extrabold text-slate-950">Supported Features and Known Limitations</h2>
+
+            <div class="mt-5 overflow-x-auto rounded-2xl border border-slate-200">
+              <table class="w-full min-w-[720px] border-collapse text-left text-sm">
+                <thead class="bg-slate-100 text-slate-700">
+                  <tr>
+                    <th class="border-b border-slate-200 px-4 py-3 font-bold">Feature</th>
+                    <th class="border-b border-slate-200 px-4 py-3 font-bold">PDF</th>
+                    <th class="border-b border-slate-200 px-4 py-3 font-bold">DOCX</th>
+                    <th class="border-b border-slate-200 px-4 py-3 font-bold">TXT</th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white text-slate-600">
+                  <tr>
+                    <td class="border-b border-slate-200 px-4 py-3 font-semibold text-slate-800">Browser preview</td>
+                    <td class="border-b border-slate-200 px-4 py-3">Yes</td>
+                    <td class="border-b border-slate-200 px-4 py-3">Yes</td>
+                    <td class="border-b border-slate-200 px-4 py-3">Yes</td>
+                  </tr>
+                  <tr>
+                    <td class="border-b border-slate-200 px-4 py-3 font-semibold text-slate-800">Page navigation</td>
+                    <td class="border-b border-slate-200 px-4 py-3">Yes</td>
+                    <td class="border-b border-slate-200 px-4 py-3">Not applicable</td>
+                    <td class="border-b border-slate-200 px-4 py-3">Not applicable</td>
+                  </tr>
+                  <tr>
+                    <td class="border-b border-slate-200 px-4 py-3 font-semibold text-slate-800">Zoom controls</td>
+                    <td class="border-b border-slate-200 px-4 py-3">Yes</td>
+                    <td class="border-b border-slate-200 px-4 py-3">Browser zoom</td>
+                    <td class="border-b border-slate-200 px-4 py-3">Browser zoom</td>
+                  </tr>
+                  <tr>
+                    <td class="border-b border-slate-200 px-4 py-3 font-semibold text-slate-800">Text extraction</td>
+                    <td class="border-b border-slate-200 px-4 py-3">When text layer exists</td>
+                    <td class="border-b border-slate-200 px-4 py-3">Yes</td>
+                    <td class="border-b border-slate-200 px-4 py-3">Yes</td>
+                  </tr>
+                  <tr>
+                    <td class="border-b border-slate-200 px-4 py-3 font-semibold text-slate-800">Images</td>
+                    <td class="border-b border-slate-200 px-4 py-3">Rendered on page</td>
+                    <td class="border-b border-slate-200 px-4 py-3">Common images supported</td>
+                    <td class="border-b border-slate-200 px-4 py-3">No embedded images</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-semibold text-slate-800">Editing</td>
+                    <td class="px-4 py-3">No</td>
+                    <td class="px-4 py-3">No</td>
+                    <td class="px-4 py-3">No</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+      </article>
+    </section>
+
+    <section class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <div class="mb-8">
+        <p class="text-sm font-bold uppercase tracking-[0.18em] text-indigo-600">Explore More Utilities</p>
+        <h2 class="mt-2 text-3xl font-extrabold tracking-tight text-slate-950">Related Tools</h2>
+        <p class="mt-3 max-w-3xl leading-7 text-slate-600">
+          Continue working with documents and files using these related NodnWebTools utilities.
+        </p>
+      </div>
+
+      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <a href="/pdf-merger-splitter" class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-indigo-300 hover:shadow-md">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-50 text-2xl transition group-hover:bg-indigo-600 group-hover:text-white">📚</div>
+          <h3 class="mt-4 text-lg font-bold text-slate-900 group-hover:text-indigo-700">PDF Merger & Splitter</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">Combine multiple PDF files or extract selected pages directly in your browser.</p>
+        </a>
+
+        <a href="/zip-extractor" class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-indigo-300 hover:shadow-md">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-violet-50 text-2xl transition group-hover:bg-violet-600 group-hover:text-white">🗜️</div>
+          <h3 class="mt-4 text-lg font-bold text-slate-900 group-hover:text-indigo-700">ZIP Extractor</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">Open ZIP archives, inspect contained files, and download selected items locally.</p>
+        </a>
+
+        <a href="/diff-checker" class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-indigo-300 hover:shadow-md">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-2xl transition group-hover:bg-emerald-600 group-hover:text-white">↔️</div>
+          <h3 class="mt-4 text-lg font-bold text-slate-900 group-hover:text-indigo-700">Text Diff Checker</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">Compare two blocks of text and identify additions, removals, and changes.</p>
+        </a>
+
+        <a href="/image-converter" class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-indigo-300 hover:shadow-md">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-rose-50 text-2xl transition group-hover:bg-rose-600 group-hover:text-white">🖼️</div>
+          <h3 class="mt-4 text-lg font-bold text-slate-900 group-hover:text-indigo-700">Image Converter</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">Convert common image formats locally while controlling quality and output type.</p>
+        </a>
+
+        <a href="/excel-viewer" class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-indigo-300 hover:shadow-md">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-50 text-2xl transition group-hover:bg-amber-500 group-hover:text-white">🎬</div>
+          <h3 class="mt-4 text-lg font-bold text-slate-900 group-hover:text-indigo-700">Excel Viewer</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600"> Open XLSX, XLS, and CSV files directly in your browser with worksheet navigation, search, filtering, sorting, and export tools.</p>
+        </a>
+
+        <a href="/powerpoint-viewer" class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-indigo-300 hover:shadow-md">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-violet-50 text-2xl transition group-hover:bg-violet-600 group-hover:text-white">📊</div>
+          <h3 class="mt-4 text-lg font-bold text-slate-900 group-hover:text-indigo-700">PowerPoint Viewer</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">Preview PPTX presentations, browse slides, and extract readable presentation text.</p>
+        </a>
+      </div>
+    </section>
+
+    <section class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <div class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8 lg:p-10">
+        <p class="text-sm font-bold uppercase tracking-[0.18em] text-indigo-600">Common Questions</p>
+        <h2 class="mt-2 text-3xl font-extrabold tracking-tight text-slate-950">Document Viewer FAQ</h2>
+
+        <div class="mt-8 space-y-4">
+          <details class="group rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">
+              Is this document viewer free to use?
+            </summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              Yes. The document viewer can be used without creating an account or paying a fee. It is intended for quick browser-based previews of supported PDF, DOCX, and TXT files.
+            </p>
+          </details>
+
+          <details class="group rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">
+              Are my files uploaded to a server?
+            </summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              The viewer processes selected documents locally in your browser. The tool itself does not intentionally upload the document for preview processing. Users should still consider the security of their device, browser extensions, and network environment.
+            </p>
+          </details>
+
+          <details class="group rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">
+              Can I open old Microsoft Word DOC files?
+            </summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              No. This viewer supports DOCX files, which are the modern Microsoft Word format. Older binary DOC files should first be converted to DOCX using Microsoft Word, LibreOffice, or another trusted conversion tool.
+            </p>
+          </details>
+
+          <details class="group rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">
+              Why does my DOCX file look different from Microsoft Word?
+            </summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              The browser converts Word content into HTML for reading. Common headings, paragraphs, lists, tables, links, and images are usually supported, but advanced page layout, fonts, text boxes, tracked changes, comments, headers, and other complex features may not appear exactly the same.
+            </p>
+          </details>
+
+          <details class="group rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">
+              Why is no text extracted from my PDF?
+            </summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              The PDF may be a scanned image without a searchable text layer. This viewer does not perform optical character recognition. The page can still be displayed visually, but copying and text search may not be available.
+            </p>
+          </details>
+
+          <details class="group rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">
+              Can I edit documents with this tool?
+            </summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              No. This is a document reading and preview tool. It does not modify the selected file. Use a dedicated PDF editor, Microsoft Word, text editor, or compatible office application when document editing is required.
+            </p>
+          </details>
+
+          <details class="group rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">
+              Does the tool work on mobile devices?
+            </summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              Yes. The page is designed to adapt to phones and tablets. Performance depends on the device, browser, file size, and document complexity. Very large PDF or DOCX files may work better on a desktop or laptop.
+            </p>
+          </details>
+
+          <details class="group rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">
+              What is the maximum supported file size?
+            </summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              The viewer does not impose a fixed server upload limit because processing is local. Practical limits depend on available browser memory, device performance, file complexity, and operating system restrictions.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
+      <div class="ad-box">
+        <div>
+          <div class="font-semibold text-slate-600">Advertisement</div>
+          <div class="mt-1 text-xs text-slate-500">Bottom ad area</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mx-auto max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
+      <div class="rounded-3xl border border-slate-700 bg-slate-900 p-6 text-slate-200 shadow-sm sm:p-8">
+        <h2 class="text-2xl font-extrabold text-white">Legal Disclaimer</h2>
+
+        <div class="mt-4 space-y-4 text-sm leading-7 text-slate-300">
+          <p>
+            This document viewer is provided for general informational and convenience purposes only. It is not a professional document management, legal review, compliance, archival, security, or records-verification service.
+          </p>
+
+          <p>
+            Document rendering, text extraction, formatting, page display, file metadata, and converted content may be incomplete, inaccurate, or visually different from the original file. Users are responsible for verifying important information with the original document and an appropriate trusted application.
+          </p>
+
+          <p>
+            Do not rely on this tool as the sole method for reviewing contracts, court documents, financial statements, medical records, government forms, identity documents, tax materials, regulated records, or other sensitive or legally significant content. This tool does not provide legal, financial, medical, tax, security, or professional advice.
+          </p>
+
+          <p>
+            Although document processing is designed to occur locally in the browser, users remain responsible for device security, browser security, extensions, malware protection, network privacy, file origin, and compliance with applicable laws and organizational policies. Do not open suspicious files or use confidential documents on an untrusted or shared device.
+          </p>
+
+          <p>
+            By using this tool, you accept responsibility for your files, your interpretation of displayed content, and any actions taken based on the preview. No guarantee is made regarding availability, compatibility, accuracy, confidentiality, preservation of formatting, or fitness for a particular purpose.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-slate-200 bg-white">
+    <div class="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-6 text-sm text-slate-500 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
+      <p>© <span id="currentYear"></span> NodnWebTools. All rights reserved.</p>
+      <a href="https://nodntools.com" class="font-semibold text-indigo-600 hover:text-indigo-700">Visit NodnWebTools</a>
+    </div>
+  </footer>
+
+  <script type="module">
+    import * as pdfjsLib from "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.min.mjs";
+
+    pdfjsLib.GlobalWorkerOptions.workerSrc =
+      "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.worker.min.mjs";
+
+    const fileInput = document.getElementById("fileInput");
+    const dropZone = document.getElementById("dropZone");
+    const warningBox = document.getElementById("warningBox");
+
+    const fileName = document.getElementById("fileName");
+    const fileType = document.getElementById("fileType");
+    const fileSize = document.getElementById("fileSize");
+    const pageCount = document.getElementById("pageCount");
+
+    const previewCard = document.getElementById("previewCard");
+    const previewStatus = document.getElementById("previewStatus");
+    const emptyState = document.getElementById("emptyState");
+    const loadingState = document.getElementById("loadingState");
+
+    const pdfControls = document.getElementById("pdfControls");
+    const pdfPreview = document.getElementById("pdfPreview");
+    const pdfCanvas = document.getElementById("pdfCanvas");
+    const pdfTextOutput = document.getElementById("pdfTextOutput");
+    const togglePdfTextButton = document.getElementById("togglePdfTextButton");
+
+    const docxPreview = document.getElementById("docxPreview");
+    const docxOutput = document.getElementById("docxOutput");
+
+    const txtPreview = document.getElementById("txtPreview");
+    const txtOutput = document.getElementById("txtOutput");
+
+    const currentPageNumber = document.getElementById("currentPageNumber");
+    const totalPageNumber = document.getElementById("totalPageNumber");
+    const previousPageButton = document.getElementById("previousPageButton");
+    const nextPageButton = document.getElementById("nextPageButton");
+    const zoomOutButton = document.getElementById("zoomOutButton");
+    const zoomInButton = document.getElementById("zoomInButton");
+    const fitWidthButton = document.getElementById("fitWidthButton");
+
+    const searchInput = document.getElementById("searchInput");
+    const searchButton = document.getElementById("searchButton");
+    const searchStatus = document.getElementById("searchStatus");
+
+    const copyButton = document.getElementById("copyButton");
+    const downloadButton = document.getElementById("downloadButton");
+    const fullscreenButton = document.getElementById("fullscreenButton");
+    const resetButton = document.getElementById("resetButton");
+
+    let selectedFile = null;
+    let selectedFileUrl = null;
+    let extractedText = "";
+    let currentFileKind = "";
+
+    let pdfDocument = null;
+    let pdfPageNumber = 1;
+    let pdfScale = 1.25;
+    let pdfRendering = false;
+    let pendingPageNumber = null;
+
+    const setWarning = (message = "") => {
+      if (!message) {
+        warningBox.textContent = "";
+        warningBox.classList.add("hidden");
+        return;
+      }
+
+      warningBox.textContent = message;
+      warningBox.classList.remove("hidden");
+    };
+
+    const formatFileSize = (bytes) => {
+      if (!Number.isFinite(bytes) || bytes <= 0) return "0 B";
+
+      const units = ["B", "KB", "MB", "GB"];
+      const index = Math.min(
+        Math.floor(Math.log(bytes) / Math.log(1024)),
+        units.length - 1
+      );
+
+      return `${(bytes / Math.pow(1024, index)).toFixed(index === 0 ? 0 : 2)} ${units[index]}`;
+    };
+
+    const escapeHtml = (value) => {
+      return value.replace(/[&<>"']/g, (character) => {
+        const entities = {
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          '"': "&quot;",
+          "'": "&#039;"
+        };
+        return entities[character];
+      });
+    };
+
+    const hideAllPreviews = () => {
+      emptyState.classList.add("hidden");
+      loadingState.classList.add("hidden");
+      loadingState.classList.remove("flex");
+      pdfPreview.classList.add("hidden");
+      docxPreview.classList.add("hidden");
+      txtPreview.classList.add("hidden");
+      pdfControls.classList.add("hidden");
+    };
+
+    const showLoading = () => {
+      hideAllPreviews();
+      loadingState.classList.remove("hidden");
+      loadingState.classList.add("flex");
+      previewStatus.textContent = "Processing the selected document locally…";
+    };
+
+    const showEmptyState = () => {
+      hideAllPreviews();
+      emptyState.classList.remove("hidden");
+      previewStatus.textContent = "Select a supported document to begin.";
+    };
+
+    const resetFileInfo = () => {
+      fileName.textContent = "No file selected";
+      fileType.textContent = "—";
+      fileSize.textContent = "—";
+      pageCount.textContent = "—";
+    };
+
+    const updateFileInfo = (file, kind) => {
+      fileName.textContent = file.name;
+      fileType.textContent = kind.toUpperCase();
+      fileSize.textContent = formatFileSize(file.size);
+      pageCount.textContent = kind === "pdf" ? "Loading…" : "Not applicable";
+    };
+
+    const validateFile = (file) => {
+      if (!file) {
+        throw new Error("No file was selected.");
+      }
+
+      const fileExtension = file.name.split(".").pop()?.toLowerCase() || "";
+      const supportedExtensions = ["pdf", "docx", "txt"];
+
+      if (!supportedExtensions.includes(fileExtension)) {
+        throw new Error("Unsupported file type. Please choose a PDF, DOCX, or TXT file.");
+      }
+
+      if (file.size === 0) {
+        throw new Error("The selected file is empty.");
+      }
+
+      return fileExtension;
+    };
+
+    const clearCurrentDocument = () => {
+      if (selectedFileUrl) {
+        URL.revokeObjectURL(selectedFileUrl);
+      }
+
+      selectedFile = null;
+      selectedFileUrl = null;
+      extractedText = "";
+      currentFileKind = "";
+      pdfDocument = null;
+      pdfPageNumber = 1;
+      pdfScale = 1.25;
+      pdfRendering = false;
+      pendingPageNumber = null;
+
+      pdfTextOutput.textContent = "";
+      pdfTextOutput.classList.add("hidden");
+      togglePdfTextButton.textContent = "Show Text";
+      docxOutput.innerHTML = "";
+      txtOutput.textContent = "";
+      searchInput.value = "";
+      searchStatus.textContent = "";
+      fileInput.value = "";
+
+      const context = pdfCanvas.getContext("2d");
+      context.clearRect(0, 0, pdfCanvas.width, pdfCanvas.height);
+
+      resetFileInfo();
+    };
+
+    const renderPdfPage = async (pageNumber) => {
+      if (!pdfDocument || pdfRendering) {
+        if (pdfRendering) pendingPageNumber = pageNumber;
+        return;
+      }
+
+      pdfRendering = true;
+
+      try {
+        const page = await pdfDocument.getPage(pageNumber);
+        const viewport = page.getViewport({ scale: pdfScale });
+        const context = pdfCanvas.getContext("2d");
+
+        pdfCanvas.width = Math.floor(viewport.width);
+        pdfCanvas.height = Math.floor(viewport.height);
+
+        await page.render({
+          canvasContext: context,
+          viewport
+        }).promise;
+
+        pdfPageNumber = pageNumber;
+        currentPageNumber.textContent = String(pdfPageNumber);
+
+        previousPageButton.disabled = pdfPageNumber <= 1;
+        nextPageButton.disabled = pdfPageNumber >= pdfDocument.numPages;
+
+        previousPageButton.classList.toggle("opacity-50", previousPageButton.disabled);
+        nextPageButton.classList.toggle("opacity-50", nextPageButton.disabled);
+
+        previewStatus.textContent =
+          `Viewing page ${pdfPageNumber} of ${pdfDocument.numPages} at ${Math.round(pdfScale * 100)}% zoom.`;
+      } catch (error) {
+        console.error(error);
+        setWarning("The selected PDF page could not be rendered.");
+      } finally {
+        pdfRendering = false;
+
+        if (pendingPageNumber !== null) {
+          const nextPendingPage = pendingPageNumber;
+          pendingPageNumber = null;
+          renderPdfPage(nextPendingPage);
+        }
+      }
+    };
+
+    const extractPdfText = async () => {
+      if (!pdfDocument) return "";
+
+      const pages = [];
+
+      for (let pageNumber = 1; pageNumber <= pdfDocument.numPages; pageNumber += 1) {
+        try {
+          const page = await pdfDocument.getPage(pageNumber);
+          const textContent = await page.getTextContent();
+          const pageText = textContent.items
+            .map((item) => item.str)
+            .join(" ")
+            .replace(/\s+/g, " ")
+            .trim();
+
+          pages.push(`Page ${pageNumber}\n${pageText}`);
+        } catch (error) {
+          console.warn(`Unable to extract text from PDF page ${pageNumber}.`, error);
+        }
+      }
+
+      return pages.join("\n\n");
+    };
+
+    const loadPdf = async (file) => {
+      try {
+        const arrayBuffer = await file.arrayBuffer();
+        pdfDocument = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+
+        totalPageNumber.textContent = String(pdfDocument.numPages);
+        pageCount.textContent = String(pdfDocument.numPages);
+        pdfPageNumber = 1;
+        pdfScale = 1.25;
+
+        hideAllPreviews();
+        pdfPreview.classList.remove("hidden");
+        pdfControls.classList.remove("hidden");
+
+        await renderPdfPage(1);
+
+        extractedText = await extractPdfText();
+        pdfTextOutput.textContent =
+          extractedText || "No selectable text was found in this PDF.";
+
+        previewStatus.textContent =
+          `PDF loaded successfully. ${pdfDocument.numPages} page${pdfDocument.numPages === 1 ? "" : "s"} available.`;
+      } catch (error) {
+        console.error(error);
+        throw new Error("The PDF could not be opened. It may be damaged, password-protected, or unsupported.");
+      }
+    };
+
+    const loadDocx = async (file) => {
+      if (!window.mammoth) {
+        throw new Error("The DOCX processing library could not be loaded.");
+      }
+
+      try {
+        const arrayBuffer = await file.arrayBuffer();
+
+        const htmlResult = await window.mammoth.convertToHtml(
+          { arrayBuffer },
+          {
+            convertImage: window.mammoth.images.imgElement((image) => {
+              return image.read("base64").then((imageBuffer) => ({
+                src: `data:${image.contentType};base64,${imageBuffer}`
+              }));
+            })
+          }
+        );
+
+        const textResult = await window.mammoth.extractRawText({ arrayBuffer });
+
+        extractedText = textResult.value.trim();
+        docxOutput.innerHTML =
+          htmlResult.value ||
+          '<p class="text-slate-500">No readable content was found in this DOCX file.</p>';
+
+        hideAllPreviews();
+        docxPreview.classList.remove("hidden");
+        pageCount.textContent = "Not available";
+        previewStatus.textContent = "DOCX document converted and displayed successfully.";
+
+        if (htmlResult.messages?.length) {
+          console.info("DOCX conversion messages:", htmlResult.messages);
+        }
+      } catch (error) {
+        console.error(error);
+        throw new Error("The DOCX file could not be opened. It may be damaged, encrypted, or unsupported.");
+      }
+    };
+
+    const loadTxt = async (file) => {
+      try {
+        const text = await file.text();
+        extractedText = text;
+        txtOutput.textContent = text || "This text file does not contain readable content.";
+
+        hideAllPreviews();
+        txtPreview.classList.remove("hidden");
+        pageCount.textContent = "Not applicable";
+        previewStatus.textContent = "TXT file loaded successfully.";
+      } catch (error) {
+        console.error(error);
+        throw new Error("The text file could not be read.");
+      }
+    };
+
+    const handleFile = async (file) => {
+      try {
+        setWarning("");
+        clearCurrentDocument();
+
+        const kind = validateFile(file);
+
+        selectedFile = file;
+        currentFileKind = kind;
+        selectedFileUrl = URL.createObjectURL(file);
+
+        updateFileInfo(file, kind);
+        showLoading();
+
+        if (kind === "pdf") {
+          await loadPdf(file);
+        } else if (kind === "docx") {
+          await loadDocx(file);
+        } else {
+          await loadTxt(file);
+        }
+      } catch (error) {
+        console.error(error);
+        clearCurrentDocument();
+        showEmptyState();
+        setWarning(error.message || "The selected document could not be opened.");
+      }
+    };
+
+    const findSearchMatches = () => {
+      const query = searchInput.value.trim();
+
+      if (!query) {
+        searchStatus.textContent = "Enter a word or phrase to search.";
+        return;
+      }
+
+      if (!extractedText) {
+        searchStatus.textContent = "No searchable text is available for this document.";
+        return;
+      }
+
+      try {
+        const escapedQuery = query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+        const matches = extractedText.match(new RegExp(escapedQuery, "gi")) || [];
+
+        searchStatus.textContent =
+          matches.length === 1
+            ? "1 match found."
+            : `${matches.length} matches found.`;
+
+        if (currentFileKind === "docx") {
+          const visibleText = docxOutput.innerText;
+          const safeText = escapeHtml(visibleText);
+          const highlighted = safeText.replace(
+            new RegExp(`(${escapedQuery})`, "gi"),
+            '<mark class="search-highlight">$1</mark>'
+          );
+
+          docxOutput.innerHTML = `<div class="txt-output">${highlighted}</div>`;
+        } else if (currentFileKind === "txt") {
+          const safeText = escapeHtml(extractedText);
+          txtOutput.innerHTML = safeText.replace(
+            new RegExp(`(${escapedQuery})`, "gi"),
+            '<mark class="search-highlight">$1</mark>'
+          );
+        } else if (currentFileKind === "pdf") {
+          pdfTextOutput.classList.remove("hidden");
+          togglePdfTextButton.textContent = "Hide Text";
+
+          const safeText = escapeHtml(extractedText);
+          pdfTextOutput.innerHTML = safeText.replace(
+            new RegExp(`(${escapedQuery})`, "gi"),
+            '<mark class="search-highlight">$1</mark>'
+          );
+        }
+      } catch (error) {
+        console.error(error);
+        searchStatus.textContent = "Search could not be completed.";
+      }
+    };
+
+    fileInput.addEventListener("change", (event) => {
+      const file = event.target.files?.[0];
+      if (file) handleFile(file);
+    });
+
+    ["dragenter", "dragover"].forEach((eventName) => {
+      dropZone.addEventListener(eventName, (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        dropZone.classList.add("drag-active");
+      });
+    });
+
+    ["dragleave", "drop"].forEach((eventName) => {
+      dropZone.addEventListener(eventName, (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        dropZone.classList.remove("drag-active");
+      });
+    });
+
+    dropZone.addEventListener("drop", (event) => {
+      const file = event.dataTransfer?.files?.[0];
+      if (file) handleFile(file);
+    });
+
+    previousPageButton.addEventListener("click", () => {
+      if (pdfDocument && pdfPageNumber > 1) {
+        renderPdfPage(pdfPageNumber - 1);
+      }
+    });
+
+    nextPageButton.addEventListener("click", () => {
+      if (pdfDocument && pdfPageNumber < pdfDocument.numPages) {
+        renderPdfPage(pdfPageNumber + 1);
+      }
+    });
+
+    zoomOutButton.addEventListener("click", () => {
+      if (!pdfDocument) return;
+      pdfScale = Math.max(0.5, pdfScale - 0.15);
+      renderPdfPage(pdfPageNumber);
+    });
+
+    zoomInButton.addEventListener("click", () => {
+      if (!pdfDocument) return;
+      pdfScale = Math.min(3, pdfScale + 0.15);
+      renderPdfPage(pdfPageNumber);
+    });
+
+    fitWidthButton.addEventListener("click", async () => {
+      if (!pdfDocument) return;
+
+      try {
+        const page = await pdfDocument.getPage(pdfPageNumber);
+        const naturalViewport = page.getViewport({ scale: 1 });
+        const container = document.querySelector(".pdf-canvas-wrap");
+        const availableWidth = Math.max(240, container.clientWidth - 32);
+
+        pdfScale = Math.max(
+          0.5,
+          Math.min(3, availableWidth / naturalViewport.width)
+        );
+
+        renderPdfPage(pdfPageNumber);
+      } catch (error) {
+        console.error(error);
+        setWarning("Fit width could not be applied.");
+      }
+    });
+
+    togglePdfTextButton.addEventListener("click", () => {
+      const isHidden = pdfTextOutput.classList.contains("hidden");
+      pdfTextOutput.classList.toggle("hidden");
+      togglePdfTextButton.textContent = isHidden ? "Hide Text" : "Show Text";
+    });
+
+    searchButton.addEventListener("click", findSearchMatches);
+
+    searchInput.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        findSearchMatches();
+      }
+    });
+
+    copyButton.addEventListener("click", async () => {
+      if (!extractedText) {
+        setWarning("No extracted text is available to copy.");
+        return;
+      }
+
+      try {
+        await navigator.clipboard.writeText(extractedText);
+        const originalText = copyButton.textContent;
+        copyButton.textContent = "Copied!";
+        setWarning("");
+
+        window.setTimeout(() => {
+          copyButton.textContent = originalText;
+        }, 1600);
+      } catch (error) {
+        console.error(error);
+        setWarning("Text could not be copied. Your browser may block clipboard access.");
+      }
+    });
+
+    downloadButton.addEventListener("click", () => {
+      if (!selectedFile || !selectedFileUrl) {
+        setWarning("Select a document before using the download button.");
+        return;
+      }
+
+      const link = document.createElement("a");
+      link.href = selectedFileUrl;
+      link.download = selectedFile.name;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      setWarning("");
+    });
+
+    fullscreenButton.addEventListener("click", () => {
+      previewCard.classList.toggle("fullscreen-preview");
+      const isFullscreen = previewCard.classList.contains("fullscreen-preview");
+      fullscreenButton.textContent = isFullscreen ? "Exit Fullscreen" : "Fullscreen";
+
+      if (isFullscreen) {
+        previewCard.scrollTop = 0;
+      }
+    });
+
+    resetButton.addEventListener("click", () => {
+      clearCurrentDocument();
+      setWarning("");
+      showEmptyState();
+
+      previewCard.classList.remove("fullscreen-preview");
+      fullscreenButton.textContent = "Fullscreen";
+    });
+
+    window.addEventListener("resize", () => {
+      if (currentFileKind === "pdf" && pdfDocument && window.innerWidth <= 640) {
+        const canvasWidth = pdfCanvas.width;
+        const parentWidth = pdfCanvas.parentElement?.clientWidth || canvasWidth;
+
+        if (canvasWidth > parentWidth) {
+          pdfCanvas.style.width = "100%";
+          pdfCanvas.style.height = "auto";
+        } else {
+          pdfCanvas.style.width = "";
+          pdfCanvas.style.height = "";
+        }
+      }
+    });
+
+    document.getElementById("currentYear").textContent =
+      String(new Date().getFullYear());
+
+    showEmptyState();
+  </script>
+</body>
+</html>

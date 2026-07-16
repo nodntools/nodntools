@@ -1,0 +1,2137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Excel Viewer Online for XLSX, XLS and CSV Files</title>
+  <meta name="description" content="Open, preview, search, filter, and export XLSX, XLS, and CSV spreadsheet files locally in your browser." />
+  <meta name="keywords" content="Excel viewer, XLSX viewer, XLS viewer, CSV viewer, online spreadsheet viewer, open Excel online, view XLSX online, spreadsheet reader, browser Excel viewer, free Excel viewer, worksheet viewer, CSV table viewer, Excel file reader, client-side spreadsheet viewer, SheetJS viewer" />
+  <meta name="robots" content="index, follow" />
+
+  <meta property="og:title" content="Excel Viewer Online for XLSX, XLS and CSV Files" />
+  <meta property="og:description" content="Preview Excel workbooks and CSV files directly in your browser with sheet navigation, search, sorting, filtering, and export tools." />
+  <meta property="og:type" content="website" />
+
+  <link rel="icon" type="image/png" href="/favicon.png" />
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404" crossorigin="anonymous"></script>
+  <meta name="google-adsense-account" content="ca-pub-5282672325821404" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Excel Viewer",
+    "description": "A free browser-based spreadsheet viewer for opening XLSX, XLS, and CSV files locally.",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires a modern web browser with JavaScript enabled.",
+    "url": "https://nodntools.com/excel-viewer",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "featureList": [
+      "Open XLSX workbooks",
+      "Open legacy XLS spreadsheets",
+      "Open CSV files",
+      "Navigate workbook sheets",
+      "Search spreadsheet cells",
+      "Filter rows",
+      "Sort columns",
+      "Copy visible table data",
+      "Export active sheet as CSV",
+      "Download the original spreadsheet",
+      "Local browser processing"
+    ]
+  }
+  </script>
+
+  <style>
+    html,
+    body {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      min-width: 0;
+    }
+
+    body {
+      background: #f8fafc;
+      color: #0f172a;
+    }
+
+    .safe-break {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .mobile-card,
+    .mobile-panel,
+    .mobile-preview,
+    .mobile-code,
+    .ad-box,
+    input,
+    textarea,
+    select,
+    button,
+    canvas,
+    img,
+    svg,
+    table,
+    pre,
+    code {
+      max-width: 100%;
+    }
+
+    .ad-box {
+      min-height: 90px;
+      border: 2px dashed #cbd5e1;
+      background: #f8fafc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #64748b;
+      padding: 1rem;
+      border-radius: 1rem;
+      overflow: hidden;
+    }
+
+    .drop-zone.drag-active {
+      border-color: #6366f1;
+      background: #eef2ff;
+      box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.12);
+    }
+
+    .spreadsheet-shell {
+      width: 100%;
+      max-width: 100%;
+      overflow: auto;
+      border: 1px solid #cbd5e1;
+      border-radius: 1rem;
+      background: #ffffff;
+      max-height: 660px;
+    }
+
+    .spreadsheet-table {
+      width: max-content;
+      min-width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      font-size: 0.875rem;
+      color: #334155;
+    }
+
+    .spreadsheet-table th,
+    .spreadsheet-table td {
+      min-width: 120px;
+      max-width: 360px;
+      padding: 0.65rem 0.75rem;
+      border-right: 1px solid #e2e8f0;
+      border-bottom: 1px solid #e2e8f0;
+      vertical-align: top;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+      background: #ffffff;
+    }
+
+    .spreadsheet-table th {
+      position: sticky;
+      top: 0;
+      z-index: 3;
+      background: #f1f5f9;
+      color: #0f172a;
+      font-weight: 700;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .spreadsheet-table .row-number {
+      position: sticky;
+      left: 0;
+      z-index: 2;
+      min-width: 58px;
+      width: 58px;
+      max-width: 58px;
+      text-align: center;
+      background: #f8fafc;
+      color: #64748b;
+      font-weight: 700;
+    }
+
+    .spreadsheet-table thead .row-number {
+      z-index: 4;
+      top: 0;
+      background: #e2e8f0;
+    }
+
+    .spreadsheet-table tr:hover td {
+      background: #f8fafc;
+    }
+
+    .spreadsheet-table td.cell-highlight {
+      background: #fef9c3 !important;
+      box-shadow: inset 0 0 0 2px #eab308;
+    }
+
+    .spreadsheet-table th.sort-active {
+      background: #e0e7ff;
+      color: #4338ca;
+    }
+
+    .sheet-tab {
+      white-space: nowrap;
+      border: 1px solid #cbd5e1;
+      background: #ffffff;
+      color: #475569;
+      padding: 0.65rem 0.9rem;
+      border-radius: 0.8rem;
+      font-size: 0.82rem;
+      font-weight: 700;
+      transition: all 0.2s ease;
+    }
+
+    .sheet-tab:hover {
+      border-color: #a5b4fc;
+      color: #4338ca;
+    }
+
+    .sheet-tab.active {
+      border-color: #6366f1;
+      background: #eef2ff;
+      color: #4338ca;
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
+    }
+
+    .sheet-tabs-wrap {
+      display: flex;
+      gap: 0.55rem;
+      overflow-x: auto;
+      padding: 0.25rem 0.15rem 0.45rem;
+      scrollbar-width: thin;
+    }
+
+    .fullscreen-preview {
+      position: fixed !important;
+      inset: 0 !important;
+      z-index: 9999 !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      max-width: none !important;
+      border-radius: 0 !important;
+      background: #f8fafc !important;
+      overflow: auto !important;
+      padding: 1rem !important;
+    }
+
+    .stat-card {
+      border: 1px solid #e2e8f0;
+      background: #f8fafc;
+      border-radius: 1rem;
+      padding: 1rem;
+    }
+
+    .truncate-cell {
+      max-height: 9rem;
+      overflow: auto;
+    }
+
+    @media (max-width: 640px) {
+      .mobile-card,
+      .mobile-panel,
+      .mobile-preview {
+        border-radius: 1rem;
+      }
+
+      .mobile-card {
+        padding: 1rem !important;
+      }
+
+      .mobile-panel {
+        padding: 0.875rem !important;
+      }
+
+      .mobile-preview {
+        padding: 0.75rem !important;
+      }
+
+      .mobile-button-grid {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        width: 100%;
+      }
+
+      .mobile-button-grid button,
+      .mobile-button-grid a,
+      .mobile-button-grid select {
+        width: 100%;
+      }
+
+      .spreadsheet-shell {
+        border-radius: 0.8rem;
+        max-height: 540px;
+      }
+
+      .spreadsheet-table {
+        font-size: 0.78rem;
+      }
+
+      .spreadsheet-table th,
+      .spreadsheet-table td {
+        min-width: 105px;
+        max-width: 240px;
+        padding: 0.55rem 0.6rem;
+      }
+
+      .spreadsheet-table .row-number {
+        min-width: 48px;
+        width: 48px;
+        max-width: 48px;
+      }
+    }
+
+    @media (max-width: 380px) {
+      body {
+        font-size: 0.95rem;
+      }
+
+      .mobile-card {
+        padding: 0.75rem !important;
+        border-radius: 0.85rem;
+      }
+
+      .mobile-panel,
+      .mobile-preview {
+        padding: 0.65rem !important;
+        border-radius: 0.85rem;
+      }
+
+      .ad-box {
+        border-radius: 0.75rem;
+        min-height: 82px;
+        font-size: 0.8rem;
+      }
+
+      button,
+      input,
+      select {
+        font-size: 0.9rem;
+      }
+
+      .spreadsheet-table th,
+      .spreadsheet-table td {
+        min-width: 94px;
+        max-width: 205px;
+        padding: 0.5rem;
+      }
+    }
+  </style>
+</head>
+
+<body class="min-h-screen bg-slate-50 text-slate-900">
+  <header class="border-b border-slate-200 bg-white">
+    <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
+      <a href="https://nodntools.com" class="safe-break text-xl font-extrabold tracking-tight text-slate-900" aria-label="NodnWebTools home">
+        Nodn<span class="text-indigo-600">WebTools</span>
+      </a>
+
+      <a href="https://nodntools.com" class="rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700">
+        Home
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <section class="mx-auto max-w-7xl px-4 pt-6 sm:px-6 lg:px-8">
+      <div class="ad-box">
+        <div>
+          <div class="font-semibold text-slate-600">Advertisement</div>
+          <div class="mt-1 text-xs text-slate-500">Top ad area</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+      <div class="mb-8 max-w-4xl">
+        <div class="mb-3 inline-flex items-center gap-2 rounded-full bg-indigo-50 px-3 py-1 text-sm font-semibold text-indigo-700">
+          <span aria-hidden="true">📈</span>
+          Browser-Based Spreadsheet Reader
+        </div>
+
+        <h1 class="safe-break text-3xl font-extrabold tracking-tight text-slate-950 sm:text-4xl lg:text-5xl">
+          Excel Viewer for XLSX, XLS and CSV Files
+        </h1>
+
+        <p class="mt-4 max-w-3xl text-base leading-7 text-slate-600 sm:text-lg">
+          Open Excel workbooks and CSV files directly in your browser. Browse worksheets, search cells, filter rows, sort columns, copy visible data, and export the active sheet without uploading the spreadsheet to a server.
+        </p>
+      </div>
+
+      <div class="grid gap-6 lg:grid-cols-[390px_minmax(0,1fr)]">
+        <aside class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+          <div class="mb-5">
+            <h2 class="text-xl font-bold text-slate-900">Open a Spreadsheet</h2>
+            <p class="mt-2 text-sm leading-6 text-slate-600">
+              Choose an XLSX, XLS, or CSV file from your device. The workbook is processed locally inside your browser.
+            </p>
+          </div>
+
+          <div id="dropZone" class="drop-zone rounded-2xl border-2 border-dashed border-slate-300 bg-slate-50 p-6 text-center transition">
+            <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-indigo-100 text-2xl text-indigo-700">
+              ↑
+            </div>
+
+            <h3 class="mt-4 font-bold text-slate-900">Drop your spreadsheet here</h3>
+            <p class="mt-2 text-sm text-slate-500">or select a workbook from your device</p>
+
+            <label for="fileInput" class="mt-5 inline-flex cursor-pointer items-center justify-center rounded-xl bg-indigo-600 px-5 py-3 font-semibold text-white shadow-sm transition hover:bg-indigo-700 focus-within:ring-4 focus-within:ring-indigo-100">
+              Browse Spreadsheet
+            </label>
+
+            <input id="fileInput" type="file" class="sr-only" accept=".xlsx,.xls,.csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel,text/csv" />
+          </div>
+
+          <div id="warningBox" class="mt-4 hidden rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm leading-6 text-amber-800" role="alert"></div>
+
+          <div class="mt-5 rounded-2xl border border-slate-200 bg-slate-50 p-4">
+            <h3 class="text-sm font-bold uppercase tracking-wide text-slate-500">Supported Formats</h3>
+
+            <div class="mt-3 grid grid-cols-3 gap-2">
+              <div class="rounded-xl bg-white px-3 py-3 text-center shadow-sm">
+                <div class="font-bold text-indigo-700">XLSX</div>
+                <div class="mt-1 text-xs text-slate-500">Modern Excel</div>
+              </div>
+
+              <div class="rounded-xl bg-white px-3 py-3 text-center shadow-sm">
+                <div class="font-bold text-violet-700">XLS</div>
+                <div class="mt-1 text-xs text-slate-500">Legacy Excel</div>
+              </div>
+
+              <div class="rounded-xl bg-white px-3 py-3 text-center shadow-sm">
+                <div class="font-bold text-slate-700">CSV</div>
+                <div class="mt-1 text-xs text-slate-500">Delimited data</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-5">
+            <h3 class="text-sm font-bold uppercase tracking-wide text-slate-500">File Information</h3>
+
+            <dl class="mt-3 space-y-3 rounded-2xl border border-slate-200 bg-white p-4 text-sm">
+              <div class="flex items-start justify-between gap-4">
+                <dt class="text-slate-500">Name</dt>
+                <dd id="fileName" class="safe-break text-right font-semibold text-slate-800">No file selected</dd>
+              </div>
+
+              <div class="flex items-start justify-between gap-4">
+                <dt class="text-slate-500">Type</dt>
+                <dd id="fileType" class="safe-break text-right font-semibold text-slate-800">—</dd>
+              </div>
+
+              <div class="flex items-start justify-between gap-4">
+                <dt class="text-slate-500">Size</dt>
+                <dd id="fileSize" class="text-right font-semibold text-slate-800">—</dd>
+              </div>
+
+              <div class="flex items-start justify-between gap-4">
+                <dt class="text-slate-500">Sheets</dt>
+                <dd id="sheetCount" class="text-right font-semibold text-slate-800">—</dd>
+              </div>
+
+              <div class="flex items-start justify-between gap-4">
+                <dt class="text-slate-500">Visible Rows</dt>
+                <dd id="visibleRowCount" class="text-right font-semibold text-slate-800">—</dd>
+              </div>
+
+              <div class="flex items-start justify-between gap-4">
+                <dt class="text-slate-500">Columns</dt>
+                <dd id="columnCount" class="text-right font-semibold text-slate-800">—</dd>
+              </div>
+            </dl>
+          </div>
+
+          <div class="mt-5">
+            <label for="searchInput" class="mb-2 block text-sm font-bold text-slate-700">
+              Search Cells
+            </label>
+
+            <div class="flex gap-2">
+              <input id="searchInput" type="search" placeholder="Enter text or a value" class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm outline-none transition placeholder:text-slate-400 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100" />
+              <button id="searchButton" type="button" class="rounded-xl bg-slate-900 px-4 py-3 text-sm font-semibold text-white transition hover:bg-slate-800">
+                Find
+              </button>
+            </div>
+
+            <p id="searchStatus" class="mt-2 text-xs text-slate-500"></p>
+          </div>
+
+          <div class="mt-5">
+            <label for="filterColumnSelect" class="mb-2 block text-sm font-bold text-slate-700">
+              Filter Rows
+            </label>
+
+            <div class="space-y-2">
+              <select id="filterColumnSelect" class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm outline-none transition focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100">
+                <option value="">Select a column</option>
+              </select>
+
+              <input id="filterValueInput" type="text" placeholder="Contains…" class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm outline-none transition placeholder:text-slate-400 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100" />
+
+              <div class="grid grid-cols-2 gap-2">
+                <button id="applyFilterButton" type="button" class="rounded-xl bg-indigo-50 px-4 py-3 text-sm font-semibold text-indigo-700 transition hover:bg-indigo-100">
+                  Apply Filter
+                </button>
+
+                <button id="clearFilterButton" type="button" class="rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700">
+                  Clear Filter
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-5">
+            <label for="rowLimitSelect" class="mb-2 block text-sm font-bold text-slate-700">
+              Rows Per View
+            </label>
+
+            <select id="rowLimitSelect" class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm outline-none transition focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100">
+              <option value="100">100 rows</option>
+              <option value="250">250 rows</option>
+              <option value="500">500 rows</option>
+              <option value="1000">1,000 rows</option>
+              <option value="all">All rows</option>
+            </select>
+          </div>
+
+          <div class="mobile-button-grid mt-5 grid grid-cols-2 gap-3">
+            <button id="copyButton" type="button" class="rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700">
+              Copy Visible Data
+            </button>
+
+            <button id="downloadButton" type="button" class="rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700">
+              Download File
+            </button>
+
+            <button id="exportCsvButton" type="button" class="rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700">
+              Export CSV
+            </button>
+
+            <button id="exportJsonButton" type="button" class="rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700">
+              Export JSON
+            </button>
+
+            <button id="fullscreenButton" type="button" class="rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700">
+              Fullscreen
+            </button>
+
+            <button id="resetButton" type="button" class="rounded-xl bg-rose-50 px-4 py-3 text-sm font-semibold text-rose-700 transition hover:bg-rose-100">
+              Reset
+            </button>
+          </div>
+
+          <div class="mt-5 rounded-2xl border border-indigo-100 bg-indigo-50 p-4 text-sm leading-6 text-indigo-900">
+            <strong>Preview note:</strong> Formulas are displayed using their cached values when available. Macros, pivot interactions, charts, external connections, and advanced Excel features are not executed.
+          </div>
+        </aside>
+
+        <section id="previewCard" class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+          <div class="flex flex-col gap-4 border-b border-slate-200 pb-5 xl:flex-row xl:items-center xl:justify-between">
+            <div>
+              <h2 class="text-xl font-bold text-slate-900">Spreadsheet Preview</h2>
+              <p id="previewStatus" class="mt-1 text-sm text-slate-500">
+                Select an XLSX, XLS, or CSV file to begin.
+              </p>
+            </div>
+
+            <div id="navigationControls" class="mobile-button-grid hidden flex-wrap items-center gap-2">
+              <button id="previousPageButton" type="button" class="rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700">
+                Previous Rows
+              </button>
+
+              <div class="rounded-xl bg-slate-100 px-3 py-2 text-sm font-semibold text-slate-700">
+                Page <span id="currentPageNumber">1</span> of <span id="totalPageNumber">1</span>
+              </div>
+
+              <button id="nextPageButton" type="button" class="rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700">
+                Next Rows
+              </button>
+            </div>
+          </div>
+
+          <div id="emptyState" class="flex min-h-[560px] flex-col items-center justify-center px-4 py-12 text-center">
+            <div class="flex h-24 w-24 items-center justify-center rounded-3xl bg-indigo-50 text-5xl">
+              📊
+            </div>
+
+            <h3 class="mt-6 text-xl font-bold text-slate-900">Your spreadsheet preview will appear here</h3>
+
+            <p class="mt-3 max-w-xl text-sm leading-6 text-slate-500">
+              Open an Excel workbook or CSV file to view worksheet tabs, inspect rows and columns, search cells, apply filters, sort values, and export the active sheet.
+            </p>
+
+            <div class="mt-6 grid w-full max-w-2xl gap-3 sm:grid-cols-3">
+              <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                <div class="font-bold text-slate-800">Private</div>
+                <p class="mt-1 text-xs leading-5 text-slate-500">Files are processed locally in your browser.</p>
+              </div>
+
+              <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                <div class="font-bold text-slate-800">Multi-Sheet</div>
+                <p class="mt-1 text-xs leading-5 text-slate-500">Switch between workbook worksheets.</p>
+              </div>
+
+              <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                <div class="font-bold text-slate-800">Export Ready</div>
+                <p class="mt-1 text-xs leading-5 text-slate-500">Save visible data as CSV or JSON.</p>
+              </div>
+            </div>
+          </div>
+
+          <div id="loadingState" class="hidden min-h-[560px] items-center justify-center">
+            <div class="text-center">
+              <div class="mx-auto h-12 w-12 animate-spin rounded-full border-4 border-indigo-200 border-t-indigo-600"></div>
+              <p class="mt-4 font-semibold text-slate-700">Preparing your spreadsheet preview…</p>
+            </div>
+          </div>
+
+          <div id="viewerState" class="mobile-preview hidden pt-5">
+            <div class="mb-4">
+              <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                  <h3 class="font-bold text-slate-900">Workbook Sheets</h3>
+                  <p class="mt-1 text-xs text-slate-500">Select a worksheet to update the table preview.</p>
+                </div>
+
+                <div class="rounded-xl bg-slate-100 px-3 py-2 text-xs font-semibold text-slate-600">
+                  Active sheet: <span id="activeSheetLabel">—</span>
+                </div>
+              </div>
+
+              <div id="sheetTabs" class="sheet-tabs-wrap mt-3"></div>
+            </div>
+
+            <div class="mb-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+              <div class="stat-card">
+                <div class="text-xs font-bold uppercase tracking-wide text-slate-500">Total Rows</div>
+                <div id="totalRowsStat" class="mt-2 text-2xl font-extrabold text-slate-900">0</div>
+              </div>
+
+              <div class="stat-card">
+                <div class="text-xs font-bold uppercase tracking-wide text-slate-500">Columns</div>
+                <div id="totalColumnsStat" class="mt-2 text-2xl font-extrabold text-slate-900">0</div>
+              </div>
+
+              <div class="stat-card">
+                <div class="text-xs font-bold uppercase tracking-wide text-slate-500">Filled Cells</div>
+                <div id="filledCellsStat" class="mt-2 text-2xl font-extrabold text-slate-900">0</div>
+              </div>
+
+              <div class="stat-card">
+                <div class="text-xs font-bold uppercase tracking-wide text-slate-500">Current Range</div>
+                <div id="rangeStat" class="safe-break mt-2 text-lg font-extrabold text-slate-900">—</div>
+              </div>
+            </div>
+
+            <div class="mb-4 flex flex-col gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-4 sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <h3 class="font-bold text-slate-900">Table Controls</h3>
+                <p class="mt-1 text-xs text-slate-500">Click a column header to sort ascending or descending.</p>
+              </div>
+
+              <div class="flex flex-wrap gap-2">
+                <button id="clearSortButton" type="button" class="rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700">
+                  Clear Sort
+                </button>
+
+                <button id="showEmptyRowsButton" type="button" class="rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700">
+                  Hide Empty Rows
+                </button>
+              </div>
+            </div>
+
+            <div class="spreadsheet-shell">
+              <table id="spreadsheetTable" class="spreadsheet-table" aria-label="Spreadsheet data preview"></table>
+            </div>
+
+            <div id="tableMessage" class="mt-4 hidden rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm leading-6 text-slate-600"></div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="mx-auto max-w-7xl px-4 pb-8 sm:px-6 lg:px-8">
+      <div class="ad-box">
+        <div>
+          <div class="font-semibold text-slate-600">Advertisement</div>
+          <div class="mt-1 text-xs text-slate-500">Ad area below the Excel viewer</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8 lg:p-12">
+        <div class="max-w-4xl">
+          <p class="text-sm font-bold uppercase tracking-[0.18em] text-indigo-600">Online Spreadsheet Reader Guide</p>
+
+          <h2 class="mt-3 text-3xl font-extrabold tracking-tight text-slate-950">
+            Free Excel Viewer for XLSX, XLS and CSV Files
+          </h2>
+
+          <p class="mt-5 leading-8 text-slate-700">
+            An Excel viewer is a browser-based spreadsheet reader that helps you open, inspect, search, and review workbook data without installing Microsoft Excel or another desktop office suite. This free online Excel viewer supports modern XLSX workbooks, legacy XLS spreadsheets, and CSV data files. It is designed for users who need a fast way to check spreadsheet contents, browse worksheets, inspect tables, copy values, apply a simple filter, sort a column, or export data in another convenient format.
+          </p>
+
+          <p class="mt-5 leading-8 text-slate-700">
+            Spreadsheet files are used throughout business, education, accounting, research, inventory management, project planning, sales reporting, personal budgeting, data analysis, customer management, scheduling, and administration. A workbook may contain one worksheet or dozens of sheets, and each sheet may include headers, numbers, dates, formulas, text, identifiers, totals, percentages, notes, and structured records. This browser spreadsheet viewer reads that workbook structure locally and presents the data in a responsive table.
+          </p>
+
+          <p class="mt-5 leading-8 text-slate-700">
+            The tool is particularly useful when you only need to read a file rather than edit it. Instead of launching a large spreadsheet application, signing in to an online office service, or uploading a private workbook to an unfamiliar server, you can select the file from your device and preview it directly in the browser. The workbook is processed with client-side JavaScript, which means the spreadsheet data remains on your device during the viewing process.
+          </p>
+
+          <p class="mt-5 leading-8 text-slate-700">
+            This Excel file viewer includes sheet tabs for multi-sheet workbooks, row and column statistics, spreadsheet search, row filtering, clickable column sorting, row pagination, empty-row controls, copy functionality, original file download, CSV export, JSON export, and fullscreen viewing. These features make the page more than a basic file opener. It functions as a lightweight spreadsheet inspection utility for daily office tasks and quick data review.
+          </p>
+        </div>
+
+        <div class="mt-10 grid gap-5 md:grid-cols-3">
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-100 text-2xl">📗</div>
+            <h3 class="mt-4 text-lg font-bold text-slate-900">XLSX and XLS Viewer</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-600">
+              Open modern Excel workbooks and older XLS spreadsheets, then switch between available worksheet tabs.
+            </p>
+          </div>
+
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-violet-100 text-2xl">🔎</div>
+            <h3 class="mt-4 text-lg font-bold text-slate-900">Search, Filter and Sort</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-600">
+              Find matching cell values, filter rows by a selected column, and click headers to sort spreadsheet data.
+            </p>
+          </div>
+
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-slate-200 text-2xl">⬇️</div>
+            <h3 class="mt-4 text-lg font-bold text-slate-900">CSV and JSON Export</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-600">
+              Export the active worksheet or filtered rows as a local CSV or JSON file for additional processing.
+            </p>
+          </div>
+        </div>
+
+        <div class="ad-box mt-10">
+          <div>
+            <div class="font-semibold text-slate-600">Advertisement</div>
+            <div class="mt-1 text-xs text-slate-500">Middle content ad area</div>
+          </div>
+        </div>
+
+        <div class="mt-12 max-w-4xl space-y-10">
+          <section>
+            <h2 class="text-2xl font-extrabold text-slate-950">What Is an Online Excel Viewer?</h2>
+
+            <p class="mt-4 leading-8 text-slate-700">
+              An online Excel viewer is a web application that reads spreadsheet files and displays their contents inside a browser. Traditional spreadsheet programs such as Microsoft Excel, LibreOffice Calc, Apple Numbers, and other office applications include extensive editing and calculation features. However, users do not always need a complete spreadsheet editor. Sometimes the goal is simply to open an attachment, confirm a total, inspect a data table, find a customer name, read a schedule, check inventory quantities, review an exported report, or copy a few rows.
+            </p>
+
+            <p class="mt-4 leading-8 text-slate-700">
+              This online spreadsheet viewer is designed for that lighter workflow. It accepts XLSX, XLS, and CSV files, identifies available worksheets, converts the active worksheet into a two-dimensional data table, and renders the result in a scrollable browser interface. The viewer preserves common cell values such as text, numbers, dates, percentages, and cached formula results. It also provides practical controls that help users navigate larger workbooks more efficiently.
+            </p>
+
+            <p class="mt-4 leading-8 text-slate-700">
+              A browser Excel reader can be useful on shared computers, Chromebooks, tablets, restricted office systems, temporary workstations, school devices, or computers that do not have Microsoft Excel installed. It may also be useful when a user wants to inspect a workbook before deciding whether to download, forward, edit, archive, convert, or import the data into another system.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-2xl font-extrabold text-slate-950">How to Use the Excel Spreadsheet Viewer</h2>
+
+            <div class="mt-5 grid gap-5 sm:grid-cols-2">
+              <div class="rounded-2xl border border-slate-200 p-5">
+                <div class="text-sm font-extrabold text-indigo-600">STEP 1</div>
+                <h3 class="mt-2 text-lg font-bold text-slate-900">Choose a Spreadsheet File</h3>
+                <p class="mt-2 leading-7 text-slate-600">
+                  Click the Browse Spreadsheet button or drag an XLSX, XLS, or CSV file into the file area. The viewer checks the extension and begins reading the workbook locally.
+                </p>
+              </div>
+
+              <div class="rounded-2xl border border-slate-200 p-5">
+                <div class="text-sm font-extrabold text-indigo-600">STEP 2</div>
+                <h3 class="mt-2 text-lg font-bold text-slate-900">Select a Worksheet</h3>
+                <p class="mt-2 leading-7 text-slate-600">
+                  If the workbook contains multiple sheets, use the sheet tabs above the table to switch between worksheets and update the active spreadsheet preview.
+                </p>
+              </div>
+
+              <div class="rounded-2xl border border-slate-200 p-5">
+                <div class="text-sm font-extrabold text-indigo-600">STEP 3</div>
+                <h3 class="mt-2 text-lg font-bold text-slate-900">Search, Filter or Sort</h3>
+                <p class="mt-2 leading-7 text-slate-600">
+                  Search across visible worksheet cells, filter rows using one column, or click a table header to sort values in ascending or descending order.
+                </p>
+              </div>
+
+              <div class="rounded-2xl border border-slate-200 p-5">
+                <div class="text-sm font-extrabold text-indigo-600">STEP 4</div>
+                <h3 class="mt-2 text-lg font-bold text-slate-900">Copy or Export Data</h3>
+                <p class="mt-2 leading-7 text-slate-600">
+                  Copy the currently visible table, export the active worksheet as CSV, save rows as JSON, download the original file, or switch to fullscreen mode.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <h2 class="text-2xl font-extrabold text-slate-950">XLSX Viewer for Modern Excel Workbooks</h2>
+
+            <p class="mt-4 leading-8 text-slate-700">
+              XLSX is the standard modern Microsoft Excel workbook format. It is based on the Office Open XML specification and stores workbook information in a compressed package containing XML files, worksheet definitions, shared strings, styles, formulas, relationships, and other resources. Because XLSX is structured, a JavaScript library can read worksheets directly in the browser and convert them into arrays or objects for display.
+            </p>
+
+            <p class="mt-4 leading-8 text-slate-700">
+              Modern XLSX workbooks may contain many worksheets, hidden sheets, formulas, named ranges, merged cells, charts, images, data validation, conditional formatting, pivot tables, comments, hyperlinks, external references, and advanced calculation logic. This viewer focuses on readable worksheet data. It displays values in a table, provides worksheet navigation, and allows simple data operations without trying to reproduce the full Microsoft Excel interface.
+            </p>
+
+            <p class="mt-4 leading-8 text-slate-700">
+              The viewer is useful for checking sales reports, expense sheets, timesheets, attendance lists, invoices, budget worksheets, project trackers, inventory tables, product lists, exported analytics, customer records, order histories, financial summaries, and other spreadsheet-based information. It can also help users verify that a workbook contains the expected data before opening it in a full editing environment.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-2xl font-extrabold text-slate-950">XLS Viewer for Legacy Excel Files</h2>
+
+            <p class="mt-4 leading-8 text-slate-700">
+              XLS is the older binary Microsoft Excel workbook format commonly used by Excel 97 through Excel 2003. Many organizations still maintain historical reports, archived records, old templates, accounting exports, legacy database reports, and business files in XLS format. Modern software can usually open these files, but users may not always have compatible spreadsheet software installed.
+            </p>
+
+            <p class="mt-4 leading-8 text-slate-700">
+              This browser viewer supports many standard XLS files through the included spreadsheet parsing library. It can read common worksheets and display cell values in the same table interface used for XLSX files. Compatibility depends on the structure of the workbook. Password-protected files, unusual binary features, corrupted workbooks, unsupported macros, or specialized legacy content may not load correctly.
+            </p>
+
+            <p class="mt-4 leading-8 text-slate-700">
+              For long-term document management, it may be useful to convert important XLS files to XLSX after verifying their contents. XLSX generally provides better compatibility with modern office applications and browser-based tools. However, when you only need a quick legacy spreadsheet preview, an online XLS viewer can provide a convenient first step.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-2xl font-extrabold text-slate-950">CSV Viewer for Delimited Data Files</h2>
+
+            <p class="mt-4 leading-8 text-slate-700">
+              CSV stands for comma-separated values. A CSV file stores tabular data as plain text, usually with one record per line and fields separated by commas. Some CSV files use semicolons, tabs, or other delimiters depending on the exporting application, language, or regional settings. CSV is widely used because it is simple, portable, and compatible with databases, accounting systems, analytics platforms, ecommerce services, customer relationship management tools, and spreadsheet applications.
+            </p>
+
+            <p class="mt-4 leading-8 text-slate-700">
+              A CSV viewer converts the plain-text records into a readable table. This makes it easier to review exported transaction data, mailing lists, product catalogs, website analytics, survey results, inventory files, financial records, customer data, order exports, server reports, and other structured datasets. Users can search the table, apply a simple filter, sort by a column, and export the data after review.
+            </p>
+
+            <p class="mt-4 leading-8 text-slate-700">
+              CSV files do not contain multiple worksheets, formulas, cell colors, charts, or Excel formatting. They contain values only. This simplicity makes CSV a useful interchange format, but it can also create interpretation issues. Leading zeros may be lost if a value is treated as a number, dates may be interpreted differently, and very large identifiers may require careful handling. Always verify important exported data in the source system.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-2xl font-extrabold text-slate-950">Search Spreadsheet Cells Quickly</h2>
+
+            <p class="mt-4 leading-8 text-slate-700">
+              Searching is one of the most useful features in a spreadsheet viewer. Large worksheets may contain hundreds or thousands of rows, making manual scanning inefficient. The search field on this page checks the active worksheet for matching text or values. Matching cells are highlighted in the visible table, and the viewer reports how many matching cells were found.
+            </p>
+
+            <p class="mt-4 leading-8 text-slate-700">
+              Spreadsheet search can help locate customer names, invoice numbers, product codes, account references, cities, dates, status values, order identifiers, project names, keywords, amounts, or notes. Search is case-insensitive, so users do not need to match capitalization exactly. It searches the active worksheet rather than every worksheet at once, which keeps the result relevant to the currently selected tab.
+            </p>
+
+            <p class="mt-4 leading-8 text-slate-700">
+              The search feature does not replace advanced Excel functions, database queries, or analytical filtering. It is intended as a fast browser lookup tool. For complex conditions, multiple criteria, regular expressions, formula-based analysis, or workbook-wide data modeling, use dedicated spreadsheet or data analysis software.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-2xl font-extrabold text-slate-950">Filter Rows and Sort Spreadsheet Columns</h2>
+
+            <p class="mt-4 leading-8 text-slate-700">
+              Filtering reduces the visible table to rows that contain a specific value in a selected column. For example, a user can choose a Status column and enter Approved, select a City column and enter Vancouver, or choose a Product column and search for a model name. The filter uses a simple contains comparison, making it suitable for quick inspection rather than advanced database filtering.
+            </p>
+
+            <p class="mt-4 leading-8 text-slate-700">
+              Column sorting is available by clicking a table header. The first click sorts the selected column in ascending order, and the next click sorts it in descending order. Numeric values are compared as numbers when possible, while other values are compared as text. Sorting can help identify the smallest amount, largest value, earliest date-like entry, alphabetical sequence, or grouped status records.
+            </p>
+
+            <p class="mt-4 leading-8 text-slate-700">
+              Filters and sorting affect the browser preview only. The original workbook is never modified. Clearing the filter or sort restores the original worksheet order. This is useful when users want to inspect data safely without accidentally changing the source spreadsheet.
+            </p>
+          </section>
+        </div>
+
+        <div class="ad-box mt-10">
+          <div>
+            <div class="font-semibold text-slate-600">Advertisement</div>
+            <div class="mt-1 text-xs text-slate-500">Bottom content ad area</div>
+          </div>
+        </div>
+
+        <div class="mt-12 max-w-4xl space-y-10">
+          <section>
+            <h2 class="text-2xl font-extrabold text-slate-950">Popular Uses for an Online Spreadsheet Viewer</h2>
+
+            <div class="mt-6 grid gap-5 md:grid-cols-2">
+              <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+                <h3 class="text-lg font-bold text-slate-900">Review Email Attachments</h3>
+                <p class="mt-2 leading-7 text-slate-600">
+                  Open an Excel or CSV attachment to confirm its contents before forwarding, editing, importing, or saving the file permanently.
+                </p>
+              </div>
+
+              <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+                <h3 class="text-lg font-bold text-slate-900">Inspect Financial Reports</h3>
+                <p class="mt-2 leading-7 text-slate-600">
+                  Read budget summaries, expense exports, payment lists, transaction reports, account statements, and simple financial worksheets.
+                </p>
+              </div>
+
+              <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+                <h3 class="text-lg font-bold text-slate-900">Check Inventory and Product Data</h3>
+                <p class="mt-2 leading-7 text-slate-600">
+                  Browse product catalogs, stock levels, SKU lists, supplier data, warehouse records, and ecommerce inventory exports.
+                </p>
+              </div>
+
+              <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+                <h3 class="text-lg font-bold text-slate-900">Review Customer and Sales Records</h3>
+                <p class="mt-2 leading-7 text-slate-600">
+                  Search customer names, sales opportunities, order values, territories, account statuses, and contact data in exported workbooks.
+                </p>
+              </div>
+
+              <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+                <h3 class="text-lg font-bold text-slate-900">Open School and Research Data</h3>
+                <p class="mt-2 leading-7 text-slate-600">
+                  View class lists, grades, survey results, experiment records, research tables, attendance logs, and academic datasets.
+                </p>
+              </div>
+
+              <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+                <h3 class="text-lg font-bold text-slate-900">Prepare Data for Another Tool</h3>
+                <p class="mt-2 leading-7 text-slate-600">
+                  Review worksheet data, apply a simple filter, then export visible rows as CSV or JSON for use in another application.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <h2 class="text-2xl font-extrabold text-slate-950">Privacy Benefits of Local Spreadsheet Processing</h2>
+
+            <p class="mt-4 leading-8 text-slate-700">
+              Spreadsheets often contain sensitive information such as names, contact details, salaries, account balances, invoices, customer records, employee schedules, financial projections, health-related data, inventory values, internal pricing, project plans, and business reports. Uploading these files to an unknown remote service may create unnecessary privacy risk.
+            </p>
+
+            <p class="mt-4 leading-8 text-slate-700">
+              This Excel viewer is designed to process selected files locally in the browser. The workbook is read with client-side JavaScript, and the tool does not intentionally send the spreadsheet to a server for conversion or preview rendering. Local processing can be helpful when users want a quick private preview without creating an account or storing the workbook online.
+            </p>
+
+            <p class="mt-4 leading-8 text-slate-700">
+              Local processing does not eliminate every security concern. Users remain responsible for the safety of their device, operating system, browser, extensions, network environment, downloaded files, and workplace policies. Do not open suspicious spreadsheets from unknown sources. Some Excel files can contain macros, external connections, formulas, or references that may be risky in a full spreadsheet program. This viewer does not execute macros, but users should still treat untrusted files carefully.
+            </p>
+
+            <p class="mt-4 leading-8 text-slate-700">
+              For highly confidential legal, medical, financial, government, identity, payroll, tax, security, or regulated data, use approved offline software on a managed device. This browser viewer is a general convenience tool and is not a secure enterprise records platform, compliance system, or professional data review service.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-2xl font-extrabold text-slate-950">Understanding Excel Formula and Formatting Limitations</h2>
+
+            <p class="mt-4 leading-8 text-slate-700">
+              Excel workbooks can contain formulas that calculate values from other cells. When a workbook is saved, Excel may store the formula and a cached result. A browser parsing library can often display that cached result. However, this viewer does not include the complete Microsoft Excel calculation engine. It does not recalculate every formula, refresh external data, execute Visual Basic macros, update Power Query connections, or rebuild pivot tables.
+            </p>
+
+            <p class="mt-4 leading-8 text-slate-700">
+              Cell formatting may also be simplified. Excel supports custom number formats, fonts, colors, borders, merged cells, hidden rows, hidden columns, conditional formatting, icons, images, shapes, charts, comments, hyperlinks, validation rules, and many other visual features. This viewer focuses on readable cell values rather than reproducing the exact workbook appearance.
+            </p>
+
+            <p class="mt-4 leading-8 text-slate-700">
+              Dates and numbers may be displayed based on the values interpreted by the spreadsheet parser. Regional date formats, custom financial formats, scientific notation, leading zeros, percentages, and large identification numbers may appear differently from the original workbook. Always compare important financial, legal, tax, scientific, or operational data with the original file in a trusted spreadsheet application.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-2xl font-extrabold text-slate-950">Tips for Better Spreadsheet Preview Results</h2>
+
+            <h3 class="mt-5 text-xl font-bold text-slate-900">Use clean worksheet headers</h3>
+            <p class="mt-3 leading-8 text-slate-700">
+              A spreadsheet with a clear first row is easier to read, filter, sort, and export. Descriptive headers such as Customer Name, Order Date, Product, Quantity, Status, and Total make the browser table easier to understand.
+            </p>
+
+            <h3 class="mt-5 text-xl font-bold text-slate-900">Avoid relying on visual formatting alone</h3>
+            <p class="mt-3 leading-8 text-slate-700">
+              If important meaning is communicated only through cell colors, icons, conditional formatting, merged areas, or charts, the browser preview may not show the full context. Include clear labels and values when preparing files for broad compatibility.
+            </p>
+
+            <h3 class="mt-5 text-xl font-bold text-slate-900">Use smaller row limits on mobile devices</h3>
+            <p class="mt-3 leading-8 text-slate-700">
+              Large worksheets can consume significant browser memory and may be slow on phones or tablets. Selecting 100 or 250 rows per view can improve responsiveness and make horizontal scrolling easier.
+            </p>
+
+            <h3 class="mt-5 text-xl font-bold text-slate-900">Verify date and number formats</h3>
+            <p class="mt-3 leading-8 text-slate-700">
+              Check important dates, currency values, percentages, product codes, account identifiers, and leading zeros. Spreadsheet applications may interpret these values differently depending on file format and regional settings.
+            </p>
+
+            <h3 class="mt-5 text-xl font-bold text-slate-900">Keep the original workbook</h3>
+            <p class="mt-3 leading-8 text-slate-700">
+              CSV and JSON exports are useful for data transfer, but they do not preserve the full workbook. Keep the original XLSX or XLS file when formulas, formatting, multiple sheets, comments, charts, or workbook metadata are important.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-2xl font-extrabold text-slate-950">Supported Features and Limitations</h2>
+
+            <div class="mt-5 overflow-x-auto rounded-2xl border border-slate-200">
+              <table class="w-full min-w-[760px] border-collapse text-left text-sm">
+                <thead class="bg-slate-100 text-slate-700">
+                  <tr>
+                    <th class="border-b border-slate-200 px-4 py-3 font-bold">Feature</th>
+                    <th class="border-b border-slate-200 px-4 py-3 font-bold">XLSX</th>
+                    <th class="border-b border-slate-200 px-4 py-3 font-bold">XLS</th>
+                    <th class="border-b border-slate-200 px-4 py-3 font-bold">CSV</th>
+                  </tr>
+                </thead>
+
+                <tbody class="bg-white text-slate-600">
+                  <tr>
+                    <td class="border-b border-slate-200 px-4 py-3 font-semibold text-slate-800">Browser table preview</td>
+                    <td class="border-b border-slate-200 px-4 py-3">Yes</td>
+                    <td class="border-b border-slate-200 px-4 py-3">Yes</td>
+                    <td class="border-b border-slate-200 px-4 py-3">Yes</td>
+                  </tr>
+
+                  <tr>
+                    <td class="border-b border-slate-200 px-4 py-3 font-semibold text-slate-800">Multiple worksheets</td>
+                    <td class="border-b border-slate-200 px-4 py-3">Yes</td>
+                    <td class="border-b border-slate-200 px-4 py-3">Yes</td>
+                    <td class="border-b border-slate-200 px-4 py-3">No</td>
+                  </tr>
+
+                  <tr>
+                    <td class="border-b border-slate-200 px-4 py-3 font-semibold text-slate-800">Cell search</td>
+                    <td class="border-b border-slate-200 px-4 py-3">Yes</td>
+                    <td class="border-b border-slate-200 px-4 py-3">Yes</td>
+                    <td class="border-b border-slate-200 px-4 py-3">Yes</td>
+                  </tr>
+
+                  <tr>
+                    <td class="border-b border-slate-200 px-4 py-3 font-semibold text-slate-800">Simple filter and sort</td>
+                    <td class="border-b border-slate-200 px-4 py-3">Yes</td>
+                    <td class="border-b border-slate-200 px-4 py-3">Yes</td>
+                    <td class="border-b border-slate-200 px-4 py-3">Yes</td>
+                  </tr>
+
+                  <tr>
+                    <td class="border-b border-slate-200 px-4 py-3 font-semibold text-slate-800">Formula calculation</td>
+                    <td class="border-b border-slate-200 px-4 py-3">Cached values only</td>
+                    <td class="border-b border-slate-200 px-4 py-3">Cached values only</td>
+                    <td class="border-b border-slate-200 px-4 py-3">Not applicable</td>
+                  </tr>
+
+                  <tr>
+                    <td class="border-b border-slate-200 px-4 py-3 font-semibold text-slate-800">Charts and pivot interaction</td>
+                    <td class="border-b border-slate-200 px-4 py-3">No</td>
+                    <td class="border-b border-slate-200 px-4 py-3">No</td>
+                    <td class="border-b border-slate-200 px-4 py-3">Not applicable</td>
+                  </tr>
+
+                  <tr>
+                    <td class="px-4 py-3 font-semibold text-slate-800">Editing original file</td>
+                    <td class="px-4 py-3">No</td>
+                    <td class="px-4 py-3">No</td>
+                    <td class="px-4 py-3">No</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+      </article>
+    </section>
+
+    <section class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <div class="mb-8">
+        <p class="text-sm font-bold uppercase tracking-[0.18em] text-indigo-600">Explore More Utilities</p>
+        <h2 class="mt-2 text-3xl font-extrabold tracking-tight text-slate-950">Related Tools</h2>
+        <p class="mt-3 max-w-3xl leading-7 text-slate-600">
+          Continue working with spreadsheets, documents, and files using these related NodnWebTools utilities.
+        </p>
+      </div>
+
+      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <a href="/document-viewer" class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-indigo-300 hover:shadow-md">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-50 text-2xl transition group-hover:bg-indigo-600 group-hover:text-white">📄</div>
+          <h3 class="mt-4 text-lg font-bold text-slate-900 group-hover:text-indigo-700">Document Viewer</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">Open DOCX, PDF, and TXT files directly in your browser with text and page preview tools.</p>
+        </a>
+
+        <a href="/powerpoint-viewer" class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-indigo-300 hover:shadow-md">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-violet-50 text-2xl transition group-hover:bg-violet-600 group-hover:text-white">📊</div>
+          <h3 class="mt-4 text-lg font-bold text-slate-900 group-hover:text-indigo-700">PowerPoint Viewer</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">Preview PPTX presentations, browse slides, and extract readable presentation text.</p>
+        </a>
+
+        <a href="/diff-checker" class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-indigo-300 hover:shadow-md">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-2xl transition group-hover:bg-emerald-600 group-hover:text-white">↔️</div>
+          <h3 class="mt-4 text-lg font-bold text-slate-900 group-hover:text-indigo-700">Text Diff Checker</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">Compare two text blocks and identify additions, removals, and changed content.</p>
+        </a>
+
+        <a href="/zip-extractor" class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-indigo-300 hover:shadow-md">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-50 text-2xl transition group-hover:bg-amber-500 group-hover:text-white">🗜️</div>
+          <h3 class="mt-4 text-lg font-bold text-slate-900 group-hover:text-indigo-700">ZIP Extractor</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">Open ZIP archives, inspect included files, and download selected items locally.</p>
+        </a>
+
+        <a href="/image-converter" class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-indigo-300 hover:shadow-md">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-rose-50 text-2xl transition group-hover:bg-rose-600 group-hover:text-white">🖼️</div>
+          <h3 class="mt-4 text-lg font-bold text-slate-900 group-hover:text-indigo-700">Image Converter</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">Convert common image formats locally while controlling quality and output format.</p>
+        </a>
+
+        <a href="/qr-generator" class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-indigo-300 hover:shadow-md">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-sky-50 text-2xl transition group-hover:bg-sky-600 group-hover:text-white">▦</div>
+          <h3 class="mt-4 text-lg font-bold text-slate-900 group-hover:text-indigo-700">QR Code Generator</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">Create downloadable QR codes for URLs, text, contact information, and other data.</p>
+        </a>
+      </div>
+    </section>
+
+    <section class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <div class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8 lg:p-10">
+        <p class="text-sm font-bold uppercase tracking-[0.18em] text-indigo-600">Common Questions</p>
+        <h2 class="mt-2 text-3xl font-extrabold tracking-tight text-slate-950">Excel Viewer FAQ</h2>
+
+        <div class="mt-8 space-y-4">
+          <details class="group rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">
+              Is this Excel viewer free to use?
+            </summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              Yes. The spreadsheet viewer can be used without creating an account or paying a fee. It is designed for quick browser previews of XLSX, XLS, and CSV files.
+            </p>
+          </details>
+
+          <details class="group rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">
+              Are my spreadsheet files uploaded to a server?
+            </summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              The selected spreadsheet is processed locally in your browser. The viewer itself does not intentionally upload your workbook for preview rendering.
+            </p>
+          </details>
+
+          <details class="group rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">
+              Can I open both XLSX and XLS files?
+            </summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              Yes. The viewer supports modern XLSX workbooks and many legacy XLS spreadsheets. Password-protected, damaged, or highly specialized files may not open.
+            </p>
+          </details>
+
+          <details class="group rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">
+              Does this tool support CSV files?
+            </summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              Yes. CSV files are displayed as a single worksheet table. The viewer can search, filter, sort, copy, and export the parsed CSV data.
+            </p>
+          </details>
+
+          <details class="group rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">
+              Will Excel formulas recalculate?
+            </summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              No. The viewer displays cached formula results when they are stored in the workbook. It does not provide the full Excel calculation engine or refresh external data.
+            </p>
+          </details>
+
+          <details class="group rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">
+              Can I edit cells with this tool?
+            </summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              No. This is a spreadsheet reading, filtering, sorting, and export tool. The original workbook is not edited or changed.
+            </p>
+          </details>
+
+          <details class="group rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">
+              Can I export the active worksheet?
+            </summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              Yes. You can export the active worksheet or currently filtered data as a local CSV or JSON file. The original workbook remains unchanged.
+            </p>
+          </details>
+
+          <details class="group rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">
+              Why does the workbook look different from Microsoft Excel?
+            </summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              The browser viewer focuses on cell values. Advanced formatting, merged cells, charts, images, conditional formatting, comments, hidden structures, and custom number formats may be simplified or omitted.
+            </p>
+          </details>
+
+          <details class="group rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">
+              Does the Excel viewer work on mobile devices?
+            </summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              Yes. The page is responsive and the table scrolls horizontally when necessary. Large workbooks may perform better on a desktop or laptop with more memory.
+            </p>
+          </details>
+
+          <details class="group rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">
+              Is there a maximum spreadsheet size?
+            </summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              There is no fixed server upload limit because processing is local. Practical limits depend on your device memory, browser performance, workbook complexity, row count, and number of worksheets.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
+      <div class="ad-box">
+        <div>
+          <div class="font-semibold text-slate-600">Advertisement</div>
+          <div class="mt-1 text-xs text-slate-500">Bottom ad area</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mx-auto max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
+      <div class="rounded-3xl border border-slate-700 bg-slate-900 p-6 text-slate-200 shadow-sm sm:p-8">
+        <h2 class="text-2xl font-extrabold text-white">Legal Disclaimer</h2>
+
+        <div class="mt-4 space-y-4 text-sm leading-7 text-slate-300">
+          <p>
+            This Excel viewer is provided for general informational and convenience purposes only. It is not a professional spreadsheet editing application, accounting system, financial analysis platform, tax service, audit tool, compliance system, database, or secure enterprise records solution.
+          </p>
+
+          <p>
+            Spreadsheet rendering, parsed values, date interpretation, number formatting, cached formula results, row order, exported CSV data, exported JSON data, and workbook statistics may be incomplete, inaccurate, or different from the original file. Users are responsible for verifying important information in the original workbook with a trusted spreadsheet application.
+          </p>
+
+          <p>
+            Do not rely on this tool as the sole method for reviewing financial statements, tax records, payroll information, legal evidence, medical data, investment reports, accounting records, government documents, regulated datasets, audit files, or other sensitive or professionally significant information. This tool does not provide financial, tax, accounting, legal, medical, investment, compliance, or professional advice.
+          </p>
+
+          <p>
+            Although spreadsheet processing is designed to occur locally in the browser, users remain responsible for device security, browser security, extensions, malware protection, network privacy, file origin, data confidentiality, and compliance with applicable laws and organizational policies. Do not open suspicious files or use confidential spreadsheets on an untrusted or shared device.
+          </p>
+
+          <p>
+            By using this tool, you accept responsibility for your files, your interpretation of displayed values, your exported data, and any actions taken based on the preview. No guarantee is made regarding availability, compatibility, accuracy, confidentiality, formula correctness, preservation of formatting, data integrity, or fitness for a particular purpose.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-slate-200 bg-white">
+    <div class="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-6 text-sm text-slate-500 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
+      <p>© <span id="currentYear"></span> NodnWebTools. All rights reserved.</p>
+      <a href="https://nodntools.com" class="font-semibold text-indigo-600 hover:text-indigo-700">Visit NodnWebTools</a>
+    </div>
+  </footer>
+
+  <script>
+    const fileInput = document.getElementById("fileInput");
+    const dropZone = document.getElementById("dropZone");
+    const warningBox = document.getElementById("warningBox");
+
+    const fileName = document.getElementById("fileName");
+    const fileType = document.getElementById("fileType");
+    const fileSize = document.getElementById("fileSize");
+    const sheetCount = document.getElementById("sheetCount");
+    const visibleRowCount = document.getElementById("visibleRowCount");
+    const columnCount = document.getElementById("columnCount");
+
+    const previewCard = document.getElementById("previewCard");
+    const previewStatus = document.getElementById("previewStatus");
+    const emptyState = document.getElementById("emptyState");
+    const loadingState = document.getElementById("loadingState");
+    const viewerState = document.getElementById("viewerState");
+    const navigationControls = document.getElementById("navigationControls");
+
+    const sheetTabs = document.getElementById("sheetTabs");
+    const activeSheetLabel = document.getElementById("activeSheetLabel");
+    const spreadsheetTable = document.getElementById("spreadsheetTable");
+    const tableMessage = document.getElementById("tableMessage");
+
+    const totalRowsStat = document.getElementById("totalRowsStat");
+    const totalColumnsStat = document.getElementById("totalColumnsStat");
+    const filledCellsStat = document.getElementById("filledCellsStat");
+    const rangeStat = document.getElementById("rangeStat");
+
+    const searchInput = document.getElementById("searchInput");
+    const searchButton = document.getElementById("searchButton");
+    const searchStatus = document.getElementById("searchStatus");
+
+    const filterColumnSelect = document.getElementById("filterColumnSelect");
+    const filterValueInput = document.getElementById("filterValueInput");
+    const applyFilterButton = document.getElementById("applyFilterButton");
+    const clearFilterButton = document.getElementById("clearFilterButton");
+
+    const rowLimitSelect = document.getElementById("rowLimitSelect");
+    const currentPageNumber = document.getElementById("currentPageNumber");
+    const totalPageNumber = document.getElementById("totalPageNumber");
+    const previousPageButton = document.getElementById("previousPageButton");
+    const nextPageButton = document.getElementById("nextPageButton");
+
+    const clearSortButton = document.getElementById("clearSortButton");
+    const showEmptyRowsButton = document.getElementById("showEmptyRowsButton");
+
+    const copyButton = document.getElementById("copyButton");
+    const downloadButton = document.getElementById("downloadButton");
+    const exportCsvButton = document.getElementById("exportCsvButton");
+    const exportJsonButton = document.getElementById("exportJsonButton");
+    const fullscreenButton = document.getElementById("fullscreenButton");
+    const resetButton = document.getElementById("resetButton");
+
+    let selectedFile = null;
+    let selectedFileUrl = null;
+    let workbook = null;
+    let activeSheetName = "";
+    let originalRows = [];
+    let processedRows = [];
+    let headers = [];
+    let currentPage = 1;
+    let sortColumnIndex = null;
+    let sortDirection = "asc";
+    let filterState = null;
+    let hideEmptyRows = false;
+    let searchQuery = "";
+
+    const setWarning = (message = "") => {
+      if (!message) {
+        warningBox.textContent = "";
+        warningBox.classList.add("hidden");
+        return;
+      }
+
+      warningBox.textContent = message;
+      warningBox.classList.remove("hidden");
+    };
+
+    const setTableMessage = (message = "") => {
+      if (!message) {
+        tableMessage.textContent = "";
+        tableMessage.classList.add("hidden");
+        return;
+      }
+
+      tableMessage.textContent = message;
+      tableMessage.classList.remove("hidden");
+    };
+
+    const formatFileSize = (bytes) => {
+      if (!Number.isFinite(bytes) || bytes <= 0) return "0 B";
+
+      const units = ["B", "KB", "MB", "GB"];
+      const index = Math.min(Math.floor(Math.log(bytes) / Math.log(1024)), units.length - 1);
+
+      return `${(bytes / Math.pow(1024, index)).toFixed(index === 0 ? 0 : 2)} ${units[index]}`;
+    };
+
+    const escapeHtml = (value) => {
+      return String(value ?? "").replace(/[&<>"']/g, (character) => {
+        const entities = {
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          '"': "&quot;",
+          "'": "&#039;"
+        };
+
+        return entities[character];
+      });
+    };
+
+    const normalizeValue = (value) => {
+      if (value === null || value === undefined) return "";
+      if (value instanceof Date) return value.toLocaleString();
+      return String(value);
+    };
+
+    const hideAllPreviews = () => {
+      emptyState.classList.add("hidden");
+      loadingState.classList.add("hidden");
+      loadingState.classList.remove("flex");
+      viewerState.classList.add("hidden");
+      navigationControls.classList.add("hidden");
+    };
+
+    const showLoading = () => {
+      hideAllPreviews();
+      loadingState.classList.remove("hidden");
+      loadingState.classList.add("flex");
+      previewStatus.textContent = "Processing the selected spreadsheet locally…";
+    };
+
+    const showEmptyState = () => {
+      hideAllPreviews();
+      emptyState.classList.remove("hidden");
+      previewStatus.textContent = "Select an XLSX, XLS, or CSV file to begin.";
+    };
+
+    const resetFileInfo = () => {
+      fileName.textContent = "No file selected";
+      fileType.textContent = "—";
+      fileSize.textContent = "—";
+      sheetCount.textContent = "—";
+      visibleRowCount.textContent = "—";
+      columnCount.textContent = "—";
+    };
+
+    const updateFileInfo = (file, extension) => {
+      fileName.textContent = file.name;
+      fileType.textContent = extension.toUpperCase();
+      fileSize.textContent = formatFileSize(file.size);
+      sheetCount.textContent = "Loading…";
+      visibleRowCount.textContent = "Loading…";
+      columnCount.textContent = "Loading…";
+    };
+
+    const clearCurrentWorkbook = () => {
+      if (selectedFileUrl) {
+        URL.revokeObjectURL(selectedFileUrl);
+      }
+
+      selectedFile = null;
+      selectedFileUrl = null;
+      workbook = null;
+      activeSheetName = "";
+      originalRows = [];
+      processedRows = [];
+      headers = [];
+      currentPage = 1;
+      sortColumnIndex = null;
+      sortDirection = "asc";
+      filterState = null;
+      hideEmptyRows = false;
+      searchQuery = "";
+
+      sheetTabs.innerHTML = "";
+      spreadsheetTable.innerHTML = "";
+      filterColumnSelect.innerHTML = '<option value="">Select a column</option>';
+      filterValueInput.value = "";
+      searchInput.value = "";
+      searchStatus.textContent = "";
+      fileInput.value = "";
+      rowLimitSelect.value = "100";
+      currentPageNumber.textContent = "1";
+      totalPageNumber.textContent = "1";
+      showEmptyRowsButton.textContent = "Hide Empty Rows";
+
+      activeSheetLabel.textContent = "—";
+      totalRowsStat.textContent = "0";
+      totalColumnsStat.textContent = "0";
+      filledCellsStat.textContent = "0";
+      rangeStat.textContent = "—";
+
+      setTableMessage("");
+      resetFileInfo();
+    };
+
+    const validateFile = (file) => {
+      if (!file) throw new Error("No spreadsheet file was selected.");
+
+      const extension = file.name.split(".").pop()?.toLowerCase() || "";
+      const supported = ["xlsx", "xls", "csv"];
+
+      if (!supported.includes(extension)) {
+        throw new Error("Unsupported file type. Please choose an XLSX, XLS, or CSV file.");
+      }
+
+      if (file.size === 0) {
+        throw new Error("The selected spreadsheet is empty.");
+      }
+
+      return extension;
+    };
+
+    const calculateHeaders = (rows) => {
+      const maxColumns = rows.reduce((maximum, row) => Math.max(maximum, row.length), 0);
+      const firstRow = rows[0] || [];
+
+      return Array.from({ length: maxColumns }, (_, index) => {
+        const firstValue = normalizeValue(firstRow[index]).trim();
+        return firstValue || `Column ${XLSX.utils.encode_col(index)}`;
+      });
+    };
+
+    const isRowEmpty = (row) => {
+      return row.every((value) => normalizeValue(value).trim() === "");
+    };
+
+    const getRowsPerPage = () => {
+      if (rowLimitSelect.value === "all") {
+        return Math.max(processedRows.length, 1);
+      }
+
+      return Math.max(Number(rowLimitSelect.value) || 100, 1);
+    };
+
+    const compareValues = (valueA, valueB) => {
+      const stringA = normalizeValue(valueA).trim();
+      const stringB = normalizeValue(valueB).trim();
+
+      const numberA = Number(stringA.replace(/,/g, ""));
+      const numberB = Number(stringB.replace(/,/g, ""));
+
+      const bothNumbers =
+        stringA !== "" &&
+        stringB !== "" &&
+        Number.isFinite(numberA) &&
+        Number.isFinite(numberB);
+
+      if (bothNumbers) {
+        return numberA - numberB;
+      }
+
+      return stringA.localeCompare(stringB, undefined, {
+        numeric: true,
+        sensitivity: "base"
+      });
+    };
+
+    const rebuildProcessedRows = () => {
+      let rows = originalRows.map((row) => [...row]);
+
+      if (hideEmptyRows) {
+        rows = rows.filter((row) => !isRowEmpty(row));
+      }
+
+      if (filterState && filterState.columnIndex !== null && filterState.value) {
+        const normalizedFilter = filterState.value.toLowerCase();
+
+        rows = rows.filter((row) => {
+          const cellValue = normalizeValue(row[filterState.columnIndex]).toLowerCase();
+          return cellValue.includes(normalizedFilter);
+        });
+      }
+
+      if (sortColumnIndex !== null) {
+        rows.sort((rowA, rowB) => {
+          const result = compareValues(rowA[sortColumnIndex], rowB[sortColumnIndex]);
+          return sortDirection === "asc" ? result : -result;
+        });
+      }
+
+      processedRows = rows;
+      currentPage = Math.min(currentPage, Math.max(1, Math.ceil(processedRows.length / getRowsPerPage())));
+      updateStatistics();
+      renderTable();
+    };
+
+    const updateStatistics = () => {
+      const filledCells = originalRows.reduce((total, row) => {
+        return total + row.filter((value) => normalizeValue(value).trim() !== "").length;
+      }, 0);
+
+      totalRowsStat.textContent = originalRows.length.toLocaleString();
+      totalColumnsStat.textContent = headers.length.toLocaleString();
+      filledCellsStat.textContent = filledCells.toLocaleString();
+
+      if (originalRows.length && headers.length) {
+        rangeStat.textContent = `A1:${XLSX.utils.encode_col(headers.length - 1)}${originalRows.length}`;
+      } else {
+        rangeStat.textContent = "Empty";
+      }
+
+      visibleRowCount.textContent = processedRows.length.toLocaleString();
+      columnCount.textContent = headers.length.toLocaleString();
+    };
+
+    const renderFilterOptions = () => {
+      filterColumnSelect.innerHTML = '<option value="">Select a column</option>';
+
+      headers.forEach((header, index) => {
+        const option = document.createElement("option");
+        option.value = String(index);
+        option.textContent = `${XLSX.utils.encode_col(index)} — ${header}`;
+        filterColumnSelect.appendChild(option);
+      });
+    };
+
+    const getVisibleRows = () => {
+      const rowsPerPage = getRowsPerPage();
+      const startIndex = (currentPage - 1) * rowsPerPage;
+      const endIndex = Math.min(startIndex + rowsPerPage, processedRows.length);
+
+      return {
+        rows: processedRows.slice(startIndex, endIndex),
+        startIndex,
+        endIndex
+      };
+    };
+
+    const renderTable = () => {
+      spreadsheetTable.innerHTML = "";
+      setTableMessage("");
+
+      const rowsPerPage = getRowsPerPage();
+      const totalPages = Math.max(1, Math.ceil(processedRows.length / rowsPerPage));
+
+      if (currentPage > totalPages) currentPage = totalPages;
+
+      currentPageNumber.textContent = String(currentPage);
+      totalPageNumber.textContent = String(totalPages);
+
+      previousPageButton.disabled = currentPage <= 1;
+      nextPageButton.disabled = currentPage >= totalPages;
+
+      previousPageButton.classList.toggle("opacity-50", previousPageButton.disabled);
+      nextPageButton.classList.toggle("opacity-50", nextPageButton.disabled);
+
+      navigationControls.classList.toggle("hidden", processedRows.length <= rowsPerPage);
+
+      if (!headers.length) {
+        setTableMessage("No readable cells were found in this worksheet.");
+        spreadsheetTable.innerHTML = "";
+        previewStatus.textContent = `The worksheet “${activeSheetName}” does not contain readable table data.`;
+        return;
+      }
+
+      const thead = document.createElement("thead");
+      const headerRow = document.createElement("tr");
+
+      const cornerHeader = document.createElement("th");
+      cornerHeader.className = "row-number";
+      cornerHeader.textContent = "#";
+      headerRow.appendChild(cornerHeader);
+
+      headers.forEach((header, index) => {
+        const th = document.createElement("th");
+        th.dataset.columnIndex = String(index);
+        th.title = "Click to sort this column";
+
+        const letter = XLSX.utils.encode_col(index);
+        const sortIndicator =
+          sortColumnIndex === index
+            ? sortDirection === "asc"
+              ? " ↑"
+              : " ↓"
+            : "";
+
+        th.innerHTML = `<div class="safe-break">${escapeHtml(letter)} · ${escapeHtml(header)}${sortIndicator}</div>`;
+
+        if (sortColumnIndex === index) {
+          th.classList.add("sort-active");
+        }
+
+        th.addEventListener("click", () => {
+          if (sortColumnIndex === index) {
+            sortDirection = sortDirection === "asc" ? "desc" : "asc";
+          } else {
+            sortColumnIndex = index;
+            sortDirection = "asc";
+          }
+
+          currentPage = 1;
+          rebuildProcessedRows();
+        });
+
+        headerRow.appendChild(th);
+      });
+
+      thead.appendChild(headerRow);
+      spreadsheetTable.appendChild(thead);
+
+      const tbody = document.createElement("tbody");
+      const visible = getVisibleRows();
+
+      visible.rows.forEach((row, visibleIndex) => {
+        const tr = document.createElement("tr");
+
+        const rowNumberCell = document.createElement("td");
+        rowNumberCell.className = "row-number";
+        rowNumberCell.textContent = String(visible.startIndex + visibleIndex + 1);
+        tr.appendChild(rowNumberCell);
+
+        headers.forEach((_, columnIndex) => {
+          const td = document.createElement("td");
+          const displayValue = normalizeValue(row[columnIndex]);
+
+          td.innerHTML = `<div class="truncate-cell">${escapeHtml(displayValue)}</div>`;
+
+          if (
+            searchQuery &&
+            displayValue.toLowerCase().includes(searchQuery.toLowerCase())
+          ) {
+            td.classList.add("cell-highlight");
+          }
+
+          tr.appendChild(td);
+        });
+
+        tbody.appendChild(tr);
+      });
+
+      spreadsheetTable.appendChild(tbody);
+
+      if (!processedRows.length) {
+        setTableMessage("No rows match the current filter or empty-row setting.");
+      }
+
+      previewStatus.textContent =
+        `Viewing “${activeSheetName}” with ${processedRows.length.toLocaleString()} visible row${processedRows.length === 1 ? "" : "s"} and ${headers.length.toLocaleString()} column${headers.length === 1 ? "" : "s"}.`;
+    };
+
+    const renderSheetTabs = () => {
+      sheetTabs.innerHTML = "";
+
+      workbook.SheetNames.forEach((sheetName) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "sheet-tab";
+        button.textContent = sheetName;
+        button.title = `Open worksheet: ${sheetName}`;
+
+        if (sheetName === activeSheetName) {
+          button.classList.add("active");
+        }
+
+        button.addEventListener("click", () => {
+          loadSheet(sheetName);
+        });
+
+        sheetTabs.appendChild(button);
+      });
+    };
+
+    const loadSheet = (sheetName) => {
+      try {
+        const worksheet = workbook.Sheets[sheetName];
+
+        if (!worksheet) {
+          throw new Error("The selected worksheet could not be found.");
+        }
+
+        activeSheetName = sheetName;
+        activeSheetLabel.textContent = sheetName;
+
+        const rawRows = XLSX.utils.sheet_to_json(worksheet, {
+          header: 1,
+          raw: false,
+          defval: "",
+          blankrows: true
+        });
+
+        headers = calculateHeaders(rawRows);
+        originalRows = rawRows.length > 1 ? rawRows.slice(1) : rawRows;
+
+        currentPage = 1;
+        sortColumnIndex = null;
+        sortDirection = "asc";
+        filterState = null;
+        hideEmptyRows = false;
+        searchQuery = "";
+
+        filterValueInput.value = "";
+        filterColumnSelect.value = "";
+        searchInput.value = "";
+        searchStatus.textContent = "";
+        showEmptyRowsButton.textContent = "Hide Empty Rows";
+
+        renderSheetTabs();
+        renderFilterOptions();
+        rebuildProcessedRows();
+      } catch (error) {
+        console.error(error);
+        setWarning(error.message || "The selected worksheet could not be displayed.");
+      }
+    };
+
+    const loadWorkbook = async (file, extension) => {
+      try {
+        if (!window.XLSX) {
+          throw new Error("The spreadsheet processing library could not be loaded.");
+        }
+
+        const arrayBuffer = await file.arrayBuffer();
+
+        workbook = XLSX.read(arrayBuffer, {
+          type: "array",
+          cellDates: true,
+          cellFormula: true,
+          cellStyles: false,
+          dense: false
+        });
+
+        if (!workbook.SheetNames || !workbook.SheetNames.length) {
+          throw new Error("No worksheets were found in this spreadsheet.");
+        }
+
+        sheetCount.textContent = String(workbook.SheetNames.length);
+
+        hideAllPreviews();
+        viewerState.classList.remove("hidden");
+
+        loadSheet(workbook.SheetNames[0]);
+
+        previewStatus.textContent =
+          `${extension.toUpperCase()} file loaded successfully with ${workbook.SheetNames.length} worksheet${workbook.SheetNames.length === 1 ? "" : "s"}.`;
+      } catch (error) {
+        console.error(error);
+        throw new Error(
+          error.message ||
+          "The spreadsheet could not be opened. It may be damaged, encrypted, password-protected, or unsupported."
+        );
+      }
+    };
+
+    const handleFile = async (file) => {
+      try {
+        setWarning("");
+        clearCurrentWorkbook();
+
+        const extension = validateFile(file);
+
+        selectedFile = file;
+        selectedFileUrl = URL.createObjectURL(file);
+
+        updateFileInfo(file, extension);
+        showLoading();
+
+        await loadWorkbook(file, extension);
+      } catch (error) {
+        console.error(error);
+        clearCurrentWorkbook();
+        showEmptyState();
+        setWarning(error.message || "The selected spreadsheet could not be opened.");
+      }
+    };
+
+    const searchCells = () => {
+      const query = searchInput.value.trim();
+      searchQuery = query;
+
+      if (!query) {
+        searchStatus.textContent = "Enter text or a value to search.";
+        renderTable();
+        return;
+      }
+
+      if (!originalRows.length) {
+        searchStatus.textContent = "No searchable spreadsheet data is available.";
+        return;
+      }
+
+      let matchCount = 0;
+      let firstMatchRow = -1;
+
+      processedRows.forEach((row, rowIndex) => {
+        row.forEach((value) => {
+          if (normalizeValue(value).toLowerCase().includes(query.toLowerCase())) {
+            matchCount += 1;
+
+            if (firstMatchRow === -1) {
+              firstMatchRow = rowIndex;
+            }
+          }
+        });
+      });
+
+      searchStatus.textContent =
+        matchCount === 1 ? "1 matching cell found." : `${matchCount} matching cells found.`;
+
+      if (firstMatchRow >= 0) {
+        currentPage = Math.floor(firstMatchRow / getRowsPerPage()) + 1;
+      }
+
+      renderTable();
+    };
+
+    const buildTabSeparatedText = (rows) => {
+      const dataRows = [headers, ...rows];
+
+      return dataRows
+        .map((row) =>
+          headers
+            .map((_, index) => normalizeValue(row[index]).replace(/\t/g, " "))
+            .join("\t")
+        )
+        .join("\n");
+    };
+
+    const getExportRows = () => {
+      return processedRows.map((row) =>
+        headers.map((_, index) => normalizeValue(row[index]))
+      );
+    };
+
+    const downloadBlob = (blob, filename) => {
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+
+      link.href = url;
+      link.download = filename;
+
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+
+      URL.revokeObjectURL(url);
+    };
+
+    fileInput.addEventListener("change", (event) => {
+      const file = event.target.files?.[0];
+      if (file) handleFile(file);
+    });
+
+    ["dragenter", "dragover"].forEach((eventName) => {
+      dropZone.addEventListener(eventName, (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        dropZone.classList.add("drag-active");
+      });
+    });
+
+    ["dragleave", "drop"].forEach((eventName) => {
+      dropZone.addEventListener(eventName, (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        dropZone.classList.remove("drag-active");
+      });
+    });
+
+    dropZone.addEventListener("drop", (event) => {
+      const file = event.dataTransfer?.files?.[0];
+      if (file) handleFile(file);
+    });
+
+    searchButton.addEventListener("click", searchCells);
+
+    searchInput.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        searchCells();
+      }
+    });
+
+    applyFilterButton.addEventListener("click", () => {
+      const columnValue = filterColumnSelect.value;
+      const filterValue = filterValueInput.value.trim();
+
+      if (columnValue === "") {
+        setWarning("Select a column before applying a filter.");
+        return;
+      }
+
+      if (!filterValue) {
+        setWarning("Enter a value for the row filter.");
+        return;
+      }
+
+      filterState = {
+        columnIndex: Number(columnValue),
+        value: filterValue
+      };
+
+      currentPage = 1;
+      setWarning("");
+      rebuildProcessedRows();
+    });
+
+    clearFilterButton.addEventListener("click", () => {
+      filterState = null;
+      filterValueInput.value = "";
+      filterColumnSelect.value = "";
+      currentPage = 1;
+      setWarning("");
+      rebuildProcessedRows();
+    });
+
+    rowLimitSelect.addEventListener("change", () => {
+      currentPage = 1;
+      renderTable();
+    });
+
+    previousPageButton.addEventListener("click", () => {
+      if (currentPage > 1) {
+        currentPage -= 1;
+        renderTable();
+      }
+    });
+
+    nextPageButton.addEventListener("click", () => {
+      const totalPages = Math.max(1, Math.ceil(processedRows.length / getRowsPerPage()));
+
+      if (currentPage < totalPages) {
+        currentPage += 1;
+        renderTable();
+      }
+    });
+
+    clearSortButton.addEventListener("click", () => {
+      sortColumnIndex = null;
+      sortDirection = "asc";
+      currentPage = 1;
+      rebuildProcessedRows();
+    });
+
+    showEmptyRowsButton.addEventListener("click", () => {
+      hideEmptyRows = !hideEmptyRows;
+      showEmptyRowsButton.textContent = hideEmptyRows ? "Show Empty Rows" : "Hide Empty Rows";
+      currentPage = 1;
+      rebuildProcessedRows();
+    });
+
+    copyButton.addEventListener("click", async () => {
+      if (!headers.length) {
+        setWarning("No spreadsheet data is available to copy.");
+        return;
+      }
+
+      try {
+        const visible = getVisibleRows();
+        const text = buildTabSeparatedText(visible.rows);
+
+        await navigator.clipboard.writeText(text);
+
+        const originalLabel = copyButton.textContent;
+        copyButton.textContent = "Copied!";
+        setWarning("");
+
+        window.setTimeout(() => {
+          copyButton.textContent = originalLabel;
+        }, 1600);
+      } catch (error) {
+        console.error(error);
+        setWarning("The visible spreadsheet data could not be copied.");
+      }
+    });
+
+    downloadButton.addEventListener("click", () => {
+      if (!selectedFile || !selectedFileUrl) {
+        setWarning("Select a spreadsheet before using the download button.");
+        return;
+      }
+
+      const link = document.createElement("a");
+      link.href = selectedFileUrl;
+      link.download = selectedFile.name;
+
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+
+      setWarning("");
+    });
+
+    exportCsvButton.addEventListener("click", () => {
+      if (!headers.length) {
+        setWarning("No spreadsheet data is available to export.");
+        return;
+      }
+
+      try {
+        const rows = getExportRows();
+        const worksheet = XLSX.utils.aoa_to_sheet([headers, ...rows]);
+        const csv = XLSX.utils.sheet_to_csv(worksheet);
+        const baseName = selectedFile?.name?.replace(/\.(xlsx|xls|csv)$/i, "") || "spreadsheet";
+        const safeSheetName = activeSheetName.replace(/[\\/:*?"<>|]+/g, "-");
+
+        downloadBlob(
+          new Blob([csv], { type: "text/csv;charset=utf-8" }),
+          `${baseName}-${safeSheetName}.csv`
+        );
+
+        setWarning("");
+      } catch (error) {
+        console.error(error);
+        setWarning("The active worksheet could not be exported as CSV.");
+      }
+    });
+
+    exportJsonButton.addEventListener("click", () => {
+      if (!headers.length) {
+        setWarning("No spreadsheet data is available to export.");
+        return;
+      }
+
+      try {
+        const jsonRows = processedRows.map((row) => {
+          const record = {};
+
+          headers.forEach((header, index) => {
+            const uniqueHeader =
+              Object.prototype.hasOwnProperty.call(record, header)
+                ? `${header}_${index + 1}`
+                : header;
+
+            record[uniqueHeader] = normalizeValue(row[index]);
+          });
+
+          return record;
+        });
+
+        const json = JSON.stringify(jsonRows, null, 2);
+        const baseName = selectedFile?.name?.replace(/\.(xlsx|xls|csv)$/i, "") || "spreadsheet";
+        const safeSheetName = activeSheetName.replace(/[\\/:*?"<>|]+/g, "-");
+
+        downloadBlob(
+          new Blob([json], { type: "application/json;charset=utf-8" }),
+          `${baseName}-${safeSheetName}.json`
+        );
+
+        setWarning("");
+      } catch (error) {
+        console.error(error);
+        setWarning("The active worksheet could not be exported as JSON.");
+      }
+    });
+
+    fullscreenButton.addEventListener("click", () => {
+      previewCard.classList.toggle("fullscreen-preview");
+      const isFullscreen = previewCard.classList.contains("fullscreen-preview");
+
+      fullscreenButton.textContent = isFullscreen ? "Exit Fullscreen" : "Fullscreen";
+
+      if (isFullscreen) {
+        previewCard.scrollTop = 0;
+      }
+    });
+
+    resetButton.addEventListener("click", () => {
+      clearCurrentWorkbook();
+      setWarning("");
+      showEmptyState();
+
+      previewCard.classList.remove("fullscreen-preview");
+      fullscreenButton.textContent = "Fullscreen";
+    });
+
+    document.getElementById("currentYear").textContent = String(new Date().getFullYear());
+
+    showEmptyState();
+  </script>
+</body>
+</html>

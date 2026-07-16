@@ -1,0 +1,1790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>PowerPoint Viewer Online for PPTX Files</title>
+  <meta name="description" content="Open, preview, search, and read PPTX PowerPoint files locally in your browser with a free online viewer." />
+  <meta name="keywords" content="PowerPoint viewer, PPTX viewer, online PowerPoint viewer, open PPTX online, view PowerPoint online, presentation viewer, slide viewer, browser PPTX reader, free PPTX preview, client-side PowerPoint viewer, PowerPoint file reader, PPTX text extractor" />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="PowerPoint Viewer Online for PPTX Files" />
+  <meta property="og:description" content="Preview PPTX presentations directly in your browser with slide navigation, text extraction, search, copy, and download tools." />
+  <meta property="og:type" content="website" />
+
+  <link rel="icon" type="image/png" href="/favicon.png" />
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404" crossorigin="anonymous"></script>
+  <meta name="google-adsense-account" content="ca-pub-5282672325821404" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "PowerPoint Viewer",
+    "description": "A free browser-based PowerPoint viewer for opening and previewing PPTX presentation files locally.",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires a modern web browser with JavaScript enabled.",
+    "url": "https://nodntools.com/powerpoint-viewer",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "featureList": [
+      "Open PPTX files",
+      "Preview presentation slides",
+      "Navigate slides",
+      "Extract slide text",
+      "Search presentation text",
+      "Copy extracted text",
+      "Download original presentation",
+      "Export current slide as image",
+      "Local browser processing"
+    ]
+  }
+  </script>
+
+  <style>
+    html,
+    body {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      min-width: 0;
+    }
+
+    body {
+      background: #f8fafc;
+      color: #0f172a;
+    }
+
+    .safe-break {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .mobile-card,
+    .mobile-panel,
+    .mobile-preview,
+    .mobile-code,
+    .ad-box,
+    input,
+    textarea,
+    select,
+    button,
+    canvas,
+    img,
+    svg,
+    table,
+    pre,
+    code {
+      max-width: 100%;
+    }
+
+    .ad-box {
+      min-height: 90px;
+      border: 2px dashed #cbd5e1;
+      background: #f8fafc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #64748b;
+      padding: 1rem;
+      border-radius: 1rem;
+      overflow: hidden;
+    }
+
+    .drop-zone.drag-active {
+      border-color: #6366f1;
+      background: #eef2ff;
+      box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.12);
+    }
+
+    .slide-stage-wrap {
+      width: 100%;
+      overflow: auto;
+      background: linear-gradient(135deg, #e2e8f0, #f1f5f9);
+      border-radius: 1.25rem;
+      padding: 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .slide-stage {
+      position: relative;
+      width: 960px;
+      height: 540px;
+      max-width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #ffffff;
+      overflow: hidden;
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.18);
+      border-radius: 0.5rem;
+      transform-origin: top center;
+    }
+
+    .slide-object {
+      position: absolute;
+      overflow: hidden;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+      line-height: 1.25;
+      color: #0f172a;
+    }
+
+    .slide-text {
+      white-space: pre-wrap;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .slide-image {
+      object-fit: contain;
+      width: 100%;
+      height: 100%;
+    }
+
+    .thumbnail-card {
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .thumbnail-card.active {
+      border-color: #6366f1;
+      background: #eef2ff;
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.14);
+    }
+
+    .thumbnail-preview {
+      aspect-ratio: 16 / 9;
+      background: #ffffff;
+      border-radius: 0.75rem;
+      border: 1px solid #e2e8f0;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .search-highlight {
+      background: #fef08a;
+      color: #713f12;
+      border-radius: 0.2rem;
+      padding: 0 0.08rem;
+    }
+
+    .fullscreen-preview {
+      position: fixed !important;
+      inset: 0 !important;
+      z-index: 9999 !important;
+      border-radius: 0 !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      max-width: none !important;
+      background: #f8fafc !important;
+      overflow: auto !important;
+      padding: 1rem !important;
+    }
+
+    @media (max-width: 640px) {
+      .mobile-card,
+      .mobile-panel,
+      .mobile-preview {
+        border-radius: 1rem;
+      }
+
+      .mobile-card {
+        padding: 1rem !important;
+      }
+
+      .mobile-panel {
+        padding: 0.875rem !important;
+      }
+
+      .mobile-preview {
+        padding: 0.75rem !important;
+      }
+
+      .mobile-button-grid {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        width: 100%;
+      }
+
+      .mobile-button-grid button,
+      .mobile-button-grid a {
+        width: 100%;
+      }
+
+      .slide-stage-wrap {
+        padding: 0.5rem;
+        border-radius: 1rem;
+      }
+
+      .slide-stage {
+        width: 100%;
+        height: auto;
+        min-height: 180px;
+        border-radius: 0.4rem;
+      }
+
+      .slide-object {
+        line-height: 1.15;
+      }
+    }
+
+    @media (max-width: 380px) {
+      body {
+        font-size: 0.95rem;
+      }
+
+      .mobile-card {
+        padding: 0.75rem !important;
+        border-radius: 0.85rem;
+      }
+
+      .mobile-panel,
+      .mobile-preview {
+        padding: 0.65rem !important;
+        border-radius: 0.85rem;
+      }
+
+      .ad-box {
+        border-radius: 0.75rem;
+        min-height: 82px;
+        font-size: 0.8rem;
+      }
+
+      button,
+      input,
+      select {
+        font-size: 0.9rem;
+      }
+
+      .slide-stage-wrap {
+        padding: 0.35rem;
+      }
+    }
+  </style>
+</head>
+
+<body class="min-h-screen bg-slate-50 text-slate-900">
+  <header class="border-b border-slate-200 bg-white">
+    <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
+      <a href="https://nodntools.com" class="safe-break text-xl font-extrabold tracking-tight text-slate-900" aria-label="NodnWebTools home">
+        Nodn<span class="text-indigo-600">WebTools</span>
+      </a>
+
+      <a href="https://nodntools.com" class="rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700">
+        Home
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <section class="mx-auto max-w-7xl px-4 pt-6 sm:px-6 lg:px-8">
+      <div class="ad-box">
+        <div>
+          <div class="font-semibold text-slate-600">Advertisement</div>
+          <div class="mt-1 text-xs text-slate-500">Top ad area</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+      <div class="mb-8 max-w-4xl">
+        <div class="mb-3 inline-flex items-center gap-2 rounded-full bg-indigo-50 px-3 py-1 text-sm font-semibold text-indigo-700">
+          <span aria-hidden="true">📊</span>
+          Browser-Based Presentation Reader
+        </div>
+
+        <h1 class="safe-break text-3xl font-extrabold tracking-tight text-slate-950 sm:text-4xl lg:text-5xl">
+          PowerPoint Viewer for PPTX Presentations
+        </h1>
+
+        <p class="mt-4 max-w-3xl text-base leading-7 text-slate-600 sm:text-lg">
+          Open and preview PowerPoint PPTX files directly in your browser. View slides, extract text, search presentation content, copy speaker-ready text, and export the current slide as an image.
+        </p>
+      </div>
+
+      <div class="grid gap-6 lg:grid-cols-[390px_minmax(0,1fr)]">
+        <aside class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+          <div class="mb-5">
+            <h2 class="text-xl font-bold text-slate-900">Open a Presentation</h2>
+            <p class="mt-2 text-sm leading-6 text-slate-600">
+              Choose a modern PPTX file. Legacy PPT files require conversion to PPTX before browser preview.
+            </p>
+          </div>
+
+          <div id="dropZone" class="drop-zone rounded-2xl border-2 border-dashed border-slate-300 bg-slate-50 p-6 text-center transition">
+            <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-indigo-100 text-2xl text-indigo-700">
+              ↑
+            </div>
+
+            <h3 class="mt-4 font-bold text-slate-900">Drop your PPTX file here</h3>
+            <p class="mt-2 text-sm text-slate-500">or select a presentation from your device</p>
+
+            <label for="fileInput" class="mt-5 inline-flex cursor-pointer items-center justify-center rounded-xl bg-indigo-600 px-5 py-3 font-semibold text-white shadow-sm transition hover:bg-indigo-700 focus-within:ring-4 focus-within:ring-indigo-100">
+              Browse PPTX File
+            </label>
+
+            <input id="fileInput" type="file" class="sr-only" accept=".pptx,application/vnd.openxmlformats-officedocument.presentationml.presentation" />
+          </div>
+
+          <div id="warningBox" class="mt-4 hidden rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm leading-6 text-amber-800" role="alert"></div>
+
+          <div class="mt-5 rounded-2xl border border-slate-200 bg-slate-50 p-4">
+            <h3 class="text-sm font-bold uppercase tracking-wide text-slate-500">Presentation Information</h3>
+
+            <dl class="mt-3 space-y-3 rounded-2xl border border-slate-200 bg-white p-4 text-sm">
+              <div class="flex items-start justify-between gap-4">
+                <dt class="text-slate-500">Name</dt>
+                <dd id="fileName" class="safe-break text-right font-semibold text-slate-800">No file selected</dd>
+              </div>
+
+              <div class="flex items-start justify-between gap-4">
+                <dt class="text-slate-500">Type</dt>
+                <dd id="fileType" class="safe-break text-right font-semibold text-slate-800">—</dd>
+              </div>
+
+              <div class="flex items-start justify-between gap-4">
+                <dt class="text-slate-500">Size</dt>
+                <dd id="fileSize" class="text-right font-semibold text-slate-800">—</dd>
+              </div>
+
+              <div class="flex items-start justify-between gap-4">
+                <dt class="text-slate-500">Slides</dt>
+                <dd id="slideCount" class="text-right font-semibold text-slate-800">—</dd>
+              </div>
+
+              <div class="flex items-start justify-between gap-4">
+                <dt class="text-slate-500">Images</dt>
+                <dd id="imageCount" class="text-right font-semibold text-slate-800">—</dd>
+              </div>
+            </dl>
+          </div>
+
+          <div class="mt-5">
+            <label for="searchInput" class="mb-2 block text-sm font-bold text-slate-700">
+              Search Slide Text
+            </label>
+
+            <div class="flex gap-2">
+              <input id="searchInput" type="search" placeholder="Enter a word or phrase" class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm outline-none transition placeholder:text-slate-400 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100" />
+              <button id="searchButton" type="button" class="rounded-xl bg-slate-900 px-4 py-3 text-sm font-semibold text-white transition hover:bg-slate-800">
+                Find
+              </button>
+            </div>
+
+            <p id="searchStatus" class="mt-2 text-xs text-slate-500"></p>
+          </div>
+
+          <div class="mt-5">
+            <label for="zoomRange" class="mb-2 block text-sm font-bold text-slate-700">
+              Preview Scale
+            </label>
+
+            <input id="zoomRange" type="range" min="50" max="140" value="100" class="w-full accent-indigo-600" />
+
+            <div class="mt-2 flex items-center justify-between text-xs text-slate-500">
+              <span>50%</span>
+              <span id="zoomLabel" class="font-semibold text-slate-700">100%</span>
+              <span>140%</span>
+            </div>
+          </div>
+
+          <div class="mobile-button-grid mt-5 grid grid-cols-2 gap-3">
+            <button id="copyButton" type="button" class="rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700">
+              Copy Text
+            </button>
+
+            <button id="downloadButton" type="button" class="rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700">
+              Download File
+            </button>
+
+            <button id="exportImageButton" type="button" class="rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700">
+              Export Slide
+            </button>
+
+            <button id="fullscreenButton" type="button" class="rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700">
+              Fullscreen
+            </button>
+
+            <button id="exportTextButton" type="button" class="rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700">
+              Export Text
+            </button>
+
+            <button id="resetButton" type="button" class="rounded-xl bg-rose-50 px-4 py-3 text-sm font-semibold text-rose-700 transition hover:bg-rose-100">
+              Reset
+            </button>
+          </div>
+
+          <div class="mt-5 rounded-2xl border border-indigo-100 bg-indigo-50 p-4 text-sm leading-6 text-indigo-900">
+            <strong>Note:</strong> This viewer provides a practical browser preview. Complex animations, transitions, embedded videos, advanced charts, SmartArt, fonts, and exact PowerPoint layouts may not render perfectly.
+          </div>
+        </aside>
+
+        <section id="previewCard" class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+          <div class="flex flex-col gap-4 border-b border-slate-200 pb-5 xl:flex-row xl:items-center xl:justify-between">
+            <div>
+              <h2 class="text-xl font-bold text-slate-900">Slide Preview</h2>
+              <p id="previewStatus" class="mt-1 text-sm text-slate-500">
+                Select a PPTX file to begin.
+              </p>
+            </div>
+
+            <div id="slideControls" class="mobile-button-grid hidden flex-wrap items-center gap-2">
+              <button id="previousSlideButton" type="button" class="rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700">
+                Previous
+              </button>
+
+              <div class="rounded-xl bg-slate-100 px-3 py-2 text-sm font-semibold text-slate-700">
+                Slide <span id="currentSlideNumber">1</span> of <span id="totalSlideNumber">1</span>
+              </div>
+
+              <button id="nextSlideButton" type="button" class="rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700">
+                Next
+              </button>
+            </div>
+          </div>
+
+          <div id="emptyState" class="flex min-h-[540px] flex-col items-center justify-center px-4 py-12 text-center">
+            <div class="flex h-24 w-24 items-center justify-center rounded-3xl bg-indigo-50 text-5xl">
+              🖥️
+            </div>
+
+            <h3 class="mt-6 text-xl font-bold text-slate-900">Your presentation preview will appear here</h3>
+
+            <p class="mt-3 max-w-xl text-sm leading-6 text-slate-500">
+              Open a PPTX file to preview slides, browse thumbnails, search text, copy presentation content, and export the current slide as a PNG image.
+            </p>
+
+            <div class="mt-6 grid w-full max-w-2xl gap-3 sm:grid-cols-3">
+              <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                <div class="font-bold text-slate-800">Local</div>
+                <p class="mt-1 text-xs leading-5 text-slate-500">Files are read in your browser.</p>
+              </div>
+
+              <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                <div class="font-bold text-slate-800">Slide-Based</div>
+                <p class="mt-1 text-xs leading-5 text-slate-500">Move through each presentation slide.</p>
+              </div>
+
+              <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                <div class="font-bold text-slate-800">Text Search</div>
+                <p class="mt-1 text-xs leading-5 text-slate-500">Find words across extracted slide text.</p>
+              </div>
+            </div>
+          </div>
+
+          <div id="loadingState" class="hidden min-h-[540px] items-center justify-center">
+            <div class="text-center">
+              <div class="mx-auto h-12 w-12 animate-spin rounded-full border-4 border-indigo-200 border-t-indigo-600"></div>
+              <p class="mt-4 font-semibold text-slate-700">Preparing your PowerPoint preview…</p>
+            </div>
+          </div>
+
+          <div id="viewerState" class="mobile-preview hidden pt-5">
+            <div class="grid gap-5 xl:grid-cols-[170px_minmax(0,1fr)]">
+              <aside class="rounded-2xl border border-slate-200 bg-slate-50 p-3">
+                <div class="mb-3 flex items-center justify-between gap-2">
+                  <h3 class="text-sm font-bold text-slate-700">Slides</h3>
+                  <span id="thumbnailCount" class="rounded-full bg-white px-2 py-1 text-xs font-semibold text-slate-500">0</span>
+                </div>
+
+                <div id="thumbnailList" class="max-h-[620px] space-y-3 overflow-auto pr-1"></div>
+              </aside>
+
+              <div>
+                <div class="slide-stage-wrap">
+                  <div id="slideStage" class="slide-stage" aria-label="PowerPoint slide preview"></div>
+                </div>
+
+                <div class="mt-5 grid gap-5 lg:grid-cols-2">
+                  <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                    <h3 class="font-bold text-slate-900">Current Slide Text</h3>
+                    <pre id="currentSlideText" class="mobile-code mt-3 max-h-72 overflow-auto rounded-xl bg-white p-4 text-sm leading-6 text-slate-700 whitespace-pre-wrap safe-break"></pre>
+                  </div>
+
+                  <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                    <h3 class="font-bold text-slate-900">All Extracted Text</h3>
+                    <pre id="allSlideText" class="mobile-code mt-3 max-h-72 overflow-auto rounded-xl bg-white p-4 text-sm leading-6 text-slate-700 whitespace-pre-wrap safe-break"></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="mx-auto max-w-7xl px-4 pb-8 sm:px-6 lg:px-8">
+      <div class="ad-box">
+        <div>
+          <div class="font-semibold text-slate-600">Advertisement</div>
+          <div class="mt-1 text-xs text-slate-500">Ad area below the PowerPoint viewer</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8 lg:p-12">
+        <div class="max-w-4xl">
+          <p class="text-sm font-bold uppercase tracking-[0.18em] text-indigo-600">Online Presentation Reader Guide</p>
+
+          <h2 class="mt-3 text-3xl font-extrabold tracking-tight text-slate-950">
+            Free PowerPoint Viewer for PPTX Presentations
+          </h2>
+
+          <p class="mt-5 leading-8 text-slate-700">
+            A PowerPoint viewer is a practical browser tool for opening and reading presentation files when you need a quick preview but do not need full editing software. This free online PowerPoint viewer is designed for modern PPTX files, which are commonly used for business presentations, school projects, training materials, pitch decks, sales slides, webinar notes, lecture decks, meeting summaries, product briefings, and conference handouts. Instead of installing a large presentation program just to check a file, you can choose a PPTX file and view the slides directly in your browser.
+          </p>
+
+          <p class="mt-5 leading-8 text-slate-700">
+            The tool reads the presentation package locally, extracts slide order, slide text, basic shapes, and supported images, then creates a simplified slide preview. It also creates slide thumbnails, shows extracted text for the current slide, builds a full text transcript for the presentation, and provides useful actions such as search, copy, download, text export, fullscreen preview, and slide image export. For many everyday situations, this gives you enough information to review a deck, check the outline, inspect slide wording, copy content into notes, or confirm that the selected file is the correct presentation.
+          </p>
+
+          <p class="mt-5 leading-8 text-slate-700">
+            PowerPoint is a complex format. A professional deck may include transitions, animations, embedded video, audio, SmartArt, grouped shapes, slide masters, theme fonts, custom layouts, charts, tables, gradient fills, transparency, speaker notes, comments, equations, and other advanced objects. A browser-based viewer is not the same as Microsoft PowerPoint. This page is optimized for fast, convenient presentation reading rather than exact editing or full-fidelity rendering. It is best used as a PPTX preview tool, slide text extractor, and lightweight PowerPoint reader.
+          </p>
+        </div>
+
+        <div class="mt-10 grid gap-5 md:grid-cols-3">
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-100 text-2xl">📊</div>
+            <h3 class="mt-4 text-lg font-bold text-slate-900">PPTX Slide Preview</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-600">
+              Open modern PowerPoint files and navigate the presentation slide by slide using simple browser controls.
+            </p>
+          </div>
+
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-violet-100 text-2xl">🔎</div>
+            <h3 class="mt-4 text-lg font-bold text-slate-900">Search and Extract Text</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-600">
+              Extract readable text from slides, search for specific words, and copy the presentation content for notes or review.
+            </p>
+          </div>
+
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-slate-200 text-2xl">🖼️</div>
+            <h3 class="mt-4 text-lg font-bold text-slate-900">Export Slide Image</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-600">
+              Save the currently displayed slide as a PNG image for quick reference, documentation, or internal sharing.
+            </p>
+          </div>
+        </div>
+
+        <div class="ad-box mt-10">
+          <div>
+            <div class="font-semibold text-slate-600">Advertisement</div>
+            <div class="mt-1 text-xs text-slate-500">Middle content ad area</div>
+          </div>
+        </div>
+
+        <div class="mt-12 max-w-4xl space-y-10">
+          <section>
+            <h2 class="text-2xl font-extrabold text-slate-950">What Is an Online PowerPoint Viewer?</h2>
+
+            <p class="mt-4 leading-8 text-slate-700">
+              An online PowerPoint viewer is a web-based utility that displays presentation files without requiring the original presentation software. In a traditional workflow, users open a PPTX file with Microsoft PowerPoint, Apple Keynote, Google Slides, LibreOffice Impress, or another office program. However, there are many situations where a user only needs to view slides, read the text, confirm the file contents, or copy a few lines. In those cases, a lightweight online PPTX viewer can save time.
+            </p>
+
+            <p class="mt-4 leading-8 text-slate-700">
+              This viewer focuses on the modern PPTX format. PPTX files are built from a collection of XML documents, media files, relationships, slide layouts, and theme files inside a compressed package. Because the file is structured, a browser can read the package with JavaScript, locate the slide files, extract text runs, identify images, and create a simplified visual representation. The result is a practical PowerPoint preview that is helpful for reading and inspection.
+            </p>
+
+            <p class="mt-4 leading-8 text-slate-700">
+              The most important advantage is convenience. You can open a presentation on a device that does not have PowerPoint installed, inspect the deck before sending it to someone else, review slides on a shared computer, check training materials on a Chromebook, or read a downloaded pitch deck without creating an account. This type of PPTX viewer is also useful for quick text extraction because slide text is often difficult to copy when a user does not have the original editing software available.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-2xl font-extrabold text-slate-950">How to Use the PPTX Viewer</h2>
+
+            <div class="mt-5 grid gap-5 sm:grid-cols-2">
+              <div class="rounded-2xl border border-slate-200 p-5">
+                <div class="text-sm font-extrabold text-indigo-600">STEP 1</div>
+                <h3 class="mt-2 text-lg font-bold text-slate-900">Choose a PPTX File</h3>
+                <p class="mt-2 leading-7 text-slate-600">
+                  Click the Browse PPTX File button or drag a presentation into the upload area. The viewer checks the file extension and prepares the presentation for browser reading.
+                </p>
+              </div>
+
+              <div class="rounded-2xl border border-slate-200 p-5">
+                <div class="text-sm font-extrabold text-indigo-600">STEP 2</div>
+                <h3 class="mt-2 text-lg font-bold text-slate-900">Preview the Slides</h3>
+                <p class="mt-2 leading-7 text-slate-600">
+                  Use the Previous and Next buttons, slide thumbnails, or slide counter to move through the presentation. The main stage displays a simplified slide preview.
+                </p>
+              </div>
+
+              <div class="rounded-2xl border border-slate-200 p-5">
+                <div class="text-sm font-extrabold text-indigo-600">STEP 3</div>
+                <h3 class="mt-2 text-lg font-bold text-slate-900">Search and Copy Text</h3>
+                <p class="mt-2 leading-7 text-slate-600">
+                  Enter a word or phrase to search across extracted slide text. Copy all presentation text to your clipboard or export it as a text file.
+                </p>
+              </div>
+
+              <div class="rounded-2xl border border-slate-200 p-5">
+                <div class="text-sm font-extrabold text-indigo-600">STEP 4</div>
+                <h3 class="mt-2 text-lg font-bold text-slate-900">Export or Download</h3>
+                <p class="mt-2 leading-7 text-slate-600">
+                  Download the original file again, export the currently displayed slide as a PNG image, or use fullscreen mode for a larger preview area.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <h2 class="text-2xl font-extrabold text-slate-950">Why Use a Browser-Based PPTX Viewer?</h2>
+
+            <p class="mt-4 leading-8 text-slate-700">
+              A browser-based PPTX viewer is useful when speed matters. Many users receive presentations through email, cloud storage, collaboration platforms, school portals, business chats, project management tools, or downloaded files. Opening a full office program can be slow, especially if the user only wants to confirm the title slide, check a meeting agenda, copy a bullet point, review a proposal outline, or verify that the correct deck was attached. A quick PowerPoint viewer provides a low-friction way to inspect the file.
+            </p>
+
+            <p class="mt-4 leading-8 text-slate-700">
+              This is also helpful on devices with limited software access. Some computers are locked down by workplace policy, public computer restrictions, school accounts, or guest profiles. Some users work on tablets, Chromebooks, lightweight laptops, or temporary devices where installing Microsoft PowerPoint is not practical. A browser presentation viewer makes it easier to read slides from almost anywhere, as long as the browser supports modern JavaScript.
+            </p>
+
+            <p class="mt-4 leading-8 text-slate-700">
+              Another benefit is text extraction. PowerPoint slides often contain valuable content that users want to reuse in notes, summaries, captions, documentation, study materials, meeting minutes, or draft emails. This viewer extracts slide text into readable blocks so that you can copy the content without manually retyping it. For students, teachers, marketers, analysts, managers, and consultants, this can save time when reviewing slide-based information.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-2xl font-extrabold text-slate-950">Popular Uses for a PowerPoint File Viewer</h2>
+
+            <div class="mt-6 grid gap-5 md:grid-cols-2">
+              <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+                <h3 class="text-lg font-bold text-slate-900">Review Business Presentations</h3>
+                <p class="mt-2 leading-7 text-slate-600">
+                  Open pitch decks, sales presentations, strategy slides, project proposals, quarterly updates, and meeting decks to quickly understand the message and structure.
+                </p>
+              </div>
+
+              <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+                <h3 class="text-lg font-bold text-slate-900">Read School and Lecture Slides</h3>
+                <p class="mt-2 leading-7 text-slate-600">
+                  Preview class presentations, lecture notes, assignment slides, research summaries, and study material without needing a full presentation editor.
+                </p>
+              </div>
+
+              <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+                <h3 class="text-lg font-bold text-slate-900">Extract Slide Text</h3>
+                <p class="mt-2 leading-7 text-slate-600">
+                  Copy key bullet points, slide titles, presentation scripts, section headings, agenda items, and summary statements from a PPTX file.
+                </p>
+              </div>
+
+              <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+                <h3 class="text-lg font-bold text-slate-900">Check Attachments Before Sharing</h3>
+                <p class="mt-2 leading-7 text-slate-600">
+                  Confirm that the correct presentation was attached to an email or message before forwarding it to colleagues, clients, teachers, or team members.
+                </p>
+              </div>
+
+              <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+                <h3 class="text-lg font-bold text-slate-900">Create Quick Slide Images</h3>
+                <p class="mt-2 leading-7 text-slate-600">
+                  Export the current preview slide as a PNG image for notes, documentation, reference, or visual summaries when exact PowerPoint export is not required.
+                </p>
+              </div>
+
+              <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+                <h3 class="text-lg font-bold text-slate-900">Browse Presentation Archives</h3>
+                <p class="mt-2 leading-7 text-slate-600">
+                  Inspect older training files, conference slides, workshop decks, webinar resources, and internal knowledge materials saved in PPTX format.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <h2 class="text-2xl font-extrabold text-slate-950">Understanding PPTX Preview Limitations</h2>
+
+            <p class="mt-4 leading-8 text-slate-700">
+              PPTX is not a simple image or text file. It is a complete presentation package with multiple layers of structure. A single slide can depend on a slide layout, a slide master, a theme, relationship files, embedded images, charts, tables, grouped objects, placeholder rules, custom fonts, and presentation-wide settings. Microsoft PowerPoint uses a sophisticated rendering engine to combine those details into the final visual output. A lightweight browser tool cannot reproduce every behavior perfectly.
+            </p>
+
+            <p class="mt-4 leading-8 text-slate-700">
+              This viewer is designed to extract and display core slide content. It can show many text boxes and supported images, and it can position them approximately using coordinates from the file. However, certain elements may be simplified. Animations and transitions are not played. Embedded videos and audio are not rendered. Some charts, SmartArt, WordArt, equations, gradients, shadows, grouped shapes, background styles, theme effects, transparency, cropped images, and custom fonts may not appear exactly like they do in PowerPoint. Speaker notes and comments may also be unavailable.
+            </p>
+
+            <p class="mt-4 leading-8 text-slate-700">
+              For exact formatting, final review, professional print output, client delivery, legal presentation records, or design-sensitive materials, you should open the file in Microsoft PowerPoint or another full presentation application. For quick reading, text extraction, file verification, general slide browsing, and simple reference work, this online PPTX viewer can still be very useful.
+            </p>
+          </section>
+        </div>
+
+        <div class="ad-box mt-10">
+          <div>
+            <div class="font-semibold text-slate-600">Advertisement</div>
+            <div class="mt-1 text-xs text-slate-500">Bottom content ad area</div>
+          </div>
+        </div>
+
+        <div class="mt-12 max-w-4xl space-y-10">
+          <section>
+            <h2 class="text-2xl font-extrabold text-slate-950">Privacy and Local Browser Processing</h2>
+
+            <p class="mt-4 leading-8 text-slate-700">
+              Presentation files may contain private business information, internal strategy, financial projections, customer names, product roadmaps, classroom material, research data, marketing plans, or personal notes. For that reason, privacy matters when choosing a PowerPoint viewer. This tool is built to read the selected PPTX file locally in the browser. The preview process uses JavaScript to inspect the file package on your device rather than requiring a server-side upload for rendering.
+            </p>
+
+            <p class="mt-4 leading-8 text-slate-700">
+              Local processing can reduce unnecessary exposure when compared with services that require users to upload presentations to a remote server. It is helpful for quick file checks, temporary previews, and non-editing workflows. However, users should still follow safe computing practices. Avoid opening suspicious files, keep your browser updated, use trusted devices, and be careful with confidential files on public or shared computers. Browser extensions, device policies, malware, network monitoring, and third-party scripts may affect your overall privacy environment.
+            </p>
+
+            <p class="mt-4 leading-8 text-slate-700">
+              For highly sensitive corporate, legal, financial, medical, government, security, or regulated presentation content, consider using approved offline software on a managed device. This online viewer is designed for convenience and general-purpose document reading, not for enterprise compliance, secure records management, forensic review, or confidential legal production.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-2xl font-extrabold text-slate-950">Tips for Better PowerPoint Preview Results</h2>
+
+            <h3 class="mt-5 text-xl font-bold text-slate-900">Use PPTX instead of legacy PPT</h3>
+            <p class="mt-3 leading-8 text-slate-700">
+              PPTX is the modern Office Open XML presentation format and is much more suitable for browser parsing. Legacy PPT files use an older binary format and are not supported by this viewer. If you have an older PPT file, open it in PowerPoint, LibreOffice Impress, or another trusted application and save it as PPTX first.
+            </p>
+
+            <h3 class="mt-5 text-xl font-bold text-slate-900">Expect simplified rendering</h3>
+            <p class="mt-3 leading-8 text-slate-700">
+              Use this viewer to read and inspect slides, not to verify every design detail. If your presentation uses advanced animations, custom fonts, theme effects, complex SmartArt, special charts, or embedded media, the browser preview may not match the original perfectly.
+            </p>
+
+            <h3 class="mt-5 text-xl font-bold text-slate-900">Use text export for summaries</h3>
+            <p class="mt-3 leading-8 text-slate-700">
+              The extracted text export is useful when creating meeting notes, study outlines, presentation summaries, search indexes, accessibility drafts, or quick reference material. It can also help you find slide titles and key topics across a large deck.
+            </p>
+
+            <h3 class="mt-5 text-xl font-bold text-slate-900">Use fullscreen for larger review</h3>
+            <p class="mt-3 leading-8 text-slate-700">
+              The fullscreen button expands the preview panel so that you can focus on slides with fewer distractions. This is helpful on smaller laptops or tablets when you want a larger reading area.
+            </p>
+
+            <h3 class="mt-5 text-xl font-bold text-slate-900">Verify important content in PowerPoint</h3>
+            <p class="mt-3 leading-8 text-slate-700">
+              Before presenting, printing, sending to a client, submitting for school, or relying on a deck for important decisions, open the file in a full presentation application to confirm layout, notes, media, slide order, and final formatting.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-2xl font-extrabold text-slate-950">Feature Overview</h2>
+
+            <div class="mt-5 overflow-x-auto rounded-2xl border border-slate-200">
+              <table class="w-full min-w-[760px] border-collapse text-left text-sm">
+                <thead class="bg-slate-100 text-slate-700">
+                  <tr>
+                    <th class="border-b border-slate-200 px-4 py-3 font-bold">Feature</th>
+                    <th class="border-b border-slate-200 px-4 py-3 font-bold">Supported</th>
+                    <th class="border-b border-slate-200 px-4 py-3 font-bold">Notes</th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white text-slate-600">
+                  <tr>
+                    <td class="border-b border-slate-200 px-4 py-3 font-semibold text-slate-800">PPTX file reading</td>
+                    <td class="border-b border-slate-200 px-4 py-3">Yes</td>
+                    <td class="border-b border-slate-200 px-4 py-3">Modern PowerPoint format only.</td>
+                  </tr>
+                  <tr>
+                    <td class="border-b border-slate-200 px-4 py-3 font-semibold text-slate-800">Legacy PPT files</td>
+                    <td class="border-b border-slate-200 px-4 py-3">No</td>
+                    <td class="border-b border-slate-200 px-4 py-3">Convert PPT to PPTX first.</td>
+                  </tr>
+                  <tr>
+                    <td class="border-b border-slate-200 px-4 py-3 font-semibold text-slate-800">Slide navigation</td>
+                    <td class="border-b border-slate-200 px-4 py-3">Yes</td>
+                    <td class="border-b border-slate-200 px-4 py-3">Previous, next, and thumbnail navigation are included.</td>
+                  </tr>
+                  <tr>
+                    <td class="border-b border-slate-200 px-4 py-3 font-semibold text-slate-800">Text extraction</td>
+                    <td class="border-b border-slate-200 px-4 py-3">Yes</td>
+                    <td class="border-b border-slate-200 px-4 py-3">Extracts readable slide text from common text boxes.</td>
+                  </tr>
+                  <tr>
+                    <td class="border-b border-slate-200 px-4 py-3 font-semibold text-slate-800">Images</td>
+                    <td class="border-b border-slate-200 px-4 py-3">Partial</td>
+                    <td class="border-b border-slate-200 px-4 py-3">Many embedded images can be shown, but cropping and effects may be simplified.</td>
+                  </tr>
+                  <tr>
+                    <td class="border-b border-slate-200 px-4 py-3 font-semibold text-slate-800">Animations and transitions</td>
+                    <td class="border-b border-slate-200 px-4 py-3">No</td>
+                    <td class="border-b border-slate-200 px-4 py-3">This tool is a static slide previewer.</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-semibold text-slate-800">Editing</td>
+                    <td class="px-4 py-3">No</td>
+                    <td class="px-4 py-3">Use PowerPoint or another editor for changes.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+      </article>
+    </section>
+
+    <section class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <div class="mb-8">
+        <p class="text-sm font-bold uppercase tracking-[0.18em] text-indigo-600">Explore More Utilities</p>
+        <h2 class="mt-2 text-3xl font-extrabold tracking-tight text-slate-950">Related Tools</h2>
+        <p class="mt-3 max-w-3xl leading-7 text-slate-600">
+          Continue working with documents, files, and media using these related NodnWebTools utilities.
+        </p>
+      </div>
+
+      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <a href="/document-viewer" class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-indigo-300 hover:shadow-md">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-50 text-2xl transition group-hover:bg-indigo-600 group-hover:text-white">📄</div>
+          <h3 class="mt-4 text-lg font-bold text-slate-900 group-hover:text-indigo-700">Document Viewer</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">Open and preview DOCX, PDF, and TXT files directly in your browser.</p>
+        </a>
+
+        <a href="/pdf-merger-splitter" class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-indigo-300 hover:shadow-md">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-violet-50 text-2xl transition group-hover:bg-violet-600 group-hover:text-white">📚</div>
+          <h3 class="mt-4 text-lg font-bold text-slate-900 group-hover:text-indigo-700">PDF Merger & Splitter</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">Combine PDF files or split selected pages with a simple browser-based tool.</p>
+        </a>
+
+        <a href="/zip-extractor" class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-indigo-300 hover:shadow-md">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-50 text-2xl transition group-hover:bg-amber-500 group-hover:text-white">🗜️</div>
+          <h3 class="mt-4 text-lg font-bold text-slate-900 group-hover:text-indigo-700">ZIP Extractor</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">Open ZIP archives, inspect included files, and download selected items locally.</p>
+        </a>
+
+        <a href="/diff-checker" class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-indigo-300 hover:shadow-md">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-2xl transition group-hover:bg-emerald-600 group-hover:text-white">↔️</div>
+          <h3 class="mt-4 text-lg font-bold text-slate-900 group-hover:text-indigo-700">Text Diff Checker</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">Compare two text blocks and identify additions, removals, and changes.</p>
+        </a>
+
+        <a href="/image-converter" class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-indigo-300 hover:shadow-md">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-rose-50 text-2xl transition group-hover:bg-rose-600 group-hover:text-white">🖼️</div>
+          <h3 class="mt-4 text-lg font-bold text-slate-900 group-hover:text-indigo-700">Image Converter</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">Convert common image formats locally while controlling quality and output type.</p>
+        </a>
+
+        <a href="/excel-viewer" class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-indigo-300 hover:shadow-md">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-50 text-2xl transition group-hover:bg-amber-500 group-hover:text-white">🎬</div>
+          <h3 class="mt-4 text-lg font-bold text-slate-900 group-hover:text-indigo-700">Excel Viewer</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600"> Open XLSX, XLS, and CSV files directly in your browser with worksheet navigation, search, filtering, sorting, and export tools.</p>
+        </a>
+      </div>
+    </section>
+
+    <section class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <div class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8 lg:p-10">
+        <p class="text-sm font-bold uppercase tracking-[0.18em] text-indigo-600">Common Questions</p>
+        <h2 class="mt-2 text-3xl font-extrabold tracking-tight text-slate-950">PowerPoint Viewer FAQ</h2>
+
+        <div class="mt-8 space-y-4">
+          <details class="group rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">
+              Is this PowerPoint viewer free to use?
+            </summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              Yes. This PPTX viewer is free to use in a modern browser. It is designed for quick presentation preview, text extraction, and slide browsing.
+            </p>
+          </details>
+
+          <details class="group rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">
+              Are PowerPoint files uploaded to a server?
+            </summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              The presentation is processed locally in your browser for preview. The tool itself does not intentionally upload the selected PPTX file for rendering.
+            </p>
+          </details>
+
+          <details class="group rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">
+              Can this viewer open old PPT files?
+            </summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              No. This page supports PPTX files. Older PPT files should be converted to PPTX using Microsoft PowerPoint, LibreOffice Impress, or another trusted converter.
+            </p>
+          </details>
+
+          <details class="group rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">
+              Why does my slide look different from PowerPoint?
+            </summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              This browser viewer creates a simplified preview from PPTX content. Complex animations, transitions, charts, SmartArt, custom fonts, video, audio, and special effects may not render exactly like Microsoft PowerPoint.
+            </p>
+          </details>
+
+          <details class="group rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">
+              Can I edit a PowerPoint file with this tool?
+            </summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              No. This is a viewing and extraction tool. It does not modify presentations. Use a presentation editor when you need to change slides.
+            </p>
+          </details>
+
+          <details class="group rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">
+              Can I copy text from the presentation?
+            </summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              Yes. The tool extracts readable slide text where available. You can copy the text to your clipboard or export it as a local text file.
+            </p>
+          </details>
+
+          <details class="group rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">
+              Does it work on mobile devices?
+            </summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              Yes, the page is responsive. Very large or complex PPTX files may perform better on a desktop or laptop because presentation parsing can use significant browser memory.
+            </p>
+          </details>
+
+          <details class="group rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">
+              Can I export slides as images?
+            </summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              Yes. You can export the currently displayed simplified slide preview as a PNG image. The exported image reflects the browser preview, not a full PowerPoint rendering engine.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
+      <div class="ad-box">
+        <div>
+          <div class="font-semibold text-slate-600">Advertisement</div>
+          <div class="mt-1 text-xs text-slate-500">Bottom ad area</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mx-auto max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
+      <div class="rounded-3xl border border-slate-700 bg-slate-900 p-6 text-slate-200 shadow-sm sm:p-8">
+        <h2 class="text-2xl font-extrabold text-white">Legal Disclaimer</h2>
+
+        <div class="mt-4 space-y-4 text-sm leading-7 text-slate-300">
+          <p>
+            This PowerPoint viewer is provided for general informational and convenience purposes only. It is not a professional presentation editing application, compliance review service, design verification tool, records management system, or secure enterprise document platform.
+          </p>
+
+          <p>
+            Slide rendering, extracted text, image placement, formatting, colors, fonts, layout, slide dimensions, and exported images may be incomplete, inaccurate, or visually different from the original PowerPoint file. Users are responsible for verifying important presentation content with the original file and a trusted presentation application.
+          </p>
+
+          <p>
+            Do not rely on this tool as the sole method for reviewing legal presentations, financial decks, medical materials, government records, confidential business plans, regulated documents, investor materials, academic submissions, or other sensitive content. This tool does not provide legal, financial, medical, tax, design, accessibility, security, or professional advice.
+          </p>
+
+          <p>
+            Although this viewer is designed to process PPTX files locally in the browser, users remain responsible for device security, browser security, extensions, malware protection, network privacy, file origin, and compliance with applicable laws and organizational policies. Do not open suspicious files or use confidential presentations on an untrusted or shared device.
+          </p>
+
+          <p>
+            By using this tool, you accept responsibility for your files, your interpretation of the displayed preview, and any actions taken based on the extracted content or exported image. No guarantee is made regarding availability, compatibility, accuracy, confidentiality, preservation of formatting, or fitness for a particular purpose.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-slate-200 bg-white">
+    <div class="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-6 text-sm text-slate-500 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
+      <p>© <span id="currentYear"></span> NodnWebTools. All rights reserved.</p>
+      <a href="https://nodntools.com" class="font-semibold text-indigo-600 hover:text-indigo-700">Visit NodnWebTools</a>
+    </div>
+  </footer>
+
+  <script>
+    const fileInput = document.getElementById("fileInput");
+    const dropZone = document.getElementById("dropZone");
+    const warningBox = document.getElementById("warningBox");
+
+    const fileName = document.getElementById("fileName");
+    const fileType = document.getElementById("fileType");
+    const fileSize = document.getElementById("fileSize");
+    const slideCount = document.getElementById("slideCount");
+    const imageCount = document.getElementById("imageCount");
+
+    const previewCard = document.getElementById("previewCard");
+    const previewStatus = document.getElementById("previewStatus");
+    const emptyState = document.getElementById("emptyState");
+    const loadingState = document.getElementById("loadingState");
+    const viewerState = document.getElementById("viewerState");
+    const slideControls = document.getElementById("slideControls");
+
+    const slideStage = document.getElementById("slideStage");
+    const thumbnailList = document.getElementById("thumbnailList");
+    const thumbnailCount = document.getElementById("thumbnailCount");
+    const currentSlideText = document.getElementById("currentSlideText");
+    const allSlideText = document.getElementById("allSlideText");
+
+    const currentSlideNumber = document.getElementById("currentSlideNumber");
+    const totalSlideNumber = document.getElementById("totalSlideNumber");
+    const previousSlideButton = document.getElementById("previousSlideButton");
+    const nextSlideButton = document.getElementById("nextSlideButton");
+
+    const searchInput = document.getElementById("searchInput");
+    const searchButton = document.getElementById("searchButton");
+    const searchStatus = document.getElementById("searchStatus");
+
+    const zoomRange = document.getElementById("zoomRange");
+    const zoomLabel = document.getElementById("zoomLabel");
+
+    const copyButton = document.getElementById("copyButton");
+    const downloadButton = document.getElementById("downloadButton");
+    const exportImageButton = document.getElementById("exportImageButton");
+    const exportTextButton = document.getElementById("exportTextButton");
+    const fullscreenButton = document.getElementById("fullscreenButton");
+    const resetButton = document.getElementById("resetButton");
+
+    let selectedFile = null;
+    let selectedFileUrl = null;
+    let slides = [];
+    let currentSlideIndex = 0;
+    let extractedText = "";
+    let imageObjectUrls = [];
+    let presentationSize = { width: 960, height: 540 };
+
+    const EMU_PER_PIXEL = 9525;
+
+    const setWarning = (message = "") => {
+      if (!message) {
+        warningBox.textContent = "";
+        warningBox.classList.add("hidden");
+        return;
+      }
+
+      warningBox.textContent = message;
+      warningBox.classList.remove("hidden");
+    };
+
+    const formatFileSize = (bytes) => {
+      if (!Number.isFinite(bytes) || bytes <= 0) return "0 B";
+
+      const units = ["B", "KB", "MB", "GB"];
+      const index = Math.min(Math.floor(Math.log(bytes) / Math.log(1024)), units.length - 1);
+
+      return `${(bytes / Math.pow(1024, index)).toFixed(index === 0 ? 0 : 2)} ${units[index]}`;
+    };
+
+    const escapeHtml = (value) => {
+      return String(value || "").replace(/[&<>"']/g, (character) => {
+        const entities = {
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          '"': "&quot;",
+          "'": "&#039;"
+        };
+        return entities[character];
+      });
+    };
+
+    const decodeXmlEntities = (value) => {
+      const textarea = document.createElement("textarea");
+      textarea.innerHTML = value || "";
+      return textarea.value;
+    };
+
+    const emuToPx = (value) => {
+      const numeric = Number(value);
+      if (!Number.isFinite(numeric)) return 0;
+      return numeric / EMU_PER_PIXEL;
+    };
+
+    const hideAllPreviews = () => {
+      emptyState.classList.add("hidden");
+      loadingState.classList.add("hidden");
+      loadingState.classList.remove("flex");
+      viewerState.classList.add("hidden");
+      slideControls.classList.add("hidden");
+    };
+
+    const showLoading = () => {
+      hideAllPreviews();
+      loadingState.classList.remove("hidden");
+      loadingState.classList.add("flex");
+      previewStatus.textContent = "Processing the selected presentation locally…";
+    };
+
+    const showEmptyState = () => {
+      hideAllPreviews();
+      emptyState.classList.remove("hidden");
+      previewStatus.textContent = "Select a PPTX file to begin.";
+    };
+
+    const resetFileInfo = () => {
+      fileName.textContent = "No file selected";
+      fileType.textContent = "—";
+      fileSize.textContent = "—";
+      slideCount.textContent = "—";
+      imageCount.textContent = "—";
+    };
+
+    const updateFileInfo = (file) => {
+      fileName.textContent = file.name;
+      fileType.textContent = "PPTX";
+      fileSize.textContent = formatFileSize(file.size);
+      slideCount.textContent = "Loading…";
+      imageCount.textContent = "Loading…";
+    };
+
+    const revokeImageUrls = () => {
+      imageObjectUrls.forEach((url) => URL.revokeObjectURL(url));
+      imageObjectUrls = [];
+    };
+
+    const clearCurrentPresentation = () => {
+      if (selectedFileUrl) {
+        URL.revokeObjectURL(selectedFileUrl);
+      }
+
+      revokeImageUrls();
+
+      selectedFile = null;
+      selectedFileUrl = null;
+      slides = [];
+      currentSlideIndex = 0;
+      extractedText = "";
+      presentationSize = { width: 960, height: 540 };
+
+      slideStage.innerHTML = "";
+      thumbnailList.innerHTML = "";
+      currentSlideText.textContent = "";
+      allSlideText.textContent = "";
+      searchInput.value = "";
+      searchStatus.textContent = "";
+      fileInput.value = "";
+      zoomRange.value = "100";
+      zoomLabel.textContent = "100%";
+
+      resetFileInfo();
+    };
+
+    const validateFile = (file) => {
+      if (!file) throw new Error("No file was selected.");
+
+      const extension = file.name.split(".").pop()?.toLowerCase() || "";
+
+      if (extension !== "pptx") {
+        if (extension === "ppt") {
+          throw new Error("Legacy PPT files are not supported. Please convert the file to PPTX first.");
+        }
+
+        throw new Error("Unsupported file type. Please choose a PPTX PowerPoint file.");
+      }
+
+      if (file.size === 0) {
+        throw new Error("The selected presentation is empty.");
+      }
+    };
+
+    const getXmlDoc = async (zip, path) => {
+      const file = zip.file(path);
+      if (!file) return null;
+
+      const xmlText = await file.async("text");
+      return new DOMParser().parseFromString(xmlText, "application/xml");
+    };
+
+    const getRelationshipMap = async (zip, relPath) => {
+      const relFile = zip.file(relPath);
+      const map = new Map();
+
+      if (!relFile) return map;
+
+      const relXml = await relFile.async("text");
+      const doc = new DOMParser().parseFromString(relXml, "application/xml");
+      const relationships = Array.from(doc.getElementsByTagName("Relationship"));
+
+      relationships.forEach((rel) => {
+        const id = rel.getAttribute("Id");
+        const target = rel.getAttribute("Target");
+
+        if (id && target) {
+          map.set(id, target);
+        }
+      });
+
+      return map;
+    };
+
+    const readPresentationSize = async (zip) => {
+      const doc = await getXmlDoc(zip, "ppt/presentation.xml");
+      if (!doc) return { width: 960, height: 540 };
+
+      const sldSz = doc.getElementsByTagName("p:sldSz")[0] || doc.getElementsByTagName("sldSz")[0];
+
+      if (!sldSz) return { width: 960, height: 540 };
+
+      const cx = Number(sldSz.getAttribute("cx"));
+      const cy = Number(sldSz.getAttribute("cy"));
+
+      if (!Number.isFinite(cx) || !Number.isFinite(cy) || cx <= 0 || cy <= 0) {
+        return { width: 960, height: 540 };
+      }
+
+      return {
+        width: Math.round(cx / EMU_PER_PIXEL),
+        height: Math.round(cy / EMU_PER_PIXEL)
+      };
+    };
+
+    const getSlidePaths = (zip) => {
+      return Object.keys(zip.files)
+        .filter((path) => /^ppt\/slides\/slide\d+\.xml$/i.test(path))
+        .sort((a, b) => {
+          const numberA = Number(a.match(/slide(\d+)\.xml/i)?.[1] || 0);
+          const numberB = Number(b.match(/slide(\d+)\.xml/i)?.[1] || 0);
+          return numberA - numberB;
+        });
+    };
+
+    const getFirstElementByLocalName = (node, localName) => {
+      return Array.from(node.getElementsByTagName("*")).find((item) => item.localName === localName) || null;
+    };
+
+    const getDirectOrNestedText = (node) => {
+      const textNodes = Array.from(node.getElementsByTagName("*")).filter((item) => item.localName === "t");
+      return textNodes.map((item) => decodeXmlEntities(item.textContent || "")).join("");
+    };
+
+    const getShapeGeometry = (shapeNode) => {
+      const xfrm = getFirstElementByLocalName(shapeNode, "xfrm");
+      if (!xfrm) return { x: 40, y: 40, width: 300, height: 80 };
+
+      const off = Array.from(xfrm.children).find((child) => child.localName === "off");
+      const ext = Array.from(xfrm.children).find((child) => child.localName === "ext");
+
+      return {
+        x: emuToPx(off?.getAttribute("x") || 0),
+        y: emuToPx(off?.getAttribute("y") || 0),
+        width: Math.max(20, emuToPx(ext?.getAttribute("cx") || 2500000)),
+        height: Math.max(20, emuToPx(ext?.getAttribute("cy") || 600000))
+      };
+    };
+
+    const getTextStyle = (shapeNode) => {
+      const rPr = Array.from(shapeNode.getElementsByTagName("*")).find((item) => item.localName === "rPr");
+      const fontSizeValue = rPr?.getAttribute("sz");
+      const fontSize = fontSizeValue ? Math.max(8, Number(fontSizeValue) / 100) : 20;
+
+      let color = "#0f172a";
+      const srgb = Array.from(shapeNode.getElementsByTagName("*")).find((item) => item.localName === "srgbClr");
+
+      if (srgb?.getAttribute("val")) {
+        color = `#${srgb.getAttribute("val")}`;
+      }
+
+      const bold = rPr?.getAttribute("b") === "1";
+      const italic = rPr?.getAttribute("i") === "1";
+
+      return {
+        fontSize,
+        color,
+        fontWeight: bold ? "700" : "400",
+        fontStyle: italic ? "italic" : "normal"
+      };
+    };
+
+    const resolveMediaPath = (slidePath, target) => {
+      if (!target) return null;
+
+      if (target.startsWith("../media/")) {
+        return `ppt/media/${target.replace("../media/", "")}`;
+      }
+
+      if (target.startsWith("media/")) {
+        return `ppt/${target}`;
+      }
+
+      if (target.startsWith("/ppt/media/")) {
+        return target.replace(/^\//, "");
+      }
+
+      const slideFolder = slidePath.split("/").slice(0, -1).join("/");
+      const normalized = `${slideFolder}/${target}`.replace(/\/\.\//g, "/");
+
+      return normalized
+        .replace("ppt/slides/../media/", "ppt/media/")
+        .replace("ppt/slides/media/", "ppt/media/");
+    };
+
+    const parseSlide = async (zip, slidePath, index) => {
+      const doc = await getXmlDoc(zip, slidePath);
+      const relPath = slidePath.replace("ppt/slides/", "ppt/slides/_rels/") + ".rels";
+      const relMap = await getRelationshipMap(zip, relPath);
+
+      if (!doc) {
+        return {
+          index,
+          path: slidePath,
+          objects: [],
+          text: "",
+          title: `Slide ${index + 1}`
+        };
+      }
+
+      const objects = [];
+      const textParts = [];
+      const shapes = Array.from(doc.getElementsByTagName("*")).filter((node) => node.localName === "sp");
+      const pictures = Array.from(doc.getElementsByTagName("*")).filter((node) => node.localName === "pic");
+
+      shapes.forEach((shapeNode) => {
+        const text = getDirectOrNestedText(shapeNode).trim();
+
+        if (!text) return;
+
+        const geometry = getShapeGeometry(shapeNode);
+        const style = getTextStyle(shapeNode);
+
+        objects.push({
+          type: "text",
+          text,
+          ...geometry,
+          ...style
+        });
+
+        textParts.push(text);
+      });
+
+      for (const pictureNode of pictures) {
+        const blip = Array.from(pictureNode.getElementsByTagName("*")).find((node) => node.localName === "blip");
+        const embedId = blip?.getAttribute("r:embed") || blip?.getAttribute("embed");
+
+        if (!embedId) continue;
+
+        const target = relMap.get(embedId);
+        const mediaPath = resolveMediaPath(slidePath, target);
+        const mediaFile = mediaPath ? zip.file(mediaPath) : null;
+
+        if (!mediaFile) continue;
+
+        try {
+          const blob = await mediaFile.async("blob");
+          const url = URL.createObjectURL(blob);
+          imageObjectUrls.push(url);
+
+          objects.push({
+            type: "image",
+            src: url,
+            ...getShapeGeometry(pictureNode)
+          });
+        } catch (error) {
+          console.warn("Unable to load slide image.", error);
+        }
+      }
+
+      const title = textParts[0] || `Slide ${index + 1}`;
+
+      return {
+        index,
+        path: slidePath,
+        objects,
+        text: textParts.join("\n"),
+        title
+      };
+    };
+
+    const renderSlide = (index) => {
+      if (!slides.length || !slides[index]) return;
+
+      currentSlideIndex = index;
+      const slide = slides[index];
+      const scaleValue = Number(zoomRange.value) / 100;
+
+      slideStage.innerHTML = "";
+      slideStage.style.width = `${presentationSize.width}px`;
+      slideStage.style.height = `${presentationSize.height}px`;
+      slideStage.style.transform = `scale(${scaleValue})`;
+
+      const stageWrapper = slideStage.parentElement;
+      if (stageWrapper) {
+        stageWrapper.style.minHeight = `${Math.max(220, presentationSize.height * scaleValue + 40)}px`;
+      }
+
+      slide.objects.forEach((object) => {
+        const element = document.createElement(object.type === "image" ? "div" : "div");
+        element.className = `slide-object ${object.type === "text" ? "slide-text" : ""}`;
+        element.style.left = `${object.x}px`;
+        element.style.top = `${object.y}px`;
+        element.style.width = `${object.width}px`;
+        element.style.height = `${object.height}px`;
+
+        if (object.type === "text") {
+          element.textContent = object.text;
+          element.style.fontSize = `${object.fontSize}px`;
+          element.style.color = object.color;
+          element.style.fontWeight = object.fontWeight;
+          element.style.fontStyle = object.fontStyle;
+          element.style.padding = "4px";
+        } else {
+          const image = document.createElement("img");
+          image.src = object.src;
+          image.alt = "Slide image";
+          image.className = "slide-image";
+          element.appendChild(image);
+        }
+
+        slideStage.appendChild(element);
+      });
+
+      currentSlideNumber.textContent = String(index + 1);
+      totalSlideNumber.textContent = String(slides.length);
+
+      previousSlideButton.disabled = index <= 0;
+      nextSlideButton.disabled = index >= slides.length - 1;
+      previousSlideButton.classList.toggle("opacity-50", previousSlideButton.disabled);
+      nextSlideButton.classList.toggle("opacity-50", nextSlideButton.disabled);
+
+      currentSlideText.textContent = slide.text || "No readable text was found on this slide.";
+      previewStatus.textContent = `Viewing slide ${index + 1} of ${slides.length}.`;
+
+      Array.from(thumbnailList.children).forEach((item, itemIndex) => {
+        item.classList.toggle("active", itemIndex === index);
+      });
+    };
+
+    const renderThumbnails = () => {
+      thumbnailList.innerHTML = "";
+
+      slides.forEach((slide, index) => {
+        const card = document.createElement("button");
+        card.type = "button";
+        card.className = "thumbnail-card w-full rounded-2xl border border-slate-200 bg-white p-2 text-left hover:border-indigo-300";
+        card.setAttribute("aria-label", `Open slide ${index + 1}`);
+
+        const preview = document.createElement("div");
+        preview.className = "thumbnail-preview";
+
+        const title = document.createElement("div");
+        title.className = "safe-break mt-2 text-xs font-semibold text-slate-700";
+        title.textContent = `${index + 1}. ${slide.title.slice(0, 42)}`;
+
+        const textPreview = document.createElement("div");
+        textPreview.className = "absolute inset-0 flex items-center justify-center p-2 text-center text-[9px] leading-tight text-slate-600";
+        textPreview.textContent = slide.text ? slide.text.slice(0, 110) : "No text";
+
+        preview.appendChild(textPreview);
+        card.appendChild(preview);
+        card.appendChild(title);
+
+        card.addEventListener("click", () => renderSlide(index));
+        thumbnailList.appendChild(card);
+      });
+
+      thumbnailCount.textContent = String(slides.length);
+    };
+
+    const buildExtractedText = () => {
+      return slides
+        .map((slide, index) => `Slide ${index + 1}\n${slide.text || "[No readable text found]"}`)
+        .join("\n\n");
+    };
+
+    const loadPresentation = async (file) => {
+      try {
+        if (!window.JSZip) {
+          throw new Error("The PPTX processing library could not be loaded.");
+        }
+
+        const arrayBuffer = await file.arrayBuffer();
+        const zip = await JSZip.loadAsync(arrayBuffer);
+        const slidePaths = getSlidePaths(zip);
+
+        if (!slidePaths.length) {
+          throw new Error("No slides were found in this PPTX file.");
+        }
+
+        presentationSize = await readPresentationSize(zip);
+        slides = [];
+
+        for (let index = 0; index < slidePaths.length; index += 1) {
+          const parsedSlide = await parseSlide(zip, slidePaths[index], index);
+          slides.push(parsedSlide);
+        }
+
+        extractedText = buildExtractedText();
+
+        slideCount.textContent = String(slides.length);
+        imageCount.textContent = String(slides.reduce((total, slide) => total + slide.objects.filter((item) => item.type === "image").length, 0));
+        allSlideText.textContent = extractedText || "No readable text was found in this presentation.";
+
+        hideAllPreviews();
+        viewerState.classList.remove("hidden");
+        slideControls.classList.remove("hidden");
+
+        renderThumbnails();
+        renderSlide(0);
+      } catch (error) {
+        console.error(error);
+        throw new Error(error.message || "The PPTX file could not be opened. It may be damaged, encrypted, or unsupported.");
+      }
+    };
+
+    const handleFile = async (file) => {
+      try {
+        setWarning("");
+        clearCurrentPresentation();
+
+        validateFile(file);
+
+        selectedFile = file;
+        selectedFileUrl = URL.createObjectURL(file);
+
+        updateFileInfo(file);
+        showLoading();
+
+        await loadPresentation(file);
+      } catch (error) {
+        console.error(error);
+        clearCurrentPresentation();
+        showEmptyState();
+        setWarning(error.message || "The selected presentation could not be opened.");
+      }
+    };
+
+    const searchSlides = () => {
+      const query = searchInput.value.trim();
+
+      if (!query) {
+        searchStatus.textContent = "Enter a word or phrase to search.";
+        return;
+      }
+
+      if (!extractedText) {
+        searchStatus.textContent = "No searchable text is available.";
+        return;
+      }
+
+      try {
+        const escapedQuery = query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+        const regex = new RegExp(escapedQuery, "gi");
+        const matches = extractedText.match(regex) || [];
+
+        searchStatus.textContent =
+          matches.length === 1 ? "1 match found." : `${matches.length} matches found.`;
+
+        const matchingSlideIndex = slides.findIndex((slide) => regex.test(slide.text));
+        regex.lastIndex = 0;
+
+        if (matchingSlideIndex >= 0) {
+          renderSlide(matchingSlideIndex);
+        }
+
+        const highlightedAll = escapeHtml(extractedText).replace(
+          regex,
+          '<mark class="search-highlight">$&</mark>'
+        );
+
+        allSlideText.innerHTML = highlightedAll;
+
+        const currentText = slides[currentSlideIndex]?.text || "";
+        currentSlideText.innerHTML = escapeHtml(currentText || "No readable text was found on this slide.").replace(
+          regex,
+          '<mark class="search-highlight">$&</mark>'
+        );
+      } catch (error) {
+        console.error(error);
+        searchStatus.textContent = "Search could not be completed.";
+      }
+    };
+
+    fileInput.addEventListener("change", (event) => {
+      const file = event.target.files?.[0];
+      if (file) handleFile(file);
+    });
+
+    ["dragenter", "dragover"].forEach((eventName) => {
+      dropZone.addEventListener(eventName, (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        dropZone.classList.add("drag-active");
+      });
+    });
+
+    ["dragleave", "drop"].forEach((eventName) => {
+      dropZone.addEventListener(eventName, (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        dropZone.classList.remove("drag-active");
+      });
+    });
+
+    dropZone.addEventListener("drop", (event) => {
+      const file = event.dataTransfer?.files?.[0];
+      if (file) handleFile(file);
+    });
+
+    previousSlideButton.addEventListener("click", () => {
+      if (currentSlideIndex > 0) renderSlide(currentSlideIndex - 1);
+    });
+
+    nextSlideButton.addEventListener("click", () => {
+      if (currentSlideIndex < slides.length - 1) renderSlide(currentSlideIndex + 1);
+    });
+
+    zoomRange.addEventListener("input", () => {
+      zoomLabel.textContent = `${zoomRange.value}%`;
+      if (slides.length) renderSlide(currentSlideIndex);
+    });
+
+    searchButton.addEventListener("click", searchSlides);
+
+    searchInput.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        searchSlides();
+      }
+    });
+
+    copyButton.addEventListener("click", async () => {
+      if (!extractedText) {
+        setWarning("No extracted text is available to copy.");
+        return;
+      }
+
+      try {
+        await navigator.clipboard.writeText(extractedText);
+        const originalText = copyButton.textContent;
+        copyButton.textContent = "Copied!";
+        setWarning("");
+
+        window.setTimeout(() => {
+          copyButton.textContent = originalText;
+        }, 1600);
+      } catch (error) {
+        console.error(error);
+        setWarning("Text could not be copied. Your browser may block clipboard access.");
+      }
+    });
+
+    downloadButton.addEventListener("click", () => {
+      if (!selectedFile || !selectedFileUrl) {
+        setWarning("Select a presentation before using the download button.");
+        return;
+      }
+
+      const link = document.createElement("a");
+      link.href = selectedFileUrl;
+      link.download = selectedFile.name;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      setWarning("");
+    });
+
+    exportTextButton.addEventListener("click", () => {
+      if (!extractedText) {
+        setWarning("No extracted text is available to export.");
+        return;
+      }
+
+      const blob = new Blob([extractedText], { type: "text/plain;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const baseName = selectedFile?.name?.replace(/\.pptx$/i, "") || "presentation-text";
+
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `${baseName}-extracted-text.txt`;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+
+      URL.revokeObjectURL(url);
+      setWarning("");
+    });
+
+    exportImageButton.addEventListener("click", async () => {
+      if (!slides.length) {
+        setWarning("Select a presentation before exporting a slide image.");
+        return;
+      }
+
+      try {
+        const previousTransform = slideStage.style.transform;
+        slideStage.style.transform = "scale(1)";
+
+        const canvas = await html2canvas(slideStage, {
+          backgroundColor: "#ffffff",
+          scale: 2,
+          useCORS: true
+        });
+
+        slideStage.style.transform = previousTransform;
+
+        canvas.toBlob((blob) => {
+          if (!blob) {
+            setWarning("The current slide could not be exported.");
+            return;
+          }
+
+          const url = URL.createObjectURL(blob);
+          const baseName = selectedFile?.name?.replace(/\.pptx$/i, "") || "presentation";
+          const link = document.createElement("a");
+          link.href = url;
+          link.download = `${baseName}-slide-${currentSlideIndex + 1}.png`;
+          document.body.appendChild(link);
+          link.click();
+          link.remove();
+
+          URL.revokeObjectURL(url);
+          setWarning("");
+        }, "image/png");
+      } catch (error) {
+        console.error(error);
+        setWarning("The current slide could not be exported as an image.");
+      }
+    });
+
+    fullscreenButton.addEventListener("click", () => {
+      previewCard.classList.toggle("fullscreen-preview");
+      const isFullscreen = previewCard.classList.contains("fullscreen-preview");
+      fullscreenButton.textContent = isFullscreen ? "Exit Fullscreen" : "Fullscreen";
+
+      if (slides.length) {
+        window.setTimeout(() => renderSlide(currentSlideIndex), 50);
+      }
+
+      if (isFullscreen) {
+        previewCard.scrollTop = 0;
+      }
+    });
+
+    resetButton.addEventListener("click", () => {
+      clearCurrentPresentation();
+      setWarning("");
+      showEmptyState();
+
+      previewCard.classList.remove("fullscreen-preview");
+      fullscreenButton.textContent = "Fullscreen";
+    });
+
+    window.addEventListener("resize", () => {
+      if (slides.length) renderSlide(currentSlideIndex);
+    });
+
+    document.getElementById("currentYear").textContent = String(new Date().getFullYear());
+
+    showEmptyState();
+  </script>
+</body>
+</html>
