@@ -1,0 +1,1763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>PDF Security Online | Protect, Unlock & Remove Restrictions</title>
+  <meta name="description" content="Protect, unlock, and remove authorized PDF restrictions securely in your browser with password-based PDF security tools.">
+  <meta name="keywords" content="PDF security, protect PDF, password protect PDF, encrypt PDF, unlock PDF, remove PDF password, remove PDF restrictions, PDF permissions, secure PDF online, browser PDF encryption, PDF owner password, PDF user password">
+  <meta name="robots" content="index, follow">
+  <meta name="google-adsense-account" content="ca-pub-5282672325821404">
+
+  <meta property="og:title" content="PDF Security Online | Protect, Unlock & Remove Restrictions">
+  <meta property="og:description" content="Add password protection, unlock authorized PDFs, and remove document restrictions directly in your browser.">
+  <meta property="og:type" content="website">
+
+  <link rel="icon" type="image/png" href="/favicon.png">
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404" crossorigin="anonymous"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "PDF Security",
+    "url": "https://nodntools.com/pdf-security",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "description": "A browser-based PDF security utility for password protecting PDFs, unlocking authorized documents, and removing PDF permission restrictions.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "featureList": [
+      "Password protect PDF files",
+      "AES-256 PDF encryption",
+      "Set PDF printing permissions",
+      "Set PDF modification permissions",
+      "Unlock password-protected PDFs",
+      "Remove authorized PDF restrictions",
+      "Local browser processing"
+    ]
+  }
+  </script>
+
+  <style>
+    html, body {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      min-width: 0;
+    }
+
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .safe-break {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .ad-box {
+      width: 100%;
+      min-height: 90px;
+      border: 2px dashed #cbd5e1;
+      background: #f8fafc;
+      color: #94a3b8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-radius: 1rem;
+      padding: 1rem;
+      overflow: hidden;
+    }
+
+    .drop-active {
+      border-color: #6366f1 !important;
+      background: #eef2ff !important;
+      transform: scale(1.005);
+    }
+
+    .security-tab[aria-selected="true"] {
+      color: #ffffff;
+      background: #4f46e5;
+      border-color: #4f46e5;
+      box-shadow: 0 10px 24px rgba(79, 70, 229, 0.2);
+    }
+
+    .security-tab {
+      transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .security-tab:hover {
+      transform: translateY(-1px);
+    }
+
+    .tool-card-hover {
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .tool-card-hover:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+      border-color: #c7d2fe;
+    }
+
+    .progress-bar {
+      transition: width 0.25s ease;
+    }
+
+    .password-meter-bar {
+      transition: width 0.2s ease, background-color 0.2s ease;
+    }
+
+    input[type="checkbox"] {
+      accent-color: #4f46e5;
+    }
+
+    @media (max-width: 640px) {
+      .mobile-card {
+        padding: 1rem !important;
+        border-radius: 1rem !important;
+      }
+
+      .mobile-panel {
+        padding: 0.875rem !important;
+      }
+
+      .mobile-preview {
+        min-height: 240px !important;
+      }
+
+      .mobile-button-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .mobile-button-grid button,
+      .mobile-button-grid a {
+        width: 100%;
+      }
+
+      .mobile-code {
+        font-size: 0.75rem;
+        overflow-x: auto;
+      }
+
+      .tab-scroll {
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+        scrollbar-width: thin;
+      }
+
+      .security-tab {
+        flex: 0 0 auto;
+      }
+
+      h1 {
+        font-size: 2rem !important;
+        line-height: 1.15 !important;
+      }
+
+      h2 {
+        font-size: 1.6rem !important;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .mobile-card {
+        padding: 0.75rem !important;
+        border-radius: 0.875rem !important;
+      }
+
+      .mobile-panel {
+        padding: 0.75rem !important;
+      }
+
+      .ad-box {
+        min-height: 80px;
+        border-radius: 0.75rem;
+        font-size: 0.75rem;
+      }
+
+      button,
+      a,
+      input,
+      select {
+        font-size: 0.875rem;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800">
+  <header class="border-b border-slate-200 bg-white">
+    <div class="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
+      <a href="https://nodntools.com" class="safe-break text-xl font-extrabold tracking-tight text-slate-900" aria-label="NodnWebTools home">
+        Nodn<span class="text-indigo-600">WebTools</span>
+      </a>
+
+      <a href="https://nodntools.com" class="rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-indigo-300 hover:text-indigo-700">
+        Home
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <section class="mx-auto w-full max-w-7xl px-4 pt-6 sm:px-6 lg:px-8">
+      <div class="ad-box" role="complementary" aria-label="Advertisement placeholder">
+        Advertisement
+      </div>
+    </section>
+
+    <section class="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+      <div class="mb-8 max-w-4xl">
+        <div class="mb-4 inline-flex flex-wrap items-center gap-2 rounded-full border border-indigo-200 bg-indigo-50 px-3 py-1 text-sm font-semibold text-indigo-700">
+          <span>Local PDF security processing</span>
+          <span aria-hidden="true">•</span>
+          <span>No document upload</span>
+        </div>
+
+        <h1 class="text-4xl font-black tracking-tight text-slate-950 sm:text-5xl">
+          PDF Security
+        </h1>
+
+        <p class="mt-4 text-lg leading-8 text-slate-600">
+          Protect a PDF with a password, unlock a document when you know its password, or remove authorized printing and editing restrictions. Files are processed directly in your browser using WebAssembly.
+        </p>
+      </div>
+
+      <div class="grid gap-6 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
+        <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+          <div class="mb-6">
+            <h2 class="text-2xl font-black text-slate-950">Select a PDF file</h2>
+            <p class="mt-2 text-sm leading-6 text-slate-500">
+              Choose a document that you own or are authorized to modify.
+            </p>
+          </div>
+
+          <div id="dropZone" class="mobile-panel rounded-2xl border-2 border-dashed border-slate-300 bg-slate-50 p-7 text-center transition sm:p-9">
+            <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-indigo-100 text-indigo-600">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 16V4m0 0L7 9m5-5l5 5M5 20h14" />
+              </svg>
+            </div>
+
+            <h3 class="mt-5 text-xl font-black text-slate-950">Drop your PDF here</h3>
+            <p class="mt-2 text-sm text-slate-500">or browse for a file on your device</p>
+
+            <label for="pdfInput" class="mt-6 inline-flex cursor-pointer items-center justify-center rounded-xl bg-indigo-600 px-6 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-indigo-700 focus-within:ring-4 focus-within:ring-indigo-100">
+              Choose PDF
+            </label>
+            <input id="pdfInput" type="file" accept="application/pdf,.pdf" class="sr-only">
+
+            <p class="mt-4 text-xs leading-5 text-slate-400">
+              Recommended maximum: 50 MB. Large encrypted files may require additional memory.
+            </p>
+          </div>
+
+          <div id="fileCard" class="mt-5 hidden rounded-2xl border border-slate-200 bg-white p-4">
+            <div class="flex items-start gap-3">
+              <div class="flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-rose-50 text-rose-600">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M14 2v6h6" />
+                </svg>
+              </div>
+
+              <div class="flex-1">
+                <p id="fileName" class="safe-break font-bold text-slate-950"></p>
+                <div class="mt-1 flex flex-wrap gap-x-4 gap-y-1 text-sm text-slate-500">
+                  <span id="fileSize"></span>
+                  <span id="fileSecurityStatus">Security status: not checked</span>
+                </div>
+              </div>
+
+              <button id="removeFileButton" type="button" class="rounded-lg p-2 text-slate-400 transition hover:bg-slate-100 hover:text-slate-700" aria-label="Remove selected PDF">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="mt-6 rounded-2xl border border-emerald-200 bg-emerald-50 p-4">
+            <div class="flex items-start gap-3">
+              <svg xmlns="http://www.w3.org/2000/svg" class="mt-0.5 h-5 w-5 flex-none text-emerald-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75l2.25 2.25L15 9.75M12 3l7.5 3v5.25c0 4.972-3.184 8.563-7.5 9.75-4.316-1.187-7.5-4.778-7.5-9.75V6L12 3z" />
+              </svg>
+              <div>
+                <p class="text-sm font-black text-emerald-900">Private browser processing</p>
+                <p class="mt-1 text-sm leading-6 text-emerald-800">
+                  The selected PDF and entered passwords stay in the current browser session. The tool does not intentionally send them to a document-processing server.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+          <div class="rounded-2xl bg-slate-100 p-2">
+            <div class="tab-scroll flex gap-2" role="tablist" aria-label="PDF security tools">
+              <button type="button" class="security-tab rounded-xl border border-transparent px-4 py-3 text-sm font-bold text-slate-600" data-tab="protect" role="tab" aria-selected="true">
+                Protect PDF
+              </button>
+              <button type="button" class="security-tab rounded-xl border border-transparent px-4 py-3 text-sm font-bold text-slate-600" data-tab="unlock" role="tab" aria-selected="false">
+                Unlock PDF
+              </button>
+              <button type="button" class="security-tab rounded-xl border border-transparent px-4 py-3 text-sm font-bold text-slate-600" data-tab="restrictions" role="tab" aria-selected="false">
+                Remove Restriction
+              </button>
+            </div>
+          </div>
+
+          <div id="protectPanel" class="security-panel mt-6">
+            <div class="mb-6">
+              <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-100 text-indigo-700">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 00-9 0v3.75m-.75 0h10.5A2.25 2.25 0 0119.5 12.75v6A2.25 2.25 0 0117.25 21H6.75a2.25 2.25 0 01-2.25-2.25v-6a2.25 2.25 0 012.25-2.25z" />
+                </svg>
+              </div>
+
+              <h2 class="mt-4 text-2xl font-black text-slate-950">Password protect a PDF</h2>
+              <p class="mt-2 text-sm leading-6 text-slate-500">
+                Add AES-256 encryption and choose which actions PDF readers should allow.
+              </p>
+            </div>
+
+            <div class="space-y-5">
+              <div>
+                <label for="openPassword" class="mb-2 block text-sm font-bold text-slate-800">
+                  Document open password
+                </label>
+                <div class="relative">
+                  <input id="openPassword" type="password" autocomplete="new-password" placeholder="Enter the password required to open the PDF" class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 pr-12 text-sm outline-none transition focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100">
+                  <button type="button" class="password-toggle absolute inset-y-0 right-0 flex w-12 items-center justify-center text-slate-400 hover:text-indigo-600" data-target="openPassword" aria-label="Show or hide document open password">
+                    <span aria-hidden="true">👁</span>
+                  </button>
+                </div>
+
+                <div class="mt-3">
+                  <div class="h-2 overflow-hidden rounded-full bg-slate-200">
+                    <div id="passwordMeter" class="password-meter-bar h-full w-0 rounded-full bg-rose-500"></div>
+                  </div>
+                  <div class="mt-2 flex items-center justify-between gap-3 text-xs">
+                    <span id="passwordStrength" class="font-bold text-slate-500">Enter a password</span>
+                    <span id="passwordLength" class="text-slate-400">0 characters</span>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <label for="confirmOpenPassword" class="mb-2 block text-sm font-bold text-slate-800">
+                  Confirm open password
+                </label>
+                <div class="relative">
+                  <input id="confirmOpenPassword" type="password" autocomplete="new-password" placeholder="Enter the same password again" class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 pr-12 text-sm outline-none transition focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100">
+                  <button type="button" class="password-toggle absolute inset-y-0 right-0 flex w-12 items-center justify-center text-slate-400 hover:text-indigo-600" data-target="confirmOpenPassword" aria-label="Show or hide password confirmation">
+                    <span aria-hidden="true">👁</span>
+                  </button>
+                </div>
+                <p id="passwordMatchStatus" class="mt-2 text-xs font-semibold text-slate-400">
+                  Passwords must match.
+                </p>
+              </div>
+
+              <div>
+                <label for="ownerPassword" class="mb-2 block text-sm font-bold text-slate-800">
+                  Owner password
+                </label>
+                <div class="relative">
+                  <input id="ownerPassword" type="password" autocomplete="new-password" placeholder="Optional separate password for permission changes" class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 pr-12 text-sm outline-none transition focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100">
+                  <button type="button" class="password-toggle absolute inset-y-0 right-0 flex w-12 items-center justify-center text-slate-400 hover:text-indigo-600" data-target="ownerPassword" aria-label="Show or hide owner password">
+                    <span aria-hidden="true">👁</span>
+                  </button>
+                </div>
+                <p class="mt-2 text-xs leading-5 text-slate-400">
+                  Leave blank to generate a strong owner password automatically. Save the downloaded password note securely.
+                </p>
+              </div>
+
+              <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+                <h3 class="font-black text-slate-900">Document permissions</h3>
+                <p class="mt-1 text-sm leading-6 text-slate-500">
+                  Permissions are advisory controls enforced by compatible PDF readers.
+                </p>
+
+                <div class="mt-5 grid gap-4 sm:grid-cols-2">
+                  <label class="flex cursor-pointer items-start gap-3 rounded-xl border border-slate-200 bg-white p-4">
+                    <input id="allowPrinting" type="checkbox" class="mt-1 h-4 w-4">
+                    <span>
+                      <span class="block text-sm font-bold text-slate-800">Allow printing</span>
+                      <span class="mt-1 block text-xs leading-5 text-slate-500">Permit full-quality document printing.</span>
+                    </span>
+                  </label>
+
+                  <label class="flex cursor-pointer items-start gap-3 rounded-xl border border-slate-200 bg-white p-4">
+                    <input id="allowCopying" type="checkbox" class="mt-1 h-4 w-4">
+                    <span>
+                      <span class="block text-sm font-bold text-slate-800">Allow copying</span>
+                      <span class="mt-1 block text-xs leading-5 text-slate-500">Permit text and image extraction.</span>
+                    </span>
+                  </label>
+
+                  <label class="flex cursor-pointer items-start gap-3 rounded-xl border border-slate-200 bg-white p-4">
+                    <input id="allowAnnotations" type="checkbox" class="mt-1 h-4 w-4">
+                    <span>
+                      <span class="block text-sm font-bold text-slate-800">Allow annotations</span>
+                      <span class="mt-1 block text-xs leading-5 text-slate-500">Permit comments and form changes.</span>
+                    </span>
+                  </label>
+
+                  <label class="flex cursor-pointer items-start gap-3 rounded-xl border border-slate-200 bg-white p-4">
+                    <input id="allowModifications" type="checkbox" class="mt-1 h-4 w-4">
+                    <span>
+                      <span class="block text-sm font-bold text-slate-800">Allow modifications</span>
+                      <span class="mt-1 block text-xs leading-5 text-slate-500">Permit general document changes.</span>
+                    </span>
+                  </label>
+                </div>
+              </div>
+
+              <label class="flex cursor-pointer items-start gap-3 rounded-2xl border border-amber-200 bg-amber-50 p-4">
+                <input id="acknowledgePasswordRisk" type="checkbox" class="mt-1 h-4 w-4">
+                <span class="text-sm leading-6 text-amber-900">
+                  I understand that a forgotten PDF password may make the document inaccessible and that I should keep an unprotected backup.
+                </span>
+              </label>
+
+              <button id="protectButton" type="button" class="w-full rounded-xl bg-indigo-600 px-5 py-3.5 text-sm font-bold text-white shadow-sm transition hover:bg-indigo-700 disabled:cursor-not-allowed disabled:bg-slate-300">
+                Protect PDF
+              </button>
+            </div>
+          </div>
+
+          <div id="unlockPanel" class="security-panel mt-6 hidden">
+            <div class="mb-6">
+              <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-100 text-emerald-700">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 10.5V6.75a3.75 3.75 0 017.5 0M6.75 10.5h10.5a2.25 2.25 0 012.25 2.25v6A2.25 2.25 0 0117.25 21H6.75a2.25 2.25 0 01-2.25-2.25v-6a2.25 2.25 0 012.25-2.25z" />
+                </svg>
+              </div>
+
+              <h2 class="mt-4 text-2xl font-black text-slate-950">Unlock a PDF</h2>
+              <p class="mt-2 text-sm leading-6 text-slate-500">
+                Enter the valid document password to create an unencrypted copy.
+              </p>
+            </div>
+
+            <div class="space-y-5">
+              <div>
+                <label for="unlockPassword" class="mb-2 block text-sm font-bold text-slate-800">
+                  Current PDF password
+                </label>
+                <div class="relative">
+                  <input id="unlockPassword" type="password" autocomplete="current-password" placeholder="Enter the password used to open the PDF" class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 pr-12 text-sm outline-none transition focus:border-emerald-500 focus:ring-4 focus:ring-emerald-100">
+                  <button type="button" class="password-toggle absolute inset-y-0 right-0 flex w-12 items-center justify-center text-slate-400 hover:text-emerald-600" data-target="unlockPassword" aria-label="Show or hide current PDF password">
+                    <span aria-hidden="true">👁</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="rounded-2xl border border-emerald-200 bg-emerald-50 p-4 text-sm leading-6 text-emerald-900">
+                Unlocking removes document encryption from the downloaded copy. Keep the original encrypted file when password protection is still required.
+              </div>
+
+              <label class="flex cursor-pointer items-start gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                <input id="authorizedUnlock" type="checkbox" class="mt-1 h-4 w-4">
+                <span class="text-sm leading-6 text-slate-700">
+                  I own this document or have permission from the owner to remove its password protection.
+                </span>
+              </label>
+
+              <button id="unlockButton" type="button" class="w-full rounded-xl bg-emerald-600 px-5 py-3.5 text-sm font-bold text-white shadow-sm transition hover:bg-emerald-700 disabled:cursor-not-allowed disabled:bg-slate-300">
+                Unlock PDF
+              </button>
+            </div>
+          </div>
+
+          <div id="restrictionsPanel" class="security-panel mt-6 hidden">
+            <div class="mb-6">
+              <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-violet-100 text-violet-700">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 3l7.5 3v5.25c0 4.972-3.184 8.563-7.5 9.75-4.316-1.187-7.5-4.778-7.5-9.75V6L12 3z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M8.75 12h6.5" />
+                </svg>
+              </div>
+
+              <h2 class="mt-4 text-2xl font-black text-slate-950">Remove PDF restrictions</h2>
+              <p class="mt-2 text-sm leading-6 text-slate-500">
+                Use the owner password to remove authorized printing, copying, annotation, and editing restrictions.
+              </p>
+            </div>
+
+            <div class="space-y-5">
+              <div>
+                <label for="restrictionPassword" class="mb-2 block text-sm font-bold text-slate-800">
+                  Owner or permissions password
+                </label>
+                <div class="relative">
+                  <input id="restrictionPassword" type="password" autocomplete="current-password" placeholder="Enter the owner password if required" class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 pr-12 text-sm outline-none transition focus:border-violet-500 focus:ring-4 focus:ring-violet-100">
+                  <button type="button" class="password-toggle absolute inset-y-0 right-0 flex w-12 items-center justify-center text-slate-400 hover:text-violet-600" data-target="restrictionPassword" aria-label="Show or hide owner password">
+                    <span aria-hidden="true">👁</span>
+                  </button>
+                </div>
+                <p class="mt-2 text-xs leading-5 text-slate-400">
+                  Some restricted PDFs have an empty user password but still require the owner password to modify permissions.
+                </p>
+              </div>
+
+              <div class="rounded-2xl border border-violet-200 bg-violet-50 p-4">
+                <h3 class="text-sm font-black text-violet-950">The downloaded copy will allow</h3>
+                <div class="mt-3 grid grid-cols-2 gap-2 text-sm text-violet-800">
+                  <span>✓ Printing</span>
+                  <span>✓ Copying</span>
+                  <span>✓ Annotations</span>
+                  <span>✓ Editing</span>
+                </div>
+              </div>
+
+              <label class="flex cursor-pointer items-start gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                <input id="authorizedRestrictionRemoval" type="checkbox" class="mt-1 h-4 w-4">
+                <span class="text-sm leading-6 text-slate-700">
+                  I own this PDF or have explicit authorization to remove its document restrictions.
+                </span>
+              </label>
+
+              <button id="removeRestrictionsButton" type="button" class="w-full rounded-xl bg-violet-600 px-5 py-3.5 text-sm font-bold text-white shadow-sm transition hover:bg-violet-700 disabled:cursor-not-allowed disabled:bg-slate-300">
+                Remove Restrictions
+              </button>
+            </div>
+          </div>
+
+          <div id="warningBox" class="mt-6 hidden rounded-2xl border border-rose-200 bg-rose-50 p-4 text-sm leading-6 text-rose-800" role="alert"></div>
+
+          <div id="progressSection" class="mt-6 hidden">
+            <div class="mb-2 flex items-center justify-between gap-3 text-sm">
+              <span id="progressLabel" class="safe-break font-semibold text-slate-700">Preparing security engine...</span>
+              <span id="progressPercent" class="font-bold text-indigo-700">0%</span>
+            </div>
+            <div class="h-3 overflow-hidden rounded-full bg-slate-200">
+              <div id="progressBar" class="progress-bar h-full w-0 rounded-full bg-indigo-600"></div>
+            </div>
+          </div>
+
+          <div id="resultCard" class="mt-6 hidden rounded-2xl border border-emerald-200 bg-emerald-50 p-5">
+            <div class="flex items-start gap-3">
+              <div class="flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-emerald-600 text-white">
+                ✓
+              </div>
+              <div class="flex-1">
+                <h3 id="resultTitle" class="font-black text-emerald-950">PDF ready</h3>
+                <p id="resultDescription" class="mt-1 text-sm leading-6 text-emerald-800"></p>
+                <div class="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-xs font-semibold text-emerald-700">
+                  <span id="resultFileName" class="safe-break"></span>
+                  <span id="resultFileSize"></span>
+                </div>
+              </div>
+            </div>
+
+            <div id="ownerPasswordResult" class="mt-4 hidden rounded-xl border border-emerald-300 bg-white p-4">
+              <p class="text-xs font-bold uppercase tracking-wide text-slate-500">Generated owner password</p>
+              <div class="mt-2 flex flex-col gap-3 sm:flex-row sm:items-center">
+                <code id="generatedOwnerPassword" class="mobile-code safe-break flex-1 rounded-lg bg-slate-100 px-3 py-2 text-sm font-bold text-slate-800"></code>
+                <button id="copyOwnerPasswordButton" type="button" class="rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-bold text-slate-700 transition hover:bg-slate-50">
+                  Copy Password
+                </button>
+              </div>
+            </div>
+
+            <div class="mobile-button-grid mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2">
+              <button id="downloadResultButton" type="button" class="rounded-xl bg-slate-900 px-5 py-3 text-sm font-bold text-white transition hover:bg-slate-800">
+                Download PDF
+              </button>
+              <button id="startOverButton" type="button" class="rounded-xl border border-slate-300 bg-white px-5 py-3 text-sm font-bold text-slate-700 transition hover:bg-slate-50">
+                Start Over
+              </button>
+            </div>
+          </div>
+
+          <p id="statusMessage" class="mt-5 min-h-6 text-center text-sm font-semibold text-slate-500" aria-live="polite"></p>
+        </section>
+      </div>
+    </section>
+
+    <section class="mx-auto w-full max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
+      <div class="ad-box" role="complementary" aria-label="Advertisement placeholder">
+        Advertisement
+      </div>
+    </section>
+
+    <section class="border-y border-slate-200 bg-white">
+      <div class="mx-auto w-full max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
+        <article class="max-w-none">
+          <div class="mb-12">
+            <p class="text-sm font-bold uppercase tracking-[0.2em] text-indigo-600">PDF Password and Permission Guide</p>
+            <h2 class="mt-3 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">
+              Protect, Unlock, and Manage PDF Security Online
+            </h2>
+            <p class="mt-5 text-lg leading-8 text-slate-600">
+              PDF files are frequently used to share contracts, financial statements, invoices, identification documents, educational records, reports, manuals, forms, and confidential business information. When a document contains information that should not be opened by every recipient, password-based PDF encryption can provide an additional access-control layer. When an authorized user needs a reusable unencrypted copy, the document can be unlocked with the correct password. PDF owners may also remove printing, copying, annotation, or editing restrictions when those limitations are no longer necessary.
+            </p>
+          </div>
+
+          <div class="space-y-10 text-base leading-8 text-slate-700">
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">What Is PDF Security?</h2>
+              <p class="mt-4">
+                PDF security generally refers to encryption, password access, document permissions, digital signatures, certificates, redaction, and other controls that affect how a PDF can be opened or used. This browser-based PDF Security tool focuses on three common password-related operations: protecting a PDF with encryption, unlocking a PDF using a valid password, and removing authorized permission restrictions.
+              </p>
+              <p class="mt-4">
+                A protected PDF may require a password before a reader can open and display its contents. This is commonly called a document open password, user password, or PDF access password. A PDF may also contain a separate owner password, sometimes called a permissions password or master password. The owner password is used to control or change actions such as printing, copying text, modifying pages, filling forms, or adding annotations.
+              </p>
+              <p class="mt-4">
+                Password protection does not replace secure file delivery, trusted storage, device security, account access controls, or professional information governance. It is one layer within a broader security strategy. A strong password is useful only when it is transmitted and stored separately from the protected file and when recipients keep their devices secure.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">How the Browser-Based PDF Security Tool Works</h2>
+              <p class="mt-4">
+                The tool uses a WebAssembly version of a PDF transformation engine to perform structural PDF encryption and decryption in the browser. WebAssembly allows compatible desktop and mobile browsers to run compiled document-processing code locally. The PDF file is loaded into the current page, processed in browser memory, and converted into a downloadable result.
+              </p>
+              <p class="mt-4">
+                Because the processing workflow is local, the page is designed not to intentionally upload the selected PDF or entered password to a NodnWebTools document-processing server. This can reduce unnecessary exposure compared with upload-based services. However, users should still operate the tool on trusted devices and networks, keep browsers updated, avoid untrusted browser extensions, and securely delete temporary downloads when appropriate.
+              </p>
+              <p class="mt-4">
+                The security engine is loaded from a content delivery network when the page is used. An internet connection may therefore be required to initialize the tool, even though the selected PDF itself is processed locally. Organizations with strict software supply-chain, compliance, or offline requirements should use a reviewed and locally hosted version of the required WebAssembly assets.
+              </p>
+            </section>
+
+            <div class="ad-box my-12" role="complementary" aria-label="Advertisement placeholder">
+              Advertisement
+            </div>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">How to Password Protect a PDF</h2>
+              <p class="mt-4">
+                The Protect PDF tab adds encryption to an unprotected PDF. Select the document, enter a document open password, confirm that password, and choose whether the output should allow printing, copying, annotations, or general modifications. The tool then creates a new encrypted PDF that requires the open password.
+              </p>
+              <p class="mt-4">
+                The open password should be unique and difficult to guess. Avoid names, birthdays, addresses, document titles, company names, phone numbers, common keyboard patterns, or passwords reused for email and banking accounts. A longer password made from several unrelated words, numbers, and symbols is usually stronger than a short complex-looking password.
+              </p>
+              <p class="mt-4">
+                The owner password should be different from the open password. The owner password controls document permissions and may allow a compatible PDF application to change security settings. When the owner-password field is left blank, this page generates a random password for the output. The generated password is displayed after processing so it can be saved securely.
+              </p>
+              <p class="mt-4">
+                Always retain an original unprotected backup in a secure location. Losing the password may make the protected PDF inaccessible. NodnWebTools cannot recover a forgotten password because passwords and documents are not intentionally stored by the page.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">Understanding PDF Open and Owner Passwords</h2>
+              <h3 class="mt-6 text-xl font-bold text-slate-900">Document open password</h3>
+              <p class="mt-3">
+                The document open password prevents the PDF from being viewed until the correct password is entered. It is appropriate when the content itself should remain confidential. Examples include salary information, personal statements, customer records, internal reports, private correspondence, tax documents, and identification scans.
+              </p>
+
+              <h3 class="mt-6 text-xl font-bold text-slate-900">Owner password</h3>
+              <p class="mt-3">
+                The owner password controls permissions and security changes. A recipient may be able to open the PDF without knowing the owner password but may encounter restrictions on printing, copying, editing, commenting, assembling pages, or extracting content. The exact behavior depends on the PDF reader.
+              </p>
+
+              <h3 class="mt-6 text-xl font-bold text-slate-900">Why the passwords should be different</h3>
+              <p class="mt-3">
+                Using the same password for both roles weakens permission separation. A recipient who knows the open password may then also possess the password needed to alter restrictions. Using separate passwords provides clearer access control, although PDF permissions should never be treated as an absolute digital rights management system.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">PDF Printing, Copying, and Editing Permissions</h2>
+              <p class="mt-4">
+                PDF permissions are settings included in the encrypted document. Compatible PDF readers inspect these settings and decide whether to enable functions such as printing, selecting text, copying images, editing document content, adding comments, or filling forms.
+              </p>
+              <p class="mt-4">
+                Printing permission determines whether recipients can print the PDF. Copying permission affects text and image extraction. Annotation permission affects comments and related interactive changes. Modification permission controls broader document editing. When a permission is disabled, the created PDF requests that compatible readers prevent that activity.
+              </p>
+              <p class="mt-4">
+                Permission restrictions are not guaranteed to stop every technically capable user or every application. Some software may ignore restrictions, and a person who can view information may potentially reproduce it through screenshots, photographs, retyping, or other methods. Do not rely on permission flags alone for highly sensitive, regulated, copyrighted, or commercially valuable information.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">How to Unlock a Password-Protected PDF</h2>
+              <p class="mt-4">
+                The Unlock PDF tab creates an unencrypted copy when the user supplies a valid password. This operation is useful when an authorized document no longer needs password protection, when a personal archive requires easier access, or when a trusted workflow does not accept encrypted PDFs.
+              </p>
+              <p class="mt-4">
+                Select the encrypted PDF, enter the correct password, confirm that you are authorized to remove protection, and choose Unlock PDF. If the password is valid and the encryption method is supported, the browser creates a downloadable unencrypted copy.
+              </p>
+              <p class="mt-4">
+                Unlocking does not discover, guess, crack, or bypass an unknown password. The correct password must be provided. The tool should not be used to access documents without the owner’s knowledge or authorization.
+              </p>
+              <p class="mt-4">
+                After unlocking, review the output in a trusted PDF reader. Confirm that all pages, fonts, images, links, forms, annotations, attachments, and other required elements remain available. Keep the protected original until the unlocked copy has been fully verified.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">How to Remove PDF Restrictions</h2>
+              <p class="mt-4">
+                A PDF may open without asking for a password but still block printing, copying, editing, or commenting. In that situation, the file may use an empty user password combined with a non-empty owner password. The Remove Restriction tab uses an authorized owner or permissions password to create an unrestricted copy.
+              </p>
+              <p class="mt-4">
+                Removing restrictions is appropriate when the document owner has decided that the permissions are no longer necessary, when an organization is migrating its own records, when an archived document must be made editable, or when a recipient has explicit permission to create an unrestricted version.
+              </p>
+              <p class="mt-4">
+                Copyright, contract, confidentiality, licensing, privacy, employment, educational, and regulatory obligations continue to apply after technical restrictions are removed. The ability to create an unrestricted copy does not create permission to distribute, reproduce, modify, publish, sell, or disclose the document.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">Popular Uses for PDF Password Protection</h2>
+
+              <h3 class="mt-6 text-xl font-bold text-slate-900">Protecting financial documents</h3>
+              <p class="mt-3">
+                Bank statements, accounting records, invoices, tax documents, payroll information, investment statements, and budget reports may contain personal or commercially sensitive data. Password encryption can add a layer of access control before a PDF is emailed or stored.
+              </p>
+
+              <h3 class="mt-6 text-xl font-bold text-slate-900">Securing business reports</h3>
+              <p class="mt-3">
+                Internal presentations, forecasts, pricing lists, project plans, customer reports, operational reviews, proposals, and strategic documents may be intended for a limited audience. Protecting the PDF can reduce casual unauthorized access if the file is forwarded or stored in the wrong location.
+              </p>
+
+              <h3 class="mt-6 text-xl font-bold text-slate-900">Sharing personal records</h3>
+              <p class="mt-3">
+                Identification scans, employment records, school documents, insurance forms, travel records, and household documents may need to be shared with a trusted recipient. A password should be communicated through a separate channel rather than included in the same email as the protected file.
+              </p>
+
+              <h3 class="mt-6 text-xl font-bold text-slate-900">Managing educational files</h3>
+              <p class="mt-3">
+                Educators may protect answer keys, assessments, student records, grading documents, and internal teaching materials. Students may protect portfolios or documents containing personal details before sharing them with an institution.
+              </p>
+
+              <h3 class="mt-6 text-xl font-bold text-slate-900">Limiting document printing and copying</h3>
+              <p class="mt-3">
+                Authors, designers, consultants, and businesses may apply permission settings to drafts, previews, manuals, reports, or licensed material. These settings communicate intended usage but should not be considered impossible to bypass.
+              </p>
+            </section>
+
+            <div class="ad-box my-12" role="complementary" aria-label="Advertisement placeholder">
+              Advertisement
+            </div>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">Tips for Creating a Strong PDF Password</h2>
+              <p class="mt-4">
+                Use a password that is at least twelve characters long, with sixteen or more characters preferred for sensitive documents. Length is a major contributor to password strength. Consider using a passphrase made from several unrelated words combined with numbers or punctuation.
+              </p>
+              <p class="mt-4">
+                Do not reuse a password from another service. A password exposed through an unrelated data breach should not provide access to protected documents. Use a password manager when possible to generate and store unique credentials.
+              </p>
+              <p class="mt-4">
+                Avoid predictable substitutions such as replacing the letter O with zero or adding a single exclamation mark to a common word. Automated password-guessing tools account for common patterns. Randomness and length are more valuable than superficial complexity.
+              </p>
+              <p class="mt-4">
+                Share the password separately from the PDF. For example, send the document by email and communicate the password by phone, secure messaging, or another approved channel. Sending the password in the same message as the file reduces the benefit of encryption if the message is compromised.
+              </p>
+              <p class="mt-4">
+                Confirm that the recipient can open the PDF before deleting any source files. Some older PDF readers may not support modern encryption. Encourage recipients to use an updated and trusted PDF application.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">AES-256 PDF Encryption</h2>
+              <p class="mt-4">
+                The Protect PDF function requests modern 256-bit PDF encryption from the processing engine. AES-256 is commonly used for strong PDF password protection and is supported by current PDF applications. The practical security of the resulting document still depends heavily on password quality.
+              </p>
+              <p class="mt-4">
+                A strong encryption algorithm cannot compensate for a short or easily guessed password. Attackers may attempt dictionary words, leaked credentials, personal information, and common password patterns. Use a long, unique password and handle it securely.
+              </p>
+              <p class="mt-4">
+                Compatibility should also be considered. Modern desktop and mobile PDF readers generally support current encryption standards, but legacy software may have difficulty opening a strongly encrypted file. Test the output before using it in a critical workflow.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">PDF Password Protection Is Not Redaction</h2>
+              <p class="mt-4">
+                Password protection controls access to the PDF as a whole. It does not permanently remove selected text, images, metadata, hidden layers, comments, attachments, or previous content. If information must never be disclosed, use a professional redaction workflow that permanently removes the underlying data.
+              </p>
+              <p class="mt-4">
+                Placing a black rectangle over sensitive text is not necessarily secure redaction. The covered text may remain selectable, searchable, extractable, or visible when the overlay is removed. Password protection cannot correct an improperly redacted document.
+              </p>
+              <p class="mt-4">
+                Before sharing a sensitive PDF, inspect document properties, comments, form fields, attachments, layers, hidden text, and metadata. Organizations handling legal, medical, financial, governmental, or regulated information should follow approved redaction and document-handling procedures.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">PDF Encryption and Digital Signatures</h2>
+              <p class="mt-4">
+                Encrypting, decrypting, or changing PDF permissions may alter the document structure and invalidate an existing digital signature. A digital signature is linked to the document’s bytes and is designed to reveal changes made after signing.
+              </p>
+              <p class="mt-4">
+                Do not unlock, restrict, encrypt, or otherwise transform a digitally signed contract, certificate, government record, regulated form, or approval document unless the workflow explicitly permits that change. Preserve the signed original and consult the responsible organization when signature validity matters.
+              </p>
+              <p class="mt-4">
+                Password encryption and digital signatures address different security goals. Encryption primarily protects confidentiality and access. Digital signatures support authenticity, integrity, and signer verification. One does not replace the other.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">Privacy and Browser Security Considerations</h2>
+              <p class="mt-4">
+                Local browser processing can reduce the need to transfer confidential files to an external document service. However, the security of the workflow still depends on the device, operating system, browser, extensions, downloaded software, storage location, and user behavior.
+              </p>
+              <p class="mt-4">
+                Avoid processing sensitive documents on public computers, shared workstations, borrowed devices, or systems that may contain malware. Do not save confidential results to an unencrypted public downloads folder when organizational policy requires secure storage.
+              </p>
+              <p class="mt-4">
+                Clear downloaded files and browser data when using a temporary environment. Remember that operating systems, backup software, cloud synchronization tools, antivirus applications, and browser download histories may retain information about files.
+              </p>
+              <p class="mt-4">
+                For highly regulated or classified documents, use an organization-approved offline application and follow applicable security procedures. A general browser utility may not satisfy legal, contractual, data residency, audit, or compliance requirements.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">Compatibility and Technical Limitations</h2>
+              <p class="mt-4">
+                Standard PDFs using commonly supported encryption methods should work, but some documents may fail. Possible causes include corruption, unusual encryption, certificate-based security, digital rights management, unsupported PDF extensions, very large files, damaged cross-reference data, embedded portfolios, or browser memory limits.
+              </p>
+              <p class="mt-4">
+                Certificate-encrypted PDFs cannot necessarily be unlocked with a simple password. Enterprise rights-management systems may enforce access through accounts, devices, certificates, or online authorization rather than standard PDF passwords. This tool does not bypass those systems.
+              </p>
+              <p class="mt-4">
+                The browser needs enough memory to hold the source PDF, WebAssembly engine, processing data, and output PDF. Large files may fail on older phones or low-memory computers. Close unnecessary tabs and applications before processing a large document.
+              </p>
+              <p class="mt-4">
+                Browser privacy settings, content blockers, network filters, or restrictive security policies may prevent the WebAssembly module from loading. When the security engine cannot initialize, use a current browser or host the required dependency files on the same website.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">Responsible Use of PDF Security Tools</h2>
+              <p class="mt-4">
+                Use PDF unlocking and restriction removal only for documents that you own or are authorized to modify. Password knowledge does not automatically establish ownership, copyright permission, or lawful access. Workplace policies, contracts, licenses, court orders, privacy laws, and copyright rules may limit what can be done with a document.
+              </p>
+              <p class="mt-4">
+                This tool is not designed to crack passwords, evade access controls, defeat digital rights management, or access another person’s confidential information. It requires the password supplied by the authorized user.
+              </p>
+              <p class="mt-4">
+                Organizations should maintain clear procedures for password creation, password transmission, key recovery, document retention, access termination, and secure destruction. Individual users should keep original backups and record important passwords in a reputable password manager.
+              </p>
+            </section>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <div class="mb-8">
+        <p class="text-sm font-bold uppercase tracking-[0.2em] text-indigo-600">Continue Working</p>
+        <h2 class="mt-2 text-3xl font-black tracking-tight text-slate-950">Related Tools</h2>
+        <p class="mt-3 max-w-3xl text-slate-600">
+          Organize, compress, combine, and review PDF documents using these related browser-based utilities.
+        </p>
+      </div>
+
+      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <a href="/pdf-page-editor" class="tool-card-hover group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-violet-50 text-2xl">📝</div>
+          <h3 class="mt-4 text-lg font-black text-slate-900 group-hover:text-indigo-700">PDF Page Editor</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-500">Rotate, delete, reorder, duplicate, and extract individual PDF pages.</p>
+        </a>
+
+        <a href="/pdf-compressor" class="tool-card-hover group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-50 text-2xl">🗜️</div>
+          <h3 class="mt-4 text-lg font-black text-slate-900 group-hover:text-indigo-700">PDF Compressor</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-500">Reduce the file size of scanned and image-heavy PDF documents.</p>
+        </a>
+
+        <a href="/pdf-merger-splitter" class="tool-card-hover group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-sky-50 text-2xl">📑</div>
+          <h3 class="mt-4 text-lg font-black text-slate-900 group-hover:text-indigo-700">PDF Merger & Splitter</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-500">Combine multiple PDF documents or divide one PDF into smaller files.</p>
+        </a>
+
+        <a href="/document-viewer" class="tool-card-hover group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-2xl">👁️</div>
+          <h3 class="mt-4 text-lg font-black text-slate-900 group-hover:text-indigo-700">Document Viewer</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-500">Open and preview common document formats directly in your browser.</p>
+        </a>
+
+        <a href="/zip-extractor" class="tool-card-hover group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-50 text-2xl">🗂️</div>
+          <h3 class="mt-4 text-lg font-black text-slate-900 group-hover:text-indigo-700">ZIP Extractor</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-500">Open ZIP archives and download selected files with local processing.</p>
+        </a>
+
+        <a href="/qr-generator" class="tool-card-hover group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-fuchsia-50 text-2xl">▦</div>
+          <h3 class="mt-4 text-lg font-black text-slate-900 group-hover:text-indigo-700">QR Code Generator</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-500">Create downloadable QR codes for links, text, contact details, and more.</p>
+        </a>
+      </div>
+    </section>
+
+    <section class="mx-auto w-full max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
+      <div class="ad-box" role="complementary" aria-label="Advertisement placeholder">
+        Advertisement
+      </div>
+    </section>
+
+    <section class="border-t border-slate-200 bg-white">
+      <div class="mx-auto w-full max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
+        <div class="mb-10">
+          <p class="text-sm font-bold uppercase tracking-[0.2em] text-indigo-600">Questions and Answers</p>
+          <h2 class="mt-2 text-3xl font-black tracking-tight text-slate-950">PDF Security FAQ</h2>
+        </div>
+
+        <div class="space-y-4">
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">Are my PDF files uploaded to a server?</summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              The document-processing workflow is designed to run locally in your browser. The selected PDF and entered passwords are not intentionally uploaded to a NodnWebTools processing server.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">What encryption does Protect PDF use?</summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              The protection workflow requests modern 256-bit PDF encryption from the PDF processing engine. Compatibility depends on the PDF reader used to open the output.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">Can the tool recover a forgotten PDF password?</summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              No. The Unlock PDF function requires a valid password. The tool does not crack, recover, guess, or bypass unknown passwords.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">What is the difference between unlocking and removing restrictions?</summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              Unlocking removes encryption that requires a password to open the PDF. Removing restrictions creates a copy without printing, copying, annotation, or editing limitations.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">Can PDF restrictions be enforced by every reader?</summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              No. PDF permissions are respected by compatible applications, but they are not an absolute method of preventing copying or reproduction.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">Will PDF security changes affect digital signatures?</summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              They may. Encrypting, decrypting, or changing permissions modifies the document and may invalidate existing digital signatures.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">Why should I keep an original backup?</summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              A forgotten password, incompatible reader, processing failure, or unexpected document change may make the output difficult to use. Keep the original until the result has been fully reviewed.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">Can I use the tool on a phone or tablet?</summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              Yes, when the browser supports WebAssembly and modern file APIs. Large PDFs may process more reliably on a computer with additional memory.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="mx-auto w-full max-w-5xl px-4 py-12 sm:px-6 lg:px-8">
+      <div class="rounded-3xl bg-slate-900 p-6 text-slate-300 shadow-xl sm:p-8">
+        <h2 class="text-2xl font-black text-white">Legal and Security Disclaimer</h2>
+        <div class="mt-4 space-y-4 text-sm leading-7">
+          <p>
+            This PDF Security tool is provided for general document-management convenience. It is not a substitute for professional cybersecurity, legal, privacy, compliance, records-management, digital-forensics, or information-governance advice.
+          </p>
+          <p>
+            Use Unlock PDF and Remove Restriction only on documents that you own or are explicitly authorized to modify. Password knowledge does not automatically establish ownership, copyright permission, contractual permission, or lawful authority.
+          </p>
+          <p>
+            PDF permission settings are not guaranteed to prevent copying, printing, screenshots, photography, extraction, editing, redistribution, or disclosure. Do not rely on PDF permissions as the sole protection for highly sensitive, classified, regulated, copyrighted, or commercially valuable information.
+          </p>
+          <p>
+            Encryption, decryption, and permission changes may affect digital signatures, certificates, forms, annotations, attachments, metadata, accessibility features, scripts, bookmarks, links, portfolios, and other advanced PDF functions. Always review the downloaded file and keep an original backup.
+          </p>
+          <p>
+            NodnWebTools cannot recover forgotten passwords and is not responsible for inaccessible documents, invalidated signatures, data loss, corrupted output, rejected submissions, security incidents, unauthorized disclosure, legal consequences, browser failures, or direct or indirect damages arising from use of this tool.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="mx-auto w-full max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
+      <div class="ad-box" role="complementary" aria-label="Advertisement placeholder">
+        Advertisement
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-slate-200 bg-white">
+    <div class="mx-auto flex w-full max-w-7xl flex-col gap-3 px-4 py-8 text-sm text-slate-500 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
+      <p>© <span id="currentYear"></span> NodnWebTools. All rights reserved.</p>
+      <a href="https://nodntools.com" class="font-semibold text-slate-600 transition hover:text-indigo-700">
+        Back to NodnWebTools
+      </a>
+    </div>
+  </footer>
+
+  <script type="module">
+    const pdfInput = document.getElementById("pdfInput");
+    const dropZone = document.getElementById("dropZone");
+    const fileCard = document.getElementById("fileCard");
+    const fileName = document.getElementById("fileName");
+    const fileSize = document.getElementById("fileSize");
+    const fileSecurityStatus = document.getElementById("fileSecurityStatus");
+    const removeFileButton = document.getElementById("removeFileButton");
+
+    const securityTabs = [...document.querySelectorAll(".security-tab")];
+    const securityPanels = [...document.querySelectorAll(".security-panel")];
+
+    const openPassword = document.getElementById("openPassword");
+    const confirmOpenPassword = document.getElementById("confirmOpenPassword");
+    const ownerPassword = document.getElementById("ownerPassword");
+    const passwordMeter = document.getElementById("passwordMeter");
+    const passwordStrength = document.getElementById("passwordStrength");
+    const passwordLength = document.getElementById("passwordLength");
+    const passwordMatchStatus = document.getElementById("passwordMatchStatus");
+
+    const allowPrinting = document.getElementById("allowPrinting");
+    const allowCopying = document.getElementById("allowCopying");
+    const allowAnnotations = document.getElementById("allowAnnotations");
+    const allowModifications = document.getElementById("allowModifications");
+    const acknowledgePasswordRisk = document.getElementById("acknowledgePasswordRisk");
+
+    const unlockPassword = document.getElementById("unlockPassword");
+    const authorizedUnlock = document.getElementById("authorizedUnlock");
+    const restrictionPassword = document.getElementById("restrictionPassword");
+    const authorizedRestrictionRemoval = document.getElementById("authorizedRestrictionRemoval");
+
+    const protectButton = document.getElementById("protectButton");
+    const unlockButton = document.getElementById("unlockButton");
+    const removeRestrictionsButton = document.getElementById("removeRestrictionsButton");
+
+    const warningBox = document.getElementById("warningBox");
+    const progressSection = document.getElementById("progressSection");
+    const progressLabel = document.getElementById("progressLabel");
+    const progressPercent = document.getElementById("progressPercent");
+    const progressBar = document.getElementById("progressBar");
+    const statusMessage = document.getElementById("statusMessage");
+
+    const resultCard = document.getElementById("resultCard");
+    const resultTitle = document.getElementById("resultTitle");
+    const resultDescription = document.getElementById("resultDescription");
+    const resultFileName = document.getElementById("resultFileName");
+    const resultFileSize = document.getElementById("resultFileSize");
+    const ownerPasswordResult = document.getElementById("ownerPasswordResult");
+    const generatedOwnerPassword = document.getElementById("generatedOwnerPassword");
+    const copyOwnerPasswordButton = document.getElementById("copyOwnerPasswordButton");
+    const downloadResultButton = document.getElementById("downloadResultButton");
+    const startOverButton = document.getElementById("startOverButton");
+
+    let selectedFile = null;
+    let selectedBytes = null;
+    let outputBlob = null;
+    let outputFileName = "";
+    let activeTab = "protect";
+    let qpdfRunner = null;
+    let isProcessing = false;
+    let generatedOwnerPasswordValue = "";
+
+    function formatBytes(bytes) {
+      if (!Number.isFinite(bytes) || bytes < 0) return "—";
+      if (bytes === 0) return "0 B";
+
+      const units = ["B", "KB", "MB", "GB"];
+      const index = Math.min(
+        Math.floor(Math.log(bytes) / Math.log(1024)),
+        units.length - 1
+      );
+      const value = bytes / Math.pow(1024, index);
+
+      return `${value.toFixed(value >= 10 || index === 0 ? 1 : 2)} ${units[index]}`;
+    }
+
+    function setWarning(message = "") {
+      warningBox.textContent = message;
+      warningBox.classList.toggle("hidden", !message);
+    }
+
+    function setStatus(message = "", type = "neutral") {
+      statusMessage.textContent = message;
+      statusMessage.className = "mt-5 min-h-6 text-center text-sm font-semibold";
+
+      if (type === "success") {
+        statusMessage.classList.add("text-emerald-600");
+      } else if (type === "error") {
+        statusMessage.classList.add("text-rose-600");
+      } else {
+        statusMessage.classList.add("text-slate-500");
+      }
+    }
+
+    function updateProgress(percent, label) {
+      const safePercent = Math.max(0, Math.min(100, Math.round(percent)));
+      progressSection.classList.remove("hidden");
+      progressLabel.textContent = label;
+      progressPercent.textContent = `${safePercent}%`;
+      progressBar.style.width = `${safePercent}%`;
+    }
+
+    function hideProgress() {
+      progressSection.classList.add("hidden");
+      progressPercent.textContent = "0%";
+      progressBar.style.width = "0%";
+    }
+
+    function clearResult() {
+      outputBlob = null;
+      outputFileName = "";
+      generatedOwnerPasswordValue = "";
+      resultCard.classList.add("hidden");
+      ownerPasswordResult.classList.add("hidden");
+      generatedOwnerPassword.textContent = "";
+    }
+
+    function setProcessing(processing) {
+      isProcessing = processing;
+      protectButton.disabled = processing;
+      unlockButton.disabled = processing;
+      removeRestrictionsButton.disabled = processing;
+      removeFileButton.disabled = processing;
+      pdfInput.disabled = processing;
+    }
+
+    function setActiveTab(tabName) {
+      activeTab = tabName;
+
+      securityTabs.forEach(tab => {
+        tab.setAttribute("aria-selected", String(tab.dataset.tab === tabName));
+      });
+
+      securityPanels.forEach(panel => {
+        panel.classList.toggle("hidden", panel.id !== `${tabName}Panel`);
+      });
+
+      clearResult();
+      setWarning("");
+      setStatus("");
+    }
+
+    function generateStrongPassword(length = 24) {
+      const characters =
+        "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789!@#$%&*+-_=.?";
+      const randomValues = new Uint32Array(length);
+      crypto.getRandomValues(randomValues);
+
+      return Array.from(
+        randomValues,
+        value => characters[value % characters.length]
+      ).join("");
+    }
+
+    function evaluatePassword(password) {
+      let score = 0;
+
+      if (password.length >= 8) score++;
+      if (password.length >= 12) score++;
+      if (password.length >= 16) score++;
+      if (/[a-z]/.test(password) && /[A-Z]/.test(password)) score++;
+      if (/\d/.test(password)) score++;
+      if (/[^A-Za-z0-9]/.test(password)) score++;
+
+      return Math.min(score, 5);
+    }
+
+    function updatePasswordMeter() {
+      const password = openPassword.value;
+      const score = evaluatePassword(password);
+      const widths = [0, 20, 40, 60, 80, 100];
+      const labels = [
+        "Enter a password",
+        "Very weak",
+        "Weak",
+        "Fair",
+        "Strong",
+        "Very strong"
+      ];
+      const colors = [
+        "bg-rose-500",
+        "bg-rose-500",
+        "bg-orange-500",
+        "bg-amber-500",
+        "bg-indigo-500",
+        "bg-emerald-500"
+      ];
+
+      passwordMeter.style.width = `${widths[score]}%`;
+      passwordMeter.className =
+        `password-meter-bar h-full rounded-full ${colors[score]}`;
+      passwordStrength.textContent = labels[score];
+      passwordLength.textContent =
+        `${password.length} character${password.length === 1 ? "" : "s"}`;
+
+      updatePasswordMatch();
+    }
+
+    function updatePasswordMatch() {
+      const first = openPassword.value;
+      const second = confirmOpenPassword.value;
+
+      if (!second) {
+        passwordMatchStatus.textContent = "Passwords must match.";
+        passwordMatchStatus.className =
+          "mt-2 text-xs font-semibold text-slate-400";
+      } else if (first === second) {
+        passwordMatchStatus.textContent = "Passwords match.";
+        passwordMatchStatus.className =
+          "mt-2 text-xs font-semibold text-emerald-600";
+      } else {
+        passwordMatchStatus.textContent = "Passwords do not match.";
+        passwordMatchStatus.className =
+          "mt-2 text-xs font-semibold text-rose-600";
+      }
+    }
+
+    async function handleFile(file) {
+      setWarning("");
+      setStatus("");
+      clearResult();
+
+      if (!file) return;
+
+      const isPdf =
+        file.type === "application/pdf" ||
+        file.name.toLowerCase().endsWith(".pdf");
+
+      if (!isPdf) {
+        setWarning("Please choose a valid PDF file.");
+        return;
+      }
+
+      if (file.size === 0) {
+        setWarning("The selected PDF file is empty.");
+        return;
+      }
+
+      if (file.size > 50 * 1024 * 1024) {
+        setWarning(
+          "This PDF is larger than 50 MB. Processing may require substantial memory or fail on some devices."
+        );
+      }
+
+      try {
+        selectedFile = file;
+        selectedBytes = new Uint8Array(await file.arrayBuffer());
+
+        fileCard.classList.remove("hidden");
+        fileName.textContent = file.name;
+        fileSize.textContent = formatBytes(file.size);
+        fileSecurityStatus.textContent = "Security status: ready for processing";
+
+        setStatus("PDF loaded successfully.", "success");
+      } catch (error) {
+        console.error(error);
+        resetFile();
+        setWarning("The selected PDF could not be read by the browser.");
+      }
+    }
+
+    function resetFile() {
+      selectedFile = null;
+      selectedBytes = null;
+      pdfInput.value = "";
+      fileCard.classList.add("hidden");
+      fileName.textContent = "";
+      fileSize.textContent = "";
+      fileSecurityStatus.textContent = "Security status: not checked";
+      clearResult();
+      hideProgress();
+      setStatus("");
+    }
+
+    async function loadQpdfRunner() {
+      if (qpdfRunner) return qpdfRunner;
+
+      updateProgress(12, "Loading the PDF security engine...");
+
+      const moduleCandidates = [
+        "https://esm.sh/qpdf-run",
+        "https://cdn.jsdelivr.net/npm/qpdf-run/+esm"
+      ];
+
+      let lastError = null;
+
+      for (const moduleUrl of moduleCandidates) {
+        try {
+          const module = await import(moduleUrl);
+
+          const candidate =
+            module.runQpdf ||
+            module.runQPDF ||
+            module.qpdf ||
+            module.run ||
+            module.default;
+
+          if (typeof candidate === "function") {
+            qpdfRunner = async (inputBytes, args) => {
+              const attempts = [
+                () => candidate(inputBytes, args),
+                () => candidate(args, inputBytes),
+                () => candidate({
+                  input: inputBytes,
+                  data: inputBytes,
+                  bytes: inputBytes,
+                  args,
+                  arguments: args,
+                  inputName: "input.pdf",
+                  outputName: "output.pdf"
+                })
+              ];
+
+              let executionError = null;
+
+              for (const attempt of attempts) {
+                try {
+                  const result = await attempt();
+                  return normalizeQpdfResult(result);
+                } catch (error) {
+                  executionError = error;
+                }
+              }
+
+              throw executionError || new Error("The PDF engine returned no output.");
+            };
+
+            updateProgress(28, "PDF security engine ready.");
+            return qpdfRunner;
+          }
+
+          if (candidate && typeof candidate.run === "function") {
+            qpdfRunner = async (inputBytes, args) => {
+              const result = await candidate.run(inputBytes, args);
+              return normalizeQpdfResult(result);
+            };
+
+            updateProgress(28, "PDF security engine ready.");
+            return qpdfRunner;
+          }
+        } catch (error) {
+          lastError = error;
+          console.warn(`Unable to load ${moduleUrl}`, error);
+        }
+      }
+
+      throw lastError || new Error("Unable to initialize the PDF security engine.");
+    }
+
+    function normalizeQpdfResult(result) {
+      if (result instanceof Uint8Array) return result;
+
+      if (result instanceof ArrayBuffer) {
+        return new Uint8Array(result);
+      }
+
+      if (result instanceof Blob) {
+        return result.arrayBuffer().then(buffer => new Uint8Array(buffer));
+      }
+
+      if (result && result.output instanceof Uint8Array) {
+        return result.output;
+      }
+
+      if (result && result.data instanceof Uint8Array) {
+        return result.data;
+      }
+
+      if (result && result.bytes instanceof Uint8Array) {
+        return result.bytes;
+      }
+
+      if (result && result.output instanceof ArrayBuffer) {
+        return new Uint8Array(result.output);
+      }
+
+      if (result && result.data instanceof ArrayBuffer) {
+        return new Uint8Array(result.data);
+      }
+
+      if (result && Array.isArray(result.output)) {
+        return new Uint8Array(result.output);
+      }
+
+      if (result && Array.isArray(result.data)) {
+        return new Uint8Array(result.data);
+      }
+
+      throw new Error("The PDF security engine returned an unsupported result.");
+    }
+
+    function qpdfProtectArguments(userPassword, permissionsPassword) {
+      const printOption = allowPrinting.checked ? "full" : "none";
+      const extractOption = allowCopying.checked ? "y" : "n";
+
+      let modifyOption = "none";
+
+      if (allowModifications.checked) {
+        modifyOption = "all";
+      } else if (allowAnnotations.checked) {
+        modifyOption = "annotate";
+      }
+
+      return [
+        "--encrypt",
+        userPassword,
+        permissionsPassword,
+        "256",
+        `--print=${printOption}`,
+        `--extract=${extractOption}`,
+        `--modify=${modifyOption}`,
+        "--",
+        "input.pdf",
+        "output.pdf"
+      ];
+    }
+
+    function qpdfDecryptArguments(password) {
+      return [
+        `--password=${password}`,
+        "--decrypt",
+        "input.pdf",
+        "output.pdf"
+      ];
+    }
+
+    async function executePdfOperation({
+      args,
+      outputSuffix,
+      title,
+      description,
+      generatedPassword = ""
+    }) {
+      if (!selectedFile || !selectedBytes) {
+        setWarning("Choose a PDF file before using this tool.");
+        return;
+      }
+
+      if (isProcessing) return;
+
+      setProcessing(true);
+      setWarning("");
+      clearResult();
+      setStatus("Processing your PDF...");
+      updateProgress(5, "Preparing your PDF...");
+
+      try {
+        const runner = await loadQpdfRunner();
+
+        updateProgress(42, "Applying PDF security settings...");
+
+        const resultBytes = await runner(selectedBytes.slice(), args);
+        const normalizedBytes = await Promise.resolve(resultBytes);
+
+        if (!(normalizedBytes instanceof Uint8Array) || normalizedBytes.length < 10) {
+          throw new Error("The generated PDF is empty or invalid.");
+        }
+
+        updateProgress(90, "Preparing your download...");
+
+        outputBlob = new Blob([normalizedBytes], {
+          type: "application/pdf"
+        });
+
+        const baseName = selectedFile.name.replace(/\.pdf$/i, "");
+        outputFileName = `${baseName}-${outputSuffix}.pdf`;
+
+        resultTitle.textContent = title;
+        resultDescription.textContent = description;
+        resultFileName.textContent = outputFileName;
+        resultFileSize.textContent = formatBytes(outputBlob.size);
+
+        if (generatedPassword) {
+          generatedOwnerPasswordValue = generatedPassword;
+          generatedOwnerPassword.textContent = generatedPassword;
+          ownerPasswordResult.classList.remove("hidden");
+        }
+
+        resultCard.classList.remove("hidden");
+        updateProgress(100, "PDF completed.");
+        setStatus("Your secured PDF is ready to download.", "success");
+
+        setTimeout(hideProgress, 700);
+      } catch (error) {
+        console.error(error);
+
+        const message = String(error?.message || error || "").toLowerCase();
+
+        if (
+          message.includes("invalid password") ||
+          message.includes("password") ||
+          message.includes("encrypted")
+        ) {
+          setWarning(
+            "The PDF could not be processed with the supplied password. Confirm that the password is correct and that you are using the appropriate user or owner password."
+          );
+        } else if (
+          message.includes("module") ||
+          message.includes("import") ||
+          message.includes("fetch") ||
+          message.includes("wasm")
+        ) {
+          setWarning(
+            "The browser could not load the PDF security engine. Check your internet connection, disable restrictive content blockers for this page, and try again."
+          );
+        } else {
+          setWarning(
+            "The PDF could not be processed. It may be damaged, use unsupported certificate security, contain unusual encryption, or exceed the available browser memory."
+          );
+        }
+
+        hideProgress();
+        setStatus("PDF processing failed.", "error");
+      } finally {
+        setProcessing(false);
+      }
+    }
+
+    async function protectPdf() {
+      const password = openPassword.value;
+      const confirmation = confirmOpenPassword.value;
+
+      if (!selectedFile) {
+        setWarning("Choose a PDF file before adding password protection.");
+        return;
+      }
+
+      if (password.length < 8) {
+        setWarning("Use a document open password with at least 8 characters.");
+        openPassword.focus();
+        return;
+      }
+
+      if (password !== confirmation) {
+        setWarning("The document open passwords do not match.");
+        confirmOpenPassword.focus();
+        return;
+      }
+
+      if (!acknowledgePasswordRisk.checked) {
+        setWarning("Confirm that you understand the password and backup warning.");
+        return;
+      }
+
+      const permissionsPassword =
+        ownerPassword.value || generateStrongPassword(24);
+
+      if (permissionsPassword === password) {
+        setWarning(
+          "Use a different owner password from the document open password."
+        );
+        ownerPassword.focus();
+        return;
+      }
+
+      await executePdfOperation({
+        args: qpdfProtectArguments(password, permissionsPassword),
+        outputSuffix: "protected",
+        title: "Protected PDF ready",
+        description:
+          "AES-256 password protection and your selected permission settings were applied to the downloaded copy.",
+        generatedPassword: ownerPassword.value ? "" : permissionsPassword
+      });
+    }
+
+    async function unlockPdf() {
+      if (!selectedFile) {
+        setWarning("Choose a password-protected PDF before unlocking.");
+        return;
+      }
+
+      if (!unlockPassword.value) {
+        setWarning("Enter the current PDF password.");
+        unlockPassword.focus();
+        return;
+      }
+
+      if (!authorizedUnlock.checked) {
+        setWarning("Confirm that you are authorized to unlock this PDF.");
+        return;
+      }
+
+      await executePdfOperation({
+        args: qpdfDecryptArguments(unlockPassword.value),
+        outputSuffix: "unlocked",
+        title: "Unlocked PDF ready",
+        description:
+          "Password encryption was removed from the downloaded copy."
+      });
+    }
+
+    async function removeRestrictions() {
+      if (!selectedFile) {
+        setWarning("Choose a restricted PDF before removing restrictions.");
+        return;
+      }
+
+      if (!authorizedRestrictionRemoval.checked) {
+        setWarning(
+          "Confirm that you are authorized to remove this PDF's restrictions."
+        );
+        return;
+      }
+
+      await executePdfOperation({
+        args: qpdfDecryptArguments(restrictionPassword.value),
+        outputSuffix: "unrestricted",
+        title: "Unrestricted PDF ready",
+        description:
+          "Password-based printing, copying, annotation, and editing restrictions were removed from the downloaded copy."
+      });
+    }
+
+    function downloadResult() {
+      if (!outputBlob || !outputFileName) {
+        setWarning("Process a PDF before downloading the result.");
+        return;
+      }
+
+      try {
+        const url = URL.createObjectURL(outputBlob);
+        const anchor = document.createElement("a");
+
+        anchor.href = url;
+        anchor.download = outputFileName;
+        document.body.appendChild(anchor);
+        anchor.click();
+        anchor.remove();
+
+        setTimeout(() => URL.revokeObjectURL(url), 2000);
+        setStatus("Download started.", "success");
+      } catch (error) {
+        console.error(error);
+        setWarning("The browser could not start the download.");
+      }
+    }
+
+    async function copyOwnerPassword() {
+      if (!generatedOwnerPasswordValue) return;
+
+      try {
+        await navigator.clipboard.writeText(generatedOwnerPasswordValue);
+        const previousText = copyOwnerPasswordButton.textContent;
+        copyOwnerPasswordButton.textContent = "Copied!";
+
+        setTimeout(() => {
+          copyOwnerPasswordButton.textContent = previousText;
+        }, 1600);
+      } catch (error) {
+        console.error(error);
+
+        const textArea = document.createElement("textarea");
+        textArea.value = generatedOwnerPasswordValue;
+        textArea.style.position = "fixed";
+        textArea.style.opacity = "0";
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand("copy");
+        textArea.remove();
+
+        copyOwnerPasswordButton.textContent = "Copied!";
+        setTimeout(() => {
+          copyOwnerPasswordButton.textContent = "Copy Password";
+        }, 1600);
+      }
+    }
+
+    function resetTool() {
+      resetFile();
+
+      openPassword.value = "";
+      confirmOpenPassword.value = "";
+      ownerPassword.value = "";
+      unlockPassword.value = "";
+      restrictionPassword.value = "";
+
+      allowPrinting.checked = false;
+      allowCopying.checked = false;
+      allowAnnotations.checked = false;
+      allowModifications.checked = false;
+      acknowledgePasswordRisk.checked = false;
+      authorizedUnlock.checked = false;
+      authorizedRestrictionRemoval.checked = false;
+
+      setWarning("");
+      setStatus("");
+      updatePasswordMeter();
+      setActiveTab("protect");
+    }
+
+    pdfInput.addEventListener("change", event => {
+      const [file] = event.target.files;
+      handleFile(file);
+    });
+
+    ["dragenter", "dragover"].forEach(eventName => {
+      dropZone.addEventListener(eventName, event => {
+        event.preventDefault();
+        event.stopPropagation();
+        dropZone.classList.add("drop-active");
+      });
+    });
+
+    ["dragleave", "drop"].forEach(eventName => {
+      dropZone.addEventListener(eventName, event => {
+        event.preventDefault();
+        event.stopPropagation();
+        dropZone.classList.remove("drop-active");
+      });
+    });
+
+    dropZone.addEventListener("drop", event => {
+      const [file] = event.dataTransfer.files;
+      handleFile(file);
+    });
+
+    securityTabs.forEach(tab => {
+      tab.addEventListener("click", () => setActiveTab(tab.dataset.tab));
+    });
+
+    document.querySelectorAll(".password-toggle").forEach(button => {
+      button.addEventListener("click", () => {
+        const input = document.getElementById(button.dataset.target);
+        input.type = input.type === "password" ? "text" : "password";
+      });
+    });
+
+    openPassword.addEventListener("input", updatePasswordMeter);
+    confirmOpenPassword.addEventListener("input", updatePasswordMatch);
+
+    protectButton.addEventListener("click", protectPdf);
+    unlockButton.addEventListener("click", unlockPdf);
+    removeRestrictionsButton.addEventListener("click", removeRestrictions);
+    removeFileButton.addEventListener("click", resetFile);
+    downloadResultButton.addEventListener("click", downloadResult);
+    copyOwnerPasswordButton.addEventListener("click", copyOwnerPassword);
+    startOverButton.addEventListener("click", resetTool);
+
+    document.getElementById("currentYear").textContent =
+      new Date().getFullYear();
+
+    updatePasswordMeter();
+  </script>
+</body>
+</html>

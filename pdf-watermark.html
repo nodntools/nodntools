@@ -1,0 +1,1999 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PDF Watermark Online | Add Text or Image Watermarks</title>
+    <meta name="description" content="Add text or image watermarks to PDF files online with custom position, opacity, rotation, size, and page range controls.">
+    <meta name="keywords" content="PDF watermark, add watermark to PDF, PDF watermark online, text watermark PDF, image watermark PDF, watermark PDF free, PDF logo watermark, confidential PDF watermark, draft watermark PDF, PDF stamp, browser PDF watermark tool">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:title" content="PDF Watermark Online | Add Text or Image Watermarks">
+    <meta property="og:description" content="Add customizable text or image watermarks to PDF documents directly in your browser.">
+    <meta property="og:type" content="website">
+
+    <meta name="google-adsense-account" content="ca-pub-5282672325821404">
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404" crossorigin="anonymous"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "PDF Watermark Online",
+        "url": "https://nodntools.com/pdf-watermark",
+        "description": "A browser-based PDF watermark tool for adding custom text and image watermarks to PDF documents.",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any",
+        "browserRequirements": "Requires a modern web browser with JavaScript enabled.",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "featureList": [
+            "Add text watermarks to PDF files",
+            "Add image and logo watermarks to PDF files",
+            "Customize watermark opacity",
+            "Rotate PDF watermarks",
+            "Choose watermark position",
+            "Apply watermarks to selected pages",
+            "Preview watermark placement",
+            "Process PDF documents locally in the browser"
+        ]
+    }
+    </script>
+
+    <style>
+        html, body {
+            width: 100%;
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            min-width: 0;
+        }
+
+        body {
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+
+        img, canvas, svg, table, pre, code, iframe {
+            max-width: 100%;
+        }
+
+        button, input, select, textarea {
+            max-width: 100%;
+        }
+
+        .safe-break {
+            overflow-wrap: anywhere;
+            word-break: break-word;
+        }
+
+        .ad-box {
+            width: 100%;
+            min-height: 90px;
+            border: 2px dashed #cbd5e1;
+            background: #f8fafc;
+            color: #94a3b8;
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .drop-active {
+            border-color: #6366f1 !important;
+            background: #eef2ff !important;
+        }
+
+        .watermark-tab {
+            transition: all 0.2s ease;
+        }
+
+        .watermark-tab[aria-selected="true"] {
+            background: #4f46e5;
+            color: #ffffff;
+            border-color: #4f46e5;
+            box-shadow: 0 8px 20px rgba(79, 70, 229, 0.18);
+        }
+
+        .position-button {
+            transition: all 0.2s ease;
+        }
+
+        .position-button[aria-pressed="true"] {
+            background: #4f46e5;
+            color: #ffffff;
+            border-color: #4f46e5;
+        }
+
+        .preview-stage {
+            background-color: #e2e8f0;
+            background-image:
+                linear-gradient(45deg, #cbd5e1 25%, transparent 25%),
+                linear-gradient(-45deg, #cbd5e1 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, #cbd5e1 75%),
+                linear-gradient(-45deg, transparent 75%, #cbd5e1 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0;
+        }
+
+        .preview-paper {
+            position: relative;
+            width: min(100%, 520px);
+            aspect-ratio: 0.707 / 1;
+            background: #ffffff;
+            overflow: hidden;
+            box-shadow: 0 18px 40px rgba(15, 23, 42, 0.2);
+        }
+
+        .preview-paper canvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: contain;
+        }
+
+        .watermark-overlay {
+            position: absolute;
+            pointer-events: none;
+            transform-origin: center;
+            max-width: 90%;
+            max-height: 90%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            white-space: nowrap;
+        }
+
+        .watermark-overlay img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .progress-fill {
+            transition: width 0.25s ease;
+        }
+
+        .related-card {
+            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .related-card:hover {
+            transform: translateY(-4px);
+            border-color: #a5b4fc;
+            box-shadow: 0 16px 34px rgba(15, 23, 42, 0.08);
+        }
+
+        .article-content p {
+            margin-top: 1rem;
+        }
+
+        .article-content h2 {
+            margin-top: 2.5rem;
+        }
+
+        .article-content h3 {
+            margin-top: 1.75rem;
+        }
+
+        @media (max-width: 640px) {
+            .mobile-card {
+                padding: 1rem !important;
+                border-radius: 1rem !important;
+            }
+
+            .mobile-panel {
+                padding: 0.875rem !important;
+            }
+
+            .mobile-preview {
+                min-height: 300px !important;
+                padding: 0.75rem !important;
+            }
+
+            .mobile-button-grid {
+                grid-template-columns: 1fr !important;
+            }
+
+            .mobile-button-grid button,
+            .mobile-button-grid a {
+                width: 100%;
+            }
+
+            .preview-paper {
+                width: min(100%, 360px);
+            }
+
+            h1 {
+                font-size: 2rem !important;
+                line-height: 1.15 !important;
+            }
+
+            h2 {
+                font-size: 1.6rem !important;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .mobile-card {
+                padding: 0.75rem !important;
+                border-radius: 0.875rem !important;
+            }
+
+            .mobile-panel {
+                padding: 0.75rem !important;
+            }
+
+            .ad-box {
+                min-height: 80px;
+                border-radius: 0.75rem;
+                font-size: 0.75rem;
+            }
+
+            .preview-paper {
+                width: min(100%, 290px);
+            }
+
+            button, input, select, textarea {
+                font-size: 0.875rem;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800">
+    <header class="border-b border-slate-200 bg-white">
+        <div class="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
+            <a href="https://nodntools.com" class="safe-break text-xl font-extrabold tracking-tight text-slate-900" aria-label="NodnWebTools home">
+                Nodn<span class="text-indigo-600">WebTools</span>
+            </a>
+
+            <a href="https://nodntools.com" class="rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-indigo-300 hover:text-indigo-700">
+                Home
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <section class="mx-auto w-full max-w-7xl px-4 pt-6 sm:px-6 lg:px-8">
+            <div class="ad-box" role="complementary" aria-label="Advertisement placeholder">
+                Advertisement
+            </div>
+        </section>
+
+        <section class="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+            <div class="mb-8 max-w-4xl">
+                <div class="inline-flex flex-wrap items-center gap-2 rounded-full border border-indigo-200 bg-indigo-50 px-3 py-1 text-sm font-semibold text-indigo-700">
+                    <span>Text Watermark</span>
+                    <span aria-hidden="true">•</span>
+                    <span>Image Watermark</span>
+                    <span aria-hidden="true">•</span>
+                    <span>Local Browser Processing</span>
+                </div>
+
+                <h1 class="mt-4 text-4xl font-black tracking-tight text-slate-950 sm:text-5xl">
+                    PDF Watermark Online
+                </h1>
+
+                <p class="mt-4 text-lg leading-8 text-slate-600">
+                    Add a custom text watermark, company logo, signature, stamp, or image watermark to PDF pages. Control opacity, rotation, size, position, and page range before downloading the watermarked PDF.
+                </p>
+            </div>
+
+            <div class="grid gap-6 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)]">
+                <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+                    <div>
+                        <p class="text-sm font-bold uppercase tracking-[0.15em] text-indigo-600">Add Watermark</p>
+                        <h2 class="mt-2 text-2xl font-black text-slate-950">Upload and customize your PDF</h2>
+                        <p class="mt-2 text-sm leading-6 text-slate-500">
+                            Select a PDF, choose text or image watermark mode, and adjust the appearance.
+                        </p>
+                    </div>
+
+                    <div id="dropZone" class="mobile-panel mt-6 rounded-2xl border-2 border-dashed border-slate-300 bg-slate-50 p-7 text-center transition sm:p-9">
+                        <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-indigo-100 text-indigo-600">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 3.75h7.5l4.5 4.5v10.5A2.25 2.25 0 0117.25 21H6.75A2.25 2.25 0 014.5 18.75V6A2.25 2.25 0 016.75 3.75Z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 3.75v4.5h4.5"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 11.25v6m-3-3h6"/>
+                            </svg>
+                        </div>
+
+                        <h3 class="mt-5 text-xl font-black text-slate-950">Drop your PDF here</h3>
+                        <p class="mt-2 text-sm text-slate-500">or choose a PDF file from your device</p>
+
+                        <label for="pdfInput" class="mt-6 inline-flex cursor-pointer items-center justify-center rounded-xl bg-indigo-600 px-6 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-indigo-700">
+                            Choose PDF
+                        </label>
+
+                        <input id="pdfInput" type="file" accept="application/pdf,.pdf" class="sr-only">
+
+                        <p class="mt-4 text-xs leading-5 text-slate-400">
+                            Recommended maximum size: 50 MB. Password-protected PDFs may need to be unlocked first.
+                        </p>
+                    </div>
+
+                    <div id="fileCard" class="mt-5 hidden rounded-2xl border border-slate-200 bg-white p-4">
+                        <div class="flex items-start gap-3">
+                            <div class="flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-rose-50 text-rose-600">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 3.75h7.5l4.5 4.5v10.5A2.25 2.25 0 0117.25 21H6.75A2.25 2.25 0 014.5 18.75V6A2.25 2.25 0 016.75 3.75Z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 3.75v4.5h4.5"/>
+                                </svg>
+                            </div>
+
+                            <div class="flex-1">
+                                <p id="fileName" class="safe-break font-bold text-slate-950"></p>
+                                <div class="mt-1 flex flex-wrap gap-x-4 gap-y-1 text-sm text-slate-500">
+                                    <span id="fileSize"></span>
+                                    <span id="pageCount"></span>
+                                </div>
+                            </div>
+
+                            <button id="removeFileButton" type="button" class="rounded-lg p-2 text-slate-400 transition hover:bg-slate-100 hover:text-slate-700" aria-label="Remove selected PDF">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="mt-7">
+                        <label class="mb-3 block text-sm font-black uppercase tracking-[0.12em] text-slate-500">
+                            Watermark type
+                        </label>
+
+                        <div class="grid grid-cols-2 gap-3" role="tablist" aria-label="Watermark type">
+                            <button id="textTab" type="button" class="watermark-tab rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-bold text-slate-700" role="tab" aria-selected="true">
+                                Text Watermark
+                            </button>
+
+                            <button id="imageTab" type="button" class="watermark-tab rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-bold text-slate-700" role="tab" aria-selected="false">
+                                Image Watermark
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="textSettings" class="mt-6">
+                        <div>
+                            <label for="watermarkText" class="mb-2 block text-sm font-bold text-slate-800">
+                                Watermark text
+                            </label>
+
+                            <input id="watermarkText" type="text" value="CONFIDENTIAL" maxlength="100" placeholder="Enter watermark text" class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 outline-none transition focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100">
+                        </div>
+
+                        <div class="mt-4 grid gap-4 sm:grid-cols-2">
+                            <div>
+                                <label for="fontFamily" class="mb-2 block text-sm font-bold text-slate-800">
+                                    Font
+                                </label>
+
+                                <select id="fontFamily" class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 outline-none transition focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100">
+                                    <option value="Helvetica">Helvetica</option>
+                                    <option value="HelveticaBold">Helvetica Bold</option>
+                                    <option value="TimesRoman">Times Roman</option>
+                                    <option value="TimesRomanBold">Times Roman Bold</option>
+                                    <option value="Courier">Courier</option>
+                                    <option value="CourierBold">Courier Bold</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label for="textColor" class="mb-2 block text-sm font-bold text-slate-800">
+                                    Text color
+                                </label>
+
+                                <div class="flex gap-2">
+                                    <input id="textColor" type="color" value="#ef4444" class="h-12 w-16 cursor-pointer rounded-xl border border-slate-300 bg-white p-1">
+                                    <input id="textColorHex" type="text" value="#ef4444" maxlength="7" class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 uppercase outline-none transition focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-4">
+                            <div class="mb-2 flex items-center justify-between gap-4">
+                                <label for="textSize" class="text-sm font-bold text-slate-800">Text size</label>
+                                <span id="textSizeValue" class="text-sm font-bold text-indigo-700">48 pt</span>
+                            </div>
+
+                            <input id="textSize" type="range" min="12" max="160" value="48" class="w-full accent-indigo-600">
+                        </div>
+                    </div>
+
+                    <div id="imageSettings" class="mt-6 hidden">
+                        <div>
+                            <label for="imageInput" class="mb-2 block text-sm font-bold text-slate-800">
+                                Watermark image
+                            </label>
+
+                            <label for="imageInput" class="flex cursor-pointer items-center justify-center rounded-2xl border-2 border-dashed border-slate-300 bg-slate-50 p-6 text-center transition hover:border-indigo-400 hover:bg-indigo-50">
+                                <span>
+                                    <span class="block font-bold text-slate-800">Choose PNG or JPG image</span>
+                                    <span class="mt-1 block text-xs leading-5 text-slate-500">Transparent PNG logos usually produce the best result.</span>
+                                </span>
+                            </label>
+
+                            <input id="imageInput" type="file" accept="image/png,image/jpeg,.png,.jpg,.jpeg" class="sr-only">
+                        </div>
+
+                        <div id="imageFileCard" class="mt-4 hidden rounded-xl border border-slate-200 bg-white p-4">
+                            <div class="flex items-center gap-3">
+                                <img id="imageThumb" alt="Selected watermark preview" class="h-14 w-14 rounded-lg border border-slate-200 object-contain">
+                                <div class="flex-1">
+                                    <p id="imageFileName" class="safe-break text-sm font-bold text-slate-900"></p>
+                                    <p id="imageFileSize" class="mt-1 text-xs text-slate-500"></p>
+                                </div>
+                                <button id="removeImageButton" type="button" class="rounded-lg p-2 text-slate-400 transition hover:bg-slate-100 hover:text-slate-700" aria-label="Remove watermark image">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="mt-4">
+                            <div class="mb-2 flex items-center justify-between gap-4">
+                                <label for="imageScale" class="text-sm font-bold text-slate-800">Image size</label>
+                                <span id="imageScaleValue" class="text-sm font-bold text-indigo-700">30%</span>
+                            </div>
+
+                            <input id="imageScale" type="range" min="5" max="90" value="30" class="w-full accent-indigo-600">
+                        </div>
+                    </div>
+
+                    <div class="mt-6 grid gap-4 sm:grid-cols-2">
+                        <div>
+                            <div class="mb-2 flex items-center justify-between gap-4">
+                                <label for="opacity" class="text-sm font-bold text-slate-800">Opacity</label>
+                                <span id="opacityValue" class="text-sm font-bold text-indigo-700">30%</span>
+                            </div>
+
+                            <input id="opacity" type="range" min="5" max="100" value="30" class="w-full accent-indigo-600">
+                        </div>
+
+                        <div>
+                            <div class="mb-2 flex items-center justify-between gap-4">
+                                <label for="rotation" class="text-sm font-bold text-slate-800">Rotation</label>
+                                <span id="rotationValue" class="text-sm font-bold text-indigo-700">-45°</span>
+                            </div>
+
+                            <input id="rotation" type="range" min="-180" max="180" value="-45" class="w-full accent-indigo-600">
+                        </div>
+                    </div>
+
+                    <div class="mt-6">
+                        <label class="mb-3 block text-sm font-bold text-slate-800">Watermark position</label>
+
+                        <div class="grid grid-cols-3 gap-2">
+                            <button type="button" data-position="top-left" class="position-button rounded-xl border border-slate-200 bg-white px-3 py-3 text-xs font-bold text-slate-600" aria-pressed="false">Top Left</button>
+                            <button type="button" data-position="top-center" class="position-button rounded-xl border border-slate-200 bg-white px-3 py-3 text-xs font-bold text-slate-600" aria-pressed="false">Top Center</button>
+                            <button type="button" data-position="top-right" class="position-button rounded-xl border border-slate-200 bg-white px-3 py-3 text-xs font-bold text-slate-600" aria-pressed="false">Top Right</button>
+                            <button type="button" data-position="middle-left" class="position-button rounded-xl border border-slate-200 bg-white px-3 py-3 text-xs font-bold text-slate-600" aria-pressed="false">Middle Left</button>
+                            <button type="button" data-position="center" class="position-button rounded-xl border border-slate-200 bg-white px-3 py-3 text-xs font-bold text-slate-600" aria-pressed="true">Center</button>
+                            <button type="button" data-position="middle-right" class="position-button rounded-xl border border-slate-200 bg-white px-3 py-3 text-xs font-bold text-slate-600" aria-pressed="false">Middle Right</button>
+                            <button type="button" data-position="bottom-left" class="position-button rounded-xl border border-slate-200 bg-white px-3 py-3 text-xs font-bold text-slate-600" aria-pressed="false">Bottom Left</button>
+                            <button type="button" data-position="bottom-center" class="position-button rounded-xl border border-slate-200 bg-white px-3 py-3 text-xs font-bold text-slate-600" aria-pressed="false">Bottom Center</button>
+                            <button type="button" data-position="bottom-right" class="position-button rounded-xl border border-slate-200 bg-white px-3 py-3 text-xs font-bold text-slate-600" aria-pressed="false">Bottom Right</button>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 grid gap-4 sm:grid-cols-2">
+                        <div>
+                            <label for="pageRange" class="mb-2 block text-sm font-bold text-slate-800">
+                                Apply to pages
+                            </label>
+
+                            <input id="pageRange" type="text" placeholder="All pages or 1-3, 5, 8" class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 outline-none transition focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100">
+
+                            <p class="mt-2 text-xs leading-5 text-slate-400">
+                                Leave blank to watermark every page.
+                            </p>
+                        </div>
+
+                        <div>
+                            <label for="layerMode" class="mb-2 block text-sm font-bold text-slate-800">
+                                Watermark layer
+                            </label>
+
+                            <select id="layerMode" class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 outline-none transition focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100">
+                                <option value="above">Above page content</option>
+                                <option value="below">Behind page content</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 rounded-2xl border border-emerald-200 bg-emerald-50 p-4">
+                        <p class="text-sm font-black text-emerald-950">Private browser processing</p>
+                        <p class="mt-1 text-sm leading-6 text-emerald-900">
+                            Your PDF and watermark image are processed locally in your browser. The files are not intentionally uploaded to a NodnWebTools conversion server.
+                        </p>
+                    </div>
+                </section>
+
+                <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+                    <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                        <div>
+                            <p class="text-sm font-bold uppercase tracking-[0.15em] text-indigo-600">Live Preview</p>
+                            <h2 class="mt-2 text-2xl font-black text-slate-950">Watermark result</h2>
+                            <p class="mt-2 text-sm leading-6 text-slate-500">
+                                Preview the first selected PDF page before creating the final file.
+                            </p>
+                        </div>
+
+                        <div id="modeBadge" class="inline-flex w-fit rounded-full bg-indigo-50 px-3 py-1.5 text-xs font-bold text-indigo-700">
+                            Text Watermark
+                        </div>
+                    </div>
+
+                    <div id="previewStage" class="preview-stage mobile-preview mt-6 flex min-h-[620px] items-center justify-center overflow-hidden rounded-2xl border border-slate-300 p-5">
+                        <div id="emptyPreview" class="text-center">
+                            <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-white text-indigo-600 shadow-sm">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 3.75h7.5l4.5 4.5v10.5A2.25 2.25 0 0117.25 21H6.75A2.25 2.25 0 014.5 18.75V6A2.25 2.25 0 016.75 3.75Z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 3.75v4.5h4.5"/>
+                                </svg>
+                            </div>
+
+                            <h3 class="mt-5 text-xl font-black text-slate-900">Upload a PDF to preview</h3>
+                            <p class="mt-2 max-w-sm text-sm leading-6 text-slate-500">
+                                The first selected page and watermark placement will appear here.
+                            </p>
+                        </div>
+
+                        <div id="previewPaper" class="preview-paper hidden rounded-sm">
+                            <canvas id="pdfCanvas"></canvas>
+                            <div id="watermarkOverlay" class="watermark-overlay"></div>
+                        </div>
+                    </div>
+
+                    <div class="mt-5 flex items-center justify-between gap-4">
+                        <button id="previousPageButton" type="button" class="rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-bold text-slate-700 transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-40" disabled>
+                            Previous
+                        </button>
+
+                        <p id="previewPageLabel" class="text-center text-sm font-semibold text-slate-500">
+                            No PDF loaded
+                        </p>
+
+                        <button id="nextPageButton" type="button" class="rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-bold text-slate-700 transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-40" disabled>
+                            Next
+                        </button>
+                    </div>
+
+                    <div id="progressSection" class="mt-6 hidden">
+                        <div class="mb-2 flex items-center justify-between gap-4 text-sm">
+                            <span id="progressLabel" class="safe-break font-semibold text-slate-700">Preparing PDF...</span>
+                            <span id="progressPercent" class="font-bold text-indigo-700">0%</span>
+                        </div>
+
+                        <div class="h-3 overflow-hidden rounded-full bg-slate-200">
+                            <div id="progressBar" class="progress-fill h-full w-0 rounded-full bg-indigo-600"></div>
+                        </div>
+                    </div>
+
+                    <div id="successBox" class="mt-6 hidden rounded-2xl border border-emerald-200 bg-emerald-50 p-5">
+                        <div class="flex items-start gap-3">
+                            <div class="flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-emerald-600 font-black text-white">✓</div>
+
+                            <div>
+                                <h3 class="font-black text-emerald-950">Watermark added successfully</h3>
+                                <p id="successDescription" class="mt-1 text-sm leading-6 text-emerald-800"></p>
+                                <div class="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-xs font-semibold text-emerald-700">
+                                    <span id="resultPages"></span>
+                                    <span id="resultSize"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="warningBox" class="mt-6 hidden rounded-2xl border border-rose-200 bg-rose-50 p-4 text-sm leading-6 text-rose-800" role="alert"></div>
+
+                    <div class="mobile-button-grid mt-6 grid grid-cols-2 gap-3">
+                        <button id="applyButton" type="button" class="rounded-xl bg-indigo-600 px-5 py-3.5 text-sm font-bold text-white shadow-sm transition hover:bg-indigo-700 disabled:cursor-not-allowed disabled:bg-slate-300">
+                            Add Watermark
+                        </button>
+
+                        <button id="downloadButton" type="button" class="hidden rounded-xl bg-emerald-600 px-5 py-3.5 text-sm font-bold text-white shadow-sm transition hover:bg-emerald-700">
+                            Download PDF
+                        </button>
+
+                        <button id="resetButton" type="button" class="col-span-2 rounded-xl border border-slate-300 bg-white px-5 py-3.5 text-sm font-bold text-slate-700 transition hover:bg-slate-50">
+                            Reset Tool
+                        </button>
+                    </div>
+
+                    <p id="statusMessage" class="mt-5 min-h-6 text-center text-sm font-semibold text-slate-500" aria-live="polite"></p>
+                </section>
+            </div>
+        </section>
+
+        <section class="mx-auto w-full max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
+            <div class="ad-box" role="complementary" aria-label="Advertisement placeholder">
+                Advertisement
+            </div>
+        </section>
+
+        <section class="border-y border-slate-200 bg-white">
+            <div class="mx-auto w-full max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
+                <article class="article-content text-base leading-8 text-slate-700">
+                    <p class="text-sm font-bold uppercase tracking-[0.2em] text-indigo-600">Complete PDF Watermark Guide</p>
+
+                    <h2 class="mt-3 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">
+                        Add Text or Image Watermarks to PDF Documents Online
+                    </h2>
+
+                    <p class="mt-5 text-lg leading-8 text-slate-600">
+                        A PDF watermark is a visible text label, logo, image, stamp, signature, or identifying mark placed on one or more pages of a PDF document. Watermarks are commonly used to communicate document status, identify ownership, discourage unauthorized distribution, add branding, indicate confidentiality, or show that a file is a draft, sample, copy, or internal document.
+                    </p>
+
+                    <p>
+                        The NodnWebTools PDF Watermark tool combines text watermark and image watermark functions in one browser-based workspace. Users can upload a PDF, choose the watermark type, adjust appearance controls, select a location, specify page ranges, preview placement, and create a new watermarked PDF without intentionally sending the source file to a remote conversion server.
+                    </p>
+
+                    <h2 class="text-2xl font-black text-slate-950">What Is a PDF Watermark?</h2>
+
+                    <p>
+                        A watermark is an additional visual element placed over or behind the existing content of a document page. Unlike a simple filename or metadata field, a watermark appears directly on the page and remains visible when the PDF is opened, printed, shared, or viewed on another device.
+                    </p>
+
+                    <p>
+                        Common text watermarks include CONFIDENTIAL, DRAFT, SAMPLE, COPY, INTERNAL USE ONLY, APPROVED, PAID, VOID, DO NOT DISTRIBUTE, CLIENT COPY, UNCONTROLLED COPY, and PRELIMINARY. Image watermarks commonly include business logos, personal signatures, department stamps, certification marks, copyright symbols, organization seals, or transparent brand graphics.
+                    </p>
+
+                    <p>
+                        Watermarks can be subtle or prominent. A low-opacity watermark can communicate ownership without making the document difficult to read. A large diagonal watermark can make document status immediately visible. A small logo in a corner can add consistent branding to reports, proposals, invoices, guides, and downloadable resources.
+                    </p>
+
+                    <h2 class="text-2xl font-black text-slate-950">Why Add a Watermark to a PDF?</h2>
+
+                    <p>
+                        PDF watermarks are useful whenever a document needs visible context beyond its original content. A watermark can show who owns the material, how the document should be handled, whether the file is final, and whether the recipient may distribute it.
+                    </p>
+
+                    <h3 class="text-xl font-bold text-slate-900">Document status</h3>
+
+                    <p>
+                        Teams often use watermarks to distinguish drafts from approved documents. A large DRAFT or PRELIMINARY watermark reduces the risk that an unfinished report, contract, design, policy, or presentation will be mistaken for a final version.
+                    </p>
+
+                    <h3 class="text-xl font-bold text-slate-900">Confidentiality notices</h3>
+
+                    <p>
+                        CONFIDENTIAL, PRIVATE, INTERNAL USE ONLY, or DO NOT DISTRIBUTE watermarks provide a visible reminder that the document may contain restricted information. A watermark does not create technical access control, but it can reinforce handling expectations and organizational policy.
+                    </p>
+
+                    <h3 class="text-xl font-bold text-slate-900">Brand identification</h3>
+
+                    <p>
+                        Companies, freelancers, agencies, schools, and nonprofit organizations can place a logo on reports, worksheets, brochures, proposals, case studies, checklists, and customer documents. A consistent image watermark can make PDFs recognizable even when they are downloaded or forwarded outside the original website.
+                    </p>
+
+                    <h3 class="text-xl font-bold text-slate-900">Copyright and ownership reminders</h3>
+
+                    <p>
+                        A copyright notice, creator name, website address, or organization logo can remind readers where the material originated. Watermarks do not replace copyright registration, licenses, contracts, or legal protection, but they can provide visible attribution.
+                    </p>
+
+                    <h3 class="text-xl font-bold text-slate-900">Sample and proof documents</h3>
+
+                    <p>
+                        Designers, photographers, publishers, consultants, and document service providers may add SAMPLE, PROOF, or PREVIEW watermarks before delivering a final paid file. The watermark makes it clear that the document is not the final unrestricted version.
+                    </p>
+
+                    <div class="ad-box my-12" role="complementary" aria-label="Advertisement placeholder">
+                        Advertisement
+                    </div>
+
+                    <h2 class="text-2xl font-black text-slate-950">Text Watermark for PDF Files</h2>
+
+                    <p>
+                        A text watermark is created from a word, phrase, identifier, date, notice, or short message. Text watermarks are flexible because users can change the font, size, color, opacity, rotation, and placement without creating a separate image.
+                    </p>
+
+                    <p>
+                        The tool supports standard PDF fonts such as Helvetica, Times Roman, and Courier. Bold styles are useful for strong status labels, while regular fonts can produce a more subtle ownership notice. Text color can be changed using the color picker or hexadecimal color field.
+                    </p>
+
+                    <p>
+                        Red is commonly used for urgent notices such as CONFIDENTIAL, VOID, or DRAFT. Gray can create a neutral watermark that does not compete heavily with page content. Blue, green, or brand colors may be suitable for approval stamps, organization names, or internal workflow labels.
+                    </p>
+
+                    <p>
+                        Text size should be selected according to the page dimensions and intended visibility. A large diagonal watermark can span the center of a page, while a smaller horizontal watermark can fit in a footer or corner. Very long text may need a smaller font size to remain within the page boundaries.
+                    </p>
+
+                    <h2 class="text-2xl font-black text-slate-950">Image Watermark for PDF Files</h2>
+
+                    <p>
+                        An image watermark allows a PNG or JPG image to be placed on PDF pages. This is useful for company logos, transparent marks, signatures, stamps, seals, icons, certification graphics, or branded designs.
+                    </p>
+
+                    <p>
+                        Transparent PNG files are generally the best choice for logos and signatures because the transparent background allows the PDF content to remain visible around the design. JPG files always contain a rectangular background, which may cover more of the page even when opacity is reduced.
+                    </p>
+
+                    <p>
+                        The image size control adjusts the watermark relative to the PDF page width. A small percentage works well for corner logos. A larger percentage can create a centered ownership mark or visual overlay across the page.
+                    </p>
+
+                    <p>
+                        Image quality depends on the original uploaded watermark file. A low-resolution logo may look blurred when enlarged. For clean output, use a high-quality image with adequate dimensions, especially when applying a large watermark.
+                    </p>
+
+                    <h2 class="text-2xl font-black text-slate-950">How to Add a Watermark to a PDF</h2>
+
+                    <div class="mt-6 grid gap-5 md:grid-cols-2">
+                        <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6">
+                            <h3 class="mt-0 text-lg font-black text-slate-900">1. Upload a PDF</h3>
+                            <p class="mt-3 text-sm leading-7 text-slate-600">
+                                Choose a PDF file or drag it into the upload area. The tool opens the document locally in the browser.
+                            </p>
+                        </div>
+
+                        <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6">
+                            <h3 class="mt-0 text-lg font-black text-slate-900">2. Select watermark type</h3>
+                            <p class="mt-3 text-sm leading-7 text-slate-600">
+                                Choose Text Watermark for typed labels or Image Watermark for a logo, signature, stamp, or graphic.
+                            </p>
+                        </div>
+
+                        <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6">
+                            <h3 class="mt-0 text-lg font-black text-slate-900">3. Customize appearance</h3>
+                            <p class="mt-3 text-sm leading-7 text-slate-600">
+                                Set the text, font, color, size, image scale, opacity, rotation, and layer position.
+                            </p>
+                        </div>
+
+                        <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6">
+                            <h3 class="mt-0 text-lg font-black text-slate-900">4. Choose a position</h3>
+                            <p class="mt-3 text-sm leading-7 text-slate-600">
+                                Place the watermark in the center, corner, edge, top, middle, or bottom of each page.
+                            </p>
+                        </div>
+
+                        <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6">
+                            <h3 class="mt-0 text-lg font-black text-slate-900">5. Select pages</h3>
+                            <p class="mt-3 text-sm leading-7 text-slate-600">
+                                Leave the page field blank for every page or enter a range such as 1-3, 5, 8.
+                            </p>
+                        </div>
+
+                        <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6">
+                            <h3 class="mt-0 text-lg font-black text-slate-900">6. Download the PDF</h3>
+                            <p class="mt-3 text-sm leading-7 text-slate-600">
+                                Review the preview, create the watermarked PDF, and save the result to your device.
+                            </p>
+                        </div>
+                    </div>
+
+                    <h2 class="text-2xl font-black text-slate-950">Watermark Opacity</h2>
+
+                    <p>
+                        Opacity controls how transparent the watermark appears. A value near 100 percent creates a solid and highly visible mark. A lower value allows the original PDF content to show through.
+                    </p>
+
+                    <p>
+                        Subtle ownership marks often use an opacity between approximately 10 and 30 percent. Strong confidentiality labels may use a higher value. The correct opacity depends on page background, text density, watermark color, and whether the document will be viewed on screen or printed.
+                    </p>
+
+                    <p>
+                        A watermark that looks subtle on a bright monitor may appear darker when printed. Test a sample page when preparing important business, legal, educational, or customer-facing documents.
+                    </p>
+
+                    <h2 class="text-2xl font-black text-slate-950">Watermark Rotation</h2>
+
+                    <p>
+                        Rotation changes the angle of the watermark. A diagonal angle such as negative 45 degrees is commonly used for large text watermarks because it crosses the page without looking like normal document content.
+                    </p>
+
+                    <p>
+                        A zero-degree watermark is horizontal and works well for headers, footers, logos, website addresses, approval notices, and signatures. A 90-degree rotation may be useful for placing a vertical label along a page edge.
+                    </p>
+
+                    <p>
+                        The preview provides an approximate representation of rotation and placement. The final PDF uses the document’s actual page dimensions and coordinate system, so minor differences may occur.
+                    </p>
+
+                    <h2 class="text-2xl font-black text-slate-950">Watermark Position Options</h2>
+
+                    <p>
+                        The tool provides nine standard positions: top left, top center, top right, middle left, center, middle right, bottom left, bottom center, and bottom right.
+                    </p>
+
+                    <p>
+                        Center placement is useful for large status labels and ownership marks. Corner placement works well for logos, small copyright notices, signatures, and company branding. Top or bottom center placement can be used for document classifications and footer-style notices.
+                    </p>
+
+                    <p>
+                        Position calculations include a margin so the watermark does not sit directly against the page edge. Very large or heavily rotated watermarks can still extend beyond the page boundary, so review the preview and adjust the size when necessary.
+                    </p>
+
+                    <div class="ad-box my-12" role="complementary" aria-label="Advertisement placeholder">
+                        Advertisement
+                    </div>
+
+                    <h2 class="text-2xl font-black text-slate-950">Applying Watermarks to Selected Pages</h2>
+
+                    <p>
+                        Not every PDF requires a watermark on every page. A cover page may need a logo, while confidential content may begin later in the document. Page range controls allow users to apply the watermark only where it is needed.
+                    </p>
+
+                    <p>
+                        Enter a single page number such as 1, a continuous range such as 2-7, or a combination such as 1-3, 5, 8-10. Leave the field blank to apply the watermark to all pages.
+                    </p>
+
+                    <p>
+                        Page numbers are based on the PDF page order, beginning with page 1. Printed page labels inside the document may not match the actual PDF page index.
+                    </p>
+
+                    <h2 class="text-2xl font-black text-slate-950">Watermark Above or Behind PDF Content</h2>
+
+                    <p>
+                        A watermark placed above page content remains visible even when the page contains solid backgrounds or large images. This is generally the most reliable option for status labels and ownership notices.
+                    </p>
+
+                    <p>
+                        A watermark placed behind page content can look more integrated and less intrusive. However, existing white backgrounds, images, shapes, or opaque page objects may hide some or all of the watermark.
+                    </p>
+
+                    <p>
+                        The visual result depends on how the original PDF page was created. When visibility is essential, choose the above-content option and use an appropriate opacity.
+                    </p>
+
+                    <h2 class="text-2xl font-black text-slate-950">Popular Uses for PDF Watermarks</h2>
+
+                    <h3 class="text-xl font-bold text-slate-900">Confidential business files</h3>
+
+                    <p>
+                        Add CONFIDENTIAL or INTERNAL USE ONLY to financial reports, strategy documents, meeting materials, client files, employee documents, and internal procedures.
+                    </p>
+
+                    <h3 class="text-xl font-bold text-slate-900">Draft contracts and proposals</h3>
+
+                    <p>
+                        Mark incomplete agreements, proposals, policies, specifications, and project plans as DRAFT or PRELIMINARY to reduce the chance of accidental approval or distribution.
+                    </p>
+
+                    <h3 class="text-xl font-bold text-slate-900">Branded downloadable resources</h3>
+
+                    <p>
+                        Add a logo or website address to guides, templates, checklists, worksheets, ebooks, white papers, and educational downloads.
+                    </p>
+
+                    <h3 class="text-xl font-bold text-slate-900">Invoices and payment records</h3>
+
+                    <p>
+                        Add PAID, COPY, VOID, or DUPLICATE labels to invoices, receipts, transaction records, and accounting documents. Users should still preserve official records and verify that the watermark does not alter required information.
+                    </p>
+
+                    <h3 class="text-xl font-bold text-slate-900">Creative proofs and samples</h3>
+
+                    <p>
+                        Photographers, designers, publishers, and agencies can place SAMPLE, PROOF, or a logo over preview documents before final delivery.
+                    </p>
+
+                    <h3 class="text-xl font-bold text-slate-900">Personal signatures and approval marks</h3>
+
+                    <p>
+                        An image watermark can place a scanned signature or approval graphic on selected pages. A visual signature watermark is not automatically equivalent to a secure digital signature and should not be treated as cryptographic proof of identity.
+                    </p>
+
+                    <h2 class="text-2xl font-black text-slate-950">PDF Watermark Privacy and Security</h2>
+
+                    <p>
+                        The watermark workflow is designed to process documents in the browser. PDF-lib reads the source file, adds watermark drawing instructions, and creates a new PDF locally.
+                    </p>
+
+                    <p>
+                        Local processing can reduce the need to send sensitive documents to an online conversion server. This may be useful for business records, school materials, client documents, personal files, reports, and other PDFs that users prefer to keep on their own device.
+                    </p>
+
+                    <p>
+                        Local browser processing does not eliminate every security risk. Browser extensions, malware, shared computers, cloud-synchronized download folders, screen capture tools, backups, and unauthorized device users may still access the source or resulting file.
+                    </p>
+
+                    <p>
+                        External JavaScript libraries are loaded from content delivery networks. Organizations with strict security or software supply-chain requirements should use approved self-hosted libraries and controlled devices.
+                    </p>
+
+                    <h2 class="text-2xl font-black text-slate-950">Watermarks Are Not Access Control</h2>
+
+                    <p>
+                        A visible watermark does not encrypt a PDF, prevent copying, stop screenshots, disable printing, block forwarding, or guarantee that a document cannot be modified. It is a visual communication and identification tool.
+                    </p>
+
+                    <p>
+                        For stronger protection, users may need password encryption, permissions, secure document portals, digital rights management, access logging, expiring links, or cryptographic digital signatures.
+                    </p>
+
+                    <p>
+                        A watermark can discourage casual misuse and provide context, but it should be combined with appropriate security controls when handling sensitive or regulated information.
+                    </p>
+
+                    <h2 class="text-2xl font-black text-slate-950">Watermark Quality Tips</h2>
+
+                    <p>
+                        Use a short text phrase for large diagonal marks. Long sentences may extend beyond the page or require a smaller font size. Choose a color that remains visible without making the original content difficult to read.
+                    </p>
+
+                    <p>
+                        For image watermarks, use a transparent PNG with clean edges and sufficient resolution. Remove unnecessary empty space around the logo because the entire image rectangle is scaled and positioned.
+                    </p>
+
+                    <p>
+                        Test the watermark on pages with different backgrounds. A gray watermark may disappear over a dark image, while a bright red mark may be too strong on a white page. Opacity and color may need adjustment for documents with mixed page designs.
+                    </p>
+
+                    <p>
+                        Always keep an unchanged original copy. Watermarking creates a new PDF, but users should preserve the authoritative source file for editing, compliance, archiving, and verification.
+                    </p>
+
+                    <h2 class="text-2xl font-black text-slate-950">Copyright and Responsible Use</h2>
+
+                    <p>
+                        Adding a watermark does not create ownership rights in material that belongs to another person or organization. Users must have permission to edit, reproduce, brand, label, or distribute the source PDF and any included images, logos, signatures, seals, or trademarks.
+                    </p>
+
+                    <p>
+                        Do not use the tool to falsely claim authorship, imitate an official seal, forge an approval, alter a legal record, create misleading payment status, impersonate another organization, or misrepresent a document’s authenticity.
+                    </p>
+
+                    <p>
+                        Logos, signatures, trademarks, and certification symbols may be protected by intellectual property, identity, contract, or fraud laws. Users are responsible for lawful use and accurate representation.
+                    </p>
+
+                    <h2 class="text-2xl font-black text-slate-950">When to Use Other PDF Tools</h2>
+
+                    <p>
+                        Use PDF Security when the goal is password protection or permission controls. Use PDF OCR when a scanned document needs searchable text. Use PDF Studio or PDF Page Editor to reorder, rotate, extract, delete, or duplicate pages.
+                    </p>
+
+                    <p>
+                        Use PDF Converter when the document needs to be converted to Word, Excel, JPG, PNG, or TXT. Use PDF Compressor when the resulting file needs a smaller size for email, upload limits, or storage.
+                    </p>
+
+                    <p>
+                        PDF Watermark focuses specifically on adding visible text or image marks while preserving the original page content as much as possible.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <section class="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+            <div class="mb-8">
+                <p class="text-sm font-bold uppercase tracking-[0.2em] text-indigo-600">Continue Working</p>
+                <h2 class="mt-2 text-3xl font-black tracking-tight text-slate-950">Related Tools</h2>
+                <p class="mt-3 max-w-3xl text-slate-600">
+                    Use these related PDF tools to secure, edit, convert, organize, and process documents.
+                </p>
+            </div>
+
+            <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                <a href="/pdf-security" class="related-card group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-50 text-2xl">🔐</div>
+                    <h3 class="mt-4 text-lg font-black text-slate-900 group-hover:text-indigo-700">PDF Security</h3>
+                    <p class="mt-2 text-sm leading-6 text-slate-500">Protect PDF documents with passwords and manage authorized restrictions.</p>
+                </a>
+
+                <a href="/pdf-page-editor" class="related-card group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-violet-50 text-2xl">✏️</div>
+                    <h3 class="mt-4 text-lg font-black text-slate-900 group-hover:text-indigo-700">PDF Page Editor</h3>
+                    <p class="mt-2 text-sm leading-6 text-slate-500">Rotate, reorder, delete, duplicate, and extract PDF pages.</p>
+                </a>
+
+                <a href="/pdf-converter" class="related-card group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-50 text-2xl">🔄</div>
+                    <h3 class="mt-4 text-lg font-black text-slate-900 group-hover:text-indigo-700">PDF Converter</h3>
+                    <p class="mt-2 text-sm leading-6 text-slate-500">Convert PDF files to Word, Excel, JPG, PNG, or TXT.</p>
+                </a>
+
+                <a href="/pdf-ocr" class="related-card group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-sky-50 text-2xl">🔍</div>
+                    <h3 class="mt-4 text-lg font-black text-slate-900 group-hover:text-indigo-700">PDF OCR Online</h3>
+                    <p class="mt-2 text-sm leading-6 text-slate-500">Recognize text in scanned PDFs and create searchable files.</p>
+                </a>
+
+                <a href="/pdf-compressor" class="related-card group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-2xl">🗜️</div>
+                    <h3 class="mt-4 text-lg font-black text-slate-900 group-hover:text-indigo-700">PDF Compressor</h3>
+                    <p class="mt-2 text-sm leading-6 text-slate-500">Reduce PDF file size for sharing, storage, and upload limits.</p>
+                </a>
+
+                <a href="/pdf-studio" class="related-card group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-rose-50 text-2xl">📚</div>
+                    <h3 class="mt-4 text-lg font-black text-slate-900 group-hover:text-indigo-700">PDF Studio</h3>
+                    <p class="mt-2 text-sm leading-6 text-slate-500">Merge, split, rotate, reorder, and organize PDF documents.</p>
+                </a>
+            </div>
+        </section>
+
+        <section class="mx-auto w-full max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
+            <div class="ad-box" role="complementary" aria-label="Advertisement placeholder">
+                Advertisement
+            </div>
+        </section>
+
+        <section class="border-t border-slate-200 bg-white">
+            <div class="mx-auto w-full max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
+                <p class="text-sm font-bold uppercase tracking-[0.2em] text-indigo-600">Questions and Answers</p>
+                <h2 class="mt-2 text-3xl font-black tracking-tight text-slate-950">PDF Watermark FAQ</h2>
+
+                <div class="mt-8 space-y-4">
+                    <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+                        <summary class="cursor-pointer list-none font-bold text-slate-900">Can I add a text watermark to every PDF page?</summary>
+                        <p class="mt-3 leading-7 text-slate-600">Yes. Leave the page range field blank to apply the text watermark to every page in the PDF.</p>
+                    </details>
+
+                    <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+                        <summary class="cursor-pointer list-none font-bold text-slate-900">Can I add a company logo to a PDF?</summary>
+                        <p class="mt-3 leading-7 text-slate-600">Yes. Choose Image Watermark and upload a PNG or JPG logo. Transparent PNG images usually provide the cleanest result.</p>
+                    </details>
+
+                    <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+                        <summary class="cursor-pointer list-none font-bold text-slate-900">Are my PDF files uploaded to a server?</summary>
+                        <p class="mt-3 leading-7 text-slate-600">The tool is designed to process the PDF and watermark image locally in the browser rather than intentionally uploading them to a NodnWebTools conversion server.</p>
+                    </details>
+
+                    <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+                        <summary class="cursor-pointer list-none font-bold text-slate-900">Can I apply the watermark only to selected pages?</summary>
+                        <p class="mt-3 leading-7 text-slate-600">Yes. Enter page values such as 1-3, 5, 8-10 to watermark only those pages.</p>
+                    </details>
+
+                    <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+                        <summary class="cursor-pointer list-none font-bold text-slate-900">Can I change watermark transparency?</summary>
+                        <p class="mt-3 leading-7 text-slate-600">Yes. Use the opacity slider to make the text or image watermark more transparent or more visible.</p>
+                    </details>
+
+                    <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+                        <summary class="cursor-pointer list-none font-bold text-slate-900">Can I rotate the watermark?</summary>
+                        <p class="mt-3 leading-7 text-slate-600">Yes. The rotation control supports angles from -180 degrees to 180 degrees.</p>
+                    </details>
+
+                    <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+                        <summary class="cursor-pointer list-none font-bold text-slate-900">Does a watermark prevent copying or screenshots?</summary>
+                        <p class="mt-3 leading-7 text-slate-600">No. A watermark is a visible label and does not provide encryption, access control, screenshot prevention, or digital rights management.</p>
+                    </details>
+
+                    <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+                        <summary class="cursor-pointer list-none font-bold text-slate-900">Can I place a watermark behind the page content?</summary>
+                        <p class="mt-3 leading-7 text-slate-600">Yes. Select Behind Page Content, but existing opaque page backgrounds may hide the watermark.</p>
+                    </details>
+
+                    <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+                        <summary class="cursor-pointer list-none font-bold text-slate-900">Will the original PDF be changed?</summary>
+                        <p class="mt-3 leading-7 text-slate-600">No. The tool creates a new watermarked PDF for download. Keep the original file as your unchanged source.</p>
+                    </details>
+
+                    <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+                        <summary class="cursor-pointer list-none font-bold text-slate-900">Can I use a signature image as a watermark?</summary>
+                        <p class="mt-3 leading-7 text-slate-600">Yes, but a visible signature image is not the same as a cryptographic digital signature and may not provide legal identity verification.</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <section class="mx-auto w-full max-w-5xl px-4 py-12 sm:px-6 lg:px-8">
+            <div class="rounded-3xl bg-slate-900 p-6 text-slate-300 shadow-xl sm:p-8">
+                <h2 class="text-2xl font-black text-white">Legal, Privacy, and Watermark Disclaimer</h2>
+
+                <div class="mt-4 space-y-4 text-sm leading-7">
+                    <p>
+                        This PDF Watermark tool is provided for general document-management and informational convenience. It is not a legal, compliance, copyright, identity-verification, document-authentication, records-management, digital-signature, or security service.
+                    </p>
+
+                    <p>
+                        A visible watermark does not guarantee ownership, confidentiality, authenticity, integrity, access control, copy prevention, printing restrictions, screenshot protection, or protection against editing and removal.
+                    </p>
+
+                    <p>
+                        Users are responsible for confirming that they have permission to edit the PDF and use any uploaded text, logo, image, signature, seal, trademark, certification mark, or copyrighted material.
+                    </p>
+
+                    <p>
+                        Do not use the tool to forge signatures, imitate official seals, misrepresent approvals, alter legal records, create fraudulent payment status, falsely claim ownership, or impersonate another person or organization.
+                    </p>
+
+                    <p>
+                        Watermark placement, visibility, dimensions, opacity, and appearance may vary according to PDF page size, rotation, cropping, background content, browser behavior, image quality, and PDF structure. Review the downloaded PDF before distribution or official use.
+                    </p>
+
+                    <p>
+                        Keep an unchanged original file. NodnWebTools is not responsible for data loss, inaccurate placement, hidden watermarks, printing differences, rejected documents, copyright violations, privacy incidents, unauthorized use, browser failures, or direct or indirect damages resulting from use of this tool.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mx-auto w-full max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
+            <div class="ad-box" role="complementary" aria-label="Advertisement placeholder">
+                Advertisement
+            </div>
+        </section>
+    </main>
+
+    <footer class="border-t border-slate-200 bg-white">
+        <div class="mx-auto flex w-full max-w-7xl flex-col gap-3 px-4 py-8 text-sm text-slate-500 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
+            <p>© <span id="currentYear"></span> NodnWebTools. All rights reserved.</p>
+            <a href="https://nodntools.com" class="font-semibold text-slate-600 transition hover:text-indigo-700">Back to NodnWebTools</a>
+        </div>
+    </footer>
+
+    <script type="module">
+        import * as pdfjsLib from "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.min.mjs";
+
+        pdfjsLib.GlobalWorkerOptions.workerSrc =
+            "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.worker.min.mjs";
+
+        const { PDFDocument, StandardFonts, rgb, degrees } = PDFLib;
+
+        const pdfInput = document.getElementById("pdfInput");
+        const dropZone = document.getElementById("dropZone");
+        const fileCard = document.getElementById("fileCard");
+        const fileName = document.getElementById("fileName");
+        const fileSize = document.getElementById("fileSize");
+        const pageCount = document.getElementById("pageCount");
+        const removeFileButton = document.getElementById("removeFileButton");
+
+        const textTab = document.getElementById("textTab");
+        const imageTab = document.getElementById("imageTab");
+        const textSettings = document.getElementById("textSettings");
+        const imageSettings = document.getElementById("imageSettings");
+        const modeBadge = document.getElementById("modeBadge");
+
+        const watermarkText = document.getElementById("watermarkText");
+        const fontFamily = document.getElementById("fontFamily");
+        const textColor = document.getElementById("textColor");
+        const textColorHex = document.getElementById("textColorHex");
+        const textSize = document.getElementById("textSize");
+        const textSizeValue = document.getElementById("textSizeValue");
+
+        const imageInput = document.getElementById("imageInput");
+        const imageFileCard = document.getElementById("imageFileCard");
+        const imageThumb = document.getElementById("imageThumb");
+        const imageFileName = document.getElementById("imageFileName");
+        const imageFileSize = document.getElementById("imageFileSize");
+        const removeImageButton = document.getElementById("removeImageButton");
+        const imageScale = document.getElementById("imageScale");
+        const imageScaleValue = document.getElementById("imageScaleValue");
+
+        const opacity = document.getElementById("opacity");
+        const opacityValue = document.getElementById("opacityValue");
+        const rotation = document.getElementById("rotation");
+        const rotationValue = document.getElementById("rotationValue");
+        const pageRange = document.getElementById("pageRange");
+        const layerMode = document.getElementById("layerMode");
+        const positionButtons = [...document.querySelectorAll(".position-button")];
+
+        const emptyPreview = document.getElementById("emptyPreview");
+        const previewPaper = document.getElementById("previewPaper");
+        const pdfCanvas = document.getElementById("pdfCanvas");
+        const watermarkOverlay = document.getElementById("watermarkOverlay");
+        const previousPageButton = document.getElementById("previousPageButton");
+        const nextPageButton = document.getElementById("nextPageButton");
+        const previewPageLabel = document.getElementById("previewPageLabel");
+
+        const progressSection = document.getElementById("progressSection");
+        const progressLabel = document.getElementById("progressLabel");
+        const progressPercent = document.getElementById("progressPercent");
+        const progressBar = document.getElementById("progressBar");
+
+        const successBox = document.getElementById("successBox");
+        const successDescription = document.getElementById("successDescription");
+        const resultPages = document.getElementById("resultPages");
+        const resultSize = document.getElementById("resultSize");
+        const warningBox = document.getElementById("warningBox");
+        const applyButton = document.getElementById("applyButton");
+        const downloadButton = document.getElementById("downloadButton");
+        const resetButton = document.getElementById("resetButton");
+        const statusMessage = document.getElementById("statusMessage");
+
+        let selectedPdfFile = null;
+        let selectedPdfBytes = null;
+        let previewPdf = null;
+        let watermarkMode = "text";
+        let selectedPosition = "center";
+        let currentPreviewPage = 1;
+        let selectedImageFile = null;
+        let selectedImageBytes = null;
+        let selectedImageUrl = "";
+        let outputBlob = null;
+        let outputFileName = "";
+        let isProcessing = false;
+
+        function formatBytes(bytes) {
+            if (!Number.isFinite(bytes) || bytes < 0) return "—";
+            if (bytes === 0) return "0 B";
+
+            const units = ["B", "KB", "MB", "GB"];
+            const index = Math.min(
+                Math.floor(Math.log(bytes) / Math.log(1024)),
+                units.length - 1
+            );
+
+            const value = bytes / Math.pow(1024, index);
+            return `${value.toFixed(value >= 10 || index === 0 ? 1 : 2)} ${units[index]}`;
+        }
+
+        function setWarning(message = "") {
+            warningBox.textContent = message;
+            warningBox.classList.toggle("hidden", !message);
+        }
+
+        function setStatus(message = "", type = "neutral") {
+            statusMessage.textContent = message;
+            statusMessage.className = "mt-5 min-h-6 text-center text-sm font-semibold";
+
+            if (type === "success") {
+                statusMessage.classList.add("text-emerald-600");
+            } else if (type === "error") {
+                statusMessage.classList.add("text-rose-600");
+            } else {
+                statusMessage.classList.add("text-slate-500");
+            }
+        }
+
+        function updateProgress(percent, label) {
+            const safePercent = Math.max(0, Math.min(100, Math.round(percent)));
+            progressSection.classList.remove("hidden");
+            progressLabel.textContent = label;
+            progressPercent.textContent = `${safePercent}%`;
+            progressBar.style.width = `${safePercent}%`;
+        }
+
+        function hideProgress() {
+            progressSection.classList.add("hidden");
+            progressLabel.textContent = "Preparing PDF...";
+            progressPercent.textContent = "0%";
+            progressBar.style.width = "0%";
+        }
+
+        function setProcessing(processing) {
+            isProcessing = processing;
+            applyButton.disabled = processing;
+            pdfInput.disabled = processing;
+            imageInput.disabled = processing;
+            removeFileButton.disabled = processing;
+            removeImageButton.disabled = processing;
+        }
+
+        function parsePageRange(value, totalPages) {
+            const trimmed = value.trim();
+
+            if (!trimmed) {
+                return Array.from({ length: totalPages }, (_, index) => index + 1);
+            }
+
+            const pages = new Set();
+
+            for (const rawPart of trimmed.split(",")) {
+                const part = rawPart.trim();
+
+                if (!part) continue;
+
+                if (/^\d+$/.test(part)) {
+                    const page = Number(part);
+
+                    if (page < 1 || page > totalPages) {
+                        throw new Error(`Page ${page} is outside the valid range of 1 to ${totalPages}.`);
+                    }
+
+                    pages.add(page);
+                    continue;
+                }
+
+                const match = part.match(/^(\d+)\s*-\s*(\d+)$/);
+
+                if (!match) {
+                    throw new Error(`Invalid page range segment: "${part}".`);
+                }
+
+                const start = Number(match[1]);
+                const end = Number(match[2]);
+
+                if (
+                    start < 1 ||
+                    end < 1 ||
+                    start > totalPages ||
+                    end > totalPages ||
+                    start > end
+                ) {
+                    throw new Error(`Invalid page range: "${part}".`);
+                }
+
+                for (let page = start; page <= end; page++) {
+                    pages.add(page);
+                }
+            }
+
+            const result = [...pages].sort((a, b) => a - b);
+
+            if (!result.length) {
+                throw new Error("Choose at least one valid page.");
+            }
+
+            return result;
+        }
+
+        function hexToRgbValues(hex) {
+            const clean = hex.replace("#", "");
+            const normalized = clean.length === 3
+                ? clean.split("").map(character => character + character).join("")
+                : clean;
+
+            if (!/^[0-9a-fA-F]{6}$/.test(normalized)) {
+                return { r: 239, g: 68, b: 68 };
+            }
+
+            return {
+                r: parseInt(normalized.slice(0, 2), 16),
+                g: parseInt(normalized.slice(2, 4), 16),
+                b: parseInt(normalized.slice(4, 6), 16)
+            };
+        }
+
+        function normalizeHex(value) {
+            let hex = value.trim();
+
+            if (!hex.startsWith("#")) {
+                hex = `#${hex}`;
+            }
+
+            if (/^#[0-9a-fA-F]{6}$/.test(hex)) {
+                return hex.toLowerCase();
+            }
+
+            return null;
+        }
+
+        function clearOutput() {
+            outputBlob = null;
+            outputFileName = "";
+            successBox.classList.add("hidden");
+            downloadButton.classList.add("hidden");
+        }
+
+        function updateMode(mode) {
+            watermarkMode = mode;
+            textTab.setAttribute("aria-selected", String(mode === "text"));
+            imageTab.setAttribute("aria-selected", String(mode === "image"));
+            textSettings.classList.toggle("hidden", mode !== "text");
+            imageSettings.classList.toggle("hidden", mode !== "image");
+            modeBadge.textContent = mode === "text" ? "Text Watermark" : "Image Watermark";
+            clearOutput();
+            updateWatermarkPreview();
+        }
+
+        function getOverlayPosition() {
+            const map = {
+                "top-left": { left: "6%", top: "7%", transform: "translate(0, 0)" },
+                "top-center": { left: "50%", top: "7%", transform: "translate(-50%, 0)" },
+                "top-right": { right: "6%", top: "7%", transform: "translate(0, 0)" },
+                "middle-left": { left: "6%", top: "50%", transform: "translate(0, -50%)" },
+                "center": { left: "50%", top: "50%", transform: "translate(-50%, -50%)" },
+                "middle-right": { right: "6%", top: "50%", transform: "translate(0, -50%)" },
+                "bottom-left": { left: "6%", bottom: "7%", transform: "translate(0, 0)" },
+                "bottom-center": { left: "50%", bottom: "7%", transform: "translate(-50%, 0)" },
+                "bottom-right": { right: "6%", bottom: "7%", transform: "translate(0, 0)" }
+            };
+
+            return map[selectedPosition] || map.center;
+        }
+
+        function updateWatermarkPreview() {
+            watermarkOverlay.innerHTML = "";
+            watermarkOverlay.removeAttribute("style");
+
+            const position = getOverlayPosition();
+
+            Object.assign(watermarkOverlay.style, position);
+            watermarkOverlay.style.opacity = String(Number(opacity.value) / 100);
+
+            const baseTransform = position.transform || "";
+            watermarkOverlay.style.transform =
+                `${baseTransform} rotate(${rotation.value}deg)`;
+
+            if (watermarkMode === "text") {
+                watermarkOverlay.textContent = watermarkText.value || "WATERMARK";
+                watermarkOverlay.style.color = textColor.value;
+                watermarkOverlay.style.fontSize = `${Math.max(12, Number(textSize.value)) * 0.55}px`;
+                watermarkOverlay.style.fontWeight =
+                    fontFamily.value.includes("Bold") ? "800" : "600";
+
+                if (fontFamily.value.includes("Times")) {
+                    watermarkOverlay.style.fontFamily = "Georgia, serif";
+                } else if (fontFamily.value.includes("Courier")) {
+                    watermarkOverlay.style.fontFamily = "Courier New, monospace";
+                } else {
+                    watermarkOverlay.style.fontFamily = "Arial, sans-serif";
+                }
+            } else if (selectedImageUrl) {
+                const image = document.createElement("img");
+                image.src = selectedImageUrl;
+                image.alt = "";
+                watermarkOverlay.style.width = `${imageScale.value}%`;
+                watermarkOverlay.style.height = "auto";
+                image.style.width = "100%";
+                image.style.height = "auto";
+                watermarkOverlay.appendChild(image);
+            }
+
+            clearOutput();
+        }
+
+        async function handlePdfFile(file) {
+            if (!file || isProcessing) return;
+
+            setWarning("");
+            setStatus("");
+            clearOutput();
+
+            const isPdf =
+                file.type === "application/pdf" ||
+                file.name.toLowerCase().endsWith(".pdf");
+
+            if (!isPdf) {
+                setWarning("Please choose a valid PDF file.");
+                return;
+            }
+
+            if (file.size === 0) {
+                setWarning("The selected PDF file is empty.");
+                return;
+            }
+
+            if (file.size > 50 * 1024 * 1024) {
+                setWarning("This PDF is larger than 50 MB and may require substantial browser memory.");
+            }
+
+            setProcessing(true);
+            updateProgress(10, "Opening PDF...");
+
+            try {
+                selectedPdfFile = file;
+                selectedPdfBytes = new Uint8Array(await file.arrayBuffer());
+
+                previewPdf = await pdfjsLib.getDocument({
+                    data: selectedPdfBytes.slice(),
+                    useSystemFonts: true
+                }).promise;
+
+                fileCard.classList.remove("hidden");
+                fileName.textContent = file.name;
+                fileSize.textContent = formatBytes(file.size);
+                pageCount.textContent =
+                    `${previewPdf.numPages} page${previewPdf.numPages === 1 ? "" : "s"}`;
+
+                currentPreviewPage = 1;
+                emptyPreview.classList.add("hidden");
+                previewPaper.classList.remove("hidden");
+
+                await renderPreviewPage();
+
+                setStatus("PDF loaded successfully. Customize the watermark and preview the result.", "success");
+            } catch (error) {
+                console.error(error);
+                resetPdfOnly();
+
+                const message = String(error?.message || "").toLowerCase();
+
+                if (message.includes("password")) {
+                    setWarning("This PDF is password-protected. Unlock it before adding a watermark.");
+                } else {
+                    setWarning("The PDF could not be opened. It may be damaged, encrypted, unsupported, or too large.");
+                }
+            } finally {
+                setProcessing(false);
+                hideProgress();
+            }
+        }
+
+        async function renderPreviewPage() {
+            if (!previewPdf) return;
+
+            previousPageButton.disabled = currentPreviewPage <= 1;
+            nextPageButton.disabled = currentPreviewPage >= previewPdf.numPages;
+            previewPageLabel.textContent = `Page ${currentPreviewPage} of ${previewPdf.numPages}`;
+
+            const page = await previewPdf.getPage(currentPreviewPage);
+            const baseViewport = page.getViewport({ scale: 1 });
+            const targetWidth = 900;
+            const scale = Math.min(2, targetWidth / baseViewport.width);
+            const viewport = page.getViewport({ scale });
+
+            pdfCanvas.width = Math.ceil(viewport.width);
+            pdfCanvas.height = Math.ceil(viewport.height);
+
+            previewPaper.style.aspectRatio = `${viewport.width} / ${viewport.height}`;
+
+            const context = pdfCanvas.getContext("2d", { alpha: false });
+
+            await page.render({
+                canvasContext: context,
+                viewport,
+                background: "white"
+            }).promise;
+
+            page.cleanup();
+            updateWatermarkPreview();
+        }
+
+        async function handleImageFile(file) {
+            if (!file || isProcessing) return;
+
+            const validTypes = ["image/png", "image/jpeg"];
+
+            if (!validTypes.includes(file.type)) {
+                setWarning("Please choose a PNG or JPG watermark image.");
+                return;
+            }
+
+            if (file.size === 0) {
+                setWarning("The selected watermark image is empty.");
+                return;
+            }
+
+            setWarning("");
+
+            if (selectedImageUrl) {
+                URL.revokeObjectURL(selectedImageUrl);
+            }
+
+            selectedImageFile = file;
+            selectedImageBytes = new Uint8Array(await file.arrayBuffer());
+            selectedImageUrl = URL.createObjectURL(file);
+
+            imageFileCard.classList.remove("hidden");
+            imageThumb.src = selectedImageUrl;
+            imageFileName.textContent = file.name;
+            imageFileSize.textContent = formatBytes(file.size);
+
+            updateWatermarkPreview();
+        }
+
+        function getFontKey() {
+            const map = {
+                Helvetica: StandardFonts.Helvetica,
+                HelveticaBold: StandardFonts.HelveticaBold,
+                TimesRoman: StandardFonts.TimesRoman,
+                TimesRomanBold: StandardFonts.TimesRomanBold,
+                Courier: StandardFonts.Courier,
+                CourierBold: StandardFonts.CourierBold
+            };
+
+            return map[fontFamily.value] || StandardFonts.Helvetica;
+        }
+
+        function calculatePosition(pageWidth, pageHeight, itemWidth, itemHeight, angle) {
+            const margin = Math.max(18, Math.min(pageWidth, pageHeight) * 0.04);
+            const radians = angle * Math.PI / 180;
+            const rotatedWidth =
+                Math.abs(itemWidth * Math.cos(radians)) +
+                Math.abs(itemHeight * Math.sin(radians));
+            const rotatedHeight =
+                Math.abs(itemWidth * Math.sin(radians)) +
+                Math.abs(itemHeight * Math.cos(radians));
+
+            const positions = {
+                "top-left": {
+                    x: margin,
+                    y: pageHeight - margin - rotatedHeight
+                },
+                "top-center": {
+                    x: (pageWidth - rotatedWidth) / 2,
+                    y: pageHeight - margin - rotatedHeight
+                },
+                "top-right": {
+                    x: pageWidth - margin - rotatedWidth,
+                    y: pageHeight - margin - rotatedHeight
+                },
+                "middle-left": {
+                    x: margin,
+                    y: (pageHeight - rotatedHeight) / 2
+                },
+                "center": {
+                    x: (pageWidth - rotatedWidth) / 2,
+                    y: (pageHeight - rotatedHeight) / 2
+                },
+                "middle-right": {
+                    x: pageWidth - margin - rotatedWidth,
+                    y: (pageHeight - rotatedHeight) / 2
+                },
+                "bottom-left": {
+                    x: margin,
+                    y: margin
+                },
+                "bottom-center": {
+                    x: (pageWidth - rotatedWidth) / 2,
+                    y: margin
+                },
+                "bottom-right": {
+                    x: pageWidth - margin - rotatedWidth,
+                    y: margin
+                }
+            };
+
+            const selected = positions[selectedPosition] || positions.center;
+
+            return {
+                x: Math.max(margin, selected.x),
+                y: Math.max(margin, selected.y)
+            };
+        }
+
+        async function addWatermark() {
+            if (!selectedPdfFile || !selectedPdfBytes || !previewPdf) {
+                setWarning("Choose a PDF file before adding a watermark.");
+                return;
+            }
+
+            if (watermarkMode === "text" && !watermarkText.value.trim()) {
+                setWarning("Enter text for the watermark.");
+                watermarkText.focus();
+                return;
+            }
+
+            if (watermarkMode === "image" && !selectedImageBytes) {
+                setWarning("Choose a PNG or JPG watermark image.");
+                return;
+            }
+
+            let selectedPages;
+
+            try {
+                selectedPages = parsePageRange(pageRange.value, previewPdf.numPages);
+            } catch (error) {
+                setWarning(error.message);
+                pageRange.focus();
+                return;
+            }
+
+            setProcessing(true);
+            setWarning("");
+            setStatus("Adding the watermark. Keep this page open.");
+            clearOutput();
+            updateProgress(5, "Preparing PDF...");
+
+            try {
+                const pdfDocument = await PDFDocument.load(selectedPdfBytes.slice(), {
+                    ignoreEncryption: false,
+                    updateMetadata: false
+                });
+
+                let embeddedFont = null;
+                let embeddedImage = null;
+
+                if (watermarkMode === "text") {
+                    embeddedFont = await pdfDocument.embedFont(getFontKey());
+                } else if (selectedImageFile.type === "image/png") {
+                    embeddedImage = await pdfDocument.embedPng(selectedImageBytes);
+                } else {
+                    embeddedImage = await pdfDocument.embedJpg(selectedImageBytes);
+                }
+
+                const pages = pdfDocument.getPages();
+                const alpha = Number(opacity.value) / 100;
+                const angle = Number(rotation.value);
+                const color = hexToRgbValues(textColor.value);
+
+                for (let index = 0; index < selectedPages.length; index++) {
+                    const pageNumber = selectedPages[index];
+                    const page = pages[pageNumber - 1];
+                    const { width, height } = page.getSize();
+
+                    updateProgress(
+                        10 + (index / selectedPages.length) * 75,
+                        `Adding watermark to page ${pageNumber}...`
+                    );
+
+                    if (watermarkMode === "text") {
+                        const fontSize = Number(textSize.value);
+                        const text = watermarkText.value.trim();
+                        const itemWidth = embeddedFont.widthOfTextAtSize(text, fontSize);
+                        const itemHeight = embeddedFont.heightAtSize(fontSize);
+                        const position = calculatePosition(
+                            width,
+                            height,
+                            itemWidth,
+                            itemHeight,
+                            angle
+                        );
+
+                        page.drawText(text, {
+                            x: position.x,
+                            y: position.y,
+                            size: fontSize,
+                            font: embeddedFont,
+                            color: rgb(
+                                color.r / 255,
+                                color.g / 255,
+                                color.b / 255
+                            ),
+                            opacity: alpha,
+                            rotate: degrees(angle)
+                        });
+                    } else {
+                        const dimensions = embeddedImage.scale(1);
+                        const targetWidth = width * (Number(imageScale.value) / 100);
+                        const targetHeight =
+                            targetWidth * (dimensions.height / dimensions.width);
+
+                        const position = calculatePosition(
+                            width,
+                            height,
+                            targetWidth,
+                            targetHeight,
+                            angle
+                        );
+
+                        page.drawImage(embeddedImage, {
+                            x: position.x,
+                            y: position.y,
+                            width: targetWidth,
+                            height: targetHeight,
+                            opacity: alpha,
+                            rotate: degrees(angle)
+                        });
+                    }
+
+                    await new Promise(resolve => setTimeout(resolve, 0));
+                }
+
+                updateProgress(90, "Creating watermarked PDF...");
+
+                const outputBytes = await pdfDocument.save({
+                    useObjectStreams: true,
+                    addDefaultPage: false,
+                    objectsPerTick: 50
+                });
+
+                outputBlob = new Blob([outputBytes], {
+                    type: "application/pdf"
+                });
+
+                const baseName = selectedPdfFile.name.replace(/\.pdf$/i, "");
+                outputFileName = `${baseName}-watermarked.pdf`;
+
+                successDescription.textContent =
+                    `${watermarkMode === "text" ? "Text" : "Image"} watermark applied to the selected PDF pages.`;
+
+                resultPages.textContent =
+                    `${selectedPages.length} page${selectedPages.length === 1 ? "" : "s"}`;
+
+                resultSize.textContent = formatBytes(outputBlob.size);
+
+                successBox.classList.remove("hidden");
+                downloadButton.classList.remove("hidden");
+
+                updateProgress(100, "Watermarked PDF is ready.");
+                setStatus("Watermark added successfully.", "success");
+
+                setTimeout(hideProgress, 800);
+            } catch (error) {
+                console.error(error);
+                setWarning(
+                    "The watermark could not be added. The PDF may be encrypted, damaged, unsupported, or too large for the available browser memory."
+                );
+                setStatus("Watermark processing failed.", "error");
+                hideProgress();
+            } finally {
+                setProcessing(false);
+            }
+        }
+
+        function downloadResult() {
+            if (!outputBlob || !outputFileName) {
+                setWarning("Add the watermark before downloading the result.");
+                return;
+            }
+
+            const url = URL.createObjectURL(outputBlob);
+            const anchor = document.createElement("a");
+            anchor.href = url;
+            anchor.download = outputFileName;
+            document.body.appendChild(anchor);
+            anchor.click();
+            anchor.remove();
+
+            setTimeout(() => URL.revokeObjectURL(url), 2000);
+        }
+
+        function resetPdfOnly() {
+            selectedPdfFile = null;
+            selectedPdfBytes = null;
+            previewPdf = null;
+            pdfInput.value = "";
+            fileCard.classList.add("hidden");
+            emptyPreview.classList.remove("hidden");
+            previewPaper.classList.add("hidden");
+            previousPageButton.disabled = true;
+            nextPageButton.disabled = true;
+            previewPageLabel.textContent = "No PDF loaded";
+            clearOutput();
+        }
+
+        function removeWatermarkImage() {
+            selectedImageFile = null;
+            selectedImageBytes = null;
+            imageInput.value = "";
+
+            if (selectedImageUrl) {
+                URL.revokeObjectURL(selectedImageUrl);
+                selectedImageUrl = "";
+            }
+
+            imageFileCard.classList.add("hidden");
+            imageThumb.removeAttribute("src");
+            imageFileName.textContent = "";
+            imageFileSize.textContent = "";
+            updateWatermarkPreview();
+        }
+
+        function resetTool() {
+            resetPdfOnly();
+            removeWatermarkImage();
+
+            watermarkText.value = "CONFIDENTIAL";
+            fontFamily.value = "Helvetica";
+            textColor.value = "#ef4444";
+            textColorHex.value = "#ef4444";
+            textSize.value = "48";
+            opacity.value = "30";
+            rotation.value = "-45";
+            imageScale.value = "30";
+            pageRange.value = "";
+            layerMode.value = "above";
+
+            selectedPosition = "center";
+            positionButtons.forEach(button => {
+                button.setAttribute(
+                    "aria-pressed",
+                    String(button.dataset.position === "center")
+                );
+            });
+
+            textSizeValue.textContent = "48 pt";
+            opacityValue.textContent = "30%";
+            rotationValue.textContent = "-45°";
+            imageScaleValue.textContent = "30%";
+
+            updateMode("text");
+            setWarning("");
+            setStatus("");
+            hideProgress();
+        }
+
+        pdfInput.addEventListener("change", event => {
+            const [file] = event.target.files;
+            handlePdfFile(file);
+        });
+
+        ["dragenter", "dragover"].forEach(eventName => {
+            dropZone.addEventListener(eventName, event => {
+                event.preventDefault();
+                event.stopPropagation();
+                dropZone.classList.add("drop-active");
+            });
+        });
+
+        ["dragleave", "drop"].forEach(eventName => {
+            dropZone.addEventListener(eventName, event => {
+                event.preventDefault();
+                event.stopPropagation();
+                dropZone.classList.remove("drop-active");
+            });
+        });
+
+        dropZone.addEventListener("drop", event => {
+            const [file] = event.dataTransfer.files;
+            handlePdfFile(file);
+        });
+
+        textTab.addEventListener("click", () => updateMode("text"));
+        imageTab.addEventListener("click", () => updateMode("image"));
+
+        imageInput.addEventListener("change", event => {
+            const [file] = event.target.files;
+            handleImageFile(file);
+        });
+
+        removeImageButton.addEventListener("click", removeWatermarkImage);
+        removeFileButton.addEventListener("click", resetPdfOnly);
+
+        textColor.addEventListener("input", () => {
+            textColorHex.value = textColor.value;
+            updateWatermarkPreview();
+        });
+
+        textColorHex.addEventListener("change", () => {
+            const validHex = normalizeHex(textColorHex.value);
+
+            if (validHex) {
+                textColorHex.value = validHex;
+                textColor.value = validHex;
+                setWarning("");
+            } else {
+                textColorHex.value = textColor.value;
+                setWarning("Enter a valid six-digit hexadecimal color such as #ef4444.");
+            }
+
+            updateWatermarkPreview();
+        });
+
+        textSize.addEventListener("input", () => {
+            textSizeValue.textContent = `${textSize.value} pt`;
+            updateWatermarkPreview();
+        });
+
+        imageScale.addEventListener("input", () => {
+            imageScaleValue.textContent = `${imageScale.value}%`;
+            updateWatermarkPreview();
+        });
+
+        opacity.addEventListener("input", () => {
+            opacityValue.textContent = `${opacity.value}%`;
+            updateWatermarkPreview();
+        });
+
+        rotation.addEventListener("input", () => {
+            rotationValue.textContent = `${rotation.value}°`;
+            updateWatermarkPreview();
+        });
+
+        [watermarkText, fontFamily, layerMode].forEach(element => {
+            element.addEventListener("input", updateWatermarkPreview);
+            element.addEventListener("change", updateWatermarkPreview);
+        });
+
+        positionButtons.forEach(button => {
+            button.addEventListener("click", () => {
+                selectedPosition = button.dataset.position;
+
+                positionButtons.forEach(item => {
+                    item.setAttribute(
+                        "aria-pressed",
+                        String(item === button)
+                    );
+                });
+
+                updateWatermarkPreview();
+            });
+        });
+
+        previousPageButton.addEventListener("click", async () => {
+            if (!previewPdf || currentPreviewPage <= 1) return;
+            currentPreviewPage -= 1;
+            await renderPreviewPage();
+        });
+
+        nextPageButton.addEventListener("click", async () => {
+            if (!previewPdf || currentPreviewPage >= previewPdf.numPages) return;
+            currentPreviewPage += 1;
+            await renderPreviewPage();
+        });
+
+        applyButton.addEventListener("click", addWatermark);
+        downloadButton.addEventListener("click", downloadResult);
+        resetButton.addEventListener("click", resetTool);
+
+        document.getElementById("currentYear").textContent =
+            new Date().getFullYear();
+
+        updateMode("text");
+        updateWatermarkPreview();
+    </script>
+</body>
+</html>

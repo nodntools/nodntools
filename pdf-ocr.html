@@ -1,0 +1,2377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>PDF OCR Online | Convert Scanned PDFs to Searchable Text</title>
+  <meta name="description" content="Run OCR on scanned PDFs and image PDFs online. Extract editable text and create searchable PDF files directly in your browser.">
+  <meta name="keywords" content="PDF OCR, PDF OCR online, scanned PDF OCR, image PDF OCR, OCR PDF to text, searchable PDF converter, extract text from scanned PDF, convert scanned PDF to searchable PDF, online OCR tool, image to text, PDF text recognition, browser OCR, free PDF OCR">
+  <meta name="robots" content="index, follow">
+  <meta name="google-adsense-account" content="ca-pub-5282672325821404">
+
+  <meta property="og:title" content="PDF OCR Online | Convert Scanned PDFs to Searchable Text">
+  <meta property="og:description" content="Recognize text in scanned PDFs and images, download editable text, and create searchable PDF documents in your browser.">
+  <meta property="og:type" content="website">
+
+  <link rel="icon" type="image/png" href="/favicon.png">
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404" crossorigin="anonymous"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.min.mjs" type="module"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "PDF OCR Online",
+    "url": "https://nodntools.com/pdf-ocr",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "description": "A browser-based OCR tool for recognizing text in scanned PDF files and images, exporting editable text, and generating searchable PDF documents.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "featureList": [
+      "OCR scanned PDF documents",
+      "OCR image-only PDF files",
+      "Recognize text in PNG and JPEG images",
+      "Extract editable text",
+      "Copy recognized text",
+      "Download OCR text as TXT",
+      "Create searchable PDF files",
+      "Choose OCR language",
+      "Select PDF page ranges",
+      "Process documents locally in the browser"
+    ]
+  }
+  </script>
+
+  <style>
+    html, body {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      min-width: 0;
+    }
+
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .safe-break {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .mobile-code {
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .ad-box {
+      width: 100%;
+      min-height: 90px;
+      border: 2px dashed #cbd5e1;
+      background: #f8fafc;
+      color: #94a3b8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-radius: 1rem;
+      padding: 1rem;
+      overflow: hidden;
+    }
+
+    .drop-active {
+      border-color: #6366f1 !important;
+      background: #eef2ff !important;
+      transform: scale(1.005);
+    }
+
+    .ocr-tab[aria-selected="true"] {
+      color: #ffffff;
+      background: #4f46e5;
+      border-color: #4f46e5;
+      box-shadow: 0 10px 24px rgba(79, 70, 229, 0.2);
+    }
+
+    .ocr-tab {
+      transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .ocr-tab:hover {
+      transform: translateY(-1px);
+    }
+
+    .progress-bar {
+      transition: width 0.25s ease;
+    }
+
+    .page-result-card,
+    .tool-card-hover {
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .page-result-card:hover,
+    .tool-card-hover:hover {
+      transform: translateY(-3px);
+      border-color: #c7d2fe;
+      box-shadow: 0 16px 34px rgba(15, 23, 42, 0.08);
+    }
+
+    .result-scroll {
+      max-height: 570px;
+      overflow: auto;
+      overscroll-behavior: contain;
+    }
+
+    .preview-canvas,
+    .preview-image {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      margin: 0 auto;
+    }
+
+    .checkerboard {
+      background-color: #f8fafc;
+      background-image:
+        linear-gradient(45deg, #e2e8f0 25%, transparent 25%),
+        linear-gradient(-45deg, #e2e8f0 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #e2e8f0 75%),
+        linear-gradient(-45deg, transparent 75%, #e2e8f0 75%);
+      background-size: 18px 18px;
+      background-position: 0 0, 0 9px, 9px -9px, -9px 0;
+    }
+
+    input[type="checkbox"],
+    input[type="radio"] {
+      accent-color: #4f46e5;
+    }
+
+    @media (max-width: 640px) {
+      .mobile-card {
+        padding: 1rem !important;
+        border-radius: 1rem !important;
+      }
+
+      .mobile-panel {
+        padding: 0.875rem !important;
+      }
+
+      .mobile-preview {
+        min-height: 220px !important;
+      }
+
+      .mobile-button-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .mobile-button-grid button,
+      .mobile-button-grid a {
+        width: 100%;
+      }
+
+      .tab-scroll {
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+        scrollbar-width: thin;
+      }
+
+      .ocr-tab {
+        flex: 0 0 auto;
+      }
+
+      .result-scroll {
+        max-height: 430px;
+      }
+
+      h1 {
+        font-size: 2rem !important;
+        line-height: 1.15 !important;
+      }
+
+      h2 {
+        font-size: 1.6rem !important;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .mobile-card {
+        padding: 0.75rem !important;
+        border-radius: 0.875rem !important;
+      }
+
+      .mobile-panel {
+        padding: 0.75rem !important;
+      }
+
+      .ad-box {
+        min-height: 80px;
+        border-radius: 0.75rem;
+        font-size: 0.75rem;
+      }
+
+      button,
+      a,
+      input,
+      select,
+      textarea {
+        font-size: 0.875rem;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800">
+  <header class="border-b border-slate-200 bg-white">
+    <div class="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
+      <a href="https://nodntools.com" class="safe-break text-xl font-extrabold tracking-tight text-slate-900" aria-label="NodnWebTools home">
+        Nodn<span class="text-indigo-600">WebTools</span>
+      </a>
+
+      <a href="https://nodntools.com" class="rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-indigo-300 hover:text-indigo-700">
+        Home
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <section class="mx-auto w-full max-w-7xl px-4 pt-6 sm:px-6 lg:px-8">
+      <div class="ad-box" role="complementary" aria-label="Advertisement placeholder">
+        Advertisement
+      </div>
+    </section>
+
+    <section class="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+      <div class="mb-8 max-w-4xl">
+        <div class="mb-4 inline-flex flex-wrap items-center gap-2 rounded-full border border-indigo-200 bg-indigo-50 px-3 py-1 text-sm font-semibold text-indigo-700">
+          <span>Browser-based OCR</span>
+          <span aria-hidden="true">•</span>
+          <span>Scanned PDF recognition</span>
+          <span aria-hidden="true">•</span>
+          <span>Searchable PDF output</span>
+        </div>
+
+        <h1 class="text-4xl font-black tracking-tight text-slate-950 sm:text-5xl">
+          PDF OCR Online
+        </h1>
+
+        <p class="mt-4 text-lg leading-8 text-slate-600">
+          Recognize text in scanned PDFs, image-only PDF documents, PNG files, and JPEG images. Copy the OCR result, download editable text, or create a searchable PDF with an invisible text layer.
+        </p>
+      </div>
+
+      <div class="grid gap-6 lg:grid-cols-[minmax(0,0.88fr)_minmax(0,1.12fr)]">
+        <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+          <div>
+            <h2 class="text-2xl font-black text-slate-950">Upload a PDF or image</h2>
+            <p class="mt-2 text-sm leading-6 text-slate-500">
+              Choose a scanned PDF, image PDF, PNG, JPEG, or WebP file from your device.
+            </p>
+          </div>
+
+          <div id="dropZone" class="mobile-panel mt-6 rounded-2xl border-2 border-dashed border-slate-300 bg-slate-50 p-7 text-center transition sm:p-9">
+            <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-indigo-100 text-indigo-600">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 16V4m0 0L7 9m5-5l5 5M5 20h14" />
+              </svg>
+            </div>
+
+            <h3 class="mt-5 text-xl font-black text-slate-950">Drop your file here</h3>
+            <p class="mt-2 text-sm text-slate-500">or browse for a PDF or image on your device</p>
+
+            <label for="sourceInput" class="mt-6 inline-flex cursor-pointer items-center justify-center rounded-xl bg-indigo-600 px-6 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-indigo-700 focus-within:ring-4 focus-within:ring-indigo-100">
+              Choose File
+            </label>
+
+            <input id="sourceInput" type="file" accept="application/pdf,.pdf,image/png,image/jpeg,image/webp,.png,.jpg,.jpeg,.webp" class="sr-only">
+
+            <p class="mt-4 text-xs leading-5 text-slate-400">
+              Recommended maximum: 30 MB or 30 PDF pages. OCR speed depends on page count, image resolution, language, and device performance.
+            </p>
+          </div>
+
+          <div id="fileCard" class="mt-5 hidden rounded-2xl border border-slate-200 bg-white p-4">
+            <div class="flex items-start gap-3">
+              <div id="fileIcon" class="flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-rose-50 text-rose-600">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M14 2v6h6" />
+                </svg>
+              </div>
+
+              <div class="flex-1">
+                <p id="fileName" class="safe-break font-bold text-slate-950"></p>
+                <div class="mt-1 flex flex-wrap gap-x-4 gap-y-1 text-sm text-slate-500">
+                  <span id="fileSize"></span>
+                  <span id="fileType"></span>
+                  <span id="filePageCount"></span>
+                </div>
+              </div>
+
+              <button id="removeFileButton" type="button" class="rounded-lg p-2 text-slate-400 transition hover:bg-slate-100 hover:text-slate-700" aria-label="Remove selected file">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div id="previewSection" class="mt-6 hidden">
+            <div class="mb-3 flex items-center justify-between gap-3">
+              <h3 class="font-black text-slate-900">Source preview</h3>
+              <span id="previewLabel" class="text-xs font-semibold text-slate-500"></span>
+            </div>
+
+            <div class="checkerboard mobile-preview flex min-h-72 items-center justify-center overflow-hidden rounded-2xl border border-slate-200 p-3">
+              <canvas id="pdfPreviewCanvas" class="preview-canvas hidden rounded-lg shadow-sm"></canvas>
+              <img id="imagePreview" class="preview-image hidden max-h-96 rounded-lg shadow-sm" alt="Selected image preview">
+            </div>
+          </div>
+
+          <div class="mt-6 rounded-2xl border border-emerald-200 bg-emerald-50 p-4">
+            <div class="flex items-start gap-3">
+              <svg xmlns="http://www.w3.org/2000/svg" class="mt-0.5 h-5 w-5 flex-none text-emerald-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75l2.25 2.25L15 9.75M12 3l7.5 3v5.25c0 4.972-3.184 8.563-7.5 9.75-4.316-1.187-7.5-4.778-7.5-9.75V6L12 3z" />
+              </svg>
+
+              <div>
+                <p class="text-sm font-black text-emerald-950">Local browser processing</p>
+                <p class="mt-1 text-sm leading-6 text-emerald-900">
+                  The selected file and recognized text are processed in your browser. OCR language data is loaded when needed, but your document is not intentionally uploaded to a NodnWebTools OCR server.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-6 rounded-2xl border border-amber-200 bg-amber-50 p-4">
+            <p class="text-sm font-black text-amber-950">OCR accuracy reminder</p>
+            <p class="mt-1 text-sm leading-6 text-amber-900">
+              Recognition results may contain errors. Always compare names, numbers, dates, totals, addresses, legal terms, medical terms, and other important details with the original document.
+            </p>
+          </div>
+        </section>
+
+        <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+          <div class="rounded-2xl bg-slate-100 p-2">
+            <div class="tab-scroll flex gap-2" role="tablist" aria-label="PDF OCR modes">
+              <button type="button" class="ocr-tab rounded-xl border border-transparent px-4 py-3 text-sm font-bold text-slate-600" data-tab="pdf" role="tab" aria-selected="true">
+                PDF OCR Online
+              </button>
+
+              <button type="button" class="ocr-tab rounded-xl border border-transparent px-4 py-3 text-sm font-bold text-slate-600" data-tab="image" role="tab" aria-selected="false">
+                Image PDF OCR
+              </button>
+
+              <button type="button" class="ocr-tab rounded-xl border border-transparent px-4 py-3 text-sm font-bold text-slate-600" data-tab="scanned" role="tab" aria-selected="false">
+                Scanned PDF OCR
+              </button>
+            </div>
+          </div>
+
+          <div id="pdfPanel" class="ocr-panel mt-6">
+            <div class="flex items-start gap-4">
+              <div class="flex h-12 w-12 flex-none items-center justify-center rounded-xl bg-indigo-100 text-indigo-700">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 3.75h6M9 7.5h6m-7.5 3.75h9m-9 3.75h6" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 2.25h10.5A2.25 2.25 0 0119.5 4.5v15a2.25 2.25 0 01-2.25 2.25H6.75A2.25 2.25 0 014.5 19.5v-15a2.25 2.25 0 012.25-2.25z" />
+                </svg>
+              </div>
+
+              <div>
+                <h2 class="text-2xl font-black text-slate-950">Recognize text in a PDF</h2>
+                <p class="mt-2 text-sm leading-6 text-slate-500">
+                  Render selected PDF pages as images and use optical character recognition to identify visible text.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div id="imagePanel" class="ocr-panel mt-6 hidden">
+            <div class="flex items-start gap-4">
+              <div class="flex h-12 w-12 flex-none items-center justify-center rounded-xl bg-violet-100 text-violet-700">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5l5.25-5.25 4.5 4.5 2.25-2.25L21 19.5M15.75 8.25h.008v.008h-.008V8.25z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 3.75h15a1.5 1.5 0 011.5 1.5v13.5a1.5 1.5 0 01-1.5 1.5h-15a1.5 1.5 0 01-1.5-1.5V5.25a1.5 1.5 0 011.5-1.5z" />
+                </svg>
+              </div>
+
+              <div>
+                <h2 class="text-2xl font-black text-slate-950">OCR an image-based document</h2>
+                <p class="mt-2 text-sm leading-6 text-slate-500">
+                  Recognize text in PNG, JPEG, WebP, screenshots, photographed pages, and image-only documents.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div id="scannedPanel" class="ocr-panel mt-6 hidden">
+            <div class="flex items-start gap-4">
+              <div class="flex h-12 w-12 flex-none items-center justify-center rounded-xl bg-sky-100 text-sky-700">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 6.75V5.25a1.5 1.5 0 011.5-1.5h12a1.5 1.5 0 011.5 1.5v1.5M4.5 17.25v1.5a1.5 1.5 0 001.5 1.5h12a1.5 1.5 0 001.5-1.5v-1.5M3 12h18M7.5 9h9v6h-9z" />
+                </svg>
+              </div>
+
+              <div>
+                <h2 class="text-2xl font-black text-slate-950">Convert a scanned PDF</h2>
+                <p class="mt-2 text-sm leading-6 text-slate-500">
+                  Process scanned pages, extract editable text, and optionally add an invisible searchable text layer to the original PDF.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-7 grid gap-4 sm:grid-cols-2">
+            <div>
+              <label for="ocrLanguage" class="mb-2 block text-sm font-bold text-slate-800">
+                OCR language
+              </label>
+
+              <select id="ocrLanguage" class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm outline-none transition focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100">
+                <option value="eng" selected>English</option>
+                <option value="eng+fra">English + French</option>
+                <option value="eng+spa">English + Spanish</option>
+                <option value="eng+deu">English + German</option>
+                <option value="eng+ita">English + Italian</option>
+                <option value="eng+por">English + Portuguese</option>
+                <option value="eng+nld">English + Dutch</option>
+                <option value="eng+kor">English + Korean</option>
+                <option value="eng+jpn">English + Japanese</option>
+                <option value="eng+chi_sim">English + Simplified Chinese</option>
+                <option value="eng+chi_tra">English + Traditional Chinese</option>
+                <option value="fra">French</option>
+                <option value="spa">Spanish</option>
+                <option value="deu">German</option>
+                <option value="ita">Italian</option>
+                <option value="por">Portuguese</option>
+                <option value="nld">Dutch</option>
+                <option value="kor">Korean</option>
+                <option value="jpn">Japanese</option>
+                <option value="chi_sim">Simplified Chinese</option>
+                <option value="chi_tra">Traditional Chinese</option>
+              </select>
+
+              <p class="mt-2 text-xs leading-5 text-slate-400">
+                Additional language data may take longer to load.
+              </p>
+            </div>
+
+            <div>
+              <label for="pageRange" class="mb-2 block text-sm font-bold text-slate-800">
+                PDF page range
+              </label>
+
+              <input id="pageRange" type="text" placeholder="All pages or 1-3, 5, 8" class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm outline-none transition focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100">
+
+              <p class="mt-2 text-xs leading-5 text-slate-400">
+                Used for PDF files. Leave blank to process every page.
+              </p>
+            </div>
+          </div>
+
+          <div class="mt-5 grid gap-4 sm:grid-cols-2">
+            <div>
+              <label for="renderQuality" class="mb-2 block text-sm font-bold text-slate-800">
+                Recognition quality
+              </label>
+
+              <select id="renderQuality" class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm outline-none transition focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100">
+                <option value="1.5">Fast</option>
+                <option value="2" selected>Balanced</option>
+                <option value="2.5">High quality</option>
+                <option value="3">Maximum quality</option>
+              </select>
+
+              <p class="mt-2 text-xs leading-5 text-slate-400">
+                Higher quality can improve recognition but uses more memory and processing time.
+              </p>
+            </div>
+
+            <div>
+              <label for="pageSegmentationMode" class="mb-2 block text-sm font-bold text-slate-800">
+                Page layout
+              </label>
+
+              <select id="pageSegmentationMode" class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm outline-none transition focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100">
+                <option value="3" selected>Automatic page layout</option>
+                <option value="6">Single text block</option>
+                <option value="4">Multiple columns</option>
+                <option value="11">Sparse text</option>
+                <option value="7">Single text line</option>
+                <option value="8">Single word</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="mt-5 grid gap-4 sm:grid-cols-2">
+            <label class="flex cursor-pointer items-start gap-3 rounded-xl border border-slate-200 bg-slate-50 p-4">
+              <input id="preservePageHeadings" type="checkbox" checked class="mt-1 h-4 w-4">
+
+              <span>
+                <span class="block text-sm font-bold text-slate-800">Add page headings</span>
+                <span class="mt-1 block text-xs leading-5 text-slate-500">Separate recognized text with page-number headings.</span>
+              </span>
+            </label>
+
+            <label class="flex cursor-pointer items-start gap-3 rounded-xl border border-slate-200 bg-slate-50 p-4">
+              <input id="createSearchablePdf" type="checkbox" checked class="mt-1 h-4 w-4">
+
+              <span>
+                <span class="block text-sm font-bold text-slate-800">Create searchable PDF</span>
+                <span class="mt-1 block text-xs leading-5 text-slate-500">Add an invisible OCR text layer behind the original page appearance.</span>
+              </span>
+            </label>
+          </div>
+
+          <div class="mt-5 rounded-2xl border border-indigo-200 bg-indigo-50 p-4">
+            <h3 class="text-sm font-black text-indigo-950">Available results</h3>
+
+            <div class="mt-3 grid gap-2 text-sm text-indigo-900 sm:grid-cols-2">
+              <span>✓ Editable OCR text</span>
+              <span>✓ Copy to clipboard</span>
+              <span>✓ Download TXT file</span>
+              <span>✓ Searchable PDF output</span>
+            </div>
+          </div>
+
+          <button id="startOcrButton" type="button" class="mt-6 w-full rounded-xl bg-indigo-600 px-5 py-3.5 text-sm font-bold text-white shadow-sm transition hover:bg-indigo-700 disabled:cursor-not-allowed disabled:bg-slate-300">
+            Start OCR
+          </button>
+
+          <button id="cancelOcrButton" type="button" class="mt-3 hidden w-full rounded-xl border border-rose-200 bg-rose-50 px-5 py-3 text-sm font-bold text-rose-700 transition hover:bg-rose-100">
+            Cancel OCR
+          </button>
+
+          <div id="warningBox" class="mt-6 hidden rounded-2xl border border-rose-200 bg-rose-50 p-4 text-sm leading-6 text-rose-800" role="alert"></div>
+
+          <div id="progressSection" class="mt-6 hidden">
+            <div class="mb-2 flex items-center justify-between gap-3 text-sm">
+              <span id="progressLabel" class="safe-break font-semibold text-slate-700">Preparing OCR...</span>
+              <span id="progressPercent" class="font-bold text-indigo-700">0%</span>
+            </div>
+
+            <div class="h-3 overflow-hidden rounded-full bg-slate-200">
+              <div id="progressBar" class="progress-bar h-full w-0 rounded-full bg-indigo-600"></div>
+            </div>
+
+            <div class="mt-3 flex flex-wrap items-center justify-between gap-3 text-xs text-slate-500">
+              <span id="progressPage"></span>
+              <span id="progressStage"></span>
+            </div>
+          </div>
+
+          <div id="resultSection" class="mt-6 hidden">
+            <div class="rounded-2xl border border-emerald-200 bg-emerald-50 p-5">
+              <div class="flex items-start gap-3">
+                <div class="flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-emerald-600 font-black text-white">
+                  ✓
+                </div>
+
+                <div class="flex-1">
+                  <h3 class="font-black text-emerald-950">OCR completed</h3>
+                  <p id="resultDescription" class="mt-1 text-sm leading-6 text-emerald-800"></p>
+
+                  <div class="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-xs font-semibold text-emerald-700">
+                    <span id="processedPageStat"></span>
+                    <span id="recognizedWordStat"></span>
+                    <span id="confidenceStat"></span>
+                    <span id="processingTimeStat"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mobile-button-grid mt-4 grid grid-cols-2 gap-3">
+              <button id="copyTextButton" type="button" class="rounded-xl border border-indigo-200 bg-white px-4 py-3 text-sm font-bold text-indigo-700 transition hover:bg-indigo-50">
+                Copy Text
+              </button>
+
+              <button id="downloadTextButton" type="button" class="rounded-xl bg-slate-900 px-4 py-3 text-sm font-bold text-white transition hover:bg-slate-800">
+                Download TXT
+              </button>
+
+              <button id="downloadSearchablePdfButton" type="button" class="rounded-xl bg-indigo-600 px-4 py-3 text-sm font-bold text-white transition hover:bg-indigo-700">
+                Download Searchable PDF
+              </button>
+
+              <button id="resetButton" type="button" class="rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-bold text-slate-700 transition hover:bg-slate-50">
+                Start Over
+              </button>
+            </div>
+
+            <div class="mt-5">
+              <div class="mb-2 flex items-center justify-between gap-3">
+                <label for="ocrTextOutput" class="text-sm font-black text-slate-900">
+                  Recognized text
+                </label>
+
+                <span id="characterStat" class="text-xs font-semibold text-slate-500"></span>
+              </div>
+
+              <textarea id="ocrTextOutput" spellcheck="false" class="mobile-code result-scroll min-h-[420px] w-full resize-y rounded-2xl border border-slate-300 bg-white p-4 font-mono text-sm leading-7 text-slate-700 outline-none transition focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100"></textarea>
+            </div>
+
+            <div id="pageResults" class="mt-6 space-y-4"></div>
+          </div>
+
+          <p id="statusMessage" class="mt-5 min-h-6 text-center text-sm font-semibold text-slate-500" aria-live="polite"></p>
+        </section>
+      </div>
+    </section>
+
+    <section class="mx-auto w-full max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
+      <div class="ad-box" role="complementary" aria-label="Advertisement placeholder">
+        Advertisement
+      </div>
+    </section>
+
+    <section class="border-y border-slate-200 bg-white">
+      <div class="mx-auto w-full max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
+        <article>
+          <div class="mb-12">
+            <p class="text-sm font-bold uppercase tracking-[0.2em] text-indigo-600">Optical Character Recognition Guide</p>
+
+            <h2 class="mt-3 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">
+              Convert Scanned PDFs and Images into Searchable Text
+            </h2>
+
+            <p class="mt-5 text-lg leading-8 text-slate-600">
+              PDF OCR converts visible words in scanned pages, photographed documents, screenshots, and image-only PDF files into machine-readable text. The NodnWebTools PDF OCR Online tool runs optical character recognition directly in a compatible browser, allowing users to copy recognized text, save a TXT document, or produce a searchable PDF that keeps the original page appearance while adding an invisible text layer.
+            </p>
+          </div>
+
+          <div class="space-y-10 text-base leading-8 text-slate-700">
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">What Is PDF OCR?</h2>
+
+              <p class="mt-4">
+                PDF OCR is the process of analyzing page images inside a PDF and recognizing the letters, words, numbers, and punctuation visible in those images. OCR stands for optical character recognition. The technology attempts to transform pixels into editable and searchable characters.
+              </p>
+
+              <p class="mt-4">
+                A regular scanned PDF often contains one photograph or bitmap image for each page. The document may look like a normal digital file, but a user cannot select words, search for a phrase, copy a paragraph, or use the text with screen-reading and indexing tools. OCR adds a text representation that can make the document more useful.
+              </p>
+
+              <p class="mt-4">
+                PDF OCR Online is especially useful for scanned contracts, paper invoices, receipts, printed reports, archived letters, books, manuals, application forms, meeting notes, certificates, historical records, school worksheets, government documents, and photographs of printed pages.
+              </p>
+
+              <p class="mt-4">
+                OCR is not guaranteed to reproduce every character correctly. Recognition quality depends on image resolution, text size, language, font style, lighting, contrast, page rotation, compression, stains, handwriting, columns, tables, and many other characteristics of the source document.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">PDF OCR Is Different from PDF Text Extraction</h2>
+
+              <p class="mt-4">
+                PDF text extraction reads characters that already exist inside a PDF. OCR analyzes visible page pixels and predicts which characters those pixels represent. These processes solve different document problems.
+              </p>
+
+              <p class="mt-4">
+                A digitally created PDF exported from Microsoft Word, Google Docs, a web browser, or design software may already contain selectable text. In that situation, a PDF text extractor is usually faster and more accurate because it retrieves the original character data instead of recognizing the visual appearance.
+              </p>
+
+              <p class="mt-4">
+                A scanned PDF often contains no text data. It may contain only full-page images produced by a scanner or camera. A text extractor can return an empty result because there are no stored words to extract. OCR is required to recognize the words that appear in those images.
+              </p>
+
+              <p class="mt-4">
+                Some PDFs contain both image content and a hidden OCR layer. Running OCR again may create duplicated, conflicting, or less accurate text. Before processing a large document, test whether words are already selectable and searchable in a PDF viewer.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">How Browser-Based PDF OCR Works</h2>
+
+              <p class="mt-4">
+                When a PDF is selected, the browser uses PDF.js to open the document and render each chosen page onto a canvas. The selected recognition quality determines the canvas resolution. A larger scale may preserve smaller text but requires more memory and processing time.
+              </p>
+
+              <p class="mt-4">
+                The rendered page image is passed to Tesseract.js, a JavaScript and WebAssembly implementation of the Tesseract OCR engine. The engine analyzes lines, words, and character shapes according to the selected language and page segmentation mode.
+              </p>
+
+              <p class="mt-4">
+                The recognized output includes plain text and positional word information. The plain text is combined into an editable result. Word positions can also be used to create an invisible text layer on a searchable PDF.
+              </p>
+
+              <p class="mt-4">
+                The tool processes pages sequentially to reduce browser memory pressure. OCR can still be computationally demanding, particularly on mobile devices, older computers, high-resolution pages, and documents with many pages.
+              </p>
+            </section>
+
+            <div class="ad-box my-12" role="complementary" aria-label="Advertisement placeholder">
+              Advertisement
+            </div>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">How to Use PDF OCR Online</h2>
+
+              <div class="mt-6 grid gap-5 md:grid-cols-2">
+                <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6">
+                  <h3 class="text-lg font-black text-slate-900">1. Select a document</h3>
+                  <p class="mt-3 text-sm leading-7 text-slate-600">
+                    Choose a PDF, PNG, JPEG, or WebP file from your device. Scanned and image-only documents are the best candidates for OCR.
+                  </p>
+                </div>
+
+                <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6">
+                  <h3 class="text-lg font-black text-slate-900">2. Choose the OCR language</h3>
+                  <p class="mt-3 text-sm leading-7 text-slate-600">
+                    Select the main language visible in the document. A combined language option can help when pages contain more than one language.
+                  </p>
+                </div>
+
+                <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6">
+                  <h3 class="text-lg font-black text-slate-900">3. Select PDF pages</h3>
+                  <p class="mt-3 text-sm leading-7 text-slate-600">
+                    Leave the page range blank to process every page, or enter a range such as 1-3, 5, 8.
+                  </p>
+                </div>
+
+                <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6">
+                  <h3 class="text-lg font-black text-slate-900">4. Set recognition quality</h3>
+                  <p class="mt-3 text-sm leading-7 text-slate-600">
+                    Balanced quality is suitable for most files. Increase quality for small text or detailed scans when your device has enough memory.
+                  </p>
+                </div>
+
+                <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6">
+                  <h3 class="text-lg font-black text-slate-900">5. Start OCR</h3>
+                  <p class="mt-3 text-sm leading-7 text-slate-600">
+                    The browser loads language data, renders each page, recognizes visible text, and displays progress.
+                  </p>
+                </div>
+
+                <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6">
+                  <h3 class="text-lg font-black text-slate-900">6. Review and download</h3>
+                  <p class="mt-3 text-sm leading-7 text-slate-600">
+                    Correct recognition errors, copy the text, download a TXT file, or save a searchable PDF.
+                  </p>
+                </div>
+              </div>
+            </section>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">What Is an Image PDF?</h2>
+
+              <p class="mt-4">
+                An image PDF is a PDF document whose visible pages are stored mainly as raster images rather than selectable digital text. A scanner commonly creates this type of document. A smartphone scanning application may also photograph a page, adjust its edges, and place the resulting picture inside a PDF container.
+              </p>
+
+              <p class="mt-4">
+                Image PDFs can be difficult to search, quote, index, translate, summarize, or reuse. A person can read the page visually, but software may see only a picture. Image PDF OCR identifies text inside the picture and creates a machine-readable version.
+              </p>
+
+              <p class="mt-4">
+                A document may also contain mixed pages. Some pages may have real text, while others contain scanned attachments, signatures, receipts, or inserted photographs. OCR can be applied to the image pages, but users should avoid creating unnecessary duplicate text on pages that are already searchable.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">What Is a Scanned PDF?</h2>
+
+              <p class="mt-4">
+                A scanned PDF is created by capturing paper pages with a flatbed scanner, sheet-fed scanner, multifunction printer, mobile phone, or camera. Each captured page is stored as an image in a PDF document.
+              </p>
+
+              <p class="mt-4">
+                Scanned PDFs are widely used for archiving signed contracts, historical documents, receipts, invoices, handwritten notes, printed applications, medical records, court files, government forms, educational materials, business correspondence, and manuals.
+              </p>
+
+              <p class="mt-4">
+                OCR makes a scanned PDF searchable by associating recognized words with locations on each page. The page still displays the original scan, while an invisible text layer allows compatible PDF readers to search and select words.
+              </p>
+
+              <p class="mt-4">
+                The searchable layer does not repair the original image. Blurry pages remain blurry, skewed pages remain visually skewed, and stains or shadows remain visible. OCR adds text data but does not replace professional document restoration or scanning.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">What Is a Searchable PDF?</h2>
+
+              <p class="mt-4">
+                A searchable PDF contains character information that allows a PDF reader to search for words and often select or copy them. In an OCR-generated searchable PDF, the original page image remains visible and transparent text is positioned over or behind the image.
+              </p>
+
+              <p class="mt-4">
+                This format is useful because it preserves the appearance of signatures, stamps, formatting, diagrams, handwriting, paper texture, and original page layout while making printed text searchable.
+              </p>
+
+              <p class="mt-4">
+                Searchable PDFs can improve document retrieval, desktop search, internal indexing, electronic archives, knowledge management, and accessibility preparation. However, an OCR text layer is not the same as a fully tagged accessible PDF.
+              </p>
+
+              <p class="mt-4">
+                The searchable PDF generated by this page uses recognized word locations to add invisible text. Complex scripts, rotated text, curved text, vertical writing, tables, and unusual page transformations may not align perfectly.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">Popular Uses for PDF OCR</h2>
+
+              <h3 class="mt-6 text-xl font-bold text-slate-900">Converting scanned invoices and receipts</h3>
+              <p class="mt-3">
+                Businesses and individuals can recognize text in scanned invoices, purchase receipts, statements, and expense documents. The output may help with manual entry, search, categorization, and record review. Financial totals and tax details must always be checked carefully.
+              </p>
+
+              <h3 class="mt-6 text-xl font-bold text-slate-900">Digitizing printed records</h3>
+              <p class="mt-3">
+                OCR can convert archived letters, reports, manuals, forms, and historical documents into searchable text. The original page image should be retained as the authoritative source because recognition may contain errors.
+              </p>
+
+              <h3 class="mt-6 text-xl font-bold text-slate-900">Making scanned contracts searchable</h3>
+              <p class="mt-3">
+                Legal teams and business users may need to find names, dates, clauses, addresses, and obligations in scanned agreements. OCR can support initial search and review, but it must not replace examination of the signed original.
+              </p>
+
+              <h3 class="mt-6 text-xl font-bold text-slate-900">Extracting text from photographed pages</h3>
+              <p class="mt-3">
+                A clear photograph of a sign, letter, worksheet, label, menu, poster, book page, or printed notice can be processed as an image. Straight, evenly lit photographs usually produce better recognition than angled or shadowed images.
+              </p>
+
+              <h3 class="mt-6 text-xl font-bold text-slate-900">Creating searchable research archives</h3>
+              <p class="mt-3">
+                Researchers can apply OCR to scanned reports, journal archives, field documents, historical newspapers, and source materials. Results should be verified before quotation or statistical analysis.
+              </p>
+
+              <h3 class="mt-6 text-xl font-bold text-slate-900">Preparing content for translation</h3>
+              <p class="mt-3">
+                OCR can provide editable source text from an image-based document. Users can then review and correct recognition errors before using a translation tool or professional translator.
+              </p>
+            </section>
+
+            <div class="ad-box my-12" role="complementary" aria-label="Advertisement placeholder">
+              Advertisement
+            </div>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">How to Improve OCR Accuracy</h2>
+
+              <p class="mt-4">
+                Use a high-quality source whenever possible. Clear black text on a clean white background is easier to recognize than faint, blurred, compressed, or decorative text.
+              </p>
+
+              <p class="mt-4">
+                Scan printed documents at approximately 300 dots per inch when practical. Very low resolution can remove important character details. Extremely high resolution can increase processing time without providing a meaningful improvement.
+              </p>
+
+              <p class="mt-4">
+                Keep pages straight. Rotation and perspective distortion can make lines difficult to identify. A mobile scan application that corrects page edges may produce better results than an uncorrected photograph.
+              </p>
+
+              <p class="mt-4">
+                Avoid shadows, reflections, glare, fingers, folded corners, textured backgrounds, and uneven lighting. These visual elements may be mistaken for characters or interfere with line detection.
+              </p>
+
+              <p class="mt-4">
+                Select the correct recognition language. The OCR engine uses language-specific patterns and character sets. Processing French text as English may remove accents or interpret words incorrectly. Asian language data can be larger and may take longer to load.
+              </p>
+
+              <p class="mt-4">
+                Choose an appropriate page layout. Automatic layout works for many documents. Single text block can help with simple pages. Multiple columns may be useful for newspapers and academic papers. Sparse text may help with receipts, diagrams, labels, and forms.
+              </p>
+
+              <p class="mt-4">
+                Process a small page range first. Review the output and adjust language, quality, or page layout before running OCR on a long document.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">OCR Accuracy for Tables and Forms</h2>
+
+              <p class="mt-4">
+                Tables are difficult for general OCR because recognizing characters is different from understanding rows, columns, merged cells, borders, and field relationships. Text may be recognized but returned in an unexpected reading order.
+              </p>
+
+              <p class="mt-4">
+                A form may contain labels, boxes, check marks, typed values, handwritten values, signatures, and lines. General OCR may recognize some printed content but does not guarantee accurate form-field reconstruction.
+              </p>
+
+              <p class="mt-4">
+                Users extracting data from invoices, bank statements, tax forms, medical forms, or financial tables should manually compare every value with the source. A misplaced decimal point, missing negative sign, incorrect date, or confused digit can create a serious error.
+              </p>
+
+              <p class="mt-4">
+                Specialized document-processing systems may provide table detection, key-value extraction, handwriting recognition, and structured data output. This browser OCR page is designed for general visible-text recognition rather than advanced document intelligence.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">OCR Accuracy for Handwriting</h2>
+
+              <p class="mt-4">
+                Tesseract is primarily designed for printed and machine-generated text. Neat block handwriting may occasionally produce recognizable words, but cursive handwriting, signatures, annotations, and irregular notes often produce poor results.
+              </p>
+
+              <p class="mt-4">
+                Handwriting recognition usually requires specialized models trained on handwritten characters and writing styles. This tool should not be relied upon for handwritten legal statements, prescriptions, financial amounts, examination answers, historical manuscripts, or signatures.
+              </p>
+
+              <p class="mt-4">
+                A handwritten page can still be included in a searchable PDF, but the recognized layer may be incomplete or inaccurate. The original scan remains visually available for manual reading.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">OCR Languages and Multilingual Documents</h2>
+
+              <p class="mt-4">
+                The language menu includes several commonly requested recognition options. English can be used alone or combined with languages such as French, Spanish, German, Italian, Portuguese, Dutch, Korean, Japanese, Simplified Chinese, and Traditional Chinese.
+              </p>
+
+              <p class="mt-4">
+                Adding multiple languages can improve mixed-language recognition but may increase download size, initialization time, and ambiguity. Select only the languages that are likely to appear in the source document.
+              </p>
+
+              <p class="mt-4">
+                Language selection does not translate recognized text. It only tells the OCR engine which character shapes and word patterns to expect. Translation is a separate operation.
+              </p>
+
+              <p class="mt-4">
+                Documents containing several writing directions, vertical text, decorative fonts, mathematical notation, chemical formulas, or uncommon symbols may require specialized recognition software.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">Local OCR and Document Privacy</h2>
+
+              <p class="mt-4">
+                This PDF OCR tool is designed to perform recognition in the current browser session. The source file is read into browser memory, PDF pages are rendered locally, and Tesseract.js performs recognition on the device.
+              </p>
+
+              <p class="mt-4">
+                Local processing can reduce the need to upload private documents to a remote OCR service. This may be valuable for personal records, contracts, business documents, school files, receipts, internal reports, identification documents, and other sensitive content.
+              </p>
+
+              <p class="mt-4">
+                The OCR engine and selected language files are loaded from content delivery networks. An internet connection may be required to initialize recognition. Organizations with strict software supply-chain, data residency, or offline requirements should self-host reviewed versions of the required scripts and language data.
+              </p>
+
+              <p class="mt-4">
+                Browser processing does not remove every security risk. Malicious extensions, compromised devices, shared downloads folders, cloud synchronization, clipboard managers, backups, malware, and screen-capture tools may expose information.
+              </p>
+
+              <p class="mt-4">
+                Do not process regulated, classified, medical, legal, governmental, financial, or highly confidential information unless browser-based processing is permitted by your organization and applicable policies.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">Searchable PDF Limitations</h2>
+
+              <p class="mt-4">
+                A searchable PDF created by OCR contains predicted text. Search results therefore depend on recognition accuracy. A misspelled or misrecognized word may not appear in searches.
+              </p>
+
+              <p class="mt-4">
+                Invisible text may not align perfectly with every visible word, especially on rotated, curved, skewed, multi-column, or complex pages. Copying text from the resulting PDF may produce an unexpected order.
+              </p>
+
+              <p class="mt-4">
+                Adding a searchable layer can increase file size. The original images are retained to preserve the page appearance, and additional text objects are added.
+              </p>
+
+              <p class="mt-4">
+                The generated searchable PDF is not a certified archival format, digitally signed copy, or legally verified transcription. Digital signatures in an original document may not remain valid after modification.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">PDF OCR for Accessibility</h2>
+
+              <p class="mt-4">
+                OCR can be an important first step toward making an image-only PDF more accessible because it creates characters that assistive technologies may be able to detect.
+              </p>
+
+              <p class="mt-4">
+                OCR alone does not create a fully accessible document. A properly accessible PDF may also require headings, paragraphs, lists, table structures, reading order, language metadata, alternative text for images, meaningful links, form labels, sufficient contrast, bookmarks, and document-title metadata.
+              </p>
+
+              <p class="mt-4">
+                Recognition errors can be especially disruptive for screen-reader users. Accessibility remediation should include manual review by a qualified person and testing with relevant assistive technology.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">OCR for Legal, Medical, and Financial Documents</h2>
+
+              <p class="mt-4">
+                OCR results must not be treated as an authoritative transcription of legal, medical, tax, investment, insurance, accounting, or financial records. Even a high confidence score does not guarantee that every character is correct.
+              </p>
+
+              <p class="mt-4">
+                A single recognition error can change a date, monetary amount, dosage, percentage, account number, legal clause, diagnosis, address, or personal name. Verify every critical detail with the original page and a qualified professional when appropriate.
+              </p>
+
+              <p class="mt-4">
+                Do not destroy original records after OCR unless an approved records-management policy permits it. The original scan or paper document may contain signatures, stamps, marks, handwriting, and context that the recognized text does not preserve.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">Copyright and Responsible OCR Use</h2>
+
+              <p class="mt-4">
+                OCR does not grant permission to copy, republish, distribute, translate, analyze, sell, or train systems on protected content. Books, articles, reports, manuals, photographs, letters, forms, and archives may be protected by copyright, licensing terms, privacy law, confidentiality obligations, or contracts.
+              </p>
+
+              <p class="mt-4">
+                Users are responsible for confirming that they have permission to process and use the document. Fair use, fair dealing, educational exceptions, research exceptions, archival rights, and accessibility exceptions vary by jurisdiction and circumstance.
+              </p>
+
+              <p class="mt-4">
+                Do not use OCR to copy another person’s confidential records, access protected information without authorization, impersonate a signer, alter official documents, or misrepresent an OCR result as an exact original.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">Browser Performance and File Size</h2>
+
+              <p class="mt-4">
+                OCR is one of the most demanding document-processing tasks that can run in a browser. Every page must be decoded, rendered, analyzed, and converted into recognized text.
+              </p>
+
+              <p class="mt-4">
+                A PDF with many pages can take substantial time and memory. High-resolution pages and multiple OCR languages increase resource usage. Mobile browsers may close the page when memory is low.
+              </p>
+
+              <p class="mt-4">
+                For better performance, close unnecessary tabs, connect the device to power, process a limited page range, use Balanced or Fast quality, and avoid running other intensive applications.
+              </p>
+
+              <p class="mt-4">
+                Very large documents are better divided into smaller PDFs before OCR. The PDF Merger and Splitter tool can help separate a long file into manageable sections.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">When OCR May Fail</h2>
+
+              <p class="mt-4">
+                OCR may fail or produce poor output when pages are blurred, very dark, overexposed, heavily compressed, damaged, rotated, photographed at a steep angle, written by hand, or covered by watermarks and background patterns.
+              </p>
+
+              <p class="mt-4">
+                Password-protected and encrypted PDFs may not open. This page does not crack passwords or bypass access controls. An authorized user should unlock the document with the correct password before OCR.
+              </p>
+
+              <p class="mt-4">
+                A damaged or malformed PDF may fail during page rendering. Unusual fonts do not normally affect image-based OCR, but complex transparency, enormous page dimensions, and unsupported image encodings can cause browser errors.
+              </p>
+
+              <p class="mt-4">
+                If recognition repeatedly fails, try a smaller page range, lower quality, a current desktop browser, or a cleaner source scan.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">Why Use a Separate PDF OCR Page?</h2>
+
+              <p class="mt-4">
+                OCR is significantly different from standard PDF text extraction. It requires page rendering, image analysis, language models, recognition settings, confidence reporting, and searchable PDF generation.
+              </p>
+
+              <p class="mt-4">
+                A dedicated PDF OCR page allows the interface and SEO content to focus on scanned PDF OCR, image PDF OCR, searchable PDF conversion, image-to-text recognition, and related search needs.
+              </p>
+
+              <p class="mt-4">
+                Keeping OCR separate also prevents users from confusing a fast text extractor with a slower recognition process. Users with selectable text can choose PDF Extractor, while users with scanned images can choose PDF OCR.
+              </p>
+            </section>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <div class="mb-8">
+        <p class="text-sm font-bold uppercase tracking-[0.2em] text-indigo-600">Continue Working</p>
+        <h2 class="mt-2 text-3xl font-black tracking-tight text-slate-950">Related Tools</h2>
+        <p class="mt-3 max-w-3xl text-slate-600">
+          Use these related browser-based tools to extract, edit, organize, secure, and convert PDF documents.
+        </p>
+      </div>
+
+      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <a href="/pdf-extractor" class="tool-card-hover group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-50 text-2xl">📄</div>
+          <h3 class="mt-4 text-lg font-black text-slate-900 group-hover:text-indigo-700">PDF Extractor</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-500">
+            Extract existing selectable text and embedded images without running OCR.
+          </p>
+        </a>
+
+        <a href="/pdf-page-editor" class="tool-card-hover group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-violet-50 text-2xl">📝</div>
+          <h3 class="mt-4 text-lg font-black text-slate-900 group-hover:text-indigo-700">PDF Page Editor</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-500">
+            Rotate, delete, reorder, duplicate, and extract complete PDF pages.
+          </p>
+        </a>
+
+        <a href="/pdf-merger-splitter" class="tool-card-hover group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-2xl">📑</div>
+          <h3 class="mt-4 text-lg font-black text-slate-900 group-hover:text-indigo-700">PDF Merger & Splitter</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-500">
+            Combine PDF files or divide large scanned documents into smaller sections.
+          </p>
+        </a>
+
+        <a href="/pdf-compressor" class="tool-card-hover group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-sky-50 text-2xl">🗜️</div>
+          <h3 class="mt-4 text-lg font-black text-slate-900 group-hover:text-indigo-700">PDF Compressor</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-500">
+            Reduce the file size of scanned and image-heavy PDF documents.
+          </p>
+        </a>
+
+        <a href="/pdf-security" class="tool-card-hover group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-50 text-2xl">🔐</div>
+          <h3 class="mt-4 text-lg font-black text-slate-900 group-hover:text-indigo-700">PDF Security</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-500">
+            Protect PDFs with passwords and manage authorized document restrictions.
+          </p>
+        </a>
+
+        <a href="/image-converter" class="tool-card-hover group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-fuchsia-50 text-2xl">🖼️</div>
+          <h3 class="mt-4 text-lg font-black text-slate-900 group-hover:text-indigo-700">Image Converter</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-500">
+            Convert PNG, JPEG, WebP, and other image files before running OCR.
+          </p>
+        </a>
+      </div>
+    </section>
+
+    <section class="mx-auto w-full max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
+      <div class="ad-box" role="complementary" aria-label="Advertisement placeholder">
+        Advertisement
+      </div>
+    </section>
+
+    <section class="border-t border-slate-200 bg-white">
+      <div class="mx-auto w-full max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
+        <div class="mb-10">
+          <p class="text-sm font-bold uppercase tracking-[0.2em] text-indigo-600">Questions and Answers</p>
+          <h2 class="mt-2 text-3xl font-black tracking-tight text-slate-950">PDF OCR FAQ</h2>
+        </div>
+
+        <div class="space-y-4">
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">
+              What is PDF OCR?
+            </summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              PDF OCR analyzes visible text inside scanned or image-only PDF pages and converts it into searchable, selectable, and editable characters.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">
+              What is the difference between PDF OCR and PDF text extraction?
+            </summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              Text extraction reads characters already stored in a PDF. OCR recognizes characters from page images and is intended for scanned documents.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">
+              Can the tool convert a scanned PDF into a searchable PDF?
+            </summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              Yes. Enable Create searchable PDF before processing. The tool preserves the page appearance and adds an invisible OCR text layer.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">
+              Can I use OCR on PNG and JPEG images?
+            </summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              Yes. The page accepts PNG, JPEG, and WebP images in addition to PDF documents.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">
+              Are my documents uploaded to an OCR server?
+            </summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              The OCR workflow is designed to run in your browser. OCR scripts and language data are loaded from CDNs, but the selected document is not intentionally uploaded to a NodnWebTools processing server.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">
+              Is PDF OCR completely accurate?
+            </summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              No. OCR may misread letters, numbers, punctuation, columns, handwriting, tables, and damaged text. Important output must be verified against the original.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">
+              Does the tool recognize handwriting?
+            </summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              It is primarily designed for printed text. Handwriting, cursive writing, signatures, and irregular notes may produce poor results.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">
+              Why does OCR take a long time?
+            </summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              Each page must be rendered at high resolution and analyzed by the OCR engine. Large files, high quality, and multiple languages require more processing.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">
+              Can I OCR selected PDF pages?
+            </summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              Yes. Enter a range such as 1-3, 5, 8. Leave the field empty to process every page.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">
+              Can OCR change or invalidate a digital signature?
+            </summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              Creating a new searchable copy modifies the PDF structure and may not preserve an existing digital signature. Keep the original signed document.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="mx-auto w-full max-w-5xl px-4 py-12 sm:px-6 lg:px-8">
+      <div class="rounded-3xl bg-slate-900 p-6 text-slate-300 shadow-xl sm:p-8">
+        <h2 class="text-2xl font-black text-white">Legal, Privacy, and Accuracy Disclaimer</h2>
+
+        <div class="mt-4 space-y-4 text-sm leading-7">
+          <p>
+            This PDF OCR tool is provided for general document-management and informational convenience. It is not a professional transcription, accessibility-remediation, legal, medical, financial, tax, compliance, translation, data-recovery, digital-forensics, or records-management service.
+          </p>
+
+          <p>
+            OCR accuracy is not guaranteed. Recognized text may contain missing words, incorrect characters, altered punctuation, misplaced columns, incorrect numbers, missing decimal points, duplicated text, and unexpected reading order. Always compare critical information with the original document.
+          </p>
+
+          <p>
+            Do not rely on OCR output alone for contracts, prescriptions, medical records, financial statements, invoices, tax forms, court documents, identification records, academic citations, account numbers, addresses, dates, or other high-impact information.
+          </p>
+
+          <p>
+            A searchable PDF created by this tool is a modified copy. It may not preserve digital signatures, certification status, legal authenticity, archival compliance, accessibility tags, metadata, bookmarks, attachments, forms, scripts, or advanced PDF features.
+          </p>
+
+          <p>
+            Users are responsible for confirming that they have the right to process, copy, extract, store, modify, translate, publish, or distribute the selected content. Copyright, licensing, confidentiality, privacy, employment, educational, contractual, and regulatory restrictions continue to apply.
+          </p>
+
+          <p>
+            Avoid processing confidential or regulated documents on public, shared, compromised, or untrusted devices. NodnWebTools is not responsible for recognition errors, data loss, privacy incidents, invalidated signatures, rejected submissions, copyright violations, browser failures, or direct or indirect damages arising from use of this tool.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="mx-auto w-full max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
+      <div class="ad-box" role="complementary" aria-label="Advertisement placeholder">
+        Advertisement
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-slate-200 bg-white">
+    <div class="mx-auto flex w-full max-w-7xl flex-col gap-3 px-4 py-8 text-sm text-slate-500 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
+      <p>© <span id="currentYear"></span> NodnWebTools. All rights reserved.</p>
+
+      <a href="https://nodntools.com" class="font-semibold text-slate-600 transition hover:text-indigo-700">
+        Back to NodnWebTools
+      </a>
+    </div>
+  </footer>
+
+  <script type="module">
+    import * as pdfjsLib from "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.min.mjs";
+
+    pdfjsLib.GlobalWorkerOptions.workerSrc =
+      "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.worker.min.mjs";
+
+    const { PDFDocument, StandardFonts, rgb, degrees } = PDFLib;
+
+    const sourceInput = document.getElementById("sourceInput");
+    const dropZone = document.getElementById("dropZone");
+    const fileCard = document.getElementById("fileCard");
+    const fileName = document.getElementById("fileName");
+    const fileSize = document.getElementById("fileSize");
+    const fileType = document.getElementById("fileType");
+    const filePageCount = document.getElementById("filePageCount");
+    const removeFileButton = document.getElementById("removeFileButton");
+
+    const previewSection = document.getElementById("previewSection");
+    const previewLabel = document.getElementById("previewLabel");
+    const pdfPreviewCanvas = document.getElementById("pdfPreviewCanvas");
+    const imagePreview = document.getElementById("imagePreview");
+
+    const ocrTabs = [...document.querySelectorAll(".ocr-tab")];
+    const ocrPanels = [...document.querySelectorAll(".ocr-panel")];
+
+    const ocrLanguage = document.getElementById("ocrLanguage");
+    const pageRange = document.getElementById("pageRange");
+    const renderQuality = document.getElementById("renderQuality");
+    const pageSegmentationMode = document.getElementById("pageSegmentationMode");
+    const preservePageHeadings = document.getElementById("preservePageHeadings");
+    const createSearchablePdf = document.getElementById("createSearchablePdf");
+
+    const startOcrButton = document.getElementById("startOcrButton");
+    const cancelOcrButton = document.getElementById("cancelOcrButton");
+
+    const warningBox = document.getElementById("warningBox");
+    const progressSection = document.getElementById("progressSection");
+    const progressLabel = document.getElementById("progressLabel");
+    const progressPercent = document.getElementById("progressPercent");
+    const progressBar = document.getElementById("progressBar");
+    const progressPage = document.getElementById("progressPage");
+    const progressStage = document.getElementById("progressStage");
+    const statusMessage = document.getElementById("statusMessage");
+
+    const resultSection = document.getElementById("resultSection");
+    const resultDescription = document.getElementById("resultDescription");
+    const processedPageStat = document.getElementById("processedPageStat");
+    const recognizedWordStat = document.getElementById("recognizedWordStat");
+    const confidenceStat = document.getElementById("confidenceStat");
+    const processingTimeStat = document.getElementById("processingTimeStat");
+    const characterStat = document.getElementById("characterStat");
+    const ocrTextOutput = document.getElementById("ocrTextOutput");
+    const pageResults = document.getElementById("pageResults");
+
+    const copyTextButton = document.getElementById("copyTextButton");
+    const downloadTextButton = document.getElementById("downloadTextButton");
+    const downloadSearchablePdfButton = document.getElementById("downloadSearchablePdfButton");
+    const resetButton = document.getElementById("resetButton");
+
+    let selectedFile = null;
+    let selectedBytes = null;
+    let selectedKind = "";
+    let pdfDocument = null;
+    let imageObjectUrl = "";
+    let activeTab = "pdf";
+
+    let worker = null;
+    let isProcessing = false;
+    let cancelRequested = false;
+
+    let combinedText = "";
+    let searchablePdfBlob = null;
+    let searchablePdfFileName = "";
+    let ocrPageResults = [];
+
+    function formatBytes(bytes) {
+      if (!Number.isFinite(bytes) || bytes < 0) return "—";
+      if (bytes === 0) return "0 B";
+
+      const units = ["B", "KB", "MB", "GB"];
+      const index = Math.min(
+        Math.floor(Math.log(bytes) / Math.log(1024)),
+        units.length - 1
+      );
+
+      const value = bytes / Math.pow(1024, index);
+      return `${value.toFixed(value >= 10 || index === 0 ? 1 : 2)} ${units[index]}`;
+    }
+
+    function formatDuration(milliseconds) {
+      const seconds = Math.max(0, Math.round(milliseconds / 1000));
+
+      if (seconds < 60) {
+        return `${seconds}s`;
+      }
+
+      const minutes = Math.floor(seconds / 60);
+      const remainingSeconds = seconds % 60;
+
+      return `${minutes}m ${remainingSeconds}s`;
+    }
+
+    function setWarning(message = "") {
+      warningBox.textContent = message;
+      warningBox.classList.toggle("hidden", !message);
+    }
+
+    function setStatus(message = "", type = "neutral") {
+      statusMessage.textContent = message;
+      statusMessage.className = "mt-5 min-h-6 text-center text-sm font-semibold";
+
+      if (type === "success") {
+        statusMessage.classList.add("text-emerald-600");
+      } else if (type === "error") {
+        statusMessage.classList.add("text-rose-600");
+      } else {
+        statusMessage.classList.add("text-slate-500");
+      }
+    }
+
+    function updateProgress(percent, label, pageText = "", stageText = "") {
+      const safePercent = Math.max(0, Math.min(100, Math.round(percent)));
+
+      progressSection.classList.remove("hidden");
+      progressPercent.textContent = `${safePercent}%`;
+      progressBar.style.width = `${safePercent}%`;
+      progressLabel.textContent = label;
+      progressPage.textContent = pageText;
+      progressStage.textContent = stageText;
+    }
+
+    function hideProgress() {
+      progressSection.classList.add("hidden");
+      progressPercent.textContent = "0%";
+      progressBar.style.width = "0%";
+      progressLabel.textContent = "Preparing OCR...";
+      progressPage.textContent = "";
+      progressStage.textContent = "";
+    }
+
+    function setProcessing(processing) {
+      isProcessing = processing;
+
+      sourceInput.disabled = processing;
+      removeFileButton.disabled = processing;
+      startOcrButton.disabled = processing;
+
+      cancelOcrButton.classList.toggle("hidden", !processing);
+    }
+
+    function clearResults() {
+      combinedText = "";
+      searchablePdfBlob = null;
+      searchablePdfFileName = "";
+      ocrPageResults = [];
+
+      ocrTextOutput.value = "";
+      pageResults.innerHTML = "";
+      resultSection.classList.add("hidden");
+      downloadSearchablePdfButton.classList.remove("hidden");
+    }
+
+    function setActiveTab(tabName) {
+      activeTab = tabName;
+
+      ocrTabs.forEach(tab => {
+        tab.setAttribute("aria-selected", String(tab.dataset.tab === tabName));
+      });
+
+      ocrPanels.forEach(panel => {
+        panel.classList.toggle("hidden", panel.id !== `${tabName}Panel`);
+      });
+
+      setWarning("");
+      setStatus("");
+    }
+
+    function parsePageRange(input, pageCount) {
+      const trimmed = input.trim();
+
+      if (!trimmed) {
+        return Array.from({ length: pageCount }, (_, index) => index + 1);
+      }
+
+      const pages = new Set();
+
+      for (const rawPart of trimmed.split(",")) {
+        const part = rawPart.trim();
+
+        if (!part) continue;
+
+        if (/^\d+$/.test(part)) {
+          const page = Number(part);
+
+          if (page < 1 || page > pageCount) {
+            throw new Error(`Page ${page} is outside the valid range of 1 to ${pageCount}.`);
+          }
+
+          pages.add(page);
+          continue;
+        }
+
+        const match = part.match(/^(\d+)\s*-\s*(\d+)$/);
+
+        if (!match) {
+          throw new Error(`Invalid page range segment: "${part}".`);
+        }
+
+        const start = Number(match[1]);
+        const end = Number(match[2]);
+
+        if (
+          start < 1 ||
+          end < 1 ||
+          start > pageCount ||
+          end > pageCount ||
+          start > end
+        ) {
+          throw new Error(`Invalid page range: "${part}".`);
+        }
+
+        for (let page = start; page <= end; page++) {
+          pages.add(page);
+        }
+      }
+
+      const result = [...pages].sort((a, b) => a - b);
+
+      if (result.length === 0) {
+        throw new Error("Choose at least one valid page.");
+      }
+
+      return result;
+    }
+
+    async function handleFile(file) {
+      if (!file || isProcessing) return;
+
+      setWarning("");
+      setStatus("");
+      clearResults();
+
+      const name = file.name.toLowerCase();
+      const isPdf =
+        file.type === "application/pdf" ||
+        name.endsWith(".pdf");
+
+      const isImage =
+        file.type.startsWith("image/") ||
+        /\.(png|jpe?g|webp)$/i.test(name);
+
+      if (!isPdf && !isImage) {
+        setWarning("Choose a PDF, PNG, JPEG, or WebP file.");
+        return;
+      }
+
+      if (file.size === 0) {
+        setWarning("The selected file is empty.");
+        return;
+      }
+
+      if (file.size > 30 * 1024 * 1024) {
+        setWarning(
+          "This file is larger than 30 MB. OCR may require substantial memory or fail on some devices."
+        );
+      }
+
+      setProcessing(true);
+      updateProgress(5, "Reading selected file...");
+
+      try {
+        selectedFile = file;
+        selectedBytes = new Uint8Array(await file.arrayBuffer());
+        selectedKind = isPdf ? "pdf" : "image";
+
+        fileCard.classList.remove("hidden");
+        fileName.textContent = file.name;
+        fileSize.textContent = formatBytes(file.size);
+        fileType.textContent = isPdf ? "PDF document" : "Image file";
+
+        if (isPdf) {
+          pdfDocument = await pdfjsLib.getDocument({
+            data: selectedBytes.slice(),
+            useSystemFonts: true
+          }).promise;
+
+          filePageCount.textContent =
+            `${pdfDocument.numPages} page${pdfDocument.numPages === 1 ? "" : "s"}`;
+
+          await renderPdfPreview();
+          setActiveTab("pdf");
+        } else {
+          pdfDocument = null;
+          filePageCount.textContent = "1 image";
+          renderImagePreview(file);
+          setActiveTab("image");
+        }
+
+        previewSection.classList.remove("hidden");
+        setStatus("File loaded successfully. Choose OCR settings and start recognition.", "success");
+      } catch (error) {
+        console.error(error);
+        resetTool();
+
+        const message = String(error?.message || "").toLowerCase();
+
+        if (message.includes("password")) {
+          setWarning(
+            "This PDF is password-protected. Unlock it with the correct password before running OCR."
+          );
+        } else {
+          setWarning(
+            "The selected file could not be opened. It may be damaged, encrypted, unsupported, or too large for the browser."
+          );
+        }
+      } finally {
+        setProcessing(false);
+        hideProgress();
+      }
+    }
+
+    async function renderPdfPreview() {
+      if (!pdfDocument) return;
+
+      const page = await pdfDocument.getPage(1);
+      const viewport = page.getViewport({ scale: 1.2 });
+      const context = pdfPreviewCanvas.getContext("2d");
+
+      pdfPreviewCanvas.width = Math.ceil(viewport.width);
+      pdfPreviewCanvas.height = Math.ceil(viewport.height);
+      pdfPreviewCanvas.classList.remove("hidden");
+      imagePreview.classList.add("hidden");
+
+      await page.render({
+        canvasContext: context,
+        viewport
+      }).promise;
+
+      previewLabel.textContent = "Page 1 preview";
+      page.cleanup();
+    }
+
+    function renderImagePreview(file) {
+      if (imageObjectUrl) {
+        URL.revokeObjectURL(imageObjectUrl);
+      }
+
+      imageObjectUrl = URL.createObjectURL(file);
+      imagePreview.src = imageObjectUrl;
+      imagePreview.classList.remove("hidden");
+      pdfPreviewCanvas.classList.add("hidden");
+      previewLabel.textContent = "Image preview";
+    }
+
+    async function initializeWorker() {
+      if (worker) {
+        await worker.terminate();
+        worker = null;
+      }
+
+      updateProgress(8, "Loading OCR engine...", "", "Initializing language data");
+
+      worker = await Tesseract.createWorker(ocrLanguage.value, 1, {
+        logger: message => {
+          if (!isProcessing) return;
+
+          const progress = Number(message.progress || 0);
+          const currentBase = Number(progressStage.dataset.base || 0);
+          const currentShare = Number(progressStage.dataset.share || 1);
+          const calculated = currentBase + progress * currentShare;
+
+          if (message.status) {
+            progressStage.textContent = message.status;
+          }
+
+          if (Number.isFinite(calculated)) {
+            progressPercent.textContent = `${Math.round(calculated)}%`;
+            progressBar.style.width = `${calculated}%`;
+          }
+        }
+      });
+
+      await worker.setParameters({
+        tessedit_pageseg_mode: pageSegmentationMode.value,
+        preserve_interword_spaces: "1"
+      });
+
+      return worker;
+    }
+
+    async function renderPdfPageToCanvas(pageNumber, scale) {
+      const page = await pdfDocument.getPage(pageNumber);
+      const viewport = page.getViewport({ scale });
+
+      const canvas = document.createElement("canvas");
+      canvas.width = Math.ceil(viewport.width);
+      canvas.height = Math.ceil(viewport.height);
+
+      const context = canvas.getContext("2d", {
+        alpha: false,
+        willReadFrequently: false
+      });
+
+      context.fillStyle = "#ffffff";
+      context.fillRect(0, 0, canvas.width, canvas.height);
+
+      await page.render({
+        canvasContext: context,
+        viewport,
+        background: "white"
+      }).promise;
+
+      const pageInfo = {
+        canvas,
+        viewport,
+        page
+      };
+
+      return pageInfo;
+    }
+
+    async function loadImageToCanvas(file) {
+      const bitmap = await createImageBitmap(file);
+      const canvas = document.createElement("canvas");
+
+      const maximumDimension = 5000;
+      const scale = Math.min(
+        1,
+        maximumDimension / Math.max(bitmap.width, bitmap.height)
+      );
+
+      canvas.width = Math.max(1, Math.round(bitmap.width * scale));
+      canvas.height = Math.max(1, Math.round(bitmap.height * scale));
+
+      const context = canvas.getContext("2d", {
+        alpha: false
+      });
+
+      context.fillStyle = "#ffffff";
+      context.fillRect(0, 0, canvas.width, canvas.height);
+      context.drawImage(bitmap, 0, 0, canvas.width, canvas.height);
+
+      bitmap.close();
+
+      return canvas;
+    }
+
+    function buildCombinedText(results) {
+      return results
+        .map(result => {
+          const cleanText = result.text.trim();
+
+          if (preservePageHeadings.checked) {
+            return `===== Page ${result.pageNumber} =====\n\n${cleanText}`;
+          }
+
+          return cleanText;
+        })
+        .join("\n\n")
+        .trim();
+    }
+
+    async function runOcr() {
+      if (!selectedFile || !selectedBytes) {
+        setWarning("Choose a PDF or image before starting OCR.");
+        return;
+      }
+
+      if (isProcessing) return;
+
+      let pages = [1];
+
+      if (selectedKind === "pdf") {
+        try {
+          pages = parsePageRange(pageRange.value, pdfDocument.numPages);
+        } catch (error) {
+          setWarning(error.message);
+          pageRange.focus();
+          return;
+        }
+      }
+
+      if (selectedKind === "pdf" && pages.length > 30) {
+        setWarning(
+          "For browser stability, process no more than 30 PDF pages at one time. Use the PDF Splitter or enter a smaller page range."
+        );
+        return;
+      }
+
+      setProcessing(true);
+      cancelRequested = false;
+      setWarning("");
+      clearResults();
+      setStatus("OCR is running. Keep this page open.");
+      resultSection.classList.add("hidden");
+
+      const startTime = performance.now();
+
+      try {
+        await initializeWorker();
+
+        const results = [];
+        const scale = Number(renderQuality.value) || 2;
+        const totalPages = pages.length;
+
+        for (let index = 0; index < totalPages; index++) {
+          if (cancelRequested) {
+            throw new Error("OCR_CANCELLED");
+          }
+
+          const pageNumber = pages[index];
+          const pageBase = 12 + (index / totalPages) * 82;
+          const pageShare = 82 / totalPages;
+
+          progressStage.dataset.base = String(pageBase);
+          progressStage.dataset.share = String(pageShare);
+
+          updateProgress(
+            pageBase,
+            `Processing page ${pageNumber}`,
+            `Page ${index + 1} of ${totalPages}`,
+            "Preparing page image"
+          );
+
+          let canvas;
+          let sourcePage = null;
+          let viewport = null;
+
+          if (selectedKind === "pdf") {
+            const rendered = await renderPdfPageToCanvas(pageNumber, scale);
+            canvas = rendered.canvas;
+            sourcePage = rendered.page;
+            viewport = rendered.viewport;
+          } else {
+            canvas = await loadImageToCanvas(selectedFile);
+            viewport = {
+              width: canvas.width,
+              height: canvas.height,
+              scale: 1
+            };
+          }
+
+          if (cancelRequested) {
+            throw new Error("OCR_CANCELLED");
+          }
+
+          updateProgress(
+            pageBase + pageShare * 0.12,
+            `Recognizing page ${pageNumber}`,
+            `Page ${index + 1} of ${totalPages}`,
+            "Analyzing visible text"
+          );
+
+          const recognition = await worker.recognize(canvas);
+
+          const data = recognition.data || {};
+          const words = Array.isArray(data.words) ? data.words : [];
+
+          results.push({
+            pageNumber,
+            text: data.text || "",
+            confidence: Number(data.confidence || 0),
+            words,
+            canvasWidth: canvas.width,
+            canvasHeight: canvas.height,
+            viewportWidth: viewport.width,
+            viewportHeight: viewport.height,
+            scale: viewport.scale || scale
+          });
+
+          if (sourcePage) {
+            sourcePage.cleanup();
+          }
+
+          canvas.width = 1;
+          canvas.height = 1;
+
+          updateProgress(
+            pageBase + pageShare,
+            `Completed page ${pageNumber}`,
+            `Page ${index + 1} of ${totalPages}`,
+            "Page recognition completed"
+          );
+
+          await new Promise(resolve => setTimeout(resolve, 0));
+        }
+
+        ocrPageResults = results;
+        combinedText = buildCombinedText(results);
+
+        if (createSearchablePdf.checked) {
+          updateProgress(95, "Creating searchable PDF...", "", "Adding invisible OCR text layer");
+          searchablePdfBlob = await buildSearchablePdf(results);
+        } else {
+          searchablePdfBlob = null;
+        }
+
+        const endTime = performance.now();
+        displayResults(endTime - startTime);
+
+        updateProgress(100, "OCR completed.", "", "Results are ready");
+        setStatus("OCR completed successfully.", "success");
+
+        setTimeout(hideProgress, 700);
+      } catch (error) {
+        console.error(error);
+
+        if (String(error?.message || error) === "OCR_CANCELLED") {
+          setWarning("OCR was cancelled. No complete result was created.");
+          setStatus("OCR cancelled.");
+        } else {
+          setWarning(
+            "OCR could not be completed. Try a smaller page range, lower recognition quality, a different language, or a current desktop browser."
+          );
+          setStatus("OCR failed.", "error");
+        }
+
+        hideProgress();
+      } finally {
+        setProcessing(false);
+
+        if (worker) {
+          await worker.terminate();
+          worker = null;
+        }
+      }
+    }
+
+    async function buildSearchablePdf(results) {
+      if (selectedKind === "pdf") {
+        return buildSearchablePdfFromPdf(results);
+      }
+
+      return buildSearchablePdfFromImage(results);
+    }
+
+    async function buildSearchablePdfFromPdf(results) {
+      const outputPdf = await PDFDocument.load(selectedBytes.slice(), {
+        ignoreEncryption: false,
+        updateMetadata: false
+      });
+
+      const font = await outputPdf.embedFont(StandardFonts.Helvetica);
+      const pages = outputPdf.getPages();
+
+      for (const result of results) {
+        const page = pages[result.pageNumber - 1];
+
+        if (!page) continue;
+
+        const { width: pdfWidth, height: pdfHeight } = page.getSize();
+        const rotation = page.getRotation()?.angle || 0;
+
+        const scaleX = pdfWidth / result.canvasWidth;
+        const scaleY = pdfHeight / result.canvasHeight;
+
+        for (const word of result.words) {
+          const text = String(word.text || "").trim();
+          const bbox = word.bbox;
+
+          if (!text || !bbox) continue;
+
+          const wordWidthPx = Math.max(1, bbox.x1 - bbox.x0);
+          const wordHeightPx = Math.max(1, bbox.y1 - bbox.y0);
+
+          const x = bbox.x0 * scaleX;
+          const y = pdfHeight - bbox.y1 * scaleY;
+          const fontSize = Math.max(2, wordHeightPx * scaleY * 0.78);
+          const targetWidth = Math.max(1, wordWidthPx * scaleX);
+
+          let naturalWidth = 1;
+
+          try {
+            naturalWidth = font.widthOfTextAtSize(text, fontSize) || 1;
+          } catch (error) {
+            continue;
+          }
+
+          const horizontalScale = targetWidth / naturalWidth;
+
+          try {
+            page.drawText(text, {
+              x,
+              y,
+              size: fontSize,
+              font,
+              color: rgb(0, 0, 0),
+              opacity: 0,
+              rotate: degrees(rotation),
+              xScale: Math.max(0.1, Math.min(5, horizontalScale))
+            });
+          } catch (error) {
+            console.warn("Unable to add OCR word to PDF", text, error);
+          }
+        }
+      }
+
+      const bytes = await outputPdf.save({
+        useObjectStreams: true,
+        addDefaultPage: false,
+        updateFieldAppearances: false
+      });
+
+      const baseName = selectedFile.name.replace(/\.pdf$/i, "");
+      searchablePdfFileName = `${baseName}-searchable-ocr.pdf`;
+
+      return new Blob([bytes], {
+        type: "application/pdf"
+      });
+    }
+
+    async function buildSearchablePdfFromImage(results) {
+      const outputPdf = await PDFDocument.create();
+      const result = results[0];
+
+      let embeddedImage;
+
+      if (
+        selectedFile.type === "image/jpeg" ||
+        /\.jpe?g$/i.test(selectedFile.name)
+      ) {
+        embeddedImage = await outputPdf.embedJpg(selectedBytes);
+      } else {
+        let pngBytes = selectedBytes;
+
+        if (
+          selectedFile.type !== "image/png" &&
+          !/\.png$/i.test(selectedFile.name)
+        ) {
+          const canvas = await loadImageToCanvas(selectedFile);
+          const blob = await new Promise((resolve, reject) => {
+            canvas.toBlob(
+              output => output ? resolve(output) : reject(new Error("Image conversion failed.")),
+              "image/png"
+            );
+          });
+
+          pngBytes = new Uint8Array(await blob.arrayBuffer());
+        }
+
+        embeddedImage = await outputPdf.embedPng(pngBytes);
+      }
+
+      const maximumPageWidth = 612;
+      const pageWidth = Math.min(maximumPageWidth, embeddedImage.width);
+      const ratio = pageWidth / embeddedImage.width;
+      const pageHeight = embeddedImage.height * ratio;
+
+      const page = outputPdf.addPage([pageWidth, pageHeight]);
+
+      page.drawImage(embeddedImage, {
+        x: 0,
+        y: 0,
+        width: pageWidth,
+        height: pageHeight
+      });
+
+      const font = await outputPdf.embedFont(StandardFonts.Helvetica);
+      const scaleX = pageWidth / result.canvasWidth;
+      const scaleY = pageHeight / result.canvasHeight;
+
+      for (const word of result.words) {
+        const text = String(word.text || "").trim();
+        const bbox = word.bbox;
+
+        if (!text || !bbox) continue;
+
+        const wordWidthPx = Math.max(1, bbox.x1 - bbox.x0);
+        const wordHeightPx = Math.max(1, bbox.y1 - bbox.y0);
+
+        const x = bbox.x0 * scaleX;
+        const y = pageHeight - bbox.y1 * scaleY;
+        const fontSize = Math.max(2, wordHeightPx * scaleY * 0.78);
+        const targetWidth = Math.max(1, wordWidthPx * scaleX);
+
+        try {
+          const naturalWidth = font.widthOfTextAtSize(text, fontSize) || 1;
+
+          page.drawText(text, {
+            x,
+            y,
+            size: fontSize,
+            font,
+            color: rgb(0, 0, 0),
+            opacity: 0,
+            xScale: Math.max(0.1, Math.min(5, targetWidth / naturalWidth))
+          });
+        } catch (error) {
+          console.warn("Unable to add OCR word to image PDF", error);
+        }
+      }
+
+      const bytes = await outputPdf.save({
+        useObjectStreams: true
+      });
+
+      const baseName = selectedFile.name.replace(/\.[^.]+$/, "");
+      searchablePdfFileName = `${baseName}-searchable-ocr.pdf`;
+
+      return new Blob([bytes], {
+        type: "application/pdf"
+      });
+    }
+
+    function displayResults(processingMilliseconds) {
+      const wordCount = combinedText.trim()
+        ? combinedText.trim().split(/\s+/).length
+        : 0;
+
+      const characterCount = combinedText.length;
+
+      const averageConfidence = ocrPageResults.length
+        ? ocrPageResults.reduce((sum, page) => sum + page.confidence, 0) /
+          ocrPageResults.length
+        : 0;
+
+      resultDescription.textContent = combinedText.trim()
+        ? "Recognized text is ready to review, edit, copy, and download."
+        : "OCR completed, but little or no recognizable text was found.";
+
+      processedPageStat.textContent =
+        `${ocrPageResults.length} page${ocrPageResults.length === 1 ? "" : "s"}`;
+
+      recognizedWordStat.textContent =
+        `${wordCount.toLocaleString()} word${wordCount === 1 ? "" : "s"}`;
+
+      confidenceStat.textContent =
+        `${Math.round(averageConfidence)}% average confidence`;
+
+      processingTimeStat.textContent =
+        formatDuration(processingMilliseconds);
+
+      characterStat.textContent =
+        `${characterCount.toLocaleString()} character${characterCount === 1 ? "" : "s"}`;
+
+      ocrTextOutput.value = combinedText;
+
+      downloadSearchablePdfButton.classList.toggle(
+        "hidden",
+        !searchablePdfBlob
+      );
+
+      renderPageResults();
+      resultSection.classList.remove("hidden");
+
+      if (!combinedText.trim()) {
+        setWarning(
+          "OCR found little or no text. Try a different language, higher quality, a different page layout, or a clearer source image."
+        );
+      }
+    }
+
+    function renderPageResults() {
+      pageResults.innerHTML = "";
+
+      ocrPageResults.forEach(result => {
+        const text = result.text.trim();
+        const wordCount = text ? text.split(/\s+/).length : 0;
+
+        const card = document.createElement("details");
+        card.className =
+          "page-result-card rounded-2xl border border-slate-200 bg-slate-50 p-5";
+
+        card.innerHTML = `
+          <summary class="cursor-pointer list-none">
+            <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+              <span class="font-black text-slate-900">Page ${result.pageNumber}</span>
+              <span class="flex flex-wrap gap-x-4 gap-y-1 text-xs font-semibold text-slate-500">
+                <span>${wordCount.toLocaleString()} words</span>
+                <span>${Math.round(result.confidence)}% confidence</span>
+              </span>
+            </div>
+          </summary>
+
+          <pre class="mobile-code mt-4 max-h-72 overflow-auto rounded-xl border border-slate-200 bg-white p-4 text-sm leading-7 text-slate-700">${escapeHtml(text || "No recognizable text was found on this page.")}</pre>
+        `;
+
+        pageResults.appendChild(card);
+      });
+    }
+
+    function escapeHtml(value) {
+      return value
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    async function copyText() {
+      const currentText = ocrTextOutput.value;
+
+      if (!currentText.trim()) {
+        setWarning("There is no recognized text to copy.");
+        return;
+      }
+
+      try {
+        await navigator.clipboard.writeText(currentText);
+
+        const originalText = copyTextButton.textContent;
+        copyTextButton.textContent = "Copied!";
+
+        setTimeout(() => {
+          copyTextButton.textContent = originalText;
+        }, 1600);
+      } catch (error) {
+        ocrTextOutput.focus();
+        ocrTextOutput.select();
+        document.execCommand("copy");
+
+        copyTextButton.textContent = "Copied!";
+
+        setTimeout(() => {
+          copyTextButton.textContent = "Copy Text";
+        }, 1600);
+      }
+    }
+
+    function downloadBlob(blob, filename) {
+      const url = URL.createObjectURL(blob);
+      const anchor = document.createElement("a");
+
+      anchor.href = url;
+      anchor.download = filename;
+      document.body.appendChild(anchor);
+      anchor.click();
+      anchor.remove();
+
+      setTimeout(() => URL.revokeObjectURL(url), 2000);
+    }
+
+    function downloadText() {
+      const currentText = ocrTextOutput.value;
+
+      if (!currentText.trim()) {
+        setWarning("There is no recognized text to download.");
+        return;
+      }
+
+      const baseName = selectedFile.name.replace(/\.[^.]+$/, "");
+      const blob = new Blob(["\uFEFF", currentText], {
+        type: "text/plain;charset=utf-8"
+      });
+
+      downloadBlob(blob, `${baseName}-ocr-text.txt`);
+    }
+
+    function downloadSearchablePdf() {
+      if (!searchablePdfBlob || !searchablePdfFileName) {
+        setWarning(
+          "No searchable PDF is available. Enable Create searchable PDF and run OCR again."
+        );
+        return;
+      }
+
+      downloadBlob(searchablePdfBlob, searchablePdfFileName);
+    }
+
+    async function cancelOcr() {
+      cancelRequested = true;
+      cancelOcrButton.disabled = true;
+      cancelOcrButton.textContent = "Cancelling...";
+
+      if (worker) {
+        try {
+          await worker.terminate();
+        } catch (error) {
+          console.warn(error);
+        }
+
+        worker = null;
+      }
+
+      cancelOcrButton.disabled = false;
+      cancelOcrButton.textContent = "Cancel OCR";
+    }
+
+    function resetTool() {
+      selectedFile = null;
+      selectedBytes = null;
+      selectedKind = "";
+      pdfDocument = null;
+
+      sourceInput.value = "";
+      fileCard.classList.add("hidden");
+      previewSection.classList.add("hidden");
+
+      fileName.textContent = "";
+      fileSize.textContent = "";
+      fileType.textContent = "";
+      filePageCount.textContent = "";
+
+      pdfPreviewCanvas.width = 1;
+      pdfPreviewCanvas.height = 1;
+      pdfPreviewCanvas.classList.add("hidden");
+
+      imagePreview.src = "";
+      imagePreview.classList.add("hidden");
+
+      if (imageObjectUrl) {
+        URL.revokeObjectURL(imageObjectUrl);
+        imageObjectUrl = "";
+      }
+
+      pageRange.value = "";
+      cancelRequested = false;
+
+      clearResults();
+      setWarning("");
+      setStatus("");
+      hideProgress();
+      setActiveTab("pdf");
+    }
+
+    sourceInput.addEventListener("change", event => {
+      const [file] = event.target.files;
+      handleFile(file);
+    });
+
+    ["dragenter", "dragover"].forEach(eventName => {
+      dropZone.addEventListener(eventName, event => {
+        event.preventDefault();
+        event.stopPropagation();
+        dropZone.classList.add("drop-active");
+      });
+    });
+
+    ["dragleave", "drop"].forEach(eventName => {
+      dropZone.addEventListener(eventName, event => {
+        event.preventDefault();
+        event.stopPropagation();
+        dropZone.classList.remove("drop-active");
+      });
+    });
+
+    dropZone.addEventListener("drop", event => {
+      const [file] = event.dataTransfer.files;
+      handleFile(file);
+    });
+
+    ocrTabs.forEach(tab => {
+      tab.addEventListener("click", () => setActiveTab(tab.dataset.tab));
+    });
+
+    removeFileButton.addEventListener("click", resetTool);
+    startOcrButton.addEventListener("click", runOcr);
+    cancelOcrButton.addEventListener("click", cancelOcr);
+    copyTextButton.addEventListener("click", copyText);
+    downloadTextButton.addEventListener("click", downloadText);
+    downloadSearchablePdfButton.addEventListener("click", downloadSearchablePdf);
+    resetButton.addEventListener("click", resetTool);
+
+    document.getElementById("currentYear").textContent =
+      new Date().getFullYear();
+  </script>
+</body>
+</html>

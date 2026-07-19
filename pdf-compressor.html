@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Free PDF Compressor Online | Reduce PDF File Size</title>
+  <meta name="description" content="Compress PDF files online, reduce PDF size, and download optimized documents securely with this free browser-based PDF compressor.">
+  <meta name="keywords" content="PDF compressor, compress PDF online, reduce PDF size, shrink PDF, PDF file size reducer, optimize PDF, free PDF compressor, compress scanned PDF, PDF optimizer, client-side PDF compressor">
+  <meta name="robots" content="index, follow">
+  <meta name="google-adsense-account" content="ca-pub-5282672325821404">
+
+  <meta property="og:title" content="Free PDF Compressor Online | Reduce PDF File Size">
+  <meta property="og:description" content="Reduce PDF file size directly in your browser with adjustable quality and resolution settings.">
+  <meta property="og:type" content="website">
+
+  <link rel="icon" type="image/png" href="/favicon.png">
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404" crossorigin="anonymous"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.min.mjs" type="module"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.2/jspdf.umd.min.js"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "PDF Compressor",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "description": "A browser-based PDF compression tool that reduces PDF file size by optimizing page images and resolution.",
+    "url": "https://nodntools.com/pdf-compressor",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "featureList": [
+      "Compress PDF files in the browser",
+      "Adjust image quality",
+      "Choose output resolution",
+      "Preview estimated results",
+      "Download compressed PDF files",
+      "No server upload required"
+    ]
+  }
+  </script>
+
+  <style>
+    html, body {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      min-width: 0;
+    }
+
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .safe-break {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .ad-box {
+      width: 100%;
+      min-height: 90px;
+      border: 2px dashed #cbd5e1;
+      background: #f8fafc;
+      color: #94a3b8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-radius: 1rem;
+      padding: 1rem;
+      overflow: hidden;
+    }
+
+    .drop-active {
+      border-color: #6366f1 !important;
+      background: #eef2ff !important;
+      transform: scale(1.005);
+    }
+
+    .progress-bar {
+      transition: width 0.25s ease;
+    }
+
+    .tool-card-hover {
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .tool-card-hover:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+      border-color: #c7d2fe;
+    }
+
+    .preview-page {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 0.75rem;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
+    }
+
+    input[type="range"] {
+      width: 100%;
+    }
+
+    @media (max-width: 640px) {
+      .mobile-card {
+        padding: 1rem !important;
+        border-radius: 1rem !important;
+      }
+
+      .mobile-panel {
+        padding: 0.875rem !important;
+      }
+
+      .mobile-preview {
+        min-height: 240px !important;
+      }
+
+      .mobile-button-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .mobile-button-grid button,
+      .mobile-button-grid a {
+        width: 100%;
+      }
+
+      .mobile-code {
+        font-size: 0.75rem;
+        overflow-x: auto;
+      }
+
+      h1 {
+        font-size: 2rem !important;
+        line-height: 1.15 !important;
+      }
+
+      h2 {
+        font-size: 1.6rem !important;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .mobile-card {
+        padding: 0.75rem !important;
+        border-radius: 0.875rem !important;
+      }
+
+      .mobile-panel {
+        padding: 0.75rem !important;
+      }
+
+      .ad-box {
+        min-height: 80px;
+        border-radius: 0.75rem;
+        font-size: 0.75rem;
+      }
+
+      .mobile-preview {
+        min-height: 210px !important;
+      }
+
+      button,
+      a {
+        font-size: 0.875rem;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800">
+  <header class="border-b border-slate-200 bg-white">
+    <div class="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
+      <a href="https://nodntools.com" class="safe-break text-xl font-extrabold tracking-tight text-slate-900" aria-label="NodnWebTools home">
+        Nodn<span class="text-indigo-600">WebTools</span>
+      </a>
+
+      <a href="https://nodntools.com" class="rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-indigo-300 hover:text-indigo-700">
+        Home
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <section class="mx-auto w-full max-w-7xl px-4 pt-6 sm:px-6 lg:px-8">
+      <div class="ad-box" role="complementary" aria-label="Advertisement placeholder">
+        Advertisement
+      </div>
+    </section>
+
+    <section class="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+      <div class="mb-8 max-w-3xl">
+        <div class="mb-4 inline-flex items-center gap-2 rounded-full border border-indigo-200 bg-indigo-50 px-3 py-1 text-sm font-semibold text-indigo-700">
+          <span>100% browser-based</span>
+          <span aria-hidden="true">•</span>
+          <span>No server upload</span>
+        </div>
+
+        <h1 class="text-4xl font-black tracking-tight text-slate-950 sm:text-5xl">
+          Free PDF Compressor
+        </h1>
+
+        <p class="mt-4 text-lg leading-8 text-slate-600">
+          Reduce PDF file size by optimizing page images and resolution directly in your browser. Choose a compression level, review the result, and download a smaller PDF without sending your document to an external server.
+        </p>
+      </div>
+
+      <div class="grid gap-6 lg:grid-cols-2">
+        <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8" aria-labelledby="compressor-controls-title">
+          <div class="mb-6">
+            <h2 id="compressor-controls-title" class="text-2xl font-bold text-slate-950">Compression settings</h2>
+            <p class="mt-2 text-sm leading-6 text-slate-500">
+              Upload one PDF and select the quality settings that best match your needs.
+            </p>
+          </div>
+
+          <div id="dropZone" class="mobile-panel rounded-2xl border-2 border-dashed border-slate-300 bg-slate-50 p-6 text-center transition sm:p-8">
+            <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-indigo-100 text-indigo-600">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 16V4m0 0L7 9m5-5l5 5M5 20h14" />
+              </svg>
+            </div>
+
+            <h3 class="mt-4 text-lg font-bold text-slate-900">Drop a PDF file here</h3>
+            <p class="mt-2 text-sm text-slate-500">or select a PDF from your device</p>
+
+            <label for="pdfInput" class="mt-5 inline-flex cursor-pointer items-center justify-center rounded-xl bg-indigo-600 px-5 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-indigo-700 focus-within:ring-4 focus-within:ring-indigo-100">
+              Choose PDF
+            </label>
+            <input id="pdfInput" type="file" accept="application/pdf,.pdf" class="sr-only">
+
+            <p class="mt-4 text-xs text-slate-400">
+              Recommended maximum: 40 MB. Large PDFs may require more browser memory.
+            </p>
+          </div>
+
+          <div id="fileInfo" class="mt-5 hidden rounded-2xl border border-slate-200 bg-white p-4">
+            <div class="flex items-start gap-3">
+              <div class="flex h-10 w-10 flex-none items-center justify-center rounded-xl bg-rose-50 text-rose-600">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M14 2v6h6" />
+                </svg>
+              </div>
+
+              <div class="flex-1">
+                <p id="fileName" class="safe-break font-semibold text-slate-900"></p>
+                <div class="mt-1 flex flex-wrap gap-x-4 gap-y-1 text-sm text-slate-500">
+                  <span id="fileSize"></span>
+                  <span id="pageCount">Pages: —</span>
+                </div>
+              </div>
+
+              <button id="removeFileButton" type="button" class="rounded-lg p-2 text-slate-400 transition hover:bg-slate-100 hover:text-slate-700" aria-label="Remove selected PDF">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="mt-7 space-y-6">
+            <div>
+              <label for="compressionPreset" class="mb-2 block text-sm font-bold text-slate-800">
+                Compression level
+              </label>
+              <select id="compressionPreset" class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-800 outline-none transition focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100">
+                <option value="low">Low compression — highest quality</option>
+                <option value="medium" selected>Medium compression — recommended</option>
+                <option value="high">High compression — smallest file</option>
+                <option value="custom">Custom settings</option>
+              </select>
+            </div>
+
+            <div>
+              <div class="mb-2 flex items-center justify-between gap-4">
+                <label for="qualityRange" class="text-sm font-bold text-slate-800">Image quality</label>
+                <span id="qualityValue" class="rounded-lg bg-indigo-50 px-2.5 py-1 text-sm font-bold text-indigo-700">72%</span>
+              </div>
+              <input id="qualityRange" type="range" min="35" max="95" step="1" value="72" class="accent-indigo-600">
+              <div class="mt-2 flex justify-between text-xs text-slate-400">
+                <span>Smaller file</span>
+                <span>Higher quality</span>
+              </div>
+            </div>
+
+            <div>
+              <label for="resolutionSelect" class="mb-2 block text-sm font-bold text-slate-800">
+                Output resolution
+              </label>
+              <select id="resolutionSelect" class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-800 outline-none transition focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100">
+                <option value="1">96 DPI — smallest</option>
+                <option value="1.35" selected>130 DPI — recommended</option>
+                <option value="1.56">150 DPI — balanced</option>
+                <option value="2.08">200 DPI — high quality</option>
+              </select>
+            </div>
+
+            <div class="rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm leading-6 text-amber-900">
+              <strong>Important:</strong> This tool compresses PDFs by rendering each page as an optimized image. Text remains visible but may no longer be selectable, searchable, or editable in the downloaded file.
+            </div>
+
+            <div id="warningBox" class="hidden rounded-2xl border border-rose-200 bg-rose-50 p-4 text-sm leading-6 text-rose-800" role="alert"></div>
+
+            <button id="compressButton" type="button" disabled class="w-full rounded-xl bg-indigo-600 px-5 py-3.5 text-sm font-bold text-white shadow-sm transition enabled:hover:bg-indigo-700 disabled:cursor-not-allowed disabled:bg-slate-300">
+              Compress PDF
+            </button>
+          </div>
+        </section>
+
+        <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8" aria-labelledby="result-title">
+          <div class="mb-6 flex items-center justify-between gap-4">
+            <div>
+              <h2 id="result-title" class="text-2xl font-bold text-slate-950">Preview and result</h2>
+              <p class="mt-2 text-sm leading-6 text-slate-500">
+                Review the first page and compare the original and compressed file sizes.
+              </p>
+            </div>
+          </div>
+
+          <div id="previewArea" class="mobile-preview flex min-h-[400px] items-center justify-center overflow-hidden rounded-2xl border border-slate-200 bg-slate-100 p-4">
+            <div id="emptyPreview" class="max-w-sm text-center">
+              <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-white text-slate-400 shadow-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4-4 4 4 4-4 4 4M8 8h.01M5 3h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2z" />
+                </svg>
+              </div>
+              <p class="mt-4 font-semibold text-slate-700">Your PDF preview will appear here</p>
+              <p class="mt-2 text-sm leading-6 text-slate-500">Select a PDF to load its first page.</p>
+            </div>
+
+            <canvas id="previewCanvas" class="preview-page hidden"></canvas>
+          </div>
+
+          <div id="progressSection" class="mt-6 hidden">
+            <div class="mb-2 flex items-center justify-between gap-3 text-sm">
+              <span id="progressLabel" class="safe-break font-semibold text-slate-700">Preparing PDF...</span>
+              <span id="progressPercent" class="font-bold text-indigo-700">0%</span>
+            </div>
+            <div class="h-3 overflow-hidden rounded-full bg-slate-200">
+              <div id="progressBar" class="progress-bar h-full w-0 rounded-full bg-indigo-600"></div>
+            </div>
+          </div>
+
+          <div class="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
+            <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+              <p class="text-xs font-semibold uppercase tracking-wide text-slate-400">Original</p>
+              <p id="originalSizeResult" class="safe-break mt-2 text-lg font-black text-slate-900">—</p>
+            </div>
+
+            <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+              <p class="text-xs font-semibold uppercase tracking-wide text-slate-400">Compressed</p>
+              <p id="compressedSizeResult" class="safe-break mt-2 text-lg font-black text-slate-900">—</p>
+            </div>
+
+            <div class="col-span-2 rounded-2xl border border-indigo-200 bg-indigo-50 p-4 sm:col-span-1">
+              <p class="text-xs font-semibold uppercase tracking-wide text-indigo-500">Reduction</p>
+              <p id="reductionResult" class="safe-break mt-2 text-lg font-black text-indigo-700">—</p>
+            </div>
+          </div>
+
+          <div class="mobile-button-grid mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
+            <button id="downloadButton" type="button" disabled class="rounded-xl bg-slate-900 px-5 py-3.5 text-sm font-bold text-white transition enabled:hover:bg-slate-800 disabled:cursor-not-allowed disabled:bg-slate-300">
+              Download Compressed PDF
+            </button>
+
+            <button id="resetButton" type="button" class="rounded-xl border border-slate-300 bg-white px-5 py-3.5 text-sm font-bold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50">
+              Reset
+            </button>
+          </div>
+
+          <p id="statusMessage" class="mt-4 min-h-6 text-center text-sm font-medium text-slate-500" aria-live="polite"></p>
+        </section>
+      </div>
+    </section>
+
+    <section class="mx-auto w-full max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
+      <div class="ad-box" role="complementary" aria-label="Advertisement placeholder">
+        Advertisement
+      </div>
+    </section>
+
+    <section class="border-y border-slate-200 bg-white">
+      <div class="mx-auto w-full max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
+        <article class="prose prose-slate max-w-none">
+          <div class="mb-12">
+            <p class="text-sm font-bold uppercase tracking-[0.2em] text-indigo-600">PDF Optimization Guide</p>
+            <h2 class="mt-3 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">
+              Compress PDF Files Online Without Uploading Documents
+            </h2>
+            <p class="mt-5 text-lg leading-8 text-slate-600">
+              Large PDF files can be inconvenient to email, upload, share, archive, or open on mobile devices. A PDF may become oversized because it contains high-resolution scans, full-page photographs, screenshots, design proofs, presentation slides, or images exported at print quality. The NodnWebTools PDF Compressor helps reduce PDF file size directly in your web browser by rendering each page and rebuilding the document with optimized image settings.
+            </p>
+          </div>
+
+          <div class="space-y-8 text-base leading-8 text-slate-700">
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">What Is an Online PDF Compressor?</h2>
+              <p class="mt-4">
+                An online PDF compressor is a tool designed to make PDF documents smaller. The process is often called PDF optimization, PDF reduction, PDF shrinking, or PDF file size compression. The goal is to lower the number of megabytes required to store or transfer a document while maintaining acceptable visual quality.
+              </p>
+              <p class="mt-4">
+                PDF files are containers that may include text, embedded fonts, vector graphics, annotations, forms, photographs, scanned pages, thumbnails, and metadata. Some PDF documents are already efficiently optimized, while others include images that are much larger than necessary for normal screen viewing. A single scanned page saved at an extremely high resolution can use several megabytes. A document containing dozens of pages may therefore become too large for common email attachment limits or online submission portals.
+              </p>
+              <p class="mt-4">
+                This free PDF compressor uses a browser-based approach. It reads the selected PDF locally, renders every page at the resolution you choose, converts the rendered page to a compressed JPEG image, and then creates a new PDF. Because the pages are rebuilt as images, the method can produce meaningful size reductions for scanned PDFs, image-heavy reports, photo portfolios, receipts, invoices, worksheets, presentation exports, and many other visual documents.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">How This Browser-Based PDF Compressor Works</h2>
+              <p class="mt-4">
+                The compression process takes place in your browser. When you select a file, JavaScript reads the PDF from your device. The tool does not intentionally upload the PDF to a NodnWebTools server. The first page is rendered to create a preview. When you press the Compress PDF button, the browser processes each page one at a time and adds the optimized image to a newly generated PDF file.
+              </p>
+              <p class="mt-4">
+                Two major settings influence the output size: image quality and output resolution. Image quality controls how strongly the JPEG data is compressed. Lower quality generally creates a smaller PDF but may introduce visible compression artifacts, especially around small text, thin lines, charts, or detailed images. Higher quality preserves more detail but results in a larger file.
+              </p>
+              <p class="mt-4">
+                Output resolution controls how many pixels are used to represent each page. A low-resolution setting may be suitable for casual screen viewing, email attachments, online applications, and temporary sharing. A higher-resolution setting may be more appropriate for documents that contain small text, technical diagrams, detailed forms, or pages that may be printed.
+              </p>
+              <p class="mt-4">
+                The tool preserves the approximate page dimensions and orientation of the original document. Portrait pages remain portrait, and landscape pages remain landscape. However, because every page is converted into an image, the resulting PDF may not retain selectable text, searchable text, hyperlinks, form fields, comments, bookmarks, digital signatures, layers, or accessibility structure.
+              </p>
+            </section>
+
+            <div class="ad-box my-12" role="complementary" aria-label="Advertisement placeholder">
+              Advertisement
+            </div>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">Why Reduce PDF File Size?</h2>
+              <p class="mt-4">
+                Smaller PDF files are easier to transfer and store. Email services, job application websites, government portals, school systems, insurance platforms, accounting systems, and customer support forms often impose strict file upload limits. A document may need to be under 25 MB, 10 MB, 5 MB, or even 2 MB before it can be submitted.
+              </p>
+              <p class="mt-4">
+                Reducing PDF size can also improve the user experience for recipients. A compressed PDF usually downloads faster, opens more quickly on slower devices, consumes less mobile data, and requires less cloud storage. Businesses that regularly share reports, proposals, invoices, manuals, or presentations may reduce storage and bandwidth usage by optimizing oversized files before distribution.
+              </p>
+              <p class="mt-4">
+                Students and educators may need a smaller PDF to submit assignments, scanned worksheets, research notes, portfolios, or lecture slides. Freelancers may compress design proofs, client proposals, photography contact sheets, and project documents. Office users may optimize meeting decks, scanned contracts, expense receipts, and internal reports. Travelers may compress passport scans, itinerary documents, booking confirmations, or supporting documents before uploading them to a travel portal.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">How to Use the Free PDF Compressor</h2>
+
+              <div class="mt-6 grid gap-5 md:grid-cols-2">
+                <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6">
+                  <h3 class="text-lg font-black text-slate-900">1. Select your PDF</h3>
+                  <p class="mt-3 text-sm leading-7 text-slate-600">
+                    Drag a PDF into the upload area or use the Choose PDF button. The selected file remains in your browser during processing.
+                  </p>
+                </div>
+
+                <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6">
+                  <h3 class="text-lg font-black text-slate-900">2. Choose a compression level</h3>
+                  <p class="mt-3 text-sm leading-7 text-slate-600">
+                    Select low, medium, or high compression. Medium compression is a practical starting point for most documents.
+                  </p>
+                </div>
+
+                <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6">
+                  <h3 class="text-lg font-black text-slate-900">3. Adjust quality and resolution</h3>
+                  <p class="mt-3 text-sm leading-7 text-slate-600">
+                    Fine-tune image quality and page resolution when you need more control over clarity and output size.
+                  </p>
+                </div>
+
+                <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6">
+                  <h3 class="text-lg font-black text-slate-900">4. Compress and download</h3>
+                  <p class="mt-3 text-sm leading-7 text-slate-600">
+                    Press Compress PDF, allow the browser to process each page, and download the newly generated file.
+                  </p>
+                </div>
+              </div>
+            </section>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">Choosing the Best PDF Compression Level</h2>
+
+              <h3 class="mt-6 text-xl font-bold text-slate-900">Low compression for maximum visual quality</h3>
+              <p class="mt-3">
+                Low compression uses a higher JPEG quality and a higher rendering resolution. It is useful when readability and image clarity are more important than achieving the smallest possible file. Choose this option for documents with small fonts, charts, technical drawings, detailed photographs, marketing materials, certificates, or pages that may be printed.
+              </p>
+
+              <h3 class="mt-6 text-xl font-bold text-slate-900">Medium compression for general use</h3>
+              <p class="mt-3">
+                Medium compression provides a practical balance between quality and file reduction. It is recommended for typical business documents, scanned paperwork, forms, invoices, school assignments, general reports, presentation exports, and documents mainly viewed on a laptop or phone.
+              </p>
+
+              <h3 class="mt-6 text-xl font-bold text-slate-900">High compression for the smallest output</h3>
+              <p class="mt-3">
+                High compression reduces image quality and resolution more aggressively. It can be useful when a file must fit under a strict upload limit and perfect visual quality is not required. Always review the downloaded PDF before sending or submitting it. Small text may become less sharp, and detailed graphics may display noticeable artifacts.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">Popular Uses for a PDF Size Reducer</h2>
+
+              <h3 class="mt-6 text-xl font-bold text-slate-900">Compressing scanned documents</h3>
+              <p class="mt-3">
+                Scanned documents are among the best candidates for image-based PDF compression. Scanner software sometimes stores pages at 300, 600, or even 1,200 DPI, which may be unnecessary for screen viewing. Reducing the rendered resolution can dramatically lower file size while keeping normal text readable.
+              </p>
+
+              <h3 class="mt-6 text-xl font-bold text-slate-900">Reducing PDFs for email</h3>
+              <p class="mt-3">
+                Many email providers restrict attachment size. Even when a large attachment is technically allowed, recipients may experience slow downloads. Compressing a PDF before attaching it can make communication faster and more reliable.
+              </p>
+
+              <h3 class="mt-6 text-xl font-bold text-slate-900">Preparing PDFs for online forms</h3>
+              <p class="mt-3">
+                Government agencies, schools, employers, banks, insurance companies, and immigration portals often use upload limits. A PDF compressor can help reduce scanned identification, supporting documents, application materials, and financial records before submission.
+              </p>
+
+              <h3 class="mt-6 text-xl font-bold text-slate-900">Optimizing presentation and portfolio PDFs</h3>
+              <p class="mt-3">
+                Presentations exported to PDF may contain high-resolution background images and charts. Designers, photographers, architects, and freelancers may also create visually rich portfolios. Compression makes these files easier to send while preserving a reasonable screen-viewing experience.
+              </p>
+
+              <h3 class="mt-6 text-xl font-bold text-slate-900">Saving storage space</h3>
+              <p class="mt-3">
+                Organizations may retain thousands of receipts, reports, scanned forms, or archived documents. Compressing image-heavy PDFs can reduce storage usage, simplify backups, and make cloud synchronization faster.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">Tips for Better PDF Compression Results</h2>
+              <p class="mt-4">
+                Start with medium compression and inspect the output. If the file is still too large, lower the image quality or select a lower resolution. If text looks blurry, increase the resolution first, then increase image quality if needed. Resolution has a particularly strong effect on small text and line art.
+              </p>
+              <p class="mt-4">
+                Avoid repeatedly compressing the same PDF. Each additional image recompression can reduce quality. Whenever possible, compress the original PDF rather than a file that has already been compressed several times.
+              </p>
+              <p class="mt-4">
+                Review every page before submitting an important document. Pay special attention to signatures, identification numbers, dates, tables, fine print, barcodes, QR codes, diagrams, and small annotations. A file may look acceptable on the preview page but contain other pages with smaller text.
+              </p>
+              <p class="mt-4">
+                Keep a backup of the original file. The compressed version is intended for convenient sharing or submission, while the original may be needed for editing, printing, legal retention, accessibility, or future reprocessing.
+              </p>
+              <p class="mt-4">
+                Password-protected, encrypted, damaged, or unusually structured PDFs may not open correctly. Remove password protection only when you are authorized to do so. Digitally signed PDFs should generally not be rebuilt because modifying the document can invalidate the signature.
+              </p>
+            </section>
+
+            <div class="ad-box my-12" role="complementary" aria-label="Advertisement placeholder">
+              Advertisement
+            </div>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">Privacy and Local Browser Processing</h2>
+              <p class="mt-4">
+                Privacy is an important consideration when working with business records, identification documents, financial statements, contracts, medical forms, educational records, or other sensitive PDFs. This tool is designed to process selected files locally in the browser rather than intentionally transferring their contents to a document-processing server.
+              </p>
+              <p class="mt-4">
+                Local processing can reduce exposure compared with traditional upload-based tools, but users should still take normal security precautions. Use a trusted device, keep the operating system and browser updated, avoid processing sensitive documents on public computers, and verify that the downloaded file is stored in an appropriate location.
+              </p>
+              <p class="mt-4">
+                Browser memory and device performance determine how large a PDF can be processed successfully. High-resolution pages and long documents may require substantial RAM. Closing unused browser tabs, selecting a lower output resolution, or splitting a large PDF into smaller sections may improve reliability.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">Understanding the Limitations of Image-Based PDF Compression</h2>
+              <p class="mt-4">
+                A professional desktop PDF optimizer may analyze individual images, fonts, transparency groups, duplicate objects, unused resources, embedded thumbnails, cross-reference tables, and metadata. A client-side browser tool has different capabilities and constraints.
+              </p>
+              <p class="mt-4">
+                This compressor rebuilds each page as an image. The approach is highly effective for many scanned and visual PDFs, but it may not reduce an already optimized text-only PDF. In some cases, the compressed file may even be larger than the original. This can happen when the source document contains efficient vector text and graphics that are smaller than a full-page image.
+              </p>
+              <p class="mt-4">
+                Searchable text may be lost because the output page is an image rather than live PDF text. Screen readers may not be able to interpret the content. Interactive forms, hyperlinks, embedded files, comments, layers, bookmarks, and digital signatures are not preserved. For accessibility-critical, legal, archival, or editable documents, use a professional PDF optimization workflow that retains document structure.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">PDF Compression for Mobile Devices</h2>
+              <p class="mt-4">
+                Mobile users often encounter PDF file size problems because phones and tablets may have limited storage, slower upload speeds, and cellular data restrictions. A smaller PDF is easier to send through messaging apps, upload from a phone, save to cloud storage, or open while traveling.
+              </p>
+              <p class="mt-4">
+                The page is designed to fit mobile screens without horizontal overflow. However, compressing a long or high-resolution document can consume significant memory. For the most reliable performance, use a modern browser, keep the device connected to power when processing a large document, and avoid switching apps while compression is active.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">Free PDF Compressor for Work, School, and Personal Documents</h2>
+              <p class="mt-4">
+                A simple PDF size reducer can solve many everyday document problems. Office workers can prepare reports for email. Students can upload assignments. Teachers can share scanned worksheets. Small businesses can reduce invoices and receipts. Freelancers can send portfolios and proposals. Home users can archive scanned records, manuals, forms, and personal documents.
+              </p>
+              <p class="mt-4">
+                No registration is required to use the compressor interface. The generated PDF can be downloaded directly through the browser. The tool does not require a desktop installation, which makes it convenient on Windows, macOS, Linux, ChromeOS, and many modern mobile browsers.
+              </p>
+              <p class="mt-4">
+                For best results, consider the purpose of the document. A PDF intended only for on-screen review can usually tolerate more compression than a document intended for high-quality printing. A scanned receipt may remain useful at a lower resolution, while an architectural drawing or detailed legal exhibit may require higher clarity.
+              </p>
+            </section>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <div class="mb-8">
+        <p class="text-sm font-bold uppercase tracking-[0.2em] text-indigo-600">Discover More</p>
+        <h2 class="mt-2 text-3xl font-black tracking-tight text-slate-950">Related Tools</h2>
+        <p class="mt-3 max-w-3xl text-slate-600">
+          Continue working with documents, images, and archives using these related browser-based utilities.
+        </p>
+      </div>
+
+      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <a href="/pdf-merger-splitter" class="tool-card-hover group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-50 text-2xl">📄</div>
+          <h3 class="mt-4 text-lg font-black text-slate-900 group-hover:text-indigo-700">PDF Merger & Splitter</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-500">Combine multiple PDFs or extract selected pages into a new document.</p>
+        </a>
+
+        <a href="/document-viewer" class="tool-card-hover group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-violet-50 text-2xl">👁️</div>
+          <h3 class="mt-4 text-lg font-black text-slate-900 group-hover:text-indigo-700">Document Viewer</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-500">Open and review common document formats directly in your browser.</p>
+        </a>
+
+        <a href="/image-converter" class="tool-card-hover group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-fuchsia-50 text-2xl">🖼️</div>
+          <h3 class="mt-4 text-lg font-black text-slate-900 group-hover:text-indigo-700">Image Converter</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-500">Convert images between popular formats such as JPG, PNG, and WebP.</p>
+        </a>
+
+        <a href="/zip-extractor" class="tool-card-hover group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-50 text-2xl">🗂️</div>
+          <h3 class="mt-4 text-lg font-black text-slate-900 group-hover:text-indigo-700">ZIP Extractor</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-500">Open ZIP archives and download individual files without server uploads.</p>
+        </a>
+
+        <a href="/excel-viewer" class="tool-card-hover group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-2xl">📊</div>
+          <h3 class="mt-4 text-lg font-black text-slate-900 group-hover:text-indigo-700">Excel Viewer</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-500">View spreadsheet files and inspect worksheet data online.</p>
+        </a>
+
+        <a href="/powerpoint-viewer" class="tool-card-hover group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-orange-50 text-2xl">📽️</div>
+          <h3 class="mt-4 text-lg font-black text-slate-900 group-hover:text-indigo-700">PowerPoint Viewer</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-500">Preview PowerPoint presentations without installing desktop software.</p>
+        </a>
+      </div>
+    </section>
+
+    <section class="mx-auto w-full max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
+      <div class="ad-box" role="complementary" aria-label="Advertisement placeholder">
+        Advertisement
+      </div>
+    </section>
+
+    <section class="border-t border-slate-200 bg-white">
+      <div class="mx-auto w-full max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
+        <div class="mb-10">
+          <p class="text-sm font-bold uppercase tracking-[0.2em] text-indigo-600">Questions and Answers</p>
+          <h2 class="mt-2 text-3xl font-black tracking-tight text-slate-950">PDF Compressor FAQ</h2>
+        </div>
+
+        <div class="space-y-4">
+          <details class="group rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">
+              Is this PDF compressor free?
+            </summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              Yes. The browser-based compression interface can be used without creating an account or installing desktop software.
+            </p>
+          </details>
+
+          <details class="group rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">
+              Are my PDF files uploaded to a server?
+            </summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              The compression process is designed to run locally in your browser. Your selected file is read and processed on your device.
+            </p>
+          </details>
+
+          <details class="group rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">
+              Why did my compressed PDF become larger?
+            </summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              Some PDFs already contain efficiently compressed text and vector graphics. Rebuilding those pages as images can create a larger file. This tool is generally most effective for scanned and image-heavy PDFs.
+            </p>
+          </details>
+
+          <details class="group rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">
+              Will the compressed PDF keep selectable text?
+            </summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              Usually not. Each page is rendered as an image, so selectable text, search, hyperlinks, forms, bookmarks, accessibility tags, and other interactive elements may be lost.
+            </p>
+          </details>
+
+          <details class="group rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">
+              What compression level should I use?
+            </summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              Medium compression is recommended for general use. Choose low compression for better quality or high compression when achieving the smallest possible file is the priority.
+            </p>
+          </details>
+
+          <details class="group rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">
+              Can I compress a password-protected PDF?
+            </summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              Encrypted or password-protected PDFs may not open. Only remove protection when you own the file or have permission to modify it.
+            </p>
+          </details>
+
+          <details class="group rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">
+              Does PDF compression reduce print quality?
+            </summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              It can. Lower quality and resolution settings reduce detail. Use a higher resolution for documents that must be printed or contain small text and fine graphics.
+            </p>
+          </details>
+
+          <details class="group rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">
+              Can I use the tool on a phone or tablet?
+            </summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              Yes, provided the browser supports the required JavaScript features. Large PDFs may process more reliably on a computer with additional memory.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="mx-auto w-full max-w-5xl px-4 py-12 sm:px-6 lg:px-8">
+      <div class="rounded-3xl bg-slate-900 p-6 text-slate-300 shadow-xl sm:p-8">
+        <h2 class="text-2xl font-black text-white">Legal Disclaimer</h2>
+        <div class="mt-4 space-y-4 text-sm leading-7">
+          <p>
+            This PDF compression tool is provided for general document-processing convenience. Compression results, file size reductions, visual quality, compatibility, and document integrity are not guaranteed. The generated file may be larger than the original or may contain reduced image quality.
+          </p>
+          <p>
+            The compression process may remove or alter searchable text, hyperlinks, forms, annotations, bookmarks, accessibility information, metadata, digital signatures, layers, attachments, and other PDF features. Do not use the tool as the only method for preserving legal, archival, medical, financial, governmental, or business-critical records.
+          </p>
+          <p>
+            Users are responsible for reviewing the downloaded PDF, confirming that all pages are complete and readable, retaining an original backup, and ensuring that they have the legal right to modify the document. Avoid processing confidential or sensitive files on shared, public, compromised, or untrusted devices.
+          </p>
+          <p>
+            NodnWebTools is not responsible for data loss, corrupted files, missed deadlines, rejected submissions, invalidated signatures, privacy incidents, device performance issues, browser crashes, or any direct or indirect damages related to use of this tool.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="mx-auto w-full max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
+      <div class="ad-box" role="complementary" aria-label="Advertisement placeholder">
+        Advertisement
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-slate-200 bg-white">
+    <div class="mx-auto flex w-full max-w-7xl flex-col gap-3 px-4 py-8 text-sm text-slate-500 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
+      <p>© <span id="currentYear"></span> NodnWebTools. All rights reserved.</p>
+      <a href="https://nodntools.com" class="font-semibold text-slate-600 transition hover:text-indigo-700">Back to NodnWebTools</a>
+    </div>
+  </footer>
+
+  <script type="module">
+    import * as pdfjsLib from "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.min.mjs";
+
+    pdfjsLib.GlobalWorkerOptions.workerSrc =
+      "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.worker.min.mjs";
+
+    const pdfInput = document.getElementById("pdfInput");
+    const dropZone = document.getElementById("dropZone");
+    const fileInfo = document.getElementById("fileInfo");
+    const fileName = document.getElementById("fileName");
+    const fileSize = document.getElementById("fileSize");
+    const pageCount = document.getElementById("pageCount");
+    const removeFileButton = document.getElementById("removeFileButton");
+
+    const compressionPreset = document.getElementById("compressionPreset");
+    const qualityRange = document.getElementById("qualityRange");
+    const qualityValue = document.getElementById("qualityValue");
+    const resolutionSelect = document.getElementById("resolutionSelect");
+
+    const compressButton = document.getElementById("compressButton");
+    const downloadButton = document.getElementById("downloadButton");
+    const resetButton = document.getElementById("resetButton");
+
+    const previewCanvas = document.getElementById("previewCanvas");
+    const emptyPreview = document.getElementById("emptyPreview");
+
+    const progressSection = document.getElementById("progressSection");
+    const progressLabel = document.getElementById("progressLabel");
+    const progressPercent = document.getElementById("progressPercent");
+    const progressBar = document.getElementById("progressBar");
+
+    const originalSizeResult = document.getElementById("originalSizeResult");
+    const compressedSizeResult = document.getElementById("compressedSizeResult");
+    const reductionResult = document.getElementById("reductionResult");
+
+    const warningBox = document.getElementById("warningBox");
+    const statusMessage = document.getElementById("statusMessage");
+
+    let selectedFile = null;
+    let loadedPdf = null;
+    let compressedBlob = null;
+    let compressedFileName = "compressed.pdf";
+    let isProcessing = false;
+
+    const presets = {
+      low: {
+        quality: 88,
+        scale: "2.08"
+      },
+      medium: {
+        quality: 72,
+        scale: "1.35"
+      },
+      high: {
+        quality: 52,
+        scale: "1"
+      }
+    };
+
+    function formatBytes(bytes) {
+      if (!Number.isFinite(bytes) || bytes < 0) return "—";
+      if (bytes === 0) return "0 B";
+
+      const units = ["B", "KB", "MB", "GB"];
+      const index = Math.min(Math.floor(Math.log(bytes) / Math.log(1024)), units.length - 1);
+      const value = bytes / Math.pow(1024, index);
+
+      return `${value.toFixed(value >= 10 || index === 0 ? 1 : 2)} ${units[index]}`;
+    }
+
+    function setWarning(message = "") {
+      if (!message) {
+        warningBox.classList.add("hidden");
+        warningBox.textContent = "";
+        return;
+      }
+
+      warningBox.textContent = message;
+      warningBox.classList.remove("hidden");
+    }
+
+    function setStatus(message = "", type = "neutral") {
+      statusMessage.textContent = message;
+      statusMessage.className = "mt-4 min-h-6 text-center text-sm font-medium";
+
+      if (type === "success") {
+        statusMessage.classList.add("text-emerald-600");
+      } else if (type === "error") {
+        statusMessage.classList.add("text-rose-600");
+      } else {
+        statusMessage.classList.add("text-slate-500");
+      }
+    }
+
+    function updateProgress(current, total, label) {
+      const percentage = total > 0 ? Math.round((current / total) * 100) : 0;
+      progressSection.classList.remove("hidden");
+      progressLabel.textContent = label;
+      progressPercent.textContent = `${percentage}%`;
+      progressBar.style.width = `${percentage}%`;
+    }
+
+    function resetProgress() {
+      progressSection.classList.add("hidden");
+      progressLabel.textContent = "Preparing PDF...";
+      progressPercent.textContent = "0%";
+      progressBar.style.width = "0%";
+    }
+
+    function clearResult() {
+      compressedBlob = null;
+      compressedFileName = "compressed.pdf";
+      compressedSizeResult.textContent = "—";
+      reductionResult.textContent = "—";
+      downloadButton.disabled = true;
+    }
+
+    function applyPreset(value) {
+      if (!presets[value]) return;
+
+      qualityRange.value = presets[value].quality;
+      resolutionSelect.value = presets[value].scale;
+      qualityValue.textContent = `${presets[value].quality}%`;
+    }
+
+    function markCustom() {
+      const currentPreset = compressionPreset.value;
+      if (currentPreset === "custom") return;
+
+      const preset = presets[currentPreset];
+      if (!preset) {
+        compressionPreset.value = "custom";
+        return;
+      }
+
+      const qualityMatches = Number(qualityRange.value) === preset.quality;
+      const scaleMatches = resolutionSelect.value === preset.scale;
+
+      if (!qualityMatches || !scaleMatches) {
+        compressionPreset.value = "custom";
+      }
+    }
+
+    async function createPdfDocument(file) {
+      const arrayBuffer = await file.arrayBuffer();
+
+      return pdfjsLib.getDocument({
+        data: arrayBuffer,
+        useSystemFonts: true
+      }).promise;
+    }
+
+    async function renderPreview(pdf) {
+      const page = await pdf.getPage(1);
+      const baseViewport = page.getViewport({ scale: 1 });
+
+      const previewContainerWidth = Math.min(
+        document.getElementById("previewArea").clientWidth - 32,
+        720
+      );
+
+      const scale = Math.max(
+        0.5,
+        Math.min(1.5, previewContainerWidth / baseViewport.width)
+      );
+
+      const viewport = page.getViewport({ scale });
+      const context = previewCanvas.getContext("2d", { alpha: false });
+
+      previewCanvas.width = Math.floor(viewport.width);
+      previewCanvas.height = Math.floor(viewport.height);
+      previewCanvas.style.width = `${Math.floor(viewport.width)}px`;
+      previewCanvas.style.height = `${Math.floor(viewport.height)}px`;
+
+      context.fillStyle = "#ffffff";
+      context.fillRect(0, 0, previewCanvas.width, previewCanvas.height);
+
+      await page.render({
+        canvasContext: context,
+        viewport
+      }).promise;
+
+      emptyPreview.classList.add("hidden");
+      previewCanvas.classList.remove("hidden");
+    }
+
+    async function handleFile(file) {
+      setWarning("");
+      setStatus("");
+      clearResult();
+      resetProgress();
+
+      if (!file) return;
+
+      const isPdf =
+        file.type === "application/pdf" ||
+        file.name.toLowerCase().endsWith(".pdf");
+
+      if (!isPdf) {
+        setWarning("Please select a valid PDF file.");
+        return;
+      }
+
+      if (file.size === 0) {
+        setWarning("The selected PDF is empty.");
+        return;
+      }
+
+      if (file.size > 40 * 1024 * 1024) {
+        setWarning("This PDF is larger than 40 MB. It may require substantial memory and could fail on some devices.");
+      }
+
+      selectedFile = file;
+      fileInfo.classList.remove("hidden");
+      fileName.textContent = file.name;
+      fileSize.textContent = formatBytes(file.size);
+      pageCount.textContent = "Pages: loading...";
+      originalSizeResult.textContent = formatBytes(file.size);
+      compressButton.disabled = true;
+
+      try {
+        loadedPdf = await createPdfDocument(file);
+        pageCount.textContent = `Pages: ${loadedPdf.numPages}`;
+        await renderPreview(loadedPdf);
+        compressButton.disabled = false;
+        setStatus("PDF loaded successfully.", "success");
+      } catch (error) {
+        console.error(error);
+        selectedFile = null;
+        loadedPdf = null;
+        fileInfo.classList.add("hidden");
+        originalSizeResult.textContent = "—";
+        pageCount.textContent = "Pages: —";
+        compressButton.disabled = true;
+        previewCanvas.classList.add("hidden");
+        emptyPreview.classList.remove("hidden");
+        setWarning("The PDF could not be opened. It may be damaged, encrypted, password-protected, or unsupported.");
+        setStatus("Unable to load the selected PDF.", "error");
+      }
+    }
+
+    function canvasToJpegDataUrl(canvas, quality) {
+      return canvas.toDataURL("image/jpeg", quality);
+    }
+
+    async function compressPdf() {
+      if (!selectedFile || !loadedPdf || isProcessing) {
+        if (!selectedFile) {
+          setWarning("Please select a PDF file before starting compression.");
+        }
+        return;
+      }
+
+      if (!window.jspdf || !window.jspdf.jsPDF) {
+        setWarning("The PDF generation library could not be loaded. Please refresh the page and try again.");
+        return;
+      }
+
+      isProcessing = true;
+      compressButton.disabled = true;
+      downloadButton.disabled = true;
+      clearResult();
+      setWarning("");
+      setStatus("Compressing your PDF...");
+      updateProgress(0, loadedPdf.numPages, "Preparing pages...");
+
+      const quality = Math.min(0.95, Math.max(0.35, Number(qualityRange.value) / 100));
+      const renderScale = Math.min(2.08, Math.max(1, Number(resolutionSelect.value)));
+      const { jsPDF } = window.jspdf;
+
+      let outputPdf = null;
+
+      try {
+        for (let pageNumber = 1; pageNumber <= loadedPdf.numPages; pageNumber++) {
+          updateProgress(
+            pageNumber - 1,
+            loadedPdf.numPages,
+            `Processing page ${pageNumber} of ${loadedPdf.numPages}`
+          );
+
+          const page = await loadedPdf.getPage(pageNumber);
+          const originalViewport = page.getViewport({ scale: 1 });
+          const renderViewport = page.getViewport({ scale: renderScale });
+
+          const canvas = document.createElement("canvas");
+          const context = canvas.getContext("2d", {
+            alpha: false,
+            willReadFrequently: false
+          });
+
+          canvas.width = Math.max(1, Math.floor(renderViewport.width));
+          canvas.height = Math.max(1, Math.floor(renderViewport.height));
+
+          context.fillStyle = "#ffffff";
+          context.fillRect(0, 0, canvas.width, canvas.height);
+
+          await page.render({
+            canvasContext: context,
+            viewport: renderViewport,
+            intent: "display"
+          }).promise;
+
+          const imageData = canvasToJpegDataUrl(canvas, quality);
+          const widthPt = originalViewport.width;
+          const heightPt = originalViewport.height;
+          const orientation = widthPt > heightPt ? "landscape" : "portrait";
+
+          if (!outputPdf) {
+            outputPdf = new jsPDF({
+              orientation,
+              unit: "pt",
+              format: [widthPt, heightPt],
+              compress: true,
+              putOnlyUsedFonts: true,
+              hotfixes: ["px_scaling"]
+            });
+          } else {
+            outputPdf.addPage([widthPt, heightPt], orientation);
+          }
+
+          outputPdf.addImage(
+            imageData,
+            "JPEG",
+            0,
+            0,
+            widthPt,
+            heightPt,
+            undefined,
+            "FAST"
+          );
+
+          canvas.width = 1;
+          canvas.height = 1;
+
+          updateProgress(
+            pageNumber,
+            loadedPdf.numPages,
+            `Processed page ${pageNumber} of ${loadedPdf.numPages}`
+          );
+
+          await new Promise(resolve => setTimeout(resolve, 0));
+        }
+
+        if (!outputPdf) {
+          throw new Error("No pages were generated.");
+        }
+
+        updateProgress(loadedPdf.numPages, loadedPdf.numPages, "Creating compressed PDF...");
+
+        compressedBlob = outputPdf.output("blob");
+
+        const originalName = selectedFile.name.replace(/\.pdf$/i, "");
+        compressedFileName = `${originalName}-compressed.pdf`;
+
+        const compressedSize = compressedBlob.size;
+        const originalSize = selectedFile.size;
+        const reduction = originalSize > 0
+          ? ((originalSize - compressedSize) / originalSize) * 100
+          : 0;
+
+        compressedSizeResult.textContent = formatBytes(compressedSize);
+
+        if (reduction > 0) {
+          reductionResult.textContent = `${reduction.toFixed(1)}% smaller`;
+          setStatus("Compression complete. Review the file size and download your PDF.", "success");
+        } else if (reduction === 0) {
+          reductionResult.textContent = "No change";
+          setStatus("Compression completed, but the file size did not change.", "neutral");
+        } else {
+          reductionResult.textContent = `${Math.abs(reduction).toFixed(1)}% larger`;
+          setStatus("The rebuilt PDF is larger than the original. Try high compression or keep the original file.", "error");
+        }
+
+        downloadButton.disabled = false;
+      } catch (error) {
+        console.error(error);
+        compressedBlob = null;
+        compressedSizeResult.textContent = "—";
+        reductionResult.textContent = "—";
+        downloadButton.disabled = true;
+        setWarning("Compression failed. The PDF may be too large, damaged, encrypted, or incompatible with your browser. Try a smaller file or a lower output resolution.");
+        setStatus("Unable to create the compressed PDF.", "error");
+      } finally {
+        isProcessing = false;
+        compressButton.disabled = !selectedFile || !loadedPdf;
+      }
+    }
+
+    function downloadCompressedPdf() {
+      if (!compressedBlob) {
+        setWarning("Compress a PDF before downloading.");
+        return;
+      }
+
+      try {
+        const url = URL.createObjectURL(compressedBlob);
+        const anchor = document.createElement("a");
+        anchor.href = url;
+        anchor.download = compressedFileName;
+        document.body.appendChild(anchor);
+        anchor.click();
+        anchor.remove();
+
+        setTimeout(() => URL.revokeObjectURL(url), 2000);
+        setStatus("Download started.", "success");
+      } catch (error) {
+        console.error(error);
+        setWarning("The browser could not start the download. Please try again.");
+      }
+    }
+
+    function resetTool() {
+      selectedFile = null;
+      loadedPdf = null;
+      compressedBlob = null;
+      compressedFileName = "compressed.pdf";
+      isProcessing = false;
+
+      pdfInput.value = "";
+      fileInfo.classList.add("hidden");
+      fileName.textContent = "";
+      fileSize.textContent = "";
+      pageCount.textContent = "Pages: —";
+
+      compressionPreset.value = "medium";
+      applyPreset("medium");
+
+      compressButton.disabled = true;
+      downloadButton.disabled = true;
+
+      previewCanvas.width = 1;
+      previewCanvas.height = 1;
+      previewCanvas.classList.add("hidden");
+      emptyPreview.classList.remove("hidden");
+
+      originalSizeResult.textContent = "—";
+      compressedSizeResult.textContent = "—";
+      reductionResult.textContent = "—";
+
+      resetProgress();
+      setWarning("");
+      setStatus("");
+    }
+
+    pdfInput.addEventListener("change", event => {
+      const [file] = event.target.files;
+      handleFile(file);
+    });
+
+    ["dragenter", "dragover"].forEach(eventName => {
+      dropZone.addEventListener(eventName, event => {
+        event.preventDefault();
+        event.stopPropagation();
+        dropZone.classList.add("drop-active");
+      });
+    });
+
+    ["dragleave", "drop"].forEach(eventName => {
+      dropZone.addEventListener(eventName, event => {
+        event.preventDefault();
+        event.stopPropagation();
+        dropZone.classList.remove("drop-active");
+      });
+    });
+
+    dropZone.addEventListener("drop", event => {
+      const [file] = event.dataTransfer.files;
+      handleFile(file);
+    });
+
+    compressionPreset.addEventListener("change", () => {
+      applyPreset(compressionPreset.value);
+      clearResult();
+      setStatus("");
+    });
+
+    qualityRange.addEventListener("input", () => {
+      qualityValue.textContent = `${qualityRange.value}%`;
+      markCustom();
+      clearResult();
+    });
+
+    resolutionSelect.addEventListener("change", () => {
+      markCustom();
+      clearResult();
+    });
+
+    compressButton.addEventListener("click", compressPdf);
+    downloadButton.addEventListener("click", downloadCompressedPdf);
+    resetButton.addEventListener("click", resetTool);
+    removeFileButton.addEventListener("click", resetTool);
+
+    window.addEventListener("resize", async () => {
+      if (!loadedPdf || isProcessing) return;
+
+      try {
+        await renderPreview(loadedPdf);
+      } catch (error) {
+        console.error(error);
+      }
+    });
+
+    document.getElementById("currentYear").textContent = new Date().getFullYear();
+    applyPreset("medium");
+  </script>
+</body>
+</html>

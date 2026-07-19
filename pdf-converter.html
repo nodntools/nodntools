@@ -1,0 +1,2453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>PDF Converter Online | Word, Excel, JPG, PNG, TXT</title>
+  <meta name="description" content="Convert PDF files to Word, Excel, JPG, PNG, or TXT securely in your browser with local processing and instant downloads.">
+  <meta name="keywords" content="PDF converter, PDF converter online, PDF to Word, PDF to Excel, PDF to JPG, PDF to PNG, PDF to TXT, convert PDF online, PDF image converter, PDF text converter, browser PDF converter, free PDF converter, local PDF conversion">
+  <meta name="robots" content="index, follow">
+  <meta name="google-adsense-account" content="ca-pub-5282672325821404">
+
+  <meta property="og:title" content="PDF Converter Online | Word, Excel, JPG, PNG, TXT">
+  <meta property="og:description" content="Convert PDF documents to Word, Excel, JPG, PNG, and plain text directly in your browser.">
+  <meta property="og:type" content="website">
+
+  <link rel="icon" type="image/png" href="/favicon.png">
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404" crossorigin="anonymous"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/docx@9.5.1/dist/index.umd.cjs"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "PDF Converter Online",
+    "url": "https://nodntools.com/pdf-converter",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "description": "A client-side PDF converter for converting PDF documents to Word, Excel, JPG, PNG, and TXT formats.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "featureList": [
+      "Convert PDF to Word",
+      "Convert PDF to Excel",
+      "Convert PDF to JPG",
+      "Convert PDF to PNG",
+      "Convert PDF to TXT",
+      "Select PDF page ranges",
+      "Download multiple images as ZIP",
+      "Local browser processing",
+      "No document upload"
+    ]
+  }
+  </script>
+
+  <style>
+    html, body {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      min-width: 0;
+    }
+
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      max-width: 100%;
+    }
+
+    img,
+    canvas,
+    svg,
+    table,
+    pre,
+    code {
+      max-width: 100%;
+    }
+
+    .safe-break {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .mobile-code {
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .ad-box {
+      width: 100%;
+      min-height: 90px;
+      border: 2px dashed #cbd5e1;
+      background: #f8fafc;
+      color: #94a3b8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-radius: 1rem;
+      padding: 1rem;
+      overflow: hidden;
+    }
+
+    .drop-active {
+      border-color: #6366f1 !important;
+      background: #eef2ff !important;
+      transform: scale(1.005);
+    }
+
+    .format-option {
+      transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        background-color 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    .format-option:hover {
+      transform: translateY(-2px);
+      border-color: #a5b4fc;
+    }
+
+    .format-option[aria-pressed="true"] {
+      border-color: #6366f1;
+      background: #eef2ff;
+      box-shadow: 0 12px 26px rgba(79, 70, 229, 0.12);
+    }
+
+    .format-option[aria-pressed="true"] .format-icon {
+      background: #4f46e5;
+      color: #ffffff;
+    }
+
+    .progress-bar {
+      transition: width 0.25s ease;
+    }
+
+    .tool-card-hover,
+    .result-card {
+      transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    .tool-card-hover:hover,
+    .result-card:hover {
+      transform: translateY(-3px);
+      border-color: #c7d2fe;
+      box-shadow: 0 16px 34px rgba(15, 23, 42, 0.08);
+    }
+
+    .preview-grid {
+      background-color: #f8fafc;
+      background-image:
+        linear-gradient(45deg, #e2e8f0 25%, transparent 25%),
+        linear-gradient(-45deg, #e2e8f0 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #e2e8f0 75%),
+        linear-gradient(-45deg, transparent 75%, #e2e8f0 75%);
+      background-size: 18px 18px;
+      background-position: 0 0, 0 9px, 9px -9px, -9px 0;
+    }
+
+    .result-scroll {
+      max-height: 540px;
+      overflow: auto;
+      overscroll-behavior: contain;
+    }
+
+    @media (max-width: 640px) {
+      .mobile-card {
+        padding: 1rem !important;
+        border-radius: 1rem !important;
+      }
+
+      .mobile-panel {
+        padding: 0.875rem !important;
+      }
+
+      .mobile-preview {
+        min-height: 220px !important;
+      }
+
+      .mobile-button-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .mobile-button-grid button,
+      .mobile-button-grid a {
+        width: 100%;
+      }
+
+      .format-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .result-scroll {
+        max-height: 420px;
+      }
+
+      h1 {
+        font-size: 2rem !important;
+        line-height: 1.15 !important;
+      }
+
+      h2 {
+        font-size: 1.6rem !important;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .mobile-card {
+        padding: 0.75rem !important;
+        border-radius: 0.875rem !important;
+      }
+
+      .mobile-panel {
+        padding: 0.75rem !important;
+      }
+
+      .ad-box {
+        min-height: 80px;
+        border-radius: 0.75rem;
+        font-size: 0.75rem;
+      }
+
+      button,
+      a,
+      input,
+      select,
+      textarea {
+        font-size: 0.875rem;
+      }
+
+      .format-option {
+        padding: 0.75rem !important;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800">
+  <header class="border-b border-slate-200 bg-white">
+    <div class="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
+      <a href="https://nodntools.com" class="safe-break text-xl font-extrabold tracking-tight text-slate-900" aria-label="NodnWebTools home">
+        Nodn<span class="text-indigo-600">WebTools</span>
+      </a>
+
+      <a href="https://nodntools.com" class="rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-indigo-300 hover:text-indigo-700">
+        Home
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <section class="mx-auto w-full max-w-7xl px-4 pt-6 sm:px-6 lg:px-8">
+      <div class="ad-box" role="complementary" aria-label="Advertisement placeholder">
+        Advertisement
+      </div>
+    </section>
+
+    <section class="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+      <div class="mb-8 max-w-4xl">
+        <div class="mb-4 inline-flex flex-wrap items-center gap-2 rounded-full border border-indigo-200 bg-indigo-50 px-3 py-1 text-sm font-semibold text-indigo-700">
+          <span>Five PDF conversion formats</span>
+          <span aria-hidden="true">•</span>
+          <span>Client-side processing</span>
+          <span aria-hidden="true">•</span>
+          <span>Instant local downloads</span>
+        </div>
+
+        <h1 class="text-4xl font-black tracking-tight text-slate-950 sm:text-5xl">
+          PDF Converter Online
+        </h1>
+
+        <p class="mt-4 text-lg leading-8 text-slate-600">
+          Convert PDF files to Word, Excel, JPG, PNG, or TXT from one convenient page. Choose a format on the left, adjust conversion options, and download the result from the right.
+        </p>
+      </div>
+
+      <div class="grid gap-6 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)]">
+        <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+          <div>
+            <h2 class="text-2xl font-black text-slate-950">Choose a PDF and output format</h2>
+            <p class="mt-2 text-sm leading-6 text-slate-500">
+              Select one PDF file, then choose the format you want to create.
+            </p>
+          </div>
+
+          <div id="dropZone" class="mobile-panel mt-6 rounded-2xl border-2 border-dashed border-slate-300 bg-slate-50 p-7 text-center transition sm:p-9">
+            <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-indigo-100 text-indigo-600">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 16V4m0 0L7 9m5-5l5 5M5 20h14" />
+              </svg>
+            </div>
+
+            <h3 class="mt-5 text-xl font-black text-slate-950">Drop your PDF here</h3>
+            <p class="mt-2 text-sm text-slate-500">or browse for a document on your device</p>
+
+            <label for="pdfInput" class="mt-6 inline-flex cursor-pointer items-center justify-center rounded-xl bg-indigo-600 px-6 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-indigo-700 focus-within:ring-4 focus-within:ring-indigo-100">
+              Choose PDF
+            </label>
+
+            <input id="pdfInput" type="file" accept="application/pdf,.pdf" class="sr-only">
+
+            <p class="mt-4 text-xs leading-5 text-slate-400">
+              Recommended maximum file size: 50 MB. Large image conversions can require substantial browser memory.
+            </p>
+          </div>
+
+          <div id="fileCard" class="mt-5 hidden rounded-2xl border border-slate-200 bg-white p-4">
+            <div class="flex items-start gap-3">
+              <div class="flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-rose-50 text-rose-600">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M14 2v6h6" />
+                </svg>
+              </div>
+
+              <div class="flex-1">
+                <p id="fileName" class="safe-break font-bold text-slate-950"></p>
+
+                <div class="mt-1 flex flex-wrap gap-x-4 gap-y-1 text-sm text-slate-500">
+                  <span id="fileSize"></span>
+                  <span id="filePages"></span>
+                </div>
+              </div>
+
+              <button id="removeFileButton" type="button" class="rounded-lg p-2 text-slate-400 transition hover:bg-slate-100 hover:text-slate-700" aria-label="Remove selected PDF">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="mt-7">
+            <h3 class="text-sm font-black uppercase tracking-[0.14em] text-slate-500">
+              Select output format
+            </h3>
+
+            <div class="format-grid mt-4 grid gap-3 sm:grid-cols-2">
+              <button type="button" class="format-option flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-4 text-left" data-format="word" aria-pressed="true">
+                <span class="format-icon flex h-12 w-12 flex-none items-center justify-center rounded-xl bg-blue-50 text-blue-700">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 4.5h15v15h-15zM8 8l1.5 8L12 10l2.5 6L16 8" />
+                  </svg>
+                </span>
+
+                <span>
+                  <span class="block font-black text-slate-900">PDF → Word</span>
+                  <span class="mt-1 block text-xs leading-5 text-slate-500">Create an editable DOCX document.</span>
+                </span>
+              </button>
+
+              <button type="button" class="format-option flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-4 text-left" data-format="excel" aria-pressed="false">
+                <span class="format-icon flex h-12 w-12 flex-none items-center justify-center rounded-xl bg-emerald-50 text-emerald-700">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 4.5h15v15h-15zM8 8l4 8m0-8l-4 8M15 8h2m-2 4h2m-2 4h2" />
+                  </svg>
+                </span>
+
+                <span>
+                  <span class="block font-black text-slate-900">PDF → Excel</span>
+                  <span class="mt-1 block text-xs leading-5 text-slate-500">Export detected text lines into XLSX sheets.</span>
+                </span>
+              </button>
+
+              <button type="button" class="format-option flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-4 text-left" data-format="jpg" aria-pressed="false">
+                <span class="format-icon flex h-12 w-12 flex-none items-center justify-center rounded-xl bg-amber-50 text-amber-700">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5l5.25-5.25 4.5 4.5 2.25-2.25L21 19.5M15.75 8.25h.008v.008h-.008V8.25z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 3.75h15a1.5 1.5 0 011.5 1.5v13.5a1.5 1.5 0 01-1.5 1.5h-15a1.5 1.5 0 01-1.5-1.5V5.25a1.5 1.5 0 011.5-1.5z" />
+                  </svg>
+                </span>
+
+                <span>
+                  <span class="block font-black text-slate-900">PDF → JPG</span>
+                  <span class="mt-1 block text-xs leading-5 text-slate-500">Render PDF pages as compressed JPG images.</span>
+                </span>
+              </button>
+
+              <button type="button" class="format-option flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-4 text-left" data-format="png" aria-pressed="false">
+                <span class="format-icon flex h-12 w-12 flex-none items-center justify-center rounded-xl bg-violet-50 text-violet-700">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5l5.25-5.25 4.5 4.5 2.25-2.25L21 19.5M15.75 8.25h.008v.008h-.008V8.25z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 3.75h15a1.5 1.5 0 011.5 1.5v13.5a1.5 1.5 0 01-1.5 1.5h-15a1.5 1.5 0 01-1.5-1.5V5.25a1.5 1.5 0 011.5-1.5z" />
+                  </svg>
+                </span>
+
+                <span>
+                  <span class="block font-black text-slate-900">PDF → PNG</span>
+                  <span class="mt-1 block text-xs leading-5 text-slate-500">Create high-quality lossless PNG page images.</span>
+                </span>
+              </button>
+
+              <button type="button" class="format-option flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-4 text-left sm:col-span-2" data-format="txt" aria-pressed="false">
+                <span class="format-icon flex h-12 w-12 flex-none items-center justify-center rounded-xl bg-slate-100 text-slate-700">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 4.5h12M9 4.5v15m6-15v15M5.25 19.5h13.5" />
+                  </svg>
+                </span>
+
+                <span>
+                  <span class="block font-black text-slate-900">PDF → TXT</span>
+                  <span class="mt-1 block text-xs leading-5 text-slate-500">Extract selectable PDF text into a plain UTF-8 file.</span>
+                </span>
+              </button>
+            </div>
+          </div>
+
+          <div class="mt-7 grid gap-4 sm:grid-cols-2">
+            <div>
+              <label for="pageRange" class="mb-2 block text-sm font-bold text-slate-800">
+                Page range
+              </label>
+
+              <input id="pageRange" type="text" placeholder="All pages or 1-3, 5, 8" class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm outline-none transition focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100">
+
+              <p class="mt-2 text-xs leading-5 text-slate-400">
+                Leave blank to convert every PDF page.
+              </p>
+            </div>
+
+            <div id="imageQualityGroup" class="hidden">
+              <label for="imageScale" class="mb-2 block text-sm font-bold text-slate-800">
+                Image resolution
+              </label>
+
+              <select id="imageScale" class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm outline-none transition focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100">
+                <option value="1.5">Standard</option>
+                <option value="2" selected>High</option>
+                <option value="2.5">Very high</option>
+                <option value="3">Maximum</option>
+              </select>
+            </div>
+
+            <div id="jpgQualityGroup" class="hidden">
+              <label for="jpgQuality" class="mb-2 block text-sm font-bold text-slate-800">
+                JPG quality
+              </label>
+
+              <select id="jpgQuality" class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm outline-none transition focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100">
+                <option value="0.7">Smaller file</option>
+                <option value="0.85" selected>Balanced</option>
+                <option value="0.95">Best quality</option>
+              </select>
+            </div>
+          </div>
+
+          <div id="wordOptions" class="mt-5 rounded-2xl border border-blue-200 bg-blue-50 p-4">
+            <h3 class="text-sm font-black text-blue-950">Word conversion options</h3>
+
+            <div class="mt-3 space-y-3">
+              <label class="flex cursor-pointer items-start gap-3">
+                <input id="wordPageHeadings" type="checkbox" checked class="mt-1 h-4 w-4 accent-indigo-600">
+                <span>
+                  <span class="block text-sm font-bold text-blue-900">Add page headings</span>
+                  <span class="block text-xs leading-5 text-blue-800">Insert a heading before text extracted from each page.</span>
+                </span>
+              </label>
+
+              <label class="flex cursor-pointer items-start gap-3">
+                <input id="wordPageBreaks" type="checkbox" checked class="mt-1 h-4 w-4 accent-indigo-600">
+                <span>
+                  <span class="block text-sm font-bold text-blue-900">Add page breaks</span>
+                  <span class="block text-xs leading-5 text-blue-800">Keep each converted PDF page on a separate Word page.</span>
+                </span>
+              </label>
+            </div>
+          </div>
+
+          <div id="excelOptions" class="mt-5 hidden rounded-2xl border border-emerald-200 bg-emerald-50 p-4">
+            <h3 class="text-sm font-black text-emerald-950">Excel conversion options</h3>
+
+            <div class="mt-3 space-y-3">
+              <label class="flex cursor-pointer items-start gap-3">
+                <input id="excelSeparateSheets" type="checkbox" checked class="mt-1 h-4 w-4 accent-indigo-600">
+                <span>
+                  <span class="block text-sm font-bold text-emerald-900">Create one sheet per page</span>
+                  <span class="block text-xs leading-5 text-emerald-800">Place each PDF page in its own worksheet.</span>
+                </span>
+              </label>
+
+              <label class="flex cursor-pointer items-start gap-3">
+                <input id="excelSplitColumns" type="checkbox" checked class="mt-1 h-4 w-4 accent-indigo-600">
+                <span>
+                  <span class="block text-sm font-bold text-emerald-900">Detect column gaps</span>
+                  <span class="block text-xs leading-5 text-emerald-800">Use larger horizontal spaces to create separate spreadsheet cells.</span>
+                </span>
+              </label>
+            </div>
+          </div>
+
+          <div id="textOptions" class="mt-5 hidden rounded-2xl border border-slate-200 bg-slate-50 p-4">
+            <h3 class="text-sm font-black text-slate-900">Text conversion options</h3>
+
+            <label class="mt-3 flex cursor-pointer items-start gap-3">
+              <input id="textPageHeadings" type="checkbox" checked class="mt-1 h-4 w-4 accent-indigo-600">
+              <span>
+                <span class="block text-sm font-bold text-slate-800">Include page headings</span>
+                <span class="block text-xs leading-5 text-slate-500">Separate extracted content by PDF page number.</span>
+              </span>
+            </label>
+          </div>
+
+          <div class="mt-6 rounded-2xl border border-amber-200 bg-amber-50 p-4">
+            <p class="text-sm font-black text-amber-950">Important conversion limitation</p>
+            <p id="formatWarning" class="mt-1 text-sm leading-6 text-amber-900">
+              Word conversion rebuilds selectable PDF text as editable paragraphs. Complex layouts, fonts, tables, images, columns, and exact formatting may not be preserved.
+            </p>
+          </div>
+
+          <div class="mt-6 rounded-2xl border border-emerald-200 bg-emerald-50 p-4">
+            <p class="text-sm font-black text-emerald-950">Private local processing</p>
+            <p class="mt-1 text-sm leading-6 text-emerald-900">
+              The selected PDF is processed in your browser. The conversion tool does not intentionally upload the document to a NodnWebTools conversion server.
+            </p>
+          </div>
+        </section>
+
+        <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+          <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+            <div>
+              <p class="text-sm font-bold uppercase tracking-[0.14em] text-indigo-600">Result</p>
+              <h2 id="resultTitle" class="mt-2 text-2xl font-black text-slate-950">
+                PDF to Word
+              </h2>
+              <p id="resultDescription" class="mt-2 text-sm leading-6 text-slate-500">
+                Convert selectable PDF text into an editable DOCX file.
+              </p>
+            </div>
+
+            <div id="selectedFormatBadge" class="inline-flex w-fit items-center rounded-full bg-indigo-50 px-3 py-1.5 text-xs font-bold text-indigo-700">
+              DOCX
+            </div>
+          </div>
+
+          <div id="emptyResult" class="mobile-preview mt-6 flex min-h-[390px] flex-col items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-8 text-center">
+            <div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-white text-indigo-600 shadow-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+              </svg>
+            </div>
+
+            <h3 class="mt-5 text-xl font-black text-slate-900">Ready to convert</h3>
+            <p class="mt-2 max-w-md text-sm leading-6 text-slate-500">
+              Choose a PDF, select an output format, and click the conversion button below.
+            </p>
+          </div>
+
+          <div id="progressSection" class="mt-6 hidden">
+            <div class="mb-2 flex items-center justify-between gap-3 text-sm">
+              <span id="progressLabel" class="safe-break font-semibold text-slate-700">
+                Preparing conversion...
+              </span>
+              <span id="progressPercent" class="font-bold text-indigo-700">0%</span>
+            </div>
+
+            <div class="h-3 overflow-hidden rounded-full bg-slate-200">
+              <div id="progressBar" class="progress-bar h-full w-0 rounded-full bg-indigo-600"></div>
+            </div>
+
+            <div class="mt-3 flex flex-wrap items-center justify-between gap-3 text-xs text-slate-500">
+              <span id="progressPage"></span>
+              <span id="progressStage"></span>
+            </div>
+          </div>
+
+          <div id="conversionResult" class="mt-6 hidden">
+            <div class="rounded-2xl border border-emerald-200 bg-emerald-50 p-5">
+              <div class="flex items-start gap-3">
+                <div class="flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-emerald-600 font-black text-white">
+                  ✓
+                </div>
+
+                <div class="flex-1">
+                  <h3 id="successTitle" class="font-black text-emerald-950">
+                    Conversion completed
+                  </h3>
+
+                  <p id="successDescription" class="mt-1 text-sm leading-6 text-emerald-800"></p>
+
+                  <div class="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-xs font-semibold text-emerald-700">
+                    <span id="resultPages"></span>
+                    <span id="resultSize"></span>
+                    <span id="resultTime"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div id="textPreviewSection" class="mt-5 hidden">
+              <div class="mb-2 flex items-center justify-between gap-3">
+                <h3 class="text-sm font-black text-slate-900">Text preview</h3>
+                <span id="textPreviewStats" class="text-xs font-semibold text-slate-500"></span>
+              </div>
+
+              <textarea id="textPreview" readonly class="mobile-code result-scroll min-h-[320px] w-full resize-y rounded-2xl border border-slate-300 bg-slate-50 p-4 font-mono text-sm leading-7 text-slate-700 outline-none"></textarea>
+            </div>
+
+            <div id="imagePreviewSection" class="mt-5 hidden">
+              <div class="mb-3 flex items-center justify-between gap-3">
+                <h3 class="text-sm font-black text-slate-900">Image preview</h3>
+                <span id="imagePreviewStats" class="text-xs font-semibold text-slate-500"></span>
+              </div>
+
+              <div id="imagePreviewGrid" class="grid gap-4 sm:grid-cols-2"></div>
+            </div>
+
+            <div class="mobile-button-grid mt-5 grid grid-cols-2 gap-3">
+              <button id="downloadButton" type="button" class="rounded-xl bg-indigo-600 px-5 py-3.5 text-sm font-bold text-white shadow-sm transition hover:bg-indigo-700">
+                Download Result
+              </button>
+
+              <button id="resetButton" type="button" class="rounded-xl border border-slate-300 bg-white px-5 py-3.5 text-sm font-bold text-slate-700 transition hover:bg-slate-50">
+                Convert Another PDF
+              </button>
+            </div>
+          </div>
+
+          <div id="warningBox" class="mt-6 hidden rounded-2xl border border-rose-200 bg-rose-50 p-4 text-sm leading-6 text-rose-800" role="alert"></div>
+
+          <button id="convertButton" type="button" class="mt-6 w-full rounded-xl bg-indigo-600 px-5 py-3.5 text-sm font-bold text-white shadow-sm transition hover:bg-indigo-700 disabled:cursor-not-allowed disabled:bg-slate-300">
+            Convert PDF to Word
+          </button>
+
+          <p id="statusMessage" class="mt-5 min-h-6 text-center text-sm font-semibold text-slate-500" aria-live="polite"></p>
+        </section>
+      </div>
+    </section>
+
+    <section class="mx-auto w-full max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
+      <div class="ad-box" role="complementary" aria-label="Advertisement placeholder">
+        Advertisement
+      </div>
+    </section>
+
+    <section class="border-y border-slate-200 bg-white">
+      <div class="mx-auto w-full max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
+        <article>
+          <div class="mb-12">
+            <p class="text-sm font-bold uppercase tracking-[0.2em] text-indigo-600">
+              Complete PDF Conversion Guide
+            </p>
+
+            <h2 class="mt-3 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">
+              Convert PDF to Word, Excel, JPG, PNG, or TXT Online
+            </h2>
+
+            <p class="mt-5 text-lg leading-8 text-slate-600">
+              The NodnWebTools PDF Converter combines five common PDF conversion tasks into one browser-based workspace. Instead of visiting separate PDF to Word, PDF to Excel, PDF to JPG, PDF to PNG, and PDF to TXT pages, users can upload a document once, choose an output format, adjust relevant options, and download the converted result.
+            </p>
+          </div>
+
+          <div class="space-y-10 text-base leading-8 text-slate-700">
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">What Is an Online PDF Converter?</h2>
+
+              <p class="mt-4">
+                An online PDF converter transforms the content of a PDF document into another file format. The output may be an editable Word document, an Excel workbook, a collection of JPG or PNG images, or a plain text file. Each format serves a different purpose, so a flexible converter should allow users to select the format that best matches the next step in their workflow.
+              </p>
+
+              <p class="mt-4">
+                PDF files are designed to preserve page appearance across devices and operating systems. They can contain positioned text, embedded fonts, photographs, vector graphics, forms, annotations, tables, multiple columns, scanned pages, and many other objects. Converting this page-oriented structure into an editable document is not always exact.
+              </p>
+
+              <p class="mt-4">
+                This browser PDF converter provides practical conversion rather than promising perfect reconstruction of every original design element. PDF to Word and PDF to Excel conversions focus on selectable text. PDF to JPG and PDF to PNG render complete pages as images. PDF to TXT extracts the existing text layer into a simple Unicode document.
+              </p>
+
+              <p class="mt-4">
+                The source PDF remains unchanged. Each conversion produces a new local file that can be downloaded to the user’s device.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">Why Use One PDF Converter Page?</h2>
+
+              <p class="mt-4">
+                PDF conversion tasks share the same initial workflow: choose a PDF, open its pages, select a page range, and create a new file. Combining related conversions into one page reduces repeated uploads, duplicated interfaces, and unnecessary navigation.
+              </p>
+
+              <p class="mt-4">
+                A unified PDF Converter also makes format comparison easier. A user who initially plans to create a Word document may discover that plain text is more appropriate. A user preparing web images can quickly compare JPG and PNG output. A user reviewing tables can attempt an Excel conversion without selecting the source file again.
+              </p>
+
+              <p class="mt-4">
+                The left side of the tool contains the file input, format selection, page range, and conversion settings. The right side displays the current format, conversion status, preview, statistics, and download actions. This split-screen structure keeps the workflow clear on desktop while becoming a single-column layout on smaller screens.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">PDF to Word Conversion</h2>
+
+              <p class="mt-4">
+                PDF to Word conversion creates an editable DOCX document from selectable PDF text. The converter reads text items from each selected page, estimates line groupings, and writes the result as paragraphs in a Microsoft Word-compatible file.
+              </p>
+
+              <p class="mt-4">
+                This conversion is useful when a user needs to revise wording, reuse paragraphs, prepare notes, quote content, move text into a report, or create a new editable document based on a PDF.
+              </p>
+
+              <p class="mt-4">
+                A PDF does not necessarily store paragraphs in the same way as a Word document. It may position each line, word, or character independently. As a result, headings, columns, tables, indentation, footnotes, text boxes, and page decorations may not be recreated exactly.
+              </p>
+
+              <p class="mt-4">
+                The Word output includes optional page headings and page breaks. Page headings identify the original PDF page number, while page breaks keep extracted page content separated in the DOCX file.
+              </p>
+
+              <p class="mt-4">
+                Image-only scanned PDFs do not contain selectable text unless OCR has already been applied. Use the separate PDF OCR tool before Word conversion when the source pages are scans or photographs of text.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">PDF to Excel Conversion</h2>
+
+              <p class="mt-4">
+                PDF to Excel conversion exports detected PDF text lines into an XLSX workbook. The converter estimates text rows using vertical positions and can split each row into multiple spreadsheet cells when large horizontal gaps are detected.
+              </p>
+
+              <p class="mt-4">
+                This approach can be useful for basic lists, simple tables, transaction records, product data, schedules, reports, and documents where text is arranged in consistent rows.
+              </p>
+
+              <p class="mt-4">
+                PDF table conversion is inherently difficult. A visible table may be constructed from individually positioned text, lines, shapes, or separate drawing commands. The PDF may not contain actual row, column, or cell definitions. Therefore, spreadsheet output should be treated as a starting point rather than a guaranteed reconstruction.
+              </p>
+
+              <p class="mt-4">
+                Users can create one worksheet per PDF page or combine all converted rows into one workbook sheet. Separate worksheets can make source-page tracking easier, while a combined sheet can be more convenient for sorting and analysis.
+              </p>
+
+              <p class="mt-4">
+                Always verify financial amounts, dates, formulas, percentages, account numbers, quantities, and decimal values against the original PDF. The converter does not infer spreadsheet formulas or validate the meaning of extracted data.
+              </p>
+            </section>
+
+            <div class="ad-box my-12" role="complementary" aria-label="Advertisement placeholder">
+              Advertisement
+            </div>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">PDF to JPG Conversion</h2>
+
+              <p class="mt-4">
+                PDF to JPG conversion renders each selected PDF page as a JPEG image. JPG is widely supported by websites, email services, social platforms, presentation software, image editors, and mobile devices.
+              </p>
+
+              <p class="mt-4">
+                JPG uses lossy compression, which can create smaller files than PNG. This makes it suitable for PDF pages containing photographs, scanned pages, magazines, brochures, posters, and visual documents where a moderate amount of compression is acceptable.
+              </p>
+
+              <p class="mt-4">
+                Users can choose Standard, High, Very High, or Maximum image resolution. Higher settings create more pixels and can improve small text or fine details, but they also increase memory usage, conversion time, ZIP size, and download size.
+              </p>
+
+              <p class="mt-4">
+                The JPG quality setting controls compression. Smaller file mode reduces storage but may create visible artifacts around text and lines. Best quality preserves more detail but creates larger image files.
+              </p>
+
+              <p class="mt-4">
+                When more than one page is converted, the tool creates a ZIP archive containing one JPG file per page. A single selected page can be downloaded directly as one image.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">PDF to PNG Conversion</h2>
+
+              <p class="mt-4">
+                PDF to PNG conversion renders PDF pages as lossless PNG images. PNG is often preferred for documents containing text, screenshots, diagrams, charts, line art, interface designs, and flat graphics.
+              </p>
+
+              <p class="mt-4">
+                Lossless compression preserves pixel details without the block artifacts associated with JPG compression. This can make text and sharp edges look cleaner, particularly when users plan to crop, annotate, edit, or reuse the resulting image.
+              </p>
+
+              <p class="mt-4">
+                PNG files are usually larger than JPG files for photographic pages. The most appropriate format depends on page content and intended use. Use JPG for smaller photographic output and PNG for sharper document graphics or repeated editing.
+              </p>
+
+              <p class="mt-4">
+                PDF transparency and advanced page effects are rendered against the page background. The resulting PNG represents the visible page rather than preserving every internal PDF object separately.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">PDF to TXT Conversion</h2>
+
+              <p class="mt-4">
+                PDF to TXT conversion extracts selectable characters from the document and saves them as plain UTF-8 text. TXT files do not preserve fonts, colors, images, columns, tables, margins, or page design.
+              </p>
+
+              <p class="mt-4">
+                Plain text is useful for searching, note-taking, content review, lightweight storage, coding workflows, text analysis, accessibility preparation, manual data processing, and importing words into other applications.
+              </p>
+
+              <p class="mt-4">
+                The converter can add page-number headings to help users identify where each section originated. Text order is estimated using item positions, but complex pages may still produce unexpected sequences.
+              </p>
+
+              <p class="mt-4">
+                PDF to TXT is not OCR. If the source contains scanned page images without a text layer, the result may be empty. Use PDF OCR to recognize text from pixels before exporting it.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">How to Use the PDF Converter</h2>
+
+              <div class="mt-6 grid gap-5 md:grid-cols-2">
+                <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6">
+                  <h3 class="text-lg font-black text-slate-900">1. Choose a PDF</h3>
+                  <p class="mt-3 text-sm leading-7 text-slate-600">
+                    Select a PDF from your device or drag it into the upload area.
+                  </p>
+                </div>
+
+                <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6">
+                  <h3 class="text-lg font-black text-slate-900">2. Select a format</h3>
+                  <p class="mt-3 text-sm leading-7 text-slate-600">
+                    Choose Word, Excel, JPG, PNG, or TXT from the format cards.
+                  </p>
+                </div>
+
+                <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6">
+                  <h3 class="text-lg font-black text-slate-900">3. Choose pages</h3>
+                  <p class="mt-3 text-sm leading-7 text-slate-600">
+                    Leave the page range blank for all pages or enter values such as 1-3, 5, 8.
+                  </p>
+                </div>
+
+                <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6">
+                  <h3 class="text-lg font-black text-slate-900">4. Adjust settings</h3>
+                  <p class="mt-3 text-sm leading-7 text-slate-600">
+                    Choose image resolution, JPG quality, page headings, worksheets, or text options.
+                  </p>
+                </div>
+
+                <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6">
+                  <h3 class="text-lg font-black text-slate-900">5. Convert the PDF</h3>
+                  <p class="mt-3 text-sm leading-7 text-slate-600">
+                    Click the conversion button and monitor page-by-page progress.
+                  </p>
+                </div>
+
+                <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6">
+                  <h3 class="text-lg font-black text-slate-900">6. Download the result</h3>
+                  <p class="mt-3 text-sm leading-7 text-slate-600">
+                    Review available previews and save the generated DOCX, XLSX, ZIP, image, or TXT file.
+                  </p>
+                </div>
+              </div>
+            </section>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">Popular Uses for PDF Conversion</h2>
+
+              <h3 class="mt-6 text-xl font-bold text-slate-900">Editing a report or proposal</h3>
+              <p class="mt-3">
+                A PDF to Word conversion can provide editable paragraphs for preparing a revised report, business proposal, letter, policy document, or project summary.
+              </p>
+
+              <h3 class="mt-6 text-xl font-bold text-slate-900">Moving simple tables into spreadsheets</h3>
+              <p class="mt-3">
+                PDF to Excel can provide a starting workbook for product lists, schedules, simple statements, transaction records, price tables, and other row-based information.
+              </p>
+
+              <h3 class="mt-6 text-xl font-bold text-slate-900">Creating website images</h3>
+              <p class="mt-3">
+                PDF pages can be converted to JPG for smaller web images or PNG for sharper screenshots, diagrams, charts, and text-heavy pages.
+              </p>
+
+              <h3 class="mt-6 text-xl font-bold text-slate-900">Sharing a single PDF page</h3>
+              <p class="mt-3">
+                A selected PDF page can be converted into one image for email, chat, presentation slides, support documentation, or visual review.
+              </p>
+
+              <h3 class="mt-6 text-xl font-bold text-slate-900">Extracting text for notes</h3>
+              <p class="mt-3">
+                PDF to TXT creates lightweight content that can be searched, pasted into notes, reviewed in a text editor, or used for authorized text analysis.
+              </p>
+
+              <h3 class="mt-6 text-xl font-bold text-slate-900">Preparing PDF content for another tool</h3>
+              <p class="mt-3">
+                Converted Word, Excel, image, or text files can be used in writing software, spreadsheet applications, image editors, publishing systems, and document-management workflows.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">Why PDF Layouts Can Change During Conversion</h2>
+
+              <p class="mt-4">
+                PDF is a fixed-layout page format. It tells a viewer where to place content, but it may not describe the logical relationships between that content. A Word document, Excel workbook, image file, and TXT document all use different structures.
+              </p>
+
+              <p class="mt-4">
+                PDF text may be stored as independent characters or short fragments. A table may be a collection of positioned words and drawn lines rather than actual cells. Columns may be defined only by coordinates. Headers and footers may appear in the same text stream as body paragraphs.
+              </p>
+
+              <p class="mt-4">
+                Word and Excel conversion therefore requires interpretation. The converter estimates lines and cells from coordinates, but it cannot always determine the author’s original document structure.
+              </p>
+
+              <p class="mt-4">
+                JPG and PNG conversion are visually more predictable because the complete page is rendered as an image. However, image output is not editable text and does not preserve PDF links, forms, bookmarks, annotations, or searchable content.
+              </p>
+            </section>
+
+            <div class="ad-box my-12" role="complementary" aria-label="Advertisement placeholder">
+              Advertisement
+            </div>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">PDF Converter Privacy and Local Processing</h2>
+
+              <p class="mt-4">
+                The conversion workflow is designed to run in the current browser session. PDF.js opens and renders the source document locally. DOCX, XLSX, TXT, image, and ZIP files are generated on the user’s device.
+              </p>
+
+              <p class="mt-4">
+                Local conversion can reduce the need to upload documents to a remote conversion service. This may be useful for personal records, business documents, contracts, school materials, research papers, financial reports, internal manuals, and other sensitive files.
+              </p>
+
+              <p class="mt-4">
+                External JavaScript libraries are loaded from content delivery networks. Organizations with strict offline, software-review, or supply-chain requirements should self-host approved copies of the required libraries.
+              </p>
+
+              <p class="mt-4">
+                Browser-based processing does not remove every privacy risk. Malicious browser extensions, shared devices, cloud-synchronized download folders, clipboard tools, malware, backups, and unauthorized users may still expose converted content.
+              </p>
+
+              <p class="mt-4">
+                Use a trusted device and securely delete temporary or downloaded files when they are no longer required.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">Large PDF Conversion and Browser Performance</h2>
+
+              <p class="mt-4">
+                Large PDFs can require substantial memory, particularly when converting pages to high-resolution images. Every selected page must be decoded and rendered into a canvas before it can be encoded as JPG or PNG.
+              </p>
+
+              <p class="mt-4">
+                Very High and Maximum resolution settings can create images with millions of pixels. Several pages may exceed the available memory of a mobile browser or older computer.
+              </p>
+
+              <p class="mt-4">
+                For better reliability, convert a small page range, use Standard or High resolution, close unnecessary browser tabs, and divide long documents into smaller PDF files.
+              </p>
+
+              <p class="mt-4">
+                Word, Excel, and TXT conversions generally use less image memory because they focus on text content. However, PDFs with thousands of text fragments or unusual fonts may still require additional processing.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">Scanned PDFs and OCR Requirements</h2>
+
+              <p class="mt-4">
+                A scanned PDF may contain only page images. In that situation, PDF to Word, PDF to Excel, and PDF to TXT may return little or no text because there is no selectable text layer.
+              </p>
+
+              <p class="mt-4">
+                OCR analyzes page pixels and recognizes visible characters. The separate PDF OCR tool is designed for scanned documents, image PDFs, photographed pages, and screenshots.
+              </p>
+
+              <p class="mt-4">
+                After OCR creates a searchable PDF, the recognized text layer can be used by text-based conversion tools. OCR output should always be reviewed because character recognition can introduce errors.
+              </p>
+
+              <p class="mt-4">
+                PDF to JPG and PDF to PNG do not require OCR because they render the complete page visually.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">Choosing the Best PDF Output Format</h2>
+
+              <p class="mt-4">
+                Choose Word when the goal is to edit paragraphs, reuse written content, or prepare a revised document. Choose Excel when the source contains simple rows, columns, lists, or tables that need spreadsheet editing.
+              </p>
+
+              <p class="mt-4">
+                Choose JPG when file size and broad image compatibility are more important than lossless detail. Choose PNG when sharp text, line art, diagrams, or repeated image editing are important.
+              </p>
+
+              <p class="mt-4">
+                Choose TXT when only the selectable written content is needed and visual formatting is unnecessary.
+              </p>
+
+              <p class="mt-4">
+                No single format is best for every PDF. The unified converter makes it possible to choose the most practical result without leaving the page.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">Copyright and Responsible Conversion</h2>
+
+              <p class="mt-4">
+                Converting a PDF does not grant permission to copy, edit, publish, distribute, translate, sell, or reuse its content. PDF documents may contain copyrighted writing, photographs, illustrations, trademarks, confidential information, personal data, or licensed materials.
+              </p>
+
+              <p class="mt-4">
+                Users are responsible for confirming that conversion and subsequent use are permitted by copyright law, contracts, licenses, workplace policies, educational rules, privacy law, and other applicable requirements.
+              </p>
+
+              <p class="mt-4">
+                Do not use the converter to alter official records, misrepresent documents, remove attribution, distribute confidential files, or create unauthorized copies of protected material.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">Verification and Accuracy</h2>
+
+              <p class="mt-4">
+                Always compare converted Word, Excel, and TXT content with the original PDF. Names, dates, amounts, percentages, punctuation, formulas, table cells, and reading order may require correction.
+              </p>
+
+              <p class="mt-4">
+                Image conversions should be reviewed for page completeness, resolution, orientation, colors, and compression quality. High-resolution output may still reflect limitations in the original PDF source.
+              </p>
+
+              <p class="mt-4">
+                Converted files should not replace authoritative originals in legal, medical, financial, tax, academic, regulatory, or compliance workflows without appropriate review.
+              </p>
+            </section>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <div class="mb-8">
+        <p class="text-sm font-bold uppercase tracking-[0.2em] text-indigo-600">
+          Continue Working
+        </p>
+
+        <h2 class="mt-2 text-3xl font-black tracking-tight text-slate-950">
+          Related Tools
+        </h2>
+
+        <p class="mt-3 max-w-3xl text-slate-600">
+          Use these related browser-based tools to extract, scan, organize, compress, secure, and view PDF documents.
+        </p>
+      </div>
+
+      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <a href="/pdf-extractor" class="tool-card-hover group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-50 text-2xl">📄</div>
+          <h3 class="mt-4 text-lg font-black text-slate-900 group-hover:text-indigo-700">PDF Extractor</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-500">
+            Extract selectable text and embedded images from PDF documents.
+          </p>
+        </a>
+
+        <a href="/pdf-ocr" class="tool-card-hover group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-violet-50 text-2xl">🔍</div>
+          <h3 class="mt-4 text-lg font-black text-slate-900 group-hover:text-indigo-700">PDF OCR Online</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-500">
+            Recognize text in scanned PDFs and create searchable documents.
+          </p>
+        </a>
+
+        <a href="/pdf-merger-splitter" class="tool-card-hover group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-2xl">📑</div>
+          <h3 class="mt-4 text-lg font-black text-slate-900 group-hover:text-indigo-700">PDF Merger & Splitter</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-500">
+            Combine several PDFs or divide large documents into smaller files.
+          </p>
+        </a>
+
+        <a href="/pdf-compressor" class="tool-card-hover group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-sky-50 text-2xl">🗜️</div>
+          <h3 class="mt-4 text-lg font-black text-slate-900 group-hover:text-indigo-700">PDF Compressor</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-500">
+            Reduce the size of scanned and image-heavy PDF files.
+          </p>
+        </a>
+
+        <a href="/pdf-security" class="tool-card-hover group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-50 text-2xl">🔐</div>
+          <h3 class="mt-4 text-lg font-black text-slate-900 group-hover:text-indigo-700">PDF Security</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-500">
+            Protect PDF documents with passwords and manage restrictions.
+          </p>
+        </a>
+
+        <a href="/document-viewer" class="tool-card-hover group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-fuchsia-50 text-2xl">👁️</div>
+          <h3 class="mt-4 text-lg font-black text-slate-900 group-hover:text-indigo-700">Document Viewer</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-500">
+            Open and preview PDF, DOCX, and TXT files in your browser.
+          </p>
+        </a>
+      </div>
+    </section>
+
+    <section class="mx-auto w-full max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
+      <div class="ad-box" role="complementary" aria-label="Advertisement placeholder">
+        Advertisement
+      </div>
+    </section>
+
+    <section class="border-t border-slate-200 bg-white">
+      <div class="mx-auto w-full max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
+        <div class="mb-10">
+          <p class="text-sm font-bold uppercase tracking-[0.2em] text-indigo-600">
+            Questions and Answers
+          </p>
+
+          <h2 class="mt-2 text-3xl font-black tracking-tight text-slate-950">
+            PDF Converter FAQ
+          </h2>
+        </div>
+
+        <div class="space-y-4">
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">
+              Which PDF conversion formats are available?
+            </summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              The tool converts PDF files to Word DOCX, Excel XLSX, JPG images, PNG images, and plain TXT files.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">
+              Are PDF files uploaded to a server?
+            </summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              The conversion workflow is designed to run locally in the browser. The selected document is not intentionally uploaded to a NodnWebTools conversion server.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">
+              Will PDF to Word preserve the exact formatting?
+            </summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              Not always. The converter rebuilds selectable text as editable paragraphs. Complex layouts, tables, columns, fonts, images, and spacing may change.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">
+              Can PDF to Excel recreate tables perfectly?
+            </summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              No. It estimates rows and columns from text positions. Complex tables may require manual correction after conversion.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">
+              What is the difference between PDF to JPG and PDF to PNG?
+            </summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              JPG normally creates smaller files using lossy compression. PNG uses lossless compression and is often sharper for text, diagrams, and screenshots.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">
+              Can I convert selected PDF pages?
+            </summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              Yes. Enter a page range such as 1-3, 5, 8. Leave the field blank to convert every page.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">
+              Does PDF to TXT perform OCR?
+            </summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              No. It extracts selectable text already stored in the PDF. Use PDF OCR for scanned or image-only documents.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">
+              How are multiple JPG or PNG pages downloaded?
+            </summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              Multiple page images are packaged into one ZIP archive. A single converted page can be downloaded directly.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">
+              Why is a converted Word or Excel file empty?
+            </summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              The PDF may contain scanned page images without a selectable text layer. Run OCR first and then convert the searchable PDF.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">
+              Can password-protected PDFs be converted?
+            </summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              Protected PDFs may fail to open. The converter does not crack passwords or bypass security restrictions.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="mx-auto w-full max-w-5xl px-4 py-12 sm:px-6 lg:px-8">
+      <div class="rounded-3xl bg-slate-900 p-6 text-slate-300 shadow-xl sm:p-8">
+        <h2 class="text-2xl font-black text-white">
+          Legal, Privacy, and Conversion Disclaimer
+        </h2>
+
+        <div class="mt-4 space-y-4 text-sm leading-7">
+          <p>
+            This PDF Converter is provided for general document-management and informational convenience. It is not a professional legal, financial, tax, medical, accessibility, archival, transcription, digital-forensics, records-management, or compliance service.
+          </p>
+
+          <p>
+            Conversion accuracy is not guaranteed. Word, Excel, and TXT output may contain missing text, incorrect reading order, altered spacing, misplaced columns, incomplete tables, incorrect symbols, or formatting differences. JPG and PNG output may differ in resolution, color, sharpness, compression, or file size.
+          </p>
+
+          <p>
+            The tool does not perform OCR during Word, Excel, or TXT conversion. Image-only scanned PDFs may produce little or no editable text. Use the separate PDF OCR tool when text recognition is required.
+          </p>
+
+          <p>
+            Users must verify names, dates, monetary amounts, percentages, formulas, table values, citations, addresses, account numbers, legal terms, medical information, and other important content against the original PDF.
+          </p>
+
+          <p>
+            Users are responsible for confirming that they have the legal authority to convert, copy, edit, store, publish, distribute, or reuse the document and its contents. Copyright, licensing, confidentiality, privacy, employment, educational, contractual, and regulatory restrictions continue to apply.
+          </p>
+
+          <p>
+            Converted files may not preserve digital signatures, certificates, forms, scripts, bookmarks, annotations, metadata, attachments, accessibility tags, or archival compliance. Keep the original PDF as the authoritative source.
+          </p>
+
+          <p>
+            Avoid processing confidential or regulated documents on public, shared, compromised, or untrusted devices. NodnWebTools is not responsible for conversion errors, data loss, privacy incidents, invalidated signatures, rejected submissions, copyright violations, browser failures, or direct or indirect damages arising from use of this tool.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="mx-auto w-full max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
+      <div class="ad-box" role="complementary" aria-label="Advertisement placeholder">
+        Advertisement
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-slate-200 bg-white">
+    <div class="mx-auto flex w-full max-w-7xl flex-col gap-3 px-4 py-8 text-sm text-slate-500 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
+      <p>© <span id="currentYear"></span> NodnWebTools. All rights reserved.</p>
+
+      <a href="https://nodntools.com" class="font-semibold text-slate-600 transition hover:text-indigo-700">
+        Back to NodnWebTools
+      </a>
+    </div>
+  </footer>
+
+  <script type="module">
+    import * as pdfjsLib from "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.min.mjs";
+
+    pdfjsLib.GlobalWorkerOptions.workerSrc =
+      "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.worker.min.mjs";
+
+    const {
+      Document,
+      Packer,
+      Paragraph,
+      TextRun,
+      HeadingLevel,
+      PageBreak
+    } = docx;
+
+    const pdfInput = document.getElementById("pdfInput");
+    const dropZone = document.getElementById("dropZone");
+    const fileCard = document.getElementById("fileCard");
+    const fileName = document.getElementById("fileName");
+    const fileSize = document.getElementById("fileSize");
+    const filePages = document.getElementById("filePages");
+    const removeFileButton = document.getElementById("removeFileButton");
+
+    const formatOptions = [...document.querySelectorAll(".format-option")];
+
+    const pageRange = document.getElementById("pageRange");
+    const imageQualityGroup = document.getElementById("imageQualityGroup");
+    const imageScale = document.getElementById("imageScale");
+    const jpgQualityGroup = document.getElementById("jpgQualityGroup");
+    const jpgQuality = document.getElementById("jpgQuality");
+
+    const wordOptions = document.getElementById("wordOptions");
+    const wordPageHeadings = document.getElementById("wordPageHeadings");
+    const wordPageBreaks = document.getElementById("wordPageBreaks");
+
+    const excelOptions = document.getElementById("excelOptions");
+    const excelSeparateSheets = document.getElementById("excelSeparateSheets");
+    const excelSplitColumns = document.getElementById("excelSplitColumns");
+
+    const textOptions = document.getElementById("textOptions");
+    const textPageHeadings = document.getElementById("textPageHeadings");
+
+    const formatWarning = document.getElementById("formatWarning");
+
+    const resultTitle = document.getElementById("resultTitle");
+    const resultDescription = document.getElementById("resultDescription");
+    const selectedFormatBadge = document.getElementById("selectedFormatBadge");
+
+    const emptyResult = document.getElementById("emptyResult");
+    const progressSection = document.getElementById("progressSection");
+    const progressLabel = document.getElementById("progressLabel");
+    const progressPercent = document.getElementById("progressPercent");
+    const progressBar = document.getElementById("progressBar");
+    const progressPage = document.getElementById("progressPage");
+    const progressStage = document.getElementById("progressStage");
+
+    const conversionResult = document.getElementById("conversionResult");
+    const successTitle = document.getElementById("successTitle");
+    const successDescription = document.getElementById("successDescription");
+    const resultPages = document.getElementById("resultPages");
+    const resultSize = document.getElementById("resultSize");
+    const resultTime = document.getElementById("resultTime");
+
+    const textPreviewSection = document.getElementById("textPreviewSection");
+    const textPreviewStats = document.getElementById("textPreviewStats");
+    const textPreview = document.getElementById("textPreview");
+
+    const imagePreviewSection = document.getElementById("imagePreviewSection");
+    const imagePreviewStats = document.getElementById("imagePreviewStats");
+    const imagePreviewGrid = document.getElementById("imagePreviewGrid");
+
+    const warningBox = document.getElementById("warningBox");
+    const convertButton = document.getElementById("convertButton");
+    const downloadButton = document.getElementById("downloadButton");
+    const resetButton = document.getElementById("resetButton");
+    const statusMessage = document.getElementById("statusMessage");
+
+    let selectedFile = null;
+    let selectedBytes = null;
+    let pdfDocument = null;
+    let selectedFormat = "word";
+    let isProcessing = false;
+
+    let resultBlob = null;
+    let resultFileName = "";
+    let resultObjectUrls = [];
+
+    const formatConfig = {
+      word: {
+        title: "PDF to Word",
+        description: "Convert selectable PDF text into an editable DOCX file.",
+        badge: "DOCX",
+        button: "Convert PDF to Word",
+        warning: "Word conversion rebuilds selectable PDF text as editable paragraphs. Complex layouts, fonts, tables, images, columns, and exact formatting may not be preserved."
+      },
+      excel: {
+        title: "PDF to Excel",
+        description: "Convert detected PDF text rows and columns into an XLSX workbook.",
+        badge: "XLSX",
+        button: "Convert PDF to Excel",
+        warning: "Excel conversion estimates spreadsheet rows and cells from PDF text positions. Complex tables, merged cells, formulas, and exact column structures may require manual correction."
+      },
+      jpg: {
+        title: "PDF to JPG",
+        description: "Render selected PDF pages as compressed JPG images.",
+        badge: "JPG",
+        button: "Convert PDF to JPG",
+        warning: "JPG conversion creates a visual image of each page. Text will no longer be selectable, and compression may slightly reduce sharpness."
+      },
+      png: {
+        title: "PDF to PNG",
+        description: "Render selected PDF pages as high-quality lossless PNG images.",
+        badge: "PNG",
+        button: "Convert PDF to PNG",
+        warning: "PNG conversion creates lossless page images that can be larger than JPG files, especially for photographic PDF pages."
+      },
+      txt: {
+        title: "PDF to TXT",
+        description: "Extract the existing selectable text layer into a UTF-8 TXT file.",
+        badge: "TXT",
+        button: "Convert PDF to TXT",
+        warning: "TXT conversion does not perform OCR. Scanned or image-only PDFs may produce little or no text."
+      }
+    };
+
+    function formatBytes(bytes) {
+      if (!Number.isFinite(bytes) || bytes < 0) return "—";
+      if (bytes === 0) return "0 B";
+
+      const units = ["B", "KB", "MB", "GB"];
+      const index = Math.min(
+        Math.floor(Math.log(bytes) / Math.log(1024)),
+        units.length - 1
+      );
+
+      const value = bytes / Math.pow(1024, index);
+
+      return `${value.toFixed(value >= 10 || index === 0 ? 1 : 2)} ${units[index]}`;
+    }
+
+    function formatDuration(milliseconds) {
+      const seconds = Math.max(0, Math.round(milliseconds / 1000));
+
+      if (seconds < 60) {
+        return `${seconds}s`;
+      }
+
+      const minutes = Math.floor(seconds / 60);
+      const remaining = seconds % 60;
+
+      return `${minutes}m ${remaining}s`;
+    }
+
+    function setWarning(message = "") {
+      warningBox.textContent = message;
+      warningBox.classList.toggle("hidden", !message);
+    }
+
+    function setStatus(message = "", type = "neutral") {
+      statusMessage.textContent = message;
+      statusMessage.className = "mt-5 min-h-6 text-center text-sm font-semibold";
+
+      if (type === "success") {
+        statusMessage.classList.add("text-emerald-600");
+      } else if (type === "error") {
+        statusMessage.classList.add("text-rose-600");
+      } else {
+        statusMessage.classList.add("text-slate-500");
+      }
+    }
+
+    function updateProgress(percent, label, pageText = "", stageText = "") {
+      const safePercent = Math.max(0, Math.min(100, Math.round(percent)));
+
+      progressSection.classList.remove("hidden");
+      progressPercent.textContent = `${safePercent}%`;
+      progressBar.style.width = `${safePercent}%`;
+      progressLabel.textContent = label;
+      progressPage.textContent = pageText;
+      progressStage.textContent = stageText;
+    }
+
+    function hideProgress() {
+      progressSection.classList.add("hidden");
+      progressPercent.textContent = "0%";
+      progressBar.style.width = "0%";
+      progressLabel.textContent = "Preparing conversion...";
+      progressPage.textContent = "";
+      progressStage.textContent = "";
+    }
+
+    function setProcessing(processing) {
+      isProcessing = processing;
+      pdfInput.disabled = processing;
+      removeFileButton.disabled = processing;
+      convertButton.disabled = processing;
+
+      formatOptions.forEach(option => {
+        option.disabled = processing;
+      });
+    }
+
+    function revokeResultUrls() {
+      resultObjectUrls.forEach(url => URL.revokeObjectURL(url));
+      resultObjectUrls = [];
+    }
+
+    function clearResult() {
+      resultBlob = null;
+      resultFileName = "";
+      revokeResultUrls();
+
+      conversionResult.classList.add("hidden");
+      textPreviewSection.classList.add("hidden");
+      imagePreviewSection.classList.add("hidden");
+      imagePreviewGrid.innerHTML = "";
+      textPreview.value = "";
+
+      emptyResult.classList.remove("hidden");
+      downloadButton.textContent = "Download Result";
+    }
+
+    function updateFormatInterface() {
+      const config = formatConfig[selectedFormat];
+
+      formatOptions.forEach(option => {
+        option.setAttribute(
+          "aria-pressed",
+          String(option.dataset.format === selectedFormat)
+        );
+      });
+
+      resultTitle.textContent = config.title;
+      resultDescription.textContent = config.description;
+      selectedFormatBadge.textContent = config.badge;
+      convertButton.textContent = config.button;
+      formatWarning.textContent = config.warning;
+
+      wordOptions.classList.toggle("hidden", selectedFormat !== "word");
+      excelOptions.classList.toggle("hidden", selectedFormat !== "excel");
+      textOptions.classList.toggle("hidden", selectedFormat !== "txt");
+
+      const isImageFormat =
+        selectedFormat === "jpg" || selectedFormat === "png";
+
+      imageQualityGroup.classList.toggle("hidden", !isImageFormat);
+      jpgQualityGroup.classList.toggle("hidden", selectedFormat !== "jpg");
+
+      clearResult();
+      setWarning("");
+      setStatus("");
+    }
+
+    function parsePageRange(input, pageCount) {
+      const trimmed = input.trim();
+
+      if (!trimmed) {
+        return Array.from({ length: pageCount }, (_, index) => index + 1);
+      }
+
+      const pages = new Set();
+
+      for (const rawPart of trimmed.split(",")) {
+        const part = rawPart.trim();
+
+        if (!part) continue;
+
+        if (/^\d+$/.test(part)) {
+          const page = Number(part);
+
+          if (page < 1 || page > pageCount) {
+            throw new Error(`Page ${page} is outside the valid range of 1 to ${pageCount}.`);
+          }
+
+          pages.add(page);
+          continue;
+        }
+
+        const match = part.match(/^(\d+)\s*-\s*(\d+)$/);
+
+        if (!match) {
+          throw new Error(`Invalid page range segment: "${part}".`);
+        }
+
+        const start = Number(match[1]);
+        const end = Number(match[2]);
+
+        if (
+          start < 1 ||
+          end < 1 ||
+          start > pageCount ||
+          end > pageCount ||
+          start > end
+        ) {
+          throw new Error(`Invalid page range: "${part}".`);
+        }
+
+        for (let page = start; page <= end; page++) {
+          pages.add(page);
+        }
+      }
+
+      const result = [...pages].sort((a, b) => a - b);
+
+      if (result.length === 0) {
+        throw new Error("Choose at least one valid page.");
+      }
+
+      return result;
+    }
+
+    async function handleFile(file) {
+      if (!file || isProcessing) return;
+
+      setWarning("");
+      setStatus("");
+      clearResult();
+
+      const isPdf =
+        file.type === "application/pdf" ||
+        file.name.toLowerCase().endsWith(".pdf");
+
+      if (!isPdf) {
+        setWarning("Please choose a valid PDF file.");
+        return;
+      }
+
+      if (file.size === 0) {
+        setWarning("The selected PDF file is empty.");
+        return;
+      }
+
+      if (file.size > 50 * 1024 * 1024) {
+        setWarning(
+          "This PDF is larger than 50 MB. Conversion may require substantial memory or fail on some devices."
+        );
+      }
+
+      setProcessing(true);
+      updateProgress(5, "Opening PDF...");
+
+      try {
+        selectedFile = file;
+        selectedBytes = new Uint8Array(await file.arrayBuffer());
+
+        pdfDocument = await pdfjsLib.getDocument({
+          data: selectedBytes.slice(),
+          useSystemFonts: true
+        }).promise;
+
+        fileCard.classList.remove("hidden");
+        fileName.textContent = file.name;
+        fileSize.textContent = formatBytes(file.size);
+        filePages.textContent =
+          `${pdfDocument.numPages} page${pdfDocument.numPages === 1 ? "" : "s"}`;
+
+        setStatus("PDF loaded successfully. Select a format and convert.", "success");
+      } catch (error) {
+        console.error(error);
+        resetTool();
+
+        const message = String(error?.message || "").toLowerCase();
+
+        if (message.includes("password")) {
+          setWarning(
+            "This PDF is password-protected. Unlock it with the correct password before converting."
+          );
+        } else {
+          setWarning(
+            "The PDF could not be opened. It may be damaged, encrypted, unsupported, or too large for this browser."
+          );
+        }
+      } finally {
+        setProcessing(false);
+        hideProgress();
+      }
+    }
+
+    function groupTextItemsIntoLines(items) {
+      const normalized = items
+        .filter(item => typeof item.str === "string" && item.str.trim())
+        .map(item => ({
+          text: item.str,
+          x: item.transform?.[4] || 0,
+          y: item.transform?.[5] || 0,
+          width: item.width || 0,
+          height:
+            Math.abs(item.transform?.[3] || 0) ||
+            item.height ||
+            10
+        }))
+        .sort((a, b) => {
+          const yDifference = b.y - a.y;
+
+          if (Math.abs(yDifference) > 3) {
+            return yDifference;
+          }
+
+          return a.x - b.x;
+        });
+
+      const lines = [];
+
+      for (const item of normalized) {
+        const threshold = Math.max(3, item.height * 0.55);
+
+        let line = lines.find(existing =>
+          Math.abs(existing.y - item.y) <= threshold
+        );
+
+        if (!line) {
+          line = {
+            y: item.y,
+            height: item.height,
+            items: []
+          };
+
+          lines.push(line);
+        }
+
+        line.items.push(item);
+        line.y =
+          (line.y * (line.items.length - 1) + item.y) /
+          line.items.length;
+      }
+
+      lines.sort((a, b) => b.y - a.y);
+
+      lines.forEach(line => {
+        line.items.sort((a, b) => a.x - b.x);
+      });
+
+      return lines;
+    }
+
+    function buildLineText(line) {
+      let output = "";
+      let previousEndX = null;
+
+      for (const item of line.items) {
+        if (previousEndX !== null) {
+          const gap = item.x - previousEndX;
+          const approximateCharacterWidth =
+            item.text.length > 0
+              ? item.width / item.text.length
+              : 4;
+
+          if (gap > Math.max(1.5, approximateCharacterWidth * 0.35)) {
+            output += " ";
+          }
+        }
+
+        output += item.text;
+        previousEndX = item.x + item.width;
+      }
+
+      return output.trim();
+    }
+
+    function buildSpreadsheetRow(line) {
+      if (!excelSplitColumns.checked) {
+        return [buildLineText(line)];
+      }
+
+      const cells = [];
+      let currentCell = "";
+      let previousEndX = null;
+
+      for (const item of line.items) {
+        if (previousEndX !== null) {
+          const gap = item.x - previousEndX;
+          const averageCharacterWidth =
+            item.text.length > 0
+              ? Math.max(2, item.width / item.text.length)
+              : 4;
+
+          if (gap > Math.max(16, averageCharacterWidth * 3.2)) {
+            cells.push(currentCell.trim());
+            currentCell = "";
+          } else if (
+            gap > Math.max(1.5, averageCharacterWidth * 0.35)
+          ) {
+            currentCell += " ";
+          }
+        }
+
+        currentCell += item.text;
+        previousEndX = item.x + item.width;
+      }
+
+      if (currentCell.trim() || cells.length === 0) {
+        cells.push(currentCell.trim());
+      }
+
+      return cells;
+    }
+
+    async function extractPageData(pageNumber) {
+      const page = await pdfDocument.getPage(pageNumber);
+      const textContent = await page.getTextContent({
+        includeMarkedContent: false,
+        disableNormalization: false
+      });
+
+      const lines = groupTextItemsIntoLines(textContent.items);
+      const lineTexts = lines
+        .map(buildLineText)
+        .filter(Boolean);
+
+      page.cleanup();
+
+      return {
+        pageNumber,
+        lines,
+        text: lineTexts.join("\n"),
+        lineTexts
+      };
+    }
+
+    async function convertToWord(pageNumbers) {
+      const children = [];
+      const previews = [];
+
+      for (let index = 0; index < pageNumbers.length; index++) {
+        const pageNumber = pageNumbers[index];
+
+        updateProgress(
+          8 + (index / pageNumbers.length) * 75,
+          `Reading text from page ${pageNumber}`,
+          `Page ${index + 1} of ${pageNumbers.length}`,
+          "Building Word document"
+        );
+
+        const pageData = await extractPageData(pageNumber);
+        previews.push(pageData.text);
+
+        if (wordPageHeadings.checked) {
+          children.push(
+            new Paragraph({
+              text: `Page ${pageNumber}`,
+              heading: HeadingLevel.HEADING_1,
+              spacing: {
+                before: 120,
+                after: 120
+              }
+            })
+          );
+        }
+
+        if (pageData.lineTexts.length === 0) {
+          children.push(
+            new Paragraph({
+              children: [
+                new TextRun({
+                  text: "[No selectable text found on this page]",
+                  italics: true,
+                  color: "64748B"
+                })
+              ]
+            })
+          );
+        } else {
+          pageData.lineTexts.forEach(line => {
+            children.push(
+              new Paragraph({
+                children: [
+                  new TextRun({
+                    text: line
+                  })
+                ],
+                spacing: {
+                  after: 80
+                }
+              })
+            );
+          });
+        }
+
+        if (
+          wordPageBreaks.checked &&
+          index < pageNumbers.length - 1
+        ) {
+          children.push(
+            new Paragraph({
+              children: [new PageBreak()]
+            })
+          );
+        }
+
+        await new Promise(resolve => setTimeout(resolve, 0));
+      }
+
+      updateProgress(88, "Creating DOCX file...", "", "Packaging Word document");
+
+      const documentFile = new Document({
+        sections: [
+          {
+            properties: {},
+            children
+          }
+        ],
+        creator: "NodnWebTools",
+        title: selectedFile.name.replace(/\.pdf$/i, ""),
+        description: "Converted from PDF using NodnWebTools PDF Converter"
+      });
+
+      const blob = await Packer.toBlob(documentFile);
+      const baseName = selectedFile.name.replace(/\.pdf$/i, "");
+
+      return {
+        blob,
+        fileName: `${baseName}-converted.docx`,
+        previewText: previews
+          .map((text, index) =>
+            `===== Page ${pageNumbers[index]} =====\n\n${text}`
+          )
+          .join("\n\n"),
+        description: "Your editable Word document is ready to download."
+      };
+    }
+
+    async function convertToExcel(pageNumbers) {
+      const workbook = XLSX.utils.book_new();
+      const allRows = [["PDF Page", "Column 1"]];
+      const previewParts = [];
+
+      for (let index = 0; index < pageNumbers.length; index++) {
+        const pageNumber = pageNumbers[index];
+
+        updateProgress(
+          8 + (index / pageNumbers.length) * 75,
+          `Reading rows from page ${pageNumber}`,
+          `Page ${index + 1} of ${pageNumbers.length}`,
+          "Building Excel workbook"
+        );
+
+        const pageData = await extractPageData(pageNumber);
+        const rows = pageData.lines.map(buildSpreadsheetRow);
+
+        previewParts.push(
+          `===== Page ${pageNumber} =====\n\n${rows
+            .map(row => row.join(" | "))
+            .join("\n")}`
+        );
+
+        if (excelSeparateSheets.checked) {
+          const worksheetData =
+            rows.length > 0
+              ? rows
+              : [["No selectable text found"]];
+
+          const worksheet = XLSX.utils.aoa_to_sheet(worksheetData);
+
+          worksheet["!cols"] = Array.from(
+            {
+              length: Math.max(
+                1,
+                ...worksheetData.map(row => row.length)
+              )
+            },
+            (_, columnIndex) => ({
+              wch: Math.min(
+                50,
+                Math.max(
+                  12,
+                  ...worksheetData.map(row =>
+                    String(row[columnIndex] || "").length
+                  )
+                )
+              )
+            })
+          );
+
+          XLSX.utils.book_append_sheet(
+            workbook,
+            worksheet,
+            `Page ${pageNumber}`.slice(0, 31)
+          );
+        } else {
+          rows.forEach(row => {
+            allRows.push([pageNumber, ...row]);
+          });
+        }
+
+        await new Promise(resolve => setTimeout(resolve, 0));
+      }
+
+      if (!excelSeparateSheets.checked) {
+        const worksheet = XLSX.utils.aoa_to_sheet(allRows);
+
+        worksheet["!cols"] = Array.from(
+          {
+            length: Math.max(
+              1,
+              ...allRows.map(row => row.length)
+            )
+          },
+          (_, columnIndex) => ({
+            wch: Math.min(
+              50,
+              Math.max(
+                12,
+                ...allRows.map(row =>
+                  String(row[columnIndex] || "").length
+                )
+              )
+            )
+          })
+        );
+
+        XLSX.utils.book_append_sheet(workbook, worksheet, "Converted PDF");
+      }
+
+      updateProgress(88, "Creating XLSX file...", "", "Packaging Excel workbook");
+
+      const output = XLSX.write(workbook, {
+        bookType: "xlsx",
+        type: "array",
+        compression: true
+      });
+
+      const blob = new Blob([output], {
+        type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      });
+
+      const baseName = selectedFile.name.replace(/\.pdf$/i, "");
+
+      return {
+        blob,
+        fileName: `${baseName}-converted.xlsx`,
+        previewText: previewParts.join("\n\n"),
+        description: "Your Excel workbook is ready to download."
+      };
+    }
+
+    async function convertToText(pageNumbers) {
+      const pageTexts = [];
+
+      for (let index = 0; index < pageNumbers.length; index++) {
+        const pageNumber = pageNumbers[index];
+
+        updateProgress(
+          8 + (index / pageNumbers.length) * 78,
+          `Extracting text from page ${pageNumber}`,
+          `Page ${index + 1} of ${pageNumbers.length}`,
+          "Building plain text file"
+        );
+
+        const pageData = await extractPageData(pageNumber);
+
+        if (textPageHeadings.checked) {
+          pageTexts.push(
+            `===== Page ${pageNumber} =====\n\n${pageData.text}`
+          );
+        } else {
+          pageTexts.push(pageData.text);
+        }
+
+        await new Promise(resolve => setTimeout(resolve, 0));
+      }
+
+      const text = pageTexts.join("\n\n").trim();
+      const blob = new Blob(["\uFEFF", text], {
+        type: "text/plain;charset=utf-8"
+      });
+
+      const baseName = selectedFile.name.replace(/\.pdf$/i, "");
+
+      return {
+        blob,
+        fileName: `${baseName}-converted.txt`,
+        previewText: text,
+        description: text
+          ? "Your plain text file is ready to download."
+          : "The TXT file was created, but no selectable text was found."
+      };
+    }
+
+    function canvasToBlob(canvas, mimeType, quality) {
+      return new Promise((resolve, reject) => {
+        canvas.toBlob(
+          blob => {
+            if (blob) {
+              resolve(blob);
+            } else {
+              reject(new Error("The browser could not encode the page image."));
+            }
+          },
+          mimeType,
+          quality
+        );
+      });
+    }
+
+    async function convertToImages(pageNumbers, format) {
+      const scale = Number(imageScale.value) || 2;
+      const mimeType =
+        format === "jpg" ? "image/jpeg" : "image/png";
+      const extension = format;
+      const quality =
+        format === "jpg"
+          ? Number(jpgQuality.value) || 0.85
+          : undefined;
+
+      const images = [];
+
+      for (let index = 0; index < pageNumbers.length; index++) {
+        const pageNumber = pageNumbers[index];
+
+        updateProgress(
+          5 + (index / pageNumbers.length) * 78,
+          `Rendering page ${pageNumber}`,
+          `Page ${index + 1} of ${pageNumbers.length}`,
+          `Creating ${format.toUpperCase()} image`
+        );
+
+        const page = await pdfDocument.getPage(pageNumber);
+        const viewport = page.getViewport({ scale });
+
+        const canvas = document.createElement("canvas");
+        canvas.width = Math.ceil(viewport.width);
+        canvas.height = Math.ceil(viewport.height);
+
+        const context = canvas.getContext("2d", {
+          alpha: format === "png"
+        });
+
+        if (format === "jpg") {
+          context.fillStyle = "#ffffff";
+          context.fillRect(0, 0, canvas.width, canvas.height);
+        }
+
+        await page.render({
+          canvasContext: context,
+          viewport,
+          background: format === "jpg" ? "white" : undefined
+        }).promise;
+
+        const blob = await canvasToBlob(
+          canvas,
+          mimeType,
+          quality
+        );
+
+        const baseName = selectedFile.name.replace(/\.pdf$/i, "");
+        const imageName =
+          `${baseName}-page-${String(pageNumber).padStart(3, "0")}.${extension}`;
+
+        images.push({
+          blob,
+          fileName: imageName,
+          pageNumber,
+          width: canvas.width,
+          height: canvas.height
+        });
+
+        canvas.width = 1;
+        canvas.height = 1;
+        page.cleanup();
+
+        await new Promise(resolve => setTimeout(resolve, 0));
+      }
+
+      if (images.length === 1) {
+        return {
+          blob: images[0].blob,
+          fileName: images[0].fileName,
+          images,
+          description: `Your ${format.toUpperCase()} page image is ready to download.`
+        };
+      }
+
+      updateProgress(87, "Creating ZIP archive...", "", "Packaging page images");
+
+      const zip = new JSZip();
+
+      images.forEach(image => {
+        zip.file(image.fileName, image.blob);
+      });
+
+      const zipBlob = await zip.generateAsync(
+        {
+          type: "blob",
+          compression: "DEFLATE",
+          compressionOptions: {
+            level: 6
+          }
+        },
+        metadata => {
+          const progress = 87 + metadata.percent * 0.11;
+
+          updateProgress(
+            progress,
+            "Creating ZIP archive...",
+            "",
+            `${Math.round(metadata.percent)}% packaged`
+          );
+        }
+      );
+
+      const baseName = selectedFile.name.replace(/\.pdf$/i, "");
+
+      return {
+        blob: zipBlob,
+        fileName: `${baseName}-${format}-pages.zip`,
+        images,
+        description:
+          `${images.length} ${format.toUpperCase()} images were packaged into a ZIP file.`
+      };
+    }
+
+    async function convertPdf() {
+      if (!selectedFile || !pdfDocument) {
+        setWarning("Choose a PDF file before starting conversion.");
+        return;
+      }
+
+      if (isProcessing) return;
+
+      let pageNumbers;
+
+      try {
+        pageNumbers = parsePageRange(
+          pageRange.value,
+          pdfDocument.numPages
+        );
+      } catch (error) {
+        setWarning(error.message);
+        pageRange.focus();
+        return;
+      }
+
+      if (
+        (selectedFormat === "jpg" || selectedFormat === "png") &&
+        pageNumbers.length > 40
+      ) {
+        setWarning(
+          "For browser stability, convert no more than 40 image pages at one time. Enter a smaller page range."
+        );
+        return;
+      }
+
+      setProcessing(true);
+      setWarning("");
+      setStatus("Conversion is running. Keep this page open.");
+      clearResult();
+
+      emptyResult.classList.add("hidden");
+      updateProgress(2, "Preparing conversion...");
+
+      const startTime = performance.now();
+
+      try {
+        let result;
+
+        if (selectedFormat === "word") {
+          result = await convertToWord(pageNumbers);
+        } else if (selectedFormat === "excel") {
+          result = await convertToExcel(pageNumbers);
+        } else if (selectedFormat === "txt") {
+          result = await convertToText(pageNumbers);
+        } else {
+          result = await convertToImages(
+            pageNumbers,
+            selectedFormat
+          );
+        }
+
+        resultBlob = result.blob;
+        resultFileName = result.fileName;
+
+        const duration = performance.now() - startTime;
+
+        displayResult(result, pageNumbers, duration);
+
+        updateProgress(100, "Conversion completed.", "", "Result is ready");
+        setStatus("PDF converted successfully.", "success");
+
+        setTimeout(hideProgress, 700);
+      } catch (error) {
+        console.error(error);
+
+        emptyResult.classList.remove("hidden");
+        setWarning(
+          "The PDF could not be converted. Try a smaller page range, a different output format, or a current desktop browser."
+        );
+        setStatus("Conversion failed.", "error");
+        hideProgress();
+      } finally {
+        setProcessing(false);
+      }
+    }
+
+    function displayResult(result, pageNumbers, duration) {
+      emptyResult.classList.add("hidden");
+      conversionResult.classList.remove("hidden");
+
+      successTitle.textContent =
+        `${formatConfig[selectedFormat].title} completed`;
+
+      successDescription.textContent = result.description;
+
+      resultPages.textContent =
+        `${pageNumbers.length} page${pageNumbers.length === 1 ? "" : "s"}`;
+
+      resultSize.textContent = formatBytes(result.blob.size);
+      resultTime.textContent = formatDuration(duration);
+
+      downloadButton.textContent =
+        selectedFormat === "jpg" || selectedFormat === "png"
+          ? result.images?.length > 1
+            ? "Download ZIP"
+            : `Download ${selectedFormat.toUpperCase()}`
+          : `Download ${formatConfig[selectedFormat].badge}`;
+
+      if (
+        selectedFormat === "word" ||
+        selectedFormat === "excel" ||
+        selectedFormat === "txt"
+      ) {
+        textPreviewSection.classList.remove("hidden");
+        imagePreviewSection.classList.add("hidden");
+
+        textPreview.value = result.previewText || "";
+
+        const wordCount = result.previewText?.trim()
+          ? result.previewText.trim().split(/\s+/).length
+          : 0;
+
+        textPreviewStats.textContent =
+          `${wordCount.toLocaleString()} word${wordCount === 1 ? "" : "s"}`;
+
+        if (!result.previewText?.trim()) {
+          setWarning(
+            "No selectable text was found. The PDF may be scanned and require OCR before Word, Excel, or TXT conversion."
+          );
+        }
+      } else {
+        textPreviewSection.classList.add("hidden");
+        imagePreviewSection.classList.remove("hidden");
+
+        renderImagePreviews(result.images || []);
+      }
+    }
+
+    function renderImagePreviews(images) {
+      imagePreviewGrid.innerHTML = "";
+      revokeResultUrls();
+
+      imagePreviewStats.textContent =
+        `${images.length} image${images.length === 1 ? "" : "s"}`;
+
+      images.slice(0, 6).forEach(image => {
+        const url = URL.createObjectURL(image.blob);
+        resultObjectUrls.push(url);
+
+        const card = document.createElement("article");
+        card.className =
+          "result-card overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm";
+
+        card.innerHTML = `
+          <div class="preview-grid flex h-56 items-center justify-center overflow-hidden p-3">
+            <img
+              src="${url}"
+              alt="Converted PDF page ${image.pageNumber}"
+              class="max-h-full max-w-full rounded-lg object-contain shadow-sm"
+            >
+          </div>
+
+          <div class="p-4">
+            <p class="safe-break text-sm font-black text-slate-900">
+              ${image.fileName}
+            </p>
+
+            <div class="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-xs font-semibold text-slate-500">
+              <span>Page ${image.pageNumber}</span>
+              <span>${image.width} × ${image.height} px</span>
+              <span>${formatBytes(image.blob.size)}</span>
+            </div>
+          </div>
+        `;
+
+        imagePreviewGrid.appendChild(card);
+      });
+
+      if (images.length > 6) {
+        const notice = document.createElement("div");
+        notice.className =
+          "rounded-2xl border border-indigo-200 bg-indigo-50 p-4 text-sm text-indigo-800 sm:col-span-2";
+        notice.textContent =
+          `${images.length - 6} additional image${images.length - 6 === 1 ? "" : "s"} will be included in the download.`;
+
+        imagePreviewGrid.appendChild(notice);
+      }
+    }
+
+    function downloadResult() {
+      if (!resultBlob || !resultFileName) {
+        setWarning("Convert a PDF before downloading the result.");
+        return;
+      }
+
+      const url = URL.createObjectURL(resultBlob);
+      const anchor = document.createElement("a");
+
+      anchor.href = url;
+      anchor.download = resultFileName;
+      document.body.appendChild(anchor);
+      anchor.click();
+      anchor.remove();
+
+      setTimeout(() => URL.revokeObjectURL(url), 2000);
+    }
+
+    function resetTool() {
+      selectedFile = null;
+      selectedBytes = null;
+      pdfDocument = null;
+
+      pdfInput.value = "";
+      fileCard.classList.add("hidden");
+      fileName.textContent = "";
+      fileSize.textContent = "";
+      filePages.textContent = "";
+      pageRange.value = "";
+
+      clearResult();
+      hideProgress();
+      setWarning("");
+      setStatus("");
+    }
+
+    pdfInput.addEventListener("change", event => {
+      const [file] = event.target.files;
+      handleFile(file);
+    });
+
+    ["dragenter", "dragover"].forEach(eventName => {
+      dropZone.addEventListener(eventName, event => {
+        event.preventDefault();
+        event.stopPropagation();
+        dropZone.classList.add("drop-active");
+      });
+    });
+
+    ["dragleave", "drop"].forEach(eventName => {
+      dropZone.addEventListener(eventName, event => {
+        event.preventDefault();
+        event.stopPropagation();
+        dropZone.classList.remove("drop-active");
+      });
+    });
+
+    dropZone.addEventListener("drop", event => {
+      const [file] = event.dataTransfer.files;
+      handleFile(file);
+    });
+
+    formatOptions.forEach(option => {
+      option.addEventListener("click", () => {
+        if (isProcessing) return;
+
+        selectedFormat = option.dataset.format;
+        updateFormatInterface();
+      });
+    });
+
+    removeFileButton.addEventListener("click", resetTool);
+    convertButton.addEventListener("click", convertPdf);
+    downloadButton.addEventListener("click", downloadResult);
+    resetButton.addEventListener("click", resetTool);
+
+    document.getElementById("currentYear").textContent =
+      new Date().getFullYear();
+
+    updateFormatInterface();
+  </script>
+</body>
+</html>

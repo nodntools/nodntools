@@ -1,0 +1,1668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>PDF Page Editor Online | Rotate, Delete & Reorder Pages</title>
+  <meta name="description" content="Edit PDF pages online. Rotate, delete, reorder, duplicate, and extract PDF pages securely in your browser.">
+  <meta name="keywords" content="PDF page editor, edit PDF pages online, rotate PDF pages, delete PDF pages, reorder PDF pages, duplicate PDF pages, extract PDF pages, organize PDF pages, rearrange PDF pages, free PDF editor, browser PDF editor, client side PDF tool">
+  <meta name="robots" content="index, follow">
+  <meta name="google-adsense-account" content="ca-pub-5282672325821404">
+
+  <meta property="og:title" content="PDF Page Editor Online | Rotate, Delete & Reorder Pages">
+  <meta property="og:description" content="Organize PDF pages online with tools to rotate, delete, reorder, duplicate, and extract pages directly in your browser.">
+  <meta property="og:type" content="website">
+
+  <link rel="icon" type="image/png" href="/favicon.png">
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404" crossorigin="anonymous"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.6/Sortable.min.js"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "PDF Page Editor",
+    "url": "https://nodntools.com/pdf-page-editor",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "description": "A free browser-based PDF page editor for rotating, deleting, reordering, duplicating, and extracting PDF pages.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "featureList": [
+      "Rotate individual or multiple PDF pages",
+      "Delete unwanted PDF pages",
+      "Reorder pages with drag and drop",
+      "Duplicate selected PDF pages",
+      "Extract selected pages into a new PDF",
+      "Local browser processing",
+      "No account required"
+    ]
+  }
+  </script>
+
+  <style>
+    html, body {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      min-width: 0;
+    }
+
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .safe-break {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .ad-box {
+      width: 100%;
+      min-height: 90px;
+      border: 2px dashed #cbd5e1;
+      background: #f8fafc;
+      color: #94a3b8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-radius: 1rem;
+      padding: 1rem;
+      overflow: hidden;
+    }
+
+    .drop-active {
+      border-color: #6366f1 !important;
+      background: #eef2ff !important;
+      transform: scale(1.005);
+    }
+
+    .tab-button[aria-selected="true"] {
+      background: #4f46e5;
+      color: #ffffff;
+      border-color: #4f46e5;
+      box-shadow: 0 8px 20px rgba(79, 70, 229, 0.18);
+    }
+
+    .page-card {
+      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+      touch-action: manipulation;
+    }
+
+    .page-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.1);
+    }
+
+    .page-card.selected {
+      border-color: #6366f1;
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+    }
+
+    .page-card.deleted {
+      opacity: 0.45;
+      background: #fff1f2;
+      border-color: #fecdd3;
+    }
+
+    .page-card.deleted .page-canvas-wrap {
+      filter: grayscale(1);
+    }
+
+    .page-canvas {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      border-radius: 0.5rem;
+      background: #ffffff;
+    }
+
+    .sortable-ghost {
+      opacity: 0.35;
+      border: 2px dashed #6366f1 !important;
+    }
+
+    .sortable-chosen {
+      box-shadow: 0 18px 40px rgba(79, 70, 229, 0.22);
+    }
+
+    .tool-card-hover {
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .tool-card-hover:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+      border-color: #c7d2fe;
+    }
+
+    .progress-bar {
+      transition: width 0.25s ease;
+    }
+
+    .drag-handle {
+      cursor: grab;
+    }
+
+    .drag-handle:active {
+      cursor: grabbing;
+    }
+
+    @media (max-width: 640px) {
+      .mobile-card {
+        padding: 1rem !important;
+        border-radius: 1rem !important;
+      }
+
+      .mobile-panel {
+        padding: 0.875rem !important;
+      }
+
+      .mobile-preview {
+        min-height: 240px !important;
+      }
+
+      .mobile-button-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .mobile-button-grid button,
+      .mobile-button-grid a {
+        width: 100%;
+      }
+
+      .mobile-code {
+        font-size: 0.75rem;
+        overflow-x: auto;
+      }
+
+      .page-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      }
+
+      .tab-scroll {
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+        scrollbar-width: thin;
+      }
+
+      .tab-button {
+        flex: 0 0 auto;
+      }
+
+      h1 {
+        font-size: 2rem !important;
+        line-height: 1.15 !important;
+      }
+
+      h2 {
+        font-size: 1.6rem !important;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .mobile-card {
+        padding: 0.75rem !important;
+        border-radius: 0.875rem !important;
+      }
+
+      .mobile-panel {
+        padding: 0.75rem !important;
+      }
+
+      .page-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .ad-box {
+        min-height: 80px;
+        border-radius: 0.75rem;
+        font-size: 0.75rem;
+      }
+
+      button,
+      a,
+      input,
+      select {
+        font-size: 0.875rem;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800">
+  <header class="border-b border-slate-200 bg-white">
+    <div class="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
+      <a href="https://nodntools.com" class="safe-break text-xl font-extrabold tracking-tight text-slate-900" aria-label="NodnWebTools home">
+        Nodn<span class="text-indigo-600">WebTools</span>
+      </a>
+
+      <a href="https://nodntools.com" class="rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-indigo-300 hover:text-indigo-700">
+        Home
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <section class="mx-auto w-full max-w-7xl px-4 pt-6 sm:px-6 lg:px-8">
+      <div class="ad-box" role="complementary" aria-label="Advertisement placeholder">
+        Advertisement
+      </div>
+    </section>
+
+    <section class="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+      <div class="mb-8 max-w-4xl">
+        <div class="mb-4 inline-flex flex-wrap items-center gap-2 rounded-full border border-indigo-200 bg-indigo-50 px-3 py-1 text-sm font-semibold text-indigo-700">
+          <span>Browser-based PDF organizer</span>
+          <span aria-hidden="true">•</span>
+          <span>No file upload</span>
+        </div>
+
+        <h1 class="text-4xl font-black tracking-tight text-slate-950 sm:text-5xl">
+          PDF Page Editor
+        </h1>
+
+        <p class="mt-4 text-lg leading-8 text-slate-600">
+          Rotate, delete, reorder, duplicate, and extract PDF pages in one convenient workspace. Your PDF is processed locally in your browser, and the edited document can be downloaded without sending the file to a remote server.
+        </p>
+      </div>
+
+      <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+        <div id="uploadSection">
+          <div id="dropZone" class="mobile-panel rounded-2xl border-2 border-dashed border-slate-300 bg-slate-50 p-7 text-center transition sm:p-10">
+            <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-indigo-100 text-indigo-600">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 16V4m0 0L7 9m5-5l5 5M5 20h14" />
+              </svg>
+            </div>
+
+            <h2 class="mt-5 text-2xl font-black text-slate-950">Choose a PDF to edit</h2>
+            <p class="mt-2 text-sm leading-6 text-slate-500">
+              Drag and drop a PDF here, or browse for a file on your device.
+            </p>
+
+            <label for="pdfInput" class="mt-6 inline-flex cursor-pointer items-center justify-center rounded-xl bg-indigo-600 px-6 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-indigo-700 focus-within:ring-4 focus-within:ring-indigo-100">
+              Select PDF
+            </label>
+            <input id="pdfInput" type="file" accept="application/pdf,.pdf" class="sr-only">
+
+            <p class="mt-4 text-xs text-slate-400">
+              Recommended maximum file size: 50 MB. Large PDFs may require additional browser memory.
+            </p>
+          </div>
+        </div>
+
+        <div id="editorSection" class="hidden">
+          <div class="flex flex-col gap-4 border-b border-slate-200 pb-6 xl:flex-row xl:items-center xl:justify-between">
+            <div class="flex items-start gap-3">
+              <div class="flex h-12 w-12 flex-none items-center justify-center rounded-xl bg-rose-50 text-rose-600">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M14 2v6h6" />
+                </svg>
+              </div>
+
+              <div>
+                <p id="currentFileName" class="safe-break font-bold text-slate-950"></p>
+                <div class="mt-1 flex flex-wrap gap-x-4 gap-y-1 text-sm text-slate-500">
+                  <span id="currentFileSize"></span>
+                  <span id="currentPageCount"></span>
+                  <span id="activePageCount"></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="mobile-button-grid grid grid-cols-2 gap-3 sm:flex">
+              <button id="changeFileButton" type="button" class="rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-bold text-slate-700 transition hover:bg-slate-50">
+                Change PDF
+              </button>
+              <button id="resetButton" type="button" class="rounded-xl border border-rose-200 bg-rose-50 px-4 py-2.5 text-sm font-bold text-rose-700 transition hover:bg-rose-100">
+                Reset Changes
+              </button>
+            </div>
+          </div>
+
+          <div class="mt-6 rounded-2xl bg-slate-100 p-2">
+            <div class="tab-scroll flex gap-2" role="tablist" aria-label="PDF page editing tools">
+              <button class="tab-button rounded-xl border border-transparent px-4 py-2.5 text-sm font-bold text-slate-600 transition" type="button" data-tab="rotate" role="tab" aria-selected="true">
+                Rotate
+              </button>
+              <button class="tab-button rounded-xl border border-transparent px-4 py-2.5 text-sm font-bold text-slate-600 transition" type="button" data-tab="delete" role="tab" aria-selected="false">
+                Delete
+              </button>
+              <button class="tab-button rounded-xl border border-transparent px-4 py-2.5 text-sm font-bold text-slate-600 transition" type="button" data-tab="reorder" role="tab" aria-selected="false">
+                Reorder
+              </button>
+              <button class="tab-button rounded-xl border border-transparent px-4 py-2.5 text-sm font-bold text-slate-600 transition" type="button" data-tab="duplicate" role="tab" aria-selected="false">
+                Duplicate
+              </button>
+              <button class="tab-button rounded-xl border border-transparent px-4 py-2.5 text-sm font-bold text-slate-600 transition" type="button" data-tab="extract" role="tab" aria-selected="false">
+                Extract
+              </button>
+            </div>
+          </div>
+
+          <div id="toolPanel" class="mt-5 rounded-2xl border border-indigo-100 bg-indigo-50 p-4 sm:p-5">
+            <div id="rotatePanel" class="tool-panel">
+              <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+                <div>
+                  <h2 class="text-lg font-black text-slate-950">Rotate PDF pages</h2>
+                  <p class="mt-1 text-sm leading-6 text-slate-600">
+                    Select one or more pages, then rotate them clockwise or counterclockwise.
+                  </p>
+                </div>
+                <div class="mobile-button-grid grid grid-cols-2 gap-3 sm:flex">
+                  <button id="rotateLeftButton" type="button" class="rounded-xl border border-indigo-200 bg-white px-4 py-2.5 text-sm font-bold text-indigo-700 transition hover:bg-indigo-100">
+                    Rotate Left
+                  </button>
+                  <button id="rotateRightButton" type="button" class="rounded-xl bg-indigo-600 px-4 py-2.5 text-sm font-bold text-white transition hover:bg-indigo-700">
+                    Rotate Right
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div id="deletePanel" class="tool-panel hidden">
+              <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+                <div>
+                  <h2 class="text-lg font-black text-slate-950">Delete unwanted pages</h2>
+                  <p class="mt-1 text-sm leading-6 text-slate-600">
+                    Select pages to mark them for deletion. Deleted pages can be restored before download.
+                  </p>
+                </div>
+                <div class="mobile-button-grid grid grid-cols-2 gap-3 sm:flex">
+                  <button id="restoreSelectedButton" type="button" class="rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-bold text-slate-700 transition hover:bg-slate-100">
+                    Restore Selected
+                  </button>
+                  <button id="deleteSelectedButton" type="button" class="rounded-xl bg-rose-600 px-4 py-2.5 text-sm font-bold text-white transition hover:bg-rose-700">
+                    Delete Selected
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div id="reorderPanel" class="tool-panel hidden">
+              <div>
+                <h2 class="text-lg font-black text-slate-950">Reorder pages with drag and drop</h2>
+                <p class="mt-1 text-sm leading-6 text-slate-600">
+                  Drag page cards into the preferred order. On touch devices, hold the drag handle and move the page.
+                </p>
+              </div>
+            </div>
+
+            <div id="duplicatePanel" class="tool-panel hidden">
+              <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+                <div>
+                  <h2 class="text-lg font-black text-slate-950">Duplicate selected pages</h2>
+                  <p class="mt-1 text-sm leading-6 text-slate-600">
+                    Create a copy of each selected page directly after its original position.
+                  </p>
+                </div>
+                <button id="duplicateSelectedButton" type="button" class="w-full rounded-xl bg-violet-600 px-4 py-2.5 text-sm font-bold text-white transition hover:bg-violet-700 sm:w-auto">
+                  Duplicate Selected
+                </button>
+              </div>
+            </div>
+
+            <div id="extractPanel" class="tool-panel hidden">
+              <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+                <div>
+                  <h2 class="text-lg font-black text-slate-950">Extract pages into a new PDF</h2>
+                  <p class="mt-1 text-sm leading-6 text-slate-600">
+                    Select the pages you want and download them as a separate PDF without changing the main document.
+                  </p>
+                </div>
+                <button id="extractSelectedButton" type="button" class="w-full rounded-xl bg-emerald-600 px-4 py-2.5 text-sm font-bold text-white transition hover:bg-emerald-700 sm:w-auto">
+                  Extract Selected
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-5 flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-4 sm:flex-row sm:items-center sm:justify-between">
+            <div class="flex flex-wrap items-center gap-2">
+              <button id="selectAllButton" type="button" class="rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-bold text-slate-700 transition hover:bg-slate-50">
+                Select All
+              </button>
+              <button id="selectNoneButton" type="button" class="rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-bold text-slate-700 transition hover:bg-slate-50">
+                Clear Selection
+              </button>
+              <button id="selectOddButton" type="button" class="rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-bold text-slate-700 transition hover:bg-slate-50">
+                Select Odd
+              </button>
+              <button id="selectEvenButton" type="button" class="rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-bold text-slate-700 transition hover:bg-slate-50">
+                Select Even
+              </button>
+            </div>
+
+            <p id="selectionCount" class="text-sm font-semibold text-indigo-700">0 pages selected</p>
+          </div>
+
+          <div id="warningBox" class="mt-5 hidden rounded-2xl border border-rose-200 bg-rose-50 p-4 text-sm leading-6 text-rose-800" role="alert"></div>
+
+          <div id="progressSection" class="mt-5 hidden">
+            <div class="mb-2 flex items-center justify-between gap-3 text-sm">
+              <span id="progressLabel" class="safe-break font-semibold text-slate-700">Loading PDF...</span>
+              <span id="progressPercent" class="font-bold text-indigo-700">0%</span>
+            </div>
+            <div class="h-3 overflow-hidden rounded-full bg-slate-200">
+              <div id="progressBar" class="progress-bar h-full w-0 rounded-full bg-indigo-600"></div>
+            </div>
+          </div>
+
+          <div id="pageGrid" class="page-grid mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6" aria-live="polite"></div>
+
+          <div class="mt-8 rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <div class="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
+              <div>
+                <h2 class="text-xl font-black text-slate-950">Save your edited PDF</h2>
+                <p class="mt-1 text-sm leading-6 text-slate-500">
+                  The output preserves page content while applying your page order, rotations, duplicates, and deletions.
+                </p>
+              </div>
+
+              <button id="downloadEditedButton" type="button" class="w-full rounded-xl bg-slate-900 px-6 py-3.5 text-sm font-bold text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:bg-slate-300 lg:w-auto">
+                Download Edited PDF
+              </button>
+            </div>
+
+            <p id="statusMessage" class="mt-4 min-h-6 text-sm font-semibold text-slate-500" aria-live="polite"></p>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section class="mx-auto w-full max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
+      <div class="ad-box" role="complementary" aria-label="Advertisement placeholder">
+        Advertisement
+      </div>
+    </section>
+
+    <section class="border-y border-slate-200 bg-white">
+      <div class="mx-auto w-full max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
+        <article class="max-w-none">
+          <div class="mb-12">
+            <p class="text-sm font-bold uppercase tracking-[0.2em] text-indigo-600">Complete PDF Organization Guide</p>
+            <h2 class="mt-3 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">
+              Edit, Organize, and Rearrange PDF Pages Online
+            </h2>
+            <p class="mt-5 text-lg leading-8 text-slate-600">
+              PDF documents often contain pages that are out of order, incorrectly oriented, duplicated, unnecessary, or better suited for a separate file. The NodnWebTools PDF Page Editor provides a practical workspace for organizing PDF pages directly in a modern web browser. You can rotate pages, delete pages, reorder pages with drag and drop, duplicate important pages, and extract selected pages into a new PDF without installing desktop software.
+            </p>
+          </div>
+
+          <div class="space-y-10 text-base leading-8 text-slate-700">
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">What Is a PDF Page Editor?</h2>
+              <p class="mt-4">
+                A PDF page editor is a document utility focused on changing the structure and sequence of pages inside a Portable Document Format file. Unlike a full content editor that modifies individual words, images, fonts, or form fields, a page organizer works with entire pages. It allows users to rearrange page order, remove pages, rotate incorrectly scanned pages, make copies of pages, or create a new PDF from selected portions of an existing document.
+              </p>
+              <p class="mt-4">
+                Page-level editing is useful because many PDF problems are organizational rather than textual. A scanner may create pages in reverse order. A multifunction printer may scan one sheet sideways. A report may include blank pages or outdated appendices. A client presentation may need one slide repeated in two locations. A long contract may need selected exhibits extracted into a separate file. These tasks do not require changing the actual page content, but they do require a reliable way to manage page structure.
+              </p>
+              <p class="mt-4">
+                This online PDF page editor combines five commonly requested operations in one page: Rotate, Delete, Reorder, Duplicate, and Extract. Keeping these tools together reduces the need to upload the same document to multiple websites or switch between separate utilities for each editing task.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">How the Browser-Based PDF Editor Works</h2>
+              <p class="mt-4">
+                The tool reads the selected PDF locally in your browser. It generates page thumbnails for visual organization and stores your edits as instructions until you download the result. When you choose Download Edited PDF, the browser creates a new PDF using the original page content, the selected page order, any rotation changes, duplicated pages, and the exclusion of pages marked for deletion.
+              </p>
+              <p class="mt-4">
+                Because the process is page-based, the downloaded PDF generally preserves original text, vector graphics, and image quality more effectively than a tool that converts every page into a screenshot. The editor copies source pages into a new document instead of rasterizing them. This method is suitable for reorganizing reports, forms, invoices, presentations, manuals, scanned documents, school files, and many other standard PDFs.
+              </p>
+              <p class="mt-4">
+                Processing takes place on the user’s device. The application is designed to avoid intentionally sending the selected PDF to a remote document-processing server. Local processing can be especially useful when working with private records, internal business documents, identification scans, financial paperwork, or other files that users prefer not to upload.
+              </p>
+            </section>
+
+            <div class="ad-box my-12" role="complementary" aria-label="Advertisement placeholder">
+              Advertisement
+            </div>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">Rotate PDF Pages Online</h2>
+              <p class="mt-4">
+                Pages can appear sideways or upside down when documents are scanned using a phone, office scanner, copier, or multifunction printer. The Rotate tab allows you to select one or more page thumbnails and rotate them left or right in 90-degree steps. You can rotate a single page, several selected pages, every page, only odd-numbered pages, or only even-numbered pages.
+              </p>
+              <p class="mt-4">
+                Rotating a PDF page changes its viewing orientation without requiring the page to be converted into a new image. This is useful for mixed-orientation documents that contain portrait letters, landscape tables, horizontal presentation slides, or pages scanned from books and binders.
+              </p>
+              <p class="mt-4">
+                Before downloading, review each thumbnail to confirm that text and images are facing the correct direction. A page can be rotated multiple times, and the editor keeps the accumulated angle. For example, rotating right twice produces a 180-degree rotation, while rotating left once after rotating right once returns the page to its original orientation.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">Delete Unwanted PDF Pages</h2>
+              <p class="mt-4">
+                PDF files frequently include blank pages, separator sheets, duplicate scans, cover pages, printer notices, outdated sections, or pages that should not be shared. The Delete tab makes it possible to mark selected pages for removal. Deleted pages remain visible in a faded state so you can review the planned changes and restore pages before creating the final PDF.
+              </p>
+              <p class="mt-4">
+                This reversible deletion workflow reduces accidental page loss. A page is not removed from the original file on your device. Instead, it is excluded only from the newly generated download. The original PDF remains unchanged unless you manually replace it afterward.
+              </p>
+              <p class="mt-4">
+                At least one active page must remain in the edited document. If every page is marked for deletion, the tool prevents an invalid empty PDF from being generated. For documents that need only a few selected pages, the Extract feature may be faster than manually deleting most of the file.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">Reorder PDF Pages with Drag and Drop</h2>
+              <p class="mt-4">
+                Incorrect page order is a common problem when scanning double-sided documents, combining files, exporting selected worksheets, or assembling reports from multiple sources. The Reorder tab turns each page thumbnail into a draggable card. Move a page to a new location, and the page numbering updates automatically to reflect the current sequence.
+              </p>
+              <p class="mt-4">
+                Drag-and-drop PDF page rearrangement is useful for putting a cover page first, moving an appendix to the end, correcting reversed scan order, reorganizing chapters, sorting receipts by date, arranging portfolio samples, or preparing a presentation handout.
+              </p>
+              <p class="mt-4">
+                On desktop computers, use the drag handle at the top of each page card. On compatible tablets and phones, press and hold the handle before moving the page. For the best mobile experience, use a modern browser and avoid dragging near the edge of the screen where the browser may interpret the gesture as navigation.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">Duplicate PDF Pages</h2>
+              <p class="mt-4">
+                The Duplicate tab creates a new copy of each selected page and places the copy directly after the original. Duplicate pages are useful for repeating instruction sheets, adding a second copy of a form, placing a separator page in multiple sections, repeating a presentation slide, or creating printable handouts where the same design appears more than once.
+              </p>
+              <p class="mt-4">
+                Each duplicated page receives its own page card and can be rotated, deleted, reordered, duplicated again, or included in an extracted PDF. The duplicate references the same source page content, which helps preserve visual quality and keeps the process efficient.
+              </p>
+              <p class="mt-4">
+                Duplicating many high-detail pages can increase the final file size because additional page objects are included in the output. Users who need multiple physical copies of the same page may find it more efficient to adjust printer copy settings instead. Page duplication is most helpful when the repeated page must appear at a specific location inside the digital PDF.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">Extract Selected PDF Pages</h2>
+              <p class="mt-4">
+                PDF extraction creates a separate document from selected pages. The Extract tab is useful when only part of a larger PDF needs to be shared, stored, emailed, submitted, or printed. Select the desired pages in the order they currently appear and choose Extract Selected. The browser creates a new PDF containing only those pages.
+              </p>
+              <p class="mt-4">
+                Common extraction examples include separating a chapter from an ebook, isolating invoice pages from a monthly statement, saving selected slides from a presentation, extracting signature pages from a contract, creating a smaller study packet, separating specific forms from an application package, or sharing only relevant pages from a large technical manual.
+              </p>
+              <p class="mt-4">
+                Extracting pages does not modify the main editing workspace. You can download an extracted file and continue organizing the original document. This makes it possible to create several separate PDFs from one source file during the same browser session.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">How to Use the PDF Page Organizer</h2>
+
+              <div class="mt-6 grid gap-5 md:grid-cols-2">
+                <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6">
+                  <h3 class="text-lg font-black text-slate-900">1. Upload a PDF locally</h3>
+                  <p class="mt-3 text-sm leading-7 text-slate-600">
+                    Select a PDF from your computer, phone, or tablet. The tool reads the file locally and prepares page thumbnails.
+                  </p>
+                </div>
+
+                <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6">
+                  <h3 class="text-lg font-black text-slate-900">2. Choose an editing tab</h3>
+                  <p class="mt-3 text-sm leading-7 text-slate-600">
+                    Open Rotate, Delete, Reorder, Duplicate, or Extract depending on the page operation you want to perform.
+                  </p>
+                </div>
+
+                <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6">
+                  <h3 class="text-lg font-black text-slate-900">3. Select page thumbnails</h3>
+                  <p class="mt-3 text-sm leading-7 text-slate-600">
+                    Click page cards to select them. Use Select All, Clear Selection, Select Odd, or Select Even for faster organization.
+                  </p>
+                </div>
+
+                <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6">
+                  <h3 class="text-lg font-black text-slate-900">4. Apply page actions</h3>
+                  <p class="mt-3 text-sm leading-7 text-slate-600">
+                    Rotate, delete, restore, duplicate, drag, or extract the selected pages. You may combine several actions in one session.
+                  </p>
+                </div>
+
+                <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6">
+                  <h3 class="text-lg font-black text-slate-900">5. Review the page order</h3>
+                  <p class="mt-3 text-sm leading-7 text-slate-600">
+                    Check page orientation, numbering, duplicates, and deleted-page indicators before generating the output file.
+                  </p>
+                </div>
+
+                <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6">
+                  <h3 class="text-lg font-black text-slate-900">6. Download the edited PDF</h3>
+                  <p class="mt-3 text-sm leading-7 text-slate-600">
+                    Choose Download Edited PDF to create a new document while keeping the original PDF unchanged on your device.
+                  </p>
+                </div>
+              </div>
+            </section>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">Popular Uses for a PDF Page Editor</h2>
+
+              <h3 class="mt-6 text-xl font-bold text-slate-900">Organizing scanned paperwork</h3>
+              <p class="mt-3">
+                Scanners may produce blank pages, sideways pages, reversed page order, or accidental duplicate scans. A PDF page organizer can correct these problems before the file is archived or submitted.
+              </p>
+
+              <h3 class="mt-6 text-xl font-bold text-slate-900">Preparing business reports</h3>
+              <p class="mt-3">
+                Reports assembled from several departments may need a new cover page, reordered sections, removed drafts, repeated summary pages, or extracted appendices. Page-level editing helps create a clean final distribution copy.
+              </p>
+
+              <h3 class="mt-6 text-xl font-bold text-slate-900">Editing school and university documents</h3>
+              <p class="mt-3">
+                Students and educators can reorder assignments, remove blank scanner pages, rotate worksheets, duplicate templates, and extract selected readings or lecture slides.
+              </p>
+
+              <h3 class="mt-6 text-xl font-bold text-slate-900">Managing invoices and receipts</h3>
+              <p class="mt-3">
+                Accountants, contractors, small businesses, and household users can arrange invoices by date, remove irrelevant pages, separate specific receipts, or extract documents for expense submissions.
+              </p>
+
+              <h3 class="mt-6 text-xl font-bold text-slate-900">Preparing legal and administrative files</h3>
+              <p class="mt-3">
+                Contracts, application packages, disclosures, forms, exhibits, and supporting records often require exact page order. Users should carefully verify all pages after editing, especially when page numbering or signatures are legally significant.
+              </p>
+
+              <h3 class="mt-6 text-xl font-bold text-slate-900">Creating presentation handouts</h3>
+              <p class="mt-3">
+                Presentation PDFs can be reorganized by moving agenda slides, deleting hidden or outdated slides, duplicating section dividers, and extracting selected slides for a shorter audience handout.
+              </p>
+            </section>
+
+            <div class="ad-box my-12" role="complementary" aria-label="Advertisement placeholder">
+              Advertisement
+            </div>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">Privacy Benefits of Local PDF Processing</h2>
+              <p class="mt-4">
+                Traditional online PDF editors often require users to upload documents to an external server. Server-based processing can be convenient, but it may not be appropriate for confidential business files, financial statements, identification documents, legal records, school records, or internal reports.
+              </p>
+              <p class="mt-4">
+                This PDF page editor is designed to perform its core work locally in the browser. The selected PDF is read by JavaScript on the current device. Page thumbnails and output files are generated in browser memory. This approach can reduce unnecessary data transfer and offers additional control over where the document is processed.
+              </p>
+              <p class="mt-4">
+                Local processing does not eliminate every security risk. Users should avoid editing sensitive documents on shared or public computers. Keep the browser and operating system updated, use trusted extensions, confirm downloaded files are stored securely, and close the page when processing is complete.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">PDF Compatibility and Limitations</h2>
+              <p class="mt-4">
+                Most standard PDF documents can be organized with page-level tools, but some files may not load correctly. Password-protected, encrypted, damaged, digitally restricted, unusually structured, or extremely large PDFs may cause an error. Remove password protection only when you own the document or have authorization to modify it.
+              </p>
+              <p class="mt-4">
+                Digital signatures may become invalid when pages are reordered, rotated, deleted, duplicated, or extracted. An edited PDF is a new file and may no longer match the signed document hash. Do not alter digitally signed contracts, certificates, official submissions, or regulated records without understanding the legal and operational consequences.
+              </p>
+              <p class="mt-4">
+                Interactive features such as complex form scripts, embedded multimedia, attachments, custom navigation structures, portfolios, and advanced accessibility elements may not be fully preserved in every output. Always review the downloaded PDF using a trusted PDF reader before relying on it.
+              </p>
+              <p class="mt-4">
+                Device memory limits also affect performance. A PDF with hundreds of high-resolution pages may require significant RAM to create thumbnails and generate the final output. Closing unused browser tabs, using a desktop computer, or dividing an extremely large file into smaller sections may improve reliability.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">Tips for Accurate PDF Page Editing</h2>
+              <p class="mt-4">
+                Keep the original PDF as a backup. The editor creates a new downloadable file and does not intentionally overwrite the source, but maintaining an untouched original is important for recovery, archival, legal, or compliance purposes.
+              </p>
+              <p class="mt-4">
+                Review all thumbnails after using drag and drop. Page numbers shown in the editor represent the current order, not necessarily printed page numbers inside the document. A report may display printed page 1 on the third PDF page because the first two pages are a cover and table of contents.
+              </p>
+              <p class="mt-4">
+                When deleting pages, verify that no important reverse side, signature page, attachment, or continuation page has been selected. Faded red page cards indicate pages planned for exclusion. Use Restore Selected to reverse deletion before download.
+              </p>
+              <p class="mt-4">
+                When extracting pages, select them in the desired order. The extracted PDF follows the current page sequence in the workspace. Reorder the source pages first when the extracted file needs a different arrangement.
+              </p>
+              <p class="mt-4">
+                For official submissions, open the downloaded file and inspect every page. Confirm page count, orientation, readability, sequence, signatures, form fields, and required attachments. File generation success does not guarantee acceptance by a specific government portal, employer system, school platform, or legal workflow.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">Free PDF Page Editor for Desktop and Mobile</h2>
+              <p class="mt-4">
+                The interface is designed for current desktop and mobile browsers. Windows, macOS, Linux, ChromeOS, Android, and iOS devices may use the tool when the browser supports required JavaScript and file APIs. No account or desktop installation is required.
+              </p>
+              <p class="mt-4">
+                Desktop computers generally provide the easiest page reordering experience because they offer larger screens, precise mouse control, and more available memory. Mobile devices are useful for quick rotations, deletions, duplicates, and extractions. For long PDFs, landscape mode or a tablet may provide more comfortable page review.
+              </p>
+              <p class="mt-4">
+                The responsive page grid automatically adjusts to available screen width. Page cards, thumbnails, tabs, controls, advertisements, article sections, and related tool cards are designed to avoid horizontal overflow on small displays.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-2xl font-black text-slate-950">Why Combine Rotate, Delete, Reorder, Duplicate, and Extract?</h2>
+              <p class="mt-4">
+                These five features are closely connected. A scanned document may need page rotation, blank-page deletion, page reordering, and extraction in the same session. Separating each operation into a different website page would require users to repeatedly load and download intermediate files.
+              </p>
+              <p class="mt-4">
+                A unified PDF page editor offers a clearer workflow. Users can load the file once, make several structural changes, review the complete page arrangement, and generate one final PDF. The Extract feature remains available when a separate subset is needed without altering the main editing project.
+              </p>
+              <p class="mt-4">
+                Combining these operations also supports internal SEO and user discovery because people searching for a PDF organizer, PDF page rearranger, PDF page remover, PDF rotator, PDF duplicator, or PDF page extractor can find one comprehensive tool instead of several limited utilities.
+              </p>
+            </section>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <div class="mb-8">
+        <p class="text-sm font-bold uppercase tracking-[0.2em] text-indigo-600">Continue Working</p>
+        <h2 class="mt-2 text-3xl font-black tracking-tight text-slate-950">Related Tools</h2>
+        <p class="mt-3 max-w-3xl text-slate-600">
+          Use these related document tools to compress, combine, split, view, convert, and manage files directly in your browser.
+        </p>
+      </div>
+
+      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <a href="/pdf-compressor" class="tool-card-hover group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-50 text-2xl">🗜️</div>
+          <h3 class="mt-4 text-lg font-black text-slate-900 group-hover:text-indigo-700">PDF Compressor</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-500">Reduce PDF file size with adjustable image quality and resolution settings.</p>
+        </a>
+
+        <a href="/pdf-merger-splitter" class="tool-card-hover group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-violet-50 text-2xl">📑</div>
+          <h3 class="mt-4 text-lg font-black text-slate-900 group-hover:text-indigo-700">PDF Merger & Splitter</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-500">Combine multiple PDFs or split a document into smaller PDF files.</p>
+        </a>
+
+        <a href="/document-viewer" class="tool-card-hover group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-sky-50 text-2xl">👁️</div>
+          <h3 class="mt-4 text-lg font-black text-slate-900 group-hover:text-indigo-700">Document Viewer</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-500">Open and preview PDF, DOCX, and TXT files directly in your browser.</p>
+        </a>
+
+        <a href="/image-converter" class="tool-card-hover group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-fuchsia-50 text-2xl">🖼️</div>
+          <h3 class="mt-4 text-lg font-black text-slate-900 group-hover:text-indigo-700">Image Converter</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-500">Convert JPG, PNG, WebP, and other common image formats online.</p>
+        </a>
+
+        <a href="/zip-extractor" class="tool-card-hover group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-50 text-2xl">🗂️</div>
+          <h3 class="mt-4 text-lg font-black text-slate-900 group-hover:text-indigo-700">ZIP Extractor</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-500">Open ZIP archives and download selected files without server uploads.</p>
+        </a>
+
+        <a href="/powerpoint-viewer" class="tool-card-hover group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-orange-50 text-2xl">📽️</div>
+          <h3 class="mt-4 text-lg font-black text-slate-900 group-hover:text-indigo-700">PowerPoint Viewer</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-500">Preview presentation files without installing PowerPoint software.</p>
+        </a>
+      </div>
+    </section>
+
+    <section class="mx-auto w-full max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
+      <div class="ad-box" role="complementary" aria-label="Advertisement placeholder">
+        Advertisement
+      </div>
+    </section>
+
+    <section class="border-t border-slate-200 bg-white">
+      <div class="mx-auto w-full max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
+        <div class="mb-10">
+          <p class="text-sm font-bold uppercase tracking-[0.2em] text-indigo-600">Questions and Answers</p>
+          <h2 class="mt-2 text-3xl font-black tracking-tight text-slate-950">PDF Page Editor FAQ</h2>
+        </div>
+
+        <div class="space-y-4">
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">Is the PDF Page Editor free?</summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              Yes. The page editor can be used in a compatible browser without registration or desktop installation.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">Are PDF files uploaded to a server?</summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              The tool is designed to process selected PDF files locally in your browser. The main editing workflow does not intentionally upload documents to a remote processing server.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">Can I rotate only one PDF page?</summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              Yes. Select the individual page card, open the Rotate tab, and choose Rotate Left or Rotate Right.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">Can deleted pages be restored?</summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              Yes. Pages marked for deletion remain visible in a faded state. Select them and use Restore Selected before downloading the edited PDF.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">How do I rearrange PDF pages?</summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              Open the Reorder tab and drag page cards into the desired sequence. The page numbers update after every move.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">Does extracting pages change the original PDF?</summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              No. Extraction creates a separate PDF containing the selected pages. The original file and main editing workspace remain unchanged.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">Will the edited PDF keep its original quality?</summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              The tool copies original PDF pages instead of converting them to screenshots, which generally preserves text, vectors, and image quality. Some advanced PDF features may not be retained.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">Can I edit a password-protected PDF?</summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              Encrypted or password-protected PDFs may not open. Remove protection only when you own the file or have authorization to modify it.
+            </p>
+          </details>
+
+          <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <summary class="cursor-pointer list-none font-bold text-slate-900">Does editing invalidate a digital signature?</summary>
+            <p class="mt-3 leading-7 text-slate-600">
+              It can. Rotating, deleting, reordering, duplicating, or extracting pages changes the document and may invalidate existing digital signatures.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="mx-auto w-full max-w-5xl px-4 py-12 sm:px-6 lg:px-8">
+      <div class="rounded-3xl bg-slate-900 p-6 text-slate-300 shadow-xl sm:p-8">
+        <h2 class="text-2xl font-black text-white">Legal Disclaimer</h2>
+        <div class="mt-4 space-y-4 text-sm leading-7">
+          <p>
+            This PDF Page Editor is provided for general document organization and informational convenience. Successful processing, output accuracy, page integrity, feature preservation, file compatibility, and acceptance by third-party systems are not guaranteed.
+          </p>
+          <p>
+            Rotating, deleting, reordering, duplicating, extracting, or rebuilding PDF pages may affect digital signatures, interactive forms, bookmarks, links, attachments, accessibility tags, metadata, scripts, certificates, encryption, and other advanced document features.
+          </p>
+          <p>
+            Users are responsible for keeping an original backup, reviewing every downloaded page, confirming the correct page order and orientation, verifying signatures and required attachments, and ensuring they have the legal authority to modify the document.
+          </p>
+          <p>
+            Do not rely on this tool as the sole preservation method for legal, medical, financial, governmental, archival, educational, or business-critical records. Avoid processing sensitive documents on shared, public, compromised, or untrusted devices.
+          </p>
+          <p>
+            NodnWebTools is not responsible for data loss, damaged documents, invalidated signatures, rejected submissions, missed deadlines, privacy incidents, browser failures, device performance issues, or direct or indirect damages arising from use of this tool.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="mx-auto w-full max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
+      <div class="ad-box" role="complementary" aria-label="Advertisement placeholder">
+        Advertisement
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-slate-200 bg-white">
+    <div class="mx-auto flex w-full max-w-7xl flex-col gap-3 px-4 py-8 text-sm text-slate-500 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
+      <p>© <span id="currentYear"></span> NodnWebTools. All rights reserved.</p>
+      <a href="https://nodntools.com" class="font-semibold text-slate-600 transition hover:text-indigo-700">
+        Back to NodnWebTools
+      </a>
+    </div>
+  </footer>
+
+  <script type="module">
+    import * as pdfjsLib from "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.min.mjs";
+
+    pdfjsLib.GlobalWorkerOptions.workerSrc =
+      "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.worker.min.mjs";
+
+    const { PDFDocument, degrees } = PDFLib;
+
+    const pdfInput = document.getElementById("pdfInput");
+    const dropZone = document.getElementById("dropZone");
+    const uploadSection = document.getElementById("uploadSection");
+    const editorSection = document.getElementById("editorSection");
+    const pageGrid = document.getElementById("pageGrid");
+
+    const currentFileName = document.getElementById("currentFileName");
+    const currentFileSize = document.getElementById("currentFileSize");
+    const currentPageCount = document.getElementById("currentPageCount");
+    const activePageCount = document.getElementById("activePageCount");
+    const selectionCount = document.getElementById("selectionCount");
+
+    const warningBox = document.getElementById("warningBox");
+    const statusMessage = document.getElementById("statusMessage");
+
+    const progressSection = document.getElementById("progressSection");
+    const progressLabel = document.getElementById("progressLabel");
+    const progressPercent = document.getElementById("progressPercent");
+    const progressBar = document.getElementById("progressBar");
+
+    const tabButtons = [...document.querySelectorAll(".tab-button")];
+    const toolPanels = [...document.querySelectorAll(".tool-panel")];
+
+    const rotateLeftButton = document.getElementById("rotateLeftButton");
+    const rotateRightButton = document.getElementById("rotateRightButton");
+    const deleteSelectedButton = document.getElementById("deleteSelectedButton");
+    const restoreSelectedButton = document.getElementById("restoreSelectedButton");
+    const duplicateSelectedButton = document.getElementById("duplicateSelectedButton");
+    const extractSelectedButton = document.getElementById("extractSelectedButton");
+    const downloadEditedButton = document.getElementById("downloadEditedButton");
+
+    const selectAllButton = document.getElementById("selectAllButton");
+    const selectNoneButton = document.getElementById("selectNoneButton");
+    const selectOddButton = document.getElementById("selectOddButton");
+    const selectEvenButton = document.getElementById("selectEvenButton");
+
+    const changeFileButton = document.getElementById("changeFileButton");
+    const resetButton = document.getElementById("resetButton");
+
+    let sourceFile = null;
+    let sourceBytes = null;
+    let sourcePdfJs = null;
+    let originalPageCount = 0;
+    let pages = [];
+    let currentTab = "rotate";
+    let sortableInstance = null;
+    let nextPageId = 1;
+    let isProcessing = false;
+
+    function formatBytes(bytes) {
+      if (!Number.isFinite(bytes) || bytes < 0) return "—";
+      if (bytes === 0) return "0 B";
+
+      const units = ["B", "KB", "MB", "GB"];
+      const index = Math.min(
+        Math.floor(Math.log(bytes) / Math.log(1024)),
+        units.length - 1
+      );
+      const value = bytes / Math.pow(1024, index);
+
+      return `${value.toFixed(value >= 10 || index === 0 ? 1 : 2)} ${units[index]}`;
+    }
+
+    function setWarning(message = "") {
+      warningBox.textContent = message;
+      warningBox.classList.toggle("hidden", !message);
+    }
+
+    function setStatus(message = "", type = "neutral") {
+      statusMessage.textContent = message;
+      statusMessage.className = "mt-4 min-h-6 text-sm font-semibold";
+
+      if (type === "success") {
+        statusMessage.classList.add("text-emerald-600");
+      } else if (type === "error") {
+        statusMessage.classList.add("text-rose-600");
+      } else {
+        statusMessage.classList.add("text-slate-500");
+      }
+    }
+
+    function updateProgress(current, total, label) {
+      const percent = total > 0 ? Math.round((current / total) * 100) : 0;
+      progressSection.classList.remove("hidden");
+      progressLabel.textContent = label;
+      progressPercent.textContent = `${percent}%`;
+      progressBar.style.width = `${percent}%`;
+    }
+
+    function hideProgress() {
+      progressSection.classList.add("hidden");
+      progressLabel.textContent = "Loading PDF...";
+      progressPercent.textContent = "0%";
+      progressBar.style.width = "0%";
+    }
+
+    function createPageState(sourceIndex, options = {}) {
+      return {
+        id: nextPageId++,
+        sourceIndex,
+        rotation: options.rotation || 0,
+        deleted: options.deleted || false,
+        selected: options.selected || false,
+        thumbnailUrl: options.thumbnailUrl || "",
+        originalNumber: sourceIndex + 1
+      };
+    }
+
+    function updateCounters() {
+      const selected = pages.filter(page => page.selected).length;
+      const active = pages.filter(page => !page.deleted).length;
+
+      selectionCount.textContent = `${selected} page${selected === 1 ? "" : "s"} selected`;
+      currentPageCount.textContent = `${pages.length} page${pages.length === 1 ? "" : "s"} in workspace`;
+      activePageCount.textContent = `${active} active`;
+
+      downloadEditedButton.disabled = active === 0 || isProcessing;
+    }
+
+    function updatePageNumbers() {
+      [...pageGrid.children].forEach((card, index) => {
+        const pageNumber = card.querySelector("[data-page-number]");
+        if (pageNumber) {
+          pageNumber.textContent = `Page ${index + 1}`;
+        }
+      });
+    }
+
+    function getSelectedPages() {
+      return pages.filter(page => page.selected);
+    }
+
+    function getActiveSelectedPages() {
+      return pages.filter(page => page.selected && !page.deleted);
+    }
+
+    function requireSelection({ activeOnly = false } = {}) {
+      const selected = activeOnly ? getActiveSelectedPages() : getSelectedPages();
+
+      if (selected.length === 0) {
+        setWarning(
+          activeOnly
+            ? "Select at least one active page before using this action."
+            : "Select at least one page before using this action."
+        );
+        return null;
+      }
+
+      setWarning("");
+      return selected;
+    }
+
+    function renderPageGrid() {
+      pageGrid.innerHTML = "";
+
+      pages.forEach((page, index) => {
+        const card = document.createElement("article");
+        card.className = [
+          "page-card relative rounded-2xl border bg-white p-3 shadow-sm",
+          page.selected ? "selected" : "border-slate-200",
+          page.deleted ? "deleted" : ""
+        ].join(" ");
+
+        card.dataset.pageId = String(page.id);
+
+        card.innerHTML = `
+          <div class="mb-2 flex items-center justify-between gap-2">
+            <button type="button" class="drag-handle rounded-lg p-1.5 text-slate-400 transition hover:bg-slate-100 hover:text-indigo-600" aria-label="Drag page to reorder">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8 7h.01M8 12h.01M8 17h.01M16 7h.01M16 12h.01M16 17h.01" />
+              </svg>
+            </button>
+
+            <label class="flex cursor-pointer items-center gap-2">
+              <span class="text-xs font-bold text-slate-500">Select</span>
+              <input type="checkbox" class="page-checkbox h-4 w-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500" ${page.selected ? "checked" : ""}>
+            </label>
+          </div>
+
+          <button type="button" class="page-select-area block w-full text-left" aria-label="Select page ${index + 1}">
+            <div class="page-canvas-wrap flex min-h-36 items-center justify-center overflow-hidden rounded-xl border border-slate-200 bg-slate-100 p-2">
+              <img
+                src="${page.thumbnailUrl}"
+                alt="PDF page ${index + 1} preview"
+                class="page-canvas"
+                style="transform: rotate(${page.rotation}deg);"
+              >
+            </div>
+
+            <div class="mt-3 flex items-start justify-between gap-2">
+              <div>
+                <p data-page-number class="text-sm font-black text-slate-900">Page ${index + 1}</p>
+                <p class="mt-0.5 text-xs text-slate-400">Source page ${page.originalNumber}</p>
+              </div>
+              <span class="rounded-lg bg-slate-100 px-2 py-1 text-xs font-bold text-slate-600">${page.rotation}°</span>
+            </div>
+          </button>
+
+          ${page.deleted ? `
+            <div class="absolute inset-x-3 top-1/2 -translate-y-1/2 rounded-lg bg-rose-600/90 px-2 py-1.5 text-center text-xs font-black uppercase tracking-wide text-white">
+              Marked for deletion
+            </div>
+          ` : ""}
+        `;
+
+        const checkbox = card.querySelector(".page-checkbox");
+        const selectArea = card.querySelector(".page-select-area");
+
+        checkbox.addEventListener("change", event => {
+          page.selected = event.target.checked;
+          renderPageGrid();
+          updateCounters();
+        });
+
+        selectArea.addEventListener("click", () => {
+          if (currentTab === "reorder") return;
+          page.selected = !page.selected;
+          renderPageGrid();
+          updateCounters();
+        });
+
+        pageGrid.appendChild(card);
+      });
+
+      updatePageNumbers();
+      updateCounters();
+      configureSortable();
+    }
+
+    function configureSortable() {
+      if (sortableInstance) {
+        sortableInstance.destroy();
+        sortableInstance = null;
+      }
+
+      sortableInstance = new Sortable(pageGrid, {
+        animation: 180,
+        handle: ".drag-handle",
+        ghostClass: "sortable-ghost",
+        chosenClass: "sortable-chosen",
+        disabled: currentTab !== "reorder",
+        onEnd: event => {
+          if (event.oldIndex === event.newIndex) return;
+
+          const [movedPage] = pages.splice(event.oldIndex, 1);
+          pages.splice(event.newIndex, 0, movedPage);
+
+          renderPageGrid();
+          setStatus("Page order updated.", "success");
+        }
+      });
+    }
+
+    function setTab(tabName) {
+      currentTab = tabName;
+
+      tabButtons.forEach(button => {
+        const selected = button.dataset.tab === tabName;
+        button.setAttribute("aria-selected", String(selected));
+      });
+
+      toolPanels.forEach(panel => {
+        panel.classList.toggle("hidden", panel.id !== `${tabName}Panel`);
+      });
+
+      renderPageGrid();
+
+      if (tabName === "reorder") {
+        setStatus("Drag page cards using the handle to change their order.");
+      } else {
+        setStatus("");
+      }
+    }
+
+    async function createThumbnail(pdfPage, pageNumber, totalPages) {
+      const baseViewport = pdfPage.getViewport({ scale: 1 });
+      const targetWidth = 220;
+      const scale = Math.max(0.25, Math.min(1.2, targetWidth / baseViewport.width));
+      const viewport = pdfPage.getViewport({ scale });
+
+      const canvas = document.createElement("canvas");
+      const context = canvas.getContext("2d", { alpha: false });
+
+      canvas.width = Math.max(1, Math.floor(viewport.width));
+      canvas.height = Math.max(1, Math.floor(viewport.height));
+
+      context.fillStyle = "#ffffff";
+      context.fillRect(0, 0, canvas.width, canvas.height);
+
+      await pdfPage.render({
+        canvasContext: context,
+        viewport
+      }).promise;
+
+      updateProgress(pageNumber, totalPages, `Preparing page ${pageNumber} of ${totalPages}`);
+      return canvas.toDataURL("image/jpeg", 0.78);
+    }
+
+    async function loadPdf(file) {
+      if (isProcessing) return;
+
+      setWarning("");
+      setStatus("");
+
+      if (!file) return;
+
+      const isPdf =
+        file.type === "application/pdf" ||
+        file.name.toLowerCase().endsWith(".pdf");
+
+      if (!isPdf) {
+        setWarning("Please choose a valid PDF file.");
+        return;
+      }
+
+      if (file.size === 0) {
+        setWarning("The selected PDF file is empty.");
+        return;
+      }
+
+      if (file.size > 50 * 1024 * 1024) {
+        setWarning(
+          "This PDF is larger than 50 MB. Processing may require substantial memory or fail on some devices."
+        );
+      }
+
+      isProcessing = true;
+      downloadEditedButton.disabled = true;
+      uploadSection.classList.add("hidden");
+      editorSection.classList.remove("hidden");
+      pageGrid.innerHTML = "";
+      pages = [];
+      nextPageId = 1;
+
+      currentFileName.textContent = file.name;
+      currentFileSize.textContent = formatBytes(file.size);
+      currentPageCount.textContent = "Loading pages...";
+      activePageCount.textContent = "";
+
+      updateProgress(0, 1, "Opening PDF...");
+
+      try {
+        sourceFile = file;
+        sourceBytes = new Uint8Array(await file.arrayBuffer());
+
+        const pdfData = sourceBytes.slice();
+        sourcePdfJs = await pdfjsLib.getDocument({
+          data: pdfData,
+          useSystemFonts: true
+        }).promise;
+
+        originalPageCount = sourcePdfJs.numPages;
+
+        for (let pageNumber = 1; pageNumber <= originalPageCount; pageNumber++) {
+          const pdfPage = await sourcePdfJs.getPage(pageNumber);
+          const thumbnailUrl = await createThumbnail(
+            pdfPage,
+            pageNumber,
+            originalPageCount
+          );
+
+          pages.push(
+            createPageState(pageNumber - 1, {
+              thumbnailUrl
+            })
+          );
+
+          await new Promise(resolve => setTimeout(resolve, 0));
+        }
+
+        renderPageGrid();
+        hideProgress();
+        isProcessing = false;
+        updateCounters();
+        setTab("rotate");
+        setStatus("PDF loaded successfully. Select pages and choose an editing tool.", "success");
+      } catch (error) {
+        console.error(error);
+        isProcessing = false;
+        sourceFile = null;
+        sourceBytes = null;
+        sourcePdfJs = null;
+        pages = [];
+        hideProgress();
+        editorSection.classList.add("hidden");
+        uploadSection.classList.remove("hidden");
+        setWarning(
+          "The PDF could not be opened. It may be damaged, encrypted, password-protected, or unsupported."
+        );
+      }
+    }
+
+    function rotateSelected(amount) {
+      const selected = requireSelection();
+      if (!selected) return;
+
+      selected.forEach(page => {
+        page.rotation = (page.rotation + amount + 360) % 360;
+      });
+
+      renderPageGrid();
+      setStatus(
+        `${selected.length} page${selected.length === 1 ? "" : "s"} rotated.`,
+        "success"
+      );
+    }
+
+    function deleteSelected() {
+      const selected = requireSelection({ activeOnly: true });
+      if (!selected) return;
+
+      const activeCount = pages.filter(page => !page.deleted).length;
+
+      if (selected.length >= activeCount) {
+        setWarning("At least one active page must remain in the edited PDF.");
+        return;
+      }
+
+      selected.forEach(page => {
+        page.deleted = true;
+        page.selected = false;
+      });
+
+      renderPageGrid();
+      setStatus(
+        `${selected.length} page${selected.length === 1 ? "" : "s"} marked for deletion.`,
+        "success"
+      );
+    }
+
+    function restoreSelected() {
+      const selected = requireSelection();
+      if (!selected) return;
+
+      const deletedSelected = selected.filter(page => page.deleted);
+
+      if (deletedSelected.length === 0) {
+        setWarning("The selected pages are not marked for deletion.");
+        return;
+      }
+
+      deletedSelected.forEach(page => {
+        page.deleted = false;
+        page.selected = false;
+      });
+
+      setWarning("");
+      renderPageGrid();
+      setStatus(
+        `${deletedSelected.length} page${deletedSelected.length === 1 ? "" : "s"} restored.`,
+        "success"
+      );
+    }
+
+    function duplicateSelected() {
+      const selectedIds = new Set(
+        pages.filter(page => page.selected && !page.deleted).map(page => page.id)
+      );
+
+      if (selectedIds.size === 0) {
+        setWarning("Select at least one active page to duplicate.");
+        return;
+      }
+
+      const updatedPages = [];
+      let duplicateCount = 0;
+
+      pages.forEach(page => {
+        page.selected = false;
+        updatedPages.push(page);
+
+        if (selectedIds.has(page.id)) {
+          const duplicate = createPageState(page.sourceIndex, {
+            rotation: page.rotation,
+            deleted: false,
+            selected: true,
+            thumbnailUrl: page.thumbnailUrl
+          });
+
+          updatedPages.push(duplicate);
+          duplicateCount++;
+        }
+      });
+
+      pages = updatedPages;
+      setWarning("");
+      renderPageGrid();
+      setStatus(
+        `${duplicateCount} duplicate page${duplicateCount === 1 ? "" : "s"} created.`,
+        "success"
+      );
+    }
+
+    async function buildPdf(pageList) {
+      if (!sourceBytes) {
+        throw new Error("Source PDF data is unavailable.");
+      }
+
+      const sourcePdf = await PDFDocument.load(sourceBytes.slice(), {
+        ignoreEncryption: false
+      });
+
+      const outputPdf = await PDFDocument.create();
+
+      for (let index = 0; index < pageList.length; index++) {
+        const pageState = pageList[index];
+        updateProgress(index, pageList.length, `Building page ${index + 1} of ${pageList.length}`);
+
+        const [copiedPage] = await outputPdf.copyPages(sourcePdf, [
+          pageState.sourceIndex
+        ]);
+
+        const sourceRotation = copiedPage.getRotation().angle || 0;
+        copiedPage.setRotation(
+          degrees((sourceRotation + pageState.rotation + 360) % 360)
+        );
+
+        outputPdf.addPage(copiedPage);
+        await new Promise(resolve => setTimeout(resolve, 0));
+      }
+
+      updateProgress(pageList.length, pageList.length, "Creating PDF file...");
+      return outputPdf.save({
+        useObjectStreams: true,
+        addDefaultPage: false,
+        objectsPerTick: 30
+      });
+    }
+
+    function downloadBytes(bytes, filename) {
+      const blob = new Blob([bytes], { type: "application/pdf" });
+      const url = URL.createObjectURL(blob);
+      const anchor = document.createElement("a");
+
+      anchor.href = url;
+      anchor.download = filename;
+      document.body.appendChild(anchor);
+      anchor.click();
+      anchor.remove();
+
+      setTimeout(() => URL.revokeObjectURL(url), 2000);
+    }
+
+    async function extractSelected() {
+      if (isProcessing) return;
+
+      const selected = getActiveSelectedPages();
+
+      if (selected.length === 0) {
+        setWarning("Select at least one active page to extract.");
+        return;
+      }
+
+      isProcessing = true;
+      downloadEditedButton.disabled = true;
+      setWarning("");
+      setStatus("Creating extracted PDF...");
+      updateProgress(0, selected.length, "Preparing extracted pages...");
+
+      try {
+        const bytes = await buildPdf(selected);
+        const baseName = sourceFile.name.replace(/\.pdf$/i, "");
+        downloadBytes(bytes, `${baseName}-extracted-pages.pdf`);
+        setStatus(
+          `${selected.length} page${selected.length === 1 ? "" : "s"} extracted successfully.`,
+          "success"
+        );
+      } catch (error) {
+        console.error(error);
+        setWarning(
+          "The selected pages could not be extracted. The source PDF may contain unsupported security or structural features."
+        );
+        setStatus("Unable to create the extracted PDF.", "error");
+      } finally {
+        isProcessing = false;
+        hideProgress();
+        updateCounters();
+      }
+    }
+
+    async function downloadEditedPdf() {
+      if (isProcessing) return;
+
+      const activePages = pages.filter(page => !page.deleted);
+
+      if (activePages.length === 0) {
+        setWarning("At least one active page is required to create a PDF.");
+        return;
+      }
+
+      isProcessing = true;
+      downloadEditedButton.disabled = true;
+      setWarning("");
+      setStatus("Creating your edited PDF...");
+      updateProgress(0, activePages.length, "Preparing edited pages...");
+
+      try {
+        const bytes = await buildPdf(activePages);
+        const baseName = sourceFile.name.replace(/\.pdf$/i, "");
+        downloadBytes(bytes, `${baseName}-edited.pdf`);
+        setStatus("Edited PDF downloaded successfully.", "success");
+      } catch (error) {
+        console.error(error);
+        setWarning(
+          "The edited PDF could not be created. The source file may be encrypted, damaged, or use unsupported PDF features."
+        );
+        setStatus("Unable to create the edited PDF.", "error");
+      } finally {
+        isProcessing = false;
+        hideProgress();
+        updateCounters();
+      }
+    }
+
+    function setSelection(mode) {
+      pages.forEach((page, index) => {
+        if (mode === "all") {
+          page.selected = true;
+        } else if (mode === "none") {
+          page.selected = false;
+        } else if (mode === "odd") {
+          page.selected = (index + 1) % 2 === 1;
+        } else if (mode === "even") {
+          page.selected = (index + 1) % 2 === 0;
+        }
+      });
+
+      renderPageGrid();
+    }
+
+    function resetChanges() {
+      if (!sourcePdfJs || originalPageCount === 0) return;
+
+      const thumbnailMap = new Map();
+
+      pages.forEach(page => {
+        if (!thumbnailMap.has(page.sourceIndex)) {
+          thumbnailMap.set(page.sourceIndex, page.thumbnailUrl);
+        }
+      });
+
+      pages = Array.from({ length: originalPageCount }, (_, sourceIndex) =>
+        createPageState(sourceIndex, {
+          thumbnailUrl: thumbnailMap.get(sourceIndex) || ""
+        })
+      );
+
+      setWarning("");
+      renderPageGrid();
+      setTab("rotate");
+      setStatus("All page changes have been reset.", "success");
+    }
+
+    function changeFile() {
+      sourceFile = null;
+      sourceBytes = null;
+      sourcePdfJs = null;
+      originalPageCount = 0;
+      pages = [];
+      nextPageId = 1;
+      isProcessing = false;
+
+      pdfInput.value = "";
+      pageGrid.innerHTML = "";
+      editorSection.classList.add("hidden");
+      uploadSection.classList.remove("hidden");
+
+      setWarning("");
+      setStatus("");
+      hideProgress();
+
+      if (sortableInstance) {
+        sortableInstance.destroy();
+        sortableInstance = null;
+      }
+    }
+
+    pdfInput.addEventListener("change", event => {
+      const [file] = event.target.files;
+      loadPdf(file);
+    });
+
+    ["dragenter", "dragover"].forEach(eventName => {
+      dropZone.addEventListener(eventName, event => {
+        event.preventDefault();
+        event.stopPropagation();
+        dropZone.classList.add("drop-active");
+      });
+    });
+
+    ["dragleave", "drop"].forEach(eventName => {
+      dropZone.addEventListener(eventName, event => {
+        event.preventDefault();
+        event.stopPropagation();
+        dropZone.classList.remove("drop-active");
+      });
+    });
+
+    dropZone.addEventListener("drop", event => {
+      const [file] = event.dataTransfer.files;
+      loadPdf(file);
+    });
+
+    tabButtons.forEach(button => {
+      button.addEventListener("click", () => setTab(button.dataset.tab));
+    });
+
+    rotateLeftButton.addEventListener("click", () => rotateSelected(-90));
+    rotateRightButton.addEventListener("click", () => rotateSelected(90));
+    deleteSelectedButton.addEventListener("click", deleteSelected);
+    restoreSelectedButton.addEventListener("click", restoreSelected);
+    duplicateSelectedButton.addEventListener("click", duplicateSelected);
+    extractSelectedButton.addEventListener("click", extractSelected);
+    downloadEditedButton.addEventListener("click", downloadEditedPdf);
+
+    selectAllButton.addEventListener("click", () => setSelection("all"));
+    selectNoneButton.addEventListener("click", () => setSelection("none"));
+    selectOddButton.addEventListener("click", () => setSelection("odd"));
+    selectEvenButton.addEventListener("click", () => setSelection("even"));
+
+    changeFileButton.addEventListener("click", changeFile);
+    resetButton.addEventListener("click", resetChanges);
+
+    document.getElementById("currentYear").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
