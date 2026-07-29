@@ -13,9 +13,16 @@
   <meta name="description" content="Find cheap last-minute flights, airport codes, flexible destinations, cached fare results, and flight deal links for quick travel planning." />
   <meta name="keywords" content="last minute flight finder, cheap flights, cheap flight deals, anywhere flights, cheapest flights from my city, flight price finder, airport code search, IATA airport code finder, Aviasales flight deals, Travelpayouts API flight search, low fare finder, flexible destination flights, cached flight prices, cheap airfare search, flight comparison tool, budget travel flights, international flight deals, last minute airfare, weekend flight deals, spontaneous travel flights" />
   <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow" />
+  <link rel="canonical" href="https://nodntools.com/flight-finder" />
   <meta property="og:title" content="Last-Minute Flight Finder" />
   <meta property="og:description" content="Search cheap last-minute flights from your city to anywhere, find airport codes, compare cached fare results, and open affiliate-ready flight deal links." />
   <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://nodntools.com/flight-finder" />
+  <meta property="og:site_name" content="NodnWebTools" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Last-Minute Flight Finder | Cheap Flight Deals" />
+  <meta name="twitter:description" content="Search cached flight prices, find airport codes, compare flexible destinations, and open flight deal links." />
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -44,12 +51,62 @@
     "name": "Last-Minute Flight Finder",
     "applicationCategory": "TravelApplication",
     "operatingSystem": "All",
+    "url": "https://nodntools.com/flight-finder",
     "description": "A browser-based flight search tool that helps users find airport codes, search cheap last-minute flights, view cached flight price results, and open affiliate-ready Aviasales flight deal links.",
     "offers": {
       "@type": "Offer",
       "price": "0",
       "priceCurrency": "USD"
     }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Does this tool show live flight prices?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The tool is designed to show cached flight price results from travel data. Cached prices can help identify recent low fares, but final live prices must be confirmed on the external booking website."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What does Anywhere mean?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Anywhere means the search is not limited to one destination airport. It is useful when you know your departure airport and travel date but want to discover cheaper destination options."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why do I need to select an airport code?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Flight data and booking links usually work with IATA airport codes such as YVR, ICN, LAX, JFK, LHR, and NRT. Selecting the correct airport improves search accuracy."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can this page use affiliate links?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. If the backend API is configured with a valid Travelpayouts marker, outbound Aviasales deal links can include affiliate tracking. Affiliate links should be disclosed clearly to users."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why are there no results for some routes?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Cached fare data may not exist for every route, date, or airport combination. Try a different date, use Anywhere, search a nearby airport, or switch between one-way and round-trip options."
+        }
+      }
+    ]
   }
   </script>
 
@@ -104,12 +161,6 @@
       overflow-wrap: anywhere;
     }
 
-    .ad-box {
-      width: 100%;
-      max-width: 100%;
-      min-height: 90px;
-      overflow: hidden;
-    }
 
     @media (max-width: 640px) {
       body {
@@ -182,12 +233,7 @@
         </div>
       </a>
     </header>
-
-    <div class="ad-box mb-6 flex items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white text-sm text-slate-400 shadow-sm">
-      AdSense Responsive Ad Area - Top
-    </div>
-
-    <section class="space-y-6">
+<section class="space-y-6">
       <aside class="mobile-card rounded-[2rem] bg-white p-6 shadow-xl shadow-cyan-900/10 ring-1 ring-cyan-100 ">
         <div class="mb-4 inline-flex rounded-full bg-cyan-100 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-cyan-700">
           Flight Deal Search
@@ -223,10 +269,10 @@
           <div>
             <label class="mb-2 block text-sm font-bold text-slate-700">Trip Type</label>
             <div class="grid grid-cols-2 gap-2 rounded-3xl bg-slate-100 p-1">
-              <button id="roundTripBtn" type="button" class="rounded-2xl bg-cyan-600 px-4 py-3 text-sm font-black text-white shadow-sm">
+              <button id="roundTripBtn" type="button" aria-pressed="true" class="rounded-2xl bg-cyan-600 px-4 py-3 text-sm font-black text-white shadow-sm">
                 Round-trip
               </button>
-              <button id="oneWayBtn" type="button" class="rounded-2xl px-4 py-3 text-sm font-black text-slate-600">
+              <button id="oneWayBtn" type="button" aria-pressed="false" class="rounded-2xl px-4 py-3 text-sm font-black text-slate-600">
                 One-way
               </button>
             </div>
@@ -235,24 +281,24 @@
           <div class="grid gap-4 sm:grid-cols-2">
             <div class="relative">
               <label for="fromSearch" class="mb-2 block text-sm font-bold text-slate-700">From City or Airport</label>
-              <input id="fromSearch" type="text" placeholder="Vancouver, Seoul, YVR, ICN"
+              <input id="fromSearch" type="text" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-controls="fromSuggestions" aria-expanded="false" placeholder="Vancouver, Seoul, YVR, ICN"
                 class="w-full rounded-3xl border border-slate-200 bg-slate-50 px-5 py-4 font-bold text-slate-900 outline-none transition placeholder:text-slate-300 focus:border-cyan-500 focus:bg-white focus:ring-4 focus:ring-cyan-100" />
               <input id="fromCode" type="hidden" />
-              <div id="fromSuggestions" class="absolute z-30 mt-2 hidden max-h-72 w-full overflow-auto rounded-3xl border border-slate-200 bg-white p-2 shadow-2xl"></div>
+              <div id="fromSuggestions" role="listbox" class="absolute z-30 mt-2 hidden max-h-72 w-full overflow-auto rounded-3xl border border-slate-200 bg-white p-2 shadow-2xl"></div>
               <p id="fromSelected" class="mt-2 text-xs font-bold text-cyan-700">Choose your departure airport.</p>
             </div>
 
             <div class="relative">
               <label for="toSearch" class="mb-2 block text-sm font-bold text-slate-700">To City or Airport</label>
               <div class="grid grid-cols-[1fr_auto] gap-2">
-                <input id="toSearch" type="text" placeholder="Anywhere"
+                <input id="toSearch" type="text" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-controls="toSuggestions" aria-expanded="false" placeholder="Anywhere"
                   class="w-full rounded-3xl border border-slate-200 bg-slate-50 px-5 py-4 font-bold text-slate-900 outline-none transition placeholder:text-slate-300 focus:border-cyan-500 focus:bg-white focus:ring-4 focus:ring-cyan-100" />
                 <button id="anywhereBtn" type="button" class="rounded-3xl bg-cyan-600 px-4 text-sm font-black text-white transition hover:bg-cyan-700">
                   Anywhere
                 </button>
               </div>
               <input id="toCode" type="hidden" value="ANYWHERE" />
-              <div id="toSuggestions" class="absolute z-30 mt-2 hidden max-h-72 w-full overflow-auto rounded-3xl border border-slate-200 bg-white p-2 shadow-2xl"></div>
+              <div id="toSuggestions" role="listbox" class="absolute z-30 mt-2 hidden max-h-72 w-full overflow-auto rounded-3xl border border-slate-200 bg-white p-2 shadow-2xl"></div>
               <p id="toSelected" class="mt-2 text-xs font-bold text-cyan-700">Destination: Anywhere</p>
             </div>
           </div>
@@ -284,7 +330,7 @@
           <div class="grid gap-4 sm:grid-cols-2">
             <div>
               <label for="adults" class="mb-2 block text-sm font-bold text-slate-700">Adults</label>
-              <input id="adults" type="number" min="1" max="9" value="1"
+              <input id="adults" type="number" min="1" max="9" step="1" inputmode="numeric" value="1"
                 class="w-full rounded-3xl border border-slate-200 bg-slate-50 px-5 py-4 font-bold text-slate-900 outline-none transition focus:border-cyan-500 focus:bg-white focus:ring-4 focus:ring-cyan-100" />
             </div>
 
@@ -301,18 +347,18 @@
             </div>
           </div>
 
-          <div id="errorBox" class="hidden rounded-2xl border border-red-100 bg-red-50 px-4 py-3 text-sm font-bold text-red-700"></div>
+          <div id="errorBox" role="alert" aria-live="assertive" class="hidden rounded-2xl border border-red-100 bg-red-50 px-4 py-3 text-sm font-bold text-red-700"></div>
 
           <button id="searchBtn" type="button"
             class="w-full rounded-3xl bg-cyan-600 px-6 py-5 text-lg font-black text-white shadow-xl shadow-cyan-600/25 transition hover:bg-cyan-700 active:scale-[0.99]">
             Show Flight Prices
           </button>
 
-          <div id="resultsSection" class="mobile-preview hidden rounded-[1.75rem] border border-slate-100 bg-gradient-to-br from-slate-50 to-cyan-50 p-5">
+          <div id="resultsSection" role="region" aria-live="polite" aria-labelledby="flight-results-title" class="mobile-preview hidden rounded-[1.75rem] border border-slate-100 bg-gradient-to-br from-slate-50 to-cyan-50 p-5">
             <div class="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <div>
                 <p class="text-xs font-black uppercase tracking-[0.18em] text-cyan-700">Price Results</p>
-                <h3 class="mt-1 text-2xl font-black tracking-tight text-slate-950">Available Flight Deals</h3>
+                <h3 id="flight-results-title" class="mt-1 text-2xl font-black tracking-tight text-slate-950">Available Flight Deals</h3>
               </div>
               <button id="copyBtn" type="button" class="rounded-2xl bg-slate-900 px-4 py-3 text-sm font-black text-white transition hover:bg-slate-700">
                 Copy Links
@@ -322,19 +368,10 @@
             <div id="summaryBox" class="mb-4 rounded-2xl bg-white p-4 text-sm font-bold text-slate-700 ring-1 ring-slate-100"></div>
             <div id="platformLinks" class="grid gap-3"></div>
           </div>
-
-          <div class="ad-box flex items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-slate-50 text-sm text-slate-400">
-            AdSense Responsive Ad Area - Below Tool
-          </div>
-        </div>
+</div>
       </section>
     </section>
-
-    <div class="ad-box mt-8 flex items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white text-sm text-slate-400 shadow-sm">
-      AdSense Responsive Ad Area - Below Main Flight Finder
-    </div>
-
-    <section class="mt-8 rounded-[2rem] bg-white p-6 shadow-sm ring-1 ring-slate-100 sm:p-8">
+<section class="mt-8 rounded-[2rem] bg-white p-6 shadow-sm ring-1 ring-slate-100 sm:p-8">
       <h2 class="text-2xl font-black tracking-tight text-slate-950">Free Last-Minute Flight Finder with Cached Price Results</h2>
       <div class="mt-4 space-y-4 text-sm leading-7 text-slate-600 sm:text-base">
         <p>
@@ -350,12 +387,7 @@
           Airport code search is important because flight platforms often use IATA airport codes to build route-specific result pages. Examples include YVR for Vancouver International Airport, ICN for Seoul Incheon International Airport, LAX for Los Angeles International Airport, NRT for Tokyo Narita International Airport, JFK for New York John F. Kennedy International Airport, YYZ for Toronto Pearson International Airport, LHR for London Heathrow Airport, CDG for Paris Charles de Gaulle Airport, and SIN for Singapore Changi Airport. This tool helps users match city names with airport codes directly in the browser.
         </p>
       </div>
-
-      <div class="ad-box my-7 flex items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-slate-50 text-sm text-slate-400">
-        AdSense Responsive Ad Area - Middle Content
-      </div>
-
-      <div class="space-y-4 text-sm leading-7 text-slate-600 sm:text-base">
+<div class="space-y-4 text-sm leading-7 text-slate-600 sm:text-base">
         <p>
           Flight prices shown by this tool may come from cached fare data. Cached travel data can be useful for discovering recently searched low fares, but it should not be treated as a guaranteed live booking price. Airline prices can change quickly because of seat inventory, booking demand, route popularity, holidays, fuel costs, local taxes, currency conversion, baggage rules, airport fees, fare classes, booking partners, and airline revenue management systems. A fare shown in a result card should always be confirmed on the external booking website before purchase.
         </p>
@@ -404,12 +436,7 @@
         </article>
       </div>
     </section>
-
-    <div class="ad-box mt-8 flex items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white text-sm text-slate-400 shadow-sm">
-      AdSense Responsive Ad Area - Bottom Content
-    </div>
-
-    <section class="mt-8 rounded-[2rem] bg-white p-6 shadow-sm ring-1 ring-slate-100 sm:p-8">
+<section class="mt-8 rounded-[2rem] bg-white p-6 shadow-sm ring-1 ring-slate-100 sm:p-8">
       <h2 class="text-2xl font-black tracking-tight text-slate-950">Frequently Asked Questions</h2>
       <div class="mt-5 space-y-4">
         <article class="rounded-2xl bg-slate-50 p-5 ring-1 ring-slate-100">
@@ -461,7 +488,7 @@
       <p class="mt-2 leading-7 text-slate-600">Convert airfare, accommodations, and travel spending into your currency.</p>
     </a>
 
-    <a href="/time.html" class="group rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-fuchsia-300 hover:shadow-lg">
+    <a href="/time" class="group rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-fuchsia-300 hover:shadow-lg">
       <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-fuchsia-50 text-3xl">🕒</div>
       <h3 class="mt-5 text-xl font-bold text-slate-900 transition group-hover:text-fuchsia-700">Time Calculator</h3>
       <p class="mt-2 leading-7 text-slate-600">Calculate flight durations, layovers, and total elapsed travel time.</p>
@@ -479,7 +506,7 @@
       <p class="mt-2 leading-7 text-slate-600">Check exact passenger ages for infant, child, adult, and senior fares.</p>
     </a>
 
-    <a href="/discount.html" class="group rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-rose-300 hover:shadow-lg">
+    <a href="/discount" class="group rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-rose-300 hover:shadow-lg">
       <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-rose-50 text-3xl">🏷️</div>
       <h3 class="mt-5 text-xl font-bold text-slate-900 transition group-hover:text-rose-700">Discount Calculator</h3>
       <p class="mt-2 leading-7 text-slate-600">Calculate promotional airfare discounts and compare travel savings.</p>
@@ -499,11 +526,7 @@
         This tool is provided for general travel planning and informational purposes only. It does not issue tickets, process payments, guarantee fare availability, provide professional travel advice, or represent any airline, airport, travel agency, booking provider, or government authority. The website owner and developer are not responsible for missed flights, fare changes, unavailable tickets, booking errors, denied boarding, travel disruption, or losses caused by use of this tool.
       </p>
     </section>
-
-    <div class="ad-box mt-8 flex items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white text-sm text-slate-400 shadow-sm">
-      AdSense Responsive Ad Area - Bottom
-    </div>
-  </main>
+</main>
 
   <script>
     const airports = [
@@ -622,6 +645,26 @@
     let tripType = 'round';
     let generatedLinks = [];
 
+
+    function escapeHTML(value) {
+      return String(value ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    function safeDealUrl(value) {
+      try {
+        const url = new URL(String(value), window.location.origin);
+        if (url.protocol !== 'https:' && url.protocol !== 'http:') return '';
+        return url.href;
+      } catch {
+        return '';
+      }
+    }
+
     function pad(value) {
       return String(value).padStart(2, '0');
     }
@@ -656,6 +699,8 @@
     function hideSuggestions(box) {
       box.classList.add('hidden');
       box.innerHTML = '';
+      const input = box === fromSuggestions ? fromSearch : toSearch;
+      if (input) input.setAttribute('aria-expanded', 'false');
     }
 
     function showSuggestions(input, box, codeInput, selectedText, allowAnywhere) {
@@ -678,13 +723,14 @@
       }
 
       box.innerHTML = matches.map(item => `
-        <button type="button" data-code="${item.code}" class="suggestion-btn w-full rounded-2xl px-4 py-3 text-left transition hover:bg-cyan-50">
+        <button type="button" data-code="${item.code}" role="option" class="suggestion-btn w-full rounded-2xl px-4 py-3 text-left transition hover:bg-cyan-50">
           <span class="block text-sm font-black text-slate-900">${item.city} <span class="text-cyan-700">${item.code}</span></span>
           <span class="block text-xs leading-5 text-slate-500">${item.airport}, ${item.country}</span>
         </button>
       `).join('');
 
       box.classList.remove('hidden');
+      input.setAttribute('aria-expanded', 'true');
 
       box.querySelectorAll('.suggestion-btn').forEach(button => {
         button.addEventListener('click', () => {
@@ -708,6 +754,8 @@
 
     function setTripType(type) {
       tripType = type;
+      roundTripBtn.setAttribute('aria-pressed', type === 'round' ? 'true' : 'false');
+      oneWayBtn.setAttribute('aria-pressed', type === 'oneway' ? 'true' : 'false');
 
       if (type === 'round') {
         roundTripBtn.className = 'rounded-2xl bg-cyan-600 px-4 py-3 text-sm font-black text-white shadow-sm';
@@ -774,10 +822,10 @@
         resultsSection.classList.remove('hidden');
         summaryBox.innerHTML = `
           <span class="text-cyan-800">${tripType === 'round' ? 'Round-trip' : 'One-way'}</span> ·
-          From <span class="text-slate-950">${data.from}</span> to <span class="text-slate-950">${data.to}</span> ·
-          Depart <span class="text-slate-950">${data.depart}</span>
-          ${tripType === 'round' ? ` · Return <span class="text-slate-950">${data.ret}</span>` : ''}
-          · Adults <span class="text-slate-950">${data.adults}</span>
+          From <span class="text-slate-950">${escapeHTML(data.from)}</span> to <span class="text-slate-950">${escapeHTML(data.to)}</span> ·
+          Depart <span class="text-slate-950">${escapeHTML(data.depart)}</span>
+          ${tripType === 'round' ? ` · Return <span class="text-slate-950">${escapeHTML(data.ret)}</span>` : ''}
+          · Adults <span class="text-slate-950">${escapeHTML(data.adults)}</span>
         `;
 
         platformLinks.innerHTML = `
@@ -795,10 +843,24 @@
           currency: data.currency
         });
 
-        const response = await fetch(`/api/flights?${params.toString()}`);
-        const result = await response.json();
+        const response = await fetch(`/api/flights?${params.toString()}`, {
+          headers: { Accept: 'application/json' }
+        });
 
-        if (!result.success) throw new Error(result.error || 'No flight data available.');
+        let result;
+        try {
+          result = await response.json();
+        } catch {
+          throw new Error('The flight service returned an invalid response.');
+        }
+
+        if (!response.ok || !result.success) {
+          throw new Error(result.error || 'No flight data available.');
+        }
+
+        if (!Array.isArray(result.data)) {
+          throw new Error('The flight service returned an unexpected data format.');
+        }
 
         if (!result.data.length) {
           generatedLinks = [];
@@ -810,31 +872,45 @@
           return;
         }
 
-        generatedLinks = result.data.map(item => item.link);
+        const safeItems = result.data
+          .map(item => ({ ...item, safeLink: safeDealUrl(item.link) }))
+          .filter(item => item.safeLink);
 
-        platformLinks.innerHTML = result.data.map(item => `
+        if (!safeItems.length) {
+          generatedLinks = [];
+          platformLinks.innerHTML = `
+            <div class="rounded-3xl bg-white p-5 text-sm leading-6 text-slate-600 ring-1 ring-slate-100">
+              Flight data was returned, but no valid booking links were available.
+            </div>
+          `;
+          return;
+        }
+
+        generatedLinks = safeItems.map(item => item.safeLink);
+
+        platformLinks.innerHTML = safeItems.map(item => `
           <article class="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
             <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               <div class="min-w-0">
                 <div class="safe-break text-xl font-black text-slate-950">
-                  ${item.origin} → ${item.destination || 'Destination'}
+                  ${escapeHTML(item.origin)} → ${escapeHTML(item.destination || 'Destination')}
                 </div>
                 <div class="mt-2 safe-break text-3xl font-black text-cyan-700">
-                  ${item.currency} ${Number(item.price).toLocaleString()}
+                  ${escapeHTML(item.currency)} ${Number.isFinite(Number(item.price)) ? Number(item.price).toLocaleString() : 'Price unavailable'}
                 </div>
                 <div class="mt-3 text-sm leading-6 text-slate-600">
-                  Departure: ${item.departureAt || '-'}<br>
-                  Return: ${item.returnAt || '-'}<br>
-                  Airline: ${item.airline || 'N/A'} ${item.flightNumber || ''}<br>
-                  Stops: ${item.transfers === 0 ? 'Direct' : item.transfers === null ? 'N/A' : item.transfers + ' stop(s)'}<br>
-                  Expires: ${item.expiresAt || 'N/A'}
+                  Departure: ${escapeHTML(item.departureAt || '-')}<br>
+                  Return: ${escapeHTML(item.returnAt || '-')}<br>
+                  Airline: ${escapeHTML(item.airline || 'N/A')} ${escapeHTML(item.flightNumber || '')}<br>
+                  Stops: ${item.transfers === 0 ? 'Direct' : item.transfers == null ? 'N/A' : escapeHTML(item.transfers) + ' stop(s)'}<br>
+                  Expires: ${escapeHTML(item.expiresAt || 'N/A')}
                 </div>
                 <p class="mt-2 text-xs text-slate-400">
                   Cached price. Final fare may change on the booking website.
                 </p>
               </div>
 
-              <a href="${item.link}" target="_blank" rel="sponsored noopener noreferrer"
+              <a href="${item.safeLink}" target="_blank" rel="sponsored noopener noreferrer"
                 class="inline-flex shrink-0 items-center justify-center rounded-2xl bg-cyan-600 px-5 py-4 text-sm font-black text-white shadow-lg shadow-cyan-600/20 transition hover:bg-cyan-700">
                 View Deal ➔
               </a>
@@ -861,7 +937,7 @@
         copyBtn.textContent = 'Copied!';
         setTimeout(() => copyBtn.textContent = 'Copy Links', 1300);
       } catch {
-        showError('Copy failed.');
+        showError('Copy failed. Your browser may block clipboard access on this page.');
       }
     }
 
@@ -873,26 +949,37 @@
       returnDate.min = departDate.value;
     }
 
-    fromSearch.addEventListener('input', () => showSuggestions(fromSearch, fromSuggestions, fromCode, fromSelected, false));
-    toSearch.addEventListener('input', () => showSuggestions(toSearch, toSuggestions, toCode, toSelected, true));
+    if (fromSearch) {
+      fromSearch.addEventListener('input', () => showSuggestions(fromSearch, fromSuggestions, fromCode, fromSelected, false));
+    }
+
+    if (toSearch) {
+      toSearch.addEventListener('input', () => showSuggestions(toSearch, toSuggestions, toCode, toSelected, true));
+    }
 
     document.addEventListener('click', (event) => {
-      if (!fromSearch.contains(event.target) && !fromSuggestions.contains(event.target)) hideSuggestions(fromSuggestions);
-      if (!toSearch.contains(event.target) && !toSuggestions.contains(event.target) && !anywhereBtn.contains(event.target)) hideSuggestions(toSuggestions);
-    });
-
-    roundTripBtn.addEventListener('click', () => setTripType('round'));
-    oneWayBtn.addEventListener('click', () => setTripType('oneway'));
-    anywhereBtn.addEventListener('click', setAnywhere);
-    searchBtn.addEventListener('click', searchRealPrices);
-    copyBtn.addEventListener('click', copyLinks);
-
-    departDate.addEventListener('change', () => {
-      returnDate.min = departDate.value;
-      if (!returnDate.value || returnDate.value < departDate.value) {
-        returnDate.value = addDays(departDate.value, 7);
+      if (fromSearch && fromSuggestions && !fromSearch.contains(event.target) && !fromSuggestions.contains(event.target)) {
+        hideSuggestions(fromSuggestions);
+      }
+      if (toSearch && toSuggestions && anywhereBtn && !toSearch.contains(event.target) && !toSuggestions.contains(event.target) && !anywhereBtn.contains(event.target)) {
+        hideSuggestions(toSuggestions);
       }
     });
+
+    if (roundTripBtn) roundTripBtn.addEventListener('click', () => setTripType('round'));
+    if (oneWayBtn) oneWayBtn.addEventListener('click', () => setTripType('oneway'));
+    if (anywhereBtn) anywhereBtn.addEventListener('click', setAnywhere);
+    if (searchBtn) searchBtn.addEventListener('click', searchRealPrices);
+    if (copyBtn) copyBtn.addEventListener('click', copyLinks);
+
+    if (departDate && returnDate) {
+      departDate.addEventListener('change', () => {
+        returnDate.min = departDate.value;
+        if (!returnDate.value || returnDate.value < departDate.value) {
+          returnDate.value = addDays(departDate.value, 7);
+        }
+      });
+    }
 
     document.querySelectorAll('.quick-date').forEach(button => {
       button.addEventListener('click', () => setQuickDate(button.dataset.days));
