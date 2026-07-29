@@ -9,10 +9,17 @@
   <meta name="description" content="Free auto loan calculator to estimate monthly car payments, APR, interest, down payment, trade-in value, sales tax, and total vehicle financing cost." />
   <meta name="keywords" content="auto loan calculator, car payment calculator, vehicle financing calculator, car loan calculator, monthly car payment calculator, APR calculator, auto loan interest calculator, down payment calculator, trade-in calculator, used car loan calculator, new car financing calculator, car affordability calculator, vehicle loan calculator, auto finance calculator, total car cost calculator" />
   <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow" />
+  <link rel="canonical" href="https://nodntools.com/autoloan" />
 
   <meta property="og:title" content="Auto Loan Calculator | Car Payment & Vehicle Financing Tool" />
   <meta property="og:description" content="Estimate car payments, APR, loan interest, down payment, trade-in value, sales tax, and total vehicle financing costs instantly." />
   <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://nodntools.com/autoloan" />
+  <meta property="og:site_name" content="NodnWebTools" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Auto Loan Calculator | Car Payment & Vehicle Financing Tool" />
+  <meta name="twitter:description" content="Estimate monthly car payments, APR interest, sales tax, and total vehicle financing costs." />
 
   <meta name="google-adsense-account" content="ca-pub-5282672325821404" />
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404" crossorigin="anonymous"></script>
@@ -36,6 +43,55 @@
   }
   </script>
 
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is a good APR for a car loan?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A good APR depends on credit score, lender, market rates, vehicle age, and loan term. Lower APRs usually reduce total interest costs. Always compare multiple offers before choosing a loan."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is a longer car loan term better?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A longer loan term can lower the monthly payment, but it often increases total interest paid. Shorter terms usually cost less overall but require higher monthly payments."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does a down payment reduce my car payment?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. A larger down payment lowers the amount financed, which can reduce the monthly payment and total interest paid over the life of the loan."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use this calculator for used cars?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. This calculator can estimate payments for new cars, used cars, certified pre-owned vehicles, and many other vehicle financing scenarios."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this calculator include insurance and maintenance?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. This tool estimates loan payment, tax, interest, and financing cost. Insurance, maintenance, registration, fuel, charging, and repairs should be calculated separately."
+        }
+      }
+    ]
+  }
+  </script>
+
   <style>
     html,
     body {
@@ -56,20 +112,6 @@
       word-break: break-word;
     }
 
-    .ad-box {
-      width: 100%;
-      min-height: 90px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px dashed #cbd5e1;
-      background: #f8fafc;
-      color: #94a3b8;
-      text-align: center;
-      border-radius: 1rem;
-      padding: 1rem;
-      font-size: 0.875rem;
-    }
 
     .mobile-card,
     .mobile-panel,
@@ -138,12 +180,7 @@
         </div>
       </a>
     </header>
-
-    <div class="ad-box mb-8">
-      AdSense Responsive Ad Area - Top
-    </div>
-
-    <section class="grid gap-6 lg:grid-cols-2">
+<section class="grid gap-6 lg:grid-cols-2">
       <div class="mobile-panel space-y-6 lg:sticky lg:top-10 lg:self-start">
         <span class="inline-flex rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-700">
           Auto Loan Calculator
@@ -191,7 +228,7 @@
             <label for="vehiclePrice" class="mb-2 block text-sm font-semibold text-slate-700">Vehicle Price</label>
             <div class="relative">
               <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">$</span>
-              <input id="vehiclePrice" type="number" inputmode="decimal" placeholder="35000"
+              <input id="vehiclePrice" type="number" min="0.01" step="0.01" inputmode="decimal" autocomplete="off" placeholder="35000"
                 class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-8 pr-4 text-lg font-semibold text-slate-900 outline-none focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-100" />
             </div>
           </div>
@@ -200,7 +237,7 @@
             <label for="downPayment" class="mb-2 block text-sm font-semibold text-slate-700">Down Payment</label>
             <div class="relative">
               <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">$</span>
-              <input id="downPayment" type="number" inputmode="decimal" placeholder="5000"
+              <input id="downPayment" type="number" min="0" step="0.01" inputmode="decimal" autocomplete="off" placeholder="5000"
                 class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-8 pr-4 text-lg font-semibold text-slate-900 outline-none focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-100" />
             </div>
           </div>
@@ -209,7 +246,7 @@
             <label for="tradeInValue" class="mb-2 block text-sm font-semibold text-slate-700">Trade-In Value</label>
             <div class="relative">
               <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">$</span>
-              <input id="tradeInValue" type="number" inputmode="decimal" placeholder="0"
+              <input id="tradeInValue" type="number" min="0" step="0.01" inputmode="decimal" autocomplete="off" placeholder="0"
                 class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-8 pr-4 text-lg font-semibold text-slate-900 outline-none focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-100" />
             </div>
           </div>
@@ -217,7 +254,7 @@
           <div>
             <label for="salesTaxRate" class="mb-2 block text-sm font-semibold text-slate-700">Sales Tax Rate</label>
             <div class="relative">
-              <input id="salesTaxRate" type="number" step="0.01" inputmode="decimal" placeholder="8.5"
+              <input id="salesTaxRate" type="number" min="0" max="100" step="0.01" inputmode="decimal" autocomplete="off" placeholder="8.5"
                 class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-4 pr-10 text-lg font-semibold text-slate-900 outline-none focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-100" />
               <span class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400">%</span>
             </div>
@@ -226,7 +263,7 @@
           <div>
             <label for="interestRate" class="mb-2 block text-sm font-semibold text-slate-700">Annual Interest Rate</label>
             <div class="relative">
-              <input id="interestRate" type="number" step="0.01" inputmode="decimal" placeholder="6.99"
+              <input id="interestRate" type="number" min="0" max="100" step="0.01" inputmode="decimal" autocomplete="off" placeholder="6.99"
                 class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-4 pr-10 text-lg font-semibold text-slate-900 outline-none focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-100" />
               <span class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400">%</span>
             </div>
@@ -258,21 +295,12 @@
           </div>
         </div>
 
-        <div id="warningBox" class="mt-5 hidden rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm leading-6 text-amber-800"></div>
+        <div id="warningBox" role="alert" aria-live="assertive" class="mt-5 hidden rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm leading-6 text-amber-800"></div>
 
-        <div id="result" class="mt-6 hidden rounded-3xl border border-blue-100 bg-gradient-to-br from-blue-50 to-slate-50 p-5 mobile-preview"></div>
-
-        <div class="ad-box mt-6">
-          AdSense Responsive Ad Area - Below Result
-        </div>
-      </div>
+        <div id="result" role="status" aria-live="polite" aria-atomic="true" class="mt-6 hidden rounded-3xl border border-blue-100 bg-gradient-to-br from-blue-50 to-slate-50 p-5 mobile-preview"></div>
+</div>
     </section>
-
-    <div class="ad-box my-10">
-      AdSense Responsive Ad Area - Below Main Tool
-    </div>
-
-    <section class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8 mobile-card">
+<section class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8 mobile-card">
       <div class="max-w-4xl">
         <h2 class="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
           Auto Loan Calculator Guide: Estimate Monthly Car Payments Before You Buy
@@ -294,12 +322,7 @@
           and total vehicle cost so you can see the full picture instead of only the payment amount.
         </p>
       </div>
-
-      <div class="ad-box my-8">
-        AdSense Responsive Ad Area - Middle Content
-      </div>
-
-      <div class="grid gap-6 md:grid-cols-2">
+<div class="grid gap-6 md:grid-cols-2">
         <article class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
           <h3 class="text-lg font-bold text-slate-900">How Auto Loans Work</h3>
           <p class="mt-3 text-sm leading-7 text-slate-600">
@@ -411,11 +434,6 @@
           </p>
         </div>
       </div>
-
-      <div class="ad-box my-8">
-        AdSense Responsive Ad Area - Bottom Content
-      </div>
-
 <section class="mt-12" aria-labelledby="autoloan-related-tools-title">
   <div class="mb-8">
     <p class="text-sm font-bold uppercase tracking-[0.18em] text-blue-600">
@@ -442,7 +460,7 @@
       <p class="mt-2 leading-7 text-slate-600">Calculate personal loan payments, interest, and repayment costs.</p>
     </a>
 
-    <a href="/salestax.html" class="group rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-emerald-300 hover:shadow-lg">
+    <a href="/salestax" class="group rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-emerald-300 hover:shadow-lg">
       <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-emerald-50 text-3xl">🧾</div>
       <h3 class="mt-5 text-xl font-bold text-slate-900 transition group-hover:text-emerald-700">US Sales Tax Calculator</h3>
       <p class="mt-2 leading-7 text-slate-600">Estimate sales tax and total purchase cost for US transactions.</p>
@@ -526,12 +544,7 @@
         to a server.
       </p>
     </section>
-
-    <div class="ad-box mt-10">
-      AdSense Responsive Ad Area - Bottom
-    </div>
-
-    <footer class="py-8 text-center text-sm text-slate-500">
+<footer class="py-8 text-center text-sm text-slate-500">
       <div class="mb-3 flex flex-wrap justify-center gap-4">
         <a href="https://nodntools.com" class="font-semibold text-blue-600 hover:text-blue-700">Home</a>
         <a href="/privacy" class="hover:text-slate-900">Privacy Policy</a>
@@ -597,8 +610,8 @@
           return;
         }
 
-        if (salesTaxRate < 0) {
-          showWarning("Sales tax rate cannot be negative.");
+        if (salesTaxRate < 0 || salesTaxRate > 100) {
+          showWarning("Please enter a sales tax rate between 0% and 100%.");
           return;
         }
 
@@ -607,8 +620,13 @@
           return;
         }
 
-        if (!Number.isFinite(annualInterestRate) || annualInterestRate < 0) {
-          showWarning("Please enter a valid annual interest rate.");
+        if (!Number.isFinite(annualInterestRate) || annualInterestRate < 0 || annualInterestRate > 100) {
+          showWarning("Please enter an annual interest rate between 0% and 100%.");
+          return;
+        }
+
+        if (!Number.isInteger(loanTermMonths) || loanTermMonths <= 0) {
+          showWarning("Please select a valid loan term.");
           return;
         }
 
@@ -731,8 +749,16 @@
       }
     }
 
-    document.getElementById("calculateBtn").addEventListener("click", calculateAutoLoan);
-    document.getElementById("resetBtn").addEventListener("click", resetCalculator);
+    const calculateBtn = document.getElementById("calculateBtn");
+    const resetBtn = document.getElementById("resetBtn");
+
+    if (calculateBtn) {
+      calculateBtn.addEventListener("click", calculateAutoLoan);
+    }
+
+    if (resetBtn) {
+      resetBtn.addEventListener("click", resetCalculator);
+    }
 
     fields.forEach((id) => {
       const field = document.getElementById(id);
