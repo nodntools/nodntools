@@ -9,10 +9,17 @@
   <meta name="description" content="Free mortgage calculator to estimate monthly home loan payments, interest, down payment, loan amount, and total mortgage cost." />
   <meta name="keywords" content="mortgage calculator, monthly mortgage payment calculator, home loan calculator, mortgage payment estimator, mortgage interest calculator, loan amount calculator, down payment calculator, principal and interest calculator, home affordability calculator, fixed rate mortgage calculator, 30 year mortgage calculator, 15 year mortgage calculator, mortgage cost calculator, housing budget calculator" />
   <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow" />
+  <link rel="canonical" href="https://nodntools.com/mortgage" />
 
   <meta property="og:title" content="Mortgage Calculator | Monthly Home Loan Payment Tool" />
   <meta property="og:description" content="Estimate monthly mortgage payments, down payment, interest, loan amount, and total mortgage cost with a free browser-based calculator." />
   <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://nodntools.com/mortgage" />
+  <meta property="og:site_name" content="NodnWebTools" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Mortgage Calculator | Monthly Home Loan Payment Tool" />
+  <meta name="twitter:description" content="Estimate monthly mortgage payments, loan amount, down payment, total interest, and total mortgage cost." />
 
   <meta name="google-adsense-account" content="ca-pub-5282672325821404" />
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404" crossorigin="anonymous"></script>
@@ -33,6 +40,55 @@
       "price": "0",
       "priceCurrency": "USD"
     }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What does this mortgage calculator include?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "This calculator estimates principal and interest based on home price, down payment, interest rate, and loan term. It does not include taxes, insurance, HOA fees, or mortgage insurance."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is a 15-year mortgage better than a 30-year mortgage?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A 15-year mortgage usually has higher monthly payments but may reduce total interest. A 30-year mortgage usually has lower monthly payments but may cost more in interest over time."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does the down payment affect my mortgage?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A larger down payment reduces the loan amount, which can lower monthly payments and total interest. It may also reduce or eliminate mortgage insurance depending on lender rules and local requirements."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does interest rate matter so much?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The interest rate determines the cost of borrowing. Even a small rate difference can significantly change the monthly payment and total interest paid over a long mortgage term."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use this calculator for refinancing?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Enter the expected refinance loan amount as the home price and use zero as the down payment, or adjust the inputs to match the refinancing scenario."
+        }
+      }
+    ]
   }
   </script>
 
@@ -73,21 +129,6 @@
       word-break: break-word;
     }
 
-    .ad-box {
-      width: 100%;
-      min-height: 90px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px dashed #cbd5e1;
-      background: #f8fafc;
-      color: #94a3b8;
-      text-align: center;
-      border-radius: 1rem;
-      padding: 1rem;
-      font-size: 0.875rem;
-      overflow: hidden;
-    }
 
     .mobile-card,
     .mobile-panel,
@@ -160,18 +201,13 @@
 <body class="min-h-screen bg-slate-50 px-4 py-8 text-slate-800 sm:py-12">
   <main class="mx-auto w-full max-w-6xl">
     <header class="mb-8 text-center">
-      <a href="https://nodntools.com" class="inline-block transition hover:opacity-80" aria-label="NodnWebTools Home">
+      <a href="/" class="inline-block transition hover:opacity-80" aria-label="NodnWebTools Home">
         <div class="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
           Nodn<span class="text-blue-600">WebTools</span>
         </div>
       </a>
     </header>
-
-    <div class="ad-box mb-8">
-      AdSense Responsive Ad Area - Top
-    </div>
-
-    <section class="grid gap-6 lg:grid-cols-2">
+<section class="grid gap-6 lg:grid-cols-2">
       <aside class="mobile-panel space-y-6 lg:sticky lg:top-10 lg:self-start">
         <span class="inline-flex rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-700">
           Mortgage Payment Calculator
@@ -190,12 +226,12 @@
 
         <div class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
           <h2 class="text-lg font-bold text-slate-900">What this mortgage calculator estimates</h2>
-          <ul class="mt-4 space-y-3 text-sm leading-6 text-slate-600">
-            <li>• Estimated monthly principal and interest payment</li>
-            <li>• Total mortgage loan amount after down payment</li>
-            <li>• Down payment percentage of the home price</li>
-            <li>• Total interest paid over the full loan term</li>
-            <li>• Total estimated payment over the mortgage period</li>
+          <ul class="mt-4 list-disc space-y-3 pl-5 text-sm leading-6 text-slate-600">
+            <li>Estimated monthly principal and interest payment</li>
+            <li>Total mortgage loan amount after down payment</li>
+            <li>Down payment percentage of the home price</li>
+            <li>Total interest paid over the full loan term</li>
+            <li>Total estimated payment over the mortgage period</li>
           </ul>
         </div>
 
@@ -219,7 +255,7 @@
             <label for="homePrice" class="mb-2 block text-sm font-semibold text-slate-700">Home Price</label>
             <div class="relative">
               <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">$</span>
-              <input id="homePrice" type="number" placeholder="500000" inputmode="decimal"
+              <input id="homePrice" type="number" min="1" step="0.01" placeholder="500000" inputmode="decimal" autocomplete="off"
                 class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-8 pr-4 text-lg font-semibold text-slate-900 outline-none transition focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-100" />
             </div>
           </div>
@@ -228,7 +264,7 @@
             <label for="downPayment" class="mb-2 block text-sm font-semibold text-slate-700">Down Payment</label>
             <div class="relative">
               <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">$</span>
-              <input id="downPayment" type="number" placeholder="100000" inputmode="decimal"
+              <input id="downPayment" type="number" min="0" step="0.01" placeholder="100000" inputmode="decimal" autocomplete="off"
                 class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-8 pr-4 text-lg font-semibold text-slate-900 outline-none transition focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-100" />
             </div>
           </div>
@@ -236,7 +272,7 @@
           <div>
             <label for="interestRate" class="mb-2 block text-sm font-semibold text-slate-700">Annual Interest Rate</label>
             <div class="relative">
-              <input id="interestRate" type="number" placeholder="6.5" step="0.01" inputmode="decimal"
+              <input id="interestRate" type="number" min="0" max="100" placeholder="6.5" step="0.01" inputmode="decimal" autocomplete="off"
                 class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-4 pr-10 text-lg font-semibold text-slate-900 outline-none transition focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-100" />
               <span class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400">%</span>
             </div>
@@ -267,21 +303,12 @@
           </div>
         </div>
 
-        <div id="warningBox" class="mt-5 hidden rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm leading-6 text-amber-800"></div>
+        <div id="warningBox" role="alert" aria-live="assertive" class="mt-5 hidden rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm leading-6 text-amber-800"></div>
 
-        <div id="result" class="mobile-preview mt-6 hidden rounded-3xl border border-blue-100 bg-gradient-to-br from-blue-50 to-slate-50 p-5"></div>
-
-        <div class="ad-box mt-6">
-          AdSense Responsive Ad Area - Below Result
-        </div>
-      </section>
+        <div id="result" role="status" aria-live="polite" class="mobile-preview mt-6 hidden rounded-3xl border border-blue-100 bg-gradient-to-br from-blue-50 to-slate-50 p-5"></div>
+</section>
     </section>
-
-    <div class="ad-box my-10">
-      AdSense Responsive Ad Area - Below Main Tool
-    </div>
-
-    <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+<section class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
       <div class="max-w-4xl">
         <h2 class="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
           Mortgage Calculator Guide: Estimate Monthly Home Loan Payments with Confidence
@@ -304,12 +331,7 @@
           the life of the mortgage.
         </p>
       </div>
-
-      <div class="ad-box my-8">
-        AdSense Responsive Ad Area - Middle Content
-      </div>
-
-      <div class="grid gap-6 md:grid-cols-2">
+<div class="grid gap-6 md:grid-cols-2">
         <article class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
           <h3 class="text-lg font-bold text-slate-900">How a Mortgage Payment Is Calculated</h3>
           <p class="mt-3 text-sm leading-7 text-slate-600">
@@ -444,12 +466,7 @@
           </p>
         </div>
       </div>
-
-      <div class="ad-box my-8">
-        AdSense Responsive Ad Area - Bottom Content
-      </div>
-
-      <section class="mt-10">
+<section class="mt-10">
         <h2 class="text-2xl font-bold text-slate-900">Mortgage Calculator FAQ</h2>
 
         <div class="mt-6 space-y-4">
@@ -540,7 +557,7 @@
       <p class="mt-2 leading-7 text-slate-600">Estimate net income available for mortgage payments and housing costs.</p>
     </a>
 
-    <a href="/compound.html" class="group rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-violet-300 hover:shadow-lg">
+    <a href="/compound" class="group rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-violet-300 hover:shadow-lg">
       <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-violet-50 text-3xl">📈</div>
       <h3 class="mt-5 text-xl font-bold text-slate-900 transition group-hover:text-violet-700">Compound Interest Calculator</h3>
       <p class="mt-2 leading-7 text-slate-600">Estimate savings growth for a down payment or long-term housing goals.</p>
@@ -564,14 +581,9 @@
         mortgage data to a server.
       </p>
     </section>
-
-    <div class="ad-box mt-10">
-      AdSense Responsive Ad Area - Bottom
-    </div>
-
-    <footer class="py-8 text-center text-sm text-slate-500">
+<footer class="py-8 text-center text-sm text-slate-500">
       <div class="mb-3 flex flex-wrap justify-center gap-4">
-        <a href="https://nodntools.com" class="font-semibold text-blue-600 hover:text-blue-700">Home</a>
+        <a href="/" class="font-semibold text-blue-600 hover:text-blue-700">Home</a>
         <a href="/privacy" class="hover:text-slate-900">Privacy Policy</a>
         <a href="/terms" class="hover:text-slate-900">Terms of Service</a>
       </div>
@@ -613,6 +625,11 @@
         const loanTermInput = document.getElementById("loanTerm");
         const resultBox = document.getElementById("result");
 
+        if (!homePriceInput || !downPaymentInput || !interestRateInput || !loanTermInput || !resultBox) {
+          showWarning("The calculator could not load correctly. Please refresh the page.");
+          return;
+        }
+
         const homePrice = parseFloat(homePriceInput.value);
         const downPayment = parseFloat(downPaymentInput.value);
         const annualInterestRate = parseFloat(interestRateInput.value);
@@ -636,9 +653,15 @@
           return;
         }
 
-        if (!Number.isFinite(annualInterestRate) || annualInterestRate < 0) {
-          showWarning("Please enter a valid annual interest rate.");
+        if (!Number.isFinite(annualInterestRate) || annualInterestRate < 0 || annualInterestRate > 100) {
+          showWarning("Please enter an annual interest rate between 0 and 100.");
           interestRateInput.focus();
+          return;
+        }
+
+        if (!Number.isFinite(loanTermYears) || loanTermYears <= 0) {
+          showWarning("Please select a valid loan term.");
+          loanTermInput.focus();
           return;
         }
 
@@ -755,8 +778,29 @@
       }
     }
 
-    document.getElementById("calculateBtn").addEventListener("click", calculateMortgage);
-    document.getElementById("resetBtn").addEventListener("click", resetCalculator);
+    const calculateBtn = document.getElementById("calculateBtn");
+    const resetBtn = document.getElementById("resetBtn");
+
+    if (calculateBtn) {
+      calculateBtn.addEventListener("click", calculateMortgage);
+    }
+
+    if (resetBtn) {
+      resetBtn.addEventListener("click", resetCalculator);
+    }
+
+
+    fields.forEach((id) => {
+      const field = document.getElementById(id);
+      if (!field) return;
+
+      field.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") {
+          event.preventDefault();
+          calculateMortgage();
+        }
+      });
+    });
 
     fields.forEach((id) => {
       const field = document.getElementById(id);
