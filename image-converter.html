@@ -8,6 +8,7 @@
   <meta name="description" content="Convert PNG, JPG, JPEG, and WebP images online with local processing, resizing, quality control, preview, and secure browser downloads.">
   <meta name="keywords" content="free image converter, online image converter, PNG to JPG converter, JPG to PNG converter, JPEG to WebP converter, WebP to JPG converter, PNG to WebP converter, WebP to PNG converter, image format converter, photo format converter, picture converter, convert image online, browser image converter, private image converter, local image conversion, no upload image converter, image resize tool, photo quality converter, image compression tool, JPG converter, JPEG converter, PNG converter, WebP converter, secure image converter, image file converter, online photo converter, image optimizer, website image optimization, compress image online">
   <meta name="robots" content="index, follow">
+  <meta name="googlebot" content="index, follow">
   <meta name="author" content="NodnWebTools">
   <meta name="google-adsense-account" content="ca-pub-5282672325821404">
 
@@ -16,6 +17,10 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://nodntools.com/image-converter">
   <meta property="og:site_name" content="NodnWebTools">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Free Image Converter: PNG, JPG and WebP">
+  <meta name="twitter:description" content="Convert and resize PNG, JPG, JPEG, and WebP images locally in your browser with quality controls and instant downloads.">
 
   <link rel="canonical" href="https://nodntools.com/image-converter">
   <link rel="icon" type="image/png" href="/favicon.png">
@@ -62,52 +67,108 @@
   </script>
 
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Are images uploaded to a server?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "No. The converter processes selected images locally in the browser using JavaScript and canvas."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Which image formats can I convert?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "The tool accepts common browser-readable formats including PNG, JPG, JPEG, WebP, BMP, and many static GIF files. Output formats include JPG, PNG, and WebP."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Does converting JPG to PNG improve image quality?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "No. Converting JPG to PNG cannot restore image details that were previously removed by JPG compression."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What happens to transparency when converting to JPG?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "JPG does not support transparency. Transparent areas are placed over a white background during conversion."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Can this image converter reduce file size?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes. Reducing image dimensions or exporting to JPG or WebP with a lower quality setting can reduce file size."
-        }
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Are my images uploaded to a server?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The main conversion process runs locally in your browser using JavaScript and canvas. The selected image is not intentionally uploaded to a dedicated backend conversion server."
       }
-    ]
-  }
+    },
+    {
+      "@type": "Question",
+      "name": "Which image formats are supported?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The converter accepts common browser-readable images including PNG, JPG, JPEG, WebP, BMP, and many static GIF files. Available output formats are JPG, PNG, and WebP."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does converting JPG to PNG improve quality?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Converting JPG to PNG cannot restore image information that was removed by earlier JPG compression. The PNG may be larger without appearing sharper."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens to transparency when converting to JPG?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "JPG does not support transparent pixels. This converter places transparent areas over a white background before creating the JPG file."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does the quality slider have little effect on PNG?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Browser canvas normally exports PNG as a lossless format. The quality parameter mainly affects JPG and lossy WebP output."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can this tool compress an image?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Reducing dimensions or exporting to JPG or WebP with a lower quality value can reduce the output file size. Results depend on the source image and selected format."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is my converted image larger than the original?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The original may already be optimized, or the new format may not suit the image content. For example, converting a JPG photograph to PNG often creates a much larger file."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the converter preserve EXIF metadata?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Canvas-based conversion commonly removes many metadata fields, including some camera details, timestamps, and GPS information. Metadata preservation is not guaranteed."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I convert multiple images at once?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This version processes one image at a time. This makes it easier to review the dimensions, quality setting, converted size, and output format for each file."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the converter preserve GIF or WebP animation?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The tool is intended for static image conversion. Animated GIF or animated WebP files may be loaded as a frame, but animation is not preserved in the output."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is WebP better than JPG?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "WebP can provide efficient compression for modern websites, while JPG offers extremely broad software compatibility. The better format depends on the destination and image requirements."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use the image converter on a phone or tablet?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The interface is responsive and designed to fit mobile screens. Very large images may be limited by the available memory of the mobile device or browser."
+      }
+    }
+  ]
+}
   </script>
 
   <style>
@@ -153,31 +214,11 @@
     .mobile-panel,
     .mobile-preview,
     .mobile-code,
-    .ad-box {
-      width: 100%;
-      max-width: 100%;
-      overflow-x: hidden;
-    }
 
     .mobile-code {
       white-space: pre-wrap;
       overflow-wrap: anywhere;
       word-break: break-word;
-    }
-
-    .ad-box {
-      min-height: 90px;
-      border: 2px dashed #cbd5e1;
-      background: #f8fafc;
-      color: #94a3b8;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 1rem;
-      text-align: center;
-      border-radius: 1rem;
-      font-size: 0.875rem;
-      line-height: 1.5;
     }
 
     .checkerboard {
@@ -235,13 +276,6 @@
       .mobile-code {
         font-size: 0.75rem;
       }
-
-      .ad-box {
-        min-height: 90px;
-        padding: 0.875rem;
-        border-radius: 0.875rem;
-        font-size: 0.75rem;
-      }
     }
 
     @media (max-width: 380px) {
@@ -264,10 +298,6 @@
 
       .mobile-preview {
         min-height: 165px !important;
-      }
-
-      .ad-box {
-        font-size: 0.7rem;
       }
     }
   </style>
@@ -293,8 +323,7 @@
     </header>
 
     <div class="mx-auto mt-5 w-full max-w-7xl">
-      <div class="ad-box">AdSense Responsive Ad Area - Top</div>
-    </div>
+</div>
 
     <main class="mx-auto mt-6 grid w-full max-w-7xl grid-cols-1 gap-6 lg:grid-cols-12">
       <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:col-span-5 lg:p-8">
@@ -389,7 +418,7 @@
                 Width
               </label>
 
-              <input id="resizeWidth" type="number" min="1" step="1" placeholder="Width in pixels" class="w-full rounded-xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm font-semibold outline-none transition focus:border-indigo-400 focus:ring-4 focus:ring-indigo-100">
+              <input id="resizeWidth" type="number" min="1" max="20000" step="1" inputmode="numeric" placeholder="Width in pixels" class="w-full rounded-xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm font-semibold outline-none transition focus:border-indigo-400 focus:ring-4 focus:ring-indigo-100">
             </div>
 
             <div>
@@ -397,12 +426,12 @@
                 Height
               </label>
 
-              <input id="resizeHeight" type="number" min="1" step="1" placeholder="Height in pixels" class="w-full rounded-xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm font-semibold outline-none transition focus:border-indigo-400 focus:ring-4 focus:ring-indigo-100">
+              <input id="resizeHeight" type="number" min="1" max="20000" step="1" inputmode="numeric" placeholder="Height in pixels" class="w-full rounded-xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm font-semibold outline-none transition focus:border-indigo-400 focus:ring-4 focus:ring-indigo-100">
             </div>
           </div>
         </div>
 
-        <div id="alertBox" class="mt-5 hidden rounded-2xl border border-red-200 bg-red-50 p-4 text-sm font-semibold leading-6 text-red-700" role="alert"></div>
+        <div id="alertBox" aria-live="assertive" class="mt-5 hidden rounded-2xl border border-red-200 bg-red-50 p-4 text-sm font-semibold leading-6 text-red-700" role="alert"></div>
 
         <div class="mobile-button-grid mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2">
           <button id="convertBtn" type="button" disabled class="rounded-2xl bg-indigo-600 px-4 py-4 text-base font-black text-white shadow-sm transition hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-50">
@@ -432,7 +461,7 @@
               </p>
             </div>
 
-            <span id="statusBadge" class="inline-flex w-fit rounded-full bg-slate-100 px-4 py-2 text-sm font-bold text-slate-600">
+            <span id="statusBadge" role="status" aria-live="polite" class="inline-flex w-fit rounded-full bg-slate-100 px-4 py-2 text-sm font-bold text-slate-600">
               Waiting for image
             </span>
           </div>
@@ -487,14 +516,11 @@
             </div>
           </div>
         </div>
-
-        <div class="ad-box">AdSense Responsive Ad Area - Below Result</div>
-      </section>
+</section>
     </main>
 
     <div class="mx-auto mt-6 w-full max-w-7xl">
-      <div class="ad-box">AdSense Responsive Ad Area - Below Image Converter</div>
-    </div>
+</div>
 
     <section class="mx-auto mt-8 w-full max-w-7xl space-y-6">
       <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
@@ -566,10 +592,7 @@
           </p>
         </div>
       </article>
-
-      <div class="ad-box">AdSense Responsive Ad Area - Middle Content</div>
-
-      <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
+<article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
         <h2 class="text-3xl font-black tracking-tight text-slate-950">
           Understanding JPG, JPEG, PNG, and WebP image formats
         </h2>
@@ -674,10 +697,7 @@
           </p>
         </div>
       </article>
-
-      <div class="ad-box">AdSense Responsive Ad Area - Conversion Guide</div>
-
-      <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
+<article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
         <h2 class="text-3xl font-black tracking-tight text-slate-950">
           JPG to WebP and PNG to WebP conversion for website optimization
         </h2>
@@ -800,10 +820,7 @@
           </p>
         </div>
       </article>
-
-      <div class="ad-box">AdSense Responsive Ad Area - Image Optimization</div>
-
-      <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
+<article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
         <h2 class="text-3xl font-black tracking-tight text-slate-950">
           Popular uses for an online photo and image format converter
         </h2>
@@ -1132,16 +1149,14 @@
           </p>
         </div>
       </section>
-
-      <div class="ad-box">AdSense Responsive Ad Area - Bottom</div>
-    </section>
+</section>
 
     <footer class="mx-auto mt-8 w-full max-w-7xl pb-8 text-center text-sm text-slate-500">
       <p>© <span id="yearText"></span> NodnWebTools. All rights reserved.</p>
     </footer>
   </div>
 
-  <div id="toast" class="fixed bottom-4 left-4 right-4 z-50 mx-auto hidden max-w-sm rounded-2xl bg-slate-950 px-4 py-3 text-center text-sm font-bold text-white shadow-2xl sm:left-auto sm:right-6">
+  <div id="toast" role="status" aria-live="polite" class="fixed bottom-4 left-4 right-4 z-50 mx-auto hidden max-w-sm rounded-2xl bg-slate-950 px-4 py-3 text-center text-sm font-bold text-white shadow-2xl sm:left-auto sm:right-6">
     Copied!
   </div>
 
@@ -1175,6 +1190,20 @@
       const statusBadge = document.getElementById("statusBadge");
       const toast = document.getElementById("toast");
       const yearText = document.getElementById("yearText");
+
+      const requiredElements = [
+        fileInput, dropZone, fileInputLabel, targetFormat, imageQuality,
+        qualityDisplay, resizeToggle, resizeControls, resizeWidth,
+        resizeHeight, convertBtn, resetBtn, alertBox, resultPlaceholder,
+        resultContent, previewImage, displayFileName, displayFileSize,
+        displayDimensions, displayOutputSize, summaryOutput, downloadBtn,
+        copySummaryBtn, statusBadge, toast, yearText
+      ];
+
+      if (requiredElements.some(function (element) { return !element; })) {
+        console.error("Image converter initialization failed because a required page element is missing.");
+        return;
+      }
 
       let loadedFile = null;
       let loadedImage = null;
@@ -1372,10 +1401,6 @@
           return "No image file was selected.";
         }
 
-        if (!file.type || !file.type.startsWith("image/")) {
-          return "Please select a valid image file.";
-        }
-
         const supportedTypes = [
           "image/png",
           "image/jpeg",
@@ -1383,9 +1408,14 @@
           "image/bmp",
           "image/gif"
         ];
+        const supportedExtensions = ["png", "jpg", "jpeg", "webp", "bmp", "gif"];
+        const mimeType = String(file.type || "").toLowerCase();
+        const extension = String(file.name || "").split(".").pop().toLowerCase();
+        const hasSupportedType = supportedTypes.includes(mimeType);
+        const hasSupportedExtension = supportedExtensions.includes(extension);
 
-        if (!supportedTypes.includes(file.type)) {
-          return "This image type may not be supported. Please use PNG, JPG, JPEG, WebP, BMP, or a static GIF.";
+        if (!hasSupportedType && !hasSupportedExtension) {
+          return "This image type is not supported. Please use PNG, JPG, JPEG, WebP, BMP, or a static GIF.";
         }
 
         return "";
@@ -1480,6 +1510,13 @@
 
         if (width > maximumDimension || height > maximumDimension) {
           showAlert("For browser stability, keep each output dimension at or below 20,000 pixels.");
+          return false;
+        }
+
+        const maximumPixels = 80000000;
+
+        if (width * height > maximumPixels) {
+          showAlert("The requested output is too large for reliable browser processing. Keep the total image area at or below 80 megapixels.");
           return false;
         }
 
@@ -1618,6 +1655,8 @@
 
       function resetAll() {
         releaseOutputUrl();
+        window.clearTimeout(toastTimer);
+        toast.classList.add("hidden");
 
         loadedFile = null;
         loadedImage = null;
@@ -1787,6 +1826,7 @@
 
       window.addEventListener("beforeunload", function () {
         releaseOutputUrl();
+        window.clearTimeout(toastTimer);
       });
 
       disableDownload();
