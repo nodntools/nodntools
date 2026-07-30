@@ -10,11 +10,13 @@
   <meta name="keywords" content="CSV JSON converter, CSV to JSON converter, JSON to CSV converter, online CSV converter, online JSON converter, Excel CSV to JSON, JSON array to CSV, data format converter, CSV parser, JSON formatter, spreadsheet to JSON, developer data tool, client-side CSV converter, browser JSON converter, free data converter, tabular data converter, NodnWebTools" />
   <meta name="author" content="NodnWebTools" />
   <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow" />
+  <link rel="canonical" href="https://nodntools.com/csv-json-converter" />
 
   <meta property="og:title" content="CSV JSON Converter | Data Format Tool" />
   <meta property="og:description" content="Convert CSV to JSON or JSON to CSV locally in your browser with upload, copy, download, and clean formatting tools." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://nodntools.com/csv-json-converter.html" />
+  <meta property="og:url" content="https://nodntools.com/csv-json-converter" />
   <meta property="og:site_name" content="NodnWebTools" />
 
   <meta name="twitter:card" content="summary_large_image" />
@@ -29,11 +31,13 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
+    "@graph": [
+      {
     "@type": "WebApplication",
     "name": "CSV JSON Converter",
     "applicationCategory": "DeveloperApplication",
     "operatingSystem": "All",
-    "url": "https://nodntools.com/csv-json-converter.html",
+    "url": "https://nodntools.com/csv-json-converter",
     "description": "A free browser-based CSV JSON converter that transforms CSV to JSON and JSON to CSV locally with file upload, copy, download, and clean data formatting tools.",
     "featureList": [
       "Convert CSV to JSON",
@@ -55,6 +59,53 @@
       "name": "NodnWebTools",
       "url": "https://nodntools.com"
     }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is a CSV to JSON converter?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A CSV to JSON converter changes spreadsheet-style rows and columns into JSON objects or arrays that can be used in APIs, apps, and development workflows."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can this tool convert JSON to CSV?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Switch to JSON to CSV mode, paste a JSON object or array, and the tool will generate a downloadable CSV file."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does this converter upload my data?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. The conversion logic runs locally in your browser. Your pasted data is not intentionally uploaded to a backend conversion server."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I upload CSV and JSON files?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. You can upload CSV, JSON, or TXT files from your device and convert the file contents locally."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does CSV support nested data?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "CSV is a flat table format. Nested JSON objects and arrays are converted into text values when exported to CSV."
+            }
+          }
+        ]
+      }
+    ]
   }
   </script>
 
@@ -104,8 +155,7 @@
 
     .mobile-card,
     .mobile-panel,
-    .mobile-preview,
-    .ad-box {
+    .mobile-preview {
       max-width: 100%;
       overflow-x: hidden;
     }
@@ -118,21 +168,6 @@
       word-break: break-word;
     }
 
-    .ad-box {
-      width: 100%;
-      min-height: 90px;
-      border: 2px dashed #cbd5e1;
-      background: #f8fafc;
-      color: #94a3b8;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      border-radius: 1rem;
-      padding: 1rem;
-      font-size: 0.875rem;
-      line-height: 1.5;
-    }
 
     @media (max-width: 640px) {
       body {
@@ -162,12 +197,6 @@
         line-height: 2.35rem !important;
       }
 
-      .ad-box {
-        min-height: 90px;
-        border-radius: 0.875rem;
-        padding: 0.875rem;
-        font-size: 0.75rem;
-      }
     }
 
     @media (max-width: 380px) {
@@ -209,10 +238,6 @@
       </nav>
     </header>
 
-    <div class="mx-auto mt-5 w-full max-w-7xl">
-      <div class="ad-box">AdSense Responsive Ad Area - Top</div>
-    </div>
-
     <main class="mx-auto mt-6 grid w-full max-w-7xl grid-cols-1 gap-6 lg:grid-cols-12">
       <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:col-span-5 lg:p-8">
         <div class="mb-6">
@@ -231,10 +256,10 @@
         </div>
 
         <div class="mb-5 grid grid-cols-1 gap-2 rounded-2xl bg-slate-100 p-1.5 sm:grid-cols-2">
-          <button id="tabCsvToJson" type="button" class="rounded-xl bg-white px-4 py-3 text-sm font-black text-indigo-700 shadow-sm transition">
+          <button id="tabCsvToJson" type="button" aria-selected="true" aria-controls="inputText" class="rounded-xl bg-white px-4 py-3 text-sm font-black text-indigo-700 shadow-sm transition">
             CSV to JSON
           </button>
-          <button id="tabJsonToCsv" type="button" class="rounded-xl px-4 py-3 text-sm font-black text-slate-600 transition hover:bg-white">
+          <button id="tabJsonToCsv" type="button" aria-selected="false" aria-controls="inputText" class="rounded-xl px-4 py-3 text-sm font-black text-slate-600 transition hover:bg-white">
             JSON to CSV
           </button>
         </div>
@@ -243,7 +268,7 @@
           <div class="mb-3 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <label id="inputLabel" for="inputText" class="text-sm font-bold text-slate-700">CSV input</label>
             <div class="mobile-button-grid grid grid-cols-2 gap-2 sm:flex sm:w-auto">
-              <label class="cursor-pointer rounded-xl bg-indigo-50 px-3 py-2 text-center text-xs font-bold text-indigo-700 transition hover:bg-indigo-100">
+              <label tabindex="0" role="button" class="cursor-pointer rounded-xl bg-indigo-50 px-3 py-2 text-center text-xs font-bold text-indigo-700 transition hover:bg-indigo-100">
                 Upload File
                 <input type="file" id="fileInput" accept=".csv,.json,.txt" class="hidden" />
               </label>
@@ -276,7 +301,7 @@
           </div>
         </div>
 
-        <div id="warningBox" class="mt-4 hidden rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm font-semibold leading-6 text-amber-800"></div>
+        <div id="warningBox" role="alert" aria-live="polite" class="mt-4 hidden rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm font-semibold leading-6 text-amber-800"></div>
 
         <div class="mobile-button-grid mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2">
           <button id="convertBtn" type="button"
@@ -305,7 +330,7 @@
                 Review the result, copy it, or download it as a local file.
               </p>
             </div>
-            <span id="statusBadge" class="inline-flex w-fit rounded-full bg-slate-100 px-4 py-2 text-sm font-bold text-slate-600">
+            <span id="statusBadge" aria-live="polite" class="inline-flex w-fit rounded-full bg-slate-100 px-4 py-2 text-sm font-bold text-slate-600">
               Waiting
             </span>
           </div>
@@ -342,18 +367,12 @@
             </div>
           </div>
 
-          <div id="copyFeedback" class="mt-4 hidden rounded-2xl bg-emerald-50 px-4 py-3 text-sm font-bold text-emerald-700">
+          <div id="copyFeedback" role="status" aria-live="polite" class="mt-4 hidden rounded-2xl bg-emerald-50 px-4 py-3 text-sm font-bold text-emerald-700">
             Copied!
           </div>
         </div>
-
-        <div class="ad-box">AdSense Responsive Ad Area - Below Result</div>
       </section>
     </main>
-
-    <div class="mx-auto mt-6 w-full max-w-7xl">
-      <div class="ad-box">AdSense Responsive Ad Area - Below Tool</div>
-    </div>
 
     <section class="mx-auto mt-8 w-full max-w-7xl space-y-6">
       <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
@@ -385,8 +404,6 @@
           </p>
         </div>
       </article>
-
-      <div class="ad-box">AdSense Responsive Ad Area - Middle Content</div>
 
       <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
         <h2 class="text-3xl font-black tracking-tight text-slate-950">
@@ -486,8 +503,6 @@
           </div>
         </div>
       </article>
-
-      <div class="ad-box">AdSense Responsive Ad Area - Bottom Content</div>
 
       <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
         <h2 class="text-3xl font-black tracking-tight text-slate-950">
@@ -674,8 +689,6 @@
           </p>
         </div>
       </section>
-
-      <div class="ad-box">AdSense Responsive Ad Area - Bottom</div>
     </section>
 
     <footer class="mx-auto mt-8 w-full max-w-7xl pb-8 text-center text-sm text-slate-500">
@@ -781,6 +794,9 @@
           ? "rounded-xl bg-white px-4 py-3 text-sm font-black text-indigo-700 shadow-sm transition"
           : "rounded-xl px-4 py-3 text-sm font-black text-slate-600 transition hover:bg-white";
 
+        tabCsvToJson.setAttribute("aria-selected", String(isCsvToJsonMode));
+        tabJsonToCsv.setAttribute("aria-selected", String(!isCsvToJsonMode));
+
         if (isCsvToJsonMode) {
           mainTitle.textContent = "Convert CSV to JSON";
           mainDescription.textContent = "Paste spreadsheet-style CSV data or upload a file to convert rows into clean JSON arrays. Switch modes anytime to convert JSON objects and arrays back into CSV.";
@@ -808,14 +824,15 @@
       }
 
       function parseCsv(csvText) {
+        const normalizedText = String(csvText).replace(/^\uFEFF/, "");
         const rows = [];
         let row = [];
         let field = "";
         let inQuotes = false;
 
-        for (let i = 0; i < csvText.length; i++) {
-          const char = csvText[i];
-          const nextChar = csvText[i + 1];
+        for (let i = 0; i < normalizedText.length; i++) {
+          const char = normalizedText[i];
+          const nextChar = normalizedText[i + 1];
 
           if (char === '"') {
             if (inQuotes && nextChar === '"') {
@@ -838,6 +855,10 @@
           }
         }
 
+        if (inQuotes) {
+          throw new Error("CSV contains an unclosed quoted field.");
+        }
+
         row.push(field);
         rows.push(row);
 
@@ -855,9 +876,12 @@
           throw new Error("No CSV rows were found.");
         }
 
+        const seenHeaders = new Map();
         const headers = rows[0].map(function (header, index) {
-          const clean = String(header).trim();
-          return clean || "column_" + (index + 1);
+          const baseName = String(header).trim() || "column_" + (index + 1);
+          const count = (seenHeaders.get(baseName) || 0) + 1;
+          seenHeaders.set(baseName, count);
+          return count === 1 ? baseName : baseName + "_" + count;
         });
 
         const data = rows.slice(1).map(function (row) {
@@ -1028,9 +1052,33 @@
 
       inputText.addEventListener("input", updateInputStats);
 
+      const uploadLabel = fileInput.closest("label");
+      if (uploadLabel) {
+        uploadLabel.addEventListener("keydown", function (event) {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            fileInput.click();
+          }
+        });
+      }
+
       fileInput.addEventListener("change", function (event) {
         const file = event.target.files && event.target.files[0];
         if (!file) return;
+
+        const allowedExtensions = ["csv", "json", "txt"];
+        const extension = file.name.includes(".") ? file.name.split(".").pop().toLowerCase() : "";
+        if (!allowedExtensions.includes(extension)) {
+          showWarning("Please choose a CSV, JSON, or TXT file.");
+          fileInput.value = "";
+          return;
+        }
+
+        if (file.size > 10 * 1024 * 1024) {
+          showWarning("Please choose a file smaller than 10 MB for reliable browser processing.");
+          fileInput.value = "";
+          return;
+        }
 
         const reader = new FileReader();
 
