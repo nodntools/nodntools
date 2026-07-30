@@ -9,10 +9,14 @@
   <meta name="description" content="Free area code lookup tool to find phone regions, cities, states, provinces, countries, time zones, and calling code details." />
   <meta name="keywords" content="area code lookup, phone area code lookup, country calling code lookup, phone region finder, North American area code finder, US area code lookup, Canada area code lookup, international calling code finder, city area code finder, phone prefix lookup, phone number region lookup, telephone area code search, state area code lookup, province area code lookup, timezone by area code" />
   <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow" />
+  <link rel="canonical" href="https://nodntools.com/area-code-lookup" />
 
   <meta property="og:title" content="Area Code Lookup | Phone Region & Country Code Finder" />
   <meta property="og:description" content="Find possible city, state, province, country, and timezone information for common area codes and international calling codes." />
   <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://nodntools.com/area-code-lookup" />
+  <meta property="og:site_name" content="NodnWebTools" />
 
   <meta name="google-adsense-account" content="ca-pub-5282672325821404" />
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404" crossorigin="anonymous"></script>
@@ -32,8 +36,62 @@
       "@type": "Offer",
       "price": "0",
       "priceCurrency": "USD"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "NodnWebTools",
+      "url": "https://nodntools.com"
     }
   }
+  </script>
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can an area code show the exact location of a caller?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. An area code can suggest the original numbering region, but it cannot confirm a caller’s exact current location. Mobile number portability, VoIP services, and call forwarding can make location estimates inaccurate."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this tool identify the owner of a phone number?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. This tool does not access private records, subscriber databases, caller ID systems, or carrier data. It only provides basic reference information about codes and possible regions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this tool work offline?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The lookup logic and built-in code list run in the browser. If Tailwind CSS is already cached, the page can still function locally, but the visual styling CDN normally requires an internet connection."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why are some area codes missing?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This tool includes a practical reference list of common codes. Area code systems change over time, and new overlays can be introduced. For official telecom records, check the relevant numbering authority."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use this for spam detection?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Area codes alone cannot determine whether a call is spam. Scammers can spoof caller ID numbers, so always use caution with unexpected calls and never share sensitive information with unverified callers."
+      }
+    }
+  ]
+}
   </script>
 
   <style>
@@ -88,22 +146,6 @@
       -webkit-overflow-scrolling: touch;
     }
 
-    .ad-box {
-      width: 100%;
-      max-width: 100%;
-      min-height: 90px;
-      border: 2px dashed #cbd5e1;
-      background: #f1f5f9;
-      color: #64748b;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      border-radius: 1rem;
-      padding: 1rem;
-      overflow: hidden;
-      font-size: 0.875rem;
-    }
 
     @media (max-width: 640px) {
       body {
@@ -134,11 +176,6 @@
 
       table {
         min-width: 560px;
-      }
-
-      .ad-box {
-        min-height: 90px;
-        font-size: 0.875rem;
       }
     }
 
@@ -179,9 +216,6 @@
   </header>
 
   <main class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-    <section class="ad-box mb-6">
-      Top Advertisement Area
-    </section>
 
     <section class="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
       <div class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
@@ -202,7 +236,7 @@
             <label for="searchInput" class="mb-2 block text-sm font-semibold text-slate-700">
               Area code, country code, city, state, or province
             </label>
-            <input id="searchInput" type="text" inputmode="search" placeholder="Example: 604, 212, Toronto, California, +44"
+            <input id="searchInput" type="search" inputmode="search" autocomplete="off" maxlength="120" placeholder="Example: 604, 212, Toronto, California, +44"
               class="w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100" />
             <p class="mt-2 text-sm text-slate-500">
               Enter a 3-digit North American area code or an international country calling code.
@@ -225,26 +259,26 @@
           <div class="rounded-2xl bg-slate-50 p-4">
             <h2 class="text-sm font-bold uppercase tracking-wide text-slate-500">Quick examples</h2>
             <div class="mt-3 grid gap-2 sm:grid-cols-2">
-              <button class="exampleBtn rounded-xl border border-slate-200 bg-white px-3 py-2 text-left text-sm font-medium hover:border-indigo-300 hover:text-indigo-700" data-example="604">604 Vancouver</button>
-              <button class="exampleBtn rounded-xl border border-slate-200 bg-white px-3 py-2 text-left text-sm font-medium hover:border-indigo-300 hover:text-indigo-700" data-example="212">212 New York</button>
-              <button class="exampleBtn rounded-xl border border-slate-200 bg-white px-3 py-2 text-left text-sm font-medium hover:border-indigo-300 hover:text-indigo-700" data-example="416">416 Toronto</button>
-              <button class="exampleBtn rounded-xl border border-slate-200 bg-white px-3 py-2 text-left text-sm font-medium hover:border-indigo-300 hover:text-indigo-700" data-example="+44">+44 United Kingdom</button>
+              <button type="button" class="exampleBtn rounded-xl border border-slate-200 bg-white px-3 py-2 text-left text-sm font-medium hover:border-indigo-300 hover:text-indigo-700" data-example="604">604 Vancouver</button>
+              <button type="button" class="exampleBtn rounded-xl border border-slate-200 bg-white px-3 py-2 text-left text-sm font-medium hover:border-indigo-300 hover:text-indigo-700" data-example="212">212 New York</button>
+              <button type="button" class="exampleBtn rounded-xl border border-slate-200 bg-white px-3 py-2 text-left text-sm font-medium hover:border-indigo-300 hover:text-indigo-700" data-example="416">416 Toronto</button>
+              <button type="button" class="exampleBtn rounded-xl border border-slate-200 bg-white px-3 py-2 text-left text-sm font-medium hover:border-indigo-300 hover:text-indigo-700" data-example="+44">+44 United Kingdom</button>
             </div>
           </div>
 
           <div class="mobile-button-grid grid gap-3 sm:grid-cols-3">
-            <button id="lookupBtn" class="rounded-2xl bg-indigo-600 px-5 py-3 font-bold text-white shadow-sm hover:bg-indigo-700">
+            <button type="button" id="lookupBtn" class="rounded-2xl bg-indigo-600 px-5 py-3 font-bold text-white shadow-sm hover:bg-indigo-700">
               Search Code
             </button>
-            <button id="copyBtn" class="rounded-2xl border border-slate-300 bg-white px-5 py-3 font-bold text-slate-700 hover:border-indigo-300 hover:text-indigo-700">
+            <button type="button" id="copyBtn" class="rounded-2xl border border-slate-300 bg-white px-5 py-3 font-bold text-slate-700 hover:border-indigo-300 hover:text-indigo-700">
               Copy Results
             </button>
-            <button id="resetBtn" class="rounded-2xl border border-slate-300 bg-white px-5 py-3 font-bold text-slate-700 hover:border-red-300 hover:text-red-700">
+            <button type="button" id="resetBtn" class="rounded-2xl border border-slate-300 bg-white px-5 py-3 font-bold text-slate-700 hover:border-red-300 hover:text-red-700">
               Reset
             </button>
           </div>
 
-          <div id="copyFeedback" class="hidden rounded-2xl bg-emerald-50 px-4 py-3 text-sm font-semibold text-emerald-700">
+          <div id="copyFeedback" role="status" aria-live="polite" class="hidden rounded-2xl bg-emerald-50 px-4 py-3 text-sm font-semibold text-emerald-700">
             Copied!
           </div>
         </div>
@@ -258,12 +292,12 @@
               Matching area code information appears here instantly.
             </p>
           </div>
-          <span id="statusBadge" class="inline-flex rounded-full bg-slate-100 px-3 py-1 text-sm font-bold text-slate-600">
+          <span id="statusBadge" role="status" aria-live="polite" class="inline-flex rounded-full bg-slate-100 px-3 py-1 text-sm font-bold text-slate-600">
             Waiting
           </span>
         </div>
 
-        <div id="warningBox" class="mt-5 rounded-2xl bg-amber-50 p-4 text-sm font-medium text-amber-800">
+        <div id="warningBox" role="status" aria-live="polite" class="mt-5 rounded-2xl bg-amber-50 p-4 text-sm font-medium text-amber-800">
           Enter an area code, country code, city, state, or province to begin. Results are reference estimates and may not reflect number portability.
         </div>
 
@@ -292,7 +326,7 @@
                 <th class="border-b border-slate-200 px-4 py-3 font-bold">Timezone</th>
               </tr>
             </thead>
-            <tbody id="resultsBody">
+            <tbody id="resultsBody" aria-live="polite">
               <tr>
                 <td colspan="4" class="px-4 py-6 text-center text-slate-500">
                   No search entered yet.
@@ -307,14 +341,10 @@
           <pre id="reportOutput" class="mobile-code mt-2 text-sm leading-6 text-slate-700">No area code searched yet.</pre>
         </div>
 
-        <button id="downloadBtn" class="mt-5 w-full rounded-2xl bg-violet-600 px-5 py-3 font-bold text-white shadow-sm hover:bg-violet-700">
+        <button type="button" id="downloadBtn" class="mt-5 w-full rounded-2xl bg-violet-600 px-5 py-3 font-bold text-white shadow-sm hover:bg-violet-700">
           Download Results
         </button>
       </div>
-    </section>
-
-    <section class="ad-box my-8">
-      Advertisement Area Below Tool
     </section>
 
     <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
@@ -330,10 +360,6 @@
       <p class="mt-4 text-slate-600 leading-7">
         This phone region finder works fully in your browser. The lookup table is built into the page, so your search text does not need to be submitted to a server for the basic lookup process. That makes it useful for privacy-conscious users who want a fast reference tool for phone prefixes, city area codes, country calling codes, province codes, state codes, and timezone information.
       </p>
-
-      <div class="ad-box my-8">
-        Middle Content Advertisement Area
-      </div>
 
       <h3 class="mt-8 text-2xl font-bold text-slate-950">How to Use This Area Code Finder</h3>
       <div class="mt-4 grid gap-4 md:grid-cols-3">
@@ -385,10 +411,6 @@
         </article>
       </div>
 
-      <div class="ad-box my-8">
-        Bottom Content Advertisement Area
-      </div>
-
       <h3 class="text-2xl font-bold text-slate-950">Important Area Code Tips</h3>
       <p class="mt-4 text-slate-600 leading-7">
         Area codes are useful, but they are not perfect location tools. People can move while keeping the same mobile number, businesses may use virtual phone systems, and phone numbers can be forwarded across regions. Caller ID can also be spoofed. For that reason, an area code should be treated as a reference clue rather than proof of a caller’s current location or identity.
@@ -398,8 +420,8 @@
       </p>
     </section>
 
-    <section class="mt-8 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-      <h2 class="text-3xl font-extrabold text-slate-950">FAQ</h2>
+    <section id="faq" class="mt-8 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm" aria-labelledby="faq-title">
+      <h2 id="faq-title" class="text-3xl font-extrabold text-slate-950">Frequently Asked Questions</h2>
 
       <div class="mt-6 space-y-4">
         <details class="rounded-2xl border border-slate-200 p-5">
@@ -437,10 +459,6 @@
           </p>
         </details>
       </div>
-    </section>
-
-    <section class="ad-box my-8">
-      Bottom Advertisement Area
     </section>
 
 <!-- Related Tools -->
@@ -500,7 +518,7 @@
       </p>
     </a>
 
-    <a href="/time.html"
+    <a href="/time"
       class="group flex flex-col rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-violet-300 hover:shadow-lg">
       <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-violet-50 text-3xl">
         🕒
@@ -778,8 +796,19 @@ Type: ${getTypeLabel(item.type)}`;
     }
 
     async function copyResults() {
+      const content = reportOutput.textContent.trim();
+      if (!searchInput.value.trim() || !content || content === 'No area code searched yet.') {
+        copyFeedback.textContent = 'Search for a code before copying results.';
+        copyFeedback.classList.remove('hidden');
+        setTimeout(() => {
+          copyFeedback.classList.add('hidden');
+          copyFeedback.textContent = 'Copied!';
+        }, 1800);
+        return;
+      }
+
       try {
-        await navigator.clipboard.writeText(reportOutput.textContent);
+        await navigator.clipboard.writeText(content);
         copyFeedback.textContent = 'Copied!';
         copyFeedback.classList.remove('hidden');
         setTimeout(() => copyFeedback.classList.add('hidden'), 1400);
@@ -795,7 +824,12 @@ Type: ${getTypeLabel(item.type)}`;
 
     function downloadResults() {
       try {
-        const content = reportOutput.textContent || 'No area code lookup results available.';
+        const content = reportOutput.textContent.trim();
+        if (!searchInput.value.trim() || !content || content === 'No area code searched yet.') {
+          warningBox.textContent = 'Search for a code before downloading results.';
+          warningBox.className = 'mt-5 rounded-2xl bg-amber-50 p-4 text-sm font-medium text-amber-800';
+          return;
+        }
         const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
         const url = URL.createObjectURL(blob);
         const link = document.createElement('a');
@@ -804,7 +838,7 @@ Type: ${getTypeLabel(item.type)}`;
         document.body.appendChild(link);
         link.click();
         link.remove();
-        URL.revokeObjectURL(url);
+        window.setTimeout(() => URL.revokeObjectURL(url), 1000);
       } catch (error) {
         warningBox.textContent = 'Download failed. Please copy the results instead.';
         warningBox.className = 'mt-5 rounded-2xl bg-red-50 p-4 text-sm font-medium text-red-700';
@@ -829,10 +863,6 @@ Type: ${getTypeLabel(item.type)}`;
         searchInput.value = button.dataset.example || '';
         filterData();
       });
-    });
-
-    window.addEventListener('resize', () => {
-      document.body.style.overflowX = 'hidden';
     });
 
     filterData();
