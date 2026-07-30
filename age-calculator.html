@@ -9,11 +9,15 @@
   <meta name="description" content="Calculate exact age, next birthday, days lived, months, weeks, and age difference instantly in your browser." />
   <meta name="keywords" content="age calculator, exact age calculator, birthday calculator, date of birth calculator, age in years months days, days lived calculator, next birthday calculator, age difference calculator, online age calculator, date calculator, birth date calculator" />
   <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow" />
+  <link rel="canonical" href="https://nodntools.com/age-calculator" />
   <meta name="google-adsense-account" content="ca-pub-5282672325821404" />
 
   <meta property="og:title" content="Age Calculator Online | Exact Age & Birthday Tool" />
   <meta property="og:description" content="Calculate exact age, next birthday, days lived, months, weeks, and age difference instantly in your browser." />
   <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://nodntools.com/age-calculator" />
+  <meta property="og:site_name" content="NodnWebTools" />
 
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404" crossorigin="anonymous"></script>
   <script src="https://cdn.tailwindcss.com"></script>
@@ -23,9 +27,10 @@
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "Age Calculator Online",
+    "url": "https://nodntools.com/age-calculator",
     "applicationCategory": "UtilitiesApplication",
     "operatingSystem": "All",
-    "description": "A browser-based age calculator that calculates exact age, next birthday, days lived, total months, total weeks, and age difference from a date of birth.",
+    "description": "A browser-based age calculator that calculates exact age, next birthday, days lived, total months, total weeks, and age on a selected date.",
     "offers": {
       "@type": "Offer",
       "price": "0",
@@ -36,6 +41,63 @@
       "name": "NodnWebTools",
       "url": "https://nodntools.com"
     }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How does this age calculator work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The calculator compares the date of birth with the selected comparison date and calculates completed years, remaining months, remaining days, total days, total weeks, total months, and the next birthday countdown."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I calculate age on a future date?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Select a future date in the Calculate age on field to see how old someone will be on that date."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I calculate age on a past date?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Choose any past comparison date after the birth date to calculate how old someone was on that date."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does the calculator account for leap years?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. The calculation uses calendar dates. For February 29 birthdays, the next birthday countdown uses February 28 in non-leap years as a practical display approach."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this tool store my birth date?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. The calculation runs in the browser and does not require an account or server upload."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use this for official legal age verification?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "This tool is for general informational use. Verify official age requirements with the relevant organization for legal, immigration, medical, insurance, financial, school, or government decisions."
+        }
+      }
+    ]
   }
   </script>
 
@@ -65,7 +127,6 @@
     .mobile-panel,
     .mobile-preview,
     .mobile-code,
-    .ad-box,
     input,
     select,
     textarea,
@@ -80,21 +141,6 @@
       word-break: break-word;
     }
 
-    .ad-box {
-      width: 100%;
-      min-height: 90px;
-      border: 2px dashed #cbd5e1;
-      background: #f1f5f9;
-      color: #64748b;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      border-radius: 1rem;
-      padding: 1rem;
-      font-size: 0.95rem;
-      overflow: hidden;
-    }
 
     .result-card {
       transition: 0.2s ease;
@@ -124,11 +170,6 @@
         width: 100%;
       }
 
-      .ad-box {
-        min-height: 90px;
-        font-size: 0.85rem;
-        border-radius: 0.875rem;
-      }
     }
 
     @media (max-width: 380px) {
@@ -145,11 +186,6 @@
         font-size: 1.45rem !important;
       }
 
-      .ad-box {
-        min-height: 80px;
-        padding: 0.75rem;
-        font-size: 0.8rem;
-      }
     }
   </style>
 </head>
@@ -170,11 +206,8 @@
   </header>
 
   <main>
-    <section class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-      <div class="ad-box">Advertisement Space</div>
-    </section>
 
-    <section id="tool" class="mx-auto max-w-7xl px-4 pb-10 pt-4 sm:px-6 lg:px-8">
+    <section id="tool" class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
       <div class="grid gap-6 lg:grid-cols-[0.92fr_1.08fr]">
         <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
           <div class="mb-6 inline-flex items-center rounded-full bg-indigo-50 px-4 py-2 text-sm font-semibold text-indigo-700">
@@ -311,9 +344,6 @@
       </div>
     </section>
 
-    <section class="mx-auto max-w-7xl px-4 pb-10 sm:px-6 lg:px-8">
-      <div class="ad-box">Advertisement Space</div>
-    </section>
 
     <section class="mx-auto max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
       <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8 lg:p-10">
@@ -398,8 +428,6 @@
           </p>
         </section>
 
-        <div class="my-12 ad-box">Advertisement Space</div>
-
         <section class="mt-12">
           <h2 class="text-2xl font-extrabold text-slate-950">Popular Uses for an Age Calculator</h2>
           <p class="mt-4 leading-8 text-slate-700">
@@ -447,8 +475,6 @@
             For example, you may need to know whether a child will be five years old before a school cutoff date. You may want to know how old someone was when a photo was taken. You may need to confirm age on the date a form was submitted. By changing the comparison date, the calculator can answer these questions without manual calendar counting.
           </p>
         </section>
-
-        <div class="my-12 ad-box">Advertisement Space</div>
 
         <section class="mt-12">
           <h2 class="text-2xl font-extrabold text-slate-950">Days Lived, Weeks Lived, and Months Lived</h2>
@@ -504,13 +530,13 @@
   </div>
 
   <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-    <a href="/time.html" class="group rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-fuchsia-300 hover:shadow-lg">
+    <a href="/time" class="group rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-fuchsia-300 hover:shadow-lg">
       <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-fuchsia-50 text-3xl">🕒</div>
       <h3 class="mt-5 text-xl font-bold text-slate-900 transition group-hover:text-fuchsia-700">Time Calculator</h3>
       <p class="mt-2 leading-7 text-slate-600">Calculate elapsed time, work hours, time differences, and decimal hours.</p>
     </a>
 
-    <a href="/bmi.html" class="group rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-cyan-300 hover:shadow-lg">
+    <a href="/bmi" class="group rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-cyan-300 hover:shadow-lg">
       <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-cyan-50 text-3xl">⚖️</div>
       <h3 class="mt-5 text-xl font-bold text-slate-900 transition group-hover:text-cyan-700">BMI Calculator</h3>
       <p class="mt-2 leading-7 text-slate-600">Calculate body mass index with metric and imperial measurement support.</p>
@@ -528,7 +554,7 @@
       <p class="mt-2 leading-7 text-slate-600">Convert annual salary into hourly, daily, weekly, and monthly income.</p>
     </a>
 
-    <a href="/discount.html" class="group rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-rose-300 hover:shadow-lg">
+    <a href="/discount" class="group rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-rose-300 hover:shadow-lg">
       <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-rose-50 text-3xl">🏷️</div>
       <h3 class="mt-5 text-xl font-bold text-slate-900 transition group-hover:text-rose-700">Discount Calculator</h3>
       <p class="mt-2 leading-7 text-slate-600">Calculate sale prices, discounts, coupon savings, and final purchase totals.</p>
@@ -590,8 +616,6 @@
           </div>
         </section>
 
-        <div class="my-12 ad-box">Advertisement Space</div>
-
         <section class="mt-12 rounded-3xl bg-slate-950 p-6 text-slate-100 sm:p-8">
           <h2 class="text-2xl font-extrabold">Legal Disclaimer</h2>
           <p class="mt-4 leading-8 text-slate-300">
@@ -607,9 +631,6 @@
       </article>
     </section>
 
-    <section class="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
-      <div class="ad-box">Advertisement Space</div>
-    </section>
   </main>
 
   <footer class="border-t border-slate-200 bg-white">
@@ -675,22 +696,48 @@
       return new Date(year, monthIndex + 1, 0).getDate();
     }
 
+    function addYearsClamped(date, years) {
+      const targetYear = date.getFullYear() + years;
+      const targetMonth = date.getMonth();
+      const targetDay = Math.min(date.getDate(), daysInMonth(targetYear, targetMonth));
+      return new Date(targetYear, targetMonth, targetDay);
+    }
+
+    function addMonthsClamped(date, months) {
+      const targetMonthIndex = date.getMonth() + months;
+      const targetYear = date.getFullYear() + Math.floor(targetMonthIndex / 12);
+      const normalizedMonth = ((targetMonthIndex % 12) + 12) % 12;
+      const targetDay = Math.min(date.getDate(), daysInMonth(targetYear, normalizedMonth));
+      return new Date(targetYear, normalizedMonth, targetDay);
+    }
+
+    function calendarDayNumber(date) {
+      return Math.floor(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) / 86400000);
+    }
+
+    function daysBetween(start, end) {
+      return calendarDayNumber(end) - calendarDayNumber(start);
+    }
+
     function calculateExactAge(birthDate, compareDate) {
       let years = compareDate.getFullYear() - birthDate.getFullYear();
-      let months = compareDate.getMonth() - birthDate.getMonth();
-      let days = compareDate.getDate() - birthDate.getDate();
+      let yearAnchor = addYearsClamped(birthDate, years);
 
-      if (days < 0) {
-        months -= 1;
-        const previousMonth = new Date(compareDate.getFullYear(), compareDate.getMonth(), 0);
-        days += previousMonth.getDate();
-      }
-
-      if (months < 0) {
+      if (yearAnchor > compareDate) {
         years -= 1;
-        months += 12;
+        yearAnchor = addYearsClamped(birthDate, years);
       }
 
+      let months = 0;
+      let monthAnchor = yearAnchor;
+      while (months < 11) {
+        const nextAnchor = addMonthsClamped(yearAnchor, months + 1);
+        if (nextAnchor > compareDate) break;
+        months += 1;
+        monthAnchor = nextAnchor;
+      }
+
+      const days = daysBetween(monthAnchor, compareDate);
       return { years, months, days };
     }
 
@@ -823,12 +870,11 @@
         }
 
         const age = calculateExactAge(cleanBirthDate, cleanCompareDate);
-        const oneDay = 1000 * 60 * 60 * 24;
-        const totalDays = Math.floor((cleanCompareDate - cleanBirthDate) / oneDay);
+        const totalDays = daysBetween(cleanBirthDate, cleanCompareDate);
         const totalWeeks = Math.floor(totalDays / 7);
         const totalMonths = completedMonthsBetween(cleanBirthDate, cleanCompareDate);
         const nextBirthday = getNextBirthday(cleanBirthDate, cleanCompareDate);
-        const daysUntilBirthday = Math.round((nextBirthday - cleanCompareDate) / oneDay);
+        const daysUntilBirthday = daysBetween(cleanCompareDate, nextBirthday);
         const zodiac = getZodiacSign(cleanBirthDate);
 
         yearsResult.textContent = formatNumber(age.years);
@@ -942,9 +988,6 @@
       });
     });
 
-    window.addEventListener("resize", () => {
-      document.body.style.maxWidth = "100%";
-    });
 
     document.getElementById("year").textContent = new Date().getFullYear();
     compareDateInput.value = toISODateLocal(new Date());
