@@ -10,11 +10,13 @@
   <meta name="keywords" content="discount calculator, sale price calculator, final price calculator, discount percentage calculator, coupon calculator, double discount calculator, savings calculator, tax and discount calculator, shopping calculator, percent off calculator, sale savings calculator, Black Friday discount calculator, Cyber Monday savings calculator, retail price calculator, markdown calculator, clearance price calculator, promo code calculator, price reduction calculator, NodnWebTools" />
   <meta name="author" content="NodnWebTools" />
   <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow" />
+  <link rel="canonical" href="https://nodntools.com/discount" />
 
   <meta property="og:title" content="Discount Calculator | Sale Price & Savings Tool" />
   <meta property="og:description" content="Estimate final sale price, coupon savings, tax, effective discount rate, and total savings instantly." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://nodntools.com/discount.html" />
+  <meta property="og:url" content="https://nodntools.com/discount" />
   <meta property="og:site_name" content="NodnWebTools" />
 
   <meta name="twitter:card" content="summary_large_image" />
@@ -33,7 +35,7 @@
     "name": "Discount Calculator",
     "applicationCategory": "FinanceApplication",
     "operatingSystem": "All",
-    "url": "https://nodntools.com/discount.html",
+    "url": "https://nodntools.com/discount",
     "description": "A free browser-based discount calculator that estimates sale price, total savings, effective discount rate, coupon savings, tax, final checkout cost, and double discount scenarios.",
     "featureList": [
       "Calculate final sale price",
@@ -57,6 +59,55 @@
       "name": "NodnWebTools",
       "url": "https://nodntools.com"
     }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do I calculate a discount?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Multiply the original price by the discount percentage, then subtract that amount from the original price."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does a double discount work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A double discount is usually applied in sequence. The first discount reduces the original price, then the second discount applies to the reduced price."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is 30% off plus 20% off the same as 50% off?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. If discounts are applied one after another, 30% off plus 20% off equals a 44% effective discount."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Should tax be calculated before or after discount?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Many retailers apply tax after the discount, but rules vary by location, product type, and retailer policy."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can this calculator include shipping fees?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "This version focuses on price, percentage discounts, coupons, and tax. Add shipping separately when comparing final checkout totals."
+        }
+      }
+    ]
   }
   </script>
 
@@ -101,8 +152,7 @@
 
     .mobile-card,
     .mobile-panel,
-    .mobile-preview,
-    .ad-box {
+    .mobile-preview {
       max-width: 100%;
       overflow-x: hidden;
     }
@@ -113,22 +163,6 @@
       white-space: pre-wrap;
       overflow-wrap: anywhere;
       word-break: break-word;
-    }
-
-    .ad-box {
-      width: 100%;
-      min-height: 90px;
-      border: 2px dashed #cbd5e1;
-      background: #f8fafc;
-      color: #94a3b8;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      border-radius: 1rem;
-      padding: 1rem;
-      font-size: 0.875rem;
-      line-height: 1.5;
     }
 
     input[type="range"] {
@@ -162,13 +196,6 @@
         font-size: 2rem !important;
         line-height: 2.35rem !important;
       }
-
-      .ad-box {
-        min-height: 90px;
-        border-radius: 0.875rem;
-        padding: 0.875rem;
-        font-size: 0.75rem;
-      }
     }
 
     @media (max-width: 380px) {
@@ -198,20 +225,16 @@
 <body class="min-h-screen bg-slate-50 text-slate-800">
   <div class="w-full px-4 py-5 sm:px-6 lg:px-8">
     <header class="mx-auto flex w-full max-w-7xl flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-      <a href="https://nodntools.com" class="inline-flex items-center gap-2 safe-break" aria-label="NodnWebTools Home">
+      <a href="/" class="inline-flex items-center gap-2 safe-break" aria-label="NodnWebTools Home">
         <span class="text-2xl font-black tracking-tight text-slate-950">
           Nodn<span class="text-indigo-600">WebTools</span>
         </span>
       </a>
       <nav class="flex flex-wrap items-center gap-2 text-sm text-slate-500">
-        <a href="https://nodntools.com" class="rounded-full border border-slate-200 bg-white px-4 py-2 font-semibold transition hover:border-indigo-200 hover:text-indigo-700">Home</a>
+        <a href="/" class="rounded-full border border-slate-200 bg-white px-4 py-2 font-semibold transition hover:border-indigo-200 hover:text-indigo-700">Home</a>
         <span class="rounded-full bg-indigo-50 px-4 py-2 font-semibold text-indigo-700">Client-side shopping utility</span>
       </nav>
     </header>
-
-    <div class="mx-auto mt-5 w-full max-w-7xl">
-      <div class="ad-box">AdSense Responsive Ad Area - Top</div>
-    </div>
 
     <main class="mx-auto mt-6 grid w-full max-w-7xl grid-cols-1 gap-6 lg:grid-cols-12">
       <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:col-span-5 lg:p-8">
@@ -253,7 +276,7 @@
               <button type="button" data-discount="50" class="quick-discount rounded-2xl border border-indigo-200 bg-indigo-50 px-3 py-3 text-sm font-bold text-indigo-700 transition hover:bg-indigo-100 active:scale-[0.99]">50%</button>
             </div>
 
-            <input type="range" id="discountSlider" min="0" max="100" step="1" value="20" class="mt-5 w-full accent-indigo-600" />
+            <input type="range" id="discountSlider" aria-label="Discount percentage slider" min="0" max="100" step="1" value="20" class="mt-5 w-full accent-indigo-600" />
 
             <div class="relative mt-3">
               <input type="number" id="discountPercentage" inputmode="decimal" min="0" max="100" step="1" value="20" placeholder="20"
@@ -283,7 +306,7 @@
               Tax Rate <span class="font-normal text-slate-400">(Optional)</span>
             </label>
             <div class="relative">
-              <input type="number" id="taxRate" inputmode="decimal" min="0" step="0.01" value="0" placeholder="0"
+              <input type="number" id="taxRate" inputmode="decimal" min="0" max="100" step="0.01" value="0" placeholder="0"
                 class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-4 pr-10 text-lg font-semibold text-slate-900 outline-none transition focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-100" />
               <span class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400">%</span>
             </div>
@@ -306,7 +329,7 @@
             Reset Calculator
           </button>
 
-          <div id="copyFeedback" class="hidden rounded-2xl bg-emerald-50 px-4 py-3 text-sm font-bold text-emerald-700">
+          <div id="copyFeedback" role="status" aria-live="polite" class="hidden rounded-2xl bg-emerald-50 px-4 py-3 text-sm font-bold text-emerald-700">
             Copied!
           </div>
         </div>
@@ -321,7 +344,7 @@
             </p>
           </div>
 
-          <div id="result" class="mobile-preview rounded-3xl border border-indigo-100 bg-gradient-to-br from-indigo-50 via-violet-50 to-slate-50 p-5">
+          <div id="result" aria-live="polite" class="mobile-preview rounded-3xl border border-indigo-100 bg-gradient-to-br from-indigo-50 via-violet-50 to-slate-50 p-5">
             <p class="text-sm font-black uppercase tracking-wide text-indigo-700">Final Price</p>
 
             <p id="finalPrice" class="safe-break mt-2 text-4xl font-extrabold tracking-tight text-slate-900">$0.00</p>
@@ -368,16 +391,15 @@
               Tax rate:
               <strong id="displayTaxRate">0.00%</strong>
             </div>
-          </div>
 
-          <div class="ad-box mt-6">AdSense Responsive Ad Area - Below Result</div>
+          <div class="mt-4 rounded-2xl border border-slate-200 bg-white p-4 text-xs leading-6 text-slate-500">
+            Calculation order: original price → first percentage discount → additional percentage discount → tax.
+            Shipping, fixed-amount coupons, environmental fees, duties, and retailer-specific rounding are not included.
+          </div>
+          </div>
         </div>
       </section>
     </main>
-
-    <div class="mx-auto mt-6 w-full max-w-7xl">
-      <div class="ad-box">AdSense Responsive Ad Area - Below Tool</div>
-    </div>
 
     <section class="mx-auto mt-8 w-full max-w-7xl space-y-6">
       <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
@@ -412,8 +434,6 @@
           </p>
         </div>
       </article>
-
-      <div class="ad-box">AdSense Responsive Ad Area - Middle Content</div>
 
       <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
         <h2 class="text-3xl font-black tracking-tight text-slate-950">
@@ -545,8 +565,6 @@
           </div>
         </div>
       </article>
-
-      <div class="ad-box">AdSense Responsive Ad Area - Bottom Content</div>
 
       <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
         <h2 class="text-3xl font-black tracking-tight text-slate-950">
@@ -740,8 +758,6 @@
           </p>
         </div>
       </section>
-
-      <div class="ad-box">AdSense Responsive Ad Area - Bottom</div>
     </section>
 
     <footer class="mx-auto mt-8 w-full max-w-7xl pb-8 text-center text-sm text-slate-500">
@@ -841,7 +857,7 @@
         const originalPrice = sanitizeNumber(originalPriceInput.value);
         const discountRate = clampPercent(discountPercentageInput.value);
         const additionalDiscountRate = clampPercent(additionalDiscountInput.value);
-        const taxRate = sanitizeNumber(taxRateInput.value);
+        const taxRate = clampPercent(taxRateInput.value);
 
         const priceAfterFirstDiscount = originalPrice * (1 - discountRate / 100);
         const priceBeforeTax = priceAfterFirstDiscount * (1 - additionalDiscountRate / 100);
@@ -886,9 +902,19 @@
     }
 
     function syncDiscountFromInput() {
+      if (discountPercentageInput.value === "") {
+        discountSlider.value = "0";
+        calculateDiscount();
+        return;
+      }
+
       const discount = clampPercent(discountPercentageInput.value);
-      discountPercentageInput.value = discount;
       discountSlider.value = discount;
+      calculateDiscount();
+    }
+
+    function normalizePercentageInput(input) {
+      input.value = String(clampPercent(input.value));
       calculateDiscount();
     }
 
@@ -958,6 +984,16 @@
     discountPercentageInput.addEventListener("input", syncDiscountFromInput);
     additionalDiscountInput.addEventListener("input", calculateDiscount);
     taxRateInput.addEventListener("input", calculateDiscount);
+    discountPercentageInput.addEventListener("blur", function() {
+      normalizePercentageInput(discountPercentageInput);
+      discountSlider.value = discountPercentageInput.value;
+    });
+    additionalDiscountInput.addEventListener("blur", function() {
+      normalizePercentageInput(additionalDiscountInput);
+    });
+    taxRateInput.addEventListener("blur", function() {
+      normalizePercentageInput(taxRateInput);
+    });
     copyBtn.addEventListener("click", copyReport);
     downloadBtn.addEventListener("click", downloadReport);
     resetBtn.addEventListener("click", resetCalculator);
