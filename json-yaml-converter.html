@@ -7,14 +7,15 @@
 
   <title>JSON to YAML Converter | Free Developer Tool</title>
   <meta name="description" content="Convert JSON to YAML or YAML to JSON locally in your browser with validation, copy, download, and private no-upload processing.">
-  <meta name="keywords" content="JSON to YAML converter, YAML to JSON converter, online JSON converter, online YAML converter, JSON formatter, YAML formatter, developer tools, configuration converter, Kubernetes YAML converter, Docker compose YAML, API JSON converter, DevOps configuration tool, client-side converter, no upload JSON tool, no upload YAML tool, NodnWebTools">
   <meta name="author" content="NodnWebTools">
   <meta name="robots" content="index, follow">
+  <meta name="googlebot" content="index, follow">
+  <link rel="canonical" href="https://nodntools.com/json-yaml-converter">
 
   <meta property="og:title" content="JSON to YAML Converter | Free Developer Tool">
   <meta property="og:description" content="Convert JSON to YAML or YAML to JSON instantly in your browser with validation, copy, download, and no server upload.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://nodntools.com/json-yaml-converter.html">
+  <meta property="og:url" content="https://nodntools.com/json-yaml-converter">
   <meta property="og:site_name" content="NodnWebTools">
 
   <meta name="twitter:card" content="summary_large_image">
@@ -50,24 +51,83 @@
   </script>
 
   <script type="application/ld+json">
-  {
+{
     "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "JSON to YAML Converter",
-    "applicationCategory": "DeveloperApplication",
-    "operatingSystem": "Any",
-    "url": "https://nodntools.com/json-yaml-converter.html",
-    "description": "A free browser-based developer tool for converting JSON to YAML and YAML to JSON locally with validation, copy, and download options.",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
-    },
-    "creator": {
-      "@type": "Organization",
-      "name": "NodnWebTools",
-      "url": "https://nodntools.com"
-    }
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://nodntools.com/json-yaml-converter#application",
+        "name": "JSON to YAML Converter",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Any",
+        "url": "https://nodntools.com/json-yaml-converter",
+        "description": "Convert JSON to YAML or YAML to JSON locally in your browser with syntax validation, copy, and download options.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "creator": {
+          "@type": "Organization",
+          "name": "NodnWebTools",
+          "url": "https://nodntools.com"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://nodntools.com/json-yaml-converter#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is this JSON to YAML converter free?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. This tool is free to use for converting JSON to YAML and YAML to JSON in your browser."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does this tool upload my JSON or YAML?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The conversion is designed to run locally in your browser. Your pasted data is not intentionally sent to a NodnWebTools backend for conversion."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Why is my JSON invalid?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "JSON requires strict syntax, including double quotes around property names and strings, no trailing commas, and properly matched braces or brackets."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Why is my YAML invalid?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "YAML is indentation-sensitive. Tabs, inconsistent spacing, missing colons, or incorrect nesting can cause parsing errors."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I use this for Kubernetes YAML?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "You can convert general Kubernetes-like YAML or JSON structures, but you should still validate manifests with Kubernetes tools before deployment."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does conversion preserve comments?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Comments may not be preserved during conversion because JSON does not support comments and parsed data is serialized into a new output format."
+            }
+          }
+        ]
+      }
+    ]
   }
   </script>
 
@@ -105,8 +165,7 @@
     .mobile-card,
     .mobile-panel,
     .mobile-preview,
-    .mobile-code,
-    .ad-box {
+    .mobile-code {
       max-width: 100%;
       overflow-wrap: anywhere;
     }
@@ -116,21 +175,6 @@
       white-space: pre-wrap;
     }
 
-    .ad-box {
-      width: 100%;
-      min-height: 90px;
-      border: 1px dashed #cbd5e1;
-      background: #f8fafc;
-      color: #94a3b8;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      border-radius: 1rem;
-      padding: 1rem;
-      font-size: 0.875rem;
-      overflow: hidden;
-    }
 
     @media (max-width: 640px) {
       .mobile-card {
@@ -156,12 +200,6 @@
         font-size: 12px !important;
       }
 
-      .ad-box {
-        min-height: 90px;
-        border-radius: 0.875rem;
-        padding: 0.875rem;
-        font-size: 0.78rem;
-      }
     }
 
     @media (max-width: 380px) {
@@ -185,10 +223,6 @@
         font-size: 11px !important;
       }
 
-      .ad-box {
-        padding: 0.75rem;
-        font-size: 0.72rem;
-      }
     }
   </style>
 </head>
@@ -208,7 +242,6 @@
   </header>
 
   <main class="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-    <div class="ad-box mb-6">Top Ad Area - Responsive AdSense Placeholder</div>
 
     <section class="grid grid-cols-1 gap-6 lg:grid-cols-12">
       <div class="mobile-card rounded-3xl bg-white p-5 shadow-soft ring-1 ring-slate-200 sm:p-8 lg:col-span-5">
@@ -222,11 +255,11 @@
           Convert JSON to YAML or YAML to JSON instantly in your browser. Paste structured configuration data, validate syntax, copy the result, and download clean developer-ready files without sending your data to a backend server.
         </p>
 
-        <div class="mt-6 grid grid-cols-1 gap-2 rounded-2xl bg-slate-100 p-1.5 sm:grid-cols-2">
-          <button id="tabJsonToYaml" type="button" class="rounded-xl bg-accent-600 px-4 py-3 text-sm font-black text-white shadow-sm transition">
+        <div class="mt-6 grid grid-cols-1 gap-2 rounded-2xl bg-slate-100 p-1.5 sm:grid-cols-2" role="tablist" aria-label="Conversion direction">
+          <button id="tabJsonToYaml" type="button" role="tab" aria-selected="true" aria-controls="inputText outputText" class="rounded-xl bg-accent-600 px-4 py-3 text-sm font-black text-white shadow-sm transition">
             JSON to YAML
           </button>
-          <button id="tabYamlToJson" type="button" class="rounded-xl px-4 py-3 text-sm font-black text-slate-600 transition hover:bg-white">
+          <button id="tabYamlToJson" type="button" role="tab" aria-selected="false" aria-controls="inputText outputText" class="rounded-xl px-4 py-3 text-sm font-black text-slate-600 transition hover:bg-white">
             YAML to JSON
           </button>
         </div>
@@ -241,7 +274,7 @@
             <button id="pasteBtn" type="button" class="rounded-2xl bg-white px-4 py-3 text-sm font-black text-slate-800 ring-1 ring-slate-300 transition hover:bg-slate-100 active:scale-[0.98]">Paste</button>
           </div>
 
-          <div id="statusBox" class="rounded-2xl bg-accent-50 p-4 text-sm font-bold text-accent-700 ring-1 ring-accent-100">Ready</div>
+          <div id="statusBox" role="status" aria-live="polite" class="rounded-2xl bg-accent-50 p-4 text-sm font-bold text-accent-700 ring-1 ring-accent-100">Ready</div>
 
           <div class="rounded-2xl bg-slate-950 p-5 text-white">
             <h2 class="text-lg font-black">Local Processing Notice</h2>
@@ -259,11 +292,11 @@
               <div class="mb-3 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <div>
                   <h2 id="inputLabel" class="text-xl font-black tracking-tight text-slate-950">Input JSON</h2>
-                  <p class="mt-1 text-sm text-slate-500">Paste or type your source data below.</p>
+                  <p id="inputHelp" class="mt-1 text-sm text-slate-500">Paste or type your source data below. Conversion runs automatically.</p>
                 </div>
                 <button id="clearBtn" type="button" class="rounded-xl bg-slate-100 px-4 py-2 text-sm font-black text-slate-700 transition hover:bg-slate-200">Clear</button>
               </div>
-              <textarea id="inputText" spellcheck="false" placeholder="Paste JSON here..." class="editor-textarea h-[360px] w-full resize-y rounded-2xl border border-slate-300 bg-slate-950 p-4 font-mono text-sm leading-6 text-slate-100 outline-none transition focus:border-accent-500 focus:ring-4 focus:ring-accent-100"></textarea>
+              <textarea id="inputText" spellcheck="false" aria-describedby="inputHelp" placeholder="Paste JSON here..." class="editor-textarea h-[360px] w-full resize-y rounded-2xl border border-slate-300 bg-slate-950 p-4 font-mono text-sm leading-6 text-slate-100 outline-none transition focus:border-accent-500 focus:ring-4 focus:ring-accent-100"></textarea>
             </div>
 
             <div>
@@ -277,12 +310,10 @@
                   <button id="downloadBtn" type="button" class="rounded-xl bg-slate-950 px-4 py-2 text-sm font-black text-white transition hover:bg-slate-800">Download</button>
                 </div>
               </div>
-              <textarea id="outputText" readonly spellcheck="false" placeholder="Converted output will appear here..." class="editor-textarea h-[360px] w-full resize-y rounded-2xl border border-slate-300 bg-slate-50 p-4 font-mono text-sm leading-6 text-slate-800 outline-none"></textarea>
+              <textarea id="outputText" readonly spellcheck="false" aria-live="polite" placeholder="Converted output will appear here..." class="editor-textarea h-[360px] w-full resize-y rounded-2xl border border-slate-300 bg-slate-50 p-4 font-mono text-sm leading-6 text-slate-800 outline-none"></textarea>
             </div>
           </div>
         </section>
-
-        <div class="ad-box">Ad Area Below Main Tool and Result Section</div>
 
         <section class="mobile-card rounded-3xl bg-white p-5 shadow-sm ring-1 ring-slate-200 sm:p-7">
           <h2 class="text-2xl font-black tracking-tight text-slate-950">Common Conversion Workflows</h2>
@@ -322,8 +353,6 @@
         <p class="mt-5 text-base leading-8 text-slate-600">
           The tool is designed for convenience and privacy. Conversion happens in your browser using client-side JavaScript. You can paste source data, review the generated output, copy the result, or download it as a .yaml or .json file. Because the conversion logic runs locally in the active page, the tool does not need to send your pasted configuration to a backend server for normal operation. This is helpful for routine configuration work, documentation drafts, sample objects, learning exercises, local development, and quick formatting tasks. However, users should still avoid entering passwords, API keys, private tokens, production secrets, signing keys, database credentials, and other sensitive values into any online page.
         </p>
-
-        <div class="ad-box my-8">Middle Content Ad Area Inside the SEO Article Section</div>
 
         <h2 id="how-to-use" class="mt-10 text-2xl font-black tracking-tight text-slate-950">How to Use the JSON to YAML Converter</h2>
         <p class="mt-4 text-base leading-8 text-slate-600">
@@ -366,8 +395,6 @@
         <p class="mt-5 text-base leading-8 text-slate-600">
           YAML is powerful because it is concise and readable, but it can also be sensitive to indentation and spacing. A misplaced space can change the meaning of a file or create a parsing error. Developers converting YAML to JSON should check whether the resulting structure matches expectations. This is especially important for deployment files, infrastructure settings, access rules, and automation scripts where a small formatting issue can cause unexpected behavior.
         </p>
-
-        <div class="ad-box my-8">Bottom Content Ad Area Before FAQ</div>
 
         <h2 class="mt-12 text-2xl font-black tracking-tight text-slate-950">Popular Uses for JSON and YAML Conversion</h2>
         <div class="mt-8 grid grid-cols-1 gap-5 md:grid-cols-2">
@@ -574,8 +601,6 @@
         </div>
       </div>
     </section>
-
-    <div class="ad-box mt-8">Bottom Ad Area Near the End of the Page</div>
   </main>
 
   <footer class="mt-10 border-t border-slate-200 bg-white">
@@ -633,6 +658,8 @@
 
       function setMode(jsonToYaml) {
         isJsonToYamlMode = jsonToYaml;
+        tabJsonToYaml.setAttribute("aria-selected", String(jsonToYaml));
+        tabYamlToJson.setAttribute("aria-selected", String(!jsonToYaml));
         inputText.value = "";
         outputText.value = "";
         outputHasError = false;
@@ -666,8 +693,26 @@
         setStatus("Syntax error found", "error");
       }
 
+      function containsUnsafeKey(value) {
+        if (!value || typeof value !== "object") return false;
+        if (Array.isArray(value)) return value.some(containsUnsafeKey);
+
+        return Object.keys(value).some(function (key) {
+          return key === "__proto__" ||
+            key === "prototype" ||
+            key === "constructor" ||
+            containsUnsafeKey(value[key]);
+        });
+      }
+
       function transform() {
         const payload = inputText.value.trim();
+        const MAX_INPUT_LENGTH = 2_000_000;
+
+        if (payload.length > MAX_INPUT_LENGTH) {
+          showError("Input is too large. Please use a file smaller than approximately 2 MB.");
+          return;
+        }
 
         if (!payload) {
           outputText.value = "";
@@ -685,6 +730,10 @@
 
           if (isJsonToYamlMode) {
             const parsed = JSON.parse(payload);
+            if (containsUnsafeKey(parsed)) {
+              showError("Unsafe object key detected. Remove __proto__, prototype, or constructor keys.");
+              return;
+            }
             outputText.value = jsyaml.dump(parsed, {
               indent: 2,
               lineWidth: -1,
@@ -695,7 +744,11 @@
             resetOutputStyle();
             setStatus("JSON converted to YAML", "success");
           } else {
-            const parsed = jsyaml.load(payload);
+            const parsed = jsyaml.load(payload, { schema: jsyaml.JSON_SCHEMA });
+            if (containsUnsafeKey(parsed)) {
+              showError("Unsafe object key detected. Remove __proto__, prototype, or constructor keys.");
+              return;
+            }
             if (parsed === undefined) {
               showError("Invalid YAML: no readable data was found.");
               return;
