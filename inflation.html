@@ -7,14 +7,15 @@
 
   <title>Inflation Calculator | Money Value Over Time</title>
   <meta name="description" content="Estimate inflation-adjusted money value, cumulative inflation, and purchasing power change over time with a simple browser calculator.">
-  <meta name="keywords" content="inflation calculator, money value over time, purchasing power calculator, inflation adjustment calculator, cumulative inflation calculator, average annual inflation calculator, CPI calculator, historical inflation calculator, cost of living calculator, future value of money, inflation rate calculator, buying power calculator, NodnWebTools">
   <meta name="author" content="NodnWebTools">
   <meta name="robots" content="index, follow">
+  <meta name="googlebot" content="index, follow">
+  <link rel="canonical" href="https://nodntools.com/inflation">
 
   <meta property="og:title" content="Inflation Calculator | Money Value Over Time">
   <meta property="og:description" content="Estimate inflation-adjusted value, cumulative inflation, and purchasing power changes with a free browser-based inflation calculator.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://nodntools.com/inflation.html">
+  <meta property="og:url" content="https://nodntools.com/inflation">
   <meta property="og:site_name" content="NodnWebTools">
 
   <meta name="twitter:card" content="summary_large_image">
@@ -27,25 +28,76 @@
   <script src="https://cdn.tailwindcss.com"></script>
 
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "Inflation Calculator",
-    "applicationCategory": "FinanceApplication",
-    "operatingSystem": "Any",
-    "url": "https://nodntools.com/inflation.html",
-    "description": "A free browser-based inflation calculator for estimating inflation-adjusted money value, purchasing power change, cumulative inflation, and the value of money over time.",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "@id": "https://nodntools.com/inflation#webapp",
+      "name": "Inflation Calculator",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Any",
+      "url": "https://nodntools.com/inflation",
+      "description": "Estimate inflation-adjusted money value, cumulative inflation, and purchasing power changes using a customizable annual inflation rate.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "creator": {
+        "@type": "Organization",
+        "name": "NodnWebTools",
+        "url": "https://nodntools.com"
+      }
     },
-    "creator": {
-      "@type": "Organization",
-      "name": "NodnWebTools",
-      "url": "https://nodntools.com"
+    {
+      "@type": "FAQPage",
+      "@id": "https://nodntools.com/inflation#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is this inflation calculator official CPI data?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. This calculator uses a simplified compound annual inflation model. It is designed for educational estimates, not official CPI reporting."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What inflation rate should I use?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You can use a long-term average assumption, a recent inflation estimate, or your own scenario. Testing several rates can help you understand different outcomes."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can this calculator estimate future inflation?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, but only as a scenario estimate. Future inflation is uncertain and can be affected by economic growth, energy prices, supply chains, interest rates, policy, and global events."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why does inflation compound?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Inflation compounds because each year’s price increase applies to the already-increased price level from previous years."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is purchasing power the same as inflation?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "They are related but not identical. Inflation measures price increases, while purchasing power describes how much goods and services money can buy."
+          }
+        }
+      ]
     }
-  }
+  ]
+}
   </script>
 
   <style>
@@ -73,12 +125,10 @@
       overflow-wrap: anywhere;
       word-break: break-word;
     }
-
     .mobile-card,
     .mobile-panel,
     .mobile-preview,
-    .mobile-code,
-    .ad-box {
+    .mobile-code {
       max-width: 100%;
       overflow-wrap: anywhere;
     }
@@ -86,22 +136,6 @@
     .mobile-code {
       overflow-x: auto;
       white-space: pre-wrap;
-    }
-
-    .ad-box {
-      width: 100%;
-      min-height: 90px;
-      border: 1px dashed #cbd5e1;
-      background: #f8fafc;
-      color: #94a3b8;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      border-radius: 1rem;
-      padding: 1rem;
-      font-size: 0.875rem;
-      overflow: hidden;
     }
 
     @media (max-width: 640px) {
@@ -121,13 +155,6 @@
       .mobile-button-grid button {
         width: 100%;
       }
-
-      .ad-box {
-        min-height: 90px;
-        border-radius: 0.875rem;
-        padding: 0.875rem;
-        font-size: 0.78rem;
-      }
     }
 
     @media (max-width: 380px) {
@@ -144,11 +171,6 @@
       h2 {
         font-size: 1.45rem !important;
         line-height: 1.9rem !important;
-      }
-
-      .ad-box {
-        padding: 0.75rem;
-        font-size: 0.72rem;
       }
     }
   </style>
@@ -169,7 +191,6 @@
   </header>
 
   <main class="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-    <div class="ad-box mb-6">Top Ad Area - Responsive AdSense Placeholder</div>
 
     <section class="grid grid-cols-1 gap-6 lg:grid-cols-12">
       <div class="mobile-card rounded-3xl bg-white p-5 shadow-xl ring-1 ring-slate-200 sm:p-8 lg:col-span-5 lg:sticky lg:top-8 lg:self-start">
@@ -207,7 +228,7 @@
           <div>
             <label for="inflationRate" class="mb-2 block text-sm font-bold text-slate-800">Average Annual Inflation Rate</label>
             <div class="relative">
-              <input id="inflationRate" type="number" inputmode="decimal" min="0" step="0.1" value="3.2" placeholder="3.2" class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-4 pr-11 text-lg font-bold text-slate-900 outline-none transition focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-100">
+              <input id="inflationRate" type="number" inputmode="decimal" min="0" max="100" step="0.1" value="3.2" placeholder="3.2" class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-4 pr-11 text-lg font-bold text-slate-900 outline-none transition focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-100">
               <span class="absolute right-4 top-1/2 -translate-y-1/2 font-bold text-slate-400">%</span>
             </div>
             <p class="mt-2 text-xs leading-5 text-slate-500">
@@ -224,7 +245,7 @@
             <button id="resetBtn" type="button" class="rounded-2xl bg-white px-4 py-3 text-sm font-black text-slate-800 ring-1 ring-slate-300 transition hover:bg-slate-100 active:scale-[0.98]">Reset</button>
           </div>
 
-          <div id="statusBox" class="rounded-2xl bg-indigo-50 p-4 text-sm font-bold text-indigo-700 ring-1 ring-indigo-100">Ready</div>
+          <div id="statusBox" role="status" aria-live="polite" class="rounded-2xl bg-indigo-50 p-4 text-sm font-bold text-indigo-700 ring-1 ring-indigo-100">Ready</div>
         </div>
       </div>
 
@@ -237,8 +258,8 @@
 
           <div class="rounded-3xl border border-slate-200 bg-gradient-to-br from-indigo-50 via-white to-slate-50 p-5">
             <p class="text-sm font-black uppercase tracking-wide text-indigo-700">Adjusted Value</p>
-            <p id="adjustedValue" class="safe-break mt-2 text-4xl font-black tracking-tight text-slate-950 sm:text-5xl">$0.00</p>
-            <p id="summarySentence" class="mt-4 text-base leading-7 text-slate-700">$0.00 in 1920 has approximately the same buying power as $0.00 in 2026.</p>
+            <p id="adjustedValue" aria-live="polite" class="safe-break mt-2 text-4xl font-black tracking-tight text-slate-950 sm:text-5xl">$0.00</p>
+            <p id="summarySentence" class="mt-4 text-base leading-7 text-slate-700">$100.00 in 1920 has approximately the same buying power as the calculated amount today.</p>
 
             <div class="mt-6 grid gap-3 sm:grid-cols-2">
               <div class="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-200">
@@ -267,15 +288,13 @@
               </div>
 
               <div class="rounded-3xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
-                <p class="text-xs font-black uppercase tracking-wide text-slate-600">Purchasing Power Lost</p>
+                <p id="purchasingPowerLabel" class="text-xs font-black uppercase tracking-wide text-slate-600">Purchasing Power Lost</p>
                 <p id="purchasingPowerLost" class="mt-2 text-3xl font-black text-red-600">0.00%</p>
                 <p class="mt-2 text-xs leading-5 text-slate-500">Estimated loss of one dollar's buying power.</p>
               </div>
             </div>
           </div>
         </section>
-
-        <div class="ad-box">Ad Area Below Main Tool and Result Section</div>
 
         <section class="mobile-card rounded-3xl bg-white p-5 shadow-sm ring-1 ring-slate-200 sm:p-8">
           <h2 class="text-2xl font-black tracking-tight text-slate-950">What This Calculator Shows</h2>
@@ -311,8 +330,6 @@
         <p class="mt-5 text-base leading-8 text-slate-600">
           When people search for an inflation calculator, purchasing power calculator, historical inflation calculator, value of money calculator, or cost of living calculator, they are usually trying to answer a practical question: “How much would this amount be worth today?” or “What would today’s money have been worth in the past?” This tool provides a simplified estimate using the inflation adjustment formula. It does not use official year-by-year CPI data, but it is useful for understanding the core concept of compounding inflation and the long-term effect of price increases.
         </p>
-
-        <div class="ad-box my-8">Middle Content Ad Area Inside the SEO Article Section</div>
 
         <h2 id="how-to-use" class="mt-10 text-2xl font-black tracking-tight text-slate-950">How to Use the Inflation Calculator</h2>
         <p class="mt-4 text-base leading-8 text-slate-600">
@@ -355,8 +372,6 @@
         <p class="mt-5 text-base leading-8 text-slate-600">
           Many financial decisions become clearer after adjusting for inflation. A raise that looks good on paper may be less impressive if prices are rising faster. A savings account balance may grow in nominal dollars but shrink in real purchasing power if the interest rate is lower than inflation. A historical home price may appear extremely cheap compared with today, but inflation adjustment can help provide a fairer comparison. A retirement target may sound large, but future inflation can reduce what that amount will actually buy.
         </p>
-
-        <div class="ad-box my-8">Bottom Content Ad Area Before FAQ</div>
 
         <h2 class="mt-12 text-2xl font-black tracking-tight text-slate-950">Common Uses for an Inflation Calculator</h2>
         <div class="mt-8 grid grid-cols-1 gap-5 md:grid-cols-2">
@@ -558,8 +573,6 @@
         </div>
       </div>
     </section>
-
-    <div class="ad-box mt-8">Bottom Ad Area Near the End of the Page</div>
   </main>
 
   <footer class="mt-10 border-t border-slate-200 bg-white">
@@ -572,7 +585,7 @@
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const START_YEAR = 1920;
-      const END_YEAR = 2026;
+      const END_YEAR = new Date().getFullYear();
 
       const pastAmountInput = document.getElementById("pastAmount");
       const startingYearSelect = document.getElementById("startingYear");
@@ -586,6 +599,7 @@
       const displayTargetYearEl = document.getElementById("displayTargetYear");
       const cumulativeInflationEl = document.getElementById("cumulativeInflation");
       const purchasingPowerLostEl = document.getElementById("purchasingPowerLost");
+      const purchasingPowerLabelEl = document.getElementById("purchasingPowerLabel");
       const copyResultBtn = document.getElementById("copyResultBtn");
       const resetBtn = document.getElementById("resetBtn");
       const statusBox = document.getElementById("statusBox");
@@ -644,7 +658,7 @@
         }
 
         startingYearSelect.value = "1920";
-        targetYearSelect.value = "2026";
+        targetYearSelect.value = String(END_YEAR);
       }
 
       function calculateInflation() {
@@ -654,6 +668,17 @@
         const annualInflationRate = sanitizeNumber(inflationRateInput.value, 0) / 100;
         const yearDifference = targetYear - startingYear;
         const absoluteYears = Math.abs(yearDifference);
+
+        if (!Number.isFinite(startingYear) || !Number.isFinite(targetYear)) {
+          setStatus("Please select valid years.", "error");
+          return;
+        }
+
+        if (pastAmountInput.value === "" || inflationRateInput.value === "") {
+          setStatus("Enter an amount and inflation rate.", "error");
+        } else {
+          setStatus("Ready", "info");
+        }
 
         let adjustedValue = pastAmount;
         let inflationMultiplier = 1;
@@ -668,11 +693,11 @@
 
         const cumulativeInflationRate = yearDifference >= 0
           ? (inflationMultiplier - 1) * 100
-          : (1 - 1 / inflationMultiplier) * -100;
+          : (1 / inflationMultiplier - 1) * 100;
 
-        const purchasingPowerLost = yearDifference >= 0 && inflationMultiplier > 0
+        const purchasingPowerChange = yearDifference >= 0 && inflationMultiplier > 0
           ? (1 - 1 / inflationMultiplier) * 100
-          : 0;
+          : (inflationMultiplier - 1) * 100;
 
         const yearTextLabel = absoluteYears === 1 ? "Year" : "Years";
 
@@ -692,7 +717,8 @@
         displayStartingYearEl.textContent = startingYear;
         displayTargetYearEl.textContent = targetYear;
         cumulativeInflationEl.textContent = formatPercent(cumulativeInflationRate, 2);
-        purchasingPowerLostEl.textContent = yearDifference >= 0 ? formatPercent(purchasingPowerLost, 2) : "Reverse estimate";
+        purchasingPowerLabelEl.textContent = yearDifference >= 0 ? "Purchasing Power Lost" : "Purchasing Power Gained";
+        purchasingPowerLostEl.textContent = formatPercent(purchasingPowerChange, 2);
       }
 
       async function copyResult() {
@@ -732,7 +758,7 @@
       function resetCalculator() {
         pastAmountInput.value = "100";
         startingYearSelect.value = "1920";
-        targetYearSelect.value = "2026";
+        targetYearSelect.value = String(END_YEAR);
         inflationRateInput.value = "3.2";
         calculateInflation();
         setStatus("Calculator reset", "success");
