@@ -4,13 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Document Viewer for DOCX, PDF and TXT Files</title>
-  <meta name="description" content="Open and preview DOCX, PDF, and TXT files securely in your browser with this free online document viewer.">
+  <title>DOCX, PDF & TXT Document Viewer | NodnTools</title>
+  <meta name="description" content="Open DOCX, PDF, and TXT files in your browser with page navigation, text search, zoom controls, and local file processing.">
   <meta name="keywords" content="document viewer, DOCX viewer, PDF viewer, TXT viewer, online document viewer, open DOCX online, view PDF online, text file viewer, browser document reader, free document viewer, private document viewer, client-side file viewer">
   <meta name="robots" content="index, follow">
-  <meta property="og:title" content="Document Viewer for DOCX, PDF and TXT Files">
-  <meta property="og:description" content="Preview Word, PDF, and text documents directly in your browser without uploading files to a server.">
+  <meta name="googlebot" content="index, follow">
+  <link rel="canonical" href="https://nodntools.com/document-viewer">
+  <meta property="og:title" content="DOCX, PDF & TXT Document Viewer | NodnTools">
+  <meta property="og:description" content="Preview DOCX, PDF, and TXT files with local browser processing, search, PDF navigation, and zoom controls.">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nodntools.com/document-viewer">
+  <meta property="og:site_name" content="NodnTools">
 
   <link rel="icon" type="image/png" href="/favicon.png">
 
@@ -18,7 +22,6 @@
   <meta name="google-adsense-account" content="ca-pub-5282672325821404">
 
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.min.mjs" type="module"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.9.0/mammoth.browser.min.js"></script>
 
   <script type="application/ld+json">
@@ -47,6 +50,79 @@
       "Local browser processing"
     ]
   }
+  </script>
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is this document viewer free to use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The document viewer can be used without creating an account or paying a fee. It is intended for quick browser-based previews of supported PDF, DOCX, and TXT files."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are my files uploaded to a server?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The viewer processes selected documents locally in your browser. The tool itself does not intentionally upload the document for preview processing. Users should still consider the security of their device, browser extensions, and network environment."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I open old Microsoft Word DOC files?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. This viewer supports DOCX files, which are the modern Microsoft Word format. Older binary DOC files should first be converted to DOCX using Microsoft Word, LibreOffice, or another trusted conversion tool."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does my DOCX file look different from Microsoft Word?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The browser converts Word content into HTML for reading. Common headings, paragraphs, lists, tables, links, and images are usually supported, but advanced page layout, fonts, text boxes, tracked changes, comments, headers, and other complex features may not appear exactly the same."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is no text extracted from my PDF?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The PDF may be a scanned image without a searchable text layer. This viewer does not perform optical character recognition. The page can still be displayed visually, but copying and text search may not be available."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I edit documents with this tool?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. This is a document reading and preview tool. It does not modify the selected file. Use a dedicated PDF editor, Microsoft Word, text editor, or compatible office application when document editing is required."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the tool work on mobile devices?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The page is designed to adapt to phones and tablets. Performance depends on the device, browser, file size, and document complexity. Very large PDF or DOCX files may work better on a desktop or laptop."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the maximum supported file size?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The viewer does not impose a fixed server upload limit because processing is local. Practical limits depend on available browser memory, device performance, file complexity, and operating system restrictions."
+      }
+    }
+  ]
+}
   </script>
 
   <style>
@@ -78,7 +154,6 @@
     .mobile-panel,
     .mobile-preview,
     .mobile-code,
-    .ad-box,
     input,
     textarea,
     select,
@@ -90,20 +165,6 @@
     pre,
     code {
       max-width: 100%;
-    }
-
-    .ad-box {
-      min-height: 90px;
-      border: 2px dashed #cbd5e1;
-      background: #f8fafc;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      color: #64748b;
-      padding: 1rem;
-      border-radius: 1rem;
-      overflow: hidden;
     }
 
     .drop-zone.drag-active {
@@ -295,12 +356,6 @@
         border-radius: 0.85rem;
       }
 
-      .ad-box {
-        border-radius: 0.75rem;
-        min-height: 82px;
-        font-size: 0.8rem;
-      }
-
       button,
       input,
       select {
@@ -317,25 +372,17 @@
 <body class="min-h-screen bg-slate-50 text-slate-900">
   <header class="border-b border-slate-200 bg-white">
     <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
-      <a href="https://nodntools.com" class="safe-break text-xl font-extrabold tracking-tight text-slate-900" aria-label="NodnWebTools home">
+      <a href="/" rel="home" class="safe-break text-xl font-extrabold tracking-tight text-slate-900" aria-label="NodnTools home">
         Nodn<span class="text-indigo-600">WebTools</span>
       </a>
 
-      <a href="https://nodntools.com" class="rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700">
+      <a href="/" class="rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700">
         Home
       </a>
     </div>
   </header>
 
   <main>
-    <section class="mx-auto max-w-7xl px-4 pt-6 sm:px-6 lg:px-8">
-      <div class="ad-box">
-        <div>
-          <div class="font-semibold text-slate-600">Advertisement</div>
-          <div class="mt-1 text-xs text-slate-500">Top ad area</div>
-        </div>
-      </div>
-    </section>
 
     <section class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
       <div class="mb-8 max-w-4xl">
@@ -357,7 +404,7 @@
         <aside class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
           <div class="mb-5">
             <h2 class="text-xl font-bold text-slate-900">Open a Document</h2>
-            <p class="mt-2 text-sm leading-6 text-slate-600">
+            <p id="supportedFileHelp" class="mt-2 text-sm leading-6 text-slate-600">
               Choose a DOCX, PDF, or TXT file from your device. Legacy DOC files are not supported.
             </p>
           </div>
@@ -374,7 +421,7 @@
               Browse Files
             </label>
 
-            <input id="fileInput" type="file" class="sr-only" accept=".pdf,.docx,.txt,text/plain,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+            <input id="fileInput" type="file" class="sr-only" aria-describedby="supportedFileHelp" accept=".pdf,.docx,.txt,text/plain,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
           </div>
 
           <div id="warningBox" class="mt-4 hidden rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm leading-6 text-amber-800" role="alert"></div>
@@ -435,7 +482,7 @@
               </button>
             </div>
 
-            <p id="searchStatus" class="mt-2 text-xs text-slate-500"></p>
+            <p id="searchStatus" class="mt-2 text-xs text-slate-500" role="status" aria-live="polite"></p>
           </div>
 
           <div class="mobile-button-grid mt-5 grid grid-cols-2 gap-3">
@@ -461,7 +508,7 @@
           <div class="flex flex-col gap-4 border-b border-slate-200 pb-5 xl:flex-row xl:items-center xl:justify-between">
             <div>
               <h2 class="text-xl font-bold text-slate-900">Document Preview</h2>
-              <p id="previewStatus" class="mt-1 text-sm text-slate-500">
+              <p id="previewStatus" class="mt-1 text-sm text-slate-500" role="status" aria-live="polite">
                 Select a supported document to begin.
               </p>
             </div>
@@ -561,15 +608,6 @@
       </div>
     </section>
 
-    <section class="mx-auto max-w-7xl px-4 pb-8 sm:px-6 lg:px-8">
-      <div class="ad-box">
-        <div>
-          <div class="font-semibold text-slate-600">Advertisement</div>
-          <div class="mt-1 text-xs text-slate-500">Ad area below the document viewer</div>
-        </div>
-      </div>
-    </section>
-
     <section class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
       <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8 lg:p-12">
         <div class="max-w-4xl">
@@ -617,12 +655,6 @@
             </p>
           </div>
         </div>
-
-        <div class="ad-box mt-10">
-          <div>
-            <div class="font-semibold text-slate-600">Advertisement</div>
-            <div class="mt-1 text-xs text-slate-500">Middle content ad area</div>
-          </div>
         </div>
 
         <div class="mt-12 max-w-4xl space-y-10">
@@ -744,12 +776,6 @@
             </p>
           </section>
         </div>
-
-        <div class="ad-box mt-10">
-          <div>
-            <div class="font-semibold text-slate-600">Advertisement</div>
-            <div class="mt-1 text-xs text-slate-500">Bottom content ad area</div>
-          </div>
         </div>
 
         <div class="mt-12 max-w-4xl space-y-10">
@@ -893,7 +919,7 @@
         <p class="text-sm font-bold uppercase tracking-[0.18em] text-indigo-600">Explore More Utilities</p>
         <h2 class="mt-2 text-3xl font-extrabold tracking-tight text-slate-950">Related Tools</h2>
         <p class="mt-3 max-w-3xl leading-7 text-slate-600">
-          Continue working with documents and files using these related NodnWebTools utilities.
+          Continue working with documents and files using these related NodnTools utilities.
         </p>
       </div>
 
@@ -923,7 +949,7 @@
         </a>
 
         <a href="/excel-viewer" class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-indigo-300 hover:shadow-md">
-          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-50 text-2xl transition group-hover:bg-amber-500 group-hover:text-white">🎬</div>
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-2xl transition group-hover:bg-emerald-600 group-hover:text-white">📈</div>
           <h3 class="mt-4 text-lg font-bold text-slate-900 group-hover:text-indigo-700">Excel Viewer</h3>
           <p class="mt-2 text-sm leading-6 text-slate-600"> Open XLSX, XLS, and CSV files directly in your browser with worksheet navigation, search, filtering, sorting, and export tools.</p>
         </a>
@@ -1017,15 +1043,6 @@
       </div>
     </section>
 
-    <section class="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
-      <div class="ad-box">
-        <div>
-          <div class="font-semibold text-slate-600">Advertisement</div>
-          <div class="mt-1 text-xs text-slate-500">Bottom ad area</div>
-        </div>
-      </div>
-    </section>
-
     <section class="mx-auto max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
       <div class="rounded-3xl border border-slate-700 bg-slate-900 p-6 text-slate-200 shadow-sm sm:p-8">
         <h2 class="text-2xl font-extrabold text-white">Legal Disclaimer</h2>
@@ -1057,8 +1074,8 @@
 
   <footer class="border-t border-slate-200 bg-white">
     <div class="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-6 text-sm text-slate-500 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
-      <p>© <span id="currentYear"></span> NodnWebTools. All rights reserved.</p>
-      <a href="https://nodntools.com" class="font-semibold text-indigo-600 hover:text-indigo-700">Visit NodnWebTools</a>
+      <p>© <span id="currentYear"></span> NodnTools. All rights reserved.</p>
+      <a href="/" class="font-semibold text-indigo-600 hover:text-indigo-700">Visit NodnTools</a>
     </div>
   </footer>
 
@@ -1122,6 +1139,16 @@
     let pdfRendering = false;
     let pendingPageNumber = null;
 
+    const actionButtons = [copyButton, downloadButton, fullscreenButton, resetButton];
+
+    const setActionButtonsEnabled = (enabled) => {
+      actionButtons.forEach((button) => {
+        button.disabled = !enabled;
+        button.classList.toggle("opacity-50", !enabled);
+        button.classList.toggle("cursor-not-allowed", !enabled);
+      });
+    };
+
     const setWarning = (message = "") => {
       if (!message) {
         warningBox.textContent = "";
@@ -1156,6 +1183,41 @@
         };
         return entities[character];
       });
+    };
+
+
+    const sanitizeDocxHtml = (htmlValue) => {
+      const template = document.createElement("template");
+      template.innerHTML = htmlValue;
+
+      const blockedElements = template.content.querySelectorAll(
+        "script, iframe, object, embed, form, input, button, textarea, select, style, link, meta"
+      );
+      blockedElements.forEach((element) => element.remove());
+
+      template.content.querySelectorAll("*").forEach((element) => {
+        [...element.attributes].forEach((attribute) => {
+          const name = attribute.name.toLowerCase();
+          const value = attribute.value.trim().toLowerCase();
+
+          if (
+            name.startsWith("on") ||
+            name === "style" ||
+            name === "srcdoc" ||
+            ((name === "href" || name === "src") &&
+              (value.startsWith("javascript:") || value.startsWith("data:text/html")))
+          ) {
+            element.removeAttribute(attribute.name);
+          }
+        });
+
+        if (element.tagName === "A") {
+          element.setAttribute("rel", "noopener noreferrer");
+          element.setAttribute("target", "_blank");
+        }
+      });
+
+      return template.innerHTML;
     };
 
     const hideAllPreviews = () => {
@@ -1229,6 +1291,7 @@
       pdfRendering = false;
       pendingPageNumber = null;
 
+      clearSearchHighlights();
       pdfTextOutput.textContent = "";
       pdfTextOutput.classList.add("hidden");
       togglePdfTextButton.textContent = "Show Text";
@@ -1242,6 +1305,7 @@
       context.clearRect(0, 0, pdfCanvas.width, pdfCanvas.height);
 
       resetFileInfo();
+      setActionButtonsEnabled(false);
     };
 
     const renderPdfPage = async (pageNumber) => {
@@ -1364,8 +1428,9 @@
         const textResult = await window.mammoth.extractRawText({ arrayBuffer });
 
         extractedText = textResult.value.trim();
+        const safeDocxHtml = sanitizeDocxHtml(htmlResult.value || "");
         docxOutput.innerHTML =
-          htmlResult.value ||
+          safeDocxHtml ||
           '<p class="text-slate-500">No readable content was found in this DOCX file.</p>';
 
         hideAllPreviews();
@@ -1408,6 +1473,7 @@
         selectedFile = file;
         currentFileKind = kind;
         selectedFileUrl = URL.createObjectURL(file);
+        setActionButtonsEnabled(true);
 
         updateFileInfo(file, kind);
         showLoading();
@@ -1427,10 +1493,68 @@
       }
     };
 
+    const clearSearchHighlights = () => {
+      document.querySelectorAll("mark.search-highlight").forEach((mark) => {
+        mark.replaceWith(document.createTextNode(mark.textContent || ""));
+      });
+
+      docxOutput.normalize();
+      pdfTextOutput.normalize();
+    };
+
+    const highlightTextContainer = (container, query) => {
+      clearSearchHighlights();
+
+      const escapedQuery = query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      const regex = new RegExp(escapedQuery, "gi");
+      const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT);
+      const textNodes = [];
+
+      while (walker.nextNode()) {
+        const node = walker.currentNode;
+        if (node.parentElement?.closest("mark, script, style")) continue;
+        if (regex.test(node.nodeValue || "")) {
+          textNodes.push(node);
+        }
+        regex.lastIndex = 0;
+      }
+
+      let count = 0;
+      let firstMark = null;
+
+      textNodes.forEach((node) => {
+        const text = node.nodeValue || "";
+        const fragment = document.createDocumentFragment();
+        let lastIndex = 0;
+
+        text.replace(regex, (match, offset) => {
+          fragment.appendChild(document.createTextNode(text.slice(lastIndex, offset)));
+
+          const mark = document.createElement("mark");
+          mark.className = "search-highlight";
+          mark.textContent = match;
+          fragment.appendChild(mark);
+
+          if (!firstMark) firstMark = mark;
+          count += 1;
+          lastIndex = offset + match.length;
+          return match;
+        });
+
+        fragment.appendChild(document.createTextNode(text.slice(lastIndex)));
+        node.replaceWith(fragment);
+        regex.lastIndex = 0;
+      });
+
+      firstMark?.scrollIntoView({ behavior: "smooth", block: "center" });
+      return count;
+    };
+
     const findSearchMatches = () => {
       const query = searchInput.value.trim();
 
       if (!query) {
+        clearSearchHighlights();
         searchStatus.textContent = "Enter a word or phrase to search.";
         return;
       }
@@ -1441,39 +1565,29 @@
       }
 
       try {
-        const escapedQuery = query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-        const matches = extractedText.match(new RegExp(escapedQuery, "gi")) || [];
-
-        searchStatus.textContent =
-          matches.length === 1
-            ? "1 match found."
-            : `${matches.length} matches found.`;
+        let matches = 0;
 
         if (currentFileKind === "docx") {
-          const visibleText = docxOutput.innerText;
-          const safeText = escapeHtml(visibleText);
-          const highlighted = safeText.replace(
-            new RegExp(`(${escapedQuery})`, "gi"),
-            '<mark class="search-highlight">$1</mark>'
-          );
-
-          docxOutput.innerHTML = `<div class="txt-output">${highlighted}</div>`;
+          matches = highlightTextContainer(docxOutput, query);
         } else if (currentFileKind === "txt") {
-          const safeText = escapeHtml(extractedText);
-          txtOutput.innerHTML = safeText.replace(
-            new RegExp(`(${escapedQuery})`, "gi"),
-            '<mark class="search-highlight">$1</mark>'
-          );
+          const escapedQuery = query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+          matches = (extractedText.match(new RegExp(escapedQuery, "gi")) || []).length;
+
+          if (matches > 0) {
+            const lowerText = extractedText.toLowerCase();
+            const matchIndex = lowerText.indexOf(query.toLowerCase());
+            const lineNumber = extractedText.slice(0, matchIndex).split("\n").length;
+            const lineHeight = parseFloat(getComputedStyle(txtOutput).lineHeight) || 28;
+            txtOutput.scrollTop = Math.max(0, (lineNumber - 2) * lineHeight);
+          }
         } else if (currentFileKind === "pdf") {
           pdfTextOutput.classList.remove("hidden");
           togglePdfTextButton.textContent = "Hide Text";
-
-          const safeText = escapeHtml(extractedText);
-          pdfTextOutput.innerHTML = safeText.replace(
-            new RegExp(`(${escapedQuery})`, "gi"),
-            '<mark class="search-highlight">$1</mark>'
-          );
+          matches = highlightTextContainer(pdfTextOutput, query);
         }
+
+        searchStatus.textContent =
+          matches === 1 ? "1 match found." : `${matches} matches found.`;
       } catch (error) {
         console.error(error);
         searchStatus.textContent = "Search could not be completed.";
@@ -1639,6 +1753,7 @@
     document.getElementById("currentYear").textContent =
       String(new Date().getFullYear());
 
+    setActionButtonsEnabled(false);
     showEmptyState();
   </script>
 </body>
