@@ -10,11 +10,13 @@
   <meta name="keywords" content="diff checker, text compare tool, code difference checker, online diff tool, compare text online, compare code online, line by line diff, file comparison tool, document comparison tool, text difference checker, code review tool, developer diff utility, browser diff checker, client-side text compare, secure diff checker, compare two text files, source code comparison, revision comparison, content change checker, NodnWebTools" />
   <meta name="author" content="NodnWebTools" />
   <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow" />
+  <link rel="canonical" href="https://nodntools.com/diff-checker" />
 
   <meta property="og:title" content="Diff Checker | Text Compare & Code Difference Tool" />
   <meta property="og:description" content="Compare two text blocks, code snippets, or files line by line with a fast browser-based diff checker." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://nodntools.com/diff-checker.html" />
+  <meta property="og:url" content="https://nodntools.com/diff-checker" />
   <meta property="og:site_name" content="NodnWebTools" />
 
   <meta name="twitter:card" content="summary_large_image" />
@@ -34,7 +36,7 @@
     "name": "Diff Checker",
     "applicationCategory": "DeveloperApplication",
     "operatingSystem": "All",
-    "url": "https://nodntools.com/diff-checker.html",
+    "url": "https://nodntools.com/diff-checker",
     "description": "A free browser-based diff checker that compares text, code snippets, files, and documents line by line with highlighted added and removed content.",
     "featureList": [
       "Compare two text blocks",
@@ -56,6 +58,55 @@
       "name": "NodnWebTools",
       "url": "https://nodntools.com"
     }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is a diff checker?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A diff checker compares two text versions and highlights added, removed, and unchanged lines."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I compare source code with this tool?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. You can compare HTML, CSS, JavaScript, JSON, Markdown, XML, configuration files, logs, and plain text."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this tool upload my text?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The comparison logic runs in your browser. Your pasted text and uploaded file content are not intentionally sent to a backend server."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I upload files?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. You can upload common text-based files such as .txt, .html, .css, .js, .json, .xml, .md, .csv, and .log."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does formatting appear as a change?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Line breaks, indentation, spaces, and punctuation can affect line comparison results. Formatting changes may appear even when the visible wording is similar."
+        }
+      }
+    ]
   }
   </script>
 
@@ -105,8 +156,7 @@
 
     .mobile-card,
     .mobile-panel,
-    .mobile-preview,
-    .ad-box {
+    .mobile-preview {
       max-width: 100%;
       overflow-x: hidden;
     }
@@ -117,22 +167,6 @@
       white-space: pre-wrap;
       overflow-wrap: anywhere;
       word-break: break-word;
-    }
-
-    .ad-box {
-      width: 100%;
-      min-height: 90px;
-      border: 2px dashed #cbd5e1;
-      background: #f8fafc;
-      color: #94a3b8;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      border-radius: 1rem;
-      padding: 1rem;
-      font-size: 0.875rem;
-      line-height: 1.5;
     }
 
     .diff-line {
@@ -182,13 +216,6 @@
         line-height: 2.35rem !important;
       }
 
-      .ad-box {
-        min-height: 90px;
-        border-radius: 0.875rem;
-        padding: 0.875rem;
-        font-size: 0.75rem;
-      }
-
       #diffContent {
         max-height: 420px;
       }
@@ -222,20 +249,16 @@
 <body class="min-h-screen bg-slate-50 text-slate-800">
   <div class="w-full px-4 py-5 sm:px-6 lg:px-8">
     <header class="mx-auto flex w-full max-w-7xl flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-      <a href="https://nodntools.com" class="inline-flex items-center gap-2 safe-break" aria-label="NodnWebTools Home">
+      <a href="/" class="inline-flex items-center gap-2 safe-break" aria-label="NodnWebTools Home">
         <span class="text-2xl font-black tracking-tight text-slate-950">
           Nodn<span class="text-indigo-600">WebTools</span>
         </span>
       </a>
       <nav class="flex flex-wrap items-center gap-2 text-sm text-slate-500">
-        <a href="https://nodntools.com" class="rounded-full border border-slate-200 bg-white px-4 py-2 font-semibold transition hover:border-indigo-200 hover:text-indigo-700">Home</a>
+        <a href="/" class="rounded-full border border-slate-200 bg-white px-4 py-2 font-semibold transition hover:border-indigo-200 hover:text-indigo-700">Home</a>
         <span class="rounded-full bg-indigo-50 px-4 py-2 font-semibold text-indigo-700">Client-side developer utility</span>
       </nav>
     </header>
-
-    <div class="mx-auto mt-5 w-full max-w-7xl">
-      <div class="ad-box">AdSense Responsive Ad Area - Top</div>
-    </div>
 
     <main class="mx-auto mt-6 grid w-full max-w-7xl grid-cols-1 gap-6 lg:grid-cols-12">
       <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:col-span-5 lg:p-8">
@@ -291,7 +314,7 @@
               class="w-full rounded-2xl border border-slate-300 bg-white p-4 font-mono text-sm leading-6 text-slate-900 outline-none transition focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100"></textarea>
           </div>
 
-          <div id="warningBox" class="hidden rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm font-semibold leading-6 text-amber-800"></div>
+          <div id="warningBox" role="alert" aria-live="assertive" class="hidden rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm font-semibold leading-6 text-amber-800"></div>
 
           <div class="mobile-button-grid grid grid-cols-1 gap-3 sm:grid-cols-2">
             <button id="compareBtn" type="button"
@@ -321,7 +344,7 @@
             Reset All
           </button>
 
-          <div id="copyFeedback" class="hidden rounded-2xl bg-emerald-50 px-4 py-3 text-sm font-bold text-emerald-700">
+          <div id="copyFeedback" role="status" aria-live="polite" class="hidden rounded-2xl bg-emerald-50 px-4 py-3 text-sm font-bold text-emerald-700">
             Copied!
           </div>
 
@@ -341,7 +364,7 @@
                 Added, removed, and unchanged lines appear below.
               </p>
             </div>
-            <span id="statusBadge" class="inline-flex w-fit rounded-full bg-slate-100 px-4 py-2 text-sm font-bold text-slate-600">
+            <span id="statusBadge" role="status" aria-live="polite" class="inline-flex w-fit rounded-full bg-slate-100 px-4 py-2 text-sm font-bold text-slate-600">
               Waiting
             </span>
           </div>
@@ -389,17 +412,11 @@
               <span>Diff Output</span>
               <span id="diffModeLabel">Line-by-line</span>
             </div>
-            <div id="diffContent" class="mobile-code max-h-[560px] overflow-y-auto p-2 text-xs leading-6 text-slate-300 sm:text-sm"></div>
+            <div id="diffContent" aria-live="polite" class="mobile-code max-h-[560px] overflow-y-auto p-2 text-xs leading-6 text-slate-300 sm:text-sm"></div>
           </div>
-
-          <div class="ad-box mt-6">AdSense Responsive Ad Area - Below Result</div>
         </div>
       </section>
     </main>
-
-    <div class="mx-auto mt-6 w-full max-w-7xl">
-      <div class="ad-box">AdSense Responsive Ad Area - Below Tool</div>
-    </div>
 
     <section class="mx-auto mt-8 w-full max-w-7xl space-y-6">
       <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
@@ -435,8 +452,6 @@
           </p>
         </div>
       </article>
-
-      <div class="ad-box">AdSense Responsive Ad Area - Middle Content</div>
 
       <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
         <h2 class="text-3xl font-black tracking-tight text-slate-950">
@@ -543,8 +558,6 @@
           </div>
         </div>
       </article>
-
-      <div class="ad-box">AdSense Responsive Ad Area - Bottom Content</div>
 
       <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
         <h2 class="text-3xl font-black tracking-tight text-slate-950">
@@ -760,8 +773,6 @@
           </p>
         </div>
       </section>
-
-      <div class="ad-box">AdSense Responsive Ad Area - Bottom</div>
     </section>
 
     <footer class="mx-auto mt-8 w-full max-w-7xl pb-8 text-center text-sm text-slate-500">
@@ -944,11 +955,19 @@
         const file = fileInput.files && fileInput.files[0];
         if (!file) return;
 
+        const maxFileSize = 5 * 1024 * 1024;
+        if (file.size > maxFileSize) {
+          fileInput.value = "";
+          showWarning("Please choose a text-based file smaller than 5 MB.");
+          return;
+        }
+
         const reader = new FileReader();
 
         reader.onload = function (event) {
           textarea.value = String(event.target.result || "");
           clearWarning();
+          showEmptyState();
         };
 
         reader.onerror = function () {
@@ -1054,14 +1073,26 @@
       clearOriginalBtn.addEventListener("click", function () {
         originalText.value = "";
         originalFileInput.value = "";
+        showEmptyState();
         originalText.focus();
       });
 
       clearModifiedBtn.addEventListener("click", function () {
         modifiedText.value = "";
         modifiedFileInput.value = "";
+        showEmptyState();
         modifiedText.focus();
       });
+
+      function markComparisonStale() {
+        if (latestReport) {
+          latestReport = "";
+          setStatus("Inputs changed", "active");
+        }
+      }
+
+      originalText.addEventListener("input", markComparisonStale);
+      modifiedText.addEventListener("input", markComparisonStale);
 
       compareBtn.addEventListener("click", compareTexts);
       sampleBtn.addEventListener("click", loadExample);
