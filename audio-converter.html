@@ -9,12 +9,14 @@
   <meta name="description" content="Free audio converter to convert MP3, WAV, M4A, AAC, OGG, FLAC, WebM, and Opus files locally with preview and secure download." />
   <meta name="keywords" content="audio converter, online audio converter, free audio converter, MP3 converter, WAV converter, M4A to MP3, AAC to MP3, audio file converter, browser audio converter, client-side audio tool, convert audio online, audio format changer, audio compressor, MP3 bitrate converter, WAV export tool, private audio converter, secure audio conversion, no upload audio converter, NodnWebTools" />
   <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow" />
+  <link rel="canonical" href="https://nodntools.com/audio-converter" />
   <meta name="author" content="NodnWebTools" />
 
   <meta property="og:title" content="Free Audio Converter | NodnWebTools" />
   <meta property="og:description" content="Convert audio files to MP3 or WAV directly in your browser with preview, bitrate options, and secure local download." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://nodntools.com/audio-converter.html" />
+  <meta property="og:url" content="https://nodntools.com/audio-converter" />
   <meta property="og:site_name" content="NodnWebTools" />
 
   <meta name="google-adsense-account" content="ca-pub-5282672325821404">
@@ -30,7 +32,7 @@
     "name": "Audio Converter",
     "applicationCategory": "MultimediaApplication",
     "operatingSystem": "Any",
-    "url": "https://nodntools.com/audio-converter.html",
+    "url": "https://nodntools.com/audio-converter",
     "description": "A browser-based audio converter for converting local audio files to MP3 or WAV with preview, bitrate settings, privacy-focused local processing, and secure download.",
     "featureList": [
       "Convert browser-readable audio files to MP3",
@@ -51,6 +53,79 @@
       "url": "https://nodntools.com"
     }
   }
+  </script>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Are my audio files uploaded to a server?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. This tool is designed to process audio in your browser. It does not intentionally upload your selected audio file to a backend conversion server. Your file is read locally by the browser, decoded through browser-supported audio features, and exported as a downloadable file."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the best format for sharing audio?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "MP3 is usually the best format for sharing because it is widely supported and creates smaller files than WAV. It is a practical choice for voice notes, podcast clips, email attachments, online lessons, and general playback across devices."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "When should I choose WAV instead of MP3?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Choose WAV when you want an uncompressed file for editing, mixing, archiving, or importing into production software. WAV files are larger than MP3 files, but they are useful when quality and editing flexibility matter more than file size."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can this tool convert M4A to MP3?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It may convert M4A to MP3 if your browser can decode the M4A file. Browser support can vary by operating system and codec. If the file cannot be decoded, try another browser or convert from a more common source format."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is OGG not included in this stable version?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Reliable OGG encoding in a single static browser page usually requires heavier encoding libraries or FFmpeg WebAssembly. This version focuses on MP3 and WAV because they are more practical for stable client-side use and reduce the chance of WebAssembly loading errors."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I convert large audio files?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It depends on your device memory, browser, and source file length. Large files can take longer and may fail on phones or low-memory devices. For long recordings, it is better to use a desktop browser and avoid opening many heavy tabs at the same time."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this audio converter preserve metadata?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Metadata such as artist, album, cover art, recording date, location data, or custom tags may not be preserved. Review the downloaded file before using it in professional, archival, or publishing workflows."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is this tool suitable for professional mastering?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. This is a practical browser-based audio conversion utility, not a professional mastering tool. For commercial music production, broadcast delivery, legal evidence, medical audio, or archival preservation, use dedicated professional software and verify the output carefully."
+      }
+    }
+  ]
+}
   </script>
 
   <style>
@@ -106,8 +181,7 @@
     .mobile-card,
     .mobile-panel,
     .mobile-preview,
-    .mobile-code,
-    .ad-box {
+    .mobile-code {
       max-width: 100%;
       overflow-x: hidden;
     }
@@ -118,20 +192,6 @@
       word-break: break-word;
     }
 
-    .ad-box {
-      min-height: 90px;
-      border: 2px dashed #cbd5e1;
-      background: #f8fafc;
-      color: #94a3b8;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      border-radius: 1rem;
-      padding: 1rem;
-      font-size: 0.875rem;
-      line-height: 1.5;
-    }
 
     .drop-active {
       border-color: #4f46e5 !important;
@@ -177,12 +237,6 @@
         font-size: 0.75rem;
       }
 
-      .ad-box {
-        min-height: 90px;
-        border-radius: 0.875rem;
-        padding: 0.875rem;
-        font-size: 0.75rem;
-      }
     }
 
     @media (max-width: 380px) {
@@ -203,9 +257,6 @@
         font-size: 1.35rem !important;
       }
 
-      .ad-box {
-        font-size: 0.7rem;
-      }
     }
   </style>
 </head>
@@ -224,15 +275,11 @@
       </nav>
     </header>
 
-    <div class="mx-auto mt-5 w-full max-w-7xl">
-      <div class="ad-box">AdSense Responsive Ad Area - Top</div>
-    </div>
-
     <main class="mx-auto mt-6 grid w-full max-w-7xl grid-cols-1 gap-6 lg:grid-cols-12">
       <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:col-span-5 lg:p-8">
         <div class="mb-6">
           <p class="mb-3 inline-flex rounded-full bg-indigo-50 px-4 py-2 text-sm font-bold text-indigo-700">Audio Converter</p>
-          <h1 class="text-4xl font-black tracking-tight text-slate-950 sm:text-5xl">Convert audio without server uploads.</h1>
+          <h1 class="text-4xl font-black tracking-tight text-slate-950 sm:text-5xl">Free Audio Converter for MP3 and WAV</h1>
           <p class="mt-4 text-base leading-7 text-slate-600">
             Convert browser-readable audio files to MP3 or WAV directly on your device. This version avoids FFmpeg WebAssembly loading failures and uses the browser audio engine plus a lightweight MP3 encoder.
           </p>
@@ -283,7 +330,7 @@
           </select>
         </div>
 
-        <div id="alertBox" class="mt-5 hidden rounded-2xl border border-red-200 bg-red-50 p-4 text-sm font-semibold leading-6 text-red-700"></div>
+        <div id="alertBox" role="alert" aria-live="assertive" class="mt-5 hidden rounded-2xl border border-red-200 bg-red-50 p-4 text-sm font-semibold leading-6 text-red-700"></div>
 
         <div class="mobile-button-grid mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2">
           <button id="convertBtn" type="button" class="rounded-2xl bg-indigo-600 px-4 py-4 text-base font-black text-white shadow-sm transition hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-50" disabled>Convert Audio</button>
@@ -302,7 +349,7 @@
               <h2 class="text-2xl font-black tracking-tight text-slate-950">Preview and output</h2>
               <p class="mt-1 text-sm leading-6 text-slate-500">Listen to the source file and download the converted audio after processing.</p>
             </div>
-            <span id="statusBadge" class="inline-flex w-fit rounded-full bg-slate-100 px-4 py-2 text-sm font-bold text-slate-600">Waiting for audio</span>
+            <span id="statusBadge" role="status" aria-live="polite" class="inline-flex w-fit rounded-full bg-slate-100 px-4 py-2 text-sm font-bold text-slate-600">Waiting for audio</span>
           </div>
 
           <div id="resultPlaceholder" class="mt-6 rounded-3xl border border-dashed border-slate-300 bg-slate-50 p-6 text-center text-sm leading-6 text-slate-500">
@@ -337,7 +384,7 @@
             <div class="mt-5">
               <div class="mb-2 flex items-center justify-between gap-3">
                 <span class="text-xs font-black uppercase tracking-widest text-slate-400">Progress</span>
-                <span id="progressText" class="text-xs font-bold text-slate-500">0%</span>
+                <span id="progressText" aria-live="polite" class="text-xs font-bold text-slate-500">0%</span>
               </div>
               <div class="progress-track h-3 rounded-full">
                 <div id="progressBar" class="progress-bar h-full rounded-full bg-indigo-600"></div>
@@ -346,7 +393,7 @@
 
             <div class="mt-5 rounded-2xl border border-slate-200 bg-slate-950 p-4 text-slate-100">
               <p class="text-xs font-black uppercase tracking-widest text-slate-400">Conversion log</p>
-              <pre id="summaryOutput" class="mobile-code mt-3 max-h-48 overflow-y-auto text-sm leading-6"></pre>
+              <pre id="summaryOutput" aria-live="polite" class="mobile-code mt-3 max-h-48 overflow-y-auto text-sm leading-6"></pre>
             </div>
 
             <div id="outputPreviewWrap" class="mt-5 hidden rounded-3xl border border-slate-200 bg-slate-50 p-4">
@@ -362,14 +409,8 @@
             </div>
           </div>
         </div>
-
-        <div class="ad-box">AdSense Responsive Ad Area - Below Result</div>
       </section>
     </main>
-
-    <div class="mx-auto mt-6 w-full max-w-7xl">
-      <div class="ad-box">AdSense Responsive Ad Area - Below Tool</div>
-    </div>
 
     <section class="mx-auto mt-8 w-full max-w-7xl space-y-6">
       <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
@@ -387,8 +428,6 @@
           </p>
         </div>
       </article>
-
-      <div class="ad-box">AdSense Responsive Ad Area - Middle Content</div>
 
       <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
         <h2 class="text-3xl font-black tracking-tight text-slate-950">Why use a browser-based audio converter?</h2>
@@ -443,8 +482,6 @@
           </p>
         </div>
       </article>
-
-      <div class="ad-box">AdSense Responsive Ad Area - Bottom Content</div>
 
       <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
         <h2 class="text-3xl font-black tracking-tight text-slate-950">WAV converter: useful for editing and quality-focused workflows</h2>
@@ -658,19 +695,6 @@
             </p>
         </a>
 
-        <a href="/pdf-merger-splitter"
-            class="group flex flex-col rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:border-amber-300 hover:shadow-lg">
-            <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-amber-50 text-3xl">
-                ✂️
-            </div>
-            <h3 class="mt-5 text-xl font-bold text-slate-900 group-hover:text-amber-700">
-                PDF Splitter
-            </h3>
-            <p class="mt-2 flex-grow leading-7 text-slate-600">
-                Split large PDF documents into smaller files or extract selected pages.
-            </p>
-        </a>
-
     </div>
 </section>
 
@@ -688,8 +712,6 @@
           </p>
         </div>
       </section>
-
-      <div class="ad-box">AdSense Responsive Ad Area - Bottom</div>
     </section>
 
     <footer class="mx-auto mt-8 w-full max-w-7xl pb-8 text-center text-sm text-slate-500">
@@ -697,7 +719,7 @@
     </footer>
   </div>
 
-  <div id="toast" class="fixed bottom-4 left-4 right-4 z-50 mx-auto hidden max-w-sm rounded-2xl bg-slate-950 px-4 py-3 text-center text-sm font-bold text-white shadow-2xl sm:left-auto sm:right-6">
+  <div id="toast" role="status" aria-live="polite" class="fixed bottom-4 left-4 right-4 z-50 mx-auto hidden max-w-sm rounded-2xl bg-slate-950 px-4 py-3 text-center text-sm font-bold text-white shadow-2xl sm:left-auto sm:right-6">
     Copied!
   </div>
 
@@ -737,6 +759,7 @@
       let isProcessing = false;
       let toastTimer = null;
       let logLines = [];
+      let loadRequestId = 0;
 
       yearText.textContent = new Date().getFullYear();
 
@@ -824,8 +847,11 @@
         downloadBtn.classList.add("pointer-events-none", "bg-slate-300");
         downloadBtn.classList.remove("bg-slate-900", "hover:bg-indigo-700");
         downloadBtn.setAttribute("aria-disabled", "true");
+        outputPreview.pause();
         outputPreviewWrap.classList.add("hidden");
         outputPreview.removeAttribute("src");
+        outputPreview.load();
+        downloadBtn.setAttribute("tabindex", "-1");
       }
 
       function setDownloadEnabled(url, filename) {
@@ -834,6 +860,7 @@
         downloadBtn.classList.remove("pointer-events-none", "bg-slate-300");
         downloadBtn.classList.add("bg-slate-900", "hover:bg-indigo-700");
         downloadBtn.setAttribute("aria-disabled", "false");
+        downloadBtn.removeAttribute("tabindex");
         outputPreview.src = url;
         outputPreviewWrap.classList.remove("hidden");
       }
@@ -849,6 +876,7 @@
       }
 
       function resetAll() {
+        loadRequestId++;
         if (sourceObjectUrl) {
           URL.revokeObjectURL(sourceObjectUrl);
           sourceObjectUrl = "";
@@ -863,7 +891,9 @@
         decodedBuffer = null;
         audioInput.value = "";
         audioInputLabel.textContent = "Click to browse or drag and drop audio here";
+        audioPreview.pause();
         audioPreview.removeAttribute("src");
+        audioPreview.load();
         resultPlaceholder.classList.remove("hidden");
         resultContent.classList.add("hidden");
         convertBtn.disabled = true;
@@ -909,6 +939,7 @@
       }
 
       async function loadAudioFile(file) {
+        const requestId = ++loadRequestId;
         clearAlert();
         resetOutputOnly();
         clearLog();
@@ -916,6 +947,11 @@
         if (!file) return;
 
         if (!validateAudioFile(file)) {
+          loadedFile = null;
+          decodedBuffer = null;
+          audioInput.value = "";
+          convertBtn.disabled = true;
+          setStatus("Unsupported file", "red");
           showAlert("Please select a valid audio file. Supported examples include MP3, WAV, OGG, M4A, AAC, FLAC, WebM, and Opus.");
           return;
         }
@@ -926,9 +962,11 @@
         displayFileName.textContent = file.name;
         displayFileSize.textContent = formatBytes(file.size);
 
+        audioPreview.pause();
         if (sourceObjectUrl) URL.revokeObjectURL(sourceObjectUrl);
         sourceObjectUrl = URL.createObjectURL(file);
         audioPreview.src = sourceObjectUrl;
+        audioPreview.load();
 
         resultPlaceholder.classList.add("hidden");
         resultContent.classList.remove("hidden");
@@ -938,7 +976,13 @@
         addLog("Source size: " + formatBytes(file.size));
 
         try {
-          decodedBuffer = await decodeFile(file);
+          const decoded = await decodeFile(file);
+
+          if (requestId !== loadRequestId || loadedFile !== file) {
+            return;
+          }
+
+          decodedBuffer = decoded;
           displayDuration.textContent = formatDuration(decodedBuffer.duration);
           addLog("Decoded duration: " + formatDuration(decodedBuffer.duration));
           addLog("Detected channels: " + decodedBuffer.numberOfChannels);
@@ -946,6 +990,12 @@
           convertBtn.disabled = false;
           setStatus("Ready to convert", "emerald");
         } catch (error) {
+          if (requestId !== loadRequestId || loadedFile !== file) {
+            return;
+          }
+
+          decodedBuffer = null;
+          convertBtn.disabled = true;
           addLog("Decode error: " + error.message);
           setStatus("Preview only", "red");
           showAlert("This file can be previewed by the browser, but it could not be decoded for conversion. Try an MP3, WAV, M4A, or another browser-readable source file.");
@@ -954,6 +1004,11 @@
 
       function setProcessingState(active) {
         isProcessing = active;
+        audioInput.disabled = active;
+        targetFormat.disabled = active;
+        audioBitrate.disabled = active || targetFormat.value !== "mp3";
+        sampleRate.disabled = active;
+        resetBtn.disabled = active;
 
         if (active) {
           convertBtn.disabled = true;
@@ -1119,6 +1174,10 @@
         return new Blob(mp3Data, { type: "audio/mpeg" });
       }
 
+      function updateFormatControls() {
+        audioBitrate.disabled = isProcessing || targetFormat.value !== "mp3";
+      }
+
       async function convertAudio() {
         if (isProcessing) return;
 
@@ -1231,6 +1290,7 @@
 
       targetFormat.addEventListener("change", function () {
         resetOutputOnly();
+        updateFormatControls();
         addLog("Target format changed to: " + targetFormat.value.toUpperCase());
       });
 
@@ -1256,11 +1316,13 @@
       });
 
       window.addEventListener("beforeunload", function () {
+        loadRequestId++;
         if (sourceObjectUrl) URL.revokeObjectURL(sourceObjectUrl);
         if (outputObjectUrl) URL.revokeObjectURL(outputObjectUrl);
       });
 
       setDownloadDisabled();
+      updateFormatControls();
     });
   </script>
 </body>
