@@ -3,18 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="canonical" href="https://nodntools.com/compound" />
 
   <title>Compound Interest Calculator | Savings Growth Tool</title>
   <meta name="description" content="Free compound interest calculator to estimate savings growth, future value, monthly contributions, interest earned, and investment returns." />
   <meta name="keywords" content="compound interest calculator, savings growth calculator, investment growth calculator, future value calculator, compound interest formula, monthly contribution calculator, retirement savings calculator, interest earned calculator, high yield savings calculator, long term investment calculator, wealth growth calculator, compounding calculator, savings calculator, financial planning tool, investment return calculator" />
   <meta name="author" content="NodnWebTools" />
   <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow" />
 
   <meta property="og:title" content="Compound Interest Calculator | Savings Growth Tool" />
   <meta property="og:description" content="Estimate future value, total contributions, interest earned, and long-term savings growth with a free compound interest calculator." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://nodntools.com/compound.html" />
+  <meta property="og:url" content="https://nodntools.com/compound" />
   <meta property="og:site_name" content="NodnWebTools" />
 
   <meta name="twitter:card" content="summary_large_image" />
@@ -33,7 +35,7 @@
     "name": "Compound Interest Calculator",
     "applicationCategory": "FinanceApplication",
     "operatingSystem": "All",
-    "url": "https://nodntools.com/compound.html",
+    "url": "https://nodntools.com/compound",
     "description": "A free browser-based compound interest calculator that estimates future value, total contributions, total interest earned, savings growth, monthly contribution impact, and investment return scenarios.",
     "featureList": [
       "Calculate compound interest",
@@ -55,6 +57,55 @@
       "name": "NodnWebTools",
       "url": "https://nodntools.com"
     }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is compound interest?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Compound interest is interest earned on both the original principal and previously earned interest. It allows money to grow faster over time when returns are reinvested."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this calculator include monthly contributions?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. You can include a monthly contribution amount to estimate how regular deposits may increase future value."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which compounding frequency should I choose?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Choose the frequency that best matches your savings account or investment assumption. Common options include daily, monthly, quarterly, and annually."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is this an investment return guarantee?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. The calculator provides an estimate based on your inputs. Real investment returns can rise or fall and may be affected by fees, taxes, inflation, and market conditions."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use this for retirement planning?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, it can be used as a simple retirement savings estimate, but complete retirement planning should also consider taxes, inflation, income needs, withdrawals, and professional financial advice."
+        }
+      }
+    ]
   }
   </script>
 
@@ -98,8 +149,7 @@
 
     .mobile-card,
     .mobile-panel,
-    .mobile-preview,
-    .ad-box {
+    .mobile-preview {
       max-width: 100%;
       overflow-x: hidden;
     }
@@ -110,22 +160,6 @@
       white-space: pre-wrap;
       overflow-wrap: anywhere;
       word-break: break-word;
-    }
-
-    .ad-box {
-      width: 100%;
-      min-height: 90px;
-      border: 2px dashed #cbd5e1;
-      background: #f8fafc;
-      color: #94a3b8;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      border-radius: 1rem;
-      padding: 1rem;
-      font-size: 0.875rem;
-      line-height: 1.5;
     }
 
     input[type="range"] {
@@ -160,12 +194,6 @@
         line-height: 2.35rem !important;
       }
 
-      .ad-box {
-        min-height: 90px;
-        border-radius: 0.875rem;
-        padding: 0.875rem;
-        font-size: 0.75rem;
-      }
     }
 
     @media (max-width: 380px) {
@@ -207,10 +235,6 @@
       </nav>
     </header>
 
-    <div class="mx-auto mt-5 w-full max-w-7xl">
-      <div class="ad-box">AdSense Responsive Ad Area - Top</div>
-    </div>
-
     <main class="mx-auto mt-6 grid w-full max-w-7xl grid-cols-1 gap-6 lg:grid-cols-12">
       <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:col-span-5 lg:p-8">
         <div class="mb-6">
@@ -233,7 +257,7 @@
             <label for="initialInvestment" class="mb-2 block text-sm font-bold text-slate-700">Initial Investment</label>
             <div class="relative">
               <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">$</span>
-              <input type="number" id="initialInvestment" inputmode="decimal" min="0" step="100" value="10000" placeholder="10000"
+              <input type="number" id="initialInvestment" inputmode="decimal" min="0" max="1000000000000" step="100" value="10000" placeholder="10000"
                 class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-8 pr-4 text-lg font-semibold text-slate-900 outline-none transition focus:border-violet-500 focus:bg-white focus:ring-4 focus:ring-violet-100" />
             </div>
           </div>
@@ -242,7 +266,7 @@
             <label for="monthlyContribution" class="mb-2 block text-sm font-bold text-slate-700">Monthly Contribution</label>
             <div class="relative">
               <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">$</span>
-              <input type="number" id="monthlyContribution" inputmode="decimal" min="0" step="25" value="300" placeholder="300"
+              <input type="number" id="monthlyContribution" inputmode="decimal" min="0" max="1000000000" step="25" value="300" placeholder="300"
                 class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-8 pr-4 text-lg font-semibold text-slate-900 outline-none transition focus:border-violet-500 focus:bg-white focus:ring-4 focus:ring-violet-100" />
             </div>
           </div>
@@ -250,7 +274,7 @@
           <div>
             <label for="interestRate" class="mb-2 block text-sm font-bold text-slate-700">Estimated Annual Return</label>
             <div class="relative">
-              <input type="number" id="interestRate" inputmode="decimal" min="0" step="0.01" value="7" placeholder="7"
+              <input type="number" id="interestRate" inputmode="decimal" min="0" max="1000" step="0.01" value="7" placeholder="7"
                 class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-4 pr-10 text-lg font-semibold text-slate-900 outline-none transition focus:border-violet-500 focus:bg-white focus:ring-4 focus:ring-violet-100" />
               <span class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400">%</span>
             </div>
@@ -305,7 +329,7 @@
             Reset Calculator
           </button>
 
-          <div id="copyFeedback" class="hidden rounded-2xl bg-emerald-50 px-4 py-3 text-sm font-bold text-emerald-700">
+          <div id="copyFeedback" role="status" aria-live="polite" class="hidden rounded-2xl bg-emerald-50 px-4 py-3 text-sm font-bold text-emerald-700">
             Copied!
           </div>
         </div>
@@ -320,7 +344,7 @@
             </p>
           </div>
 
-          <div id="result" class="mobile-preview rounded-3xl border border-violet-100 bg-gradient-to-br from-violet-50 via-indigo-50 to-slate-50 p-5">
+          <div id="result" aria-live="polite" class="mobile-preview rounded-3xl border border-violet-100 bg-gradient-to-br from-violet-50 via-indigo-50 to-slate-50 p-5">
             <p class="text-sm font-black uppercase tracking-wide text-violet-700">Total Future Value</p>
 
             <p id="futureValue" class="safe-break mt-2 text-4xl font-extrabold tracking-tight text-slate-900">$0.00</p>
@@ -362,15 +386,9 @@
               <strong id="displayInterestShare">0%</strong>
             </div>
           </div>
-
-          <div class="ad-box mt-6">AdSense Responsive Ad Area - Below Result</div>
         </div>
       </section>
     </main>
-
-    <div class="mx-auto mt-6 w-full max-w-7xl">
-      <div class="ad-box">AdSense Responsive Ad Area - Below Tool</div>
-    </div>
 
     <section class="mx-auto mt-8 w-full max-w-7xl space-y-6">
       <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
@@ -403,8 +421,6 @@
           </p>
         </div>
       </article>
-
-      <div class="ad-box">AdSense Responsive Ad Area - Middle Content</div>
 
       <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
         <h2 class="text-3xl font-black tracking-tight text-slate-950">
@@ -500,8 +516,6 @@
           </div>
         </div>
       </article>
-
-      <div class="ad-box">AdSense Responsive Ad Area - Bottom Content</div>
 
       <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
         <h2 class="text-3xl font-black tracking-tight text-slate-950">
@@ -678,8 +692,6 @@
           </p>
         </div>
       </section>
-
-      <div class="ad-box">AdSense Responsive Ad Area - Bottom</div>
     </section>
 
     <footer class="mx-auto mt-8 w-full max-w-7xl pb-8 text-center text-sm text-slate-500">
@@ -715,6 +727,7 @@
     yearText.textContent = new Date().getFullYear();
 
     function formatCurrency(value) {
+      if (!Number.isFinite(value)) return "Value too large";
       return new Intl.NumberFormat("en-US", {
         style: "currency",
         currency: "USD",
@@ -799,7 +812,12 @@
 
         const totalFutureValue = futureValueOfPrincipal + futureValueOfContributions;
         const totalContributions = principal + monthlyContribution * totalMonths;
-        const totalInterestEarned = totalFutureValue - totalContributions;
+
+        if (!Number.isFinite(totalFutureValue) || !Number.isFinite(totalContributions)) {
+          throw new Error("The selected values produce a number that is too large to display.");
+        }
+
+        const totalInterestEarned = Math.max(0, totalFutureValue - totalContributions);
         const interestShare = totalFutureValue > 0 ? totalInterestEarned / totalFutureValue : 0;
 
         latestResult = {
@@ -824,7 +842,15 @@
         displayFrequencyEl.textContent = getFrequencyLabel(compoundFrequencySelect.value);
         displayInterestShareEl.textContent = formatPercent(interestShare);
       } catch (error) {
-        futureValueEl.textContent = "$0.00";
+        latestResult = null;
+        futureValueEl.textContent = "Unable to calculate";
+        displayInitialInvestmentEl.textContent = "$0.00";
+        displayMonthlyContributionEl.textContent = "$0.00";
+        displayTotalContributionsEl.textContent = "$0.00";
+        displayTotalInterestEl.textContent = "$0.00";
+        displayInvestmentTermEl.textContent = "—";
+        displayFrequencyEl.textContent = getFrequencyLabel(compoundFrequencySelect.value);
+        displayInterestShareEl.textContent = "—";
       }
     }
 
@@ -908,6 +934,12 @@
     interestRateInput.addEventListener("input", calculateCompoundInterest);
     yearsSlider.addEventListener("input", syncYearsFromSlider);
     investmentYearsInput.addEventListener("input", syncYearsFromInput);
+    investmentYearsInput.addEventListener("blur", () => {
+      const years = Math.min(100, Math.max(1, parseInt(investmentYearsInput.value, 10) || 1));
+      investmentYearsInput.value = String(years);
+      yearsSlider.value = String(Math.min(50, years));
+      calculateCompoundInterest();
+    });
     compoundFrequencySelect.addEventListener("change", calculateCompoundInterest);
     copyBtn.addEventListener("click", copyReport);
     downloadBtn.addEventListener("click", downloadReport);
