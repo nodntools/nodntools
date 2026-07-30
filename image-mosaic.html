@@ -9,9 +9,16 @@
   <meta name="description" content="Pixelate, blur, and censor sensitive photo areas locally in your browser with this private JPG, PNG, and WebP mosaic editor." />
   <meta name="keywords" content="photo mosaic tool, image pixelate tool, blur faces online, censor photo online, privacy image editor, photo redaction tool, online image mosaic, pixelate image online, blur image online, free photo censor tool, jpg mosaic editor" />
   <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow" />
+  <link rel="canonical" href="https://nodntools.com/image-mosaic" />
   <meta property="og:title" content="Free Online Photo Mosaic Tool" />
   <meta property="og:description" content="Pixelate, blur, and censor sensitive parts of your photos directly in your browser with a private client-side image mosaic tool." />
   <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://nodntools.com/image-mosaic" />
+  <meta property="og:locale" content="en_US" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Photo Mosaic Tool | Pixelate and Blur Images" />
+  <meta name="twitter:description" content="Pixelate, blur, and censor sensitive photo areas locally in your browser with this private JPG, PNG, and WebP mosaic editor." />
 
   <meta name="google-adsense-account" content="ca-pub-5282672325821404">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404" crossorigin="anonymous"></script>
@@ -23,6 +30,7 @@
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "Free Online Photo Mosaic Tool",
+    "url": "https://nodntools.com/image-mosaic",
     "applicationCategory": "MultimediaApplication",
     "operatingSystem": "Any",
     "description": "A browser-based photo mosaic and image privacy tool that lets users pixelate, blur, and censor sensitive areas in photos without uploading files to a server.",
@@ -44,6 +52,63 @@
     ]
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Does this photo mosaic tool upload my image?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. The editing process runs in your browser using client-side JavaScript and canvas. The selected image does not need to be uploaded to a server for normal mosaic editing."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I blur only one part of a photo?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Use rectangle mode for clean block areas or brush mode for freehand editing. You can apply the effect to faces, license plates, text, screens, documents, or background details."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What image formats are supported?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The tool supports JPG, PNG, and WebP images. The edited image is downloaded as a JPG file."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does the downloaded JPG have a white background?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "JPG does not support transparency. Transparent areas in the original image are filled with white before the JPG is created."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is pixelation always enough to protect private information?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Not always. Very sensitive information should be removed, cropped out, or covered strongly. Always inspect the final image before sharing it publicly."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does the tool work on mobile?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. The layout is responsive and supports touch drawing on the canvas. Performance with very large images depends on device memory and browser capability."
+        }
+      }
+    ]
+  }
+  </script>
+
 
   <style>
     html,
@@ -84,21 +149,6 @@
       max-width: 100%;
     }
 
-    .ad-box {
-      width: 100%;
-      max-width: 100%;
-      min-height: 90px;
-      border: 2px dashed #cbd5e1;
-      background: #f1f5f9;
-      color: #64748b;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      border-radius: 1rem;
-      padding: 1rem;
-      overflow: hidden;
-    }
 
     .canvas-shell {
       width: 100%;
@@ -158,11 +208,6 @@
         min-height: 260px;
       }
 
-      .ad-box {
-        min-height: 90px;
-        border-radius: 0.875rem;
-        padding: 0.75rem;
-      }
 
       #editorCanvas {
         border-radius: 0.5rem;
@@ -204,11 +249,7 @@
   </header>
 
   <main class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-    <div class="ad-box mb-6">
-      Advertisement Area
-    </div>
-
-    <section class="grid gap-6 lg:grid-cols-[420px_1fr]">
+<section class="grid gap-6 lg:grid-cols-[420px_1fr]">
       <div class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
         <div class="mb-6">
           <p class="mb-2 text-sm font-bold uppercase tracking-wider text-indigo-600">Private Browser Image Editor</p>
@@ -272,7 +313,7 @@
             </ul>
           </div>
 
-          <div id="warningBox" class="hidden rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm leading-6 text-amber-800"></div>
+          <div id="warningBox" class="hidden rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm leading-6 text-amber-800" role="alert" aria-live="assertive"></div>
         </div>
       </div>
 
@@ -280,7 +321,7 @@
         <div class="mb-5 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
           <div>
             <h2 class="text-2xl font-extrabold text-slate-950">Live Preview</h2>
-            <p id="statusText" class="mt-1 text-sm text-slate-500">Upload an image to start editing.</p>
+            <p id="statusText" class="mt-1 text-sm text-slate-500" role="status" aria-live="polite">Upload an image to start editing.</p>
           </div>
           <div class="grid grid-cols-2 gap-2 mobile-button-grid sm:flex">
             <button id="undoBtn" type="button" class="rounded-xl border border-slate-300 px-4 py-2 text-sm font-bold text-slate-700 transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50" disabled>
@@ -325,12 +366,7 @@
         </div>
       </div>
     </section>
-
-    <div class="ad-box my-8">
-      Advertisement Area
-    </div>
-
-    <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm lg:p-10">
+<article class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm lg:p-10">
       <div class="mx-auto max-w-4xl">
         <p class="mb-2 text-sm font-bold uppercase tracking-wider text-indigo-600">Image Privacy Guide</p>
         <h2 class="safe-break text-3xl font-extrabold tracking-tight text-slate-950">
@@ -347,12 +383,7 @@
         <p class="mt-4 leading-8 text-slate-600">
           This page works directly inside your browser. The selected image is processed locally with HTML canvas technology, which means the tool does not need a backend server for normal editing. For privacy-focused users, this is an important advantage because the photo does not need to be uploaded just to add a mosaic effect.
         </p>
-
-        <div class="ad-box my-8">
-          Advertisement Area
-        </div>
-
-        <h3 class="mt-8 text-2xl font-extrabold text-slate-950">Popular Uses for a Photo Pixelate Tool</h3>
+<h3 class="mt-8 text-2xl font-extrabold text-slate-950">Popular Uses for a Photo Pixelate Tool</h3>
         <div class="mt-5 grid gap-4 md:grid-cols-2">
           <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
             <h4 class="font-extrabold text-slate-900">Blur Faces in Photos</h4>
@@ -387,12 +418,7 @@
         <p class="mt-4 leading-8 text-slate-600">
           For stronger privacy protection, apply a higher mosaic strength and review the final image before publishing. Very light blur may still leave shapes, text, or faces partly recognizable. When the image contains highly sensitive information, consider cropping the image or removing the sensitive area entirely in addition to applying mosaic.
         </p>
-
-        <div class="ad-box my-8">
-          Advertisement Area
-        </div>
-
-        <h3 class="mt-8 text-2xl font-extrabold text-slate-950">Why JPG Output Is Useful</h3>
+<h3 class="mt-8 text-2xl font-extrabold text-slate-950">Why JPG Output Is Useful</h3>
         <p class="mt-4 leading-8 text-slate-600">
           JPG is one of the most widely supported image formats for websites, email, social platforms, online forms, content management systems, and blog posts. By downloading the edited result as a JPG file, users can quickly share a privacy-protected version of the photo without needing another converter. The tool places the edited image onto a white background before creating the JPG file, which helps avoid transparency issues from PNG or WEBP source images.
         </p>
@@ -456,11 +482,6 @@
         </div>
       </div>
     </section>
-
-    <div class="ad-box my-8">
-      Advertisement Area
-    </div>
-
 <!-- Related Tools -->
 <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm lg:p-10">
     <div class="max-w-3xl">
@@ -500,19 +521,7 @@
                 Convert Apple HEIC and HEIF photos into standard JPG images for universal compatibility.
             </p>
         </a>
-
-        <a href="/image-converter"
-           class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-sky-300 hover:shadow-lg">
-            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-sky-50 text-2xl">📐</div>
-            <h3 class="text-lg font-bold text-slate-900 group-hover:text-sky-700">
-                Image Resizer
-            </h3>
-            <p class="mt-2 text-sm leading-6 text-slate-600">
-                Resize images for websites, email, social media, or printing while maintaining quality.
-            </p>
-        </a>
-
-        <a href="/slideshow-maker"
+<a href="/slideshow-maker"
            class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-violet-300 hover:shadow-lg">
             <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-violet-50 text-2xl">🎞️</div>
             <h3 class="text-lg font-bold text-slate-900 group-hover:text-violet-700">
@@ -559,11 +568,7 @@
         </p>
       </div>
     </section>
-
-    <div class="ad-box mt-8">
-      Advertisement Area
-    </div>
-  </main>
+</main>
 
   <footer class="mt-8 border-t border-slate-200 bg-white">
     <div class="mx-auto max-w-7xl px-4 py-8 text-center text-sm text-slate-500 sm:px-6 lg:px-8">
@@ -593,6 +598,17 @@
     const applyFullBtn = document.getElementById('applyFullBtn');
     const downloadBtn = document.getElementById('downloadBtn');
     const yearText = document.getElementById('yearText');
+
+    const requiredElements = [
+      imageInput, chooseImageBtn, dropZone, canvas, emptyState, statusText, warningBox,
+      modeSelect, effectSelect, strengthRange, strengthValue, brushRange, brushValue,
+      undoBtn, resetBtn, applyFullBtn, downloadBtn, yearText
+    ];
+
+    if (requiredElements.some((element) => !element) || !ctx) {
+      console.error('Image Mosaic initialization failed because a required page element is missing.');
+      return;
+    }
 
     let originalImage = null;
     let originalDataUrl = '';
@@ -656,8 +672,13 @@
 
       if (!file) return;
 
-      if (!file.type.startsWith('image/')) {
-        showWarning('Please choose a valid image file.');
+      const fileName = file.name.toLowerCase();
+      const validExtension = /\.(jpe?g|png|webp)$/.test(fileName);
+      const validMimeType = ['image/jpeg', 'image/png', 'image/webp'].includes(file.type);
+
+      if (!validExtension || (file.type && !validMimeType)) {
+        showWarning('Please choose a JPG, PNG, or WEBP image.');
+        imageInput.value = '';
         return;
       }
 
@@ -672,6 +693,17 @@
 
         img.onload = function() {
           try {
+            if (!img.naturalWidth || !img.naturalHeight) {
+              showWarning('The selected image has invalid dimensions.');
+              return;
+            }
+
+            const maximumPixels = 80000000;
+            if (img.naturalWidth * img.naturalHeight > maximumPixels) {
+              showWarning('This image is too large to process safely in the browser. Please use an image under 80 megapixels.');
+              return;
+            }
+
             const maxDimension = 2400;
             let targetWidth = img.naturalWidth;
             let targetHeight = img.naturalHeight;
@@ -696,6 +728,7 @@
             canvas.classList.remove('hidden');
             statusText.textContent = `Loaded image: ${targetWidth} × ${targetHeight}px`;
             setControlsEnabled(true);
+            imageInput.value = '';
           } catch (error) {
             showWarning('Unable to load this image. Please try another file.');
           }
