@@ -9,13 +9,19 @@
 <meta name="description" content="Convert HEX, RGB, HSL, HSV, and CMYK color codes with live preview, CSS output, palette export, and copy tools." />
   <meta name="keywords" content="color code converter, hex to rgb, rgb to hex, hsl converter, hsv converter, cmyk converter, online color picker, web color tool, CSS color converter, NodnWebTools" />
   <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow" />
+  <link rel="canonical" href="https://nodntools.com/color-converter" />
   <meta name="author" content="NodnWebTools" />
 
   <meta property="og:title" content="Free Color Code Converter | NodnWebTools" />
   <meta property="og:description" content="Convert HEX, RGB, HSL, HSV, and CMYK color values instantly. A fast, private, browser-based color conversion tool for designers and developers." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://nodntools.com/color-converter.html" />
+  <meta property="og:url" content="https://nodntools.com/color-converter" />
   <meta property="og:site_name" content="NodnWebTools" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Color Code Converter | HEX, RGB, HSL & CMYK" />
+  <meta name="twitter:description" content="Convert HEX, RGB, HSL, HSV, and CMYK color values with live preview, CSS output, palette tools, and local export." />
 
   <meta name="google-adsense-account" content="ca-pub-5282672325821404">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404" crossorigin="anonymous"></script>
@@ -29,7 +35,7 @@
     "name": "Color Code Converter",
     "applicationCategory": "DesignApplication",
     "operatingSystem": "Any",
-    "url": "https://nodntools.com/color-converter.html",
+    "url": "https://nodntools.com/color-converter",
     "description": "A free browser-based color converter that transforms HEX, RGB, HSL, HSV, and CMYK color values with live preview, copy buttons, and palette export.",
     "offers": {
       "@type": "Offer",
@@ -41,6 +47,55 @@
       "name": "NodnWebTools",
       "url": "https://nodntools.com"
     }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is this color converter private?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. The conversion runs in your browser using client-side JavaScript. Your typed color values are not uploaded to a server by this tool."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between HEX and RGB?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "HEX represents red, green, and blue channels using hexadecimal notation, while RGB writes the same channels as decimal numbers from 0 to 255. Both are common in web design."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why should I use HSL?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "HSL separates hue, saturation, and lightness, making related color adjustments easier for interface states, borders, and backgrounds."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is CMYK output suitable for professional printing?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The CMYK output is an approximate digital conversion. Professional print production may require calibrated color profiles, printer-specific settings, and specialist review."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use the generated CSS in my website?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. You can copy the generated CSS variables into a stylesheet, but you should review naming, browser support, and color contrast before production use."
+        }
+      }
+    ]
   }
   </script>
 
@@ -88,8 +143,7 @@
     .mobile-card,
     .mobile-panel,
     .mobile-preview,
-    .mobile-code,
-    .ad-box {
+    .mobile-code {
       max-width: 100%;
       overflow-x: hidden;
     }
@@ -98,21 +152,6 @@
       white-space: pre-wrap;
       overflow-wrap: anywhere;
       word-break: break-word;
-    }
-
-    .ad-box {
-      min-height: 90px;
-      border: 2px dashed #cbd5e1;
-      background: #f8fafc;
-      color: #94a3b8;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      border-radius: 1rem;
-      padding: 1rem;
-      font-size: 0.875rem;
-      line-height: 1.5;
     }
 
     .checkerboard {
@@ -161,13 +200,6 @@
       .mobile-code {
         font-size: 0.75rem;
       }
-
-      .ad-box {
-        min-height: 90px;
-        border-radius: 0.875rem;
-        padding: 0.875rem;
-        font-size: 0.75rem;
-      }
     }
 
     @media (max-width: 380px) {
@@ -191,10 +223,6 @@
       .mobile-preview {
         min-height: 165px;
       }
-
-      .ad-box {
-        font-size: 0.7rem;
-      }
     }
   </style>
 </head>
@@ -212,10 +240,6 @@
         <span class="rounded-full bg-indigo-50 px-4 py-2 font-semibold text-indigo-700">Client-side color utility</span>
       </nav>
     </header>
-
-    <div class="mx-auto mt-5 w-full max-w-7xl">
-      <div class="ad-box">AdSense Responsive Ad Area - Top</div>
-    </div>
 
     <main class="mx-auto mt-6 grid w-full max-w-7xl grid-cols-1 gap-6 lg:grid-cols-12">
       <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:col-span-5 lg:p-8">
@@ -297,7 +321,7 @@
             <button id="resetBtn" type="button" class="rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-bold text-slate-700 transition hover:border-indigo-200 hover:text-indigo-700">Reset</button>
           </div>
 
-          <div id="alertBox" class="mt-5 hidden rounded-2xl border border-red-200 bg-red-50 p-4 text-sm font-semibold leading-6 text-red-700"></div>
+          <div id="alertBox" role="alert" aria-live="assertive" class="mt-5 hidden rounded-2xl border border-red-200 bg-red-50 p-4 text-sm font-semibold leading-6 text-red-700"></div>
 
           <div class="mt-6 grid grid-cols-1 gap-4">
             <div class="mobile-panel rounded-2xl border border-slate-200 bg-slate-50 p-4">
@@ -366,14 +390,10 @@
             </div>
             <button id="clearPaletteBtn" type="button" class="rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-bold text-slate-700 transition hover:border-red-200 hover:text-red-600">Clear</button>
           </div>
-          <div id="paletteGrid" class="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4"></div>
+          <div id="paletteGrid" aria-live="polite" class="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4"></div>
         </div>
       </section>
     </main>
-
-    <div class="mx-auto mt-6 w-full max-w-7xl">
-      <div class="ad-box">AdSense Responsive Ad Area - Below Tool</div>
-    </div>
 
     <section class="mx-auto mt-8 w-full max-w-7xl space-y-6">
       <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
@@ -388,8 +408,6 @@
           </p>
         </div>
       </article>
-
-      <div class="ad-box">AdSense Responsive Ad Area - Middle Content</div>
 
       <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
         <h2 class="text-3xl font-black tracking-tight text-slate-950">How to use this color converter</h2>
@@ -430,8 +448,6 @@
           </div>
         </div>
       </article>
-
-      <div class="ad-box">AdSense Responsive Ad Area - Bottom Content</div>
 
       <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
         <h2 class="text-3xl font-black tracking-tight text-slate-950">Practical tips for better color conversion</h2>
@@ -506,19 +522,6 @@
             </p>
         </a>
 
-        <a href="/image-converter"
-           class="group flex flex-col rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:border-sky-300 hover:shadow-lg">
-            <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-sky-50 text-3xl">
-                📐
-            </div>
-            <h3 class="mt-5 text-xl font-bold text-slate-900 group-hover:text-sky-700">
-                Image Resizer
-            </h3>
-            <p class="mt-2 flex-grow leading-7 text-slate-600">
-                Resize images for websites, social media, printing, and mobile devices while maintaining quality.
-            </p>
-        </a>
-
         <a href="/qr-generator"
            class="group flex flex-col rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:border-violet-300 hover:shadow-lg">
             <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-violet-50 text-3xl">
@@ -589,8 +592,6 @@
           </p>
         </div>
       </section>
-
-      <div class="ad-box">AdSense Responsive Ad Area - Bottom</div>
     </section>
 
     <footer class="mx-auto mt-8 w-full max-w-7xl pb-8 text-center text-sm text-slate-500">
@@ -598,7 +599,7 @@
     </footer>
   </div>
 
-  <div id="toast" class="fixed bottom-4 left-4 right-4 z-50 mx-auto hidden max-w-sm rounded-2xl bg-slate-950 px-4 py-3 text-center text-sm font-bold text-white shadow-2xl sm:left-auto sm:right-6">
+  <div id="toast" role="status" aria-live="polite" class="fixed bottom-4 left-4 right-4 z-50 mx-auto hidden max-w-sm rounded-2xl bg-slate-950 px-4 py-3 text-center text-sm font-bold text-white shadow-2xl sm:left-auto sm:right-6">
     Copied!
   </div>
 
@@ -862,6 +863,28 @@
         return Math.round(((r * 299 + g * 587 + b * 114) / 1000) / 255 * 100);
       }
 
+      function relativeLuminance(r, g, b) {
+        const channels = [r, g, b].map(function (value) {
+          const channel = value / 255;
+          return channel <= 0.03928
+            ? channel / 12.92
+            : Math.pow((channel + 0.055) / 1.055, 2.4);
+        });
+
+        return 0.2126 * channels[0] + 0.7152 * channels[1] + 0.0722 * channels[2];
+      }
+
+      function recommendedTextColor(r, g, b) {
+        const luminance = relativeLuminance(r, g, b);
+        const whiteContrast = 1.05 / (luminance + 0.05);
+        const darkContrast = (luminance + 0.05) / 0.05;
+        return darkContrast >= whiteContrast ? "Dark" : "White";
+      }
+
+      function recommendedTextHex(r, g, b) {
+        return recommendedTextColor(r, g, b) === "Dark" ? "#0f172a" : "#ffffff";
+      }
+
       function cssText(hex, rgb, hsl, hsv, cmyk) {
         if (!includeCssVars.checked) {
           return ".color-preview {\n  color: " + hex + ";\n  background-color: " + rgb + ";\n}";
@@ -874,7 +897,7 @@
           "}\n\n" +
           ".color-preview {\n" +
           "  background-color: var(--color-primary);\n" +
-          "  color: " + (getBrightness(currentColor.r, currentColor.g, currentColor.b) > 55 ? "#0f172a" : "#ffffff") + ";\n" +
+          "  color: " + recommendedTextHex(currentColor.r, currentColor.g, currentColor.b) + ";\n" +
           "}\n\n" +
           "/* Reference values\n" +
           "HEX: " + hex + "\n" +
@@ -913,7 +936,7 @@
 
           const brightness = getBrightness(currentColor.r, currentColor.g, currentColor.b);
           brightnessValue.textContent = brightness + "%";
-          textSuggestion.textContent = brightness > 55 ? "Dark" : "White";
+          textSuggestion.textContent = recommendedTextColor(currentColor.r, currentColor.g, currentColor.b);
 
           cssOutput.textContent = cssText(hex, rgbText, hsl, hsv, cmyk);
         } catch (error) {
@@ -1037,9 +1060,16 @@
           card.type = "button";
           card.className = "overflow-hidden rounded-2xl border border-slate-200 bg-white text-left shadow-sm transition hover:-translate-y-0.5 hover:shadow-md";
           card.setAttribute("aria-label", "Load palette color " + hex);
-          card.innerHTML =
-            '<span class="block h-20 w-full" style="background:' + hex + ';"></span>' +
-            '<span class="block p-3 font-mono text-xs font-bold text-slate-700 safe-break">' + hex + '</span>';
+          const swatch = document.createElement("span");
+          swatch.className = "block h-20 w-full";
+          swatch.style.background = hex;
+
+          const label = document.createElement("span");
+          label.className = "block p-3 font-mono text-xs font-bold text-slate-700 safe-break";
+          label.textContent = hex;
+
+          card.appendChild(swatch);
+          card.appendChild(label);
           card.addEventListener("click", function () {
             const rgb = hexToRgb(hex);
             if (rgb) updateFromRgb(rgb);
