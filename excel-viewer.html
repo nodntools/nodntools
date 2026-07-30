@@ -8,10 +8,17 @@
   <meta name="description" content="Open, preview, search, filter, and export XLSX, XLS, and CSV spreadsheet files locally in your browser." />
   <meta name="keywords" content="Excel viewer, XLSX viewer, XLS viewer, CSV viewer, online spreadsheet viewer, open Excel online, view XLSX online, spreadsheet reader, browser Excel viewer, free Excel viewer, worksheet viewer, CSV table viewer, Excel file reader, client-side spreadsheet viewer, SheetJS viewer" />
   <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow" />
+  <link rel="canonical" href="https://nodntools.com/excel-viewer" />
 
   <meta property="og:title" content="Excel Viewer Online for XLSX, XLS and CSV Files" />
   <meta property="og:description" content="Preview Excel workbooks and CSV files directly in your browser with sheet navigation, search, sorting, filtering, and export tools." />
   <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://nodntools.com/excel-viewer" />
+  <meta property="og:site_name" content="NodnWebTools" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Excel Viewer Online for XLSX, XLS and CSV Files" />
+  <meta name="twitter:description" content="Open and inspect XLSX, XLS, and CSV spreadsheet files locally in your browser." />
 
   <link rel="icon" type="image/png" href="/favicon.png" />
 
@@ -52,6 +59,63 @@
   }
   </script>
 
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is this Excel viewer free to use?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. The spreadsheet viewer can be used without creating an account or paying a fee. It supports quick browser previews of XLSX, XLS, and CSV files."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are my spreadsheet files uploaded to a server?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The selected spreadsheet is processed locally in your browser. The viewer does not intentionally upload the workbook for preview rendering."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I open both XLSX and XLS files?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. The viewer supports modern XLSX workbooks and many legacy XLS spreadsheets. Password-protected, damaged, or highly specialized files may not open."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this tool support CSV files?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. CSV files are displayed as a single worksheet table and can be searched, filtered, sorted, copied, and exported."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Will Excel formulas recalculate?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. The viewer displays cached formula results when available but does not provide the full Excel calculation engine or refresh external data."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I edit cells with this tool?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. This tool is designed for reading, filtering, sorting, copying, and exporting spreadsheet data. It does not edit the original workbook."
+        }
+      }
+    ]
+  }
+  </script>
+
   <style>
     html,
     body {
@@ -81,7 +145,6 @@
     .mobile-panel,
     .mobile-preview,
     .mobile-code,
-    .ad-box,
     input,
     textarea,
     select,
@@ -95,19 +158,6 @@
       max-width: 100%;
     }
 
-    .ad-box {
-      min-height: 90px;
-      border: 2px dashed #cbd5e1;
-      background: #f8fafc;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      color: #64748b;
-      padding: 1rem;
-      border-radius: 1rem;
-      overflow: hidden;
-    }
 
     .drop-zone.drag-active {
       border-color: #6366f1;
@@ -319,11 +369,6 @@
         border-radius: 0.85rem;
       }
 
-      .ad-box {
-        border-radius: 0.75rem;
-        min-height: 82px;
-        font-size: 0.8rem;
-      }
 
       button,
       input,
@@ -344,25 +389,17 @@
 <body class="min-h-screen bg-slate-50 text-slate-900">
   <header class="border-b border-slate-200 bg-white">
     <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
-      <a href="https://nodntools.com" class="safe-break text-xl font-extrabold tracking-tight text-slate-900" aria-label="NodnWebTools home">
+      <a href="/" class="safe-break text-xl font-extrabold tracking-tight text-slate-900" aria-label="NodnWebTools home">
         Nodn<span class="text-indigo-600">WebTools</span>
       </a>
 
-      <a href="https://nodntools.com" class="rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700">
+      <a href="/" class="rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700">
         Home
       </a>
     </div>
   </header>
 
   <main>
-    <section class="mx-auto max-w-7xl px-4 pt-6 sm:px-6 lg:px-8">
-      <div class="ad-box">
-        <div>
-          <div class="font-semibold text-slate-600">Advertisement</div>
-          <div class="mt-1 text-xs text-slate-500">Top ad area</div>
-        </div>
-      </div>
-    </section>
 
     <section class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
       <div class="mb-8 max-w-4xl">
@@ -404,7 +441,7 @@
             <input id="fileInput" type="file" class="sr-only" accept=".xlsx,.xls,.csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel,text/csv" />
           </div>
 
-          <div id="warningBox" class="mt-4 hidden rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm leading-6 text-amber-800" role="alert"></div>
+          <div id="warningBox" aria-live="polite" class="mt-4 hidden rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm leading-6 text-amber-800" role="alert"></div>
 
           <div class="mt-5 rounded-2xl border border-slate-200 bg-slate-50 p-4">
             <h3 class="text-sm font-bold uppercase tracking-wide text-slate-500">Supported Formats</h3>
@@ -475,7 +512,7 @@
               </button>
             </div>
 
-            <p id="searchStatus" class="mt-2 text-xs text-slate-500"></p>
+            <p id="searchStatus" aria-live="polite" class="mt-2 text-xs text-slate-500"></p>
           </div>
 
           <div class="mt-5">
@@ -551,7 +588,7 @@
           <div class="flex flex-col gap-4 border-b border-slate-200 pb-5 xl:flex-row xl:items-center xl:justify-between">
             <div>
               <h2 class="text-xl font-bold text-slate-900">Spreadsheet Preview</h2>
-              <p id="previewStatus" class="mt-1 text-sm text-slate-500">
+              <p id="previewStatus" aria-live="polite" class="mt-1 text-sm text-slate-500">
                 Select an XLSX, XLS, or CSV file to begin.
               </p>
             </div>
@@ -666,20 +703,12 @@
               <table id="spreadsheetTable" class="spreadsheet-table" aria-label="Spreadsheet data preview"></table>
             </div>
 
-            <div id="tableMessage" class="mt-4 hidden rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm leading-6 text-slate-600"></div>
+            <div id="tableMessage" aria-live="polite" class="mt-4 hidden rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm leading-6 text-slate-600"></div>
           </div>
         </section>
       </div>
     </section>
 
-    <section class="mx-auto max-w-7xl px-4 pb-8 sm:px-6 lg:px-8">
-      <div class="ad-box">
-        <div>
-          <div class="font-semibold text-slate-600">Advertisement</div>
-          <div class="mt-1 text-xs text-slate-500">Ad area below the Excel viewer</div>
-        </div>
-      </div>
-    </section>
 
     <section class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
       <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8 lg:p-12">
@@ -733,12 +762,6 @@
           </div>
         </div>
 
-        <div class="ad-box mt-10">
-          <div>
-            <div class="font-semibold text-slate-600">Advertisement</div>
-            <div class="mt-1 text-xs text-slate-500">Middle content ad area</div>
-          </div>
-        </div>
 
         <div class="mt-12 max-w-4xl space-y-10">
           <section>
@@ -876,12 +899,6 @@
           </section>
         </div>
 
-        <div class="ad-box mt-10">
-          <div>
-            <div class="font-semibold text-slate-600">Advertisement</div>
-            <div class="mt-1 text-xs text-slate-500">Bottom content ad area</div>
-          </div>
-        </div>
 
         <div class="mt-12 max-w-4xl space-y-10">
           <section>
@@ -1215,14 +1232,6 @@
       </div>
     </section>
 
-    <section class="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
-      <div class="ad-box">
-        <div>
-          <div class="font-semibold text-slate-600">Advertisement</div>
-          <div class="mt-1 text-xs text-slate-500">Bottom ad area</div>
-        </div>
-      </div>
-    </section>
 
     <section class="mx-auto max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
       <div class="rounded-3xl border border-slate-700 bg-slate-900 p-6 text-slate-200 shadow-sm sm:p-8">
@@ -1256,7 +1265,7 @@
   <footer class="border-t border-slate-200 bg-white">
     <div class="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-6 text-sm text-slate-500 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
       <p>© <span id="currentYear"></span> NodnWebTools. All rights reserved.</p>
-      <a href="https://nodntools.com" class="font-semibold text-indigo-600 hover:text-indigo-700">Visit NodnWebTools</a>
+      <a href="/" class="font-semibold text-indigo-600 hover:text-indigo-700">Visit NodnWebTools</a>
     </div>
   </footer>
 
@@ -1745,7 +1754,7 @@
         });
 
         headers = calculateHeaders(rawRows);
-        originalRows = rawRows.length > 1 ? rawRows.slice(1) : rawRows;
+        originalRows = rawRows.length > 1 ? rawRows.slice(1) : [];
 
         currentPage = 1;
         sortColumnIndex = null;
