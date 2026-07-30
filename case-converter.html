@@ -10,11 +10,13 @@
   <meta name="keywords" content="text case converter, uppercase converter, lowercase converter, title case converter, camelCase converter, snake_case converter, kebab-case converter, PascalCase converter, sentence case converter, online text formatter, string case converter, developer naming tool, programming case converter, text formatting tool, code variable name converter, client-side text tool, NodnWebTools" />
   <meta name="author" content="NodnWebTools" />
   <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow" />
+  <link rel="canonical" href="https://nodntools.com/case-converter" />
 
   <meta property="og:title" content="Text Case Converter | Uppercase, Camel & Snake Case" />
   <meta property="og:description" content="Convert text into uppercase, lowercase, title case, camelCase, snake_case, kebab-case, PascalCase, and sentence case instantly." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://nodntools.com/case-converter.html" />
+  <meta property="og:url" content="https://nodntools.com/case-converter" />
   <meta property="og:site_name" content="NodnWebTools" />
 
   <meta name="twitter:card" content="summary_large_image" />
@@ -33,7 +35,7 @@
     "name": "Text Case Converter",
     "applicationCategory": "DeveloperApplication",
     "operatingSystem": "All",
-    "url": "https://nodntools.com/case-converter.html",
+    "url": "https://nodntools.com/case-converter",
     "description": "A free browser-based text case converter that changes text into uppercase, lowercase, title case, sentence case, camelCase, PascalCase, snake_case, and kebab-case.",
     "featureList": [
       "Convert text to uppercase",
@@ -57,6 +59,55 @@
       "name": "NodnWebTools",
       "url": "https://nodntools.com"
     }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is a text case converter?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A text case converter changes text capitalization or naming format, such as uppercase, lowercase, title case, camelCase, snake_case, PascalCase, or kebab-case."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this tool upload my text?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. The conversion logic runs in your browser and does not intentionally upload your entered text to a backend conversion server."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is camelCase used for?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "camelCase is commonly used for variable names and function names in JavaScript and many other programming environments."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is snake_case used for?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "snake_case is often used for database fields, Python variables, file names, and structured identifiers."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use this for SEO titles and URLs?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. You can use title case or sentence case for headings and kebab-case for URL slugs, but review all output before publishing."
+        }
+      }
+    ]
   }
   </script>
 
@@ -106,8 +157,7 @@
 
     .mobile-card,
     .mobile-panel,
-    .mobile-preview,
-    .ad-box {
+    .mobile-preview {
       max-width: 100%;
       overflow-x: hidden;
     }
@@ -120,21 +170,7 @@
       word-break: break-word;
     }
 
-    .ad-box {
-      width: 100%;
-      min-height: 90px;
-      border: 2px dashed #cbd5e1;
-      background: #f8fafc;
-      color: #94a3b8;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      border-radius: 1rem;
-      padding: 1rem;
-      font-size: 0.875rem;
-      line-height: 1.5;
-    }
+
 
     @media (max-width: 640px) {
       body {
@@ -163,12 +199,6 @@
         line-height: 2.35rem !important;
       }
 
-      .ad-box {
-        min-height: 90px;
-        border-radius: 0.875rem;
-        padding: 0.875rem;
-        font-size: 0.75rem;
-      }
     }
 
     @media (max-width: 380px) {
@@ -208,12 +238,7 @@
         <span class="rounded-full bg-indigo-50 px-4 py-2 font-semibold text-indigo-700">Client-side text utility</span>
       </nav>
     </header>
-
-    <div class="mx-auto mt-5 w-full max-w-7xl">
-      <div class="ad-box">AdSense Responsive Ad Area - Top</div>
-    </div>
-
-    <main class="mx-auto mt-6 grid w-full max-w-7xl grid-cols-1 gap-6 lg:grid-cols-12">
+<main class="mx-auto mt-6 grid w-full max-w-7xl grid-cols-1 gap-6 lg:grid-cols-12">
       <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:col-span-5 lg:p-8">
         <div class="mb-6">
           <p class="mb-3 inline-flex rounded-full bg-indigo-50 px-4 py-2 text-sm font-bold text-indigo-700">
@@ -288,7 +313,7 @@
                 Copy any generated text format with one click.
               </p>
             </div>
-            <span id="statusBadge" class="inline-flex w-fit rounded-full bg-slate-100 px-4 py-2 text-sm font-bold text-slate-600">
+            <span id="statusBadge" role="status" aria-live="polite" class="inline-flex w-fit rounded-full bg-slate-100 px-4 py-2 text-sm font-bold text-slate-600">
               Waiting
             </span>
           </div>
@@ -297,7 +322,7 @@
             <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
               <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                 <span class="text-xs font-black uppercase tracking-widest text-slate-400">UPPERCASE</span>
-                <button data-target="outUppercase" class="copy-trigger rounded-xl bg-indigo-50 px-4 py-2 text-xs font-bold text-indigo-700 transition hover:bg-indigo-100">Copy</button>
+                <button data-target="outUppercase" type="button" class="copy-trigger rounded-xl bg-indigo-50 px-4 py-2 text-xs font-bold text-indigo-700 transition hover:bg-indigo-100">Copy</button>
               </div>
               <textarea id="outUppercase" readonly rows="2" placeholder="UPPERCASE OUTPUT" class="mt-3 w-full rounded-xl border border-slate-200 bg-white p-3 font-mono text-xs leading-5 text-slate-800 outline-none"></textarea>
             </div>
@@ -305,7 +330,7 @@
             <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
               <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                 <span class="text-xs font-black uppercase tracking-widest text-slate-400">lowercase</span>
-                <button data-target="outLowercase" class="copy-trigger rounded-xl bg-indigo-50 px-4 py-2 text-xs font-bold text-indigo-700 transition hover:bg-indigo-100">Copy</button>
+                <button data-target="outLowercase" type="button" class="copy-trigger rounded-xl bg-indigo-50 px-4 py-2 text-xs font-bold text-indigo-700 transition hover:bg-indigo-100">Copy</button>
               </div>
               <textarea id="outLowercase" readonly rows="2" placeholder="lowercase output" class="mt-3 w-full rounded-xl border border-slate-200 bg-white p-3 font-mono text-xs leading-5 text-slate-800 outline-none"></textarea>
             </div>
@@ -313,7 +338,7 @@
             <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
               <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                 <span class="text-xs font-black uppercase tracking-widest text-slate-400">Title Case</span>
-                <button data-target="outTitlecase" class="copy-trigger rounded-xl bg-indigo-50 px-4 py-2 text-xs font-bold text-indigo-700 transition hover:bg-indigo-100">Copy</button>
+                <button data-target="outTitlecase" type="button" class="copy-trigger rounded-xl bg-indigo-50 px-4 py-2 text-xs font-bold text-indigo-700 transition hover:bg-indigo-100">Copy</button>
               </div>
               <textarea id="outTitlecase" readonly rows="2" placeholder="Title Case Output" class="mt-3 w-full rounded-xl border border-slate-200 bg-white p-3 font-mono text-xs leading-5 text-slate-800 outline-none"></textarea>
             </div>
@@ -321,7 +346,7 @@
             <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
               <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                 <span class="text-xs font-black uppercase tracking-widest text-slate-400">Sentence case</span>
-                <button data-target="outSentencecase" class="copy-trigger rounded-xl bg-indigo-50 px-4 py-2 text-xs font-bold text-indigo-700 transition hover:bg-indigo-100">Copy</button>
+                <button data-target="outSentencecase" type="button" class="copy-trigger rounded-xl bg-indigo-50 px-4 py-2 text-xs font-bold text-indigo-700 transition hover:bg-indigo-100">Copy</button>
               </div>
               <textarea id="outSentencecase" readonly rows="2" placeholder="Sentence case output." class="mt-3 w-full rounded-xl border border-slate-200 bg-white p-3 font-mono text-xs leading-5 text-slate-800 outline-none"></textarea>
             </div>
@@ -329,7 +354,7 @@
             <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
               <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                 <span class="text-xs font-black uppercase tracking-widest text-slate-400">camelCase</span>
-                <button data-target="outCamelcase" class="copy-trigger rounded-xl bg-indigo-50 px-4 py-2 text-xs font-bold text-indigo-700 transition hover:bg-indigo-100">Copy</button>
+                <button data-target="outCamelcase" type="button" class="copy-trigger rounded-xl bg-indigo-50 px-4 py-2 text-xs font-bold text-indigo-700 transition hover:bg-indigo-100">Copy</button>
               </div>
               <textarea id="outCamelcase" readonly rows="2" placeholder="camelCaseOutput" class="mt-3 w-full rounded-xl border border-slate-200 bg-white p-3 font-mono text-xs leading-5 text-slate-800 outline-none"></textarea>
             </div>
@@ -337,7 +362,7 @@
             <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
               <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                 <span class="text-xs font-black uppercase tracking-widest text-slate-400">PascalCase</span>
-                <button data-target="outPascalcase" class="copy-trigger rounded-xl bg-indigo-50 px-4 py-2 text-xs font-bold text-indigo-700 transition hover:bg-indigo-100">Copy</button>
+                <button data-target="outPascalcase" type="button" class="copy-trigger rounded-xl bg-indigo-50 px-4 py-2 text-xs font-bold text-indigo-700 transition hover:bg-indigo-100">Copy</button>
               </div>
               <textarea id="outPascalcase" readonly rows="2" placeholder="PascalCaseOutput" class="mt-3 w-full rounded-xl border border-slate-200 bg-white p-3 font-mono text-xs leading-5 text-slate-800 outline-none"></textarea>
             </div>
@@ -345,7 +370,7 @@
             <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
               <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                 <span class="text-xs font-black uppercase tracking-widest text-slate-400">snake_case</span>
-                <button data-target="outSnakecase" class="copy-trigger rounded-xl bg-indigo-50 px-4 py-2 text-xs font-bold text-indigo-700 transition hover:bg-indigo-100">Copy</button>
+                <button data-target="outSnakecase" type="button" class="copy-trigger rounded-xl bg-indigo-50 px-4 py-2 text-xs font-bold text-indigo-700 transition hover:bg-indigo-100">Copy</button>
               </div>
               <textarea id="outSnakecase" readonly rows="2" placeholder="snake_case_output" class="mt-3 w-full rounded-xl border border-slate-200 bg-white p-3 font-mono text-xs leading-5 text-slate-800 outline-none"></textarea>
             </div>
@@ -353,26 +378,19 @@
             <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
               <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                 <span class="text-xs font-black uppercase tracking-widest text-slate-400">kebab-case</span>
-                <button data-target="outKebabcase" class="copy-trigger rounded-xl bg-indigo-50 px-4 py-2 text-xs font-bold text-indigo-700 transition hover:bg-indigo-100">Copy</button>
+                <button data-target="outKebabcase" type="button" class="copy-trigger rounded-xl bg-indigo-50 px-4 py-2 text-xs font-bold text-indigo-700 transition hover:bg-indigo-100">Copy</button>
               </div>
               <textarea id="outKebabcase" readonly rows="2" placeholder="kebab-case-output" class="mt-3 w-full rounded-xl border border-slate-200 bg-white p-3 font-mono text-xs leading-5 text-slate-800 outline-none"></textarea>
             </div>
           </div>
 
-          <div id="copyFeedback" class="mt-4 hidden rounded-2xl bg-emerald-50 px-4 py-3 text-sm font-bold text-emerald-700">
+          <div id="copyFeedback" role="status" aria-live="polite" class="mt-4 hidden rounded-2xl bg-emerald-50 px-4 py-3 text-sm font-bold text-emerald-700">
             Copied!
           </div>
         </div>
-
-        <div class="ad-box">AdSense Responsive Ad Area - Below Result</div>
-      </section>
+</section>
     </main>
-
-    <div class="mx-auto mt-6 w-full max-w-7xl">
-      <div class="ad-box">AdSense Responsive Ad Area - Below Tool</div>
-    </div>
-
-    <section class="mx-auto mt-8 w-full max-w-7xl space-y-6">
+<section class="mx-auto mt-8 w-full max-w-7xl space-y-6">
       <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
         <p class="mb-3 inline-flex rounded-full bg-violet-50 px-4 py-2 text-sm font-bold text-violet-700">
           Text Formatting Guide
@@ -402,10 +420,7 @@
           </p>
         </div>
       </article>
-
-      <div class="ad-box">AdSense Responsive Ad Area - Middle Content</div>
-
-      <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
+<article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
         <h2 class="text-3xl font-black tracking-tight text-slate-950">
           What Each Text Case Format Means
         </h2>
@@ -512,10 +527,7 @@
           </div>
         </div>
       </article>
-
-      <div class="ad-box">AdSense Responsive Ad Area - Bottom Content</div>
-
-      <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
+<article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
         <h2 class="text-3xl font-black tracking-tight text-slate-950">
           Practical Tips for Clean Text Formatting
         </h2>
@@ -701,9 +713,7 @@
           </p>
         </div>
       </section>
-
-      <div class="ad-box">AdSense Responsive Ad Area - Bottom</div>
-    </section>
+</section>
 
     <footer class="mx-auto mt-8 w-full max-w-7xl pb-8 text-center text-sm text-slate-500">
       <p>© <span id="yearText"></span> NodnWebTools. All rights reserved.</p>
@@ -770,8 +780,8 @@
 
       function toSentenceCase(text) {
         const lower = text.toLowerCase();
-        return lower.replace(/(^\s*[a-zA-Z])|([.!?]\s*[a-zA-Z])/g, function (match) {
-          return match.toUpperCase();
+        return lower.replace(/(^|[.!?]\s+|\n\s*)([\p{L}])/gu, function (match, prefix, letter) {
+          return prefix + letter.toUpperCase();
         });
       }
 
@@ -860,6 +870,7 @@
             document.execCommand("copy");
           }
 
+          copyFeedback.textContent = "Copied!";
           copyFeedback.classList.remove("hidden");
           setTimeout(function () {
             copyFeedback.classList.add("hidden");
