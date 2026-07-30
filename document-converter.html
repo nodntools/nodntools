@@ -8,26 +8,28 @@
   <meta name="google-adsense-account" content="ca-pub-5282672325821404">
 	<link rel="icon" type="image/png" href="/favicon.png">
 
-  <title>Document Converter: PDF, DOCX & TXT Export Tool</title>
-  <meta name="description" content="Create private PDF, Word DOCX, and TXT documents in your browser with live preview, local export, and no server upload.">
-  <meta name="keywords" content="document converter, online document converter, PDF converter, DOCX converter, text to PDF, text to Word, text to DOCX, TXT export tool, browser document editor, private document converter, client-side document tool, free document exporter, no upload document converter, NodnWebTools">
+  <title>Text to PDF, DOCX & TXT Converter | NodnTools</title>
+  <meta name="description" content="Create PDF, DOCX, and TXT files from typed or pasted text with a live preview and private browser-based export.">
+  <meta name="keywords" content="document converter, online document converter, PDF converter, DOCX converter, text to PDF, text to Word, text to DOCX, TXT export tool, browser document editor, private document converter, client-side document tool, free document exporter, no upload document converter, NodnTools">
   <meta name="robots" content="index, follow">
-  <meta name="author" content="NodnWebTools">
+  <meta name="googlebot" content="index, follow">
+  <link rel="canonical" href="https://nodntools.com/document-converter">
+  <meta name="author" content="NodnTools">
 
-  <meta property="og:title" content="Document Converter: PDF, DOCX & TXT Export Tool">
-  <meta property="og:description" content="Write, preview, and export private documents to PDF, DOCX, or TXT directly inside your browser without uploading content to a server.">
+  <meta property="og:title" content="Text to PDF, DOCX & TXT Converter | NodnTools">
+  <meta property="og:description" content="Write or paste text, preview the document, and export it as PDF, DOCX, or TXT directly in your browser.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://nodntools.com/document-converter.html">
-  <meta property="og:site_name" content="NodnWebTools">
+  <meta property="og:url" content="https://nodntools.com/document-converter">
+  <meta property="og:site_name" content="NodnTools">
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": "Document Converter: PDF, DOCX & TXT Export Tool",
+    "name": "Text to PDF, DOCX & TXT Converter",
     "applicationCategory": "ProductivityApplication",
     "operatingSystem": "Any",
-    "url": "https://nodntools.com/document-converter.html",
+    "url": "https://nodntools.com/document-converter",
     "description": "A free client-side document converter for creating PDF, Word DOCX, and TXT files from typed or pasted text with a live browser preview.",
     "offers": {
       "@type": "Offer",
@@ -36,10 +38,68 @@
     },
     "creator": {
       "@type": "Organization",
-      "name": "NodnWebTools",
+      "name": "NodnTools",
       "url": "https://nodntools.com"
     }
   }
+  </script>
+
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is this document converter free to use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The tool is designed as a free browser-based utility for creating PDF, DOCX, and TXT files from typed or pasted text."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the tool upload my document to a server?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The document export process is designed to run locally in your browser. Your typed text is not intentionally sent to a NodnTools backend for conversion. However, you should still avoid entering highly sensitive information on shared devices or untrusted browsers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which export format should I choose?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Choose PDF for a final printable document, DOCX for a file you want to edit later in a word processor, and TXT for a plain text backup or universal compatibility."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use this tool on a phone?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The layout is responsive and includes mobile-safe CSS to reduce horizontal overflow. Long text, preview areas, buttons, and cards are designed to fit smaller screens."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does my PDF look slightly different from the preview?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "PDF rendering can vary depending on browser settings, fonts, screen size, and canvas rendering behavior. Review your exported file before sending it as a final document."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can this replace Microsoft Word or Google Docs?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This tool is best for simple document creation and export. Use a full word processor for advanced formatting, collaboration, tables, images, page numbering, comments, and professional templates."
+      }
+    }
+  ]
+}
   </script>
 
   <script src="https://cdn.tailwindcss.com"></script>
@@ -112,22 +172,6 @@
       white-space: pre-wrap;
     }
 
-    .ad-box {
-      width: 100%;
-      min-height: 90px;
-      border: 1px dashed #cbd5e1;
-      background: #f8fafc;
-      border-radius: 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      color: #94a3b8;
-      font-size: 0.875rem;
-      padding: 1rem;
-      overflow: hidden;
-    }
-
     .paper-preview {
       width: 100%;
       aspect-ratio: 1 / 1.4142;
@@ -180,12 +224,6 @@
         font-size: 0.78rem;
         line-height: 1.55;
       }
-
-      .ad-box {
-        min-height: 90px;
-        border-radius: 0.875rem;
-        font-size: 0.8rem;
-      }
     }
 
     @media (max-width: 380px) {
@@ -202,11 +240,6 @@
         min-height: 380px;
       }
 
-      .ad-box {
-        padding: 0.75rem;
-        font-size: 0.75rem;
-      }
-
       .tiny-phone-text {
         font-size: 0.78rem;
       }
@@ -217,11 +250,11 @@
 <body class="min-h-screen bg-slate-50 text-slate-900">
   <header class="w-full border-b border-slate-200 bg-white/90 backdrop-blur">
     <div class="mx-auto flex w-full max-w-7xl flex-col gap-4 px-4 py-5 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
-      <a href="https://nodntools.com" class="inline-flex items-center gap-2 safe-break" aria-label="NodnWebTools Home">
+      <a href="/" rel="home" class="inline-flex items-center gap-2 safe-break" aria-label="NodnTools Home">
         <span class="text-2xl font-black tracking-tight text-slate-950">Nodn<span class="text-accent-600">WebTools</span></span>
       </a>
       <nav class="flex flex-wrap items-center gap-3 text-sm font-semibold text-slate-600">
-        <a href="https://nodntools.com" class="rounded-full px-4 py-2 transition hover:bg-slate-100 hover:text-accent-700">Home</a>
+        <a href="/" class="rounded-full px-4 py-2 transition hover:bg-slate-100 hover:text-accent-700">Home</a>
         <a href="#how-to-use" class="rounded-full px-4 py-2 transition hover:bg-slate-100 hover:text-accent-700">How to Use</a>
         <a href="#faq" class="rounded-full px-4 py-2 transition hover:bg-slate-100 hover:text-accent-700">FAQ</a>
       </nav>
@@ -229,9 +262,6 @@
   </header>
 
   <main class="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-    <div class="ad-box mb-6">
-      Top Ad Area - Responsive AdSense Placeholder
-    </div>
 
     <section class="grid w-full grid-cols-1 gap-6 lg:grid-cols-12">
       <div class="mobile-card rounded-3xl bg-white p-5 shadow-soft ring-1 ring-slate-200 sm:p-7 lg:col-span-5">
@@ -288,7 +318,7 @@
 
           <div class="flex flex-col gap-3 rounded-2xl bg-accent-50 p-4 text-sm text-accent-900 ring-1 ring-accent-100 sm:flex-row sm:items-center sm:justify-between">
             <span id="documentStats" class="font-semibold">0 characters · 0 words · 0 lines</span>
-            <span id="statusMessage" class="font-bold text-accent-700">Ready</span>
+            <span id="statusMessage" class="font-bold text-accent-700" role="status" aria-live="polite">Ready</span>
           </div>
 
           <div class="mobile-button-grid grid grid-cols-1 gap-3 sm:grid-cols-2">
@@ -329,10 +359,6 @@
           </div>
         </section>
 
-        <div class="ad-box">
-          Ad Area Below Main Tool and Result Section
-        </div>
-
         <section class="mobile-card rounded-3xl bg-white p-5 shadow-soft ring-1 ring-slate-200 sm:p-7">
           <h2 class="text-2xl font-black tracking-tight text-slate-950">File Export Notes</h2>
           <div class="mt-4 grid grid-cols-1 gap-4 md:grid-cols-3">
@@ -360,16 +386,12 @@
           Free Online Document Converter for PDF, Word DOCX, and TXT Files
         </h2>
         <p class="mt-5 text-base leading-8 text-slate-600">
-          The NodnWebTools Document Converter is a practical browser-based document creation and export tool for anyone who needs to turn text into a clean downloadable file. It is built for fast writing, simple formatting, immediate previewing, and local file generation. Instead of opening a heavy office suite for every short letter, work note, printable summary, school assignment, business memo, personal draft, policy outline, or content brief, you can paste or type your text into the editor and export the result as a PDF, Microsoft Word DOCX file, or plain TXT document. The tool focuses on speed, privacy, and accessibility, making it useful for students, remote workers, small business owners, teachers, freelancers, administrators, bloggers, marketers, and everyday users who need a lightweight online document converter.
+          The NodnTools Document Converter is a practical browser-based document creation and export tool for anyone who needs to turn text into a clean downloadable file. It is built for fast writing, simple formatting, immediate previewing, and local file generation. Instead of opening a heavy office suite for every short letter, work note, printable summary, school assignment, business memo, personal draft, policy outline, or content brief, you can paste or type your text into the editor and export the result as a PDF, Microsoft Word DOCX file, or plain TXT document. The tool focuses on speed, privacy, and accessibility, making it useful for students, remote workers, small business owners, teachers, freelancers, administrators, bloggers, marketers, and everyday users who need a lightweight online document converter.
         </p>
 
         <p class="mt-5 text-base leading-8 text-slate-600">
-          Many document conversion websites require uploading a file to a remote server before the conversion begins. That may be acceptable for some public documents, but it is not ideal for private notes, internal drafts, client summaries, business correspondence, legal outlines, financial checklists, application letters, resumes, or unpublished articles. This client-side document converter is designed differently. The text you enter is processed inside the browser environment, and the export buttons generate downloadable files locally. While the page loads helpful front-end libraries from trusted CDN sources to create PDF and DOCX files, your typed document content is not intentionally submitted to a NodnWebTools backend. This makes the tool especially useful when you want a quick no-upload document converter for normal productivity tasks.
+          Many document conversion websites require uploading a file to a remote server before the conversion begins. That may be acceptable for some public documents, but it is not ideal for private notes, internal drafts, client summaries, business correspondence, legal outlines, financial checklists, application letters, resumes, or unpublished articles. This client-side document converter is designed differently. The text you enter is processed inside the browser environment, and the export buttons generate downloadable files locally. While the page loads helpful front-end libraries from trusted CDN sources to create PDF and DOCX files, your typed document content is not intentionally submitted to a NodnTools backend. This makes the tool especially useful when you want a quick no-upload document converter for normal productivity tasks.
         </p>
-
-        <div class="ad-box my-8">
-          Middle Content Ad Area Inside the SEO Article Section
-        </div>
 
         <h2 id="how-to-use" class="mt-10 text-2xl font-black tracking-tight text-slate-950">How to Use This Browser Document Converter</h2>
         <p class="mt-4 text-base leading-8 text-slate-600">
@@ -449,10 +471,6 @@
           TXT is the simplest and most portable choice. Plain text files do not preserve advanced styling, but they are extremely reliable. They open quickly, work almost everywhere, and are excellent for storing raw writing. TXT is useful for backup copies, data-cleaning tasks, content migration, simple notes, coding-related drafts, and situations where formatting is less important than text preservation. If you are writing content for a website, app, chatbot, content management system, or email campaign, a TXT file can be a clean intermediate format.
         </p>
 
-        <div class="ad-box my-8">
-          Bottom Content Ad Area Before FAQ
-        </div>
-
         <h2 class="mt-12 text-2xl font-black tracking-tight text-slate-950">Practical Tips for Better Document Conversion Results</h2>
         <p class="mt-4 text-base leading-8 text-slate-600">
           For the cleanest export, start with structured text. Use a short title, clear paragraph breaks, and consistent spacing. Avoid pasting heavily formatted content from complex sources if you only need clean output, because hidden formatting from other editors may not always translate perfectly into a simple browser preview. When creating a PDF, check the live preview carefully before downloading. If the content feels too tight, choose a larger font size or wider padding. If you need more content on one page, choose compact font size and narrow padding.
@@ -499,7 +517,7 @@
 
           <article class="rounded-2xl bg-slate-50 p-5 ring-1 ring-slate-200">
             <h3 class="text-lg font-black text-slate-950">Does the tool upload my document to a server?</h3>
-            <p class="mt-3 text-sm leading-7 text-slate-600">The document export process is designed to run locally in your browser. Your typed text is not intentionally sent to a NodnWebTools backend for conversion. However, you should still avoid entering highly sensitive information on shared devices or untrusted browsers.</p>
+            <p class="mt-3 text-sm leading-7 text-slate-600">The document export process is designed to run locally in your browser. Your typed text is not intentionally sent to a NodnTools backend for conversion. However, you should still avoid entering highly sensitive information on shared devices or untrusted browsers.</p>
           </article>
 
           <article class="rounded-2xl bg-slate-50 p-5 ring-1 ring-slate-200">
@@ -617,27 +635,23 @@
         <h2 class="text-2xl font-black tracking-tight">Legal Disclaimer</h2>
         <div class="mt-5 space-y-4 text-sm leading-7 text-slate-300">
           <p>
-            This document converter is provided for general productivity and informational use only. It is not a legal, financial, tax, medical, compliance, recordkeeping, archival, or professional publishing service. NodnWebTools does not guarantee that exported PDF, DOCX, or TXT files will meet any specific formatting rule, court filing requirement, school submission requirement, business compliance standard, accessibility requirement, government standard, or professional documentation policy.
+            This document converter is provided for general productivity and informational use only. It is not a legal, financial, tax, medical, compliance, recordkeeping, archival, or professional publishing service. NodnTools does not guarantee that exported PDF, DOCX, or TXT files will meet any specific formatting rule, court filing requirement, school submission requirement, business compliance standard, accessibility requirement, government standard, or professional documentation policy.
           </p>
           <p>
             Users are responsible for reviewing all exported files before sharing, printing, submitting, signing, storing, or relying on them. Browser rendering, third-party front-end libraries, device memory, fonts, extensions, and local security settings may affect output quality or export behavior. Do not enter passwords, private keys, confidential client data, protected health information, regulated financial information, or highly sensitive personal data into any online tool unless you fully understand the risks and control the device environment.
           </p>
           <p>
-            NodnWebTools and its operators are not responsible for data loss, formatting errors, incomplete exports, corrupted downloads, inaccurate content, missed deadlines, privacy issues caused by user devices, or any direct or indirect damages resulting from the use of this tool. By using the tool, you accept responsibility for verifying accuracy, protecting your own data, and choosing an appropriate file format for your intended purpose.
+            NodnTools and its operators are not responsible for data loss, formatting errors, incomplete exports, corrupted downloads, inaccurate content, missed deadlines, privacy issues caused by user devices, or any direct or indirect damages resulting from the use of this tool. By using the tool, you accept responsibility for verifying accuracy, protecting your own data, and choosing an appropriate file format for your intended purpose.
           </p>
         </div>
       </div>
     </section>
-
-    <div class="ad-box mt-8">
-      Bottom Ad Area Near the End of the Page
-    </div>
   </main>
 
   <footer class="mt-10 border-t border-slate-200 bg-white">
     <div class="mx-auto flex w-full max-w-7xl flex-col gap-3 px-4 py-8 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
-      <p>© <span id="currentYear"></span> NodnWebTools. All rights reserved.</p>
-      <a href="https://nodntools.com" class="font-semibold text-accent-700 hover:text-accent-800">Visit Home</a>
+      <p>© <span id="currentYear"></span> NodnTools. All rights reserved.</p>
+      <a href="/" class="font-semibold text-accent-700 hover:text-accent-800">Visit Home</a>
     </div>
   </footer>
 
@@ -749,7 +763,6 @@
       documentBody.addEventListener("input", updatePreview);
       fontSize.addEventListener("change", updatePreview);
       paperPadding.addEventListener("change", updatePreview);
-      window.addEventListener("resize", updatePreview);
 
       exampleButtons.forEach(function (button) {
         button.addEventListener("click", function () {
