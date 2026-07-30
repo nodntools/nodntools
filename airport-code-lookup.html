@@ -9,11 +9,15 @@
   <meta name="description" content="Find IATA and ICAO airport codes by city, airport name, country, or destination with a fast browser-based lookup tool." />
   <meta name="keywords" content="airport code lookup, IATA code finder, ICAO code lookup, airport finder, city airport code, airport abbreviation, flight airport code, airport database, travel planning tool" />
   <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow" />
+  <link rel="canonical" href="https://nodntools.com/airport-code-lookup" />
   <meta name="google-adsense-account" content="ca-pub-5282672325821404" />
 
   <meta property="og:title" content="Airport Code Lookup | IATA & ICAO Finder" />
   <meta property="og:description" content="Search airport codes by city, airport name, country, IATA code, or ICAO identifier." />
   <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://nodntools.com/airport-code-lookup" />
+  <meta property="og:site_name" content="NodnWebTools" />
 
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404" crossorigin="anonymous"></script>
   <script src="https://cdn.tailwindcss.com"></script>
@@ -23,6 +27,7 @@
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "Airport Code Lookup",
+    "url": "https://nodntools.com/airport-code-lookup",
     "applicationCategory": "TravelApplication",
     "operatingSystem": "All",
     "description": "A browser-based airport code lookup tool for searching IATA codes, ICAO identifiers, airport names, cities, regions, and countries.",
@@ -36,6 +41,63 @@
       "name": "NodnWebTools",
       "url": "https://nodntools.com"
     }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the difference between IATA and ICAO airport codes?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "IATA codes are three-letter identifiers commonly used by passengers, airlines, booking websites, boarding passes, and baggage tags. ICAO codes are four-letter identifiers commonly used in flight planning, air traffic control, weather reports, and aviation operations."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I search by city instead of airport code?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. You can search by city name, country, airport name, IATA code, ICAO code, or region. This is helpful for cities with multiple airports."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why do many Canadian airport codes start with Y?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Many Canadian IATA airport codes begin with Y because of historical code assignment patterns. Examples include YVR, YYZ, YUL, YYC, and YOW."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this tool include every airport in the world?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. This page includes a practical built-in list of many major and commonly searched airports. It is intended for fast travel lookup and general planning, not as a complete official global aviation database."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use the results for flight booking?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You can use the results as a helpful reference, but you should verify final flight details with your airline, travel agency, airport authority, or booking platform before purchasing tickets or arranging transportation."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does the tool send my search to a server?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. The lookup runs client-side in your browser using the airport data embedded in this page. No search text needs to be uploaded to a backend server for the tool to work."
+        }
+      }
+    ]
   }
   </script>
 
@@ -63,26 +125,11 @@
 
     .mobile-card,
     .mobile-panel,
-    .mobile-preview,
-    .ad-box {
+    .mobile-preview {
       max-width: 100%;
       overflow-wrap: anywhere;
     }
 
-    .ad-box {
-      width: 100%;
-      min-height: 90px;
-      border: 2px dashed #cbd5e1;
-      background: #f1f5f9;
-      color: #64748b;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      border-radius: 1rem;
-      padding: 1rem;
-      font-size: 0.95rem;
-    }
 
     .result-row:hover {
       background: #f8fafc;
@@ -108,11 +155,6 @@
         width: 100%;
       }
 
-      .ad-box {
-        min-height: 90px;
-        font-size: 0.85rem;
-        border-radius: 0.875rem;
-      }
 
       table {
         font-size: 0.82rem;
@@ -138,11 +180,6 @@
         font-size: 1.45rem !important;
       }
 
-      .ad-box {
-        min-height: 80px;
-        padding: 0.75rem;
-        font-size: 0.8rem;
-      }
     }
   </style>
 </head>
@@ -163,9 +200,6 @@
   </header>
 
   <main>
-    <section class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-      <div class="ad-box">Advertisement Space</div>
-    </section>
 
     <section id="tool" class="mx-auto max-w-7xl px-4 pb-10 pt-4 sm:px-6 lg:px-8">
       <div class="grid gap-6 lg:grid-cols-[0.92fr_1.08fr]">
@@ -187,8 +221,9 @@
               <label for="searchInput" class="mb-2 block text-sm font-semibold text-slate-700">Search airport, city, country, IATA, or ICAO</label>
               <input
                 id="searchInput"
-                type="text"
+                type="search"
                 autocomplete="off"
+                maxlength="120"
                 placeholder="Example: Vancouver, JFK, EGLL, Tokyo, Pearson"
                 class="w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none ring-indigo-200 transition focus:border-indigo-500 focus:ring-4"
               />
@@ -271,7 +306,7 @@
             </p>
           </div>
 
-          <div id="warningBox" class="mt-6 hidden rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm font-medium text-amber-800"></div>
+          <div id="warningBox" role="status" aria-live="polite" class="mt-6 hidden rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm font-medium text-amber-800"></div>
 
           <div id="resultsContainer" class="mt-6 hidden overflow-hidden rounded-2xl border border-slate-200">
             <div class="max-h-[720px] overflow-auto">
@@ -285,16 +320,12 @@
                     <th class="px-4 py-3">ICAO</th>
                   </tr>
                 </thead>
-                <tbody id="resultsBody" class="divide-y divide-slate-200 bg-white"></tbody>
+                <tbody id="resultsBody" aria-live="polite" class="divide-y divide-slate-200 bg-white"></tbody>
               </table>
             </div>
           </div>
         </section>
       </div>
-    </section>
-
-    <section class="mx-auto max-w-7xl px-4 pb-10 sm:px-6 lg:px-8">
-      <div class="ad-box">Advertisement Space</div>
     </section>
 
     <section class="mx-auto max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
@@ -355,8 +386,6 @@
             A reliable airport code finder helps avoid confusion before it becomes a travel problem. When you know exactly which airport a code refers to, you can choose better flights, compare realistic connection times, confirm airport transfers, avoid booking the wrong hotel shuttle, and understand whether a flight search result is actually convenient. For families, business travelers, students, cruise passengers, and international visitors, confirming airport codes can prevent expensive mistakes.
           </p>
         </section>
-
-        <div class="my-12 ad-box">Advertisement Space</div>
 
         <section id="how-to-use" class="mt-12">
           <h2 class="text-2xl font-extrabold text-slate-950">How to Use This Airport Code Lookup Tool</h2>
@@ -439,8 +468,6 @@
           </p>
         </section>
 
-        <div class="my-12 ad-box">Advertisement Space</div>
-
         <section class="mt-12">
           <h2 class="text-2xl font-extrabold text-slate-950">Tips for Choosing the Right Airport</h2>
           <p class="mt-4 leading-8 text-slate-700">
@@ -513,7 +540,7 @@
       <p class="mt-2 leading-7 text-slate-600">Convert airfare, hotel prices, airport fees, and travel spending.</p>
     </a>
 
-    <a href="/time.html" class="group rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-fuchsia-300 hover:shadow-lg">
+    <a href="/time" class="group rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-fuchsia-300 hover:shadow-lg">
       <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-fuchsia-50 text-3xl">🕒</div>
       <h3 class="mt-5 text-xl font-bold text-slate-900 transition group-hover:text-fuchsia-700">Time Calculator</h3>
       <p class="mt-2 leading-7 text-slate-600">Calculate flight duration, layover length, and elapsed travel time.</p>
@@ -587,8 +614,6 @@
           </div>
         </section>
 
-        <div class="my-12 ad-box">Advertisement Space</div>
-
         <section class="mt-12 rounded-3xl bg-slate-950 p-6 text-slate-100 sm:p-8">
           <h2 class="text-2xl font-extrabold">Legal Disclaimer</h2>
           <p class="mt-4 leading-8 text-slate-300">
@@ -602,10 +627,6 @@
           </p>
         </section>
       </article>
-    </section>
-
-    <section class="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
-      <div class="ad-box">Advertisement Space</div>
     </section>
   </main>
 
@@ -975,7 +996,7 @@
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
-        URL.revokeObjectURL(url);
+        window.setTimeout(() => URL.revokeObjectURL(url), 1000);
 
         showCopyFeedback("CSV downloaded.");
       } catch (error) {
@@ -1072,9 +1093,6 @@
 
     showAllBtn.addEventListener("click", showPopularAirports);
 
-    window.addEventListener("resize", () => {
-      document.body.style.maxWidth = "100%";
-    });
 
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
