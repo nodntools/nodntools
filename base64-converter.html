@@ -7,14 +7,16 @@
 
   <title>Base64 Encoder Decoder | Text Converter Tool</title>
   <meta name="description" content="Free Base64 encoder decoder to convert text to Base64 and decode Base64 to UTF-8 text securely in your browser." />
-  <meta name="keywords" content="base64 encoder, base64 decoder, base64 converter, text to base64, base64 to text, online base64 tool, utf8 base64 converter, encode text online, decode base64 online, client-side base64 encoder, browser base64 decoder, data encoding tool, developer text converter, secure base64 converter, ASCII encoding tool, URL safe encoding, web developer utility, NodnWebTools" />
+  <meta name="keywords" content="base64 encoder, base64 decoder, base64 converter, text to base64, base64 to text, online base64 tool, utf8 base64 converter, encode text online, decode base64 online, client-side base64 encoder, browser base64 decoder, data encoding tool, developer text converter, secure base64 converter, ASCII encoding tool, web developer utility, NodnWebTools" />
   <meta name="author" content="NodnWebTools" />
   <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow" />
+  <link rel="canonical" href="https://nodntools.com/base64-converter" />
 
   <meta property="og:title" content="Base64 Encoder Decoder | Text Converter Tool" />
   <meta property="og:description" content="Encode text to Base64 or decode Base64 to UTF-8 text instantly with a free browser-based converter." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://nodntools.com/base64-converter.html" />
+  <meta property="og:url" content="https://nodntools.com/base64-converter" />
   <meta property="og:site_name" content="NodnWebTools" />
 
   <meta name="twitter:card" content="summary_large_image" />
@@ -33,7 +35,7 @@
     "name": "Base64 Encoder Decoder",
     "applicationCategory": "DeveloperApplication",
     "operatingSystem": "All",
-    "url": "https://nodntools.com/base64-converter.html",
+    "url": "https://nodntools.com/base64-converter",
     "description": "A free browser-based Base64 encoder and decoder for converting plain text to Base64 and decoding Base64 strings back to UTF-8 text locally.",
     "featureList": [
       "Encode plain text to Base64",
@@ -53,6 +55,55 @@
       "name": "NodnWebTools",
       "url": "https://nodntools.com"
     }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is Base64 encryption?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Base64 is encoding, not encryption. It makes data easier to transport through text-based systems, but anyone can decode it with a Base64 decoder."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this tool upload my text?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The encode and decode operations run in your browser. The tool does not intentionally send entered text to a backend conversion server."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I decode any Base64 string?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You can decode valid Base64 text when the decoded result is readable UTF-8 text. Damaged, incomplete, encrypted, compressed, or binary-only Base64 data may not display as readable text."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does the encoded text become longer?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Base64 represents data using a limited text-safe character set. This makes the output more transport-friendly but usually increases the character length."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can this convert files to Base64?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "This version focuses on text conversion only. File-to-Base64 conversion requires a dedicated file encoder with clear file size limits."
+        }
+      }
+    ]
   }
   </script>
 
@@ -114,24 +165,6 @@
       overflow-x: hidden;
     }
 
-    .ad-box {
-      width: 100%;
-      max-width: 100%;
-      min-height: 90px;
-      border: 2px dashed #cbd5e1;
-      background: #f8fafc;
-      color: #94a3b8;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      border-radius: 1rem;
-      padding: 1rem;
-      overflow: hidden;
-      font-size: 0.875rem;
-      line-height: 1.5;
-    }
-
     @media (max-width: 640px) {
       body {
         padding-left: 0;
@@ -159,12 +192,6 @@
         line-height: 2.35rem !important;
       }
 
-      .ad-box {
-        min-height: 90px;
-        border-radius: 0.875rem;
-        padding: 0.875rem;
-        font-size: 0.75rem;
-      }
     }
 
     @media (max-width: 380px) {
@@ -204,10 +231,6 @@
         <span class="rounded-full bg-indigo-50 px-4 py-2 font-semibold text-indigo-700">Client-side text utility</span>
       </nav>
     </header>
-
-    <div class="mx-auto mt-5 w-full max-w-7xl">
-      <div class="ad-box">AdSense Responsive Ad Area - Top</div>
-    </div>
 
     <main class="mx-auto mt-6 grid w-full max-w-7xl grid-cols-1 gap-6 lg:grid-cols-12">
       <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:col-span-5 lg:p-8">
@@ -318,14 +341,8 @@
             Copied!
           </div>
         </div>
-
-        <div class="ad-box">AdSense Responsive Ad Area - Below Result</div>
       </section>
     </main>
-
-    <div class="mx-auto mt-6 w-full max-w-7xl">
-      <div class="ad-box">AdSense Responsive Ad Area - Below Tool</div>
-    </div>
 
     <section class="mx-auto mt-8 w-full max-w-7xl space-y-6">
       <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
@@ -360,8 +377,6 @@
           </p>
         </div>
       </article>
-
-      <div class="ad-box">AdSense Responsive Ad Area - Middle Content</div>
 
       <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
         <h2 class="text-3xl font-black tracking-tight text-slate-950">
@@ -467,8 +482,6 @@
           </div>
         </div>
       </article>
-
-      <div class="ad-box">AdSense Responsive Ad Area - Bottom Content</div>
 
       <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
         <h2 class="text-3xl font-black tracking-tight text-slate-950">
@@ -771,8 +784,6 @@
           </p>
         </div>
       </section>
-
-      <div class="ad-box">AdSense Responsive Ad Area - Bottom</div>
     </section>
 
     <footer class="mx-auto mt-8 w-full max-w-7xl pb-8 text-center text-sm text-slate-500">
@@ -860,18 +871,23 @@
       }
 
       function decodeBase64ToUtf8(value) {
-        const clean = value.trim().replace(/\s+/g, "");
+        let clean = value.trim().replace(/\s+/g, "").replace(/-/g, "+").replace(/_/g, "/");
 
         if (!clean) return "";
-
-        const binary = atob(clean);
-        const bytes = new Uint8Array(binary.length);
-
-        for (let i = 0; i < binary.length; i++) {
-          bytes[i] = binary.charCodeAt(i);
+        if (!/^[A-Za-z0-9+/]*={0,2}$/.test(clean) || clean.length % 4 === 1) {
+          throw new Error("Invalid Base64 format");
         }
 
-        return new TextDecoder("utf-8", { fatal: false }).decode(bytes);
+        while (clean.length % 4 !== 0) {
+          clean += "=";
+        }
+
+        const binary = atob(clean);
+        const bytes = Uint8Array.from(binary, function (character) {
+          return character.charCodeAt(0);
+        });
+
+        return new TextDecoder("utf-8", { fatal: true }).decode(bytes);
       }
 
       function encodeText() {
@@ -968,7 +984,12 @@
       decodeBtn.addEventListener("click", decodeText);
       clearBtn.addEventListener("click", function () {
         inputText.value = "";
-        updateStats(modeText.textContent === "—" ? "—" : modeText.textContent);
+        outputText.value = "";
+        outputLabel.textContent = "Output";
+        clearWarning();
+        resetOutputStyle();
+        setStatus("Waiting", "waiting");
+        updateStats("—");
         inputText.focus();
       });
       resetBtn.addEventListener("click", resetAll);
