@@ -8,27 +8,41 @@
   <meta name="google-adsense-account" content="ca-pub-5282672325821404">
 	<link rel="icon" type="image/png" href="/favicon.png">
 
-  <title>Online File Converter: PDF and DOCX Tool</title>
-  <meta name="description" content="Convert TXT, Markdown, and DOCX files to PDF or Word locally in your browser with secure no-upload processing.">
+  <title>File Converter: TXT, Markdown & DOCX to PDF or Word</title>
+  <meta name="description" content="Convert TXT, Markdown, and DOCX files to PDF or editable Word DOCX locally. Preview extracted text and download without a server upload.">
   <meta name="keywords" content="online file converter, free file converter, document converter, TXT to PDF, Markdown to PDF, DOCX to PDF, TXT to DOCX, Markdown to DOCX, browser file converter, client-side file converter, no upload document converter, secure document converter, PDF converter, Word converter, file upload converter, local file conversion, NodnWebTools">
   <meta name="author" content="NodnWebTools">
   <meta name="robots" content="index, follow">
+  <meta name="googlebot" content="index, follow">
+  <link rel="canonical" href="https://nodntools.com/file-converter">
 
-  <meta property="og:title" content="Online File Converter: PDF and DOCX Tool">
+  <meta property="og:title" content="File Converter: TXT, Markdown & DOCX to PDF or Word">
   <meta property="og:description" content="Upload TXT, Markdown, or DOCX files and convert them to PDF or Word directly inside your browser without server uploads.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://nodntools.com/file-converter.html">
+  <meta property="og:url" content="https://nodntools.com/file-converter">
   <meta property="og:site_name" content="NodnWebTools">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="File Converter: TXT, Markdown & DOCX to PDF or Word">
+  <meta name="twitter:description" content="Convert text-based TXT, Markdown, and DOCX documents to PDF or editable DOCX locally in your browser.">
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": "Online File Converter: PDF and DOCX Tool",
+    "name": "File Converter: TXT, Markdown and DOCX to PDF or Word",
     "applicationCategory": "ProductivityApplication",
     "operatingSystem": "Any",
-    "url": "https://nodntools.com/file-converter.html",
+    "url": "https://nodntools.com/file-converter",
     "description": "A browser-based file converter that converts TXT, Markdown, and DOCX files to PDF or Word DOCX formats with local client-side processing.",
+    "featureList": [
+      "TXT to PDF conversion",
+      "Markdown text to PDF conversion",
+      "DOCX text to PDF conversion",
+      "TXT to DOCX conversion",
+      "Markdown text to DOCX conversion",
+      "Local document processing",
+      "Extracted text preview"
+    ],
     "offers": {
       "@type": "Offer",
       "price": "0",
@@ -39,6 +53,63 @@
       "name": "NodnWebTools",
       "url": "https://nodntools.com"
     }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is this file converter free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. This browser tool is free to use for supported TXT, Markdown, and DOCX document conversion tasks."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does the converter upload my file to a server?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The converter is designed to read and process supported files locally in your browser. Your document is not intentionally uploaded to a NodnWebTools backend for conversion."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I convert DOCX files with images and tables?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "This tool focuses on readable text extraction. Complex formatting, images, tables, comments, headers, footers, and embedded objects may not be preserved in the converted output."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which output format should I choose?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Choose PDF for a stable printable document and DOCX for an editable Word-compatible file that you can continue formatting later."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this work on mobile?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. The page uses a responsive layout, mobile-safe preview areas, full-width mobile buttons, and horizontal overflow protection."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does the converted file look different from the original?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The converter creates a simplified text-based output. Highly formatted source documents may not keep their original visual design, so review the preview and exported file before final use."
+        }
+      }
+    ]
   }
   </script>
 
@@ -78,21 +149,6 @@
     .safe-break { overflow-wrap:anywhere; word-break:break-word; }
     .mobile-card, .mobile-panel, .mobile-preview, .mobile-code { max-width:100%; overflow-wrap:anywhere; }
     .mobile-code { overflow-x:auto; white-space:pre-wrap; }
-    .ad-box {
-      width:100%;
-      min-height:90px;
-      border:1px dashed #cbd5e1;
-      background:#f8fafc;
-      border-radius:1rem;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      color:#94a3b8;
-      font-size:.875rem;
-      padding:1rem;
-      overflow:hidden;
-    }
     .paper-preview {
       width:100%;
       aspect-ratio:1 / 1.4142;
@@ -110,13 +166,11 @@
       .mobile-button-grid { grid-template-columns:1fr !important; }
       .mobile-button-grid button { width:100%; }
       .paper-preview { aspect-ratio:auto; min-height:430px; max-height:620px; }
-      .ad-box { min-height:90px; font-size:.8rem; border-radius:.875rem; }
     }
     @media (max-width:380px) {
       .mobile-card { padding:.875rem; border-radius:1rem; }
       .mobile-panel { padding:.875rem; }
       .paper-preview { min-height:360px; }
-      .ad-box { padding:.75rem; font-size:.75rem; }
     }
   </style>
 </head>
@@ -124,11 +178,11 @@
 <body class="min-h-screen bg-slate-50 text-slate-900">
   <header class="border-b border-slate-200 bg-white/90 backdrop-blur">
     <div class="mx-auto flex w-full max-w-7xl flex-col gap-4 px-4 py-5 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
-      <a href="https://nodntools.com" aria-label="NodnWebTools Home" class="inline-flex items-center">
+      <a href="/" aria-label="NodnWebTools Home" class="inline-flex items-center">
         <span class="text-2xl font-black tracking-tight text-slate-950">Nodn<span class="text-accent-600">WebTools</span></span>
       </a>
       <nav class="flex flex-wrap gap-3 text-sm font-semibold text-slate-600">
-        <a href="https://nodntools.com" class="rounded-full px-4 py-2 hover:bg-slate-100 hover:text-accent-700">Home</a>
+        <a href="/" class="rounded-full px-4 py-2 hover:bg-slate-100 hover:text-accent-700">Home</a>
         <a href="#how-to-use" class="rounded-full px-4 py-2 hover:bg-slate-100 hover:text-accent-700">How to Use</a>
         <a href="#faq" class="rounded-full px-4 py-2 hover:bg-slate-100 hover:text-accent-700">FAQ</a>
       </nav>
@@ -136,7 +190,6 @@
   </header>
 
   <main class="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-    <div class="ad-box mb-6">Top Ad Area - Responsive AdSense Placeholder</div>
 
     <section class="grid grid-cols-1 gap-6 lg:grid-cols-12">
       <div class="mobile-card rounded-3xl bg-white p-5 shadow-soft ring-1 ring-slate-200 sm:p-7 lg:col-span-5">
@@ -206,8 +259,8 @@
             </div>
           </div>
 
-          <div id="errorNotification" class="hidden rounded-2xl bg-rose-50 p-4 text-sm font-semibold leading-6 text-rose-700 ring-1 ring-rose-200"></div>
-          <div id="statusMessage" class="rounded-2xl bg-accent-50 p-4 text-sm font-bold text-accent-700 ring-1 ring-accent-100">Ready to convert</div>
+          <div id="errorNotification" role="alert" aria-live="assertive" class="hidden rounded-2xl bg-rose-50 p-4 text-sm font-semibold leading-6 text-rose-700 ring-1 ring-rose-200"></div>
+          <div id="statusMessage" role="status" aria-live="polite" class="rounded-2xl bg-accent-50 p-4 text-sm font-bold text-accent-700 ring-1 ring-accent-100">Ready to convert</div>
 
           <div class="mobile-button-grid grid grid-cols-1 gap-3 sm:grid-cols-2">
             <button id="convertBtn" type="button" class="rounded-2xl bg-accent-600 px-4 py-3 text-sm font-black text-white shadow-lg shadow-accent-600/20 transition hover:bg-accent-700 active:scale-[0.98]">Convert & Download</button>
@@ -229,7 +282,7 @@
 
           <div class="mobile-preview rounded-3xl bg-slate-200 p-3 shadow-inner sm:p-5">
             <article id="printableArea" class="paper-preview mx-auto rounded-sm bg-white p-12 text-sm leading-7 text-slate-900 shadow-xl">
-              <div id="previewText">Upload a supported document to preview extracted text here.</div>
+              <div id="previewText" aria-live="polite">Upload a supported document to preview extracted text here.</div>
             </article>
           </div>
 
@@ -240,8 +293,6 @@
             </p>
           </div>
         </section>
-
-        <div class="ad-box">Ad Area Below Main Tool and Result Section</div>
 
         <section class="mobile-card rounded-3xl bg-white p-5 shadow-soft ring-1 ring-slate-200 sm:p-7">
           <h2 class="text-2xl font-black tracking-tight text-slate-950">Supported Conversion Workflows</h2>
@@ -275,8 +326,6 @@
         <p class="mt-5 text-base leading-8 text-slate-600">
           Many online file converter websites work by uploading your document to a remote server, processing it in the cloud, and then returning a converted download. That model can be convenient, but it may not be the best fit for private drafts, internal notes, business documents, unpublished writing, customer service templates, meeting summaries, or simple documents that do not need to leave your device. This client-side file converter focuses on a more privacy-conscious workflow. The browser reads supported files locally, extracts readable text, and creates the exported file in your active browser session. While the page uses front-end libraries loaded from CDN sources for document processing, the tool itself is designed as a no-backend utility for everyday file conversion tasks.
         </p>
-
-        <div class="ad-box my-8">Middle Content Ad Area Inside the SEO Article Section</div>
 
         <h2 id="how-to-use" class="mt-10 text-2xl font-black tracking-tight text-slate-950">How to Use the Online File Converter</h2>
         <p class="mt-4 text-base leading-8 text-slate-600">
@@ -332,8 +381,6 @@
         <p class="mt-5 text-base leading-8 text-slate-600">
           DOCX is better when editing matters. A DOCX file can be opened in a word processor and adjusted with fonts, headings, spacing, tables, page numbers, headers, footers, comments, and other advanced formatting. If you are converting a TXT file or Markdown file into a document that needs more polish, DOCX gives you a flexible foundation. You can use this converter to create the first editable version, then open the DOCX in Microsoft Word, Google Docs, LibreOffice, or Apple Pages for final formatting.
         </p>
-
-        <div class="ad-box my-8">Bottom Content Ad Area Before FAQ</div>
 
         <h2 class="mt-12 text-2xl font-black tracking-tight text-slate-950">Popular Uses for This Online File Converter</h2>
         <div class="mt-8 grid grid-cols-1 gap-5 md:grid-cols-2">
@@ -530,14 +577,12 @@
         </div>
       </div>
     </section>
-
-    <div class="ad-box mt-8">Bottom Ad Area Near the End of the Page</div>
   </main>
 
   <footer class="mt-10 border-t border-slate-200 bg-white">
     <div class="mx-auto flex w-full max-w-7xl flex-col gap-3 px-4 py-8 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
       <p>© <span id="currentYear"></span> NodnWebTools. All rights reserved.</p>
-      <a href="https://nodntools.com" class="font-semibold text-accent-700 hover:text-accent-800">Visit Home</a>
+      <a href="/" class="font-semibold text-accent-700 hover:text-accent-800">Visit Home</a>
     </div>
   </footer>
 
@@ -616,11 +661,23 @@
         return name.endsWith(".txt") || name.endsWith(".md") || name.endsWith(".markdown") || name.endsWith(".docx");
       }
 
+      function isFileSizeAllowed(file) {
+        const maximumSize = 25 * 1024 * 1024;
+        return file.size <= maximumSize;
+      }
+
       function handleFile(file) {
         try {
           if (!file) return;
           if (!isSupportedFile(file)) {
             showError("Unsupported file format. Please upload a TXT, Markdown, or DOCX document.");
+            fileInput.value = "";
+            return;
+          }
+
+          if (!isFileSizeAllowed(file)) {
+            showError("This file is larger than 25 MB. Please choose a smaller document to avoid browser memory problems.");
+            fileInput.value = "";
             return;
           }
 
@@ -731,7 +788,23 @@
           jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
         };
 
-        await html2pdf().set(options).from(printableArea).save();
+        const previousStyles = {
+          maxHeight: printableArea.style.maxHeight,
+          overflow: printableArea.style.overflow,
+          aspectRatio: printableArea.style.aspectRatio
+        };
+
+        printableArea.style.maxHeight = "none";
+        printableArea.style.overflow = "visible";
+        printableArea.style.aspectRatio = "auto";
+
+        try {
+          await html2pdf().set(options).from(printableArea).save();
+        } finally {
+          printableArea.style.maxHeight = previousStyles.maxHeight;
+          printableArea.style.overflow = previousStyles.overflow;
+          printableArea.style.aspectRatio = previousStyles.aspectRatio;
+        }
       }
 
       async function convertToDocx(baseName) {
@@ -784,7 +857,6 @@
 
       fontSize.addEventListener("change", updatePreview);
       pagePadding.addEventListener("change", updatePreview);
-      window.addEventListener("resize", updatePreview);
 
       convertBtn.addEventListener("click", async function () {
         if (isProcessing || !ensureReady()) return;
