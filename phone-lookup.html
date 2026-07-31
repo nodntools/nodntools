@@ -9,12 +9,14 @@
   <meta name="description" content="Analyze phone numbers, country codes, regions, formats, and tel links privately in your browser." />
   <meta name="keywords" content="phone number lookup, phone number checker, international phone number validator, country code lookup, area code lookup, phone format checker, phone number parser, tel link generator, phone number format tool, reverse phone format lookup, international dialing code lookup, phone validation tool, client-side phone lookup, mobile number checker, phone region lookup" />
   <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow" />
+  <link rel="canonical" href="https://nodntools.com/phone-lookup" />
   <meta name="author" content="NodnWebTools" />
 
   <meta property="og:title" content="Phone Number Lookup and Format Checker" />
   <meta property="og:description" content="Analyze phone numbers, country codes, regions, formats, and tel links privately in your browser." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://nodntools.com/phone-lookup.html" />
+  <meta property="og:url" content="https://nodntools.com/phone-lookup" />
   <meta property="og:site_name" content="NodnWebTools" />
 
   <meta name="twitter:card" content="summary_large_image" />
@@ -50,7 +52,7 @@
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "Phone Number Lookup and Format Checker",
-    "url": "https://nodntools.com/phone-lookup.html",
+    "url": "https://nodntools.com/phone-lookup",
     "applicationCategory": "UtilityApplication",
     "operatingSystem": "Any modern web browser",
     "description": "A free client-side phone number lookup and formatting tool that analyzes country codes, possible regions, number structure, international format, and tel links.",
@@ -74,6 +76,47 @@
       "Copyable report",
       "Downloadable text report",
       "Client-side browser processing"
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Can this tool tell me who owns a phone number?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. This tool does not access private identity records, telecom databases, subscriber records, or caller ID systems. It only analyzes number structure, formatting, country code, and possible region information."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is my phone number uploaded anywhere?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. The analysis runs locally in your browser using JavaScript. Your entered number is not submitted to a backend server by this tool."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can it detect spam calls?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Spam detection requires live reputation data, user reports, or carrier-level information. This tool is for formatting, structure checking, country code detection, and basic region guidance."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is a tel link?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A tel link is a clickable phone link written with tel: followed by a dialable number. On supported devices, it opens the dialer or a calling application."
+        }
+      }
     ]
   }
   </script>
@@ -121,20 +164,15 @@
       overflow-x: auto;
     }
 
-    .ad-box {
-      width: 100%;
-      max-width: 100%;
-      min-height: 90px;
-      border: 1px dashed #cbd5e1;
-      background: #f8fafc;
-      color: #94a3b8;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      border-radius: 1.25rem;
-      padding: 1rem;
-      overflow: hidden;
+    button:disabled {
+      cursor: not-allowed;
+      opacity: .5;
+    }
+
+    a:not([href]) {
+      cursor: default;
+      color: #64748b;
+      pointer-events: none;
     }
 
     @media (max-width: 640px) {
@@ -152,13 +190,6 @@
       .mobile-full,
       button {
         width: 100%;
-      }
-
-      .ad-box {
-        min-height: 90px;
-        border-radius: 1rem;
-        padding: .875rem;
-        font-size: .875rem;
       }
 
       h1 {
@@ -188,11 +219,6 @@
         border-radius: 1rem !important;
       }
 
-      .ad-box {
-        min-height: 82px;
-        font-size: .8rem;
-      }
-
       h1 {
         font-size: 1.75rem !important;
       }
@@ -213,9 +239,6 @@
   </header>
 
   <main class="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
-    <section class="ad-box mb-6">
-      Top Ad Area
-    </section>
 
     <section class="grid grid-cols-1 gap-6 lg:grid-cols-[0.95fr_1.05fr]">
       <div class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8 lg:sticky lg:top-8 lg:self-start">
@@ -274,7 +297,7 @@
             <button id="lookupBtn" type="button" class="rounded-2xl bg-accent-600 px-5 py-4 font-black text-white shadow-sm transition hover:bg-accent-700 active:scale-[.99]">
               Analyze Number
             </button>
-            <button id="copyBtn" type="button" class="rounded-2xl border border-slate-200 bg-white px-5 py-4 font-black text-slate-700 transition hover:border-accent-200 hover:bg-accent-50 hover:text-accent-700">
+            <button id="copyBtn" type="button" disabled class="rounded-2xl border border-slate-200 bg-white px-5 py-4 font-black text-slate-700 transition hover:border-accent-200 hover:bg-accent-50 hover:text-accent-700">
               Copy Result
             </button>
             <button id="resetBtn" type="button" class="rounded-2xl border border-slate-200 bg-white px-5 py-4 font-black text-slate-700 transition hover:border-rose-200 hover:bg-rose-50 hover:text-rose-700">
@@ -282,7 +305,7 @@
             </button>
           </div>
 
-          <div id="copyFeedback" class="hidden rounded-2xl bg-emerald-50 px-4 py-3 text-sm font-bold text-emerald-700">
+          <div id="copyFeedback" class="hidden rounded-2xl bg-emerald-50 px-4 py-3 text-sm font-bold text-emerald-700" role="status" aria-live="polite">
             Copied!
           </div>
 
@@ -300,12 +323,12 @@
               Instant phone number analysis appears here as you type.
             </p>
           </div>
-          <span id="statusBadge" class="inline-flex w-fit rounded-full bg-slate-100 px-3 py-1 text-sm font-bold text-slate-600">
+          <span id="statusBadge" class="inline-flex w-fit rounded-full bg-slate-100 px-3 py-1 text-sm font-bold text-slate-600" aria-live="polite">
             Waiting
           </span>
         </div>
 
-        <div id="warningBox" class="mt-5 rounded-2xl bg-amber-50 p-4 text-sm font-medium leading-6 text-amber-800">
+        <div id="warningBox" class="mt-5 rounded-2xl bg-amber-50 p-4 text-sm font-medium leading-6 text-amber-800" role="status" aria-live="polite">
           Enter a phone number to begin. This tool performs format and region analysis only. It does not reveal the owner of a number.
         </div>
 
@@ -335,7 +358,7 @@
 
         <div class="mt-4 rounded-2xl border border-slate-200 bg-white p-4">
           <p class="text-sm font-bold text-slate-500">Dialing Link</p>
-          <a id="telLink" href="#" class="safe-break mt-2 block text-lg font-black text-accent-700">—</a>
+          <a id="telLink" class="safe-break mt-2 block text-lg font-black text-accent-700" aria-label="Generated click-to-call phone link">—</a>
         </div>
 
         <div class="mt-4 rounded-2xl border border-slate-200 bg-white p-4">
@@ -343,14 +366,10 @@
           <pre id="reportOutput" class="mobile-code mt-2 text-sm leading-6 text-slate-700">No number analyzed yet.</pre>
         </div>
 
-        <button id="downloadBtn" type="button" class="mt-5 w-full rounded-2xl bg-violet-600 px-5 py-4 font-black text-white shadow-sm transition hover:bg-violet-700">
+        <button id="downloadBtn" type="button" disabled class="mt-5 w-full rounded-2xl bg-violet-600 px-5 py-4 font-black text-white shadow-sm transition hover:bg-violet-700">
           Download Report
         </button>
       </div>
-    </section>
-
-    <section class="ad-box my-8">
-      Ad Area Below Main Tool and Result Section
     </section>
 
     <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8 lg:p-10">
@@ -393,10 +412,6 @@
           <p>
             International formatting is also important when contacts cross borders. A local phone number may work within one country but fail when dialed from another country unless it includes the correct country calling code. A properly formatted international number usually begins with a plus sign followed by the country calling code and the national number. For example, the United States and Canada use +1, the United Kingdom uses +44, South Korea uses +82, Japan uses +81, Australia uses +61, Germany uses +49, France uses +33, and India uses +91. When a number is stored in an international style, mobile devices and communication apps are more likely to dial it correctly.
           </p>
-
-          <div class="ad-box my-8">
-            Middle Content Ad Area
-          </div>
 
           <h3 class="text-2xl font-black text-slate-950">How to Use the Phone Number Checker</h3>
           <p>
@@ -461,10 +476,6 @@
           <p>
             This distinction is important for privacy and safety. A legitimate formatting tool should not promise to reveal private ownership details without authorized data sources and proper consent. If you need to confirm a number for business, use appropriate consent-based methods such as direct customer confirmation, verified account settings, double opt-in forms, official business records, or authorized communication platforms. Do not use phone number tools for harassment, stalking, unauthorized tracking, fraud, or privacy invasion.
           </p>
-
-          <div class="ad-box my-8">
-            Bottom Content Ad Area
-          </div>
 
           <h3 class="text-2xl font-black text-slate-950">Click-to-Call Tel Links for Websites</h3>
           <p>
@@ -553,98 +564,44 @@
       </div>
     </section>
 
-    <section class="ad-box my-8">
-      Bottom Ad Area
-    </section>
-
 <!-- Related Tools -->
-<section class="mobile-card mt-10 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm lg:p-10">
-
-    <div class="max-w-3xl">
+    <section class="mobile-card mt-10 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm lg:p-10">
+      <div class="max-w-3xl">
         <p class="inline-flex rounded-full bg-accent-50 px-4 py-2 text-sm font-bold text-accent-700">
-            More Travel & Lookup Tools
+          More Lookup and Travel Tools
         </p>
-
-        <h2 class="mt-4 text-3xl font-extrabold tracking-tight text-slate-950">
-            Related Tools
-        </h2>
-
+        <h2 class="mt-4 text-3xl font-extrabold tracking-tight text-slate-950">Related Tools</h2>
         <p class="mt-3 text-base leading-7 text-slate-600">
-            Explore more tools for looking up locations, airport information, travel planning, and international reference data.
+          Check area codes, airport identifiers, travel options, and currency values with related NodnWebTools utilities.
         </p>
-    </div>
+      </div>
 
-    <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-
-        <a href="/area-code-lookup"
-           class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-indigo-300 hover:shadow-lg">
-            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-50 text-2xl">📞</div>
-            <h3 class="text-lg font-bold text-slate-900 group-hover:text-indigo-700">
-                Area Code Lookup
-            </h3>
-            <p class="mt-2 text-sm leading-6 text-slate-600">
-                Find cities, provinces, states, and regions associated with North American area codes.
-            </p>
+      <div class="mt-8 grid gap-5 sm:grid-cols-2">
+        <a href="/area-code-lookup" class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-indigo-300 hover:shadow-lg">
+          <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-50 text-2xl" aria-hidden="true">📞</div>
+          <h3 class="text-lg font-bold text-slate-900 group-hover:text-indigo-700">Area Code Lookup</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">Find cities, provinces, states, and regions associated with North American area codes.</p>
         </a>
 
-        <a href="/airport-code-lookup"
-           class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-sky-300 hover:shadow-lg">
-            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-sky-50 text-2xl">✈️</div>
-            <h3 class="text-lg font-bold text-slate-900 group-hover:text-sky-700">
-                Airport Code Lookup
-            </h3>
-            <p class="mt-2 text-sm leading-6 text-slate-600">
-                Search IATA and ICAO airport codes, airport names, cities, and countries worldwide.
-            </p>
+        <a href="/airport-code-lookup" class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-sky-300 hover:shadow-lg">
+          <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-sky-50 text-2xl" aria-hidden="true">✈️</div>
+          <h3 class="text-lg font-bold text-slate-900 group-hover:text-sky-700">Airport Code Lookup</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">Search IATA and ICAO airport codes, airport names, cities, and countries.</p>
         </a>
 
-        <a href="/flight-finder"
-           class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-emerald-300 hover:shadow-lg">
-            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-2xl">🛫</div>
-            <h3 class="text-lg font-bold text-slate-900 group-hover:text-emerald-700">
-                Flight Finder
-            </h3>
-            <p class="mt-2 text-sm leading-6 text-slate-600">
-                Search flights and compare travel options for domestic and international trips.
-            </p>
+        <a href="/flight-finder" class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-emerald-300 hover:shadow-lg">
+          <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-2xl" aria-hidden="true">🛫</div>
+          <h3 class="text-lg font-bold text-slate-900 group-hover:text-emerald-700">Flight Finder</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">Search flights and compare travel options for domestic and international trips.</p>
         </a>
 
-        <a href="/currency-converter"
-           class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-amber-300 hover:shadow-lg">
-            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-amber-50 text-2xl">💱</div>
-            <h3 class="text-lg font-bold text-slate-900 group-hover:text-amber-700">
-                Currency Converter
-            </h3>
-            <p class="mt-2 text-sm leading-6 text-slate-600">
-                Convert currencies instantly for international travel, shopping, and business.
-            </p>
+        <a href="/currency-converter" class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-amber-300 hover:shadow-lg">
+          <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-amber-50 text-2xl" aria-hidden="true">💱</div>
+          <h3 class="text-lg font-bold text-slate-900 group-hover:text-amber-700">Currency Converter</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">Convert currencies for international travel, shopping, and business planning.</p>
         </a>
-
-        <a href="/time"
-           class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-violet-300 hover:shadow-lg">
-            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-violet-50 text-2xl">🕒</div>
-            <h3 class="text-lg font-bold text-slate-900 group-hover:text-violet-700">
-                Time Calculator
-            </h3>
-            <p class="mt-2 text-sm leading-6 text-slate-600">
-                Calculate time differences, durations, and schedules across different situations.
-            </p>
-        </a>
-
-        <a href="/unit-converter"
-           class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-rose-300 hover:shadow-lg">
-            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-rose-50 text-2xl">📏</div>
-            <h3 class="text-lg font-bold text-slate-900 group-hover:text-rose-700">
-                Unit Converter
-            </h3>
-            <p class="mt-2 text-sm leading-6 text-slate-600">
-                Convert length, weight, temperature, speed, and other common measurement units.
-            </p>
-        </a>
-
-    </div>
-
-</section>
+      </div>
+    </section>
 
     <section class="mobile-card mb-8 rounded-3xl bg-slate-900 p-6 text-slate-200 shadow-sm sm:p-8 lg:p-10">
       <div class="mx-auto max-w-4xl">
@@ -759,6 +716,16 @@
         return number.replace(/(\d{3})(?=\d)/g, '$1 ').trim();
       }
 
+      function normalizeNationalNumber(code, number) {
+        let normalized = String(number || '');
+
+        if (code !== '1' && normalized.startsWith('0')) {
+          normalized = normalized.slice(1);
+        }
+
+        return normalized;
+      }
+
       function estimateType(code, number) {
         if (code === '1') {
           if (number.length === 10) return 'Landline or mobile';
@@ -806,6 +773,8 @@
 
         if (!selectedCode) {
           selectedCode = { code: 'Unknown', country: 'Unknown country code', min: 6, max: 15 };
+        } else {
+          nationalNumber = normalizeNationalNumber(selectedCode.code, nationalNumber);
         }
 
         const international = selectedCode.code === 'Unknown'
@@ -856,7 +825,9 @@
         validityResult.textContent = '—';
         internationalResult.textContent = '—';
         telLink.textContent = '—';
-        telLink.href = '#';
+        telLink.removeAttribute('href');
+        copyBtn.disabled = true;
+        downloadBtn.disabled = true;
         reportOutput.textContent = 'No number analyzed yet.';
       }
 
@@ -876,6 +847,8 @@
           internationalResult.textContent = result.international;
           telLink.textContent = 'tel:' + result.tel;
           telLink.href = 'tel:' + result.tel;
+          copyBtn.disabled = false;
+          downloadBtn.disabled = false;
 
           if (result.isLengthValid) {
             statusBadge.textContent = 'Ready';
@@ -960,7 +933,7 @@ Note: This is a format and region estimate only. It does not identify the owner,
           document.body.appendChild(link);
           link.click();
           link.remove();
-          URL.revokeObjectURL(url);
+          setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
         } catch (error) {
           warningBox.textContent = 'Download failed. Please copy the report instead.';
           warningBox.className = 'mt-5 rounded-2xl bg-red-50 p-4 text-sm font-medium leading-6 text-red-700';
@@ -985,10 +958,6 @@ Note: This is a format and region estimate only. It does not identify the owner,
           phoneInput.value = button.dataset.example || '';
           updateResults();
         });
-      });
-
-      window.addEventListener('resize', function () {
-        document.body.style.overflowX = 'hidden';
       });
 
       resetResults();
