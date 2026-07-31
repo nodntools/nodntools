@@ -9,12 +9,14 @@
   <meta name="description" content="Calculate portfolio allocation and rebalancing amounts with a free investment portfolio calculator." />
   <meta name="keywords" content="investment portfolio calculator, portfolio rebalancing calculator, asset allocation calculator, rebalance portfolio, investment calculator, target allocation calculator, buy sell rebalancing calculator, portfolio drift calculator, ETF allocation calculator, stock bond allocation calculator, portfolio analysis tool, asset weight calculator, financial planning calculator" />
   <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow" />
+  <link rel="canonical" href="https://nodntools.com/portfolio-calculator" />
   <meta name="author" content="NodnWebTools" />
 
   <meta property="og:title" content="Investment Portfolio Calculator | Rebalancing Tool" />
   <meta property="og:description" content="Calculate asset allocation, portfolio drift, and buy or sell rebalancing amounts directly in your browser." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://nodntools.com/portfolio-calculator.html" />
+  <meta property="og:url" content="https://nodntools.com/portfolio-calculator" />
   <meta property="og:site_name" content="NodnWebTools" />
 
   <meta name="twitter:card" content="summary_large_image" />
@@ -51,32 +53,73 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "Investment Portfolio Calculator",
-    "url": "https://nodntools.com/portfolio-calculator.html",
-    "applicationCategory": "FinanceApplication",
-    "operatingSystem": "Any modern web browser",
-    "description": "A free client-side investment portfolio calculator that visualizes asset allocation and estimates portfolio rebalancing buy or sell amounts.",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "NodnWebTools",
-      "url": "https://nodntools.com"
-    },
-    "featureList": [
-      "Investment portfolio value calculation",
-      "Asset allocation analysis",
-      "Portfolio rebalancing report",
-      "Buy, sell, and hold estimates",
-      "Target allocation comparison",
-      "Portfolio drift calculation",
-      "Doughnut allocation chart",
-      "Copyable report",
-      "Client-side browser processing"
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Investment Portfolio Calculator",
+        "url": "https://nodntools.com/portfolio-calculator",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Any modern web browser",
+        "description": "A free client-side investment portfolio calculator that visualizes asset allocation and estimates portfolio rebalancing buy or sell amounts.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "NodnWebTools",
+          "url": "https://nodntools.com"
+        },
+        "featureList": [
+          "Investment portfolio value calculation",
+          "Asset allocation analysis",
+          "Portfolio rebalancing report",
+          "Buy, sell, and hold estimates",
+          "Target allocation comparison",
+          "Portfolio drift calculation",
+          "Doughnut allocation chart",
+          "Copyable report",
+          "Client-side browser processing"
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is this investment portfolio calculator free?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. This tool is free to use and runs directly in your browser."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does this calculator provide investment advice?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. The calculator provides educational allocation math only. It does not recommend securities or tell you whether to buy or sell any investment."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Why should target percentages add up to 100%?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The calculator compares each asset to a share of the total portfolio. A complete target allocation should represent the full portfolio, so the total should equal 100%."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is my portfolio data uploaded?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. The core calculation runs locally in your browser. The tool does not require you to submit your portfolio to a backend server."
+            }
+          }
+        ]
+      }
     ]
   }
   </script>
@@ -137,21 +180,6 @@
       overflow-x: auto;
     }
 
-    .ad-box {
-      width: 100%;
-      max-width: 100%;
-      min-height: 90px;
-      overflow: hidden;
-      border: 1px dashed #cbd5e1;
-      background: #f8fafc;
-      color: #94a3b8;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      border-radius: 1.25rem;
-      padding: 1rem;
-    }
 
     .fade-in {
       animation: fadeIn 0.22s ease-out;
@@ -261,12 +289,6 @@
         width: 100%;
       }
 
-      .ad-box {
-        min-height: 90px;
-        border-radius: 1rem;
-        padding: .875rem;
-        font-size: .875rem;
-      }
 
       h1 {
         font-size: 2rem !important;
@@ -295,10 +317,6 @@
         border-radius: 1rem !important;
       }
 
-      .ad-box {
-        min-height: 82px;
-        font-size: .8rem;
-      }
 
       h1 {
         font-size: 1.75rem !important;
@@ -320,9 +338,6 @@
   </header>
 
   <main class="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
-    <div class="ad-box mb-6">
-      Top Ad Area
-    </div>
 
     <section class="mb-6 overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-slate-200">
       <div class="bg-gradient-to-br from-slate-950 via-accent-900 to-accent-700 px-5 py-8 text-white sm:px-8 sm:py-10">
@@ -367,8 +382,8 @@
           </article>
         </div>
 
-        <div id="warningBox" class="mt-4 hidden rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-semibold leading-6 text-amber-800"></div>
-        <div id="errorBox" class="mt-4 hidden rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-semibold leading-6 text-red-700"></div>
+        <div id="warningBox" role="status" aria-live="polite" class="mt-4 hidden rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-semibold leading-6 text-amber-800"></div>
+        <div id="errorBox" role="alert" aria-live="assertive" class="mt-4 hidden rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-semibold leading-6 text-red-700"></div>
 
         <div class="mt-5 hidden w-full grid-cols-[1.3fr_1fr_0.85fr_0.85fr_auto] gap-3 rounded-2xl bg-slate-100 px-4 py-3 text-xs font-black uppercase tracking-wide text-slate-500 md:grid">
           <div>Asset Name</div>
@@ -405,7 +420,7 @@
 
           <div class="mt-5 rounded-3xl bg-gradient-to-br from-slate-50 to-indigo-50 p-3 ring-1 ring-slate-100 sm:p-4">
             <div class="mx-auto h-[240px] w-full max-w-[310px] sm:h-[320px] sm:max-w-[360px]">
-              <canvas id="portfolioChart" aria-label="Portfolio Allocation Chart"></canvas>
+              <canvas id="portfolioChart" role="img" aria-label="Current portfolio allocation doughnut chart"></canvas>
             </div>
           </div>
         </section>
@@ -419,12 +434,12 @@
               </p>
             </div>
 
-            <button id="copyReportBtn" type="button" class="w-full rounded-2xl bg-slate-950 px-4 py-3 text-sm font-black text-white shadow-sm transition hover:bg-accent-700 active:scale-95 sm:w-auto">
+            <button id="copyReportBtn" type="button" class="w-full rounded-2xl bg-slate-950 px-4 py-3 text-sm font-black text-white shadow-sm transition hover:bg-accent-700 active:scale-95 disabled:cursor-not-allowed disabled:bg-slate-300 sm:w-auto">
               Copy
             </button>
           </div>
 
-          <div id="copyFeedback" class="mt-3 hidden rounded-2xl border border-emerald-100 bg-emerald-50 px-4 py-3 text-sm font-bold text-emerald-700">
+          <div id="copyFeedback" role="status" aria-live="polite" class="mt-3 hidden rounded-2xl border border-emerald-100 bg-emerald-50 px-4 py-3 text-sm font-bold text-emerald-700">
             Copied!
           </div>
 
@@ -448,10 +463,6 @@
         </section>
       </aside>
     </section>
-
-    <div class="ad-box my-8">
-      Ad Area Below Main Tool and Result Section
-    </div>
 
     <article class="mobile-card rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-8 lg:p-10">
       <div class="mx-auto max-w-4xl">
@@ -489,10 +500,6 @@
           <p>
             Many investors create a target allocation at the beginning of the year, when opening an investment account, when building a retirement plan, or when choosing an ETF strategy. However, portfolios do not remain static. Market prices move every day. Contributions, withdrawals, dividends, interest payments, distributions, currency movements, and capital gains can all change the weights. Without monitoring, a portfolio can slowly become concentrated in one asset class, one region, one sector, or one risk factor. Rebalancing is a method for keeping the portfolio aligned with the investor’s chosen structure.
           </p>
-
-          <div class="ad-box my-8">
-            Middle Content Ad Area
-          </div>
 
           <h3 class="text-2xl font-black text-slate-950">How This Portfolio Rebalancing Calculator Works</h3>
           <p>
@@ -557,10 +564,6 @@
           <p>
             Another investor may use a more detailed portfolio with Canadian stocks, U.S. stocks, developed international stocks, emerging markets, short-term bonds, long-term bonds, real estate, and cash. A younger investor may choose a high equity allocation, while a retiree may choose a larger bond and cash allocation. The calculator does not decide which allocation is right. It simply helps compare the current portfolio against the allocation the user chooses.
           </p>
-
-          <div class="ad-box my-8">
-            Bottom Content Ad Area
-          </div>
 
           <h3 class="text-2xl font-black text-slate-950">Portfolio Drift and Risk Control</h3>
           <p>
@@ -663,94 +666,55 @@
     </section>
 
 <!-- Related Tools -->
-<section class="mobile-card mt-10 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm lg:p-10">
-
-    <div class="max-w-3xl">
+    <section class="mobile-card mt-10 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm lg:p-10">
+      <div class="max-w-3xl">
         <p class="inline-flex rounded-full bg-indigo-50 px-4 py-2 text-sm font-bold text-indigo-700">
-            More Investment & Finance Tools
+          More Investment & Finance Tools
         </p>
-
-        <h2 class="mt-4 text-3xl font-extrabold tracking-tight text-slate-950">
-            Related Tools
-        </h2>
-
+        <h2 class="mt-4 text-3xl font-extrabold tracking-tight text-slate-950">Related Tools</h2>
         <p class="mt-3 text-base leading-7 text-slate-600">
-            Explore additional calculators for investing, retirement planning, trading costs, mortgages, and financial decision-making.
+          Continue with calculators and comparison tools for returns, compound growth, mortgages, retirement savings, and brokerage research.
         </p>
+      </div>
 
-    </div>
-
-    <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-
-        <a href="/rrsp-tax-refund-calculator"
-           class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-emerald-300 hover:shadow-lg">
-            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-2xl">💰</div>
-            <h3 class="text-lg font-bold text-slate-900 group-hover:text-emerald-700">
-                RRSP Tax Refund Calculator
-            </h3>
-            <p class="mt-2 text-sm leading-6 text-slate-600">
-                Estimate potential Canadian RRSP tax savings and refunds based on your income and contributions.
-            </p>
+      <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <a href="/compound" class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-indigo-300 hover:shadow-lg">
+          <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-50 text-2xl">📈</div>
+          <h3 class="text-lg font-bold text-slate-900 group-hover:text-indigo-700">Compound Interest Calculator</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">Estimate investment growth with principal, contributions, interest rates, and compounding periods.</p>
         </a>
 
-        <a href="/canada-capital-gains-tax-calculator"
-           class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-indigo-300 hover:shadow-lg">
-            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-50 text-2xl">📈</div>
-            <h3 class="text-lg font-bold text-slate-900 group-hover:text-indigo-700">
-                Canada Capital Gains Tax Calculator
-            </h3>
-            <p class="mt-2 text-sm leading-6 text-slate-600">
-                Estimate capital gains tax on Canadian investments using current taxable gain rules.
-            </p>
+        <a href="/roi" class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-emerald-300 hover:shadow-lg">
+          <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-2xl">💹</div>
+          <h3 class="text-lg font-bold text-slate-900 group-hover:text-emerald-700">ROI Calculator</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">Calculate investment return, gain or loss, and return percentage from cost and ending value.</p>
         </a>
 
-        <a href="/canada-trading-fee-calculator"
-           class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-sky-300 hover:shadow-lg">
-            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-sky-50 text-2xl">💹</div>
-            <h3 class="text-lg font-bold text-slate-900 group-hover:text-sky-700">
-                Canada Trading Fee Calculator
-            </h3>
-            <p class="mt-2 text-sm leading-6 text-slate-600">
-                Calculate commissions, trading fees, and estimated costs for Canadian stock trades.
-            </p>
+        <a href="/rrsp-tax-refund-calculator" class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-sky-300 hover:shadow-lg">
+          <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-sky-50 text-2xl">💰</div>
+          <h3 class="text-lg font-bold text-slate-900 group-hover:text-sky-700">RRSP Tax Refund Calculator</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">Estimate potential Canadian RRSP tax savings based on income and contribution amounts.</p>
         </a>
 
-        <a href="/us-trading-fee-calculator"
-           class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-violet-300 hover:shadow-lg">
-            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-violet-50 text-2xl">📊</div>
-            <h3 class="text-lg font-bold text-slate-900 group-hover:text-violet-700">
-                US Trading Fee Calculator
-            </h3>
-            <p class="mt-2 text-sm leading-6 text-slate-600">
-                Estimate trading commissions, SEC fees, and transaction costs for U.S. investments.
-            </p>
+        <a href="/mortgage" class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-amber-300 hover:shadow-lg">
+          <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-amber-50 text-2xl">🏠</div>
+          <h3 class="text-lg font-bold text-slate-900 group-hover:text-amber-700">Mortgage Calculator</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">Estimate mortgage payments, interest, amortization, and total borrowing costs.</p>
         </a>
 
-        <a href="/mortgage-affordability-calculator"
-           class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-amber-300 hover:shadow-lg">
-            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-amber-50 text-2xl">🏠</div>
-            <h3 class="text-lg font-bold text-slate-900 group-hover:text-amber-700">
-                Mortgage Affordability Calculator
-            </h3>
-            <p class="mt-2 text-sm leading-6 text-slate-600">
-                Estimate how much home you can afford based on income, expenses, and financing.
-            </p>
+        <a href="/canada-broker-comparison" class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-violet-300 hover:shadow-lg">
+          <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-violet-50 text-2xl">🇨🇦</div>
+          <h3 class="text-lg font-bold text-slate-900 group-hover:text-violet-700">Canada Broker Comparison</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">Compare Canadian broker features, account options, fees, and investor considerations.</p>
         </a>
 
-        <a href="/autoloan"
-           class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-rose-300 hover:shadow-lg">
-            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-rose-50 text-2xl">🚗</div>
-            <h3 class="text-lg font-bold text-slate-900 group-hover:text-rose-700">
-                Auto Loan Calculator
-            </h3>
-            <p class="mt-2 text-sm leading-6 text-slate-600">
-                Calculate monthly car loan payments, interest costs, and total financing expenses.
-            </p>
+        <a href="/us-broker-comparison" class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-rose-300 hover:shadow-lg">
+          <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-rose-50 text-2xl">🇺🇸</div>
+          <h3 class="text-lg font-bold text-slate-900 group-hover:text-rose-700">US Broker Comparison</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">Review U.S. brokerage choices, trading features, account services, and common costs.</p>
         </a>
-
-    </div>
-
-</section>
+      </div>
+    </section>
 
     <section class="mobile-card mt-8 rounded-3xl bg-slate-900 p-6 text-slate-200 shadow-sm sm:p-8 lg:p-10">
       <div class="mx-auto max-w-4xl">
@@ -768,10 +732,6 @@
         </div>
       </div>
     </section>
-
-    <div class="ad-box mt-8">
-      Bottom Ad Area
-    </div>
   </main>
 
   <footer class="mt-10 border-t border-slate-200 bg-white">
@@ -890,7 +850,7 @@
 
           <div class="min-w-0">
             <label class="mb-1 block text-xs font-black uppercase tracking-wide text-slate-500 md:hidden">Current %</label>
-            <div class="min-w-0 rounded-2xl bg-slate-50 px-3 py-3 text-right text-base font-black text-slate-700 ring-1 ring-slate-100 md:text-sm">
+            <div class="current-percent min-w-0 rounded-2xl bg-slate-50 px-3 py-3 text-right text-base font-black text-slate-700 ring-1 ring-slate-100 md:text-sm">
               ${formatNumber(currentPercent)}%
             </div>
           </div>
@@ -901,23 +861,23 @@
         `;
 
         row.querySelector('.asset-name').addEventListener('input', function (event) {
-          asset.name = event.target.value.trim() || 'Unnamed Asset';
-          updateCalculator();
+          asset.name = event.target.value;
+          updateCalculator(false);
         });
 
         row.querySelector('.asset-value').addEventListener('input', function (event) {
           asset.value = Math.max(0, sanitizeNumber(event.target.value));
-          updateCalculator();
+          updateCalculator(false);
         });
 
         row.querySelector('.asset-target').addEventListener('input', function (event) {
-          asset.target = Math.max(0, sanitizeNumber(event.target.value));
-          updateCalculator();
+          asset.target = Math.min(100, Math.max(0, sanitizeNumber(event.target.value)));
+          updateCalculator(false);
         });
 
         row.querySelector('.delete-asset').addEventListener('click', function () {
           assets = assets.filter(item => item.id !== asset.id);
-          updateCalculator();
+          updateCalculator(true);
         });
 
         return row;
@@ -937,6 +897,20 @@
 
         assets.forEach(function (asset, index) {
           assetRows.appendChild(createAssetRow(asset, index, total));
+        });
+      }
+
+      function updateCurrentPercentDisplays(total) {
+        assetRows.querySelectorAll('[data-id]').forEach(function (row) {
+          const asset = assets.find(function (item) {
+            return item.id === row.dataset.id;
+          });
+          const percentElement = row.querySelector('.current-percent');
+
+          if (asset && percentElement) {
+            const currentPercent = total > 0 ? (asset.value / total) * 100 : 0;
+            percentElement.textContent = formatNumber(currentPercent) + '%';
+          }
         });
       }
 
@@ -969,6 +943,7 @@
         }
 
         emptyReport.classList.add('hidden');
+        copyReportBtn.disabled = false;
 
         latestReportRows.forEach(function (row) {
           const tr = document.createElement('tr');
@@ -1092,7 +1067,7 @@
         setMessage(errorBox, '', false);
       }
 
-      function updateCalculator() {
+      function updateCalculator(renderAssetRows = true) {
         try {
           const total = assets.reduce(function (sum, asset) {
             return sum + Math.max(0, sanitizeNumber(asset.value));
@@ -1111,7 +1086,13 @@
             : 'mt-2 safe-break text-2xl font-black text-amber-700';
 
           validateInputs(total, targetSum);
-          renderRows(total);
+
+          if (renderAssetRows) {
+            renderRows(total);
+          } else {
+            updateCurrentPercentDisplays(total);
+          }
+
           buildReport(total);
           renderReport();
           updateChart();
@@ -1128,7 +1109,7 @@
           target: 0
         });
 
-        updateCalculator();
+        updateCalculator(true);
 
         requestAnimationFrame(function () {
           const lastInput = assetRows.querySelector('[data-id="' + assets[assets.length - 1].id + '"] .asset-name');
@@ -1202,11 +1183,7 @@
       addAssetBtn.addEventListener('click', addAsset);
       copyReportBtn.addEventListener('click', copyReport);
 
-      window.addEventListener('resize', function () {
-        document.body.style.overflowX = 'hidden';
-      });
-
-      updateCalculator();
+      updateCalculator(true);
     });
   </script>
 </body>
