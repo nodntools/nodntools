@@ -8,11 +8,15 @@
   <meta name="description" content="Edit PDF pages online. Rotate, delete, reorder, duplicate, and extract PDF pages securely in your browser.">
   <meta name="keywords" content="PDF page editor, edit PDF pages online, rotate PDF pages, delete PDF pages, reorder PDF pages, duplicate PDF pages, extract PDF pages, organize PDF pages, rearrange PDF pages, free PDF editor, browser PDF editor, client side PDF tool">
   <meta name="robots" content="index, follow">
+  <meta name="googlebot" content="index, follow">
+  <link rel="canonical" href="https://nodntools.com/pdf-page-editor">
   <meta name="google-adsense-account" content="ca-pub-5282672325821404">
 
   <meta property="og:title" content="PDF Page Editor Online | Rotate, Delete & Reorder Pages">
   <meta property="og:description" content="Organize PDF pages online with tools to rotate, delete, reorder, duplicate, and extract pages directly in your browser.">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nodntools.com/pdf-page-editor">
+  <meta property="og:site_name" content="NodnWebTools">
 
   <link rel="icon" type="image/png" href="/favicon.png">
 
@@ -47,6 +51,87 @@
   }
   </script>
 
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is the PDF Page Editor free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. The page editor can be used in a compatible browser without registration or desktop installation."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are PDF files uploaded to a server?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The tool is designed to process selected PDF files locally in your browser. The main editing workflow does not intentionally upload documents to a remote processing server."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I rotate only one PDF page?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Select the individual page card, open the Rotate tab, and choose Rotate Left or Rotate Right."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can deleted pages be restored?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Pages marked for deletion remain visible in a faded state. Select them and use Restore Selected before downloading the edited PDF."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I rearrange PDF pages?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Open the Reorder tab and drag page cards into the desired sequence. The page numbers update after every move."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does extracting pages change the original PDF?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Extraction creates a separate PDF containing the selected pages. The original file and main editing workspace remain unchanged."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Will the edited PDF keep its original quality?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The tool copies original PDF pages instead of converting them to screenshots, which generally preserves text, vectors, and image quality. Some advanced PDF features may not be retained."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I edit a password-protected PDF?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Encrypted or password-protected PDFs may not open. Remove protection only when you own the file or have authorization to modify it."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does editing invalidate a digital signature?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It can. Rotating, deleting, reordering, duplicating, or extracting pages changes the document and may invalidate existing digital signatures."
+        }
+      }
+    ]
+  }
+  </script>
+
   <style>
     html, body {
       width: 100%;
@@ -68,20 +153,6 @@
       word-break: break-word;
     }
 
-    .ad-box {
-      width: 100%;
-      min-height: 90px;
-      border: 2px dashed #cbd5e1;
-      background: #f8fafc;
-      color: #94a3b8;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      border-radius: 1rem;
-      padding: 1rem;
-      overflow: hidden;
-    }
 
     .drop-active {
       border-color: #6366f1 !important;
@@ -227,11 +298,6 @@
         grid-template-columns: 1fr !important;
       }
 
-      .ad-box {
-        min-height: 80px;
-        border-radius: 0.75rem;
-        font-size: 0.75rem;
-      }
 
       button,
       a,
@@ -246,22 +312,17 @@
 <body class="bg-slate-50 text-slate-800">
   <header class="border-b border-slate-200 bg-white">
     <div class="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
-      <a href="https://nodntools.com" class="safe-break text-xl font-extrabold tracking-tight text-slate-900" aria-label="NodnWebTools home">
+      <a href="/" class="safe-break text-xl font-extrabold tracking-tight text-slate-900" aria-label="NodnWebTools home">
         Nodn<span class="text-indigo-600">WebTools</span>
       </a>
 
-      <a href="https://nodntools.com" class="rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-indigo-300 hover:text-indigo-700">
+      <a href="/" class="rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-indigo-300 hover:text-indigo-700">
         Home
       </a>
     </div>
   </header>
 
   <main>
-    <section class="mx-auto w-full max-w-7xl px-4 pt-6 sm:px-6 lg:px-8">
-      <div class="ad-box" role="complementary" aria-label="Advertisement placeholder">
-        Advertisement
-      </div>
-    </section>
 
     <section class="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
       <div class="mb-8 max-w-4xl">
@@ -337,26 +398,26 @@
 
           <div class="mt-6 rounded-2xl bg-slate-100 p-2">
             <div class="tab-scroll flex gap-2" role="tablist" aria-label="PDF page editing tools">
-              <button class="tab-button rounded-xl border border-transparent px-4 py-2.5 text-sm font-bold text-slate-600 transition" type="button" data-tab="rotate" role="tab" aria-selected="true">
+              <button class="tab-button rounded-xl border border-transparent px-4 py-2.5 text-sm font-bold text-slate-600 transition" type="button" data-tab="rotate" role="tab" aria-controls="rotatePanel" aria-selected="true">
                 Rotate
               </button>
-              <button class="tab-button rounded-xl border border-transparent px-4 py-2.5 text-sm font-bold text-slate-600 transition" type="button" data-tab="delete" role="tab" aria-selected="false">
+              <button class="tab-button rounded-xl border border-transparent px-4 py-2.5 text-sm font-bold text-slate-600 transition" type="button" data-tab="delete" role="tab" aria-controls="deletePanel" aria-selected="false">
                 Delete
               </button>
-              <button class="tab-button rounded-xl border border-transparent px-4 py-2.5 text-sm font-bold text-slate-600 transition" type="button" data-tab="reorder" role="tab" aria-selected="false">
+              <button class="tab-button rounded-xl border border-transparent px-4 py-2.5 text-sm font-bold text-slate-600 transition" type="button" data-tab="reorder" role="tab" aria-controls="reorderPanel" aria-selected="false">
                 Reorder
               </button>
-              <button class="tab-button rounded-xl border border-transparent px-4 py-2.5 text-sm font-bold text-slate-600 transition" type="button" data-tab="duplicate" role="tab" aria-selected="false">
+              <button class="tab-button rounded-xl border border-transparent px-4 py-2.5 text-sm font-bold text-slate-600 transition" type="button" data-tab="duplicate" role="tab" aria-controls="duplicatePanel" aria-selected="false">
                 Duplicate
               </button>
-              <button class="tab-button rounded-xl border border-transparent px-4 py-2.5 text-sm font-bold text-slate-600 transition" type="button" data-tab="extract" role="tab" aria-selected="false">
+              <button class="tab-button rounded-xl border border-transparent px-4 py-2.5 text-sm font-bold text-slate-600 transition" type="button" data-tab="extract" role="tab" aria-controls="extractPanel" aria-selected="false">
                 Extract
               </button>
             </div>
           </div>
 
           <div id="toolPanel" class="mt-5 rounded-2xl border border-indigo-100 bg-indigo-50 p-4 sm:p-5">
-            <div id="rotatePanel" class="tool-panel">
+            <div id="rotatePanel" role="tabpanel" class="tool-panel">
               <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
                 <div>
                   <h2 class="text-lg font-black text-slate-950">Rotate PDF pages</h2>
@@ -375,7 +436,7 @@
               </div>
             </div>
 
-            <div id="deletePanel" class="tool-panel hidden">
+            <div id="deletePanel" role="tabpanel" class="tool-panel hidden">
               <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
                 <div>
                   <h2 class="text-lg font-black text-slate-950">Delete unwanted pages</h2>
@@ -394,7 +455,7 @@
               </div>
             </div>
 
-            <div id="reorderPanel" class="tool-panel hidden">
+            <div id="reorderPanel" role="tabpanel" class="tool-panel hidden">
               <div>
                 <h2 class="text-lg font-black text-slate-950">Reorder pages with drag and drop</h2>
                 <p class="mt-1 text-sm leading-6 text-slate-600">
@@ -403,7 +464,7 @@
               </div>
             </div>
 
-            <div id="duplicatePanel" class="tool-panel hidden">
+            <div id="duplicatePanel" role="tabpanel" class="tool-panel hidden">
               <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
                 <div>
                   <h2 class="text-lg font-black text-slate-950">Duplicate selected pages</h2>
@@ -417,7 +478,7 @@
               </div>
             </div>
 
-            <div id="extractPanel" class="tool-panel hidden">
+            <div id="extractPanel" role="tabpanel" class="tool-panel hidden">
               <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
                 <div>
                   <h2 class="text-lg font-black text-slate-950">Extract pages into a new PDF</h2>
@@ -485,11 +546,6 @@
       </section>
     </section>
 
-    <section class="mx-auto w-full max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
-      <div class="ad-box" role="complementary" aria-label="Advertisement placeholder">
-        Advertisement
-      </div>
-    </section>
 
     <section class="border-y border-slate-200 bg-white">
       <div class="mx-auto w-full max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
@@ -530,10 +586,6 @@
                 Processing takes place on the user’s device. The application is designed to avoid intentionally sending the selected PDF to a remote document-processing server. Local processing can be especially useful when working with private records, internal business documents, identification scans, financial paperwork, or other files that users prefer not to upload.
               </p>
             </section>
-
-            <div class="ad-box my-12" role="complementary" aria-label="Advertisement placeholder">
-              Advertisement
-            </div>
 
             <section>
               <h2 class="text-2xl font-black text-slate-950">Rotate PDF Pages Online</h2>
@@ -682,10 +734,6 @@
               </p>
             </section>
 
-            <div class="ad-box my-12" role="complementary" aria-label="Advertisement placeholder">
-              Advertisement
-            </div>
-
             <section>
               <h2 class="text-2xl font-black text-slate-950">Privacy Benefits of Local PDF Processing</h2>
               <p class="mt-4">
@@ -812,11 +860,6 @@
       </div>
     </section>
 
-    <section class="mx-auto w-full max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
-      <div class="ad-box" role="complementary" aria-label="Advertisement placeholder">
-        Advertisement
-      </div>
-    </section>
 
     <section class="border-t border-slate-200 bg-white">
       <div class="mx-auto w-full max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
@@ -915,17 +958,12 @@
       </div>
     </section>
 
-    <section class="mx-auto w-full max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
-      <div class="ad-box" role="complementary" aria-label="Advertisement placeholder">
-        Advertisement
-      </div>
-    </section>
   </main>
 
   <footer class="border-t border-slate-200 bg-white">
     <div class="mx-auto flex w-full max-w-7xl flex-col gap-3 px-4 py-8 text-sm text-slate-500 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
       <p>© <span id="currentYear"></span> NodnWebTools. All rights reserved.</p>
-      <a href="https://nodntools.com" class="font-semibold text-slate-600 transition hover:text-indigo-700">
+      <a href="/" class="font-semibold text-slate-600 transition hover:text-indigo-700">
         Back to NodnWebTools
       </a>
     </div>
@@ -1201,7 +1239,9 @@
       });
 
       toolPanels.forEach(panel => {
-        panel.classList.toggle("hidden", panel.id !== `${tabName}Panel`);
+        const isActive = panel.id === `${tabName}Panel`;
+        panel.classList.toggle("hidden", !isActive);
+        panel.setAttribute("aria-hidden", String(!isActive));
       });
 
       renderPageGrid();
