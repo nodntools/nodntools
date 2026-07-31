@@ -9,9 +9,13 @@
   <meta name="description" content="Estimate home affordability, mortgage amount, monthly payment, property tax, insurance, HOA fees, and DTI in your browser." />
   <meta name="keywords" content="mortgage affordability calculator, home affordability calculator, how much house can I afford, mortgage qualification calculator, house buying budget calculator, mortgage payment calculator, debt to income ratio calculator, home loan affordability, first time home buyer calculator, mortgage planning tool, home purchase calculator, mortgage budget calculator, monthly mortgage calculator, mortgage affordability estimate, home buying calculator" />
   <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow" />
+  <link rel="canonical" href="https://nodntools.com/mortgage-affordability-calculator" />
   <meta property="og:title" content="Mortgage Affordability Calculator | Estimate How Much Home You Can Afford" />
   <meta property="og:description" content="Calculate estimated home affordability, mortgage amount, monthly housing cost, and debt-to-income ratio with a private client-side mortgage affordability calculator." />
   <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://nodntools.com/mortgage-affordability-calculator" />
+  <meta property="og:site_name" content="NodnWebTools" />
 
   <meta name="google-adsense-account" content="ca-pub-5282672325821404">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404" crossorigin="anonymous"></script>
@@ -23,8 +27,10 @@
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "Mortgage Affordability Calculator",
+    "url": "https://nodntools.com/mortgage-affordability-calculator",
     "applicationCategory": "FinanceApplication",
     "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript and a modern web browser",
     "description": "A free browser-based mortgage affordability calculator that estimates affordable home price, mortgage amount, monthly housing cost, and debt-to-income ratio based on income, debt, down payment, interest rate, loan term, property tax, insurance, and HOA fees.",
     "offers": {
       "@type": "Offer",
@@ -42,25 +48,65 @@
   }
   </script>
 
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What does mortgage affordability mean?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Mortgage affordability is an estimate of how much home you may be able to purchase based on income, debt, down payment, interest rate, property tax, insurance, and other housing costs."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much house can I afford?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The answer depends on your income, monthly debts, down payment, mortgage rate, loan term, property taxes, insurance, HOA fees, and preferred debt-to-income ratio. This calculator estimates a possible affordable home price using those inputs."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is this the same as a mortgage payment calculator?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. A mortgage payment calculator usually focuses on monthly principal and interest. This home affordability calculator estimates a potential purchase price by considering income, debts, housing costs, and debt-to-income ratio."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is a good debt-to-income ratio for a mortgage?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Many buyers use a range around 28% to 36% as a conservative planning guideline, while some mortgage programs may allow higher ratios. The right number depends on your full financial situation and lender requirements."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can this calculator guarantee mortgage approval?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. This calculator is an educational planning tool. Mortgage approval depends on lender underwriting, credit history, income verification, assets, property appraisal, loan type, and other requirements."
+        }
+      }
+    ]
+  }
+  </script>
+
   <style>
     html, body { width:100%; max-width:100%; overflow-x:hidden; }
     *, *::before, *::after { box-sizing:border-box; min-width:0; }
     body { -webkit-font-smoothing: antialiased; }
     .safe-break { overflow-wrap:anywhere; word-break:break-word; }
-    .ad-box {
-      width:100%;
-      min-height:90px;
-      border:2px dashed #cbd5e1;
-      background:#f8fafc;
-      color:#64748b;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      border-radius:1rem;
-      padding:1rem;
-    }
     input, select, textarea, button { max-width:100%; }
+    a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, summary:focus-visible {
+      outline:3px solid #a5b4fc;
+      outline-offset:3px;
+    }
     table { width:100%; max-width:100%; border-collapse:collapse; }
     .mobile-code { overflow-x:auto; white-space:pre-wrap; word-break:break-word; }
     .result-bar { transition: width .25s ease; }
@@ -69,7 +115,6 @@
       .mobile-button-grid { grid-template-columns:1fr !important; }
       .mobile-preview { padding:1rem !important; }
       .mobile-title { font-size:1.85rem !important; line-height:2.2rem !important; }
-      .ad-box { min-height:90px; padding:.85rem; border-radius:.85rem; }
     }
     @media (max-width:380px) {
       .mobile-card, .mobile-panel { padding:.85rem !important; }
@@ -93,7 +138,6 @@
   </header>
 
   <main class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-    <section class="ad-box mb-6">Top Advertisement Area</section>
 
     <section class="grid gap-6 lg:grid-cols-[1fr_1fr]">
       <div class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
@@ -107,6 +151,10 @@
 
         <p class="mt-4 text-slate-600">
           Estimate how much home you may be able to afford using income, monthly debts, down payment, mortgage interest rate, loan term, property tax, homeowners insurance, HOA or condo fees, and your preferred debt-to-income ratio.
+        </p>
+
+        <p class="mt-3 text-sm text-slate-500">
+          Enter monetary values in U.S. dollars. The estimate does not include mortgage insurance, closing costs, utilities, maintenance, or lender-specific qualification rules.
         </p>
 
         <div class="mt-6 rounded-2xl border border-indigo-100 bg-indigo-50 p-4 text-sm text-indigo-900">
@@ -167,18 +215,18 @@
         </div>
 
         <div class="mobile-button-grid mt-6 grid grid-cols-2 gap-3">
-          <button id="copyBtn" class="rounded-xl bg-indigo-600 px-5 py-3 font-semibold text-white shadow-sm hover:bg-indigo-700">
+          <button id="copyBtn" type="button" class="rounded-xl bg-indigo-600 px-5 py-3 font-semibold text-white shadow-sm hover:bg-indigo-700">
             Copy Summary
           </button>
-          <button id="downloadBtn" class="rounded-xl bg-violet-600 px-5 py-3 font-semibold text-white shadow-sm hover:bg-violet-700">
+          <button id="downloadBtn" type="button" class="rounded-xl bg-violet-600 px-5 py-3 font-semibold text-white shadow-sm hover:bg-violet-700">
             Download Report
           </button>
-          <button id="resetBtn" class="rounded-xl border border-slate-300 px-5 py-3 font-semibold text-slate-700 hover:bg-slate-50 sm:col-span-2">
+          <button id="resetBtn" type="button" class="rounded-xl border border-slate-300 px-5 py-3 font-semibold text-slate-700 hover:bg-slate-50 sm:col-span-2">
             Reset
           </button>
         </div>
 
-        <p id="warning" class="mt-4 hidden rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800"></p>
+        <p id="warning" role="status" aria-live="polite" class="mt-4 hidden rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800"></p>
       </div>
 
       <div class="mobile-preview rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
@@ -188,7 +236,7 @@
         <div class="mt-6 rounded-2xl bg-gradient-to-br from-indigo-600 to-violet-600 p-6 text-white shadow-sm">
           <p class="text-sm font-medium text-indigo-100">Estimated affordable home price</p>
           <p id="homePrice" class="safe-break mt-2 text-4xl font-extrabold">$0</p>
-          <p id="copyStatus" class="mt-3 text-sm font-semibold text-indigo-100"></p>
+          <p id="copyStatus" role="status" aria-live="polite" class="mt-3 text-sm font-semibold text-indigo-100"></p>
         </div>
 
         <div class="mt-5 grid gap-4 sm:grid-cols-2">
@@ -233,8 +281,6 @@
       </div>
     </section>
 
-    <section class="ad-box my-8">Advertisement Area Below Calculator</section>
-
     <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
       <p class="mb-3 inline-flex rounded-full bg-violet-50 px-3 py-1 text-sm font-semibold text-violet-700">
         Mortgage Planning Guide
@@ -269,8 +315,6 @@
       <p class="mt-4 text-slate-600">
         This method gives a broader view of affordability because real homeowners do not pay only the mortgage principal and interest. Property taxes, insurance premiums, maintenance, condo fees, utilities, and emergency repairs can all affect the true cost of homeownership. While no calculator can guarantee lender approval, a detailed mortgage affordability estimate can help you make more informed decisions before beginning the home search.
       </p>
-
-      <section class="ad-box my-8">Middle Content Advertisement Area</section>
 
       <h3 class="text-2xl font-bold text-slate-900">Key Inputs That Affect Mortgage Affordability</h3>
 
@@ -417,8 +461,6 @@
         </article>
       </div>
 
-      <section class="ad-box my-8">Bottom Content Advertisement Area</section>
-
       <h3 class="text-2xl font-bold text-slate-900">Practical Tips to Improve Home Affordability</h3>
       <p class="mt-3 text-slate-600">
         If your estimated affordable home price is lower than expected, there are several ways to improve your mortgage affordability over time. Paying down credit card balances, reducing auto loan payments, increasing your down payment, improving your credit profile, comparing multiple lenders, and choosing a suitable loan term can all influence the final home buying budget.
@@ -519,7 +561,7 @@
       </div>
 
 <!-- Related Tools -->
-<section class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm lg:p-10">
+<section class="mobile-card mt-10 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm lg:p-10">
 
     <div class="max-w-3xl">
         <p class="inline-flex rounded-full bg-indigo-50 px-4 py-2 text-sm font-bold text-indigo-700">
@@ -617,8 +659,6 @@
         </p>
       </section>
     </article>
-
-    <section class="ad-box my-8">Bottom Advertisement Area</section>
   </main>
 
   <footer class="border-t border-slate-200 bg-white px-4 py-8 text-center text-sm text-slate-500">
@@ -703,8 +743,8 @@
         warning.classList.add("hidden");
         warning.textContent = "";
 
-        if (income <= 0 || dti <= 0) {
-          warning.textContent = "Enter a valid income and debt-to-income ratio to estimate affordability.";
+        if ([income, debts, downPayment, rate, term, dti, propertyTax, insurance, hoa].some(value => value < 0) || income <= 0 || term <= 0 || dti <= 0) {
+          warning.textContent = "Enter valid non-negative values, including a positive income, loan term, and debt-to-income ratio.";
           warning.classList.remove("hidden");
           updateResults(0, 0, 0, 0, 0, insurance, hoa, 0);
           return;
@@ -727,7 +767,8 @@
         }
 
         let low = 0;
-        let high = 5000000;
+        let high = Math.max(1000000, downPayment + housingBudget * term * 12 * 2);
+        high = Math.min(high, 100000000);
         let bestHomePrice = 0;
         let bestLoan = 0;
         let bestPI = 0;
