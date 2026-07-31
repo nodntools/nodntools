@@ -10,11 +10,13 @@
   <meta name="keywords" content="margin calculator, markup calculator, profit margin calculator, gross margin calculator, gross profit calculator, markup percentage calculator, margin vs markup, selling price calculator, pricing calculator, ecommerce pricing calculator, small business pricing tool, retail margin calculator, product pricing calculator, profit calculator, business calculator, NodnWebTools">
   <meta name="author" content="NodnWebTools">
   <meta name="robots" content="index, follow">
+  <meta name="googlebot" content="index, follow">
+  <link rel="canonical" href="https://nodntools.com/margin">
 
   <meta property="og:title" content="Margin and Markup Calculator | Profit Pricing Tool">
   <meta property="og:description" content="Calculate gross profit, margin percentage, markup percentage, and selling price with a private browser-based pricing calculator.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://nodntools.com/margin.html">
+  <meta property="og:url" content="https://nodntools.com/margin">
   <meta property="og:site_name" content="NodnWebTools">
 
   <meta name="twitter:card" content="summary_large_image">
@@ -56,7 +58,7 @@
     "name": "Margin and Markup Calculator",
     "applicationCategory": "BusinessApplication",
     "operatingSystem": "Any",
-    "url": "https://nodntools.com/margin.html",
+    "url": "https://nodntools.com/margin",
     "description": "A free browser-based margin and markup calculator for estimating gross profit, profit margin, markup percentage, and selling price for business pricing decisions.",
     "offers": {
       "@type": "Offer",
@@ -70,6 +72,64 @@
     }
   }
   </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the difference between margin and markup?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Margin compares gross profit to selling price. Markup compares gross profit to cost. They use different bases, so the percentages are different."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I calculate gross profit?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Gross profit equals selling price minus cost. If an item costs $60 and sells for $100, gross profit is $40."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I calculate profit margin?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Profit margin equals gross profit divided by selling price, multiplied by 100. It shows profit as a percentage of revenue."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I calculate markup?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Markup equals gross profit divided by cost, multiplied by 100. It shows how much was added above the item cost."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is a good profit margin?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A good margin depends on industry, product type, overhead, competition, sales volume, and business model. Compare your margin with your real operating costs."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this calculator include taxes and fees?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. It calculates simplified gross profit, margin, and markup. You should separately consider taxes, platform fees, shipping, returns, labor, and overhead."
+        }
+      }
+    ]
+  }
+  </script>
+
 
   <style>
     html, body {
@@ -100,8 +160,7 @@
     .mobile-card,
     .mobile-panel,
     .mobile-preview,
-    .mobile-code,
-    .ad-box {
+    .mobile-code {
       max-width: 100%;
       overflow-wrap: anywhere;
     }
@@ -117,21 +176,6 @@
       -webkit-overflow-scrolling: touch;
     }
 
-    .ad-box {
-      width: 100%;
-      min-height: 90px;
-      border: 1px dashed #cbd5e1;
-      background: #f8fafc;
-      color: #94a3b8;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      border-radius: 1rem;
-      padding: 1rem;
-      font-size: 0.875rem;
-      overflow: hidden;
-    }
 
     @media (max-width: 640px) {
       .mobile-card {
@@ -152,12 +196,6 @@
         width: 100%;
       }
 
-      .ad-box {
-        min-height: 90px;
-        border-radius: 0.875rem;
-        padding: 0.875rem;
-        font-size: 0.78rem;
-      }
 
       table {
         min-width: 620px;
@@ -180,10 +218,6 @@
         line-height: 1.9rem !important;
       }
 
-      .ad-box {
-        padding: 0.75rem;
-        font-size: 0.72rem;
-      }
     }
   </style>
 </head>
@@ -203,9 +237,7 @@
   </header>
 
   <main class="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-    <div class="ad-box mb-6">Top Ad Area - Responsive AdSense Placeholder</div>
-
-    <section class="grid grid-cols-1 gap-6 lg:grid-cols-12">
+<section class="grid grid-cols-1 gap-6 lg:grid-cols-12">
       <div class="mobile-card rounded-3xl bg-white p-5 shadow-soft ring-1 ring-slate-200 sm:p-8 lg:col-span-5 lg:sticky lg:top-8 lg:self-start">
         <span class="inline-flex rounded-full bg-accent-50 px-4 py-2 text-sm font-bold text-accent-700 ring-1 ring-accent-100">Business Pricing Tool</span>
 
@@ -252,7 +284,7 @@
             <button id="resetBtn" type="button" class="rounded-2xl bg-white px-4 py-3 text-sm font-black text-slate-800 ring-1 ring-slate-300 transition hover:bg-slate-100 active:scale-[0.98]">Reset</button>
           </div>
 
-          <div id="statusBox" class="rounded-2xl bg-accent-50 p-4 text-sm font-bold text-accent-700 ring-1 ring-accent-100">Ready</div>
+          <div id="statusBox" role="status" aria-live="polite" class="rounded-2xl bg-accent-50 p-4 text-sm font-bold text-accent-700 ring-1 ring-accent-100">Ready</div>
         </div>
       </div>
 
@@ -302,7 +334,7 @@
 
               <div class="rounded-3xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
                 <p class="text-xs font-black uppercase tracking-wide text-slate-600">Profit Status</p>
-                <p id="profitStatus" class="mt-2 text-2xl font-black text-slate-950">Ready</p>
+                <p id="profitStatus" role="status" aria-live="polite" class="mt-2 text-2xl font-black text-slate-950">Ready</p>
                 <p id="profitStatusText" class="mt-2 text-xs leading-5 text-slate-500">Enter cost and selling price to analyze profitability.</p>
               </div>
             </div>
@@ -313,10 +345,7 @@
             </div>
           </div>
         </section>
-
-        <div class="ad-box">Ad Area Below Main Tool and Result Section</div>
-
-        <section class="mobile-card rounded-3xl bg-white p-5 shadow-sm ring-1 ring-slate-200 sm:p-8">
+<section class="mobile-card rounded-3xl bg-white p-5 shadow-sm ring-1 ring-slate-200 sm:p-8">
           <h2 class="text-2xl font-black tracking-tight text-slate-950">What This Calculator Shows</h2>
           <div class="mt-5 grid grid-cols-1 gap-4 md:grid-cols-3">
             <article class="rounded-2xl bg-slate-50 p-5 ring-1 ring-slate-200">
@@ -354,10 +383,7 @@
         <p class="mt-5 text-base leading-8 text-slate-600">
           This calculator is useful for product pricing, retail pricing, ecommerce pricing, wholesale pricing, service pricing, quote preparation, inventory planning, competitor analysis, promotion planning, and gross profit forecasting. You can enter your item cost and selling price to calculate margin and markup instantly. You can also enter a target margin to estimate a suggested selling price. This makes the tool practical for both analysis and planning. Whether you are selling handmade products, digital downloads, consulting packages, marketplace inventory, online courses, print-on-demand items, restaurant menu items, or wholesale goods, understanding margin and markup helps protect profitability.
         </p>
-
-        <div class="ad-box my-8">Middle Content Ad Area Inside the SEO Article Section</div>
-
-        <h2 id="how-to-use" class="mt-10 text-2xl font-black tracking-tight text-slate-950">How to Use the Margin and Markup Calculator</h2>
+<h2 id="how-to-use" class="mt-10 text-2xl font-black tracking-tight text-slate-950">How to Use the Margin and Markup Calculator</h2>
         <p class="mt-4 text-base leading-8 text-slate-600">
           Start by entering your cost of item. Cost can include the purchase cost, production cost, material cost, or wholesale cost of a product. For a service business, cost might represent contractor expense, billable labor cost, software cost, or direct delivery cost. Next, enter the revenue or selling price. The calculator subtracts cost from revenue to show gross profit. It then calculates gross margin by dividing gross profit by selling price and calculates markup by dividing gross profit by cost.
         </p>
@@ -423,10 +449,7 @@
             </tbody>
           </table>
         </div>
-
-        <div class="ad-box my-8">Bottom Content Ad Area Before FAQ</div>
-
-        <h2 class="mt-12 text-2xl font-black tracking-tight text-slate-950">Popular Uses for a Margin and Markup Calculator</h2>
+<h2 class="mt-12 text-2xl font-black tracking-tight text-slate-950">Popular Uses for a Margin and Markup Calculator</h2>
         <div class="mt-8 grid grid-cols-1 gap-5 md:grid-cols-2">
           <article class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
             <h3 class="text-xl font-black text-slate-950">Ecommerce Product Pricing</h3>
@@ -628,9 +651,7 @@
         </div>
       </div>
     </section>
-
-    <div class="ad-box mt-8">Bottom Ad Area Near the End of the Page</div>
-  </main>
+</main>
 
   <footer class="mt-10 border-t border-slate-200 bg-white">
     <div class="mx-auto flex w-full max-w-7xl flex-col gap-3 px-4 py-8 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
@@ -725,18 +746,21 @@
         const cost = sanitizeNumber(costInput.value, 0);
         const revenue = sanitizeNumber(revenueInput.value, 0);
         const targetMargin = Math.min(sanitizeNumber(targetMarginInput.value, 0), 99.9);
+        if (parseFloat(targetMarginInput.value) > 99.9) {
+          targetMarginInput.value = "99.9";
+        }
 
         const grossProfit = revenue - cost;
         const grossMargin = revenue > 0 ? (grossProfit / revenue) * 100 : 0;
-        const markup = cost > 0 ? (grossProfit / cost) * 100 : 0;
+        const markup = cost > 0 ? (grossProfit / cost) * 100 : null;
         const targetMarginDecimal = targetMargin / 100;
         const suggestedPrice = targetMarginDecimal < 1 ? cost / (1 - targetMarginDecimal) : 0;
 
         grossProfitEl.textContent = formatCurrency(grossProfit);
         displayCostEl.textContent = formatCurrency(cost);
         displayRevenueEl.textContent = formatCurrency(revenue);
-        grossMarginEl.textContent = formatPercent(grossMargin);
-        markupPercentEl.textContent = formatPercent(markup);
+        grossMarginEl.textContent = revenue > 0 ? formatPercent(grossMargin) : "N/A";
+        markupPercentEl.textContent = markup !== null ? formatPercent(markup) : "N/A";
         suggestedPriceEl.textContent = formatCurrency(suggestedPrice);
 
         grossProfitEl.className = grossProfit < 0
@@ -747,7 +771,7 @@
           ? "mt-2 text-3xl font-black text-rose-600"
           : "mt-2 text-3xl font-black text-slate-950";
 
-        markupPercentEl.className = markup < 0
+        markupPercentEl.className = markup !== null && markup < 0
           ? "mt-2 text-3xl font-black text-rose-600"
           : "mt-2 text-3xl font-black text-slate-950";
 
