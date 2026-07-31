@@ -8,10 +8,17 @@
     <meta name="description" content="Add text or image watermarks to PDF files online with custom position, opacity, rotation, size, and page range controls.">
     <meta name="keywords" content="PDF watermark, add watermark to PDF, PDF watermark online, text watermark PDF, image watermark PDF, watermark PDF free, PDF logo watermark, confidential PDF watermark, draft watermark PDF, PDF stamp, browser PDF watermark tool">
     <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
+    <link rel="canonical" href="https://nodntools.com/pdf-watermark">
 
     <meta property="og:title" content="PDF Watermark Online | Add Text or Image Watermarks">
     <meta property="og:description" content="Add customizable text or image watermarks to PDF documents directly in your browser.">
     <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nodntools.com/pdf-watermark">
+    <meta property="og:site_name" content="NodnWebTools">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="PDF Watermark Online | Add Text or Image Watermarks">
+    <meta name="twitter:description" content="Add customizable text or image watermarks to PDF documents directly in your browser.">
 
     <meta name="google-adsense-account" content="ca-pub-5282672325821404">
     <link rel="icon" type="image/png" href="/favicon.png">
@@ -22,29 +29,64 @@
 
     <script type="application/ld+json">
     {
-        "@context": "https://schema.org",
-        "@type": "WebApplication",
-        "name": "PDF Watermark Online",
-        "url": "https://nodntools.com/pdf-watermark",
-        "description": "A browser-based PDF watermark tool for adding custom text and image watermarks to PDF documents.",
-        "applicationCategory": "UtilitiesApplication",
-        "operatingSystem": "Any",
-        "browserRequirements": "Requires a modern web browser with JavaScript enabled.",
-        "offers": {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebApplication",
+          "@id": "https://nodntools.com/pdf-watermark#app",
+          "name": "PDF Watermark Online",
+          "url": "https://nodntools.com/pdf-watermark",
+          "description": "Add customizable text or image watermarks to PDF documents with opacity, rotation, size, position, and page-range controls.",
+          "applicationCategory": "UtilitiesApplication",
+          "operatingSystem": "Any",
+          "browserRequirements": "Requires JavaScript and a modern web browser.",
+          "isAccessibleForFree": true,
+          "offers": {
             "@type": "Offer",
             "price": "0",
             "priceCurrency": "USD"
-        },
-        "featureList": [
+          },
+          "featureList": [
             "Add text watermarks to PDF files",
-            "Add image and logo watermarks to PDF files",
-            "Customize watermark opacity",
-            "Rotate PDF watermarks",
-            "Choose watermark position",
-            "Apply watermarks to selected pages",
-            "Preview watermark placement",
+            "Add PNG and JPG image watermarks to PDF files",
+            "Adjust watermark opacity, rotation, size, and position",
+            "Apply watermarks to all pages or selected page ranges",
+            "Preview watermark placement before downloading",
             "Process PDF documents locally in the browser"
-        ]
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://nodntools.com/pdf-watermark#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Can I add a text watermark to every PDF page?",
+              "acceptedAnswer": {"@type": "Answer", "text": "Yes. Leave the page range field blank to apply the text watermark to every page in the PDF."}
+            },
+            {
+              "@type": "Question",
+              "name": "Can I add a company logo to a PDF?",
+              "acceptedAnswer": {"@type": "Answer", "text": "Yes. Choose Image Watermark and upload a PNG or JPG logo. Transparent PNG images usually provide the cleanest result."}
+            },
+            {
+              "@type": "Question",
+              "name": "Are my PDF files uploaded to a server?",
+              "acceptedAnswer": {"@type": "Answer", "text": "The tool is designed to process the PDF and watermark image locally in the browser rather than intentionally uploading them to a NodnWebTools conversion server."}
+            },
+            {
+              "@type": "Question",
+              "name": "Can I apply the watermark only to selected pages?",
+              "acceptedAnswer": {"@type": "Answer", "text": "Yes. Enter page values such as 1-3, 5, 8-10 to watermark only those pages."}
+            },
+            {
+              "@type": "Question",
+              "name": "Does a watermark prevent copying or screenshots?",
+              "acceptedAnswer": {"@type": "Answer", "text": "No. A watermark is a visible label and does not provide encryption, access control, screenshot prevention, or digital rights management."}
+            }
+          ]
+        }
+      ]
     }
     </script>
 
@@ -77,20 +119,6 @@
             word-break: break-word;
         }
 
-        .ad-box {
-            width: 100%;
-            min-height: 90px;
-            border: 2px dashed #cbd5e1;
-            background: #f8fafc;
-            color: #94a3b8;
-            border-radius: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem;
-            text-align: center;
-            overflow: hidden;
-        }
 
         .drop-active {
             border-color: #6366f1 !important;
@@ -237,12 +265,6 @@
                 padding: 0.75rem !important;
             }
 
-            .ad-box {
-                min-height: 80px;
-                border-radius: 0.75rem;
-                font-size: 0.75rem;
-            }
-
             .preview-paper {
                 width: min(100%, 290px);
             }
@@ -268,13 +290,7 @@
     </header>
 
     <main>
-        <section class="mx-auto w-full max-w-7xl px-4 pt-6 sm:px-6 lg:px-8">
-            <div class="ad-box" role="complementary" aria-label="Advertisement placeholder">
-                Advertisement
-            </div>
-        </section>
-
-        <section class="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+<section class="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
             <div class="mb-8 max-w-4xl">
                 <div class="inline-flex flex-wrap items-center gap-2 rounded-full border border-indigo-200 bg-indigo-50 px-3 py-1 text-sm font-semibold text-indigo-700">
                     <span>Text Watermark</span>
@@ -357,17 +373,17 @@
                         </label>
 
                         <div class="grid grid-cols-2 gap-3" role="tablist" aria-label="Watermark type">
-                            <button id="textTab" type="button" class="watermark-tab rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-bold text-slate-700" role="tab" aria-selected="true">
+                            <button id="textTab" type="button" class="watermark-tab rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-bold text-slate-700" role="tab" aria-selected="true" aria-controls="textSettings">
                                 Text Watermark
                             </button>
 
-                            <button id="imageTab" type="button" class="watermark-tab rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-bold text-slate-700" role="tab" aria-selected="false">
+                            <button id="imageTab" type="button" class="watermark-tab rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-bold text-slate-700" role="tab" aria-selected="false" aria-controls="imageSettings">
                                 Image Watermark
                             </button>
                         </div>
                     </div>
 
-                    <div id="textSettings" class="mt-6">
+                    <div id="textSettings" class="mt-6" role="tabpanel" aria-labelledby="textTab">
                         <div>
                             <label for="watermarkText" class="mb-2 block text-sm font-bold text-slate-800">
                                 Watermark text
@@ -414,7 +430,7 @@
                         </div>
                     </div>
 
-                    <div id="imageSettings" class="mt-6 hidden">
+                    <div id="imageSettings" class="mt-6 hidden" role="tabpanel" aria-labelledby="imageTab">
                         <div>
                             <label for="imageInput" class="mb-2 block text-sm font-bold text-slate-800">
                                 Watermark image
@@ -491,7 +507,7 @@
                         </div>
                     </div>
 
-                    <div class="mt-6 grid gap-4 sm:grid-cols-2">
+                    <div class="mt-6">
                         <div>
                             <label for="pageRange" class="mb-2 block text-sm font-bold text-slate-800">
                                 Apply to pages
@@ -504,16 +520,6 @@
                             </p>
                         </div>
 
-                        <div>
-                            <label for="layerMode" class="mb-2 block text-sm font-bold text-slate-800">
-                                Watermark layer
-                            </label>
-
-                            <select id="layerMode" class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 outline-none transition focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100">
-                                <option value="above">Above page content</option>
-                                <option value="below">Behind page content</option>
-                            </select>
-                        </div>
                     </div>
 
                     <div class="mt-6 rounded-2xl border border-emerald-200 bg-emerald-50 p-4">
@@ -620,14 +626,7 @@
                 </section>
             </div>
         </section>
-
-        <section class="mx-auto w-full max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
-            <div class="ad-box" role="complementary" aria-label="Advertisement placeholder">
-                Advertisement
-            </div>
-        </section>
-
-        <section class="border-y border-slate-200 bg-white">
+<section class="border-y border-slate-200 bg-white">
             <div class="mx-auto w-full max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
                 <article class="article-content text-base leading-8 text-slate-700">
                     <p class="text-sm font-bold uppercase tracking-[0.2em] text-indigo-600">Complete PDF Watermark Guide</p>
@@ -693,12 +692,7 @@
                     <p>
                         Designers, photographers, publishers, consultants, and document service providers may add SAMPLE, PROOF, or PREVIEW watermarks before delivering a final paid file. The watermark makes it clear that the document is not the final unrestricted version.
                     </p>
-
-                    <div class="ad-box my-12" role="complementary" aria-label="Advertisement placeholder">
-                        Advertisement
-                    </div>
-
-                    <h2 class="text-2xl font-black text-slate-950">Text Watermark for PDF Files</h2>
+<h2 class="text-2xl font-black text-slate-950">Text Watermark for PDF Files</h2>
 
                     <p>
                         A text watermark is created from a word, phrase, identifier, date, notice, or short message. Text watermarks are flexible because users can change the font, size, color, opacity, rotation, and placement without creating a separate image.
@@ -754,7 +748,7 @@
                         <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6">
                             <h3 class="mt-0 text-lg font-black text-slate-900">3. Customize appearance</h3>
                             <p class="mt-3 text-sm leading-7 text-slate-600">
-                                Set the text, font, color, size, image scale, opacity, rotation, and layer position.
+                                Set the text, font, color, size, image scale, opacity, rotation, and page placement.
                             </p>
                         </div>
 
@@ -821,12 +815,7 @@
                     <p>
                         Position calculations include a margin so the watermark does not sit directly against the page edge. Very large or heavily rotated watermarks can still extend beyond the page boundary, so review the preview and adjust the size when necessary.
                     </p>
-
-                    <div class="ad-box my-12" role="complementary" aria-label="Advertisement placeholder">
-                        Advertisement
-                    </div>
-
-                    <h2 class="text-2xl font-black text-slate-950">Applying Watermarks to Selected Pages</h2>
+<h2 class="text-2xl font-black text-slate-950">Applying Watermarks to Selected Pages</h2>
 
                     <p>
                         Not every PDF requires a watermark on every page. A cover page may need a logo, while confidential content may begin later in the document. Page range controls allow users to apply the watermark only where it is needed.
@@ -838,20 +827,6 @@
 
                     <p>
                         Page numbers are based on the PDF page order, beginning with page 1. Printed page labels inside the document may not match the actual PDF page index.
-                    </p>
-
-                    <h2 class="text-2xl font-black text-slate-950">Watermark Above or Behind PDF Content</h2>
-
-                    <p>
-                        A watermark placed above page content remains visible even when the page contains solid backgrounds or large images. This is generally the most reliable option for status labels and ownership notices.
-                    </p>
-
-                    <p>
-                        A watermark placed behind page content can look more integrated and less intrusive. However, existing white backgrounds, images, shapes, or opaque page objects may hide some or all of the watermark.
-                    </p>
-
-                    <p>
-                        The visual result depends on how the original PDF page was created. When visibility is essential, choose the above-content option and use an appropriate opacity.
                     </p>
 
                     <h2 class="text-2xl font-black text-slate-950">Popular Uses for PDF Watermarks</h2>
@@ -1020,14 +995,7 @@
                 </a>
             </div>
         </section>
-
-        <section class="mx-auto w-full max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
-            <div class="ad-box" role="complementary" aria-label="Advertisement placeholder">
-                Advertisement
-            </div>
-        </section>
-
-        <section class="border-t border-slate-200 bg-white">
+<section class="border-t border-slate-200 bg-white">
             <div class="mx-auto w-full max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
                 <p class="text-sm font-bold uppercase tracking-[0.2em] text-indigo-600">Questions and Answers</p>
                 <h2 class="mt-2 text-3xl font-black tracking-tight text-slate-950">PDF Watermark FAQ</h2>
@@ -1066,11 +1034,6 @@
                     <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
                         <summary class="cursor-pointer list-none font-bold text-slate-900">Does a watermark prevent copying or screenshots?</summary>
                         <p class="mt-3 leading-7 text-slate-600">No. A watermark is a visible label and does not provide encryption, access control, screenshot prevention, or digital rights management.</p>
-                    </details>
-
-                    <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
-                        <summary class="cursor-pointer list-none font-bold text-slate-900">Can I place a watermark behind the page content?</summary>
-                        <p class="mt-3 leading-7 text-slate-600">Yes. Select Behind Page Content, but existing opaque page backgrounds may hide the watermark.</p>
                     </details>
 
                     <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
@@ -1117,13 +1080,7 @@
                 </div>
             </div>
         </section>
-
-        <section class="mx-auto w-full max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
-            <div class="ad-box" role="complementary" aria-label="Advertisement placeholder">
-                Advertisement
-            </div>
-        </section>
-    </main>
+</main>
 
     <footer class="border-t border-slate-200 bg-white">
         <div class="mx-auto flex w-full max-w-7xl flex-col gap-3 px-4 py-8 text-sm text-slate-500 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
@@ -1175,7 +1132,6 @@
         const rotation = document.getElementById("rotation");
         const rotationValue = document.getElementById("rotationValue");
         const pageRange = document.getElementById("pageRange");
-        const layerMode = document.getElementById("layerMode");
         const positionButtons = [...document.querySelectorAll(".position-button")];
 
         const emptyPreview = document.getElementById("emptyPreview");
@@ -1372,6 +1328,8 @@
             imageTab.setAttribute("aria-selected", String(mode === "image"));
             textSettings.classList.toggle("hidden", mode !== "text");
             imageSettings.classList.toggle("hidden", mode !== "image");
+            textSettings.setAttribute("aria-hidden", String(mode !== "text"));
+            imageSettings.setAttribute("aria-hidden", String(mode !== "image"));
             modeBadge.textContent = mode === "text" ? "Text Watermark" : "Image Watermark";
             clearOutput();
             updateWatermarkPreview();
@@ -1784,9 +1742,14 @@
                 setTimeout(hideProgress, 800);
             } catch (error) {
                 console.error(error);
-                setWarning(
-                    "The watermark could not be added. The PDF may be encrypted, damaged, unsupported, or too large for the available browser memory."
-                );
+                const message = String(error?.message || "");
+
+                if (/WinAnsi|cannot encode/i.test(message)) {
+                    setWarning("This text contains characters that the built-in PDF fonts cannot encode. Use Latin letters and numbers, or upload the wording as a PNG image watermark.");
+                } else {
+                    setWarning("The watermark could not be added. The PDF may be encrypted, damaged, unsupported, or too large for the available browser memory.");
+                }
+
                 setStatus("Watermark processing failed.", "error");
                 hideProgress();
             } finally {
@@ -1855,7 +1818,6 @@
             rotation.value = "-45";
             imageScale.value = "30";
             pageRange.value = "";
-            layerMode.value = "above";
 
             selectedPosition = "center";
             positionButtons.forEach(button => {
@@ -1953,7 +1915,7 @@
             updateWatermarkPreview();
         });
 
-        [watermarkText, fontFamily, layerMode].forEach(element => {
+        [watermarkText, fontFamily].forEach(element => {
             element.addEventListener("input", updateWatermarkPreview);
             element.addEventListener("change", updateWatermarkPreview);
         });
