@@ -5,16 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link rel="icon" type="image/png" href="/favicon.png">
 
-  <title>Canada Paycheck Calculator 2026</title>
-  <meta name="description" content="Estimate 2026 Canadian take-home pay after federal tax, provincial tax, CPP, and EI deductions." />
+  <title>Canada Paycheck Calculator 2026: Salary After Tax</title>
+  <meta name="description" content="Estimate 2026 Canadian take-home pay from salary or hourly wages after federal tax, provincial tax, CPP, CPP2, and EI deductions." />
   <meta name="keywords" content="Canada paycheck calculator, Canadian salary calculator, take home pay calculator Canada, 2026 payroll calculator, Canada income tax calculator, CPP EI calculator, provincial tax calculator, monthly net pay calculator, hourly wage calculator Canada, salary after tax Canada, gross to net pay Canada, payroll deduction calculator Canada" />
   <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow" />
+  <link rel="canonical" href="https://nodntools.com/paycheck-ca" />
   <meta name="author" content="NodnWebTools" />
 
   <meta property="og:title" content="Canada Paycheck Calculator 2026" />
   <meta property="og:description" content="Estimate Canadian take-home pay after federal tax, provincial tax, CPP, and EI deductions." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://nodntools.com/paycheck-ca.html" />
+  <meta property="og:url" content="https://nodntools.com/paycheck-ca" />
   <meta property="og:site_name" content="NodnWebTools" />
 
   <meta name="twitter:card" content="summary_large_image" />
@@ -51,7 +53,7 @@
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "Canada Paycheck Calculator 2026",
-    "url": "https://nodntools.com/paycheck-ca.html",
+    "url": "https://nodntools.com/paycheck-ca",
     "applicationCategory": "FinanceApplication",
     "operatingSystem": "Any modern web browser",
     "description": "A client-side Canada paycheck calculator that estimates 2026 take-home pay after federal income tax, provincial tax, CPP, CPP2, and EI deductions.",
@@ -75,6 +77,63 @@
       "CPP and CPP2 estimate",
       "EI estimate",
       "Local browser calculation"
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is this Canada paycheck calculator free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. This calculator is free to use and runs directly in your browser."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this calculator show exact payroll results?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. It provides a simplified estimate. Actual payroll can vary because of credits, benefits, pension deductions, RRSP contributions, employer settings, taxable benefits, bonuses, and individual tax situations."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What deductions are included?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The calculator estimates federal income tax, selected provincial income tax, CPP, CPP2, and EI. It does not include every possible payroll deduction."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I calculate hourly wages?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Select Hourly mode, enter your hourly wage, hours per week, weeks per year, and province."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does province matter?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Canada has federal tax and provincial or territorial tax. Province-specific tax brackets and credits can change estimated take-home pay."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use this for tax filing?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. This is not tax filing software and does not replace official tax forms, payroll systems, CRA resources, Revenu Québec resources, or professional advice."
+        }
+      }
     ]
   }
   </script>
@@ -120,21 +179,6 @@
       max-width: 100%;
     }
 
-    .ad-box {
-      width: 100%;
-      max-width: 100%;
-      min-height: 90px;
-      overflow: hidden;
-      border: 1px dashed #cbd5e1;
-      background: #f8fafc;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      color: #94a3b8;
-      border-radius: 1.25rem;
-      padding: 1rem;
-    }
 
     @media (max-width: 640px) {
       .mobile-card,
@@ -147,12 +191,6 @@
         grid-template-columns: 1fr !important;
       }
 
-      .ad-box {
-        min-height: 90px;
-        border-radius: 1rem;
-        padding: .875rem;
-        font-size: .875rem;
-      }
 
       h1 {
         font-size: 2rem !important;
@@ -180,10 +218,6 @@
         border-radius: 1rem;
       }
 
-      .ad-box {
-        min-height: 82px;
-        font-size: .8rem;
-      }
 
       h1 {
         font-size: 1.75rem !important;
@@ -205,7 +239,6 @@
   </header>
 
   <main class="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
-    <div class="ad-box mb-6">Top Ad Area</div>
 
     <section class="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_1.08fr]">
       <div class="mobile-card rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-8 lg:sticky lg:top-8 lg:self-start">
@@ -304,10 +337,10 @@
             </button>
           </div>
 
-          <div id="warningBox" class="hidden rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm font-semibold leading-6 text-amber-800"></div>
+          <div id="warningBox" role="alert" aria-live="polite" class="hidden rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm font-semibold leading-6 text-amber-800"></div>
         </div>
 
-        <div id="result" class="mt-6 hidden rounded-3xl border border-accent-100 bg-gradient-to-br from-accent-50 to-slate-50 p-5"></div>
+        <div id="result" aria-live="polite" class="mt-6 hidden rounded-3xl border border-accent-100 bg-gradient-to-br from-accent-50 to-slate-50 p-5"></div>
 
         <div class="mt-5 grid hidden grid-cols-1 gap-3 sm:grid-cols-2 mobile-button-grid" id="actionButtons">
           <button id="copyBtn" type="button" class="rounded-2xl bg-slate-950 px-4 py-3 text-sm font-black text-white transition hover:bg-slate-800">Copy Summary</button>
@@ -317,8 +350,6 @@
         <div id="copyFeedback" class="mt-3 hidden rounded-2xl bg-emerald-50 p-3 text-sm font-bold text-emerald-700">Copied!</div>
       </div>
     </section>
-
-    <div class="ad-box my-8">Ad Area Below Main Tool and Result Section</div>
 
     <article class="mobile-card rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-8 lg:p-10">
       <div class="mx-auto max-w-4xl">
@@ -356,8 +387,6 @@
           <p>
             Understanding gross and net pay is essential for personal finance planning. Rent, mortgage payments, car payments, insurance, groceries, childcare, savings, credit card payments, student loans, subscriptions, and emergency funds are all paid from net cash flow, not gross salary. When people budget only from gross income, they may overestimate how much money is available each month. A paycheck calculator helps translate salary into a more realistic monthly planning number.
           </p>
-
-          <div class="ad-box my-8">Middle Content Ad Area</div>
 
           <h3 class="text-2xl font-black text-slate-950">Federal Income Tax in a Paycheck Estimate</h3>
           <p>
@@ -432,8 +461,6 @@
           <p>
             Tax returns can also change the final picture. Payroll withholding is an estimate during the year, while your tax return reconciles your actual taxable income, deductions, credits, and payments. You may receive a refund if too much tax was withheld, or you may owe money if not enough was withheld. RRSP contributions, childcare expenses, tuition credits, medical expenses, donations, moving expenses, eligible employment expenses, and other tax items may affect your final annual tax result. This calculator does not attempt to prepare or predict your complete personal tax return.
           </p>
-
-          <div class="ad-box my-8">Bottom Content Ad Area</div>
 
           <h3 class="text-2xl font-black text-slate-950">Budgeting With Monthly Take-Home Pay</h3>
           <p>
@@ -617,8 +644,6 @@
         </div>
       </div>
     </section>
-
-    <div class="ad-box mt-8">Bottom Ad Area</div>
   </main>
 
   <footer class="mt-10 border-t border-slate-200 bg-white">
@@ -696,15 +721,15 @@
           BC: {
             label: 'British Columbia',
             brackets: [
-              { min: 0, max: 47937, rate: 0.0506 },
-              { min: 47937, max: 95875, rate: 0.077 },
-              { min: 95875, max: 110057, rate: 0.105 },
-              { min: 110057, max: 133664, rate: 0.1229 },
-              { min: 133664, max: 181412, rate: 0.147 },
-              { min: 181412, max: 252752, rate: 0.168 },
-              { min: 252752, max: Infinity, rate: 0.205 }
+              { min: 0, max: 50363, rate: 0.056 },
+              { min: 50363, max: 100728, rate: 0.077 },
+              { min: 100728, max: 115648, rate: 0.105 },
+              { min: 115648, max: 140430, rate: 0.1229 },
+              { min: 140430, max: 190405, rate: 0.147 },
+              { min: 190405, max: 265545, rate: 0.168 },
+              { min: 265545, max: Infinity, rate: 0.205 }
             ],
-            bpaCredit: 12580 * 0.0506
+            bpaCredit: 12932 * 0.056
           },
           ON: {
             label: 'Ontario',
@@ -723,7 +748,7 @@
               { min: 0, max: 61200, rate: 0.08 },
               { min: 61200, max: 154259, rate: 0.10 },
               { min: 154259, max: 181111, rate: 0.12 },
-              { min: 181111, max: 246813, rate: 0.13 },
+              { min: 185111, max: 246813, rate: 0.13 },
               { min: 246813, max: 370220, rate: 0.14 },
               { min: 370220, max: Infinity, rate: 0.15 }
             ],
@@ -732,10 +757,10 @@
           QC: {
             label: 'Quebec',
             brackets: [
-              { min: 0, max: 51780, rate: 0.14 },
-              { min: 51780, max: 103545, rate: 0.19 },
-              { min: 103545, max: 126000, rate: 0.24 },
-              { min: 126000, max: Infinity, rate: 0.2575 }
+              { min: 0, max: 54345, rate: 0.14 },
+              { min: 54345, max: 108680, rate: 0.19 },
+              { min: 108680, max: 132245, rate: 0.24 },
+              { min: 132245, max: Infinity, rate: 0.2575 }
             ],
             bpaCredit: 18056 * 0.14
           }
