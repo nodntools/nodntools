@@ -8,12 +8,20 @@
   <meta name="description" content="Protect, unlock, and remove authorized PDF restrictions securely in your browser with password-based PDF security tools.">
   <meta name="keywords" content="PDF security, protect PDF, password protect PDF, encrypt PDF, unlock PDF, remove PDF password, remove PDF restrictions, PDF permissions, secure PDF online, browser PDF encryption, PDF owner password, PDF user password">
   <meta name="robots" content="index, follow">
+  <meta name="googlebot" content="index, follow">
   <meta name="google-adsense-account" content="ca-pub-5282672325821404">
 
   <meta property="og:title" content="PDF Security Online | Protect, Unlock & Remove Restrictions">
   <meta property="og:description" content="Add password protection, unlock authorized PDFs, and remove document restrictions directly in your browser.">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nodntools.com/pdf-security">
+  <meta property="og:site_name" content="NodnWebTools">
 
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="PDF Security Online | Protect, Unlock & Remove Restrictions">
+  <meta name="twitter:description" content="Password protect PDFs, unlock authorized files, and remove PDF permission restrictions in your browser.">
+
+  <link rel="canonical" href="https://nodntools.com/pdf-security">
   <link rel="icon" type="image/png" href="/favicon.png">
 
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404" crossorigin="anonymous"></script>
@@ -45,6 +53,79 @@
   }
   </script>
 
+  <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Are my PDF files uploaded to a server?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The document-processing workflow is designed to run locally in your browser. The selected PDF and entered passwords are not intentionally uploaded to a NodnWebTools processing server."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What encryption does Protect PDF use?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The protection workflow requests modern 256-bit PDF encryption from the PDF processing engine. Compatibility depends on the PDF reader used to open the output."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can the tool recover a forgotten PDF password?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. The Unlock PDF function requires a valid password. The tool does not crack, recover, guess, or bypass unknown passwords."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between unlocking and removing restrictions?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Unlocking removes encryption that requires a password to open the PDF. Removing restrictions creates a copy without printing, copying, annotation, or editing limitations."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can PDF restrictions be enforced by every reader?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. PDF permissions are respected by compatible applications, but they are not an absolute method of preventing copying or reproduction."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Will PDF security changes affect digital signatures?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "They may. Encrypting, decrypting, or changing permissions modifies the document and may invalidate existing digital signatures."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why should I keep an original backup?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A forgotten password, incompatible reader, processing failure, or unexpected document change may make the output difficult to use. Keep the original until the result has been fully reviewed."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use the tool on a phone or tablet?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, when the browser supports WebAssembly and modern file APIs. Large PDFs may process more reliably on a computer with additional memory."
+        }
+      }
+    ]
+  }
+  </script>
+
   <style>
     html, body {
       width: 100%;
@@ -66,20 +147,6 @@
       word-break: break-word;
     }
 
-    .ad-box {
-      width: 100%;
-      min-height: 90px;
-      border: 2px dashed #cbd5e1;
-      background: #f8fafc;
-      color: #94a3b8;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      border-radius: 1rem;
-      padding: 1rem;
-      overflow: hidden;
-    }
 
     .drop-active {
       border-color: #6366f1 !important;
@@ -182,11 +249,6 @@
         padding: 0.75rem !important;
       }
 
-      .ad-box {
-        min-height: 80px;
-        border-radius: 0.75rem;
-        font-size: 0.75rem;
-      }
 
       button,
       a,
@@ -201,22 +263,17 @@
 <body class="bg-slate-50 text-slate-800">
   <header class="border-b border-slate-200 bg-white">
     <div class="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
-      <a href="https://nodntools.com" class="safe-break text-xl font-extrabold tracking-tight text-slate-900" aria-label="NodnWebTools home">
+      <a href="/" class="safe-break text-xl font-extrabold tracking-tight text-slate-900" aria-label="NodnWebTools home">
         Nodn<span class="text-indigo-600">WebTools</span>
       </a>
 
-      <a href="https://nodntools.com" class="rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-indigo-300 hover:text-indigo-700">
+      <a href="/" class="rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-indigo-300 hover:text-indigo-700">
         Home
       </a>
     </div>
   </header>
 
   <main>
-    <section class="mx-auto w-full max-w-7xl px-4 pt-6 sm:px-6 lg:px-8">
-      <div class="ad-box" role="complementary" aria-label="Advertisement placeholder">
-        Advertisement
-      </div>
-    </section>
 
     <section class="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
       <div class="mb-8 max-w-4xl">
@@ -307,19 +364,19 @@
         <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
           <div class="rounded-2xl bg-slate-100 p-2">
             <div class="tab-scroll flex gap-2" role="tablist" aria-label="PDF security tools">
-              <button type="button" class="security-tab rounded-xl border border-transparent px-4 py-3 text-sm font-bold text-slate-600" data-tab="protect" role="tab" aria-selected="true">
+              <button type="button" class="security-tab rounded-xl border border-transparent px-4 py-3 text-sm font-bold text-slate-600" id="protectTab" data-tab="protect" role="tab" aria-selected="true" aria-controls="protectPanel" tabindex="0">
                 Protect PDF
               </button>
-              <button type="button" class="security-tab rounded-xl border border-transparent px-4 py-3 text-sm font-bold text-slate-600" data-tab="unlock" role="tab" aria-selected="false">
+              <button type="button" class="security-tab rounded-xl border border-transparent px-4 py-3 text-sm font-bold text-slate-600" id="unlockTab" data-tab="unlock" role="tab" aria-selected="false" aria-controls="unlockPanel" tabindex="-1">
                 Unlock PDF
               </button>
-              <button type="button" class="security-tab rounded-xl border border-transparent px-4 py-3 text-sm font-bold text-slate-600" data-tab="restrictions" role="tab" aria-selected="false">
+              <button type="button" class="security-tab rounded-xl border border-transparent px-4 py-3 text-sm font-bold text-slate-600" id="restrictionsTab" data-tab="restrictions" role="tab" aria-selected="false" aria-controls="restrictionsPanel" tabindex="-1">
                 Remove Restriction
               </button>
             </div>
           </div>
 
-          <div id="protectPanel" class="security-panel mt-6">
+          <div id="protectPanel" class="security-panel mt-6" role="tabpanel" aria-labelledby="protectTab">
             <div class="mb-6">
               <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-100 text-indigo-700">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -440,7 +497,7 @@
             </div>
           </div>
 
-          <div id="unlockPanel" class="security-panel mt-6 hidden">
+          <div id="unlockPanel" class="security-panel mt-6 hidden" role="tabpanel" aria-labelledby="unlockTab">
             <div class="mb-6">
               <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-100 text-emerald-700">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -484,7 +541,7 @@
             </div>
           </div>
 
-          <div id="restrictionsPanel" class="security-panel mt-6 hidden">
+          <div id="restrictionsPanel" class="security-panel mt-6 hidden" role="tabpanel" aria-labelledby="restrictionsTab">
             <div class="mb-6">
               <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-violet-100 text-violet-700">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -590,11 +647,6 @@
       </div>
     </section>
 
-    <section class="mx-auto w-full max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
-      <div class="ad-box" role="complementary" aria-label="Advertisement placeholder">
-        Advertisement
-      </div>
-    </section>
 
     <section class="border-y border-slate-200 bg-white">
       <div class="mx-auto w-full max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
@@ -636,9 +688,6 @@
               </p>
             </section>
 
-            <div class="ad-box my-12" role="complementary" aria-label="Advertisement placeholder">
-              Advertisement
-            </div>
 
             <section>
               <h2 class="text-2xl font-black text-slate-950">How to Password Protect a PDF</h2>
@@ -745,9 +794,6 @@
               </p>
             </section>
 
-            <div class="ad-box my-12" role="complementary" aria-label="Advertisement placeholder">
-              Advertisement
-            </div>
 
             <section>
               <h2 class="text-2xl font-black text-slate-950">Tips for Creating a Strong PDF Password</h2>
@@ -904,11 +950,6 @@
       </div>
     </section>
 
-    <section class="mx-auto w-full max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
-      <div class="ad-box" role="complementary" aria-label="Advertisement placeholder">
-        Advertisement
-      </div>
-    </section>
 
     <section class="border-t border-slate-200 bg-white">
       <div class="mx-auto w-full max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
@@ -1000,17 +1041,12 @@
       </div>
     </section>
 
-    <section class="mx-auto w-full max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
-      <div class="ad-box" role="complementary" aria-label="Advertisement placeholder">
-        Advertisement
-      </div>
-    </section>
   </main>
 
   <footer class="border-t border-slate-200 bg-white">
     <div class="mx-auto flex w-full max-w-7xl flex-col gap-3 px-4 py-8 text-sm text-slate-500 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
       <p>© <span id="currentYear"></span> NodnWebTools. All rights reserved.</p>
-      <a href="https://nodntools.com" class="font-semibold text-slate-600 transition hover:text-indigo-700">
+      <a href="/" class="font-semibold text-slate-600 transition hover:text-indigo-700">
         Back to NodnWebTools
       </a>
     </div>
@@ -1146,7 +1182,9 @@
       activeTab = tabName;
 
       securityTabs.forEach(tab => {
-        tab.setAttribute("aria-selected", String(tab.dataset.tab === tabName));
+        const isActive = tab.dataset.tab === tabName;
+        tab.setAttribute("aria-selected", String(isActive));
+        tab.tabIndex = isActive ? 0 : -1;
       });
 
       securityPanels.forEach(panel => {
@@ -1261,8 +1299,16 @@
       }
 
       try {
+        const bytes = new Uint8Array(await file.arrayBuffer());
+        const signature = new TextDecoder("ascii").decode(bytes.slice(0, 5));
+
+        if (signature !== "%PDF-") {
+          setWarning("The selected file does not contain a valid PDF signature.");
+          return;
+        }
+
         selectedFile = file;
-        selectedBytes = new Uint8Array(await file.arrayBuffer());
+        selectedBytes = bytes;
 
         fileCard.classList.remove("hidden");
         fileName.textContent = file.name;
@@ -1287,6 +1333,7 @@
       fileSecurityStatus.textContent = "Security status: not checked";
       clearResult();
       hideProgress();
+      setWarning("");
       setStatus("");
     }
 
@@ -1732,8 +1779,23 @@
       handleFile(file);
     });
 
-    securityTabs.forEach(tab => {
+    securityTabs.forEach((tab, index) => {
       tab.addEventListener("click", () => setActiveTab(tab.dataset.tab));
+      tab.addEventListener("keydown", event => {
+        if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
+
+        event.preventDefault();
+        let nextIndex = index;
+
+        if (event.key === "ArrowRight") nextIndex = (index + 1) % securityTabs.length;
+        if (event.key === "ArrowLeft") nextIndex = (index - 1 + securityTabs.length) % securityTabs.length;
+        if (event.key === "Home") nextIndex = 0;
+        if (event.key === "End") nextIndex = securityTabs.length - 1;
+
+        const nextTab = securityTabs[nextIndex];
+        setActiveTab(nextTab.dataset.tab);
+        nextTab.focus();
+      });
     });
 
     document.querySelectorAll(".password-toggle").forEach(button => {
