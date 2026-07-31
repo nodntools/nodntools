@@ -10,11 +10,13 @@
   <meta name="keywords" content="latte factor calculator, daily savings calculator, coffee savings calculator, compound interest calculator, small expense calculator, save money calculator, daily spending calculator, investment growth calculator, financial habit calculator, personal finance calculator, opportunity cost calculator, monthly investing calculator, small purchase savings, money habits calculator, NodnWebTools">
   <meta name="author" content="NodnWebTools">
   <meta name="robots" content="index, follow">
+  <meta name="googlebot" content="index, follow">
+  <link rel="canonical" href="https://nodntools.com/latte-factor">
 
   <meta property="og:title" content="Latte Factor Calculator | Daily Savings Tool">
   <meta property="og:description" content="See how coffee, snacks, subscriptions, and small daily expenses could become future savings through compound growth.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://nodntools.com/latte-factor.html">
+  <meta property="og:url" content="https://nodntools.com/latte-factor">
   <meta property="og:site_name" content="NodnWebTools">
 
   <meta name="twitter:card" content="summary_large_image">
@@ -56,7 +58,7 @@
     "name": "Latte Factor Calculator",
     "applicationCategory": "FinanceApplication",
     "operatingSystem": "Any",
-    "url": "https://nodntools.com/latte-factor.html",
+    "url": "https://nodntools.com/latte-factor",
     "description": "A free browser-based Latte Factor Calculator that estimates how small daily expenses could grow through monthly investing and compound returns.",
     "offers": {
       "@type": "Offer",
@@ -70,6 +72,64 @@
     }
   }
   </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is the latte factor only about coffee?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Coffee is just a simple example. The latte factor can apply to any small repeat expense, including snacks, delivery fees, subscriptions, cigarettes, app purchases, or impulse buys."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this calculator guarantee investment results?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. The result is a simplified estimate based on your assumptions. Actual returns can vary because of market performance, fees, taxes, inflation, and timing."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What annual return should I use?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You can test several assumptions, such as conservative, moderate, and optimistic returns. Using multiple scenarios gives a more realistic range than one number."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Should I invest small savings or pay debt first?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It depends on your situation. High-interest debt may deserve priority, while emergency savings and retirement investing may also be important goals."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does time make such a big difference?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Time allows compounding to work. The longer money remains invested, the more previous growth can generate additional growth."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I still enjoy small purchases?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. The point is not to eliminate joy. The goal is to identify automatic spending that does not add enough value and redirect some of it toward better priorities."
+        }
+      }
+    ]
+  }
+  </script>
+
 
   <style>
     html, body {
@@ -100,8 +160,7 @@
     .mobile-card,
     .mobile-panel,
     .mobile-preview,
-    .mobile-code,
-    .ad-box {
+    .mobile-code {
       max-width: 100%;
       overflow-wrap: anywhere;
     }
@@ -111,21 +170,6 @@
       white-space: pre-wrap;
     }
 
-    .ad-box {
-      width: 100%;
-      min-height: 90px;
-      border: 1px dashed #cbd5e1;
-      background: #f8fafc;
-      color: #94a3b8;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      border-radius: 1rem;
-      padding: 1rem;
-      font-size: 0.875rem;
-      overflow: hidden;
-    }
 
     .range-slider {
       accent-color: #d97706;
@@ -150,12 +194,6 @@
         width: 100%;
       }
 
-      .ad-box {
-        min-height: 90px;
-        border-radius: 0.875rem;
-        padding: 0.875rem;
-        font-size: 0.78rem;
-      }
     }
 
     @media (max-width: 380px) {
@@ -174,10 +212,6 @@
         line-height: 1.9rem !important;
       }
 
-      .ad-box {
-        padding: 0.75rem;
-        font-size: 0.72rem;
-      }
     }
   </style>
 </head>
@@ -197,9 +231,7 @@
   </header>
 
   <main class="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-    <div class="ad-box mb-6">Top Ad Area - Responsive AdSense Placeholder</div>
-
-    <section class="grid grid-cols-1 gap-6 lg:grid-cols-12">
+<section class="grid grid-cols-1 gap-6 lg:grid-cols-12">
       <div class="mobile-card rounded-3xl bg-white p-5 shadow-soft ring-1 ring-slate-200 sm:p-8 lg:col-span-5 lg:sticky lg:top-8 lg:self-start">
         <span class="inline-flex rounded-full bg-accent-50 px-4 py-2 text-sm font-bold text-accent-700 ring-1 ring-accent-100">Personal Finance Tool</span>
 
@@ -243,7 +275,7 @@
               <button type="button" data-years="30" class="quick-year rounded-2xl border border-accent-200 bg-accent-50 px-3 py-3 text-sm font-black text-accent-700 transition hover:bg-accent-100 active:scale-[0.99]">30Y</button>
             </div>
 
-            <input id="timeHorizonSlider" type="range" min="1" max="40" step="1" value="20" class="range-slider mt-5 w-full">
+            <input id="timeHorizonSlider" aria-label="Time horizon in years" type="range" min="1" max="40" step="1" value="20" class="range-slider mt-5 w-full">
 
             <div class="relative mt-3">
               <input id="timeHorizon" type="number" inputmode="numeric" min="1" max="60" step="1" value="20" placeholder="20" class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-4 pr-20 text-lg font-bold text-slate-900 outline-none transition focus:border-accent-500 focus:bg-white focus:ring-4 focus:ring-accent-100">
@@ -261,7 +293,7 @@
             <button id="resetBtn" type="button" class="rounded-2xl bg-white px-4 py-3 text-sm font-black text-slate-800 ring-1 ring-slate-300 transition hover:bg-slate-100 active:scale-[0.98]">Reset</button>
           </div>
 
-          <div id="statusBox" class="rounded-2xl bg-accent-50 p-4 text-sm font-bold text-accent-700 ring-1 ring-accent-100">Ready</div>
+          <div id="statusBox" role="status" aria-live="polite" class="rounded-2xl bg-accent-50 p-4 text-sm font-bold text-accent-700 ring-1 ring-accent-100">Ready</div>
 
           <div class="rounded-2xl bg-slate-50 p-4 text-sm leading-6 text-slate-600 ring-1 ring-slate-200">
             The latte factor is not about guilt. It is about seeing the long-term opportunity cost behind small repeat purchases and choosing what truly matters.
@@ -322,10 +354,7 @@
             </div>
           </div>
         </section>
-
-        <div class="ad-box">Ad Area Below Main Tool and Result Section</div>
-
-        <section class="mobile-card rounded-3xl bg-white p-5 shadow-sm ring-1 ring-slate-200 sm:p-8">
+<section class="mobile-card rounded-3xl bg-white p-5 shadow-sm ring-1 ring-slate-200 sm:p-8">
           <h2 class="text-2xl font-black tracking-tight text-slate-950">What This Calculator Shows</h2>
           <div class="mt-5 grid grid-cols-1 gap-4 md:grid-cols-3">
             <article class="rounded-2xl bg-slate-50 p-5 ring-1 ring-slate-200">
@@ -363,16 +392,13 @@
         <p class="mt-5 text-base leading-8 text-slate-600">
           This tool is especially useful for people searching for a daily savings calculator, coffee savings calculator, small expense calculator, compound interest calculator, money habit calculator, or opportunity cost calculator. By entering a daily expense, estimated annual return, and time horizon, you can see how small behavior changes may affect long-term savings, investing, debt repayment, emergency fund growth, retirement planning, or financial independence goals.
         </p>
-
-        <div class="ad-box my-8">Middle Content Ad Area Inside the SEO Article Section</div>
-
-        <h2 id="how-to-use" class="mt-10 text-2xl font-black tracking-tight text-slate-950">How to Use the Latte Factor Calculator</h2>
+<h2 id="how-to-use" class="mt-10 text-2xl font-black tracking-tight text-slate-950">How to Use the Latte Factor Calculator</h2>
         <p class="mt-4 text-base leading-8 text-slate-600">
           Start by entering a daily expense. This could be the cost of a coffee, convenience snack, fast-food meal upgrade, delivery fee, vending machine purchase, ride-share habit, unused subscription, or any other repeat expense. Next, enter an estimated annual return. This return represents a hypothetical investment growth rate if the money were invested monthly instead of spent. Then choose a time horizon using the quick buttons, slider, or number field. The calculator will instantly show the future investment value, monthly total, total cash saved, compound growth, selected time horizon, and return assumption.
         </p>
 
         <p class="mt-5 text-base leading-8 text-slate-600">
-          For example, if you spend $6 per day on a coffee habit, that is about $180 per month using a simple 30-day monthly estimate. Over 20 years, redirecting that amount could produce a much larger result if invested consistently. The final number depends heavily on your assumed return and time horizon. Higher returns and longer time periods increase the compounding effect, but they also involve uncertainty and risk. The calculator is best used as a scenario tool to understand tradeoffs, not as a guaranteed forecast.
+          For example, if you spend $6 per day on a coffee habit, that is about $182.50 per average calendar month using 365 days divided by 12 months. Over 20 years, redirecting that amount could produce a much larger result if invested consistently. The final number depends heavily on your assumed return and time horizon. Higher returns and longer time periods increase the compounding effect, but they also involve uncertainty and risk. The calculator is best used as a scenario tool to understand tradeoffs, not as a guaranteed forecast.
         </p>
 
         <div class="mt-8 grid grid-cols-1 gap-5 md:grid-cols-3">
@@ -407,10 +433,7 @@
         <p class="mt-5 text-base leading-8 text-slate-600">
           Compound growth adds another layer. When money is invested, returns can generate additional returns over time. The longer the money remains invested, the more important time becomes. In the early years, most of the balance may come from contributions. Later, growth on previous growth can become a larger share of the total. This is the same principle behind retirement accounts, index fund investing, recurring savings plans, and long-term wealth building.
         </p>
-
-        <div class="ad-box my-8">Bottom Content Ad Area Before FAQ</div>
-
-        <h2 class="mt-12 text-2xl font-black tracking-tight text-slate-950">Popular Uses for the Latte Factor Calculator</h2>
+<h2 class="mt-12 text-2xl font-black tracking-tight text-slate-950">Popular Uses for the Latte Factor Calculator</h2>
         <div class="mt-8 grid grid-cols-1 gap-5 md:grid-cols-2">
           <article class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
             <h3 class="text-xl font-black text-slate-950">Coffee and Drink Habits</h3>
@@ -432,7 +455,7 @@
 
         <h2 class="mt-12 text-2xl font-black tracking-tight text-slate-950">How Monthly Investing Is Estimated</h2>
         <p class="mt-4 text-base leading-8 text-slate-600">
-          This calculator converts the daily expense into an estimated monthly contribution by multiplying the daily cost by 30. It then uses a standard future value formula for monthly contributions. The annual return is divided into a monthly rate, and the contribution is assumed to happen consistently over the selected number of years. This creates an approximate future value based on regular investing and compound returns.
+          This calculator converts the daily expense into an estimated monthly contribution by multiplying the daily cost by 365 and dividing by 12. It then uses a standard future value formula for monthly contributions. The annual return is divided into a monthly rate, and the contribution is assumed to happen consistently over the selected number of years. This creates an approximate future value based on regular investing and compound returns.
         </p>
 
         <p class="mt-5 text-base leading-8 text-slate-600">
@@ -612,9 +635,7 @@
         </div>
       </div>
     </section>
-
-    <div class="ad-box mt-8">Bottom Ad Area Near the End of the Page</div>
-  </main>
+</main>
 
   <footer class="mt-10 border-t border-slate-200 bg-white">
     <div class="mx-auto flex w-full max-w-7xl flex-col gap-3 px-4 py-8 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
@@ -709,8 +730,8 @@
         const annualReturnRate = sanitizeNumber(annualReturnInput.value, 0) / 100;
         const years = Math.max(1, parseInt(timeHorizonInput.value, 10) || 1);
 
-        const monthlyTotal = dailyExpense * 30;
-        const totalCashSaved = dailyExpense * 365 * years;
+        const monthlyTotal = dailyExpense * 365 / 12;
+        const totalCashSaved = monthlyTotal * 12 * years;
         const futureInvestmentValue = calculateFutureValueOfMonthlyContributions(monthlyTotal, years, annualReturnRate);
         const compoundGrowth = futureInvestmentValue - monthlyTotal * years * 12;
 
