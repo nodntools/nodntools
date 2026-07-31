@@ -5,21 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link rel="icon" type="image/png" href="/favicon.png">
 
-  <title>Overtime Calculator | Hourly Pay Tool</title>
+  <title>Overtime Calculator – Time and a Half & Double Time</title>
   <meta name="description" content="Calculate regular pay, overtime pay, time and a half, double time, and total gross pay instantly in your browser.">
   <meta name="keywords" content="overtime calculator, overtime pay calculator, time and a half calculator, double time calculator, hourly wage calculator, gross pay calculator, regular pay calculator, weekly pay calculator, payroll calculator, hourly worker calculator, overtime hours calculator, employee pay calculator, FLSA overtime calculator, wage calculator, NodnWebTools">
   <meta name="author" content="NodnWebTools">
   <meta name="robots" content="index, follow">
+  <meta name="googlebot" content="index, follow">
+  <link rel="canonical" href="https://nodntools.com/overtime">
 
-  <meta property="og:title" content="Overtime Calculator | Hourly Pay Tool">
+  <meta property="og:title" content="Overtime Calculator – Time and a Half & Double Time">
   <meta property="og:description" content="Estimate regular pay, overtime pay, time and a half, double time, and total gross pay with a browser-based overtime calculator.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://nodntools.com/overtime.html">
+  <meta property="og:url" content="https://nodntools.com/overtime">
   <meta property="og:site_name" content="NodnWebTools">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Overtime Calculator">
   <meta name="twitter:description" content="Calculate overtime pay, regular pay, hourly wage results, and total gross pay before taxes.">
+  <meta name="twitter:url" content="https://nodntools.com/overtime">
 
   <meta name="google-adsense-account" content="ca-pub-5282672325821404">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404" crossorigin="anonymous"></script>
@@ -56,7 +59,8 @@
     "name": "Overtime Calculator",
     "applicationCategory": "FinanceApplication",
     "operatingSystem": "Any",
-    "url": "https://nodntools.com/overtime.html",
+    "inLanguage": "en",
+    "url": "https://nodntools.com/overtime",
     "description": "A free browser-based overtime calculator for estimating regular pay, overtime pay, time and a half, double time, hourly wages, and total gross pay.",
     "offers": {
       "@type": "Offer",
@@ -68,6 +72,63 @@
       "name": "NodnWebTools",
       "url": "https://nodntools.com"
     }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do I calculate overtime pay?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Multiply your regular hourly wage by the overtime multiplier, then multiply that overtime rate by your overtime hours."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is time and a half?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Time and a half means 1.5 times your regular hourly wage. A $20 hourly wage becomes $30 per overtime hour."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is double time?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Double time means 2 times your regular hourly wage. A $20 hourly wage becomes $40 per double-time hour."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this calculator show take-home pay?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. It estimates gross pay before taxes, deductions, benefits, tips, bonuses, and payroll adjustments."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are overtime rules the same everywhere?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Overtime rules vary by country, state, province, industry, job classification, union agreement, and employer policy."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can salaried employees get overtime?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Some salaried employees may qualify for overtime depending on local law, pay level, job duties, and exemption status."
+        }
+      }
+    ]
   }
   </script>
 
@@ -100,8 +161,7 @@
     .mobile-card,
     .mobile-panel,
     .mobile-preview,
-    .mobile-code,
-    .ad-box {
+    .mobile-code {
       max-width: 100%;
       overflow-wrap: anywhere;
     }
@@ -115,22 +175,6 @@
       width: 100%;
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
-    }
-
-    .ad-box {
-      width: 100%;
-      min-height: 90px;
-      border: 1px dashed #cbd5e1;
-      background: #f8fafc;
-      color: #94a3b8;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      border-radius: 1rem;
-      padding: 1rem;
-      font-size: 0.875rem;
-      overflow: hidden;
     }
 
     @media (max-width: 640px) {
@@ -150,13 +194,6 @@
       .mobile-button-grid button,
       .mobile-button-grid a {
         width: 100%;
-      }
-
-      .ad-box {
-        min-height: 90px;
-        border-radius: 0.875rem;
-        padding: 0.875rem;
-        font-size: 0.78rem;
       }
 
       table {
@@ -179,11 +216,6 @@
         font-size: 1.45rem !important;
         line-height: 1.9rem !important;
       }
-
-      .ad-box {
-        padding: 0.75rem;
-        font-size: 0.72rem;
-      }
     }
   </style>
 </head>
@@ -191,11 +223,11 @@
 <body class="min-h-screen bg-slate-50 text-slate-900">
   <header class="w-full border-b border-slate-200 bg-white/90 backdrop-blur">
     <div class="mx-auto flex w-full max-w-7xl flex-col gap-4 px-4 py-5 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
-      <a href="https://nodntools.com" class="inline-flex items-center safe-break" aria-label="NodnWebTools Home">
+      <a href="/" class="inline-flex items-center safe-break" aria-label="NodnWebTools Home">
         <span class="text-2xl font-black tracking-tight text-slate-950">Nodn<span class="text-accent-600">WebTools</span></span>
       </a>
       <nav class="flex flex-wrap items-center gap-3 text-sm font-semibold text-slate-600">
-        <a href="https://nodntools.com" class="rounded-full px-4 py-2 transition hover:bg-slate-100 hover:text-accent-700">Home</a>
+        <a href="/" class="rounded-full px-4 py-2 transition hover:bg-slate-100 hover:text-accent-700">Home</a>
         <a href="#how-to-use" class="rounded-full px-4 py-2 transition hover:bg-slate-100 hover:text-accent-700">How to Use</a>
         <a href="#faq" class="rounded-full px-4 py-2 transition hover:bg-slate-100 hover:text-accent-700">FAQ</a>
       </nav>
@@ -203,7 +235,6 @@
   </header>
 
   <main class="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-    <div class="ad-box mb-6">Top Ad Area - Responsive AdSense Placeholder</div>
 
     <section class="grid grid-cols-1 gap-6 lg:grid-cols-12">
       <div class="mobile-card rounded-3xl bg-white p-5 shadow-soft ring-1 ring-slate-200 sm:p-8 lg:col-span-5 lg:sticky lg:top-8 lg:self-start">
@@ -229,10 +260,10 @@
           <div>
             <label for="regularHours" class="mb-2 block text-sm font-bold text-slate-800">Regular Hours Worked</label>
             <div class="relative">
-              <input id="regularHours" type="number" inputmode="decimal" min="0" step="0.25" value="40" placeholder="40" class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-4 pr-20 text-lg font-bold text-slate-900 outline-none transition focus:border-accent-500 focus:bg-white focus:ring-4 focus:ring-accent-100">
+              <input id="regularHours" aria-describedby="regularHoursHelp" type="number" inputmode="decimal" min="0" step="0.25" value="40" placeholder="40" class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-4 pr-20 text-lg font-bold text-slate-900 outline-none transition focus:border-accent-500 focus:bg-white focus:ring-4 focus:ring-accent-100">
               <span class="absolute right-4 top-1/2 -translate-y-1/2 text-sm font-bold text-slate-400">Hours</span>
             </div>
-            <p class="mt-2 text-xs leading-5 text-slate-500">
+            <p id="regularHoursHelp" class="mt-2 text-xs leading-5 text-slate-500">
               Many U.S. overtime rules begin after 40 hours in a workweek, but rules can vary by location, job type, agreement, and classification.
             </p>
           </div>
@@ -261,7 +292,7 @@
             <button id="resetBtn" type="button" class="rounded-2xl bg-white px-4 py-3 text-sm font-black text-slate-800 ring-1 ring-slate-300 transition hover:bg-slate-100 active:scale-[0.98]">Reset</button>
           </div>
 
-          <div id="statusBox" class="rounded-2xl bg-accent-50 p-4 text-sm font-bold text-accent-700 ring-1 ring-accent-100">Ready</div>
+          <div id="statusBox" role="status" aria-live="polite" class="rounded-2xl bg-accent-50 p-4 text-sm font-bold text-accent-700 ring-1 ring-accent-100">Ready</div>
 
           <div class="rounded-2xl bg-slate-50 p-4 text-sm leading-6 text-slate-600 ring-1 ring-slate-200">
             This calculator estimates gross pay before taxes, deductions, benefits, tips, bonuses, commissions, and payroll adjustments.
@@ -337,8 +368,6 @@
           </div>
         </section>
 
-        <div class="ad-box">Ad Area Below Main Tool and Result Section</div>
-
         <section class="mobile-card rounded-3xl bg-white p-5 shadow-sm ring-1 ring-slate-200 sm:p-8">
           <h2 class="text-2xl font-black tracking-tight text-slate-950">What This Calculator Shows</h2>
           <div class="mt-5 grid grid-cols-1 gap-4 md:grid-cols-3">
@@ -377,8 +406,6 @@
         <p class="mt-5 text-base leading-8 text-slate-600">
           The calculator is useful for estimating a weekly shift total, checking a paystub, comparing different schedules, planning extra shifts, reviewing time card entries, or understanding how overtime premiums affect earnings. It is not a legal payroll determination tool, but it can help make the numbers easier to understand. If your actual paycheck differs from the estimate, review your employer’s pay policy, your time records, unpaid breaks, deductions, taxes, and applicable labor rules.
         </p>
-
-        <div class="ad-box my-8">Middle Content Ad Area Inside the SEO Article Section</div>
 
         <h2 id="how-to-use" class="mt-10 text-2xl font-black tracking-tight text-slate-950">How to Use the Overtime Calculator</h2>
         <p class="mt-4 text-base leading-8 text-slate-600">
@@ -445,8 +472,6 @@
             </tbody>
           </table>
         </div>
-
-        <div class="ad-box my-8">Bottom Content Ad Area Before FAQ</div>
 
         <h2 class="mt-12 text-2xl font-black tracking-tight text-slate-950">Time and a Half Explained</h2>
         <p class="mt-4 text-base leading-8 text-slate-600">
@@ -659,14 +684,12 @@
         </div>
       </div>
     </section>
-
-    <div class="ad-box mt-8">Bottom Ad Area Near the End of the Page</div>
   </main>
 
   <footer class="mt-10 border-t border-slate-200 bg-white">
     <div class="mx-auto flex w-full max-w-7xl flex-col gap-3 px-4 py-8 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
       <p>© <span id="yearText"></span> NodnWebTools. All rights reserved.</p>
-      <a href="https://nodntools.com" class="font-semibold text-accent-700 hover:text-accent-800">Visit Home</a>
+      <a href="/" class="font-semibold text-accent-700 hover:text-accent-800">Visit Home</a>
     </div>
   </footer>
 
