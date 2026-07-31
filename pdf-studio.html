@@ -8,17 +8,24 @@
   <meta name="description" content="Use PDF Studio online to merge, split, rotate, reorder, delete, preview, and download PDF pages securely in your browser.">
   <meta name="keywords" content="PDF Studio, online PDF editor, merge PDF, split PDF, rotate PDF, delete PDF pages, reorder PDF pages, extract PDF pages, free PDF tool, browser PDF editor">
   <meta name="robots" content="index, follow">
+  <meta name="googlebot" content="index, follow">
+  <link rel="canonical" href="https://nodntools.com/pdf-studio">
   <meta name="google-adsense-account" content="ca-pub-5282672325821404">
 
   <meta property="og:title" content="PDF Studio Online - Merge, Split, Rotate and Edit PDF">
   <meta property="og:description" content="Manage PDF files directly in your browser with tools for merging, splitting, rotating, deleting, reordering, previewing, and exporting pages.">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nodntools.com/pdf-studio">
+  <meta property="og:site_name" content="NodnWebTools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="PDF Studio Online - Merge, Split, Rotate and Edit PDF">
+  <meta name="twitter:description" content="Merge, split, rotate, delete, reorder, extract, and export PDF pages directly in your browser.">
 
   <link rel="icon" type="image/png" href="/favicon.png">
 
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404" crossorigin="anonymous"></script>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.min.mjs" type="module"></script>
   <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
 
   <script type="application/ld+json">
@@ -53,6 +60,95 @@
   }
   </script>
 
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is PDF Studio free to use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The tool is available for browser-based PDF page organization without requiring a desktop software installation. Internet access may be required to load the page libraries used by the tool."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are my PDF files uploaded to a server?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The PDF editing logic is designed to run locally in your browser. Users should still consider browser extensions, device security, downloaded file storage, and organizational policies before processing confidential documents."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I merge more than two PDF files?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. You can select multiple PDF files. Their pages will be added to the workspace and can be reordered before the final merged PDF is downloaded."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I split a PDF?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Upload the PDF, click the pages you want to place in a separate file, and choose Extract Selected Pages. The selected pages will be exported as a new PDF."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I reorder PDF pages?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Drag a page thumbnail and drop it in a new location. The exported PDF will follow the visible order in the workspace."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I rotate only one page?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Each page card includes rotate-left and rotate-right controls. You can also select multiple pages and rotate them together."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will the original PDF be changed?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The original file on your device is not overwritten. PDF Studio creates a separate downloadable PDF containing the changes made in the workspace."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is a large PDF slow?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Large PDFs can require substantial browser memory, especially when they contain high-resolution scans or many pages. Closing other tabs, using a desktop browser, or processing smaller sections may improve performance."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this tool support password-protected PDFs?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Some protected PDFs may not load. Use the dedicated PDF Security tool for supported password protection and authorized unlocking operations."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I edit text inside the PDF?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This version focuses on page-level editing. It can merge, split, rotate, delete, reorder, and extract pages, but it does not directly rewrite paragraphs or replace embedded text."
+      }
+    }
+  ]
+}
+  </script>
+
   <style>
     html,
     body {
@@ -81,25 +177,11 @@
     .mobile-card,
     .mobile-panel,
     .mobile-preview,
-    .mobile-code,
-    .ad-box {
+    .mobile-code {
       width: 100%;
       max-width: 100%;
     }
 
-    .ad-box {
-      min-height: 90px;
-      border: 2px dashed #cbd5e1;
-      background: rgba(248, 250, 252, 0.8);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #64748b;
-      text-align: center;
-      padding: 1rem;
-      border-radius: 1rem;
-      overflow: hidden;
-    }
 
     .drop-zone-active {
       border-color: #6366f1 !important;
@@ -253,10 +335,6 @@
         font-size: 1.15rem;
       }
 
-      .ad-box {
-        min-height: 90px;
-        border-radius: 0.85rem;
-      }
     }
 
     @media (max-width: 380px) {
@@ -297,11 +375,11 @@
 <body class="min-h-screen bg-slate-50">
   <header class="border-b border-slate-200 bg-white">
     <div class="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
-      <a href="https://nodntools.com" class="safe-break text-xl font-black tracking-tight text-slate-900" aria-label="NodnWebTools Home">
+      <a href="/" class="safe-break text-xl font-black tracking-tight text-slate-900" aria-label="NodnWebTools Home">
         Nodn<span class="text-indigo-600">WebTools</span>
       </a>
 
-      <a href="https://nodntools.com" class="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-indigo-300 hover:text-indigo-700">
+      <a href="/" class="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-indigo-300 hover:text-indigo-700">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="m3 12 9-9 9 9M5 10v10h14V10M9 20v-6h6v6"/>
         </svg>
@@ -311,14 +389,6 @@
   </header>
 
   <main>
-    <section class="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-      <div class="ad-box">
-        <div>
-          <p class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">Advertisement</p>
-          <p class="mt-1 text-sm text-slate-500">Top ad area</p>
-        </div>
-      </div>
-    </section>
 
     <section class="mx-auto w-full max-w-7xl px-4 pb-10 sm:px-6 lg:px-8">
       <div class="mb-8 max-w-4xl">
@@ -454,14 +524,6 @@
       </div>
     </section>
 
-    <section class="mx-auto w-full max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
-      <div class="ad-box">
-        <div>
-          <p class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">Advertisement</p>
-          <p class="mt-1 text-sm text-slate-500">Ad area below the PDF tool</p>
-        </div>
-      </div>
-    </section>
 
     <section class="mx-auto w-full max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
       <div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-10">
@@ -552,13 +614,6 @@
         <p>
           Visual page extraction can be especially helpful when a document does not have accurate page numbers or when pages need to be selected based on appearance. Thumbnail previews provide context, although small text may not always be readable at thumbnail size. Users should review the downloaded output before relying on it for an important submission or record.
         </p>
-
-        <div class="ad-box my-10">
-          <div>
-            <p class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">Advertisement</p>
-            <p class="mt-1 text-sm text-slate-500">Middle content ad area</p>
-          </div>
-        </div>
 
         <h2>Rotate PDF Pages to the Correct Orientation</h2>
 
@@ -674,13 +729,6 @@
           This version of PDF Studio focuses on page organization. Password-protected or encrypted files may not open unless they are already accessible to the browser libraries. Use the dedicated PDF Security and PDF Unlock tools for supported password operations. Never attempt to bypass protection on documents you do not own or have permission to modify.
         </p>
 
-        <div class="ad-box my-10">
-          <div>
-            <p class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">Advertisement</p>
-            <p class="mt-1 text-sm text-slate-500">Bottom content ad area</p>
-          </div>
-        </div>
-
         <h2>PDF Studio Compared with Separate PDF Tools</h2>
 
         <p>
@@ -791,33 +839,9 @@
           </a>
 
           <a href="/pdf-converter" class="group rounded-2xl border border-slate-200 bg-slate-50 p-5 transition duration-200 hover:-translate-y-1 hover:border-indigo-300 hover:bg-white hover:shadow-lg">
-            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-100 text-2xl transition group-hover:bg-blue-600 group-hover:text-white">📝</div>
-            <h3 class="mt-4 text-lg font-bold text-slate-900 group-hover:text-blue-700">PDF to Word</h3>
-            <p class="mt-2 text-sm leading-6 text-slate-600">Convert compatible PDF content into an editable Word document.</p>
-          </a>
-
-          <a href="/pdf-converter" class="group rounded-2xl border border-slate-200 bg-slate-50 p-5 transition duration-200 hover:-translate-y-1 hover:border-indigo-300 hover:bg-white hover:shadow-lg">
-            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-100 text-2xl transition group-hover:bg-emerald-600 group-hover:text-white">📊</div>
-            <h3 class="mt-4 text-lg font-bold text-slate-900 group-hover:text-emerald-700">PDF to Excel</h3>
-            <p class="mt-2 text-sm leading-6 text-slate-600">Extract compatible tables and structured data into spreadsheet format.</p>
-          </a>
-
-          <a href="/pdf-converter" class="group rounded-2xl border border-slate-200 bg-slate-50 p-5 transition duration-200 hover:-translate-y-1 hover:border-indigo-300 hover:bg-white hover:shadow-lg">
-            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-orange-100 text-2xl transition group-hover:bg-orange-500 group-hover:text-white">🖼️</div>
-            <h3 class="mt-4 text-lg font-bold text-slate-900 group-hover:text-orange-700">PDF to JPG</h3>
-            <p class="mt-2 text-sm leading-6 text-slate-600">Convert PDF pages into downloadable JPG image files.</p>
-          </a>
-
-          <a href="/pdf-converter" class="group rounded-2xl border border-slate-200 bg-slate-50 p-5 transition duration-200 hover:-translate-y-1 hover:border-indigo-300 hover:bg-white hover:shadow-lg">
-            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-cyan-100 text-2xl transition group-hover:bg-cyan-600 group-hover:text-white">📘</div>
-            <h3 class="mt-4 text-lg font-bold text-slate-900 group-hover:text-cyan-700">Word to PDF</h3>
-            <p class="mt-2 text-sm leading-6 text-slate-600">Create a portable PDF document from a supported Word file.</p>
-          </a>
-
-          <a href="/pdf-converter" class="group rounded-2xl border border-slate-200 bg-slate-50 p-5 transition duration-200 hover:-translate-y-1 hover:border-indigo-300 hover:bg-white hover:shadow-lg">
-            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-pink-100 text-2xl transition group-hover:bg-pink-600 group-hover:text-white">🌄</div>
-            <h3 class="mt-4 text-lg font-bold text-slate-900 group-hover:text-pink-700">Images to PDF</h3>
-            <p class="mt-2 text-sm leading-6 text-slate-600">Combine JPG, PNG, and other supported images into a PDF document.</p>
+            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-100 text-2xl transition group-hover:bg-blue-600 group-hover:text-white">🔄</div>
+            <h3 class="mt-4 text-lg font-bold text-slate-900 group-hover:text-blue-700">PDF Converter</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-600">Convert PDF pages to Word, Excel, JPG, PNG, or text in one dedicated converter.</p>
           </a>
 
           <a href="/pdf-watermark" class="group rounded-2xl border border-slate-200 bg-slate-50 p-5 transition duration-200 hover:-translate-y-1 hover:border-indigo-300 hover:bg-white hover:shadow-lg">
@@ -842,7 +866,7 @@
               Is PDF Studio free to use?
             </summary>
             <p class="mt-3 text-sm leading-7 text-slate-600">
-              The tool is available for browser-based PDF page organization without requiring a desktop software installation. Internet access may be required to load the page libraries and advertising content.
+              The tool is available for browser-based PDF page organization without requiring a desktop software installation. Internet access may be required to load the page libraries used by the tool.
             </p>
           </details>
 
@@ -930,14 +954,6 @@
       </div>
     </section>
 
-    <section class="mx-auto w-full max-w-7xl px-4 pb-10 sm:px-6 lg:px-8">
-      <div class="ad-box">
-        <div>
-          <p class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">Advertisement</p>
-          <p class="mt-1 text-sm text-slate-500">Bottom ad area</p>
-        </div>
-      </div>
-    </section>
 
     <section class="mx-auto w-full max-w-5xl px-4 pb-16 sm:px-6 lg:px-8">
       <div class="rounded-3xl border border-slate-700 bg-slate-900 p-6 text-slate-200 shadow-sm sm:p-10">
@@ -965,7 +981,7 @@
   <footer class="border-t border-slate-200 bg-white">
     <div class="mx-auto flex w-full max-w-7xl flex-col gap-3 px-4 py-8 text-sm text-slate-500 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
       <p>© <span id="currentYear"></span> NodnWebTools. All rights reserved.</p>
-      <a href="https://nodntools.com" class="font-semibold text-slate-600 transition hover:text-indigo-700">Visit NodnWebTools</a>
+      <a href="/" class="font-semibold text-slate-600 transition hover:text-indigo-700">Visit NodnWebTools</a>
     </div>
   </footer>
 
@@ -1116,6 +1132,14 @@
 
     async function createFileRecord(file) {
       const arrayBuffer = await readFileAsArrayBuffer(file);
+      const signature = new TextDecoder("ascii").decode(
+        new Uint8Array(arrayBuffer.slice(0, 5))
+      );
+
+      if (signature !== "%PDF-") {
+        throw new Error("The selected file does not contain a valid PDF signature.");
+      }
+
       const pdfBytes = arrayBuffer.slice(0);
 
       const pdfDocument = await PDFDocument.load(pdfBytes, {
@@ -1159,6 +1183,10 @@
       try {
         for (const file of files) {
           try {
+            if (file.size > 100 * 1024 * 1024) {
+              throw new Error("Files larger than 100 MB are not supported in this browser workspace.");
+            }
+
             const fileRecord = await createFileRecord(file);
             state.files.push(fileRecord);
 
