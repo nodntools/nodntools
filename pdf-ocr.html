@@ -8,17 +8,19 @@
   <meta name="description" content="Run OCR on scanned PDFs and image PDFs online. Extract editable text and create searchable PDF files directly in your browser.">
   <meta name="keywords" content="PDF OCR, PDF OCR online, scanned PDF OCR, image PDF OCR, OCR PDF to text, searchable PDF converter, extract text from scanned PDF, convert scanned PDF to searchable PDF, online OCR tool, image to text, PDF text recognition, browser OCR, free PDF OCR">
   <meta name="robots" content="index, follow">
+  <meta name="googlebot" content="index, follow">
+  <link rel="canonical" href="https://nodntools.com/pdf-ocr">
   <meta name="google-adsense-account" content="ca-pub-5282672325821404">
 
   <meta property="og:title" content="PDF OCR Online | Convert Scanned PDFs to Searchable Text">
   <meta property="og:description" content="Recognize text in scanned PDFs and images, download editable text, and create searchable PDF documents in your browser.">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nodntools.com/pdf-ocr">
 
   <link rel="icon" type="image/png" href="/favicon.png">
 
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404" crossorigin="anonymous"></script>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.min.mjs" type="module"></script>
   <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
 
@@ -30,11 +32,17 @@
     "url": "https://nodntools.com/pdf-ocr",
     "applicationCategory": "UtilitiesApplication",
     "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript and a modern browser with WebAssembly support.",
     "description": "A browser-based OCR tool for recognizing text in scanned PDF files and images, exporting editable text, and generating searchable PDF documents.",
     "offers": {
       "@type": "Offer",
       "price": "0",
       "priceCurrency": "USD"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "NodnWebTools",
+      "url": "https://nodntools.com"
     },
     "featureList": [
       "OCR scanned PDF documents",
@@ -47,6 +55,64 @@
       "Choose OCR language",
       "Select PDF page ranges",
       "Process documents locally in the browser"
+    ]
+  }
+  </script>
+
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is PDF OCR?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "PDF OCR analyzes visible text inside scanned or image-only PDF pages and converts it into searchable, selectable, and editable characters."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between PDF OCR and PDF text extraction?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Text extraction reads characters already stored in a PDF. OCR recognizes characters from page images and is intended for scanned documents."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can the tool convert a scanned PDF into a searchable PDF?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Enable Create searchable PDF before processing. The tool preserves the page appearance and adds an invisible OCR text layer."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use OCR on PNG and JPEG images?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. The page accepts PNG, JPEG, and WebP images in addition to PDF documents."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are my documents uploaded to an OCR server?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The OCR workflow is designed to run in your browser. OCR scripts and language data are loaded from CDNs, but the selected document is not intentionally uploaded to a NodnWebTools processing server."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is PDF OCR completely accurate?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. OCR may misread letters, numbers, punctuation, columns, handwriting, tables, and damaged text. Important output must be verified against the original."
+        }
+      }
     ]
   }
   </script>
@@ -78,20 +144,6 @@
       word-break: break-word;
     }
 
-    .ad-box {
-      width: 100%;
-      min-height: 90px;
-      border: 2px dashed #cbd5e1;
-      background: #f8fafc;
-      color: #94a3b8;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      border-radius: 1rem;
-      padding: 1rem;
-      overflow: hidden;
-    }
 
     .drop-active {
       border-color: #6366f1 !important;
@@ -217,11 +269,6 @@
         padding: 0.75rem !important;
       }
 
-      .ad-box {
-        min-height: 80px;
-        border-radius: 0.75rem;
-        font-size: 0.75rem;
-      }
 
       button,
       a,
@@ -248,13 +295,7 @@
   </header>
 
   <main>
-    <section class="mx-auto w-full max-w-7xl px-4 pt-6 sm:px-6 lg:px-8">
-      <div class="ad-box" role="complementary" aria-label="Advertisement placeholder">
-        Advertisement
-      </div>
-    </section>
-
-    <section class="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+<section class="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
       <div class="mb-8 max-w-4xl">
         <div class="mb-4 inline-flex flex-wrap items-center gap-2 rounded-full border border-indigo-200 bg-indigo-50 px-3 py-1 text-sm font-semibold text-indigo-700">
           <span>Browser-based OCR</span>
@@ -367,21 +408,21 @@
         <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
           <div class="rounded-2xl bg-slate-100 p-2">
             <div class="tab-scroll flex gap-2" role="tablist" aria-label="PDF OCR modes">
-              <button type="button" class="ocr-tab rounded-xl border border-transparent px-4 py-3 text-sm font-bold text-slate-600" data-tab="pdf" role="tab" aria-selected="true">
+              <button type="button" id="pdfTab" class="ocr-tab rounded-xl border border-transparent px-4 py-3 text-sm font-bold text-slate-600" data-tab="pdf" role="tab" aria-controls="pdfPanel" aria-selected="true" tabindex="0">
                 PDF OCR Online
               </button>
 
-              <button type="button" class="ocr-tab rounded-xl border border-transparent px-4 py-3 text-sm font-bold text-slate-600" data-tab="image" role="tab" aria-selected="false">
+              <button type="button" id="imageTab" class="ocr-tab rounded-xl border border-transparent px-4 py-3 text-sm font-bold text-slate-600" data-tab="image" role="tab" aria-controls="imagePanel" aria-selected="false" tabindex="-1">
                 Image PDF OCR
               </button>
 
-              <button type="button" class="ocr-tab rounded-xl border border-transparent px-4 py-3 text-sm font-bold text-slate-600" data-tab="scanned" role="tab" aria-selected="false">
+              <button type="button" id="scannedTab" class="ocr-tab rounded-xl border border-transparent px-4 py-3 text-sm font-bold text-slate-600" data-tab="scanned" role="tab" aria-controls="scannedPanel" aria-selected="false" tabindex="-1">
                 Scanned PDF OCR
               </button>
             </div>
           </div>
 
-          <div id="pdfPanel" class="ocr-panel mt-6">
+          <div id="pdfPanel" class="ocr-panel mt-6" role="tabpanel" aria-labelledby="pdfTab">
             <div class="flex items-start gap-4">
               <div class="flex h-12 w-12 flex-none items-center justify-center rounded-xl bg-indigo-100 text-indigo-700">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -399,7 +440,7 @@
             </div>
           </div>
 
-          <div id="imagePanel" class="ocr-panel mt-6 hidden">
+          <div id="imagePanel" class="ocr-panel mt-6 hidden" role="tabpanel" aria-labelledby="imageTab">
             <div class="flex items-start gap-4">
               <div class="flex h-12 w-12 flex-none items-center justify-center rounded-xl bg-violet-100 text-violet-700">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -417,7 +458,7 @@
             </div>
           </div>
 
-          <div id="scannedPanel" class="ocr-panel mt-6 hidden">
+          <div id="scannedPanel" class="ocr-panel mt-6 hidden" role="tabpanel" aria-labelledby="scannedTab">
             <div class="flex items-start gap-4">
               <div class="flex h-12 w-12 flex-none items-center justify-center rounded-xl bg-sky-100 text-sky-700">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -631,14 +672,7 @@
         </section>
       </div>
     </section>
-
-    <section class="mx-auto w-full max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
-      <div class="ad-box" role="complementary" aria-label="Advertisement placeholder">
-        Advertisement
-      </div>
-    </section>
-
-    <section class="border-y border-slate-200 bg-white">
+<section class="border-y border-slate-200 bg-white">
       <div class="mx-auto w-full max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
         <article>
           <div class="mb-12">
@@ -713,12 +747,7 @@
                 The tool processes pages sequentially to reduce browser memory pressure. OCR can still be computationally demanding, particularly on mobile devices, older computers, high-resolution pages, and documents with many pages.
               </p>
             </section>
-
-            <div class="ad-box my-12" role="complementary" aria-label="Advertisement placeholder">
-              Advertisement
-            </div>
-
-            <section>
+<section>
               <h2 class="text-2xl font-black text-slate-950">How to Use PDF OCR Online</h2>
 
               <div class="mt-6 grid gap-5 md:grid-cols-2">
@@ -855,12 +884,7 @@
                 OCR can provide editable source text from an image-based document. Users can then review and correct recognition errors before using a translation tool or professional translator.
               </p>
             </section>
-
-            <div class="ad-box my-12" role="complementary" aria-label="Advertisement placeholder">
-              Advertisement
-            </div>
-
-            <section>
+<section>
               <h2 class="text-2xl font-black text-slate-950">How to Improve OCR Accuracy</h2>
 
               <p class="mt-4">
@@ -1159,14 +1183,7 @@
         </a>
       </div>
     </section>
-
-    <section class="mx-auto w-full max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
-      <div class="ad-box" role="complementary" aria-label="Advertisement placeholder">
-        Advertisement
-      </div>
-    </section>
-
-    <section class="border-t border-slate-200 bg-white">
+<section class="border-t border-slate-200 bg-white">
       <div class="mx-auto w-full max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
         <div class="mb-10">
           <p class="text-sm font-bold uppercase tracking-[0.2em] text-indigo-600">Questions and Answers</p>
@@ -1298,13 +1315,7 @@
         </div>
       </div>
     </section>
-
-    <section class="mx-auto w-full max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
-      <div class="ad-box" role="complementary" aria-label="Advertisement placeholder">
-        Advertisement
-      </div>
-    </section>
-  </main>
+</main>
 
   <footer class="border-t border-slate-200 bg-white">
     <div class="mx-auto flex w-full max-w-7xl flex-col gap-3 px-4 py-8 text-sm text-slate-500 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
@@ -1482,7 +1493,9 @@
       activeTab = tabName;
 
       ocrTabs.forEach(tab => {
-        tab.setAttribute("aria-selected", String(tab.dataset.tab === tabName));
+        const isActive = tab.dataset.tab === tabName;
+        tab.setAttribute("aria-selected", String(isActive));
+        tab.setAttribute("tabindex", isActive ? "0" : "-1");
       });
 
       ocrPanels.forEach(panel => {
@@ -1923,7 +1936,7 @@
       } catch (error) {
         console.error(error);
 
-        if (String(error?.message || error) === "OCR_CANCELLED") {
+        if (cancelRequested || String(error?.message || error) === "OCR_CANCELLED") {
           setWarning("OCR was cancelled. No complete result was created.");
           setStatus("OCR cancelled.");
         } else {
@@ -2358,8 +2371,22 @@
       handleFile(file);
     });
 
-    ocrTabs.forEach(tab => {
+    ocrTabs.forEach((tab, index) => {
       tab.addEventListener("click", () => setActiveTab(tab.dataset.tab));
+      tab.addEventListener("keydown", event => {
+        if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
+        event.preventDefault();
+
+        let nextIndex = index;
+        if (event.key === "ArrowRight") nextIndex = (index + 1) % ocrTabs.length;
+        if (event.key === "ArrowLeft") nextIndex = (index - 1 + ocrTabs.length) % ocrTabs.length;
+        if (event.key === "Home") nextIndex = 0;
+        if (event.key === "End") nextIndex = ocrTabs.length - 1;
+
+        const nextTab = ocrTabs[nextIndex];
+        setActiveTab(nextTab.dataset.tab);
+        nextTab.focus();
+      });
     });
 
     removeFileButton.addEventListener("click", resetTool);
