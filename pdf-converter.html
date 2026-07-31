@@ -8,12 +8,19 @@
   <meta name="description" content="Convert PDF files to Word, Excel, JPG, PNG, or TXT securely in your browser with local processing and instant downloads.">
   <meta name="keywords" content="PDF converter, PDF converter online, PDF to Word, PDF to Excel, PDF to JPG, PDF to PNG, PDF to TXT, convert PDF online, PDF image converter, PDF text converter, browser PDF converter, free PDF converter, local PDF conversion">
   <meta name="robots" content="index, follow">
+  <meta name="googlebot" content="index, follow">
   <meta name="google-adsense-account" content="ca-pub-5282672325821404">
 
   <meta property="og:title" content="PDF Converter Online | Word, Excel, JPG, PNG, TXT">
   <meta property="og:description" content="Convert PDF documents to Word, Excel, JPG, PNG, and plain text directly in your browser.">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nodntools.com/pdf-converter">
+  <meta property="og:site_name" content="NodnWebTools">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="PDF Converter Online | Word, Excel, JPG, PNG, TXT">
+  <meta name="twitter:description" content="Convert PDF documents to Word, Excel, JPG, PNG, and TXT directly in your browser.">
 
+  <link rel="canonical" href="https://nodntools.com/pdf-converter">
   <link rel="icon" type="image/png" href="/favicon.png">
 
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404" crossorigin="anonymous"></script>
@@ -23,31 +30,123 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "PDF Converter Online",
-    "url": "https://nodntools.com/pdf-converter",
-    "applicationCategory": "UtilitiesApplication",
-    "operatingSystem": "Any",
-    "description": "A client-side PDF converter for converting PDF documents to Word, Excel, JPG, PNG, and TXT formats.",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "@id": "https://nodntools.com/pdf-converter#webapplication",
+      "name": "PDF Converter Online",
+      "url": "https://nodntools.com/pdf-converter",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Any",
+      "description": "A client-side PDF converter for converting PDF documents to Word, Excel, JPG, PNG, and TXT formats.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "featureList": [
+        "Convert PDF to Word",
+        "Convert PDF to Excel",
+        "Convert PDF to JPG",
+        "Convert PDF to PNG",
+        "Convert PDF to TXT",
+        "Select PDF page ranges",
+        "Download multiple images as ZIP",
+        "Local browser processing",
+        "No document upload"
+      ]
     },
-    "featureList": [
-      "Convert PDF to Word",
-      "Convert PDF to Excel",
-      "Convert PDF to JPG",
-      "Convert PDF to PNG",
-      "Convert PDF to TXT",
-      "Select PDF page ranges",
-      "Download multiple images as ZIP",
-      "Local browser processing",
-      "No document upload"
-    ]
-  }
+    {
+      "@type": "FAQPage",
+      "@id": "https://nodntools.com/pdf-converter#faq",
+      "url": "https://nodntools.com/pdf-converter",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Which PDF conversion formats are available?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The tool converts PDF files to Word DOCX, Excel XLSX, JPG images, PNG images, and plain TXT files."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Are PDF files uploaded to a server?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The conversion workflow is designed to run locally in the browser. The selected document is not intentionally uploaded to a NodnWebTools conversion server."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Will PDF to Word preserve the exact formatting?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Not always. The converter rebuilds selectable text as editable paragraphs. Complex layouts, tables, columns, fonts, images, and spacing may change."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can PDF to Excel recreate tables perfectly?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. It estimates rows and columns from text positions. Complex tables may require manual correction after conversion."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between PDF to JPG and PDF to PNG?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "JPG normally creates smaller files using lossy compression. PNG uses lossless compression and is often sharper for text, diagrams, and screenshots."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I convert selected PDF pages?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Enter a page range such as 1-3, 5, 8. Leave the field blank to convert every page."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does PDF to TXT perform OCR?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. It extracts selectable text already stored in the PDF. Use PDF OCR for scanned or image-only documents."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How are multiple JPG or PNG pages downloaded?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Multiple page images are packaged into one ZIP archive. A single converted page can be downloaded directly."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why is a converted Word or Excel file empty?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The PDF may contain scanned page images without a selectable text layer. Run OCR first and then convert the searchable PDF."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can password-protected PDFs be converted?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Protected PDFs may fail to open. The converter does not crack passwords or bypass security restrictions."
+          }
+        }
+      ]
+    }
+  ]
+}
   </script>
 
   <style>
@@ -91,21 +190,6 @@
       white-space: pre-wrap;
       overflow-wrap: anywhere;
       word-break: break-word;
-    }
-
-    .ad-box {
-      width: 100%;
-      min-height: 90px;
-      border: 2px dashed #cbd5e1;
-      background: #f8fafc;
-      color: #94a3b8;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      border-radius: 1rem;
-      padding: 1rem;
-      overflow: hidden;
     }
 
     .drop-active {
@@ -225,12 +309,6 @@
         padding: 0.75rem !important;
       }
 
-      .ad-box {
-        min-height: 80px;
-        border-radius: 0.75rem;
-        font-size: 0.75rem;
-      }
-
       button,
       a,
       input,
@@ -249,22 +327,17 @@
 <body class="bg-slate-50 text-slate-800">
   <header class="border-b border-slate-200 bg-white">
     <div class="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
-      <a href="https://nodntools.com" class="safe-break text-xl font-extrabold tracking-tight text-slate-900" aria-label="NodnWebTools home">
+      <a href="/" class="safe-break text-xl font-extrabold tracking-tight text-slate-900" aria-label="NodnWebTools home">
         Nodn<span class="text-indigo-600">WebTools</span>
       </a>
 
-      <a href="https://nodntools.com" class="rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-indigo-300 hover:text-indigo-700">
+      <a href="/" class="rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-indigo-300 hover:text-indigo-700">
         Home
       </a>
     </div>
   </header>
 
   <main>
-    <section class="mx-auto w-full max-w-7xl px-4 pt-6 sm:px-6 lg:px-8">
-      <div class="ad-box" role="complementary" aria-label="Advertisement placeholder">
-        Advertisement
-      </div>
-    </section>
 
     <section class="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
       <div class="mb-8 max-w-4xl">
@@ -308,9 +381,9 @@
               Choose PDF
             </label>
 
-            <input id="pdfInput" type="file" accept="application/pdf,.pdf" class="sr-only">
+            <input id="pdfInput" type="file" accept="application/pdf,.pdf" class="sr-only" aria-describedby="pdfInputHelp">
 
-            <p class="mt-4 text-xs leading-5 text-slate-400">
+            <p id="pdfInputHelp" class="mt-4 text-xs leading-5 text-slate-400">
               Recommended maximum file size: 50 MB. Large image conversions can require substantial browser memory.
             </p>
           </div>
@@ -637,12 +710,6 @@
       </div>
     </section>
 
-    <section class="mx-auto w-full max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
-      <div class="ad-box" role="complementary" aria-label="Advertisement placeholder">
-        Advertisement
-      </div>
-    </section>
-
     <section class="border-y border-slate-200 bg-white">
       <div class="mx-auto w-full max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
         <article>
@@ -744,10 +811,6 @@
                 Always verify financial amounts, dates, formulas, percentages, account numbers, quantities, and decimal values against the original PDF. The converter does not infer spreadsheet formulas or validate the meaning of extracted data.
               </p>
             </section>
-
-            <div class="ad-box my-12" role="complementary" aria-label="Advertisement placeholder">
-              Advertisement
-            </div>
 
             <section>
               <h2 class="text-2xl font-black text-slate-950">PDF to JPG Conversion</h2>
@@ -914,10 +977,6 @@
                 JPG and PNG conversion are visually more predictable because the complete page is rendered as an image. However, image output is not editable text and does not preserve PDF links, forms, bookmarks, annotations, or searchable content.
               </p>
             </section>
-
-            <div class="ad-box my-12" role="complementary" aria-label="Advertisement placeholder">
-              Advertisement
-            </div>
 
             <section>
               <h2 class="text-2xl font-black text-slate-950">PDF Converter Privacy and Local Processing</h2>
@@ -1105,12 +1164,6 @@
       </div>
     </section>
 
-    <section class="mx-auto w-full max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
-      <div class="ad-box" role="complementary" aria-label="Advertisement placeholder">
-        Advertisement
-      </div>
-    </section>
-
     <section class="border-t border-slate-200 bg-white">
       <div class="mx-auto w-full max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
         <div class="mb-10">
@@ -1254,19 +1307,13 @@
         </div>
       </div>
     </section>
-
-    <section class="mx-auto w-full max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
-      <div class="ad-box" role="complementary" aria-label="Advertisement placeholder">
-        Advertisement
-      </div>
-    </section>
   </main>
 
   <footer class="border-t border-slate-200 bg-white">
     <div class="mx-auto flex w-full max-w-7xl flex-col gap-3 px-4 py-8 text-sm text-slate-500 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
       <p>© <span id="currentYear"></span> NodnWebTools. All rights reserved.</p>
 
-      <a href="https://nodntools.com" class="font-semibold text-slate-600 transition hover:text-indigo-700">
+      <a href="/" class="font-semibold text-slate-600 transition hover:text-indigo-700">
         Back to NodnWebTools
       </a>
     </div>
@@ -2318,7 +2365,7 @@
     }
 
     function renderImagePreviews(images) {
-      imagePreviewGrid.innerHTML = "";
+      imagePreviewGrid.replaceChildren();
       revokeResultUrls();
 
       imagePreviewStats.textContent =
@@ -2332,28 +2379,40 @@
         card.className =
           "result-card overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm";
 
-        card.innerHTML = `
-          <div class="preview-grid flex h-56 items-center justify-center overflow-hidden p-3">
-            <img
-              src="${url}"
-              alt="Converted PDF page ${image.pageNumber}"
-              class="max-h-full max-w-full rounded-lg object-contain shadow-sm"
-            >
-          </div>
+        const preview = document.createElement("div");
+        preview.className =
+          "preview-grid flex h-56 items-center justify-center overflow-hidden p-3";
 
-          <div class="p-4">
-            <p class="safe-break text-sm font-black text-slate-900">
-              ${image.fileName}
-            </p>
+        const previewImage = document.createElement("img");
+        previewImage.src = url;
+        previewImage.alt = `Converted PDF page ${image.pageNumber}`;
+        previewImage.className =
+          "max-h-full max-w-full rounded-lg object-contain shadow-sm";
 
-            <div class="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-xs font-semibold text-slate-500">
-              <span>Page ${image.pageNumber}</span>
-              <span>${image.width} × ${image.height} px</span>
-              <span>${formatBytes(image.blob.size)}</span>
-            </div>
-          </div>
-        `;
+        const content = document.createElement("div");
+        content.className = "p-4";
 
+        const name = document.createElement("p");
+        name.className = "safe-break text-sm font-black text-slate-900";
+        name.textContent = image.fileName;
+
+        const metadata = document.createElement("div");
+        metadata.className =
+          "mt-2 flex flex-wrap gap-x-3 gap-y-1 text-xs font-semibold text-slate-500";
+
+        const pageLabel = document.createElement("span");
+        pageLabel.textContent = `Page ${image.pageNumber}`;
+
+        const dimensions = document.createElement("span");
+        dimensions.textContent = `${image.width} × ${image.height} px`;
+
+        const size = document.createElement("span");
+        size.textContent = formatBytes(image.blob.size);
+
+        metadata.append(pageLabel, dimensions, size);
+        content.append(name, metadata);
+        preview.appendChild(previewImage);
+        card.append(preview, content);
         imagePreviewGrid.appendChild(card);
       });
 
