@@ -3,17 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="icon" type="image/png" href="/favicon.png" />
 
-  <title>PDF Merger & Splitter Online Tool</title>
-  <meta name="description" content="Merge PDFs, split pages, extract ranges, and download new PDF files securely in your browser." />
+  <title>Merge & Split PDF Online | NodnWebTools</title>
+  <meta name="description" content="Merge multiple PDF files, reorder documents, or split and extract selected PDF pages online with private browser-based processing." />
   <meta name="keywords" content="PDF merger, PDF splitter, merge PDF online, split PDF online, extract PDF pages, combine PDF files, browser PDF tool, client side PDF editor, PDF page range extractor, PDF organizer, PDF utility, online PDF merge split tool" />
   <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow" />
+  <link rel="canonical" href="https://nodntools.com/pdf-merger-splitter" />
   <meta name="google-adsense-account" content="ca-pub-5282672325821404" />
 
-  <meta property="og:title" content="PDF Merger & Splitter Online Tool" />
-  <meta property="og:description" content="Merge multiple PDFs or split PDF pages by range directly in your browser with no server upload." />
+  <meta property="og:title" content="Merge & Split PDF Online | NodnWebTools" />
+  <meta property="og:description" content="Combine PDFs in your preferred order or extract selected pages and ranges with private browser-based processing." />
   <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://nodntools.com/pdf-merger-splitter" />
+  <meta property="og:site_name" content="NodnWebTools" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Merge & Split PDF Online | NodnWebTools" />
+  <meta name="twitter:description" content="Merge PDFs, reorder files, or extract selected PDF pages directly in your browser." />
 
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404" crossorigin="anonymous"></script>
   <script src="https://cdn.tailwindcss.com"></script>
@@ -23,9 +30,11 @@
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": "PDF Merger & Splitter Online Tool",
+    "name": "PDF Merger & Splitter",
+    "url": "https://nodntools.com/pdf-merger-splitter",
     "applicationCategory": "UtilitiesApplication",
-    "operatingSystem": "All",
+    "operatingSystem": "Any operating system with a modern web browser",
+    "browserRequirements": "JavaScript enabled",
     "description": "A browser-based PDF tool for merging multiple PDF files, splitting selected pages, extracting page ranges, and downloading new PDF files locally.",
     "offers": {
       "@type": "Offer",
@@ -37,6 +46,47 @@
       "name": "NodnWebTools",
       "url": "https://nodntools.com"
     }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Does this PDF merger upload my files?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Selected PDFs are processed locally in your browser with client-side JavaScript, and the generated PDF is downloaded to your device."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I merge more than two PDF files?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. You can select multiple PDF files, arrange their order, and merge them into one downloadable document."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I split a PDF into selected pages?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Choose one PDF in the Split PDF tab, enter pages or ranges such as 1-3, 5, 7-10, and download the extracted pages as a new PDF."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why did my PDF fail to process?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Common causes include encrypted or damaged PDFs, unsupported file structures, incorrect file extensions, or files that exceed available browser memory."
+        }
+      }
+    ]
   }
   </script>
 
@@ -66,7 +116,6 @@
     .mobile-panel,
     .mobile-preview,
     .mobile-code,
-    .ad-box,
     input,
     textarea,
     select,
@@ -81,21 +130,6 @@
       word-break: break-word;
     }
 
-    .ad-box {
-      width: 100%;
-      min-height: 90px;
-      border: 2px dashed #cbd5e1;
-      background: #f1f5f9;
-      color: #64748b;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      border-radius: 1rem;
-      padding: 1rem;
-      font-size: 0.95rem;
-      overflow: hidden;
-    }
 
     .drop-zone {
       border: 2px dashed #c7d2fe;
@@ -149,11 +183,6 @@
         width: 100%;
       }
 
-      .ad-box {
-        min-height: 90px;
-        font-size: 0.85rem;
-        border-radius: 0.875rem;
-      }
 
       .drop-zone {
         padding: 1rem !important;
@@ -174,11 +203,6 @@
         font-size: 1.45rem !important;
       }
 
-      .ad-box {
-        min-height: 80px;
-        padding: 0.75rem;
-        font-size: 0.8rem;
-      }
     }
   </style>
 </head>
@@ -199,11 +223,7 @@
   </header>
 
   <main>
-    <section class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-      <div class="ad-box">Advertisement Space</div>
-    </section>
-
-    <section id="tool" class="mx-auto max-w-7xl px-4 pb-10 pt-4 sm:px-6 lg:px-8">
+<section id="tool" class="mx-auto max-w-7xl px-4 pb-10 pt-8 sm:px-6 lg:px-8">
       <div class="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
         <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
           <div class="mb-6 inline-flex items-center rounded-full bg-indigo-50 px-4 py-2 text-sm font-semibold text-indigo-700">
@@ -218,11 +238,11 @@
             Merge multiple PDF files into one document or split a PDF by selected page ranges. Everything runs directly in your browser using client-side processing, so your files do not need to be uploaded to a server.
           </p>
 
-          <div class="mt-8 grid grid-cols-2 gap-3 rounded-2xl bg-slate-100 p-2">
-            <button id="mergeTabBtn" type="button" class="tab-active rounded-xl px-4 py-3 text-sm font-bold transition">
+          <div class="mt-8 grid grid-cols-2 gap-3 rounded-2xl bg-slate-100 p-2" role="tablist" aria-label="PDF action">
+            <button id="mergeTabBtn" type="button" aria-controls="mergePanel" aria-selected="true" role="tab" class="tab-active rounded-xl px-4 py-3 text-sm font-bold transition">
               Merge PDFs
             </button>
-            <button id="splitTabBtn" type="button" class="tab-inactive rounded-xl px-4 py-3 text-sm font-bold transition">
+            <button id="splitTabBtn" type="button" aria-controls="splitPanel" aria-selected="false" role="tab" class="tab-inactive rounded-xl px-4 py-3 text-sm font-bold transition">
               Split PDF
             </button>
           </div>
@@ -346,12 +366,7 @@
         </section>
       </div>
     </section>
-
-    <section class="mx-auto max-w-7xl px-4 pb-10 sm:px-6 lg:px-8">
-      <div class="ad-box">Advertisement Space</div>
-    </section>
-
-    <section class="mx-auto max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
+<section class="mx-auto max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
       <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8 lg:p-10">
         <div class="max-w-4xl">
           <p class="text-sm font-bold uppercase tracking-[0.2em] text-indigo-600">PDF Productivity Guide</p>
@@ -429,10 +444,7 @@
             This tool supports simple page range formatting. A single page can be written as 5. A continuous range can be written as 1-3. Multiple selections can be combined with commas, such as 1-3, 5, 7-10. Page numbers start at 1, matching how people usually count pages in a PDF viewer. If you enter a page number outside the total page count, the tool will show a warning instead of generating an incorrect file.
           </p>
         </section>
-
-        <div class="my-12 ad-box">Advertisement Space</div>
-
-        <section class="mt-12">
+<section class="mt-12">
           <h2 class="text-2xl font-extrabold text-slate-950">Popular Uses for a PDF Merger and Splitter</h2>
           <p class="mt-4 leading-8 text-slate-700">
             A combined PDF merger and PDF splitter is one of the most practical browser utilities because it supports everyday document organization. Many users need to combine files before uploading them to a portal, emailing them to a client, or saving them into a folder. Others need to remove unnecessary pages before sending a document so the recipient receives only the relevant information. A single page that can do both jobs saves time because you do not need separate tools for PDF merging, PDF splitting, PDF page extraction, and PDF file organization.
@@ -498,10 +510,7 @@
             Always review the extracted file after downloading. Confirm that it includes all required pages and no extra pages that should remain private. Splitting is often used to share a smaller document, and the main benefit is control over what the recipient can see. Taking a few seconds to verify the final PDF can prevent accidental oversharing.
           </p>
         </section>
-
-        <div class="my-12 ad-box">Advertisement Space</div>
-
-        <section class="mt-12">
+<section class="mt-12">
           <h2 class="text-2xl font-extrabold text-slate-950">PDF Merger and Splitter for Workflows</h2>
           <p class="mt-4 leading-8 text-slate-700">
             A PDF merge and split tool can support many professional workflows. Accountants may combine receipts, statements, and tax forms into one client package. Real estate agents may merge disclosures, contracts, inspection reports, and signed addenda. Freelancers may combine proposals, scope documents, invoices, and portfolio samples. Students may extract pages from lecture notes, combine research sources, or create reading packets. Office administrators may prepare onboarding documents, policy packets, meeting handouts, or scanned records.
@@ -591,106 +600,45 @@
             </details>
           </div>
         </section>
-
-        <div class="my-12 ad-box">Advertisement Space</div>
-
 <!-- Related Tools -->
 <section class="mobile-card mt-10 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm lg:p-10" aria-labelledby="related-tools-title">
-    <div class="max-w-3xl">
-        <p class="inline-flex rounded-full bg-indigo-50 px-4 py-2 text-sm font-bold text-indigo-700">
-            More Document & File Tools
-        </p>
-
-        <h2 id="related-tools-title" class="mt-4 text-3xl font-extrabold tracking-tight text-slate-950">
-            Related Tools
-        </h2>
-
-        <p class="mt-3 text-base leading-7 text-slate-600">
-            Explore more browser-based tools for converting documents, extracting archives, processing images, and managing common file formats privately on your device.
-        </p>
-    </div>
-
-    <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-
-        <a href="/document-converter"
-           class="group flex flex-col rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-rose-300 hover:shadow-lg">
-            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-rose-50 text-2xl">
-                📄
-            </div>
-            <h3 class="text-lg font-bold text-slate-900 transition group-hover:text-rose-700">
-                Document Converter
-            </h3>
-            <p class="mt-2 flex-grow text-sm leading-6 text-slate-600">
-                Convert plain text or Markdown content into professionally formatted PDF or Word documents.
-            </p>
-        </a>
-
-        <a href="/file-converter"
-           class="group flex flex-col rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-indigo-300 hover:shadow-lg">
-            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-50 text-2xl">
-                📁
-            </div>
-            <h3 class="text-lg font-bold text-slate-900 transition group-hover:text-indigo-700">
-                Document File Converter
-            </h3>
-            <p class="mt-2 flex-grow text-sm leading-6 text-slate-600">
-                Upload TXT, Markdown, or DOCX files and convert them into PDF or Word formats in your browser.
-            </p>
-        </a>
-
-        <a href="/zip-extractor"
-           class="group flex flex-col rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-violet-300 hover:shadow-lg">
-            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-violet-50 text-2xl">
-                🗜️
-            </div>
-            <h3 class="text-lg font-bold text-slate-900 transition group-hover:text-violet-700">
-                Zip Extractor
-            </h3>
-            <p class="mt-2 flex-grow text-sm leading-6 text-slate-600">
-                Open ZIP archives and download individual files securely with local browser processing.
-            </p>
-        </a>
-
-        <a href="/image-converter"
-           class="group flex flex-col rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-emerald-300 hover:shadow-lg">
-            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-2xl">
-                🖼️
-            </div>
-            <h3 class="text-lg font-bold text-slate-900 transition group-hover:text-emerald-700">
-                Image Converter
-            </h3>
-            <p class="mt-2 flex-grow text-sm leading-6 text-slate-600">
-                Convert PNG, JPG, and WebP images while adjusting quality and reducing file size.
-            </p>
-        </a>
-
-        <a href="/heic-to-jpg"
-           class="group flex flex-col rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-sky-300 hover:shadow-lg">
-            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-sky-50 text-2xl">
-                📷
-            </div>
-            <h3 class="text-lg font-bold text-slate-900 transition group-hover:text-sky-700">
-                HEIC to JPG Converter
-            </h3>
-            <p class="mt-2 flex-grow text-sm leading-6 text-slate-600">
-                Convert Apple HEIC photos into widely supported JPG files without uploading images.
-            </p>
-        </a>
-
-        <a href="/image-mosaic"
-           class="group flex flex-col rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-amber-300 hover:shadow-lg">
-            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-amber-50 text-2xl">
-                🧩
-            </div>
-            <h3 class="text-lg font-bold text-slate-900 transition group-hover:text-amber-700">
-                Image Mosaic & Blur
-            </h3>
-            <p class="mt-2 flex-grow text-sm leading-6 text-slate-600">
-                Pixelate or blur sensitive parts of an image locally for safer document and photo sharing.
-            </p>
-        </a>
-
-    </div>
+  <div class="max-w-3xl">
+    <p class="inline-flex rounded-full bg-indigo-50 px-4 py-2 text-sm font-bold text-indigo-700">More PDF Tools</p>
+    <h2 id="related-tools-title" class="mt-4 text-3xl font-extrabold tracking-tight text-slate-950">Related PDF Tools</h2>
+    <p class="mt-3 text-base leading-7 text-slate-600">Continue working with PDF files using dedicated tools for compression, conversion, OCR, extraction, watermarking, and page editing.</p>
+  </div>
+  <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+    <a href="/pdf-compressor" class="group flex flex-col rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-indigo-300 hover:shadow-lg">
+      <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-50 text-2xl" aria-hidden="true">🗜️</div>
+      <h3 class="text-lg font-bold text-slate-900 group-hover:text-indigo-700">PDF Compressor</h3>
+      <p class="mt-2 flex-grow text-sm leading-6 text-slate-600">Reduce PDF file size for email, uploads, storage, and sharing.</p>
+    </a>
+    <a href="/pdf-converter" class="group flex flex-col rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-violet-300 hover:shadow-lg">
+      <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-violet-50 text-2xl" aria-hidden="true">🔄</div>
+      <h3 class="text-lg font-bold text-slate-900 group-hover:text-violet-700">PDF Converter</h3>
+      <p class="mt-2 flex-grow text-sm leading-6 text-slate-600">Convert PDF pages to JPG, PNG, or text-based output formats.</p>
+    </a>
+    <a href="/pdf-extractor" class="group flex flex-col rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-emerald-300 hover:shadow-lg">
+      <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-2xl" aria-hidden="true">📤</div>
+      <h3 class="text-lg font-bold text-slate-900 group-hover:text-emerald-700">PDF Extractor</h3>
+      <p class="mt-2 flex-grow text-sm leading-6 text-slate-600">Extract embedded text or images from supported PDF documents.</p>
+    </a>
+    <a href="/pdf-ocr" class="group flex flex-col rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-sky-300 hover:shadow-lg">
+      <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-sky-50 text-2xl" aria-hidden="true">🔎</div>
+      <h3 class="text-lg font-bold text-slate-900 group-hover:text-sky-700">PDF OCR</h3>
+      <p class="mt-2 flex-grow text-sm leading-6 text-slate-600">Recognize text in scanned PDFs and image-based document pages.</p>
+    </a>
+    <a href="/pdf-watermark" class="group flex flex-col rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-rose-300 hover:shadow-lg">
+      <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-rose-50 text-2xl" aria-hidden="true">💧</div>
+      <h3 class="text-lg font-bold text-slate-900 group-hover:text-rose-700">PDF Watermark</h3>
+      <p class="mt-2 flex-grow text-sm leading-6 text-slate-600">Add a text or image watermark to PDF pages before sharing.</p>
+    </a>
+    <a href="/pdf-page-editor" class="group flex flex-col rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-amber-300 hover:shadow-lg">
+      <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-amber-50 text-2xl" aria-hidden="true">📑</div>
+      <h3 class="text-lg font-bold text-slate-900 group-hover:text-amber-700">PDF Page Editor</h3>
+      <p class="mt-2 flex-grow text-sm leading-6 text-slate-600">Reorder, rotate, duplicate, or delete pages in a PDF workspace.</p>
+    </a>
+  </div>
 </section>
 
         <section class="mt-12 rounded-3xl bg-slate-950 p-6 text-slate-100 sm:p-8">
@@ -707,11 +655,7 @@
         </section>
       </article>
     </section>
-
-    <section class="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
-      <div class="ad-box">Advertisement Space</div>
-    </section>
-  </main>
+</main>
 
   <footer class="border-t border-slate-200 bg-white">
     <div class="mx-auto max-w-7xl px-4 py-8 text-center text-sm text-slate-500 sm:px-6 lg:px-8">
@@ -723,6 +667,11 @@
   </footer>
 
   <script>
+    if (typeof PDFLib === "undefined") {
+      document.body.innerHTML = `<main class="mx-auto max-w-3xl px-4 py-16"><div class="rounded-3xl border border-rose-200 bg-rose-50 p-8 text-rose-800"><h1 class="text-2xl font-extrabold">PDF library failed to load</h1><p class="mt-3 leading-7">Refresh the page or check your connection, then try again.</p></div></main>`;
+      throw new Error("PDFLib failed to load.");
+    }
+
     const { PDFDocument } = PDFLib;
 
     const mergeTabBtn = document.getElementById("mergeTabBtn");
@@ -772,6 +721,8 @@
       if (mode === "merge") {
         mergeTabBtn.className = "tab-active rounded-xl px-4 py-3 text-sm font-bold transition";
         splitTabBtn.className = "tab-inactive rounded-xl px-4 py-3 text-sm font-bold transition";
+        mergeTabBtn.setAttribute("aria-selected", "true");
+        splitTabBtn.setAttribute("aria-selected", "false");
         mergePanel.classList.remove("hidden");
         splitPanel.classList.add("hidden");
         mergeListPanel.classList.remove("hidden");
@@ -782,6 +733,8 @@
       } else {
         splitTabBtn.className = "tab-active rounded-xl px-4 py-3 text-sm font-bold transition";
         mergeTabBtn.className = "tab-inactive rounded-xl px-4 py-3 text-sm font-bold transition";
+        splitTabBtn.setAttribute("aria-selected", "true");
+        mergeTabBtn.setAttribute("aria-selected", "false");
         splitPanel.classList.remove("hidden");
         mergePanel.classList.add("hidden");
         splitInfoPanel.classList.remove("hidden");
