@@ -8,12 +8,19 @@
   <meta name="description" content="Extract text and embedded images from PDF files securely in your browser without OCR or server uploads.">
   <meta name="keywords" content="PDF extractor, extract text from PDF, extract images from PDF, PDF text extractor, PDF image extractor, export PDF text, download PDF images, browser PDF extractor, local PDF tool, PDF content extractor, no OCR PDF extraction">
   <meta name="robots" content="index, follow">
+  <meta name="googlebot" content="index, follow">
   <meta name="google-adsense-account" content="ca-pub-5282672325821404">
 
   <meta property="og:title" content="PDF Extractor Online | Extract Text and Images">
   <meta property="og:description" content="Extract selectable text and embedded images from PDF documents directly in your browser.">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nodntools.com/pdf-extractor">
+  <meta property="og:site_name" content="NodnWebTools">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="PDF Extractor Online | Extract Text and Images">
+  <meta name="twitter:description" content="Extract selectable text and embedded images from PDF documents directly in your browser.">
 
+  <link rel="canonical" href="https://nodntools.com/pdf-extractor">
   <link rel="icon" type="image/png" href="/favicon.png">
 
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404" crossorigin="anonymous"></script>
@@ -21,30 +28,114 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "PDF Extractor",
-    "url": "https://nodntools.com/pdf-extractor",
-    "applicationCategory": "UtilitiesApplication",
-    "operatingSystem": "Any",
-    "description": "A free browser-based PDF extractor for extracting selectable text and embedded images from PDF documents without OCR.",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "@id": "https://nodntools.com/pdf-extractor#webapplication",
+      "name": "PDF Extractor",
+      "url": "https://nodntools.com/pdf-extractor",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Any",
+      "description": "A browser-based PDF extractor for extracting selectable text and embedded images from PDF documents without OCR.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "featureList": [
+        "Extract selectable text from PDF files",
+        "Extract embedded raster images from PDF pages",
+        "Download extracted text as TXT",
+        "Copy extracted text",
+        "Download images individually",
+        "Download extracted images as ZIP",
+        "Local browser processing",
+        "No OCR"
+      ]
     },
-    "featureList": [
-      "Extract selectable text from PDF files",
-      "Extract embedded raster images from PDF pages",
-      "Download extracted text as TXT",
-      "Copy extracted text",
-      "Download images individually",
-      "Download extracted images as ZIP",
-      "Local browser processing",
-      "No OCR"
-    ]
-  }
+    {
+      "@type": "FAQPage",
+      "@id": "https://nodntools.com/pdf-extractor#faq",
+      "url": "https://nodntools.com/pdf-extractor",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Does the PDF Extractor use OCR?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. It extracts text already stored in the PDF. It does not recognize words from scanned page images."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why did the tool extract no text?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The PDF may contain image-only scanned pages, outlined vector text, incomplete character mappings, protected content, or an unsupported structure."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I extract text from selected PDF pages?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Enter a page range such as 1-3, 5, 8. Leave the field blank to process every page."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why is the extracted text order incorrect?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "PDF text may be stored in drawing order rather than reading order. Multi-column pages, tables, sidebars, headers, and positioned characters can produce unexpected sequences."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does the image extractor download every visible graphic?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. It targets accessible raster image objects. Vector graphics, text, patterns, gradients, and complex page compositions are not standalone embedded images."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Are the extracted images the original files?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The tool exports accessible pixel data through the browser. The result may not preserve the original compression stream, filename, metadata, color profile, mask, or exact page appearance."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Are my PDF files uploaded?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The extraction workflow is designed to run locally in your browser. The selected document is not intentionally uploaded to a NodnWebTools extraction server."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I extract content from a password-protected PDF?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Protected PDFs may fail to open. This page does not crack passwords or bypass document security. Use the correct password and an authorized unlocking workflow first."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can extracted text or images be reused freely?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Not necessarily. Copyright, licensing, privacy, confidentiality, contract, and workplace rules may restrict extraction and reuse."
+          }
+        }
+      ]
+    }
+  ]
+}
   </script>
 
   <style>
@@ -72,21 +163,6 @@
       white-space: pre-wrap;
       overflow-wrap: anywhere;
       word-break: break-word;
-    }
-
-    .ad-box {
-      width: 100%;
-      min-height: 90px;
-      border: 2px dashed #cbd5e1;
-      background: #f8fafc;
-      color: #94a3b8;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      border-radius: 1rem;
-      padding: 1rem;
-      overflow: hidden;
     }
 
     .drop-active {
@@ -208,12 +284,6 @@
         padding: 0.75rem !important;
       }
 
-      .ad-box {
-        min-height: 80px;
-        border-radius: 0.75rem;
-        font-size: 0.75rem;
-      }
-
       button,
       a,
       input,
@@ -228,22 +298,17 @@
 <body class="bg-slate-50 text-slate-800">
   <header class="border-b border-slate-200 bg-white">
     <div class="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
-      <a href="https://nodntools.com" class="safe-break text-xl font-extrabold tracking-tight text-slate-900" aria-label="NodnWebTools home">
+      <a href="/" class="safe-break text-xl font-extrabold tracking-tight text-slate-900" aria-label="NodnWebTools home">
         Nodn<span class="text-indigo-600">WebTools</span>
       </a>
 
-      <a href="https://nodntools.com" class="rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-indigo-300 hover:text-indigo-700">
+      <a href="/" class="rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-indigo-300 hover:text-indigo-700">
         Home
       </a>
     </div>
   </header>
 
   <main>
-    <section class="mx-auto w-full max-w-7xl px-4 pt-6 sm:px-6 lg:px-8">
-      <div class="ad-box" role="complementary" aria-label="Advertisement placeholder">
-        Advertisement
-      </div>
-    </section>
 
     <section class="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
       <div class="mb-8 max-w-4xl">
@@ -286,9 +351,9 @@
             <label for="pdfInput" class="mt-6 inline-flex cursor-pointer items-center justify-center rounded-xl bg-indigo-600 px-6 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-indigo-700 focus-within:ring-4 focus-within:ring-indigo-100">
               Choose PDF
             </label>
-            <input id="pdfInput" type="file" accept="application/pdf,.pdf" class="sr-only">
+            <input id="pdfInput" type="file" accept="application/pdf,.pdf" class="sr-only" aria-describedby="pdfInputHelp">
 
-            <p class="mt-4 text-xs leading-5 text-slate-400">
+            <p id="pdfInputHelp" class="mt-4 text-xs leading-5 text-slate-400">
               Recommended maximum file size: 50 MB. Large or image-heavy PDFs may require additional memory.
             </p>
           </div>
@@ -353,16 +418,16 @@
         <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
           <div class="rounded-2xl bg-slate-100 p-2">
             <div class="tab-scroll flex gap-2" role="tablist" aria-label="PDF extraction options">
-              <button type="button" class="extract-tab rounded-xl border border-transparent px-4 py-3 text-sm font-bold text-slate-600" data-tab="text" role="tab" aria-selected="true">
+              <button type="button" class="extract-tab rounded-xl border border-transparent px-4 py-3 text-sm font-bold text-slate-600" data-tab="text" role="tab" aria-selected="true" aria-controls="textPanel" id="textTab">
                 Extract Text
               </button>
-              <button type="button" class="extract-tab rounded-xl border border-transparent px-4 py-3 text-sm font-bold text-slate-600" data-tab="images" role="tab" aria-selected="false">
+              <button type="button" class="extract-tab rounded-xl border border-transparent px-4 py-3 text-sm font-bold text-slate-600" data-tab="images" role="tab" aria-selected="false" aria-controls="imagesPanel" id="imagesTab" tabindex="-1">
                 Extract Images
               </button>
             </div>
           </div>
 
-          <div id="textPanel" class="extract-panel mt-6">
+          <div id="textPanel" class="extract-panel mt-6" role="tabpanel" aria-labelledby="textTab">
             <div class="flex items-start gap-4">
               <div class="flex h-12 w-12 flex-none items-center justify-center rounded-xl bg-indigo-100 text-indigo-700">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -449,7 +514,7 @@
             </div>
           </div>
 
-          <div id="imagesPanel" class="extract-panel mt-6 hidden">
+          <div id="imagesPanel" class="extract-panel mt-6 hidden" role="tabpanel" aria-labelledby="imagesTab">
             <div class="flex items-start gap-4">
               <div class="flex h-12 w-12 flex-none items-center justify-center rounded-xl bg-violet-100 text-violet-700">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -540,12 +605,6 @@
       </div>
     </section>
 
-    <section class="mx-auto w-full max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
-      <div class="ad-box" role="complementary" aria-label="Advertisement placeholder">
-        Advertisement
-      </div>
-    </section>
-
     <section class="border-y border-slate-200 bg-white">
       <div class="mx-auto w-full max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
         <article>
@@ -604,10 +663,6 @@
                 Some PDFs also reuse the same embedded image multiple times. The tool attempts to avoid exporting exact repeated references unnecessarily while preserving useful page information. Complex PDFs may store image masks, small decorative assets, tiles, backgrounds, or compressed components that do not represent a complete visible picture.
               </p>
             </section>
-
-            <div class="ad-box my-12" role="complementary" aria-label="Advertisement placeholder">
-              Advertisement
-            </div>
 
             <section>
               <h2 class="text-2xl font-black text-slate-950">How to Extract Text from a PDF</h2>
@@ -743,10 +798,6 @@
                 The Preserve line breaks option uses approximate text positions to improve readability. It cannot perfectly reconstruct the original layout. Users should compare important extracted content with the source document before quoting, publishing, analyzing, or submitting it.
               </p>
             </section>
-
-            <div class="ad-box my-12" role="complementary" aria-label="Advertisement placeholder">
-              Advertisement
-            </div>
 
             <section>
               <h2 class="text-2xl font-black text-slate-950">Why Some PDF Images Cannot Be Extracted</h2>
@@ -912,12 +963,6 @@
       </div>
     </section>
 
-    <section class="mx-auto w-full max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
-      <div class="ad-box" role="complementary" aria-label="Advertisement placeholder">
-        Advertisement
-      </div>
-    </section>
-
     <section class="border-t border-slate-200 bg-white">
       <div class="mx-auto w-full max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
         <div class="mb-10">
@@ -1023,18 +1068,12 @@
         </div>
       </div>
     </section>
-
-    <section class="mx-auto w-full max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
-      <div class="ad-box" role="complementary" aria-label="Advertisement placeholder">
-        Advertisement
-      </div>
-    </section>
   </main>
 
   <footer class="border-t border-slate-200 bg-white">
     <div class="mx-auto flex w-full max-w-7xl flex-col gap-3 px-4 py-8 text-sm text-slate-500 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
       <p>© <span id="currentYear"></span> NodnWebTools. All rights reserved.</p>
-      <a href="https://nodntools.com" class="font-semibold text-slate-600 transition hover:text-indigo-700">
+      <a href="/" class="font-semibold text-slate-600 transition hover:text-indigo-700">
         Back to NodnWebTools
       </a>
     </div>
@@ -1171,7 +1210,9 @@
       activeTab = tabName;
 
       extractTabs.forEach(tab => {
-        tab.setAttribute("aria-selected", String(tab.dataset.tab === tabName));
+        const isActive = tab.dataset.tab === tabName;
+        tab.setAttribute("aria-selected", String(isActive));
+        tab.tabIndex = isActive ? 0 : -1;
       });
 
       extractPanels.forEach(panel => {
@@ -1850,7 +1891,7 @@
     }
 
     function renderImageResults(processedPageCount) {
-      imageGrid.innerHTML = "";
+      imageGrid.replaceChildren();
       imageResultSection.classList.remove("hidden");
 
       const totalSize = extractedImages.reduce(
@@ -1878,46 +1919,52 @@
         card.className =
           "image-card overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm";
 
-        card.innerHTML = `
-          <div class="checkerboard flex h-48 items-center justify-center overflow-hidden p-3">
-            <img
-              src="${image.url}"
-              alt="Extracted PDF image ${index + 1} from page ${image.pageNumber}"
-              class="max-h-full max-w-full rounded-lg object-contain"
-            >
-          </div>
+        const preview = document.createElement("div");
+        preview.className =
+          "checkerboard flex h-48 items-center justify-center overflow-hidden p-3";
 
-          <div class="p-4">
-            <p class="safe-break text-sm font-black text-slate-900">${image.filename}</p>
+        const previewImage = document.createElement("img");
+        previewImage.src = image.url;
+        previewImage.alt =
+          `Extracted PDF image ${index + 1} from page ${image.pageNumber}`;
+        previewImage.className =
+          "max-h-full max-w-full rounded-lg object-contain";
 
-            <div class="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-xs font-semibold text-slate-500">
-              <span>Page ${image.pageNumber}</span>
-              <span>${image.width} × ${image.height} px</span>
-              <span>${formatBytes(image.blob.size)}</span>
-            </div>
+        const content = document.createElement("div");
+        content.className = "p-4";
 
-            <button
-              type="button"
-              data-image-index="${index}"
-              class="download-image-button mt-4 w-full rounded-xl border border-violet-200 bg-violet-50 px-4 py-2.5 text-sm font-bold text-violet-700 transition hover:bg-violet-100"
-            >
-              Download Image
-            </button>
-          </div>
-        `;
+        const filename = document.createElement("p");
+        filename.className =
+          "safe-break text-sm font-black text-slate-900";
+        filename.textContent = image.filename;
 
-        imageGrid.appendChild(card);
-      });
+        const metadata = document.createElement("div");
+        metadata.className =
+          "mt-2 flex flex-wrap gap-x-3 gap-y-1 text-xs font-semibold text-slate-500";
 
-      document.querySelectorAll(".download-image-button").forEach(button => {
-        button.addEventListener("click", () => {
-          const index = Number(button.dataset.imageIndex);
-          const image = extractedImages[index];
+        const pageLabel = document.createElement("span");
+        pageLabel.textContent = `Page ${image.pageNumber}`;
 
-          if (image) {
-            downloadBlob(image.blob, image.filename);
-          }
+        const dimensions = document.createElement("span");
+        dimensions.textContent = `${image.width} × ${image.height} px`;
+
+        const size = document.createElement("span");
+        size.textContent = formatBytes(image.blob.size);
+
+        const downloadButton = document.createElement("button");
+        downloadButton.type = "button";
+        downloadButton.className =
+          "mt-4 w-full rounded-xl border border-violet-200 bg-violet-50 px-4 py-2.5 text-sm font-bold text-violet-700 transition hover:bg-violet-100";
+        downloadButton.textContent = "Download Image";
+        downloadButton.addEventListener("click", () => {
+          downloadBlob(image.blob, image.filename);
         });
+
+        metadata.append(pageLabel, dimensions, size);
+        content.append(filename, metadata, downloadButton);
+        preview.appendChild(previewImage);
+        card.append(preview, content);
+        imageGrid.appendChild(card);
       });
     }
 
