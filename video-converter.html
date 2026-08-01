@@ -9,12 +9,14 @@
   <meta name="description" content="Convert playable videos locally to WebM or supported MP4 with a private browser-based video converter." />
   <meta name="keywords" content="video converter, free video converter, online video converter, browser video converter, WebM converter, MP4 converter, client-side video converter, no upload video converter, private video converter, HTML5 video converter, MediaRecorder video converter, Canvas video converter, convert video to WebM, convert video to MP4, resize video online, remove audio from video, video format changer, local video converter, NodnWebTools" />
   <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow" />
+  <link rel="canonical" href="https://nodntools.com/video-converter" />
   <meta name="author" content="NodnWebTools" />
 
   <meta property="og:title" content="Free Video Converter | WebM MP4 Browser Tool" />
   <meta property="og:description" content="Convert playable video files locally in your browser to WebM or supported MP4 without intentional server uploads." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://nodntools.com/video-converter.html" />
+  <meta property="og:url" content="https://nodntools.com/video-converter" />
   <meta property="og:site_name" content="NodnWebTools" />
 
   <meta name="twitter:card" content="summary_large_image" />
@@ -33,7 +35,7 @@
     "name": "Free Video Converter",
     "applicationCategory": "MultimediaApplication",
     "operatingSystem": "Any",
-    "url": "https://nodntools.com/video-converter.html",
+    "url": "https://nodntools.com/video-converter",
     "description": "A browser-based video converter that uses HTML5 Video, Canvas, MediaStream, and MediaRecorder to convert playable local videos without intentional server uploads.",
     "featureList": [
       "Client-side video preview",
@@ -54,6 +56,63 @@
       "name": "NodnWebTools",
       "url": "https://nodntools.com"
     }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Does this video converter upload my file?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. The tool is designed to process the selected video locally in your browser and does not intentionally upload it to a backend conversion server."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does conversion take as long as the video?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The tool records the video through the browser as it plays into a canvas stream, so conversion usually runs in real time."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can this convert AVI or MKV?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Only when the browser can decode and play the source file. Many AVI and MKV files require desktop software or a server-side converter."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is WebM more reliable than MP4?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Modern browsers generally provide broader MediaRecorder support for WebM. MP4 recording support varies by browser."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I remove audio from a video?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Enable the remove-audio option before converting to create a silent output video."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is this a replacement for professional video software?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. It is intended for short browser-playable clips and simple conversion settings. Advanced production workflows may require dedicated video software."
+        }
+      }
+    ]
   }
   </script>
 
@@ -96,8 +155,7 @@
     .mobile-card,
     .mobile-panel,
     .mobile-preview,
-    .mobile-code,
-    .ad-box {
+    .mobile-code {
       max-width: 100%;
       overflow-x: hidden;
     }
@@ -108,20 +166,6 @@
       word-break: break-word;
     }
 
-    .ad-box {
-      min-height: 90px;
-      border: 2px dashed #cbd5e1;
-      background: #f8fafc;
-      color: #94a3b8;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      border-radius: 1rem;
-      padding: 1rem;
-      font-size: 0.875rem;
-      line-height: 1.5;
-    }
 
     .drop-active {
       border-color: #4f46e5 !important;
@@ -181,12 +225,6 @@
         font-size: 0.75rem;
       }
 
-      .ad-box {
-        min-height: 90px;
-        border-radius: 0.875rem;
-        padding: 0.875rem;
-        font-size: 0.75rem;
-      }
     }
 
     @media (max-width: 380px) {
@@ -211,9 +249,6 @@
         max-height: 220px;
       }
 
-      .ad-box {
-        font-size: 0.7rem;
-      }
     }
   </style>
 </head>
@@ -232,10 +267,6 @@
       </nav>
     </header>
 
-    <div class="mx-auto mt-5 w-full max-w-7xl">
-      <div class="ad-box">AdSense Responsive Ad Area - Top</div>
-    </div>
-
     <main class="mx-auto mt-6 grid w-full max-w-7xl grid-cols-1 gap-6 lg:grid-cols-12">
       <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:col-span-5 lg:p-8">
         <div class="mb-6">
@@ -247,7 +278,7 @@
         </div>
 
         <div class="mobile-panel rounded-2xl border border-slate-200 bg-slate-50 p-4">
-          <label class="mb-3 block text-sm font-bold text-slate-700">Select a video file</label>
+          <label for="fileInput" class="mb-3 block text-sm font-bold text-slate-700">Select a video file</label>
           <div id="dropZone" class="relative flex min-h-[190px] w-full cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed border-slate-300 bg-white p-5 text-center transition hover:border-indigo-300 hover:bg-indigo-50/40">
             <input id="fileInput" type="file" accept="video/*,.mp4,.webm,.mov,.m4v" class="absolute inset-0 z-20 h-full w-full cursor-pointer opacity-0" aria-label="Choose video file" />
             <div class="pointer-events-none relative z-10 flex flex-col items-center">
@@ -383,21 +414,15 @@
             </div>
 
             <div class="mobile-button-grid mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2">
-              <a id="downloadBtn" href="#" download="converted-video" class="pointer-events-none flex items-center justify-center rounded-2xl bg-slate-300 px-4 py-4 text-center text-base font-black text-white shadow-sm transition" aria-disabled="true">
+              <a id="downloadBtn" class="pointer-events-none flex items-center justify-center rounded-2xl bg-slate-300 px-4 py-4 text-center text-base font-black text-white shadow-sm transition" aria-disabled="true">
                 Download Converted File
               </a>
               <button id="copySummaryBtn" type="button" class="rounded-2xl border border-slate-200 bg-white px-4 py-4 text-base font-black text-slate-700 transition hover:border-indigo-200 hover:text-indigo-700">Copy Log</button>
             </div>
           </div>
         </div>
-
-        <div class="ad-box">AdSense Responsive Ad Area - Below Result</div>
       </section>
     </main>
-
-    <div class="mx-auto mt-6 w-full max-w-7xl">
-      <div class="ad-box">AdSense Responsive Ad Area - Below Tool</div>
-    </div>
 
     <section class="mx-auto mt-8 w-full max-w-7xl space-y-6">
       <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
@@ -421,8 +446,6 @@
           </p>
         </div>
       </article>
-
-      <div class="ad-box">AdSense Responsive Ad Area - Middle Content</div>
 
       <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
         <h2 class="text-3xl font-black tracking-tight text-slate-950">How This Browser Video Converter Works</h2>
@@ -510,8 +533,6 @@
         </div>
       </article>
 
-      <div class="ad-box">AdSense Responsive Ad Area - Bottom Content</div>
-
       <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:p-8">
         <h2 class="text-3xl font-black tracking-tight text-slate-950">Video Conversion Tips for Better Results</h2>
         <div class="mt-5 space-y-5 text-base leading-8 text-slate-600">
@@ -583,7 +604,7 @@
     <div class="mx-auto max-w-6xl">
 
         <span class="inline-flex rounded-full bg-indigo-100 px-4 py-2 text-sm font-bold text-indigo-700">
-            More Image & Video Tools
+            More Media Tools
         </span>
 
         <h2 class="mt-5 text-3xl font-extrabold tracking-tight text-slate-950">
@@ -622,16 +643,16 @@
                 </p>
             </a>
 
-            <a href="/image-converter"
+            <a href="/audio-converter"
                class="group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:border-indigo-300 hover:shadow-lg">
                 <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-50 text-2xl transition group-hover:bg-indigo-600 group-hover:text-white">
-                    📐
+                    🎵
                 </div>
                 <h3 class="mt-5 text-lg font-extrabold text-slate-950 group-hover:text-indigo-700">
-                    Image Resizer
+                    Audio Converter
                 </h3>
                 <p class="mt-2 text-sm leading-6 text-slate-600">
-                    Resize images while maintaining quality for websites, social media, and printing.
+                    Convert browser-supported audio files and prepare downloadable audio output locally.
                 </p>
             </a>
 
@@ -679,8 +700,6 @@
           </p>
         </div>
       </section>
-
-      <div class="ad-box">AdSense Responsive Ad Area - Bottom</div>
     </section>
 
     <footer class="mx-auto mt-8 w-full max-w-7xl pb-8 text-center text-sm text-slate-500">
@@ -889,7 +908,7 @@
       }
 
       function setDownloadDisabled() {
-        downloadBtn.href = "#";
+        downloadBtn.removeAttribute("href");
         downloadBtn.removeAttribute("download");
         downloadBtn.classList.add("pointer-events-none", "bg-slate-300");
         downloadBtn.classList.remove("bg-slate-900", "hover:bg-indigo-700");
@@ -919,6 +938,11 @@
       }
 
       function resetAll() {
+        if (isProcessing) {
+          showAlert("Please wait for the current conversion to finish before resetting the tool.");
+          return;
+        }
+
         if (sourceObjectUrl) {
           URL.revokeObjectURL(sourceObjectUrl);
           sourceObjectUrl = "";
@@ -1046,6 +1070,13 @@
 
       function setProcessingState(active) {
         isProcessing = active;
+        fileInput.disabled = active;
+        targetFormat.disabled = active;
+        qualityMode.disabled = active;
+        resolutionMode.disabled = active;
+        frameRate.disabled = active;
+        muteOutput.disabled = active;
+        resetBtn.disabled = active;
 
         if (active) {
           convertBtn.disabled = true;
@@ -1121,6 +1152,7 @@
         let processingVideo = null;
         let audioContext = null;
         let animationId = null;
+        let activeStream = null;
 
         try {
           const dimensions = getOutputDimensions();
@@ -1139,7 +1171,8 @@
           processingVideo = await createProcessingVideo();
 
           const canvasStream = canvas.captureStream(fps);
-          let mixedStream = new MediaStream();
+          const mixedStream = new MediaStream();
+          activeStream = mixedStream;
 
           canvasStream.getVideoTracks().forEach(function (track) {
             mixedStream.addTrack(track);
@@ -1255,6 +1288,12 @@
             processingVideo.remove();
           }
 
+          if (activeStream) {
+            activeStream.getTracks().forEach(function (track) {
+              track.stop();
+            });
+          }
+
           if (audioContext) {
             try {
               await audioContext.close();
@@ -1360,5 +1399,10 @@
       checkTargetSupport();
     });
   </script>
+  <noscript>
+    <div class="mx-auto mb-8 max-w-3xl rounded-2xl border border-amber-200 bg-amber-50 p-5 text-sm leading-6 text-amber-900">
+      JavaScript is required to load local video files, run browser-based conversion, and create downloadable output. The guide and compatibility information on this page remain readable without JavaScript.
+    </div>
+  </noscript>
 </body>
 </html>
