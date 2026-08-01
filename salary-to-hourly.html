@@ -9,12 +9,14 @@
   <meta name="description" content="Convert salary to hourly, monthly, weekly, or annual pay with a free browser-based wage calculator." />
   <meta name="keywords" content="salary to hourly calculator, hourly to salary calculator, salary converter, wage calculator, annual salary to hourly, monthly salary calculator, weekly pay calculator, hourly wage converter, yearly to hourly wage converter, 50000 a year is how much an hour, 50k salary hourly rate, job offer comparison calculator, pay comparison calculator, freelance rate calculator, compensation calculator, annual income calculator" />
   <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow" />
+  <link rel="canonical" href="https://nodntools.com/salary-to-hourly" />
   <meta name="author" content="NodnWebTools" />
 
   <meta property="og:title" content="Salary to Hourly Calculator | Wage Converter" />
   <meta property="og:description" content="Convert salary to hourly, monthly, weekly, or annual pay with a free browser-based wage calculator." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://nodntools.com/salary-to-hourly.html" />
+  <meta property="og:url" content="https://nodntools.com/salary-to-hourly" />
   <meta property="og:site_name" content="NodnWebTools" />
 
   <meta name="twitter:card" content="summary_large_image" />
@@ -51,7 +53,7 @@
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "Salary to Hourly Calculator",
-    "url": "https://nodntools.com/salary-to-hourly.html",
+    "url": "https://nodntools.com/salary-to-hourly",
     "applicationCategory": "FinanceApplication",
     "operatingSystem": "Any modern web browser",
     "description": "A free browser-based salary to hourly calculator that converts annual, monthly, weekly, and hourly pay into equivalent wage amounts.",
@@ -75,6 +77,55 @@
       "Copyable pay summary",
       "Downloadable text report",
       "Client-side browser processing"
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do I convert salary to hourly?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Divide annual salary by annual work hours. A common full-time estimate uses 2,080 hours per year, based on 40 hours per week and 52 weeks."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is $50,000 a year hourly?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Using 40 hours per week and 2,080 hours per year, $50,000 per year is about $24.04 per hour before taxes and deductions."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I convert hourly pay to annual salary?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Multiply hourly wage by hours worked per week, then multiply by 52 weeks. For example, $30 per hour at 40 hours per week equals $62,400 per year."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this calculator include taxes?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. This calculator converts gross pay before taxes, payroll deductions, benefits, overtime, commissions, and other adjustments."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does weekly hours change the hourly result?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Hourly equivalent depends on total work hours. The same annual salary has a lower effective hourly rate when weekly hours increase."
+        }
+      }
     ]
   }
   </script>
@@ -132,22 +183,6 @@
       overflow-x: auto;
     }
 
-    .ad-box {
-      width: 100%;
-      max-width: 100%;
-      min-height: 90px;
-      overflow: hidden;
-      border: 1px dashed #cbd5e1;
-      background: #f8fafc;
-      color: #94a3b8;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      border-radius: 1.25rem;
-      padding: 1rem;
-    }
-
     .pay-type-tab {
       min-width: 0;
     }
@@ -166,13 +201,6 @@
 
       button {
         width: 100%;
-      }
-
-      .ad-box {
-        min-height: 90px;
-        border-radius: 1rem;
-        padding: .875rem;
-        font-size: .875rem;
       }
 
       h1 {
@@ -202,11 +230,6 @@
         border-radius: 1rem !important;
       }
 
-      .ad-box {
-        min-height: 82px;
-        font-size: .8rem;
-      }
-
       h1 {
         font-size: 1.75rem !important;
       }
@@ -227,9 +250,6 @@
   </header>
 
   <main class="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
-    <div class="ad-box mb-6">
-      Top Ad Area
-    </div>
 
     <section class="grid grid-cols-1 gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
       <aside class="mobile-card rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-8 lg:sticky lg:top-8">
@@ -255,6 +275,7 @@
                 id="amountInput"
                 inputmode="decimal"
                 min="0"
+                max="1000000000"
                 step="0.01"
                 value="50000"
                 placeholder="50000"
@@ -266,16 +287,16 @@
           <div>
             <label class="mb-2 block text-sm font-bold text-slate-700">Pay Type</label>
             <div class="grid grid-cols-2 gap-2 rounded-2xl bg-slate-100 p-1 sm:grid-cols-4">
-              <button type="button" data-pay-type="annual" class="pay-type-tab rounded-xl bg-accent-600 px-3 py-3 text-sm font-black text-white shadow-sm transition active:scale-[0.99]">
+              <button type="button" data-pay-type="annual" aria-pressed="true" class="pay-type-tab rounded-xl bg-accent-600 px-3 py-3 text-sm font-black text-white shadow-sm transition active:scale-[0.99]">
                 Annual
               </button>
-              <button type="button" data-pay-type="monthly" class="pay-type-tab rounded-xl px-3 py-3 text-sm font-black text-slate-600 transition hover:bg-white active:scale-[0.99]">
+              <button type="button" data-pay-type="monthly" aria-pressed="false" class="pay-type-tab rounded-xl px-3 py-3 text-sm font-black text-slate-600 transition hover:bg-white active:scale-[0.99]">
                 Monthly
               </button>
-              <button type="button" data-pay-type="weekly" class="pay-type-tab rounded-xl px-3 py-3 text-sm font-black text-slate-600 transition hover:bg-white active:scale-[0.99]">
+              <button type="button" data-pay-type="weekly" aria-pressed="false" class="pay-type-tab rounded-xl px-3 py-3 text-sm font-black text-slate-600 transition hover:bg-white active:scale-[0.99]">
                 Weekly
               </button>
-              <button type="button" data-pay-type="hourly" class="pay-type-tab rounded-xl px-3 py-3 text-sm font-black text-slate-600 transition hover:bg-white active:scale-[0.99]">
+              <button type="button" data-pay-type="hourly" aria-pressed="false" class="pay-type-tab rounded-xl px-3 py-3 text-sm font-black text-slate-600 transition hover:bg-white active:scale-[0.99]">
                 Hourly
               </button>
             </div>
@@ -289,6 +310,7 @@
                 id="hoursPerWeek"
                 inputmode="decimal"
                 min="1"
+                max="168"
                 step="0.5"
                 value="40"
                 placeholder="40"
@@ -387,10 +409,6 @@
               <strong id="conversionBasis" class="text-slate-950">40 hours/week × 52 weeks = 2,080 hours/year</strong>
             </div>
           </div>
-
-          <div class="ad-box mt-6">
-            Ad Area Below Result
-          </div>
         </div>
 
         <section class="mobile-card rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-8">
@@ -416,10 +434,6 @@
         </section>
       </section>
     </section>
-
-    <div class="ad-box my-8">
-      Ad Area Below Main Tool and Result Section
-    </div>
 
     <article class="mobile-card rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-8 lg:p-10">
       <div class="mx-auto max-w-4xl">
@@ -457,10 +471,6 @@
           <p>
             This calculator allows hourly input because many people want to compare hourly offers with salaried roles. A salaried job may include benefits, paid time off, bonuses, retirement contributions, and stability. An hourly role may include overtime eligibility, schedule flexibility, shift premiums, or higher per-hour earnings. Converting both into annual, monthly, weekly, and hourly terms makes the comparison easier.
           </p>
-
-          <div class="ad-box my-8">
-            Middle Content Ad Area
-          </div>
 
           <h3 class="text-2xl font-black text-slate-950">Common Salary Conversion Examples</h3>
           <p>
@@ -519,10 +529,6 @@
           <p>
             The best choice depends on the full compensation package. Base pay is only one part of total value. Benefits, health insurance, retirement match, pension contributions, bonuses, commissions, stock options, paid holidays, vacation days, sick leave, remote work flexibility, commute time, training support, job security, and promotion potential can all affect the real value of a role. A calculator helps with the pay math, but career decisions should include both numbers and quality-of-life factors.
           </p>
-
-          <div class="ad-box my-8">
-            Bottom Content Ad Area
-          </div>
 
           <h3 class="text-2xl font-black text-slate-950">Gross Pay vs. Take-Home Pay</h3>
           <p>
@@ -749,10 +755,6 @@
         </div>
       </div>
     </section>
-
-    <div class="ad-box mt-8">
-      Bottom Ad Area
-    </div>
   </main>
 
   <footer class="mt-10 border-t border-slate-200 bg-white">
@@ -808,7 +810,7 @@
 
       function sanitizeNumber(value, fallback) {
         const number = parseFloat(String(value).replace(/,/g, ''));
-        return isNaN(number) || number < 0 ? fallback : number;
+        return !Number.isFinite(number) || number < 0 ? fallback : number;
       }
 
       function getPayTypeLabel(type) {
@@ -831,7 +833,10 @@
 
       function updatePayTypeTabs() {
         payTypeTabs.forEach(function (tab) {
-          if (tab.dataset.payType === selectedPayType) {
+          const isSelected = tab.dataset.payType === selectedPayType;
+          tab.setAttribute('aria-pressed', String(isSelected));
+
+          if (isSelected) {
             tab.className = 'pay-type-tab rounded-xl bg-accent-600 px-3 py-3 text-sm font-black text-white shadow-sm transition active:scale-[0.99]';
           } else {
             tab.className = 'pay-type-tab rounded-xl px-3 py-3 text-sm font-black text-slate-600 transition hover:bg-white active:scale-[0.99]';
@@ -844,11 +849,14 @@
           hideWarning();
 
           const amount = sanitizeNumber(amountInput.value, 0);
-          const hoursPerWeek = Math.max(1, sanitizeNumber(hoursPerWeekInput.value, 40));
+          const rawHoursPerWeek = sanitizeNumber(hoursPerWeekInput.value, 40);
+          const hoursPerWeek = Math.min(168, Math.max(1, rawHoursPerWeek));
           const annualWorkHours = hoursPerWeek * 52;
 
           if (amount <= 0) {
             showWarning('Enter a pay amount greater than zero to calculate a conversion.');
+          } else if (rawHoursPerWeek > 168) {
+            showWarning('Weekly hours cannot exceed 168. The calculation is limited to 168 hours per week.');
           }
 
           let annualSalary = 0;
@@ -902,7 +910,8 @@
             '',
             'Conversion basis: ' + conversionBasisEl.textContent,
             '',
-            'Disclaimer: This report is for informational purposes only and does not include taxes, overtime, bonuses, benefits, deductions, or employment law rules.'
+            'Disclaimer: This report is for informational purposes only and does not include taxes, overtime, bonuses, benefits, deductions, or employment law rules.',
+            'https://nodntools.com/salary-to-hourly'
           ].join('\n');
         } catch (error) {
           showWarning('The salary conversion could not be completed. Please check your inputs and try again.');
@@ -922,6 +931,10 @@
         try {
           const textarea = document.createElement('textarea');
           textarea.value = text;
+          textarea.setAttribute('readonly', '');
+          textarea.style.position = 'fixed';
+          textarea.style.left = '-9999px';
+          textarea.style.opacity = '0';
           document.body.appendChild(textarea);
           textarea.select();
           document.execCommand('copy');
@@ -964,7 +977,7 @@
           document.body.appendChild(link);
           link.click();
           document.body.removeChild(link);
-          URL.revokeObjectURL(url);
+          setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
         } catch (error) {
           showWarning('Download failed. Please copy the report instead.');
         }
@@ -1001,10 +1014,6 @@
           updatePayTypeTabs();
           calculateSalaryConversion();
         });
-      });
-
-      window.addEventListener('resize', function () {
-        document.body.style.overflowX = 'hidden';
       });
 
       updatePayTypeTabs();
