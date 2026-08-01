@@ -9,12 +9,19 @@
   <meta name="description" content="Find and verify a YouTube channel ID from channel URLs, handles, usernames, video links, or an optional YouTube API key." />
   <meta name="keywords" content="YouTube channel ID finder, find YouTube channel ID, YouTube channel ID lookup, get YouTube channel ID, YouTube handle to channel ID, YouTube username to channel ID, YouTube video channel ID, UC channel ID, YouTube API channel lookup, YouTube channel URL parser, YouTube developer tool" />
   <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow" />
+  <link rel="canonical" href="https://nodntools.com/youtube-channel-id-finder" />
   <meta name="theme-color" content="#4f46e5" />
 
   <meta property="og:title" content="YouTube Channel ID Finder | Free Lookup Tool" />
   <meta property="og:description" content="Extract or resolve a YouTube channel ID from channel links, handles, usernames, and video URLs." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://nodntools.com/youtube-channel-id-finder" />
+  <meta property="og:site_name" content="NodnWebTools" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="YouTube Channel ID Finder | Free Lookup Tool" />
+  <meta name="twitter:description" content="Extract or resolve a YouTube channel ID from channel links, handles, usernames, and video URLs." />
 
   <meta name="google-adsense-account" content="ca-pub-5282672325821404" />
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404" crossorigin="anonymous"></script>
@@ -42,6 +49,84 @@
       "Find channel IDs from video URLs with an optional API key",
       "Copy channel IDs and canonical URLs",
       "Export lookup results as JSON or text"
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "NodnWebTools",
+      "url": "https://nodntools.com"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Can I find a YouTube channel ID without an API key?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. A UC-format channel ID or a direct YouTube URL containing /channel/UC... can be parsed without an API key. Handles, usernames, video URLs, and search phrases normally require the YouTube Data API or another external data source."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is a YouTube handle the same as a channel ID?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. A handle begins with @ and is intended for public sharing. A channel ID is the permanent UC-format identifier used in API requests, RSS feeds, and technical integrations."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I get a channel ID from a YouTube video link?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Enter the video link and use a YouTube Data API v3 key. The tool retrieves the public channel ID associated with the video's publisher."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does a YouTube channel ID begin with UC?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "UC is the common prefix used for YouTube channel identifiers and distinguishes channel resources from identifiers for videos and playlists."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does a channel ID change when a channel changes its name?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The channel ID is intended to remain stable when a creator changes the channel name, description, profile image, branding, or handle."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is my API key stored by this website?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The key is used in the browser and is stored in local browser storage only when the Remember Key option is selected. A restricted client-side API key should be used."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why did my API lookup fail?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Common causes include an invalid key, a disabled YouTube Data API v3 service, incorrect referrer restrictions, exhausted quota, unavailable content, a misspelled handle, or a temporary network problem."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can this tool find private channel information?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. The tool only works with public identifiers and public metadata returned by direct URLs or official API responses."
+        }
+      }
     ]
   }
   </script>
@@ -66,8 +151,7 @@
     .mobile-card,
     .mobile-panel,
     .mobile-preview,
-    .mobile-code,
-    .ad-box {
+    .mobile-code {
       width: 100%;
       max-width: 100%;
     }
@@ -79,19 +163,6 @@
       word-break: break-word;
     }
 
-    .ad-box {
-      min-height: 90px;
-      border: 2px dashed #cbd5e1;
-      background: #f8fafc;
-      color: #64748b;
-      border-radius: 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 1rem;
-      text-align: center;
-      overflow: hidden;
-    }
 
     .result-value {
       overflow-wrap: anywhere;
@@ -151,10 +222,6 @@
         line-height: 2rem !important;
       }
 
-      .ad-box {
-        min-height: 86px;
-        font-size: 0.875rem;
-      }
     }
 
     @media (max-width: 380px) {
@@ -173,10 +240,6 @@
         line-height: 2.05rem !important;
       }
 
-      .ad-box {
-        min-height: 78px;
-        font-size: 0.8rem;
-      }
     }
   </style>
 </head>
@@ -195,9 +258,6 @@
   </header>
 
   <main class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-    <section class="ad-box mb-8" aria-label="Advertisement">
-      Top Advertisement Area
-    </section>
 
     <section class="grid gap-8 lg:grid-cols-[0.96fr_1.04fr]">
       <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
@@ -301,11 +361,11 @@ https://www.youtube.com/watch?v=VIDEO_ID"
           </div>
 
           <div class="grid gap-3 sm:grid-cols-2 mobile-button-grid">
-            <button id="findBtn" class="rounded-2xl bg-indigo-600 px-5 py-3 font-bold text-white shadow-sm transition hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-200">
+            <button id="findBtn" type="button" class="rounded-2xl bg-indigo-600 px-5 py-3 font-bold text-white shadow-sm transition hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-200">
               Find Channel ID
             </button>
 
-            <button id="resetBtn" class="rounded-2xl border border-slate-300 bg-white px-5 py-3 font-bold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700 focus:outline-none focus:ring-4 focus:ring-slate-100">
+            <button id="resetBtn" type="button" class="rounded-2xl border border-slate-300 bg-white px-5 py-3 font-bold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700 focus:outline-none focus:ring-4 focus:ring-slate-100">
               Reset
             </button>
           </div>
@@ -335,7 +395,7 @@ https://www.youtube.com/watch?v=VIDEO_ID"
             <p class="mt-1 text-sm text-slate-500">Verified channel details and developer-ready links appear here.</p>
           </div>
 
-          <button id="copyIdTopBtn" class="rounded-2xl border border-indigo-200 bg-indigo-50 px-4 py-2 text-sm font-bold text-indigo-700 transition hover:bg-indigo-100 disabled:cursor-not-allowed disabled:opacity-50" disabled>
+          <button id="copyIdTopBtn" type="button" class="rounded-2xl border border-indigo-200 bg-indigo-50 px-4 py-2 text-sm font-bold text-indigo-700 transition hover:bg-indigo-100 disabled:cursor-not-allowed disabled:opacity-50" disabled>
             Copy Channel ID
           </button>
         </div>
@@ -358,28 +418,24 @@ https://www.youtube.com/watch?v=VIDEO_ID"
 
         <div id="actionArea" class="mt-6 hidden">
           <div class="grid gap-3 sm:grid-cols-2 mobile-button-grid">
-            <button id="copyAllBtn" class="rounded-2xl border border-slate-300 bg-white px-4 py-3 font-bold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700">
+            <button id="copyAllBtn" type="button" class="rounded-2xl border border-slate-300 bg-white px-4 py-3 font-bold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700">
               Copy All Details
             </button>
 
-            <button id="downloadJsonBtn" class="rounded-2xl bg-slate-900 px-4 py-3 font-bold text-white transition hover:bg-slate-800">
+            <button id="downloadJsonBtn" type="button" class="rounded-2xl bg-slate-900 px-4 py-3 font-bold text-white transition hover:bg-slate-800">
               Download JSON
             </button>
 
-            <button id="downloadTextBtn" class="rounded-2xl border border-slate-300 bg-white px-4 py-3 font-bold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700">
+            <button id="downloadTextBtn" type="button" class="rounded-2xl border border-slate-300 bg-white px-4 py-3 font-bold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700">
               Download Text
             </button>
 
-            <a id="openChannelBtn" href="#" target="_blank" rel="noopener noreferrer" class="rounded-2xl bg-indigo-600 px-4 py-3 text-center font-bold text-white transition hover:bg-indigo-700">
+            <a id="openChannelBtn" target="_blank" rel="noopener noreferrer" class="rounded-2xl bg-indigo-600 px-4 py-3 text-center font-bold text-white transition hover:bg-indigo-700">
               Open Channel
             </a>
           </div>
         </div>
       </section>
-    </section>
-
-    <section class="ad-box my-8" aria-label="Advertisement">
-      Advertisement Area Below Tool
     </section>
 
     <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
@@ -415,10 +471,6 @@ https://www.youtube.com/watch?v=VIDEO_ID"
         <p class="mt-4 leading-8 text-slate-700">
           The channel ID is also useful when generating a YouTube channel RSS feed. A common feed format uses a channel ID in a URL similar to <code>https://www.youtube.com/feeds/videos.xml?channel_id=CHANNEL_ID</code>. This can help users follow new uploads through an RSS reader, power content monitoring systems, or connect a YouTube channel to an automation workflow. The same channel ID can also be used in API requests for channel metadata, playlists, uploads, statistics, branding information, and related resources, depending on API permissions and available endpoints.
         </p>
-
-        <div class="ad-box my-8" aria-label="Advertisement">
-          Middle Content Advertisement Area
-        </div>
 
         <h3 class="mt-10 text-2xl font-bold text-slate-950">How This YouTube Channel ID Finder Works</h3>
 
@@ -561,10 +613,6 @@ https://www.youtube.com/watch?v=VIDEO_ID"
         <p class="mt-4 leading-8 text-slate-700">
           A video ID identifies an individual video rather than a channel. The ID is commonly found after <code>v=</code> in a YouTube watch URL or after the domain in a youtu.be link. The YouTube Data API can use the video ID to return the channel ID of the uploader.
         </p>
-
-        <div class="ad-box my-8" aria-label="Advertisement">
-          Bottom Content Advertisement Area
-        </div>
 
         <h2 class="mt-12 text-3xl font-extrabold tracking-tight text-slate-950">
           YouTube API Key Safety and Privacy
@@ -712,20 +760,20 @@ https://www.youtube.com/watch?v=VIDEO_ID"
               <p class="mt-2 text-sm leading-6 text-slate-500">Inspect public YouTube thumbnail previews and copy direct image URLs from a video link.</p>
             </a>
 
-            <a href="/json-yaml-converter" class="tool-link-card group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm hover:border-cyan-300 hover:shadow-md">
+            <a href="/youtube-video-id-extractor" class="tool-link-card group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm hover:border-cyan-300 hover:shadow-md">
               <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-cyan-50 text-cyan-600 group-hover:bg-cyan-600 group-hover:text-white">
-                <span class="text-lg font-black">{ }</span>
+                <span class="text-sm font-black">ID</span>
               </div>
-              <h3 class="mt-4 text-lg font-bold text-slate-950 group-hover:text-cyan-600">JSON ↔ YAML Converter</h3>
-              <p class="mt-2 text-sm leading-6 text-slate-500">Convert structured configuration data between JSON and YAML with browser-side validation.</p>
+              <h3 class="mt-4 text-lg font-bold text-slate-950 group-hover:text-cyan-600">YouTube Video ID Extractor</h3>
+              <p class="mt-2 text-sm leading-6 text-slate-500">Extract the 11-character video ID from watch, Shorts, live, embed, and shortened YouTube links.</p>
             </a>
 
-            <a href="/base64-converter" class="tool-link-card group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm hover:border-amber-300 hover:shadow-md">
+            <a href="/youtube-embed-generator" class="tool-link-card group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm hover:border-amber-300 hover:shadow-md">
               <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-amber-50 text-amber-600 group-hover:bg-amber-600 group-hover:text-white">
-                <span class="text-sm font-black">64</span>
+                <span class="text-sm font-black">&lt;/&gt;</span>
               </div>
-              <h3 class="mt-4 text-lg font-bold text-slate-950 group-hover:text-amber-600">Base64 Converter</h3>
-              <p class="mt-2 text-sm leading-6 text-slate-500">Encode Unicode text as Base64 or decode Base64 data safely in your browser.</p>
+              <h3 class="mt-4 text-lg font-bold text-slate-950 group-hover:text-amber-600">YouTube Embed Generator</h3>
+              <p class="mt-2 text-sm leading-6 text-slate-500">Create responsive YouTube iframe embed code with playback and privacy options.</p>
             </a>
 
             <a href="/qr-generator" class="tool-link-card group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm hover:border-violet-300 hover:shadow-md">
@@ -739,14 +787,14 @@ https://www.youtube.com/watch?v=VIDEO_ID"
               <p class="mt-2 text-sm leading-6 text-slate-500">Create downloadable QR codes for channel links, websites, contact details, and text.</p>
             </a>
 
-            <a href="/diff-checker" class="tool-link-card group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm hover:border-sky-300 hover:shadow-md">
+            <a href="/video-converter" class="tool-link-card group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm hover:border-sky-300 hover:shadow-md">
               <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-sky-50 text-sky-600 group-hover:bg-sky-600 group-hover:text-white">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="h-6 w-6">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5.586a1 1 0 0 1 .707.293l5.414 5.414A1 1 0 0 1 19 9.414V19a2 2 0 0 1-2 2Z" />
                 </svg>
               </div>
-              <h3 class="mt-4 text-lg font-bold text-slate-950 group-hover:text-sky-600">Diff Checker</h3>
-              <p class="mt-2 text-sm leading-6 text-slate-500">Compare text, API responses, metadata, configuration files, or code changes side by side.</p>
+              <h3 class="mt-4 text-lg font-bold text-slate-950 group-hover:text-sky-600">Video Converter</h3>
+              <p class="mt-2 text-sm leading-6 text-slate-500">Convert browser-playable videos to WebM or supported MP4 output with local processing controls.</p>
             </a>
           </div>
         </section>
@@ -764,10 +812,6 @@ https://www.youtube.com/watch?v=VIDEO_ID"
           </p>
         </section>
       </article>
-    </section>
-
-    <section class="ad-box my-8" aria-label="Advertisement">
-      Bottom Advertisement Area
     </section>
   </main>
 
@@ -799,6 +843,7 @@ https://www.youtube.com/watch?v=VIDEO_ID"
 
       const STORAGE_KEY = 'nodn_youtube_api_key';
       let currentResult = null;
+      let currentAbortController = null;
 
       document.getElementById('currentYear').textContent = new Date().getFullYear();
 
@@ -896,7 +941,9 @@ https://www.youtube.com/watch?v=VIDEO_ID"
       }
 
       function setLoading(isLoading) {
-        findBtn.disabled = isLoading;
+        [findBtn, resetBtn, lookupInput, lookupMode, apiKeyInput, rememberKey, toggleKeyBtn].forEach(element => {
+          element.disabled = isLoading;
+        });
         findBtn.classList.toggle('opacity-60', isLoading);
         findBtn.classList.toggle('cursor-not-allowed', isLoading);
         findBtn.textContent = isLoading ? 'Looking Up Channel…' : 'Find Channel ID';
@@ -1048,7 +1095,7 @@ https://www.youtube.com/watch?v=VIDEO_ID"
         currentResult = null;
         actionArea.classList.add('hidden');
         copyIdTopBtn.disabled = true;
-        openChannelBtn.href = '#';
+        openChannelBtn.removeAttribute('href');
 
         resultArea.innerHTML = `
           <div class="mobile-preview rounded-3xl border border-slate-200 bg-slate-50 p-6">
@@ -1074,12 +1121,13 @@ https://www.youtube.com/watch?v=VIDEO_ID"
         return fallback || 'The YouTube API request failed.';
       }
 
-      async function fetchJson(url) {
+      async function fetchJson(url, signal) {
         const response = await fetch(url, {
           method: 'GET',
           headers: {
             Accept: 'application/json'
-          }
+          },
+          signal
         });
 
         let payload;
@@ -1104,7 +1152,7 @@ https://www.youtube.com/watch?v=VIDEO_ID"
           key: apiKey
         });
 
-        const payload = await fetchJson(`https://www.googleapis.com/youtube/v3/channels?${params.toString()}`);
+        const payload = await fetchJson(`https://www.googleapis.com/youtube/v3/channels?${params.toString()}`, currentAbortController?.signal);
 
         if (!payload.items || !payload.items.length) {
           return normalizeResult({
@@ -1144,7 +1192,7 @@ https://www.youtube.com/watch?v=VIDEO_ID"
           key: apiKey
         });
 
-        const payload = await fetchJson(`https://www.googleapis.com/youtube/v3/channels?${params.toString()}`);
+        const payload = await fetchJson(`https://www.googleapis.com/youtube/v3/channels?${params.toString()}`, currentAbortController?.signal);
 
         if (!payload.items || !payload.items.length) {
           throw new Error('No channel was found for that YouTube handle.');
@@ -1180,7 +1228,7 @@ https://www.youtube.com/watch?v=VIDEO_ID"
           key: apiKey
         });
 
-        const payload = await fetchJson(`https://www.googleapis.com/youtube/v3/channels?${params.toString()}`);
+        const payload = await fetchJson(`https://www.googleapis.com/youtube/v3/channels?${params.toString()}`, currentAbortController?.signal);
 
         if (!payload.items || !payload.items.length) {
           throw new Error('No channel was found for that legacy YouTube username.');
@@ -1216,7 +1264,7 @@ https://www.youtube.com/watch?v=VIDEO_ID"
           key: apiKey
         });
 
-        const payload = await fetchJson(`https://www.googleapis.com/youtube/v3/videos?${params.toString()}`);
+        const payload = await fetchJson(`https://www.googleapis.com/youtube/v3/videos?${params.toString()}`, currentAbortController?.signal);
 
         if (!payload.items || !payload.items.length) {
           throw new Error('The video could not be found or is not publicly available.');
@@ -1243,7 +1291,7 @@ https://www.youtube.com/watch?v=VIDEO_ID"
           key: apiKey
         });
 
-        const payload = await fetchJson(`https://www.googleapis.com/youtube/v3/search?${params.toString()}`);
+        const payload = await fetchJson(`https://www.googleapis.com/youtube/v3/search?${params.toString()}`, currentAbortController?.signal);
 
         if (!payload.items || !payload.items.length) {
           throw new Error('No YouTube channel matched that search.');
@@ -1281,6 +1329,11 @@ https://www.youtube.com/watch?v=VIDEO_ID"
         const selectedMode = lookupMode.value;
         const mode = selectedMode === 'auto' ? detectMode(input) : selectedMode;
         const apiKey = apiKeyInput.value.trim();
+
+        if (currentAbortController) {
+          currentAbortController.abort();
+        }
+        currentAbortController = new AbortController();
 
         setLoading(true);
         setStatus('Checking the input and looking up channel information…', 'loading');
@@ -1341,23 +1394,45 @@ https://www.youtube.com/watch?v=VIDEO_ID"
           renderResult(result);
           setStatus('Channel ID found successfully. Verify the channel details before using the result in a production workflow.', 'success');
 
-          if (rememberKey.checked && apiKey) {
-            localStorage.setItem(STORAGE_KEY, apiKey);
-          } else if (!rememberKey.checked) {
-            localStorage.removeItem(STORAGE_KEY);
+          try {
+            if (rememberKey.checked && apiKey) {
+              localStorage.setItem(STORAGE_KEY, apiKey);
+            } else if (!rememberKey.checked) {
+              localStorage.removeItem(STORAGE_KEY);
+            }
+          } catch (storageError) {
+            console.warn('Local storage is unavailable.', storageError);
           }
         } catch (error) {
+          if (error && error.name === 'AbortError') {
+            return;
+          }
           console.error(error);
           renderEmptyState();
           setStatus(error.message || 'The channel lookup failed. Check the input, API key, API restrictions, and network connection.', 'error');
         } finally {
+          currentAbortController = null;
           setLoading(false);
         }
       }
 
       async function copyText(text, button) {
         try {
-          await navigator.clipboard.writeText(String(text || ''));
+          const value = String(text || '');
+
+          if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(value);
+          } else {
+            const textarea = document.createElement('textarea');
+            textarea.value = value;
+            textarea.setAttribute('readonly', '');
+            textarea.style.position = 'fixed';
+            textarea.style.left = '-9999px';
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            textarea.remove();
+          }
 
           if (button) {
             const original = button.textContent;
@@ -1408,6 +1483,10 @@ https://www.youtube.com/watch?v=VIDEO_ID"
       }
 
       function resetTool() {
+        if (currentAbortController) {
+          currentAbortController.abort();
+          currentAbortController = null;
+        }
         lookupInput.value = '';
         lookupMode.value = 'auto';
         apiKeyInput.value = rememberKey.checked ? apiKeyInput.value : '';
@@ -1423,10 +1502,16 @@ https://www.youtube.com/watch?v=VIDEO_ID"
       });
 
       rememberKey.addEventListener('change', () => {
-        if (!rememberKey.checked) {
-          localStorage.removeItem(STORAGE_KEY);
-        } else if (apiKeyInput.value.trim()) {
-          localStorage.setItem(STORAGE_KEY, apiKeyInput.value.trim());
+        try {
+          if (!rememberKey.checked) {
+            localStorage.removeItem(STORAGE_KEY);
+          } else if (apiKeyInput.value.trim()) {
+            localStorage.setItem(STORAGE_KEY, apiKeyInput.value.trim());
+          }
+        } catch (error) {
+          console.warn('Local storage is unavailable.', error);
+          rememberKey.checked = false;
+          setStatus('This browser does not allow local storage, so the API key cannot be remembered.', 'error');
         }
       });
 
