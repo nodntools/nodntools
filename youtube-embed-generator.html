@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,11 +9,19 @@
   <meta name="description" content="Create responsive YouTube embed code with privacy, autoplay, loop, start time, captions, and custom player options.">
   <meta name="keywords" content="YouTube embed generator, YouTube iframe generator, responsive YouTube embed, YouTube embed code, YouTube video embed, privacy enhanced YouTube embed, YouTube player generator, YouTube HTML embed">
   <meta name="robots" content="index, follow">
+  <meta name="googlebot" content="index, follow">
+  <link rel="canonical" href="https://nodntools.com/youtube-embed-generator">
   <meta name="google-adsense-account" content="ca-pub-5282672325821404">
 
   <meta property="og:title" content="YouTube Embed Generator - Responsive Iframe Code">
   <meta property="og:description" content="Generate clean, responsive YouTube iframe embed code with playback, privacy, captions, loop, and appearance options.">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nodntools.com/youtube-embed-generator">
+  <meta property="og:site_name" content="NodnWebTools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="YouTube Embed Generator - Responsive Iframe Code">
+  <meta name="twitter:description" content="Generate responsive YouTube iframe code with privacy, autoplay, captions, loop, and playback options.">
 
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404" crossorigin="anonymous"></script>
   <script src="https://cdn.tailwindcss.com"></script>
@@ -51,6 +58,80 @@
   }
   </script>
 
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is this YouTube Embed Generator free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. The tool is free to use and does not require registration. All code generation happens directly in your browser."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I embed YouTube Shorts?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Paste a YouTube Shorts URL and select the 9:16 vertical aspect ratio for a layout that better matches vertical video."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does autoplay not work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Many browsers block autoplay when sound is enabled. Enable Mute with Autoplay for better compatibility, although browser and device policies can still affect playback."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What does privacy-enhanced mode do?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It changes the embed host to youtube-nocookie.com. This may reduce tracking before interaction, but it does not guarantee complete privacy-law compliance."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I make the YouTube embed responsive?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Keep the Responsive Wrapper option enabled. The generated wrapper preserves the selected aspect ratio while fitting the available width."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I start a video at a specific time?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Enter a value such as 90 or 1:30 in the Start Time field. The generator converts it into seconds and adds it to the embed URL."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does a valid video fail to play?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The video may be private, deleted, age-restricted, region-restricted, copyright-blocked, or configured by the owner to prevent playback on external websites."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this tool download YouTube videos?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. The tool only creates iframe embed code that displays videos through YouTube's official embedded player."
+        }
+      }
+    ]
+  }
+  </script>
+
   <style>
     html, body {
       width: 100%;
@@ -75,25 +156,11 @@
     .mobile-card,
     .mobile-panel,
     .mobile-preview,
-    .mobile-code,
-    .ad-box {
+    .mobile-code {
       width: 100%;
       max-width: 100%;
     }
 
-    .ad-box {
-      min-height: 90px;
-      border: 2px dashed #cbd5e1;
-      background: #f8fafc;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      color: #64748b;
-      border-radius: 1rem;
-      padding: 1rem;
-      overflow: hidden;
-    }
 
     .preview-frame-wrapper {
       width: 100%;
@@ -184,11 +251,6 @@
         line-height: 1.4 !important;
       }
 
-      .ad-box {
-        min-height: 90px;
-        padding: 0.75rem;
-        border-radius: 0.875rem;
-      }
     }
 
     @media (max-width: 380px) {
@@ -248,13 +310,7 @@
   </header>
 
   <main>
-    <section class="mx-auto w-full max-w-7xl px-4 pt-6 sm:px-6 lg:px-8">
-      <div class="ad-box">
-        <span>Advertisement</span>
-      </div>
-    </section>
-
-    <section class="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+<section class="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
       <div class="mb-8 max-w-3xl">
         <div class="mb-4 inline-flex items-center gap-2 rounded-full bg-indigo-50 px-3 py-1 text-sm font-semibold text-indigo-700">
           <span class="h-2 w-2 rounded-full bg-indigo-500"></span>
@@ -287,7 +343,7 @@
               <input
                 id="videoInput"
                 type="text"
-                value="dQw4w9WgXcQ"
+                value=""
                 placeholder="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
                 class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100"
                 autocomplete="off"
@@ -592,7 +648,7 @@
             </div>
 
             <div id="videoIdBadge" class="safe-break rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-600">
-              Video ID: dQw4w9WgXcQ
+              No video selected
             </div>
           </div>
 
@@ -636,15 +692,15 @@
           </div>
 
           <div class="mobile-button-grid mt-4 grid gap-3 sm:grid-cols-3">
-            <button id="copyButton" type="button" class="rounded-xl bg-indigo-600 px-5 py-3 font-semibold text-white shadow-sm transition hover:bg-indigo-700">
+            <button id="copyButton" type="button" disabled class="disabled:cursor-not-allowed disabled:opacity-50 rounded-xl bg-indigo-600 px-5 py-3 font-semibold text-white shadow-sm transition hover:bg-indigo-700">
               Copy Code
             </button>
 
-            <button id="downloadButton" type="button" class="rounded-xl border border-indigo-200 bg-indigo-50 px-5 py-3 font-semibold text-indigo-700 transition hover:bg-indigo-100">
+            <button id="downloadButton" type="button" disabled class="disabled:cursor-not-allowed disabled:opacity-50 rounded-xl border border-indigo-200 bg-indigo-50 px-5 py-3 font-semibold text-indigo-700 transition hover:bg-indigo-100">
               Download HTML
             </button>
 
-            <button id="openButton" type="button" class="rounded-xl border border-slate-300 bg-white px-5 py-3 font-semibold text-slate-700 transition hover:bg-slate-50">
+            <button id="openButton" type="button" disabled class="disabled:cursor-not-allowed disabled:opacity-50 rounded-xl border border-slate-300 bg-white px-5 py-3 font-semibold text-slate-700 transition hover:bg-slate-50">
               Open Video
             </button>
           </div>
@@ -658,14 +714,7 @@
         </section>
       </div>
     </section>
-
-    <section class="mx-auto w-full max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
-      <div class="ad-box">
-        <span>Advertisement</span>
-      </div>
-    </section>
-
-    <article class="mx-auto w-full max-w-5xl px-4 pb-16 sm:px-6 lg:px-8">
+<article class="mx-auto w-full max-w-5xl px-4 pb-16 sm:px-6 lg:px-8">
       <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-10">
         <div class="max-w-3xl">
           <span class="text-sm font-bold uppercase tracking-wider text-indigo-600">Complete Guide</span>
@@ -705,12 +754,7 @@
           <p class="mt-4 leading-8 text-slate-700">
             The default 16:9 ratio works well for most modern YouTube videos. However, square, vertical, and older standard-format videos may benefit from different aspect ratios. This tool includes widescreen, standard, square, vertical, and custom dimension options. The preview area updates to help you confirm that the selected format matches your content before copying the code.
           </p>
-
-          <div class="ad-box my-10">
-            <span>Advertisement</span>
-          </div>
-
-          <h3 class="text-2xl font-bold text-slate-950">Supported YouTube URL Formats</h3>
+<h3 class="text-2xl font-bold text-slate-950">Supported YouTube URL Formats</h3>
 
           <p class="mt-4 leading-8 text-slate-700">
             YouTube links can appear in several formats depending on where they were copied. A normal desktop link may use the youtube.com/watch format. Mobile sharing often produces a shortened youtu.be address. YouTube Shorts use a path containing the word shorts, while live streams may use a live path. Existing embed links use an embed path. The generator supports these common formats and also accepts a plain 11-character YouTube video ID.
@@ -834,12 +878,7 @@
           <p class="mt-3 leading-8 text-slate-700">
             Lazy loading delays iframe loading until the player approaches the visible portion of the page. This can reduce initial page weight and improve perceived performance, especially on articles containing multiple videos. It may also reduce unnecessary network activity when a visitor never scrolls to the embedded player. Eager loading begins earlier and may be suitable when the video is the main content at the top of the page.
           </p>
-
-          <div class="ad-box my-10">
-            <span>Advertisement</span>
-          </div>
-
-          <h3 class="text-2xl font-bold text-slate-950">Popular Uses for YouTube Embed Code</h3>
+<h3 class="text-2xl font-bold text-slate-950">Popular Uses for YouTube Embed Code</h3>
 
           <div class="mt-6 grid gap-5 md:grid-cols-3">
             <div class="rounded-2xl border border-slate-200 p-6">
@@ -963,14 +1002,7 @@
         </div>
       </section>
     </article>
-
-    <section class="mx-auto w-full max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
-      <div class="ad-box">
-        <span>Advertisement</span>
-      </div>
-    </section>
-
-    <section class="mx-auto w-full max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
+<section class="mx-auto w-full max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
       <div class="mb-8">
         <span class="text-sm font-bold uppercase tracking-wider text-indigo-600">Explore More</span>
         <h2 class="mt-3 text-3xl font-extrabold tracking-tight text-slate-950">Related Tools</h2>
@@ -1120,14 +1152,7 @@
         </div>
       </div>
     </section>
-
-    <section class="mx-auto w-full max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
-      <div class="ad-box">
-        <span>Advertisement</span>
-      </div>
-    </section>
-
-    <section class="mx-auto w-full max-w-5xl px-4 pb-16 sm:px-6 lg:px-8">
+<section class="mx-auto w-full max-w-5xl px-4 pb-16 sm:px-6 lg:px-8">
       <div class="rounded-3xl bg-slate-900 p-6 text-slate-200 shadow-lg sm:p-10">
         <div class="flex items-start gap-4">
           <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-slate-800 text-xl">
@@ -1500,6 +1525,12 @@
         return "";
       }
 
+      function setActionState(enabled) {
+        elements.copyButton.disabled = !enabled;
+        elements.downloadButton.disabled = !enabled;
+        elements.openButton.disabled = !enabled;
+      }
+
       function updateGenerator() {
         try {
           elements.customDimensions.classList.toggle("hidden", elements.aspectRatio.value !== "custom");
@@ -1517,6 +1548,7 @@
             elements.embedCode.value = "";
             elements.videoIdBadge.textContent = "No video selected";
             elements.codeStatus.textContent = "Waiting for input";
+            setActionState(false);
             return;
           }
 
@@ -1528,14 +1560,23 @@
             elements.embedCode.value = "";
             elements.videoIdBadge.textContent = "Invalid video";
             elements.codeStatus.textContent = "Invalid input";
+            setActionState(false);
             return;
           }
 
           if (timeError) {
             showWarning(timeError);
-          } else {
-            hideWarning();
+            elements.previewContainer.classList.add("hidden");
+            elements.emptyPreview.classList.remove("hidden");
+            elements.previewFrame.src = "";
+            elements.embedCode.value = "";
+            elements.videoIdBadge.textContent = `Video ID: ${videoId}`;
+            elements.codeStatus.textContent = "Invalid time setting";
+            setActionState(false);
+            return;
           }
+
+          hideWarning();
 
           const embedUrl = buildEmbedUrl(videoId);
           const code = buildIframeCode(videoId, embedUrl);
@@ -1547,11 +1588,13 @@
           elements.previewFrame.allowFullscreen = elements.fullscreen.checked;
           elements.embedCode.value = code;
           elements.videoIdBadge.textContent = `Video ID: ${videoId}`;
-          elements.codeStatus.textContent = timeError ? "Generated with warning" : "Code generated";
+          elements.codeStatus.textContent = "Code generated";
+          setActionState(true);
         } catch (error) {
           console.error(error);
           showWarning("The embed code could not be generated. Check your input and try again.");
           elements.codeStatus.textContent = "Generation failed";
+          setActionState(false);
         }
       }
 
@@ -1574,7 +1617,10 @@
         } catch (error) {
           elements.embedCode.focus();
           elements.embedCode.select();
-          document.execCommand("copy");
+          const copied = document.execCommand("copy");
+          if (!copied) {
+            throw new Error("Copy command was not accepted.");
+          }
           elements.copyButton.textContent = "Copied!";
 
           setTimeout(() => {
@@ -1713,6 +1759,7 @@ ${code.split("\n").map(line => `    ${line}`).join("\n")}
 
       document.getElementById("currentYear").textContent = new Date().getFullYear();
 
+      setActionState(false);
       updateGenerator();
     })();
   </script>
