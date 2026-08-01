@@ -62,6 +62,63 @@
   }
   </script>
 
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I link to a specific time in a YouTube video?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Paste the YouTube URL into this generator, enter the desired hour, minute, and second, and copy the generated timestamp link."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use a timestamp longer than one hour?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Enter the time as HH:MM:SS, use a readable value such as 2h 10m 5s, or use the separate hour, minute, and second fields."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the tool support youtu.be links?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. It can read youtu.be sharing links and can also generate a new shortened youtu.be timestamp link."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it work with YouTube Shorts?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The tool extracts the video ID from supported Shorts URLs and generates a timestamped watch or shortened link."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this tool download the YouTube video?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. It only creates a link to the original YouTube video. It does not download, copy, edit, or store the video."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What timestamp formats are accepted?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You can use seconds, MM:SS, HH:MM:SS, or text formats such as 1h 30m 15s."
+      }
+    }
+  ]
+}
+  </script>
+
   <style>
     html,
     body {
@@ -104,15 +161,7 @@
       word-break: break-all;
       white-space: pre-wrap;
     }
-
-    .ad-box {
-      width: 100%;
-      max-width: 100%;
-      min-height: 90px;
-      overflow: hidden;
-    }
-
-    .tool-card {
+.tool-card {
       transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
     }
 
@@ -233,23 +282,16 @@
 <body class="min-h-screen bg-slate-50 text-slate-800 antialiased">
   <header class="border-b border-slate-200 bg-white">
     <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-5 sm:px-6 lg:px-8">
-      <a href="https://nodntools.com" class="safe-break text-xl font-extrabold tracking-tight text-slate-900" aria-label="NodnWebTools home">
+      <a href="/" class="safe-break text-xl font-extrabold tracking-tight text-slate-900" aria-label="NodnWebTools home">
         Nodn<span class="text-violet-600">WebTools</span>
       </a>
 
-      <a href="https://nodntools.com" class="rounded-xl border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-600 transition hover:border-violet-300 hover:bg-violet-50 hover:text-violet-700">
+      <a href="/" class="rounded-xl border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-600 transition hover:border-violet-300 hover:bg-violet-50 hover:text-violet-700">
         Home
       </a>
     </div>
   </header>
-
-  <div class="mx-auto max-w-7xl px-4 pt-6 sm:px-6 lg:px-8">
-    <div class="ad-box flex items-center justify-center rounded-2xl border-2 border-dashed border-slate-300 bg-slate-100 px-4 text-center text-sm font-medium text-slate-500">
-      Advertisement
-    </div>
-  </div>
-
-  <main>
+<main>
     <section class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
       <div class="mb-8 max-w-4xl">
         <div class="mb-4 inline-flex items-center gap-2 rounded-full bg-rose-100 px-4 py-2 text-sm font-semibold text-rose-700">
@@ -284,13 +326,15 @@
               <input
                 id="youtubeUrl"
                 type="url"
+                inputmode="url"
+                aria-describedby="youtubeUrlHelp"
                 placeholder="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
                 autocomplete="off"
                 spellcheck="false"
                 class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3.5 text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-violet-500 focus:ring-4 focus:ring-violet-100"
               >
 
-              <p class="mt-2 text-xs leading-5 text-slate-500">
+              <p id="youtubeUrlHelp" class="mt-2 text-xs leading-5 text-slate-500">
                 Existing timestamp parameters will be detected when possible.
               </p>
             </div>
@@ -303,6 +347,8 @@
               <input
                 id="timestampText"
                 type="text"
+                inputmode="text"
+                aria-describedby="timestampHelp"
                 value="1:30"
                 placeholder="Examples: 1:30, 01:15:45, 90, 1h 30m 15s"
                 autocomplete="off"
@@ -310,7 +356,7 @@
                 class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3.5 text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-violet-500 focus:ring-4 focus:ring-violet-100"
               >
 
-              <p class="mt-2 text-xs leading-5 text-slate-500">
+              <p id="timestampHelp" class="mt-2 text-xs leading-5 text-slate-500">
                 Use seconds, MM:SS, HH:MM:SS, or a format such as 1h 20m 30s.
               </p>
             </div>
@@ -379,7 +425,7 @@
               </div>
             </div>
 
-            <div id="warningBox" class="hidden rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm leading-6 text-amber-800" role="alert"></div>
+            <div id="warningBox" class="hidden rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm leading-6 text-amber-800" role="alert" aria-live="assertive"></div>
 
             <div class="mobile-button-grid grid grid-cols-2 gap-3">
               <button
@@ -420,7 +466,7 @@
           <div class="flex flex-wrap items-start justify-between gap-4">
             <div>
               <h2 id="tool-result-heading" class="text-2xl font-bold text-slate-950">Generated result</h2>
-              <p id="videoIdStatus" class="mt-2 text-sm text-slate-500">Enter a valid YouTube URL to begin.</p>
+              <p id="videoIdStatus" class="mt-2 text-sm text-slate-500" aria-live="polite">Enter a valid YouTube URL to begin.</p>
             </div>
 
             <span class="rounded-full bg-emerald-100 px-3 py-1.5 text-xs font-bold text-emerald-700">
@@ -462,7 +508,7 @@
 
             <div class="mt-4 rounded-2xl border border-slate-200 bg-slate-950 p-5">
               <p class="mb-3 text-xs font-bold uppercase tracking-wider text-slate-400">Generated output</p>
-              <code id="generatedOutput" class="mobile-code block min-h-16 text-sm leading-7 text-emerald-300">Paste a YouTube URL to generate a timestamp link.</code>
+              <code id="generatedOutput" class="mobile-code block min-h-16 text-sm leading-7 text-emerald-300" aria-live="polite">Paste a YouTube URL to generate a timestamp link.</code>
             </div>
           </div>
 
@@ -533,14 +579,7 @@
         </section>
       </div>
     </section>
-
-    <section class="mx-auto max-w-7xl px-4 pb-10 sm:px-6 lg:px-8">
-      <div class="ad-box flex items-center justify-center rounded-2xl border-2 border-dashed border-slate-300 bg-slate-100 px-4 text-center text-sm font-medium text-slate-500">
-        Advertisement
-      </div>
-    </section>
-
-    <section class="border-y border-slate-200 bg-white">
+<section class="border-y border-slate-200 bg-white">
       <div class="article-content mx-auto max-w-5xl px-4 py-14 sm:px-6 lg:px-8">
         <div class="max-w-3xl">
           <p class="text-sm font-bold uppercase tracking-[0.18em] text-violet-600">
@@ -646,12 +685,7 @@
         <p>
           The generator normalizes supported inputs into a consistent output. Extra parameters such as playlists, tracking codes, feature labels, and existing timestamps are removed from the final clean link unless they are required for the video itself. This creates a simpler URL that is easier to share and understand.
         </p>
-
-        <div class="ad-box my-12 flex items-center justify-center rounded-2xl border-2 border-dashed border-slate-300 bg-slate-100 px-4 text-center text-sm font-medium text-slate-500">
-          Advertisement
-        </div>
-
-        <h2>Popular Uses for YouTube Timestamp Links</h2>
+<h2>Popular Uses for YouTube Timestamp Links</h2>
 
         <h3>Sharing a specific tutorial step</h3>
 
@@ -786,12 +820,7 @@
         <p>
           Sharing a normal link to publicly available content is different from downloading, copying, or republishing the video. Users remain responsible for complying with copyright law, YouTube's terms, privacy rules, workplace policies, and any restrictions that apply to the content.
         </p>
-
-        <div class="ad-box my-12 flex items-center justify-center rounded-2xl border-2 border-dashed border-slate-300 bg-slate-100 px-4 text-center text-sm font-medium text-slate-500">
-          Advertisement
-        </div>
-
-        <h2>Frequently Asked Questions</h2>
+<h2>Frequently Asked Questions</h2>
 
         <div class="mt-7 space-y-4">
           <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
@@ -913,15 +942,15 @@
           </p>
         </a>
 
-        <a href="/youtube-video-id-extractor" class="tool-card group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm hover:border-rose-300 hover:shadow-lg">
+        <a href="/youtube-playlist-duration-calculator" class="tool-card group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm hover:border-rose-300 hover:shadow-lg">
           <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-rose-50 text-2xl transition group-hover:bg-rose-600 group-hover:text-white">
-            ID
+            ▶
           </div>
           <h3 class="mt-5 text-lg font-bold text-slate-900 group-hover:text-rose-700">
-            YouTube Video ID Extractor
+            YouTube Playlist Duration Calculator
           </h3>
           <p class="mt-2 text-sm leading-6 text-slate-600">
-            Extract the unique 11-character video ID from common YouTube URL formats.
+            Calculate total playlist watch time and compare the duration at different playback speeds.
           </p>
         </a>
 
@@ -974,14 +1003,7 @@
         </a>
       </div>
     </section>
-
-    <section class="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
-      <div class="ad-box flex items-center justify-center rounded-2xl border-2 border-dashed border-slate-300 bg-slate-100 px-4 text-center text-sm font-medium text-slate-500">
-        Advertisement
-      </div>
-    </section>
-
-    <section class="mx-auto max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
+<section class="mx-auto max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
       <div class="rounded-3xl border border-slate-700 bg-slate-900 p-6 text-slate-300 shadow-xl sm:p-8">
         <h2 class="text-2xl font-black text-white">Legal Disclaimer</h2>
 
@@ -1012,7 +1034,7 @@
     <div class="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-8 text-sm text-slate-500 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
       <p>© <span id="currentYear"></span> NodnWebTools. All rights reserved.</p>
 
-      <a href="https://nodntools.com" class="font-semibold text-slate-600 transition hover:text-violet-700">
+      <a href="/" class="font-semibold text-slate-600 transition hover:text-violet-700">
         Visit NodnWebTools
       </a>
     </div>
@@ -1113,7 +1135,7 @@
             }
           }
         } catch (error) {
-          console.warn("URL parsing failed:", error);
+          // Continue with pattern matching for pasted or partially formatted URLs.
         }
 
         const patterns = [
@@ -1612,6 +1634,15 @@
         }
 
         generateLink();
+      });
+
+      [elements.youtubeUrl, elements.timestampText].forEach((input) => {
+        input.addEventListener("keydown", (event) => {
+          if (event.key === "Enter") {
+            event.preventDefault();
+            generateLink();
+          }
+        });
       });
 
       elements.useShortUrl.addEventListener("change", () => {
