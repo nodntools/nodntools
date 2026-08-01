@@ -9,12 +9,14 @@
   <meta name="description" content="Calculate monthly and annual subscription costs, savings, and long-term opportunity cost in your browser." />
   <meta name="keywords" content="subscription cost calculator, monthly subscription tracker, annual subscription cost calculator, subscription fatigue calculator, recurring payment calculator, streaming cost calculator, SaaS cost calculator, monthly bill tracker, subscription budget calculator, hidden subscription cost, cancel unused subscriptions, subscription savings calculator, opportunity cost calculator, recurring expenses calculator, household budget tool, streaming services calculator, music subscription cost, software subscription cost, gym membership calculator, subscription audit tool" />
   <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow" />
+  <link rel="canonical" href="https://nodntools.com/subscription" />
   <meta name="author" content="NodnWebTools" />
 
   <meta property="og:title" content="Subscription Cost Calculator | Monthly Tracker" />
   <meta property="og:description" content="Calculate monthly and annual subscription costs, savings, and long-term opportunity cost in your browser." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://nodntools.com/subscription.html" />
+  <meta property="og:url" content="https://nodntools.com/subscription" />
   <meta property="og:site_name" content="NodnWebTools" />
 
   <meta name="twitter:card" content="summary_large_image" />
@@ -51,7 +53,7 @@
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "Subscription Cost Calculator",
-    "url": "https://nodntools.com/subscription.html",
+    "url": "https://nodntools.com/subscription",
     "applicationCategory": "FinanceApplication",
     "operatingSystem": "Any modern web browser",
     "description": "A free browser-based subscription cost calculator that estimates monthly subscription costs, annual recurring expenses, 20 percent savings, and 10-year opportunity cost.",
@@ -78,6 +80,71 @@
       "Downloadable text report",
       "Client-side browser processing",
       "Mobile-safe responsive layout"
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is a subscription cost calculator?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A subscription cost calculator adds recurring payments together and estimates monthly cost, annual cost, potential savings, and long-term opportunity cost."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this tool connect to my bank account?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. This tool does not connect to your bank, credit card, app store, or subscription accounts. You enter amounts manually."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How often should I review subscriptions?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A quarterly review is practical for most people. You should also review subscriptions after price increases, free trials, annual renewals, or major budget changes."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is subscription fatigue?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Subscription fatigue is the frustration and budget pressure that can happen when too many recurring payments accumulate over time."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What should I cancel first?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Start with unused services, duplicate services, forgotten free trials, subscriptions with recent price increases, and services you would not sign up for again today."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is opportunity cost guaranteed?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. The opportunity cost result is an illustration based on the annual return assumption you enter. It is not a guaranteed investment return."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use this for business subscriptions?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Freelancers and small businesses can use it to estimate recurring software, SaaS, hosting, cloud, productivity, and membership costs."
+        }
+      }
     ]
   }
   </script>
@@ -135,22 +202,6 @@
       overflow-x: auto;
     }
 
-    .ad-box {
-      width: 100%;
-      max-width: 100%;
-      min-height: 90px;
-      overflow: hidden;
-      border: 1px dashed #cbd5e1;
-      background: #f8fafc;
-      color: #94a3b8;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      border-radius: 1.25rem;
-      padding: 1rem;
-    }
-
     @media (max-width: 640px) {
       .mobile-card,
       .mobile-panel,
@@ -165,13 +216,6 @@
 
       button {
         width: 100%;
-      }
-
-      .ad-box {
-        min-height: 90px;
-        border-radius: 1rem;
-        padding: .875rem;
-        font-size: .875rem;
       }
 
       h1 {
@@ -201,11 +245,6 @@
         border-radius: 1rem !important;
       }
 
-      .ad-box {
-        min-height: 82px;
-        font-size: .8rem;
-      }
-
       h1 {
         font-size: 1.75rem !important;
       }
@@ -226,11 +265,7 @@
   </header>
 
   <main class="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
-    <div class="ad-box mb-6">
-      Top Ad Area
-    </div>
-
-    <section class="grid grid-cols-1 gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
+<section class="grid grid-cols-1 gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
       <aside class="mobile-card rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-8 lg:sticky lg:top-8">
         <span class="inline-flex rounded-full bg-accent-50 px-4 py-2 text-sm font-bold text-accent-700 ring-1 ring-accent-100">
           Subscription Cost Calculator
@@ -249,7 +284,7 @@
             <label for="videoCost" class="mb-2 block text-sm font-bold text-slate-700">Video Streaming</label>
             <div class="relative">
               <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">$</span>
-              <input type="number" id="videoCost" inputmode="decimal" min="0" step="0.01" value="35" placeholder="35.00" class="w-full rounded-2xl border border-slate-200 bg-slate-50 py-4 pl-8 pr-4 text-lg font-bold text-slate-950 outline-none transition focus:border-accent-400 focus:bg-white focus:ring-4 focus:ring-accent-100" />
+              <input type="number" id="videoCost" inputmode="decimal" min="0" max="1000000" step="0.01" value="35" placeholder="35.00" class="w-full rounded-2xl border border-slate-200 bg-slate-50 py-4 pl-8 pr-4 text-lg font-bold text-slate-950 outline-none transition focus:border-accent-400 focus:bg-white focus:ring-4 focus:ring-accent-100" />
             </div>
             <p class="mt-2 text-sm leading-6 text-slate-500">
               Netflix, Disney+, Hulu, YouTube Premium, Prime Video, Max, Apple TV+, sports packages, and other video apps.
@@ -260,7 +295,7 @@
             <label for="musicCost" class="mb-2 block text-sm font-bold text-slate-700">Music and Audio</label>
             <div class="relative">
               <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">$</span>
-              <input type="number" id="musicCost" inputmode="decimal" min="0" step="0.01" value="12" placeholder="12.00" class="w-full rounded-2xl border border-slate-200 bg-slate-50 py-4 pl-8 pr-4 text-lg font-bold text-slate-950 outline-none transition focus:border-accent-400 focus:bg-white focus:ring-4 focus:ring-accent-100" />
+              <input type="number" id="musicCost" inputmode="decimal" min="0" max="1000000" step="0.01" value="12" placeholder="12.00" class="w-full rounded-2xl border border-slate-200 bg-slate-50 py-4 pl-8 pr-4 text-lg font-bold text-slate-950 outline-none transition focus:border-accent-400 focus:bg-white focus:ring-4 focus:ring-accent-100" />
             </div>
             <p class="mt-2 text-sm leading-6 text-slate-500">
               Spotify, Apple Music, YouTube Music, Amazon Music, podcasts, audiobook apps, and premium audio memberships.
@@ -271,7 +306,7 @@
             <label for="softwareCost" class="mb-2 block text-sm font-bold text-slate-700">Software / SaaS</label>
             <div class="relative">
               <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">$</span>
-              <input type="number" id="softwareCost" inputmode="decimal" min="0" step="0.01" value="45" placeholder="45.00" class="w-full rounded-2xl border border-slate-200 bg-slate-50 py-4 pl-8 pr-4 text-lg font-bold text-slate-950 outline-none transition focus:border-accent-400 focus:bg-white focus:ring-4 focus:ring-accent-100" />
+              <input type="number" id="softwareCost" inputmode="decimal" min="0" max="1000000" step="0.01" value="45" placeholder="45.00" class="w-full rounded-2xl border border-slate-200 bg-slate-50 py-4 pl-8 pr-4 text-lg font-bold text-slate-950 outline-none transition focus:border-accent-400 focus:bg-white focus:ring-4 focus:ring-accent-100" />
             </div>
             <p class="mt-2 text-sm leading-6 text-slate-500">
               iCloud, Google One, Adobe, Microsoft 365, ChatGPT, Notion, Canva, VPN, website tools, and productivity apps.
@@ -282,7 +317,7 @@
             <label for="otherCost" class="mb-2 block text-sm font-bold text-slate-700">Other Recurring Payments</label>
             <div class="relative">
               <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">$</span>
-              <input type="number" id="otherCost" inputmode="decimal" min="0" step="0.01" value="30" placeholder="30.00" class="w-full rounded-2xl border border-slate-200 bg-slate-50 py-4 pl-8 pr-4 text-lg font-bold text-slate-950 outline-none transition focus:border-accent-400 focus:bg-white focus:ring-4 focus:ring-accent-100" />
+              <input type="number" id="otherCost" inputmode="decimal" min="0" max="1000000" step="0.01" value="30" placeholder="30.00" class="w-full rounded-2xl border border-slate-200 bg-slate-50 py-4 pl-8 pr-4 text-lg font-bold text-slate-950 outline-none transition focus:border-accent-400 focus:bg-white focus:ring-4 focus:ring-accent-100" />
             </div>
             <p class="mt-2 text-sm leading-6 text-slate-500">
               Gym memberships, delivery passes, Amazon Prime, news apps, cloud services, clubs, kids apps, memberships, and lifestyle subscriptions.
@@ -292,7 +327,7 @@
           <div>
             <label for="annualReturn" class="mb-2 block text-sm font-bold text-slate-700">Opportunity Cost Return Assumption</label>
             <div class="relative">
-              <input type="number" id="annualReturn" inputmode="decimal" min="0" step="0.1" value="7" placeholder="7" class="w-full rounded-2xl border border-slate-200 bg-slate-50 py-4 pl-4 pr-10 text-lg font-bold text-slate-950 outline-none transition focus:border-accent-400 focus:bg-white focus:ring-4 focus:ring-accent-100" />
+              <input type="number" id="annualReturn" inputmode="decimal" min="0" max="100" step="0.1" value="7" placeholder="7" class="w-full rounded-2xl border border-slate-200 bg-slate-50 py-4 pl-4 pr-10 text-lg font-bold text-slate-950 outline-none transition focus:border-accent-400 focus:bg-white focus:ring-4 focus:ring-accent-100" />
               <span class="absolute right-4 top-1/2 -translate-y-1/2 text-sm font-bold text-slate-400">%</span>
             </div>
             <p class="mt-2 text-sm leading-6 text-slate-500">
@@ -313,9 +348,11 @@
             Reset
           </button>
 
-          <div id="copyFeedback" class="hidden rounded-2xl bg-emerald-50 px-4 py-3 text-sm font-bold text-emerald-700">
+          <div id="copyFeedback" role="status" aria-live="polite" class="hidden rounded-2xl bg-emerald-50 px-4 py-3 text-sm font-bold text-emerald-700">
             Copied!
           </div>
+
+          <div id="warningBox" role="alert" aria-live="assertive" class="hidden rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-semibold leading-6 text-amber-800"></div>
 
           <div class="rounded-2xl border border-accent-100 bg-accent-50 p-4 text-sm leading-6 text-accent-800">
             <strong>Privacy note:</strong> This calculator runs locally in your browser. Your subscription amounts are not submitted to a backend server by this tool.
@@ -332,7 +369,7 @@
             </p>
           </div>
 
-          <div id="result" class="rounded-3xl border border-accent-100 bg-gradient-to-br from-accent-50 via-indigo-50 to-slate-50 p-5">
+          <div id="result" aria-live="polite" class="rounded-3xl border border-accent-100 bg-gradient-to-br from-accent-50 via-indigo-50 to-slate-50 p-5">
             <p class="text-sm font-black uppercase tracking-wide text-accent-700">
               Total Monthly Cost
             </p>
@@ -401,11 +438,7 @@
               based on the current monthly total.
             </div>
           </div>
-
-          <div class="ad-box mt-6">
-            Ad Area Below Result
-          </div>
-        </div>
+</div>
 
         <section class="mobile-card rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-8">
           <h2 class="text-2xl font-black tracking-tight text-slate-950">Quick Examples</h2>
@@ -432,12 +465,7 @@
         </section>
       </section>
     </section>
-
-    <div class="ad-box my-8">
-      Ad Area Below Main Tool and Result Section
-    </div>
-
-    <article class="mobile-card rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-8 lg:p-10">
+<article class="mobile-card rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-8 lg:p-10">
       <div class="mx-auto max-w-4xl">
         <span class="inline-flex rounded-full bg-accent-50 px-4 py-2 text-sm font-bold text-accent-700 ring-1 ring-accent-100">
           Subscription Budget Guide
@@ -473,12 +501,7 @@
           <p>
             Another reason subscriptions are underestimated is billing fragmentation. One charge may appear on a credit card. Another may appear through an app store. A third may renew annually through PayPal. A fourth may be paid through a business card. A fifth may be shared with a family member. Some charges may be monthly, while others renew annually. When charges are spread across different accounts and billing cycles, it becomes difficult to know the true monthly subscription cost without a dedicated tracker.
           </p>
-
-          <div class="ad-box my-8">
-            Middle Content Ad Area
-          </div>
-
-          <h3 class="text-2xl font-black text-slate-950">Popular Subscription Categories to Review</h3>
+<h3 class="text-2xl font-black text-slate-950">Popular Subscription Categories to Review</h3>
           <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
             <article class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
               <h4 class="font-black text-slate-950">Streaming and Entertainment</h4>
@@ -535,12 +558,7 @@
           <p>
             Annual cost is especially important when comparing subscriptions to financial goals. A few cancelled services could fund an emergency account, travel savings, a child’s activity, a debt payment, a professional course, or a retirement contribution. The goal is not to remove every subscription. The goal is to understand whether the value received is worth the ongoing cost.
           </p>
-
-          <div class="ad-box my-8">
-            Bottom Content Ad Area
-          </div>
-
-          <h3 class="text-2xl font-black text-slate-950">Opportunity Cost of Subscriptions</h3>
+<h3 class="text-2xl font-black text-slate-950">Opportunity Cost of Subscriptions</h3>
           <p>
             Opportunity cost is the value of the alternative you give up when you spend money. If you spend $100 per month on subscriptions, that money cannot also be used for investing, emergency savings, debt repayment, travel, education, or other priorities. The 10-year opportunity cost estimate in this calculator shows what the current monthly subscription amount could grow to if redirected monthly at the assumed annual return. This is not a prediction or investment guarantee. It is a planning illustration.
           </p>
@@ -774,11 +792,7 @@
         </div>
       </div>
     </section>
-
-    <div class="ad-box mt-8">
-      Bottom Ad Area
-    </div>
-  </main>
+</main>
 
   <footer class="mt-10 border-t border-slate-200 bg-white">
     <div class="mx-auto flex w-full max-w-7xl flex-col gap-3 px-4 py-6 text-sm text-slate-500 sm:px-6 lg:px-8">
@@ -810,6 +824,7 @@
       const downloadBtn = document.getElementById('downloadBtn');
       const resetBtn = document.getElementById('resetBtn');
       const copyFeedback = document.getElementById('copyFeedback');
+      const warningBox = document.getElementById('warningBox');
       const exampleButtons = document.querySelectorAll('.exampleBtn');
 
       let latestReport = '';
@@ -832,9 +847,20 @@
         }).format(safeValue);
       }
 
-      function sanitizeNumber(value, fallback) {
+      function sanitizeNumber(value, fallback, maximum) {
         const number = parseFloat(String(value).replace(/,/g, ''));
-        return isNaN(number) || number < 0 ? fallback : number;
+        if (!Number.isFinite(number) || number < 0) return fallback;
+        return Math.min(number, maximum);
+      }
+
+      function showWarning(message) {
+        warningBox.textContent = message;
+        warningBox.classList.remove('hidden');
+      }
+
+      function hideWarning() {
+        warningBox.textContent = '';
+        warningBox.classList.add('hidden');
       }
 
       function calculateOpportunityCost(monthlyAmount, years, annualRate) {
@@ -849,11 +875,18 @@
 
       function calculateSubscriptions() {
         try {
-          const videoCost = sanitizeNumber(videoCostInput.value, 0);
-          const musicCost = sanitizeNumber(musicCostInput.value, 0);
-          const softwareCost = sanitizeNumber(softwareCostInput.value, 0);
-          const otherCost = sanitizeNumber(otherCostInput.value, 0);
-          const annualReturn = sanitizeNumber(annualReturnInput.value, 0) / 100;
+          hideWarning();
+
+          const videoCost = sanitizeNumber(videoCostInput.value, 0, 1000000);
+          const musicCost = sanitizeNumber(musicCostInput.value, 0, 1000000);
+          const softwareCost = sanitizeNumber(softwareCostInput.value, 0, 1000000);
+          const otherCost = sanitizeNumber(otherCostInput.value, 0, 1000000);
+          const annualReturnPercent = sanitizeNumber(annualReturnInput.value, 0, 100);
+          const annualReturn = annualReturnPercent / 100;
+
+          if (Number(annualReturnInput.value) > 100) {
+            showWarning('The annual return assumption is limited to 100% to keep the estimate meaningful.');
+          }
 
           const totalMonthlyCost = videoCost + musicCost + softwareCost + otherCost;
           const totalAnnualCost = totalMonthlyCost * 12;
@@ -890,6 +923,7 @@
           ].join('\n');
         } catch (error) {
           latestReport = '';
+          showWarning('The subscription estimate could not be completed. Please review your inputs and try again.');
         }
       }
 
@@ -945,7 +979,9 @@
           document.body.appendChild(link);
           link.click();
           document.body.removeChild(link);
-          URL.revokeObjectURL(url);
+          setTimeout(function () {
+            URL.revokeObjectURL(url);
+          }, 1000);
         } catch (error) {
           showCopyFeedback('Download failed. Please copy the result instead.');
         }
@@ -957,6 +993,7 @@
         softwareCostInput.value = '45';
         otherCostInput.value = '30';
         annualReturnInput.value = '7';
+        hideWarning();
         calculateSubscriptions();
         videoCostInput.focus();
       }
@@ -978,10 +1015,6 @@
           annualReturnInput.value = button.dataset.return || '7';
           calculateSubscriptions();
         });
-      });
-
-      window.addEventListener('resize', function () {
-        document.body.style.overflowX = 'hidden';
       });
 
       calculateSubscriptions();
