@@ -3,18 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-	<link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="icon" type="image/png" href="/favicon.png" />
 
   <title>Free QR Code Generator | Custom QR Maker</title>
   <meta name="description" content="Create custom QR codes for URLs, Wi-Fi, text, contacts, menus, and marketing with free PNG and SVG downloads." />
   <meta name="keywords" content="QR code generator, free QR code generator, QR code maker, custom QR code generator, WiFi QR code generator, URL QR code generator, text QR code generator, contact QR code generator, vCard QR code, business card QR code, restaurant menu QR code, event QR code, marketing QR code, PNG QR code download, SVG QR code download, create QR code online, browser QR code maker, QR code tool, static QR code generator, click to scan QR code" />
   <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow" />
   <meta name="author" content="NodnWebTools" />
+  <link rel="canonical" href="https://nodntools.com/qr-generator" />
 
   <meta property="og:title" content="Free QR Code Generator | Custom QR Maker" />
   <meta property="og:description" content="Generate custom QR codes for URLs, Wi-Fi, text, contacts, menus, and campaigns directly in your browser." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://nodntools.com/qr-generator.html" />
+  <meta property="og:url" content="https://nodntools.com/qr-generator" />
   <meta property="og:site_name" content="NodnWebTools" />
 
   <meta name="twitter:card" content="summary_large_image" />
@@ -53,8 +55,9 @@
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "Free QR Code Generator",
-    "url": "https://nodntools.com/qr-generator.html",
-    "applicationCategory": "UtilityApplication",
+    "url": "https://nodntools.com/qr-generator",
+    "applicationCategory": "UtilitiesApplication",
+    "browserRequirements": "Requires JavaScript and a modern browser.",
     "operatingSystem": "Any modern web browser",
     "description": "A free client-side QR code generator that creates custom QR codes for URLs, Wi-Fi access, plain text, contact details, restaurant menus, event pages, and marketing campaigns.",
     "offers": {
@@ -78,6 +81,71 @@
       "SVG QR code download",
       "Client-side browser processing",
       "Responsive mobile-safe layout"
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Are QR codes free to generate?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Static QR codes can be generated for free with this browser-based tool. You can download the generated QR code as a PNG or SVG file."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do QR codes expire?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Static QR codes do not expire by themselves. However, if the encoded URL stops working or the destination page is removed, the QR code may still scan but lead to a broken page."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I create a Wi-Fi QR code?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Use the Wi-Fi format shown in the tool, replacing the network name and password with your own credentials. For business or public spaces, a separate guest network is recommended."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the best QR code color?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A dark foreground on a light background is usually best. High contrast helps phones scan the QR code accurately. Avoid low-contrast or overly decorative combinations."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Should I download PNG or SVG?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "PNG is convenient for general digital use and simple print projects. SVG is better when you need more flexible resizing or plan to use the QR code in design workflows."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can smartphones scan QR codes without an app?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Most modern iPhone and Android devices can scan QR codes with the built-in camera app or system scanner. Older devices may require a QR scanner app."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is my QR code content uploaded to a server?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The QR code generation process runs locally in your browser. This tool does not require a backend upload for the core QR code creation feature."
+        }
+      }
     ]
   }
   </script>
@@ -157,22 +225,6 @@
       overflow-x: auto;
     }
 
-    .ad-box {
-      width: 100%;
-      max-width: 100%;
-      min-height: 90px;
-      overflow: hidden;
-      border: 1px dashed #cbd5e1;
-      background: #f8fafc;
-      color: #94a3b8;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      border-radius: 1.25rem;
-      padding: 1rem;
-    }
-
     input[type="color"] {
       -webkit-appearance: none;
       appearance: none;
@@ -241,13 +293,6 @@
         width: 100%;
       }
 
-      .ad-box {
-        min-height: 90px;
-        border-radius: 1rem;
-        padding: .875rem;
-        font-size: .875rem;
-      }
-
       #qrCanvasWrap {
         padding: 0.75rem !important;
       }
@@ -284,11 +329,6 @@
         font-size: 1.75rem !important;
       }
 
-      .ad-box {
-        min-height: 82px;
-        font-size: .8rem;
-      }
-
       #qrCanvasWrap canvas,
       #qrCanvasWrap img {
         max-width: min(100%, 72vw) !important;
@@ -311,9 +351,6 @@
   </header>
 
   <main class="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
-    <div class="ad-box mb-6">
-      Top Ad Area
-    </div>
 
     <section class="grid w-full grid-cols-1 gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
       <aside class="mobile-card w-full rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-8 lg:sticky lg:top-8">
@@ -337,7 +374,10 @@
               rows="8"
               class="w-full resize-none rounded-3xl border border-slate-200 bg-slate-50 px-5 py-4 text-base leading-7 text-slate-950 outline-none transition placeholder:text-slate-400 focus:border-accent-400 focus:bg-white focus:ring-4 focus:ring-accent-100"
               placeholder="Enter a website URL, text, email, phone number, Wi-Fi details, or contact information..."
+              maxlength="2000"
+              aria-describedby="qrInputHelp"
             ></textarea>
+            <p id="qrInputHelp" class="mt-2 text-xs leading-5 text-slate-500">Keep the content concise for easier scanning. Very long content creates a denser QR code.</p>
           </div>
 
           <div class="rounded-2xl bg-accent-50 p-4 ring-1 ring-accent-100">
@@ -390,7 +430,7 @@
             </div>
           </div>
 
-          <div id="statusMessage" class="hidden rounded-2xl border border-red-100 bg-red-50 px-4 py-3 text-sm font-semibold leading-6 text-red-700"></div>
+          <div id="statusMessage" class="hidden rounded-2xl border border-red-100 bg-red-50 px-4 py-3 text-sm font-semibold leading-6 text-red-700" role="alert" aria-live="polite"></div>
 
           <div class="rounded-2xl border border-accent-100 bg-accent-50 p-4 text-sm leading-6 text-accent-800">
             <strong>Privacy note:</strong> QR codes are generated directly in your browser. Your content is not uploaded to a backend server by this tool.
@@ -446,17 +486,9 @@
               Reset
             </button>
           </div>
-
-          <div class="ad-box">
-            Ad Area Below QR Generator
-          </div>
         </div>
       </section>
     </section>
-
-    <div class="ad-box my-8">
-      Ad Area Below Main Tool and Result Section
-    </div>
 
     <article class="mobile-card rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-8 lg:p-10">
       <div class="mx-auto max-w-4xl">
@@ -489,10 +521,6 @@
           <p>
             QR codes can store different kinds of information. A URL QR code opens a web address. A text QR code displays written content. A Wi-Fi QR code can help a device connect to a wireless network. A vCard QR code can save contact information. An email QR code can prepare an email message. A phone QR code can open a dialer. An SMS QR code can prepare a text message. A location QR code can open a map destination. This flexibility makes QR codes useful for both personal organization and business communication.
           </p>
-
-          <div class="ad-box my-8">
-            Middle Content Ad Area
-          </div>
 
           <h3 class="text-2xl font-black text-slate-950">How This QR Code Generator Works</h3>
           <p>
@@ -569,10 +597,6 @@
           <p>
             Size matters as well. A QR code printed on a business card can be smaller than a QR code printed on a wall poster, but it still needs to be large enough for a phone camera to focus. The scanning distance should influence the printed size. If people will scan from a table, counter, or handout, a smaller QR code may work. If people will scan from across a room, hallway, storefront, or outdoor sign, use a larger code and test it from the expected viewing distance.
           </p>
-
-          <div class="ad-box my-8">
-            Bottom Content Ad Area
-          </div>
 
           <h3 class="text-2xl font-black text-slate-950">PNG vs. SVG QR Code Downloads</h3>
           <p>
@@ -800,10 +824,11 @@
         </div>
       </div>
     </section>
-
-    <div class="ad-box mt-8">
-      Bottom Ad Area
-    </div>
+    <noscript>
+      <div class="mt-8 rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm leading-6 text-amber-900">
+        This QR code generator requires JavaScript. Enable JavaScript in your browser to create and download QR codes.
+      </div>
+    </noscript>
   </main>
 
   <footer class="mt-10 border-t border-slate-200 bg-white">
@@ -865,6 +890,26 @@
         return selectedSize;
       }
 
+      function getRelativeLuminance(hexColor) {
+        const hex = String(hexColor || '').replace('#', '');
+        if (!/^[0-9a-fA-F]{6}$/.test(hex)) return 0;
+
+        const channels = [0, 2, 4].map(function (index) {
+          const value = parseInt(hex.slice(index, index + 2), 16) / 255;
+          return value <= 0.03928 ? value / 12.92 : Math.pow((value + 0.055) / 1.055, 2.4);
+        });
+
+        return 0.2126 * channels[0] + 0.7152 * channels[1] + 0.0722 * channels[2];
+      }
+
+      function getContrastRatio(colorA, colorB) {
+        const luminanceA = getRelativeLuminance(colorA);
+        const luminanceB = getRelativeLuminance(colorB);
+        const lighter = Math.max(luminanceA, luminanceB);
+        const darker = Math.min(luminanceA, luminanceB);
+        return (lighter + 0.05) / (darker + 0.05);
+      }
+
       function generateQrCode() {
         try {
           clearError();
@@ -876,6 +921,12 @@
 
           if (!text) {
             setEmptyState();
+            return;
+          }
+
+          if (getContrastRatio(darkColor, lightColor) < 3) {
+            setEmptyState();
+            showError('Choose colors with stronger contrast. A dark foreground on a light background scans more reliably.');
             return;
           }
 
@@ -912,6 +963,9 @@
             }
 
             const tempWrap = document.createElement('div');
+            const cleanupTempWrap = function () {
+              if (tempWrap.isConnected) tempWrap.remove();
+            };
             tempWrap.style.position = 'fixed';
             tempWrap.style.left = '-9999px';
             tempWrap.style.top = '-9999px';
@@ -933,7 +987,7 @@
               const img = tempWrap.querySelector('img');
 
               if (canvas) {
-                document.body.removeChild(tempWrap);
+                cleanupTempWrap();
                 resolve(canvas);
                 return;
               }
@@ -948,18 +1002,18 @@
                   ctx.fillStyle = backgroundColor.value || '#ffffff';
                   ctx.fillRect(0, 0, exportSize, exportSize);
                   ctx.drawImage(image, 0, 0, exportSize, exportSize);
-                  document.body.removeChild(tempWrap);
+                  cleanupTempWrap();
                   resolve(exportCanvas);
                 };
                 image.onerror = function () {
-                  document.body.removeChild(tempWrap);
+                  cleanupTempWrap();
                   reject(new Error('Image export failed.'));
                 };
                 image.src = img.src;
                 return;
               }
 
-              document.body.removeChild(tempWrap);
+              cleanupTempWrap();
               reject(new Error('QR canvas was not created.'));
             }, 60);
           } catch (error) {
@@ -1013,7 +1067,9 @@
           const blob = new Blob([svg], { type: 'image/svg+xml;charset=utf-8' });
           const url = URL.createObjectURL(blob);
           downloadFile('qr-code.svg', url);
-          URL.revokeObjectURL(url);
+          window.setTimeout(function () {
+            URL.revokeObjectURL(url);
+          }, 1000);
         } catch (error) {
           showError('SVG download failed. Please generate a QR code and try again.');
         }
