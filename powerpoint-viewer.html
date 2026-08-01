@@ -8,9 +8,13 @@
   <meta name="description" content="Open, preview, search, and read PPTX PowerPoint files locally in your browser with a free online viewer." />
   <meta name="keywords" content="PowerPoint viewer, PPTX viewer, online PowerPoint viewer, open PPTX online, view PowerPoint online, presentation viewer, slide viewer, browser PPTX reader, free PPTX preview, client-side PowerPoint viewer, PowerPoint file reader, PPTX text extractor" />
   <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow" />
+  <link rel="canonical" href="https://nodntools.com/powerpoint-viewer" />
   <meta property="og:title" content="PowerPoint Viewer Online for PPTX Files" />
   <meta property="og:description" content="Preview PPTX presentations directly in your browser with slide navigation, text extraction, search, copy, and download tools." />
   <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://nodntools.com/powerpoint-viewer" />
+  <meta property="og:site_name" content="NodnWebTools" />
 
   <link rel="icon" type="image/png" href="/favicon.png" />
 
@@ -50,6 +54,79 @@
   }
   </script>
 
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is this PowerPoint viewer free to use?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. This PPTX viewer is free to use in a modern browser for presentation preview, text extraction, and slide browsing."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are PowerPoint files uploaded to a server?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The selected presentation is processed locally in the browser for preview. The tool does not intentionally upload the PPTX file for rendering."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can this viewer open old PPT files?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. This page supports PPTX files. Older PPT files must be converted to PPTX with a compatible presentation application first."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does my slide look different from PowerPoint?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The browser viewer creates a simplified preview. Complex animations, transitions, charts, SmartArt, custom fonts, video, audio, and special effects may not render exactly like Microsoft PowerPoint."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I edit a PowerPoint file with this tool?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. This is a viewing and extraction tool. Use a presentation editor when you need to change slides."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I copy text from the presentation?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. The tool extracts readable slide text where available, allowing you to copy it or export it as a local text file."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does it work on mobile devices?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. The page is responsive, although very large or complex PPTX files may perform better on a desktop or laptop."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I export slides as images?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. You can export the currently displayed simplified slide preview as a PNG image."
+        }
+      }
+    ]
+  }
+  </script>
+
   <style>
     html,
     body {
@@ -79,7 +156,6 @@
     .mobile-panel,
     .mobile-preview,
     .mobile-code,
-    .ad-box,
     input,
     textarea,
     select,
@@ -93,19 +169,6 @@
       max-width: 100%;
     }
 
-    .ad-box {
-      min-height: 90px;
-      border: 2px dashed #cbd5e1;
-      background: #f8fafc;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      color: #64748b;
-      padding: 1rem;
-      border-radius: 1rem;
-      overflow: hidden;
-    }
 
     .drop-zone.drag-active {
       border-color: #6366f1;
@@ -260,11 +323,6 @@
         border-radius: 0.85rem;
       }
 
-      .ad-box {
-        border-radius: 0.75rem;
-        min-height: 82px;
-        font-size: 0.8rem;
-      }
 
       button,
       input,
@@ -293,14 +351,6 @@
   </header>
 
   <main>
-    <section class="mx-auto max-w-7xl px-4 pt-6 sm:px-6 lg:px-8">
-      <div class="ad-box">
-        <div>
-          <div class="font-semibold text-slate-600">Advertisement</div>
-          <div class="mt-1 text-xs text-slate-500">Top ad area</div>
-        </div>
-      </div>
-    </section>
 
     <section class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
       <div class="mb-8 max-w-4xl">
@@ -529,14 +579,6 @@
       </div>
     </section>
 
-    <section class="mx-auto max-w-7xl px-4 pb-8 sm:px-6 lg:px-8">
-      <div class="ad-box">
-        <div>
-          <div class="font-semibold text-slate-600">Advertisement</div>
-          <div class="mt-1 text-xs text-slate-500">Ad area below the PowerPoint viewer</div>
-        </div>
-      </div>
-    </section>
 
     <section class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
       <article class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8 lg:p-12">
@@ -586,12 +628,6 @@
           </div>
         </div>
 
-        <div class="ad-box mt-10">
-          <div>
-            <div class="font-semibold text-slate-600">Advertisement</div>
-            <div class="mt-1 text-xs text-slate-500">Middle content ad area</div>
-          </div>
-        </div>
 
         <div class="mt-12 max-w-4xl space-y-10">
           <section>
@@ -729,12 +765,6 @@
           </section>
         </div>
 
-        <div class="ad-box mt-10">
-          <div>
-            <div class="font-semibold text-slate-600">Advertisement</div>
-            <div class="mt-1 text-xs text-slate-500">Bottom content ad area</div>
-          </div>
-        </div>
 
         <div class="mt-12 max-w-4xl space-y-10">
           <section>
@@ -879,9 +909,9 @@
         </a>
 
         <a href="/excel-viewer" class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-indigo-300 hover:shadow-md">
-          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-50 text-2xl transition group-hover:bg-amber-500 group-hover:text-white">🎬</div>
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-50 text-2xl transition group-hover:bg-amber-500 group-hover:text-white">📈</div>
           <h3 class="mt-4 text-lg font-bold text-slate-900 group-hover:text-indigo-700">Excel Viewer</h3>
-          <p class="mt-2 text-sm leading-6 text-slate-600"> Open XLSX, XLS, and CSV files directly in your browser with worksheet navigation, search, filtering, sorting, and export tools.</p>
+          <p class="mt-2 text-sm leading-6 text-slate-600">Open XLSX, XLS, and CSV files directly in your browser with worksheet navigation, search, filtering, sorting, and export tools.</p>
         </a>
       </div>
     </section>
@@ -967,14 +997,6 @@
       </div>
     </section>
 
-    <section class="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
-      <div class="ad-box">
-        <div>
-          <div class="font-semibold text-slate-600">Advertisement</div>
-          <div class="mt-1 text-xs text-slate-500">Bottom ad area</div>
-        </div>
-      </div>
-    </section>
 
     <section class="mx-auto max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
       <div class="rounded-3xl border border-slate-700 bg-slate-900 p-6 text-slate-200 shadow-sm sm:p-8">
@@ -1098,11 +1120,7 @@
       });
     };
 
-    const decodeXmlEntities = (value) => {
-      const textarea = document.createElement("textarea");
-      textarea.innerHTML = value || "";
-      return textarea.value;
-    };
+    const decodeXmlEntities = (value) => String(value || "");
 
     const emuToPx = (value) => {
       const numeric = Number(value);
@@ -1583,7 +1601,10 @@
         searchStatus.textContent =
           matches.length === 1 ? "1 match found." : `${matches.length} matches found.`;
 
-        const matchingSlideIndex = slides.findIndex((slide) => regex.test(slide.text));
+        const normalizedQuery = query.toLocaleLowerCase();
+        const matchingSlideIndex = slides.findIndex((slide) =>
+          String(slide.text || "").toLocaleLowerCase().includes(normalizedQuery)
+        );
         regex.lastIndex = 0;
 
         if (matchingSlideIndex >= 0) {
@@ -1719,8 +1740,9 @@
         return;
       }
 
+      const previousTransform = slideStage.style.transform;
+
       try {
-        const previousTransform = slideStage.style.transform;
         slideStage.style.transform = "scale(1)";
 
         const canvas = await html2canvas(slideStage, {
@@ -1728,8 +1750,6 @@
           scale: 2,
           useCORS: true
         });
-
-        slideStage.style.transform = previousTransform;
 
         canvas.toBlob((blob) => {
           if (!blob) {
@@ -1752,6 +1772,8 @@
       } catch (error) {
         console.error(error);
         setWarning("The current slide could not be exported as an image.");
+      } finally {
+        slideStage.style.transform = previousTransform;
       }
     });
 
