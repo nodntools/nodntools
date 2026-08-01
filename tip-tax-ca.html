@@ -9,12 +9,14 @@
   <meta name="description" content="Free Canada tip and tax calculator for GST, HST, PST, QST, restaurant tips, gratuity, and final bill totals." />
   <meta name="keywords" content="Canada tip calculator, Canada tax calculator, GST calculator, HST calculator, PST calculator, QST calculator, restaurant tip calculator Canada, Canadian gratuity calculator, Canada bill calculator, tip and tax calculator, Canadian sales tax calculator, BC tax calculator, Ontario HST calculator, Quebec QST calculator, Alberta GST calculator, restaurant bill calculator, split bill Canada, after tax tip calculator, pre tax tip calculator" />
   <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow" />
+  <link rel="canonical" href="https://nodntools.com/tip-tax-ca" />
   <meta name="author" content="NodnWebTools" />
 
   <meta property="og:title" content="Canada Tip & Tax Calculator | GST HST PST" />
   <meta property="og:description" content="Calculate Canadian sales tax, restaurant tips, gratuity, and final payment totals by province or territory." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://nodntools.com/tip-tax-ca.html" />
+  <meta property="og:url" content="https://nodntools.com/tip-tax-ca" />
   <meta property="og:site_name" content="NodnWebTools" />
 
   <meta name="twitter:card" content="summary_large_image" />
@@ -33,7 +35,7 @@
     "name": "Canada Tip & Tax Calculator",
     "applicationCategory": "FinanceApplication",
     "operatingSystem": "Any",
-    "url": "https://nodntools.com/tip-tax-ca.html",
+    "url": "https://nodntools.com/tip-tax-ca",
     "description": "A free browser-based Canada tip and tax calculator that estimates GST, HST, PST, QST, gratuity, and total payment amounts by province or territory.",
     "offers": {
       "@type": "Offer",
@@ -46,6 +48,63 @@
       "url": "https://nodntools.com"
     }
   }
+  </script>
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is a Canada tip and tax calculator?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It is a calculator that estimates Canadian sales tax, tip, gratuity, and the final payment amount based on the selected province or territory."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this calculator include GST, HST, PST, RST, and QST?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The calculator includes general tax-rate settings for Canadian provinces and territories, including GST-only locations, HST provinces, and provinces with GST plus PST, RST, or QST."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I tip before tax or after tax?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Some people tip on the pre-tax subtotal, while others tip on the post-tax total. This calculator lets you compare both methods."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can tax rates and item rules change?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Tax rates, exemptions, and special item rules can change. Always verify important transactions with the official receipt, business, or current government information."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this tool store my bill information?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The calculation runs in your browser and does not send the entered bill amount to a backend server."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use this for restaurant bills and delivery orders?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, but restaurant meals, alcohol, delivery fees, and other items may have tax treatment that differs from the general provincial rate. Use the actual receipt when available."
+      }
+    }
+  ]
+}
   </script>
 
   <style>
@@ -69,7 +128,6 @@
     .mobile-panel,
     .mobile-preview,
     .mobile-code,
-    .ad-box,
     table,
     canvas,
     img,
@@ -85,19 +143,6 @@
       overflow-wrap: anywhere;
     }
 
-    .ad-box {
-      min-height: 90px;
-      border: 1px dashed #cbd5e1;
-      background: #f8fafc;
-      color: #94a3b8;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      border-radius: 1rem;
-      padding: 1rem;
-      line-height: 1.5;
-    }
 
     .receipt-row {
       display: flex;
@@ -181,11 +226,7 @@
         Home
       </a>
     </nav>
-
-    <div class="ad-box mt-6">
-      AdSense Responsive Ad Area - Top
-    </div>
-  </header>
+</header>
 
   <main class="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
     <section class="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
@@ -199,7 +240,7 @@
         </h1>
 
         <p class="mt-4 text-base leading-7 text-slate-600">
-          Estimate Canadian GST, HST, PST, QST, restaurant tip, gratuity, and final payment total by province or territory. Enter a pre-tax amount, choose a location, select a tip rate, and compare pre-tax versus post-tax tipping instantly.
+          Estimate Canadian GST, HST, PST, QST, tip, gratuity, and final payment totals using general province or territory tax rates. Enter a pre-tax amount, choose a location, select a tip rate, and compare pre-tax versus post-tax tipping instantly.
         </p>
 
         <div class="mt-8 space-y-5">
@@ -209,6 +250,7 @@
               <span class="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">$</span>
               <input
                 id="billAmount"
+                name="billAmount"
                 type="number"
                 min="0"
                 step="0.01"
@@ -226,6 +268,9 @@
               <span id="selectedTaxLabel" class="rounded-full bg-indigo-50 px-3 py-1 text-xs font-bold text-indigo-700">BC · 12%</span>
             </div>
             <div id="provinceGrid" class="province-grid grid grid-cols-4 gap-2 sm:grid-cols-5"></div>
+            <p class="mt-3 rounded-2xl bg-amber-50 p-4 text-xs leading-5 text-amber-900">
+              The province buttons use the general combined sales tax rate for a fully taxable purchase. Restaurant meals, groceries, alcohol, delivery fees, personal services, and other items may receive different GST, HST, PST, RST, or QST treatment. Use the actual receipt when available.
+            </p>
           </div>
 
           <div>
@@ -239,6 +284,7 @@
             <div class="mt-3 relative">
               <input
                 id="customTip"
+                name="customTip"
                 type="number"
                 min="0"
                 step="0.1"
@@ -267,11 +313,11 @@
             <button id="resetBtn" type="button" class="rounded-2xl border border-slate-300 bg-white px-4 py-3 text-sm font-bold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700">Reset</button>
           </div>
 
-          <p id="copyFeedback" class="hidden rounded-2xl bg-emerald-50 px-4 py-3 text-sm font-bold text-emerald-700">
+          <p id="copyFeedback" role="status" aria-live="polite" class="hidden rounded-2xl bg-emerald-50 px-4 py-3 text-sm font-bold text-emerald-700">
             Copied!
           </p>
 
-          <div id="warningBox" class="hidden rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm font-semibold leading-6 text-amber-800"></div>
+          <div id="warningBox" role="alert" aria-live="assertive" class="hidden rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm font-semibold leading-6 text-amber-800"></div>
         </div>
       </section>
 
@@ -289,7 +335,7 @@
             </div>
           </div>
 
-          <div class="mobile-preview rounded-3xl bg-white p-6 text-slate-950 shadow-xl">
+          <div class="mobile-preview rounded-3xl bg-white p-6 text-slate-950 shadow-xl" aria-live="polite">
             <div class="mb-5 border-b border-dashed border-slate-300 pb-5 text-center">
               <p class="text-xs font-extrabold uppercase tracking-[0.25em] text-slate-400">Canada Receipt</p>
               <p class="mt-2 text-sm font-bold text-slate-500">Tax + Tip Estimate</p>
@@ -338,11 +384,7 @@
               <p id="tipBaseCard" class="safe-break mt-1 text-2xl font-extrabold">Pre-tax</p>
             </div>
           </div>
-
-          <div class="ad-box mt-6 border-white/20 bg-white/5 text-slate-400">
-            AdSense Responsive Ad Area - Result
-          </div>
-        </div>
+</div>
 
         <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
           <span class="inline-flex rounded-full bg-violet-100 px-4 py-2 text-sm font-bold text-violet-700">Quick Examples</span>
@@ -367,12 +409,7 @@
         </section>
       </section>
     </section>
-
-    <div class="ad-box mt-8">
-      AdSense Responsive Ad Area - Below Main Tool
-    </div>
-
-    <article class="mt-10 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-10">
+<article class="mt-10 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-10">
       <span class="inline-flex rounded-full bg-indigo-100 px-4 py-2 text-sm font-bold text-indigo-700">
         Canadian Tax and Tipping Guide
       </span>
@@ -397,24 +434,19 @@
         </p>
 
         <p>
-          Because of these regional differences, the same pre-tax restaurant bill can lead to different final totals depending on where you are. A $100 taxable bill in Alberta will not have the same tax amount as a $100 taxable bill in Ontario, British Columbia, Quebec, or Nova Scotia. When a tip is calculated on top of that amount, the difference becomes more noticeable. This is why a Canadian tip and tax calculator is useful for residents, newcomers, travelers, students, diners, delivery customers, and anyone trying to understand the real final cost before paying.
+          Because of these regional differences, the same pre-tax restaurant bill can lead to different final totals depending on where you are. A $100 fully taxable purchase in Alberta will not have the same tax amount as a $100 fully taxable purchase in Ontario, British Columbia, Quebec, or Nova Scotia. When a tip is calculated on top of that amount, the difference becomes more noticeable. This is why a Canadian tip and tax calculator is useful for residents, newcomers, travelers, students, diners, delivery customers, and anyone trying to understand the real final cost before paying.
         </p>
 
         <h3 class="text-2xl font-extrabold text-slate-950">How This Canada Tip and Tax Calculator Works</h3>
 
         <p>
-          The tool starts with a pre-tax bill amount. It then applies the selected province or territory tax rate. In provinces with HST, the tool uses the combined HST rate. In provinces with GST plus PST, RST, or QST, the tool estimates the combined tax amount using the listed rates. After calculating tax, the calculator applies your selected tip percentage. You can use common tip buttons such as 15%, 18%, and 20%, or enter a custom tip percentage for any situation.
+          The tool starts with a pre-tax bill amount. It then applies the selected province or territory’s general combined sales tax rate. In provinces with HST, the tool uses the combined HST rate. In provinces with GST plus PST, RST, or QST, the tool estimates the combined tax amount using the listed general rates. Item-level exemptions and special rates are not automatically identified. After calculating tax, the calculator applies your selected tip percentage. You can use common tip buttons such as 15%, 18%, and 20%, or enter a custom tip percentage for any situation.
         </p>
 
         <p>
           The calculator also includes an important setting called the tip calculation base. If you choose pre-tax, the tip is calculated from the original bill amount before sales tax. If you choose post-tax, the tip is calculated after sales tax is added. This setting matters because tipping on a post-tax bill usually creates a slightly higher tip amount than tipping on the pre-tax subtotal. Some diners prefer pre-tax tipping because sales tax is not a service. Others prefer post-tax tipping because the final receipt total is easier to use. This tool supports both methods so you can choose the approach that matches your preference, receipt, or local habit.
         </p>
-
-        <div class="ad-box">
-          AdSense Responsive Ad Area - Middle Content
-        </div>
-
-        <h3 class="text-2xl font-extrabold text-slate-950">GST, HST, PST, RST, and QST Explained in Simple Terms</h3>
+<h3 class="text-2xl font-extrabold text-slate-950">GST, HST, PST, RST, and QST Explained in Simple Terms</h3>
 
         <p>
           GST stands for Goods and Services Tax. It is the federal sales tax used across Canada. HST stands for Harmonized Sales Tax. It combines the federal GST with a provincial portion into one sales tax system. PST stands for Provincial Sales Tax and is used by some provinces in addition to GST. Manitoba uses RST, which stands for Retail Sales Tax. Quebec uses QST, which stands for Quebec Sales Tax. These taxes may look similar to customers because they appear on receipts, but their rules, exemptions, and administration can differ.
@@ -427,7 +459,7 @@
         <h3 class="text-2xl font-extrabold text-slate-950">Canadian Province and Territory Tax Rates Included</h3>
 
         <p>
-          This tool includes rate settings for Alberta, British Columbia, Manitoba, New Brunswick, Newfoundland and Labrador, Northwest Territories, Nova Scotia, Nunavut, Ontario, Prince Edward Island, Quebec, Saskatchewan, and Yukon. The calculator displays the selected province or territory name, the tax breakdown, and the combined tax rate used in the estimate. For example, British Columbia uses GST plus PST, Ontario uses HST, Quebec uses GST plus QST, and Alberta uses GST only.
+          This tool includes rate settings for Alberta, British Columbia, Manitoba, New Brunswick, Newfoundland and Labrador, Northwest Territories, Nova Scotia, Nunavut, Ontario, Prince Edward Island, Quebec, Saskatchewan, and Yukon. The calculator displays the selected province or territory name, the tax breakdown, and the general combined tax rate used in the estimate. The rate table was reviewed against government sources in August 2026. For example, British Columbia uses GST plus PST, Ontario uses HST, Quebec uses GST plus QST, and Alberta uses GST only.
         </p>
 
         <p>
@@ -505,12 +537,7 @@
         <p>
           You can copy the result to your clipboard or download a text summary for reference. This can be helpful when splitting a group meal, checking a restaurant receipt, planning travel expenses, estimating a service appointment, or comparing how a bill changes between provinces. Because the tool is responsive and mobile-safe, it can be used on a phone at a restaurant without horizontal scrolling.
         </p>
-
-        <div class="ad-box">
-          AdSense Responsive Ad Area - Bottom Content
-        </div>
-
-        <h3 class="text-2xl font-extrabold text-slate-950">Province-by-Province Examples</h3>
+<h3 class="text-2xl font-extrabold text-slate-950">Province-by-Province Examples</h3>
 
         <p>
           In Alberta, Northwest Territories, Nunavut, and Yukon, a simple taxable estimate usually uses GST only. In Ontario, the calculator uses HST. In British Columbia, it uses GST plus PST. In Manitoba, it uses GST plus RST. In Saskatchewan, it uses GST plus PST. In Quebec, it uses GST plus QST. In New Brunswick, Newfoundland and Labrador, Prince Edward Island, and Nova Scotia, it uses HST. These differences can create noticeably different totals for the same original bill.
@@ -699,6 +726,7 @@
 
     <section class="mt-10 rounded-3xl bg-slate-900 p-6 text-slate-100 shadow-sm sm:p-10">
       <h2 class="text-2xl font-extrabold">Legal Disclaimer</h2>
+      <p class="mt-3 text-xs font-semibold uppercase tracking-wide text-indigo-300">General rates reviewed August 2026</p>
       <div class="mt-4 space-y-4 text-sm leading-7 text-slate-300">
         <p>
           This Canada Tip & Tax Calculator is provided for general informational, educational, and convenience purposes only. It is not financial, legal, accounting, tax, hospitality, employment, or professional advice.
@@ -714,11 +742,7 @@
         </p>
       </div>
     </section>
-
-    <div class="ad-box mt-8">
-      AdSense Responsive Ad Area - Bottom
-    </div>
-  </main>
+</main>
 
   <script>
     const provinceTaxes = {
@@ -794,25 +818,36 @@
     }
 
     function renderProvinceButtons() {
-      provinceGrid.innerHTML = Object.keys(provinceTaxes).map(function(code) {
-        const active = code === selectedProvince;
-        const activeClass = "bg-indigo-600 text-white shadow-sm";
-        const inactiveClass = "border border-slate-200 bg-white text-slate-700 shadow-sm hover:border-indigo-300 hover:bg-indigo-50";
-        return '<button type="button" data-province="' + code + '" class="province-btn rounded-2xl px-3 py-3 text-sm font-extrabold transition ' + (active ? activeClass : inactiveClass) + '">' + code + '</button>';
-      }).join("");
+      provinceGrid.replaceChildren();
 
-      document.querySelectorAll(".province-btn").forEach(function(button) {
+      Object.keys(provinceTaxes).forEach(function(code) {
+        const active = code === selectedProvince;
+        const button = document.createElement("button");
+        button.type = "button";
+        button.dataset.province = code;
+        button.textContent = code;
+        button.setAttribute("aria-label", provinceTaxes[code].name + ", " + provinceTaxes[code].label);
+        button.setAttribute("aria-pressed", String(active));
+        button.className = "province-btn rounded-2xl px-3 py-3 text-sm font-extrabold transition " +
+          (active
+            ? "bg-indigo-600 text-white shadow-sm"
+            : "border border-slate-200 bg-white text-slate-700 shadow-sm hover:border-indigo-300 hover:bg-indigo-50");
+
         button.addEventListener("click", function() {
-          selectedProvince = button.dataset.province;
+          selectedProvince = code;
           renderProvinceButtons();
           calculate();
         });
+
+        provinceGrid.appendChild(button);
       });
     }
 
     function updateTipButtons() {
       tipButtons.forEach(function(button) {
         const isActive = Number(button.dataset.tip) === selectedTip && customTip.value === "";
+
+        button.setAttribute("aria-pressed", String(isActive));
 
         if (isActive) {
           button.className = "tip-btn rounded-2xl border border-indigo-600 bg-indigo-600 px-4 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-indigo-700";
@@ -824,6 +859,8 @@
 
     function updateTipBaseButtons() {
       const preActive = tipBase === "pre";
+      preTaxBtn.setAttribute("aria-pressed", String(preActive));
+      postTaxBtn.setAttribute("aria-pressed", String(!preActive));
 
       preTaxBtn.className = preActive
         ? "rounded-xl bg-white px-4 py-3 text-sm font-bold text-indigo-700 shadow-sm"
@@ -890,14 +927,33 @@
     }
 
     async function copyResult() {
+      const text = latestResultText || "No result available.";
+
       try {
-        await navigator.clipboard.writeText(latestResultText || "No result available.");
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(text);
+        } else {
+          const textarea = document.createElement("textarea");
+          textarea.value = text;
+          textarea.setAttribute("readonly", "");
+          textarea.style.position = "fixed";
+          textarea.style.opacity = "0";
+          document.body.appendChild(textarea);
+          textarea.select();
+
+          if (!document.execCommand("copy")) {
+            throw new Error("Copy command failed");
+          }
+
+          textarea.remove();
+        }
+
         copyFeedback.classList.remove("hidden");
         setTimeout(function() {
           copyFeedback.classList.add("hidden");
         }, 1600);
       } catch (error) {
-        updateWarning("Copy failed. Your browser may not allow clipboard access.");
+        updateWarning("Copy failed. Select the result manually and copy it from your browser.");
       }
     }
 
@@ -972,7 +1028,6 @@
     copyBtn.addEventListener("click", copyResult);
     downloadBtn.addEventListener("click", downloadResult);
     resetBtn.addEventListener("click", resetTool);
-    window.addEventListener("resize", calculate);
 
     renderProvinceButtons();
     updateTipButtons();
