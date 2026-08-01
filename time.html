@@ -9,12 +9,14 @@
   <meta name="description" content="Calculate hours worked, break deductions, elapsed time, and decimal hours with a free browser-based time calculator." />
   <meta name="keywords" content="time calculator, hours worked calculator, work hours calculator, time card calculator, elapsed time calculator, calculate time between two times, break deduction calculator, decimal hours calculator, payroll hours calculator, timesheet calculator, freelance hours tracker, hourly billing calculator, shift hours calculator, overnight shift calculator, time to decimal converter, employee time calculator, work time calculator, project time tracker, billable hours calculator, NodnWebTools" />
   <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow" />
+  <link rel="canonical" href="https://nodntools.com/time" />
   <meta name="author" content="NodnWebTools" />
 
   <meta property="og:title" content="Time Calculator | Hours Worked Tool" />
   <meta property="og:description" content="Calculate hours worked, break deductions, elapsed time, and decimal hours with a free browser-based time calculator." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://nodntools.com/time.html" />
+  <meta property="og:url" content="https://nodntools.com/time" />
   <meta property="og:site_name" content="NodnWebTools" />
 
   <meta name="twitter:card" content="summary_large_image" />
@@ -51,7 +53,7 @@
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "Time Calculator",
-    "url": "https://nodntools.com/time.html",
+    "url": "https://nodntools.com/time",
     "applicationCategory": "ProductivityApplication",
     "operatingSystem": "Any modern web browser",
     "description": "A free browser-based time calculator that calculates hours worked, elapsed time, break deductions, total minutes, and decimal hours for time cards, payroll, invoices, and productivity tracking.",
@@ -79,6 +81,72 @@
     ]
   }
   </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do I calculate hours worked?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Subtract the start time from the end time, then subtract unpaid break minutes. This calculator does that automatically and shows hours, minutes, total minutes, and decimal hours."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can this calculator handle overnight shifts?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. If the end time is earlier than the start time, the calculator treats it as an overnight shift ending the next day."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What are decimal hours?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Decimal hours convert minutes into fractions of an hour. For example, 30 minutes is 0.50 hours and 45 minutes is 0.75 hours."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Should I enter paid breaks?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Enter only break time that should be deducted from paid time. If a break is paid, leave it out of the break deduction field."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this calculator apply payroll rounding?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. It calculates exact time based on your inputs. Employer-specific rounding, overtime, and payroll rules are not included."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can freelancers use this for invoices?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Freelancers can use decimal hours to calculate hourly invoices, project sessions, and billable work records."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is this tool official payroll advice?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. This tool is for general time calculation only. Always confirm official payroll results with your employer, HR team, accountant, or payroll provider."
+        }
+      }
+    ]
+  }
+  </script>
+
 
   <style>
     html, body {
@@ -133,21 +201,6 @@
       overflow-x: auto;
     }
 
-    .ad-box {
-      width: 100%;
-      max-width: 100%;
-      min-height: 90px;
-      overflow: hidden;
-      border: 1px dashed #cbd5e1;
-      background: #f8fafc;
-      color: #94a3b8;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      border-radius: 1.25rem;
-      padding: 1rem;
-    }
 
     @media (max-width: 640px) {
       .mobile-card,
@@ -165,12 +218,6 @@
         width: 100%;
       }
 
-      .ad-box {
-        min-height: 90px;
-        border-radius: 1rem;
-        padding: .875rem;
-        font-size: .875rem;
-      }
 
       h1 {
         font-size: 2rem !important;
@@ -199,10 +246,6 @@
         border-radius: 1rem !important;
       }
 
-      .ad-box {
-        min-height: 82px;
-        font-size: .8rem;
-      }
 
       h1 {
         font-size: 1.75rem !important;
@@ -224,9 +267,6 @@
   </header>
 
   <main class="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
-    <div class="ad-box mb-6">
-      Top Ad Area
-    </div>
 
     <section class="grid grid-cols-1 gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
       <aside class="mobile-card rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-8 lg:sticky lg:top-8">
@@ -256,7 +296,7 @@
           <div>
             <label for="breakMinutes" class="mb-2 block text-sm font-bold text-slate-700">Break Time</label>
             <div class="relative">
-              <input type="number" id="breakMinutes" inputmode="numeric" min="0" step="1" value="30" placeholder="30" class="w-full rounded-2xl border border-slate-200 bg-slate-50 py-4 pl-4 pr-24 text-lg font-bold text-slate-950 outline-none transition focus:border-accent-400 focus:bg-white focus:ring-4 focus:ring-accent-100" />
+              <input type="number" id="breakMinutes" inputmode="numeric" min="0" max="1440" step="1" value="30" placeholder="30" class="w-full rounded-2xl border border-slate-200 bg-slate-50 py-4 pl-4 pr-24 text-lg font-bold text-slate-950 outline-none transition focus:border-accent-400 focus:bg-white focus:ring-4 focus:ring-accent-100" />
               <span class="absolute right-4 top-1/2 -translate-y-1/2 text-sm font-bold text-slate-400">Minutes</span>
             </div>
             <p class="mt-2 text-sm leading-6 text-slate-500">
@@ -264,7 +304,7 @@
             </p>
           </div>
 
-          <div id="validationMessage" class="hidden rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-semibold leading-6 text-amber-800">
+          <div id="validationMessage" role="status" aria-live="polite" class="hidden rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-semibold leading-6 text-amber-800">
             End time is earlier than start time, so this calculator treats it as an overnight shift ending the next day.
           </div>
 
@@ -281,7 +321,7 @@
             Reset
           </button>
 
-          <div id="copyFeedback" class="hidden rounded-2xl bg-emerald-50 px-4 py-3 text-sm font-bold text-emerald-700">
+          <div id="copyFeedback" role="status" aria-live="polite" class="hidden rounded-2xl bg-emerald-50 px-4 py-3 text-sm font-bold text-emerald-700">
             Copied!
           </div>
 
@@ -300,7 +340,7 @@
             </p>
           </div>
 
-          <div id="result" class="rounded-3xl border border-accent-100 bg-gradient-to-br from-accent-50 via-indigo-50 to-slate-50 p-5">
+          <div id="result" aria-live="polite" class="rounded-3xl border border-accent-100 bg-gradient-to-br from-accent-50 via-indigo-50 to-slate-50 p-5">
             <p class="text-sm font-black uppercase tracking-wide text-accent-700">Total Paid Time</p>
             <p id="totalElapsed" class="mt-2 safe-break text-5xl font-black tracking-tight text-slate-950">0 Hours 0 Minutes</p>
 
@@ -344,10 +384,6 @@
               Break time is deducted from the elapsed time.
             </div>
           </div>
-
-          <div class="ad-box mt-6">
-            Ad Area Below Result
-          </div>
         </div>
 
         <section class="mobile-card rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-8">
@@ -375,10 +411,6 @@
         </section>
       </section>
     </section>
-
-    <div class="ad-box my-8">
-      Ad Area Below Main Tool and Result Section
-    </div>
 
     <article class="mobile-card rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-8 lg:p-10">
       <div class="mx-auto max-w-4xl">
@@ -416,10 +448,6 @@
           <p>
             Break deductions are important because paid time and elapsed time are not always the same. A person may be present for 8.5 hours but paid for 8 hours after a 30-minute unpaid meal break. A freelancer may work for 3.5 hours without a break and bill the full 3.5 hours. A manager may need to check whether a timesheet includes required unpaid breaks. A time calculator creates a clear and consistent record.
           </p>
-
-          <div class="ad-box my-8">
-            Middle Content Ad Area
-          </div>
 
           <h3 class="text-2xl font-black text-slate-950">Decimal Hours Explained</h3>
           <p>
@@ -504,10 +532,6 @@
           <p>
             When using the tool for a time card, enter only break minutes that should be deducted. If a break is paid, do not enter it as a deduction. If a lunch break is unpaid, enter the lunch minutes. If your company uses automatic break deductions, compare the calculator result with official payroll rules. For compliance-sensitive payroll, always confirm with an employer, HR department, accountant, payroll provider, or qualified labor professional.
           </p>
-
-          <div class="ad-box my-8">
-            Bottom Content Ad Area
-          </div>
 
           <h3 class="text-2xl font-black text-slate-950">Overnight Shift Time Calculation</h3>
           <p>
@@ -733,10 +757,6 @@
         </div>
       </div>
     </section>
-
-    <div class="ad-box mt-8">
-      Bottom Ad Area
-    </div>
   </main>
 
   <footer class="mt-10 border-t border-slate-200 bg-white">
@@ -787,7 +807,8 @@
 
       function sanitizeMinutes(value) {
         const number = parseInt(value, 10);
-        return isNaN(number) || number < 0 ? 0 : number;
+        if (!Number.isFinite(number) || number < 0) return 0;
+        return Math.min(number, 1440);
       }
 
       function timeToMinutes(timeValue) {
@@ -836,10 +857,16 @@
           const breakMinutes = sanitizeMinutes(breakMinutesInput.value);
 
           if (startMinutes === null || endMinutesRaw === null) {
+            validationMessage.classList.add('hidden');
             totalElapsedEl.textContent = 'Invalid Time';
+            displayStartTimeEl.textContent = '--:--';
+            displayEndTimeEl.textContent = '--:--';
+            displayBreakTimeEl.textContent = '0 Minutes';
+            displayTotalMinutesEl.textContent = '0';
             decimalHoursEl.textContent = '0.00';
             payReadyFormatEl.textContent = '0.00 hrs';
             resultNoteEl.textContent = 'Please enter valid start and end times.';
+            resultNoteEl.className = 'mt-4 rounded-2xl bg-amber-50 p-4 text-sm leading-6 text-amber-800 shadow-sm ring-1 ring-amber-100';
             latestReport = '';
             return;
           }
@@ -850,6 +877,7 @@
           if (endMinutes < startMinutes) {
             endMinutes += 24 * 60;
             isOvernight = true;
+            validationMessage.textContent = 'End time is earlier than start time, so this calculator treats it as an overnight shift ending the next day.';
             validationMessage.classList.remove('hidden');
           } else {
             validationMessage.classList.add('hidden');
@@ -857,6 +885,11 @@
 
           const rawElapsedMinutes = endMinutes - startMinutes;
           const paidMinutes = Math.max(0, rawElapsedMinutes - breakMinutes);
+
+          if (breakMinutesInput.value !== '' && Number(breakMinutesInput.value) > 1440) {
+            validationMessage.textContent = 'Break time is limited to 1,440 minutes. The maximum value was used.';
+            validationMessage.classList.remove('hidden');
+          }
           const decimalHours = paidMinutes / 60;
 
           totalElapsedEl.textContent = formatDuration(paidMinutes);
@@ -894,7 +927,11 @@
             'Disclaimer: This report is a simplified educational estimate only and is not payroll, legal, tax, accounting, employment, or professional advice.'
           ].join('\n');
         } catch (error) {
+          validationMessage.textContent = 'The time calculation could not be completed. Check the entered values and try again.';
+          validationMessage.classList.remove('hidden');
           totalElapsedEl.textContent = 'Calculation Error';
+          resultNoteEl.textContent = 'A calculation error occurred.';
+          resultNoteEl.className = 'mt-4 rounded-2xl bg-amber-50 p-4 text-sm leading-6 text-amber-800 shadow-sm ring-1 ring-amber-100';
           latestReport = '';
         }
       }
@@ -951,7 +988,10 @@
           document.body.appendChild(link);
           link.click();
           document.body.removeChild(link);
-          URL.revokeObjectURL(url);
+
+          setTimeout(function () {
+            URL.revokeObjectURL(url);
+          }, 1000);
         } catch (error) {
           showCopyFeedback('Download failed. Please copy the result instead.');
         }
@@ -979,10 +1019,6 @@
           breakMinutesInput.value = button.dataset.break || '0';
           calculateTime();
         });
-      });
-
-      window.addEventListener('resize', function () {
-        document.body.style.overflowX = 'hidden';
       });
 
       calculateTime();
