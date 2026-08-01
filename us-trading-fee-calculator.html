@@ -9,12 +9,14 @@
   <meta name="description" content="Estimate US stock, ETF, options, margin, regulatory, and broker trading fees with editable assumptions." />
   <meta name="keywords" content="US trading fee calculator, brokerage fee calculator, stock trading fees USA, ETF trading fees USA, options fee calculator, options contract fee calculator, margin interest calculator, broker cost estimator, Robinhood fees, Fidelity trading fees, Charles Schwab fees, Interactive Brokers fees, ETRADE fees, Webull fees, tastytrade fees, Merrill Edge fees, commission calculator, trading cost calculator, broker fee comparison, online brokerage fees, active trader cost calculator, margin APR calculator" />
   <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow" />
+  <link rel="canonical" href="https://nodntools.com/us-trading-fee-calculator" />
   <meta name="author" content="NodnWebTools" />
 
   <meta property="og:title" content="US Trading Fee Calculator | Broker Cost Tool" />
   <meta property="og:description" content="Estimate US stock, ETF, options, margin, regulatory, and broker trading fees with editable assumptions." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://nodntools.com/us-trading-fee-calculator.html" />
+  <meta property="og:url" content="https://nodntools.com/us-trading-fee-calculator" />
   <meta property="og:site_name" content="NodnWebTools" />
 
   <meta name="twitter:card" content="summary_large_image" />
@@ -33,7 +35,7 @@
     "name": "US Trading Fee Calculator",
     "applicationCategory": "FinanceApplication",
     "operatingSystem": "Any",
-    "url": "https://nodntools.com/us-trading-fee-calculator.html",
+    "url": "https://nodntools.com/us-trading-fee-calculator",
     "description": "A free client-side US trading fee calculator for estimating stock, ETF, options, margin, regulatory, annual platform, and other brokerage costs using editable assumptions.",
     "offers": {
       "@type": "Offer",
@@ -48,6 +50,63 @@
   }
   </script>
 
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Does this calculator use live broker data?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. It uses built-in editable assumptions and runs fully in the browser. Always verify current fees directly with each broker."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why include regulatory fees?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "US trading can include regulatory and exchange-related fees that are separate from broker commissions. This calculator lets users enter an estimated annual amount manually."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are options trades free at every broker?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Some brokers charge a per-contract fee, some charge opening fees but not closing fees, and some pass through product-specific, regulatory, or exchange charges."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this include taxes?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. This tool estimates trading costs only. It does not calculate income tax, capital gains tax, wash sale effects, retirement account rules, or tax reporting obligations."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does margin interest matter?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Margin interest can become much larger than commissions when a trader carries a meaningful debit balance. This calculator separates margin cost so it is easier to see."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I edit the broker fees?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. The selected broker's assumptions can be edited directly on the page, including stock fees, ETF fees, options fees, margin APR, and annual platform fees."
+        }
+      }
+    ]
+  }
+  </script>
+
   <style>
     html, body { width:100%; max-width:100%; overflow-x:hidden; }
     *, *::before, *::after { box-sizing:border-box; min-width:0; }
@@ -55,22 +114,6 @@
     .safe-break { overflow-wrap:anywhere; word-break:break-word; }
     .mobile-card, .mobile-panel, .mobile-preview, .mobile-code { max-width:100%; overflow:hidden; }
     .mobile-code { overflow-x:auto; white-space:pre-wrap; word-break:break-word; }
-    .ad-box {
-      width:100%;
-      max-width:100%;
-      min-height:90px;
-      border:2px dashed #cbd5e1;
-      background:#f8fafc;
-      color:#64748b;
-      border-radius:1rem;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      padding:1rem;
-      overflow:hidden;
-      line-height:1.5;
-    }
     .table-scroll { width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch; }
     .result-table { width:100%; border-collapse:separate; border-spacing:0; }
     .result-table th, .result-table td { white-space:nowrap; }
@@ -80,7 +123,6 @@
       .mobile-button-grid { grid-template-columns:1fr !important; }
       .mobile-button-grid button, .mobile-button-grid a { width:100% !important; }
       .result-table th, .result-table td { padding:0.75rem !important; font-size:0.82rem !important; }
-      .ad-box { min-height:90px; border-radius:0.875rem; padding:0.875rem; }
     }
     @media (max-width:380px) {
       h1 { font-size:1.85rem !important; line-height:2.15rem !important; }
@@ -102,7 +144,6 @@
   </header>
 
   <main class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-    <div class="ad-box mb-6">AdSense Responsive Ad Area - Top</div>
 
     <section class="grid gap-6 lg:grid-cols-[0.98fr_1.02fr]">
       <div class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
@@ -140,42 +181,42 @@
 
           <label class="block">
             <span class="text-sm font-semibold text-slate-700">Stock orders per year</span>
-            <input id="stockOrders" type="number" min="0" value="24" class="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-100">
+            <input id="stockOrders" type="number" min="0" step="1" value="24" class="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-100">
           </label>
 
           <label class="block">
             <span class="text-sm font-semibold text-slate-700">ETF orders per year</span>
-            <input id="etfOrders" type="number" min="0" value="12" class="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-100">
+            <input id="etfOrders" type="number" min="0" step="1" value="12" class="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-100">
           </label>
 
           <label class="block">
             <span class="text-sm font-semibold text-slate-700">Options opening contracts per year</span>
-            <input id="optionOpenContracts" type="number" min="0" value="20" class="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-100">
+            <input id="optionOpenContracts" type="number" min="0" step="1" value="20" class="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-100">
           </label>
 
           <label class="block">
             <span class="text-sm font-semibold text-slate-700">Options closing contracts per year</span>
-            <input id="optionCloseContracts" type="number" min="0" value="20" class="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-100">
+            <input id="optionCloseContracts" type="number" min="0" step="1" value="20" class="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-100">
           </label>
 
           <label class="block">
             <span class="text-sm font-semibold text-slate-700">Average order value (USD)</span>
-            <input id="orderValue" type="number" min="0" value="1000" class="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-100">
+            <input id="orderValue" type="number" min="0" step="0.01" value="1000" class="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-100">
           </label>
 
           <label class="block">
             <span class="text-sm font-semibold text-slate-700">Average margin balance (USD)</span>
-            <input id="marginBalance" type="number" min="0" value="0" class="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-100">
+            <input id="marginBalance" type="number" min="0" step="0.01" value="0" class="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-100">
           </label>
 
           <label class="block">
             <span class="text-sm font-semibold text-slate-700">Estimated regulatory fees per year</span>
-            <input id="regulatoryFees" type="number" min="0" value="5" class="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-100">
+            <input id="regulatoryFees" type="number" min="0" step="0.01" value="5" class="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-100">
           </label>
 
           <label class="block">
             <span class="text-sm font-semibold text-slate-700">Other estimated fees per year</span>
-            <input id="otherFees" type="number" min="0" value="0" class="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-100">
+            <input id="otherFees" type="number" min="0" step="0.01" value="0" class="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-100">
           </label>
         </div>
 
@@ -204,7 +245,7 @@
             <label class="text-sm font-semibold text-slate-700">Options minimum fee
               <input id="optionMinFee" type="number" step="0.01" min="0" class="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3">
             </label>
-            <label class="text-sm font-semibold text-slate-700">Options cap per leg
+            <label class="text-sm font-semibold text-slate-700">Annual options fee cap (optional)
               <input id="optionCap" type="number" step="0.01" min="0" class="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3">
             </label>
             <label class="text-sm font-semibold text-slate-700">Margin APR %
@@ -219,20 +260,20 @@
         </div>
 
         <div class="mobile-button-grid mt-6 grid grid-cols-2 gap-3">
-          <button id="resetBtn" class="rounded-xl border border-slate-300 px-4 py-3 font-semibold text-slate-700 hover:bg-slate-50">Reset All</button>
-          <button id="copyBtn" class="rounded-xl bg-indigo-600 px-4 py-3 font-semibold text-white hover:bg-indigo-700">Copy Result</button>
-          <button id="csvBtn" class="rounded-xl border border-indigo-200 bg-indigo-50 px-4 py-3 font-semibold text-indigo-700 hover:bg-indigo-100">Download CSV</button>
-          <button id="printBtn" class="rounded-xl border border-slate-300 px-4 py-3 font-semibold text-slate-700 hover:bg-slate-50">Print</button>
+          <button id="resetBtn" type="button" class="rounded-xl border border-slate-300 px-4 py-3 font-semibold text-slate-700 hover:bg-slate-50">Reset All</button>
+          <button id="copyBtn" type="button" class="rounded-xl bg-indigo-600 px-4 py-3 font-semibold text-white hover:bg-indigo-700">Copy Result</button>
+          <button id="csvBtn" type="button" class="rounded-xl border border-indigo-200 bg-indigo-50 px-4 py-3 font-semibold text-indigo-700 hover:bg-indigo-100">Download CSV</button>
+          <button id="printBtn" type="button" class="rounded-xl border border-slate-300 px-4 py-3 font-semibold text-slate-700 hover:bg-slate-50">Print</button>
         </div>
 
-        <p id="actionStatus" class="mt-3 text-sm font-semibold text-indigo-700"></p>
+        <p id="actionStatus" class="mt-3 min-h-5 text-sm font-semibold text-indigo-700" role="status" aria-live="polite"></p>
       </div>
 
       <aside class="mobile-preview rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
         <h2 class="text-2xl font-bold text-slate-950">Estimated Trading Cost</h2>
         <p class="mt-1 text-sm text-slate-600">Your result updates automatically as you change inputs.</p>
 
-        <div id="summaryCard" class="mt-5 rounded-2xl bg-indigo-50 p-5"></div>
+        <div id="summaryCard" class="mt-5 rounded-2xl bg-indigo-50 p-5" aria-live="polite"></div>
 
         <div class="mt-5 grid gap-3 sm:grid-cols-3">
           <div class="rounded-2xl border border-slate-200 p-4">
@@ -258,25 +299,22 @@
           <h3 class="mb-3 text-lg font-bold text-slate-950">All Broker Estimate Table</h3>
           <div class="table-scroll rounded-2xl border border-slate-200">
             <table class="result-table text-left text-sm">
+              <caption class="sr-only">Estimated annual trading costs for all included brokers</caption>
               <thead class="bg-slate-50 text-slate-600">
                 <tr>
-                  <th class="p-3 font-bold">Broker</th>
-                  <th class="p-3 font-bold">Commissions</th>
-                  <th class="p-3 font-bold">Margin</th>
-                  <th class="p-3 font-bold">Other</th>
-                  <th class="p-3 font-bold">Total</th>
+                  <th scope="col" class="p-3 font-bold">Broker</th>
+                  <th scope="col" class="p-3 font-bold">Commissions</th>
+                  <th scope="col" class="p-3 font-bold">Margin</th>
+                  <th scope="col" class="p-3 font-bold">Other</th>
+                  <th scope="col" class="p-3 font-bold">Total</th>
                 </tr>
               </thead>
-              <tbody id="allBrokerTable" class="divide-y divide-slate-200 bg-white"></tbody>
+              <tbody id="allBrokerTable" class="divide-y divide-slate-200 bg-white" aria-live="polite"></tbody>
             </table>
           </div>
         </div>
-
-        <div class="ad-box mt-6">AdSense Responsive Ad Area - Result</div>
       </aside>
     </section>
-
-    <div class="ad-box my-8">AdSense Responsive Ad Area - Below Main Tool</div>
 
     <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
       <span class="inline-flex rounded-full bg-indigo-50 px-4 py-2 text-sm font-bold text-indigo-700">Trading Cost Guide</span>
@@ -300,8 +338,6 @@
         <p>
           Because different investors trade differently, there is no single lowest-cost broker for every person. A broker that is inexpensive for an ETF investor may not be ideal for a high-volume options trader. A platform with no options contract fees may have a different margin rate, different tools, or different product limitations. A broker with slightly higher commissions may offer better research, stronger customer service, advanced trading tools, or lower margin rates. A trading fee calculator helps users compare cost assumptions based on their own behavior rather than relying only on advertising headlines.
         </p>
-
-        <div class="ad-box">AdSense Responsive Ad Area - Middle Content</div>
 
         <h3 class="text-2xl font-bold text-slate-950">What This Trading Cost Calculator Estimates</h3>
         <p>
@@ -336,10 +372,8 @@
         </p>
 
         <p>
-          This calculator separates options opening contracts and options closing contracts because some pricing schedules treat them differently. It also includes a base fee, minimum fee, and cap per leg assumption. These settings help users model different broker fee structures. For occasional options traders, a small per-contract fee may not matter much. For active options traders, the annual difference can become significant.
+          This calculator separates options opening contracts and options closing contracts because some pricing schedules treat them differently. It also includes a base fee, minimum fee, and optional annual options fee cap assumption. These settings help users model different broker fee structures. For occasional options traders, a small per-contract fee may not matter much. For active options traders, the annual difference can become significant.
         </p>
-
-        <div class="ad-box">AdSense Responsive Ad Area - Bottom Content</div>
 
         <h3 class="text-2xl font-bold text-slate-950">Margin Interest Cost</h3>
         <p>
@@ -372,7 +406,7 @@
         <div class="mt-4 grid gap-4 md:grid-cols-3">
           <article class="rounded-2xl border border-slate-200 p-4">
             <h4 class="font-bold text-slate-950">Options Traders</h4>
-            <p class="mt-2 text-sm text-slate-600">Estimate how per-contract charges, close fees, minimum fees, and capped pricing can affect annual options trading costs.</p>
+            <p class="mt-2 text-sm text-slate-600">Estimate how per-contract charges, close fees, minimum fees, and optional annual fee caps can affect annual options trading costs.</p>
           </article>
           <article class="rounded-2xl border border-slate-200 p-4">
             <h4 class="font-bold text-slate-950">Margin Users</h4>
@@ -569,8 +603,6 @@
         </p>
       </div>
     </section>
-
-    <div class="ad-box mt-8">AdSense Responsive Ad Area - Bottom</div>
   </main>
 
   <script>
@@ -661,10 +693,10 @@
         optionOpenFee: 1.00,
         optionCloseFee: 0,
         optionMinFee: 0,
-        optionCap: 10,
+        optionCap: 0,
         marginRate: 11.00,
         annualFee: 0,
-        note: "Default assumes $0 stock and ETF commissions, $1 per equity option contract to open, $0 commission to close, and a simplified $10 cap per leg."
+        note: "Default uses a simplified $1 per opening equity option contract and $0 closing commission assumption. Actual per-leg caps depend on each order, so verify current pricing and edit the annual cap only when you have a reliable yearly estimate."
       },
       {
         name: "Merrill Edge",
@@ -772,29 +804,27 @@
       const regulatoryFees = getNumber("regulatoryFees");
       const otherFees = getNumber("otherFees");
 
-      let stockCost = stockOrders * broker.stockFee;
-      let etfCost = etfOrders * broker.etfFee;
-      let optionsCost = optionCostForBroker(broker, optionOpenContracts, optionCloseContracts);
+      const activeStockOrders = tradePattern === "stock" || tradePattern === "mixed" ? stockOrders : 0;
+      const activeEtfOrders = tradePattern === "etf" || tradePattern === "mixed" ? etfOrders : 0;
+      const activeOptionOpenContracts = tradePattern === "options" || tradePattern === "mixed" ? optionOpenContracts : 0;
+      const activeOptionCloseContracts = tradePattern === "options" || tradePattern === "mixed" ? optionCloseContracts : 0;
 
-      if (tradePattern === "stock") {
-        etfCost = 0;
-        optionsCost = 0;
-      }
-
-      if (tradePattern === "etf") {
-        stockCost = 0;
-        optionsCost = 0;
-      }
-
-      if (tradePattern === "options") {
-        stockCost = 0;
-        etfCost = 0;
-      }
+      const stockCost = activeStockOrders * broker.stockFee;
+      const etfCost = activeEtfOrders * broker.etfFee;
+      const optionsCost = optionCostForBroker(
+        broker,
+        activeOptionOpenContracts,
+        activeOptionCloseContracts
+      );
 
       const commissionCost = stockCost + etfCost + optionsCost;
       const marginCost = marginBalance * (broker.marginRate / 100);
-      const totalOrders = tradePattern === "options" ? optionOpenContracts + optionCloseContracts : stockOrders + etfOrders;
-      const tradingVolume = (stockOrders + etfOrders) * orderValue;
+      const totalOrders =
+        activeStockOrders +
+        activeEtfOrders +
+        activeOptionOpenContracts +
+        activeOptionCloseContracts;
+      const tradingVolume = (activeStockOrders + activeEtfOrders) * orderValue;
       const totalCost = commissionCost + marginCost + regulatoryFees + otherFees + broker.annualFee;
       const averageCostPerOrder = totalOrders > 0 ? totalCost / totalOrders : totalCost;
       const costAsVolumePercent = tradingVolume > 0 ? (totalCost / tradingVolume) * 100 : 0;
@@ -802,10 +832,10 @@
       return {
         brokerName: broker.name,
         tradePattern,
-        stockOrders,
-        etfOrders,
-        optionOpenContracts,
-        optionCloseContracts,
+        stockOrders: activeStockOrders,
+        etfOrders: activeEtfOrders,
+        optionOpenContracts: activeOptionOpenContracts,
+        optionCloseContracts: activeOptionCloseContracts,
         orderValue,
         marginBalance,
         regulatoryFees,
@@ -833,7 +863,7 @@
         ["Regulatory fee estimate", money.format(result.regulatoryFees)],
         ["Other estimated fees", money.format(result.otherFees)],
         ["Annual platform/account fee", money.format(result.annualFee)],
-        ["Estimated stock/ETF trading volume", money.format(result.tradingVolume)],
+        ["Estimated stock/ETF order volume", money.format(result.tradingVolume)],
         ["Average cost per counted order", money.format(result.averageCostPerOrder)]
       ];
 
@@ -865,7 +895,7 @@
           <p class="mt-2 text-indigo-900">Estimated annual trading cost: <strong>${money.format(result.totalCost)}</strong></p>
           <p class="mt-1 text-sm text-indigo-800">Commission cost: <strong>${money.format(result.commissionCost)}</strong></p>
           <p class="mt-1 text-sm text-indigo-800">Margin cost: <strong>${money.format(result.marginCost)}</strong></p>
-          <p class="mt-1 text-sm text-indigo-800">Cost as percentage of estimated stock/ETF volume: <strong>${result.costAsVolumePercent.toFixed(3)}%</strong></p>
+          <p class="mt-1 text-sm text-indigo-800">Cost as percentage of estimated stock/ETF order volume: <strong>${result.costAsVolumePercent.toFixed(3)}%</strong></p>
         `;
 
         renderBreakdown(result);
@@ -880,7 +910,7 @@
           </tr>
         `).join("");
       } catch (error) {
-        document.getElementById("summaryCard").innerHTML = `<div class="rounded-xl bg-red-50 p-4 text-red-700">The calculator could not process the current inputs.</div>`;
+        document.getElementById("summaryCard").innerHTML = `<div class="rounded-xl bg-red-50 p-4 text-red-700">The calculator could not process the current inputs. Check the values and try again.</div>`;
       }
     }
 
@@ -971,14 +1001,20 @@
     loadSelectedBrokerFields();
 
     inputIds.forEach(id => {
-      document.getElementById(id).addEventListener("input", calculate);
-      document.getElementById(id).addEventListener("change", () => {
-        if (id === "brokerSelect") {
-          selectedBrokerIndex = Number(document.getElementById("brokerSelect").value) || 0;
-          loadSelectedBrokerFields();
-        }
-        calculate();
-      });
+      const element = document.getElementById(id);
+
+      if (element.tagName === "SELECT") {
+        element.addEventListener("change", () => {
+          if (id === "brokerSelect") {
+            selectedBrokerIndex = Number(element.value) || 0;
+            loadSelectedBrokerFields();
+          }
+          calculate();
+        });
+      } else {
+        element.addEventListener("input", calculate);
+        element.addEventListener("change", calculate);
+      }
     });
 
     document.getElementById("resetBtn").addEventListener("click", resetAll);
