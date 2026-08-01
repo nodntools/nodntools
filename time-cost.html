@@ -9,12 +9,14 @@
   <meta name="description" content="Free time cost calculator to convert any purchase price into work hours, workdays, and real-life earning time." />
   <meta name="keywords" content="time cost calculator, price in work hours, work hours calculator, money is time calculator, real cost calculator, impulse buying calculator, after tax hourly wage calculator, minimalist budgeting tool, spending decision calculator, financial mindfulness tool" />
   <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow" />
   <meta name="author" content="NodnWebTools" />
+  <link rel="canonical" href="https://nodntools.com/time-cost" />
 
   <meta property="og:title" content="Time Cost Calculator | Price in Work Hours" />
   <meta property="og:description" content="Convert a purchase price into hours of work, workdays, and a clearer spending decision." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://nodntools.com/time-cost.html" />
+  <meta property="og:url" content="https://nodntools.com/time-cost" />
   <meta property="og:site_name" content="NodnWebTools" />
 
   <meta name="twitter:card" content="summary_large_image" />
@@ -33,7 +35,7 @@
     "name": "Time Cost Calculator",
     "applicationCategory": "FinanceApplication",
     "operatingSystem": "Any",
-    "url": "https://nodntools.com/time-cost.html",
+    "url": "https://nodntools.com/time-cost",
     "description": "A free browser-based time cost calculator that converts purchase prices into hours of work, minutes of work, and workdays.",
     "offers": {
       "@type": "Offer",
@@ -48,23 +50,60 @@
   }
   </script>
 
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is a time cost calculator?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A time cost calculator converts a purchase price into the number of hours, minutes, or workdays required to earn that amount."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Should I use gross pay or after-tax pay?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "After-tax pay is usually more realistic because it reflects the money you actually keep after deductions."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can this tool help with impulse buying?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Seeing a purchase as work hours can create a useful pause and help you decide whether the item is truly worth it."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this calculator store my information?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. The calculation runs in your browser. Your entered wage and purchase price are not sent to a backend server by this tool."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use this for subscriptions?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Enter the monthly or annual subscription price to understand how much work time it costs."
+        }
+      }
+    ]
+  }
+  </script>
+
   <style>
     html, body { width: 100%; max-width: 100%; overflow-x: hidden; }
     *, *::before, *::after { box-sizing: border-box; min-width: 0; }
     .safe-break { overflow-wrap: anywhere; word-break: break-word; }
-    .mobile-card, .mobile-panel, .mobile-preview, .ad-box, .mobile-code { max-width: 100%; overflow-x: auto; }
-    .ad-box {
-      min-height: 90px;
-      border: 1px dashed #cbd5e1;
-      background: #f8fafc;
-      color: #94a3b8;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      border-radius: 1rem;
-      padding: 1rem;
-    }
+    .mobile-card, .mobile-panel, .mobile-preview, .mobile-code { max-width: 100%; overflow-x: auto; }
     @media (max-width: 640px) {
       body { padding-left: 0.75rem; padding-right: 0.75rem; }
       .mobile-button-grid { grid-template-columns: 1fr !important; }
@@ -92,10 +131,6 @@
         Home
       </a>
     </nav>
-
-    <div class="ad-box mt-6">
-      AdSense Responsive Ad Area - Top
-    </div>
   </header>
 
   <main class="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
@@ -118,7 +153,7 @@
             <label for="hourlyWage" class="mb-2 block text-sm font-bold text-slate-800">Your hourly wage</label>
             <div class="relative">
               <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">$</span>
-              <input id="hourlyWage" type="number" inputmode="decimal" min="0" step="0.01" value="25" class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-8 pr-4 text-lg font-bold outline-none transition focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-100" />
+              <input id="hourlyWage" name="hourlyWage" type="number" autocomplete="off" inputmode="decimal" min="0" step="0.01" value="25" class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-8 pr-4 text-lg font-bold outline-none transition focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-100" />
             </div>
             <p class="mt-2 text-xs leading-5 text-slate-500">For the most realistic result, use your after-tax hourly wage.</p>
           </div>
@@ -127,18 +162,18 @@
             <label for="itemPrice" class="mb-2 block text-sm font-bold text-slate-800">Item or service price</label>
             <div class="relative">
               <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">$</span>
-              <input id="itemPrice" type="number" inputmode="decimal" min="0" step="0.01" value="120" class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-8 pr-4 text-lg font-bold outline-none transition focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-100" />
+              <input id="itemPrice" name="itemPrice" type="number" autocomplete="off" inputmode="decimal" min="0" step="0.01" value="120" class="w-full rounded-2xl border border-slate-300 bg-slate-50 py-4 pl-8 pr-4 text-lg font-bold outline-none transition focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-100" />
             </div>
           </div>
 
           <div>
             <label for="hoursPerDay" class="mb-2 block text-sm font-bold text-slate-800">Work hours per day</label>
-            <input id="hoursPerDay" type="number" inputmode="decimal" min="1" step="0.25" value="8" class="w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-4 text-lg font-bold outline-none transition focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-100" />
+            <input id="hoursPerDay" name="hoursPerDay" type="number" autocomplete="off" inputmode="decimal" min="1" step="0.25" value="8" class="w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-4 text-lg font-bold outline-none transition focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-100" />
           </div>
 
           <div>
             <label for="currencySelect" class="mb-2 block text-sm font-bold text-slate-800">Currency display</label>
-            <select id="currencySelect" class="w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-4 text-lg font-bold outline-none transition focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-100">
+            <select id="currencySelect" name="currencySelect" class="w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-4 text-lg font-bold outline-none transition focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-100">
               <option value="USD">USD - US Dollar</option>
               <option value="CAD">CAD - Canadian Dollar</option>
               <option value="EUR">EUR - Euro</option>
@@ -148,18 +183,18 @@
           </div>
 
           <div class="grid gap-3 sm:grid-cols-3 mobile-button-grid">
-            <button id="copyBtn" class="rounded-2xl bg-indigo-600 px-4 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-indigo-700">
+            <button id="copyBtn" type="button" class="rounded-2xl bg-indigo-600 px-4 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-indigo-700">
               Copy Result
             </button>
-            <button id="downloadBtn" class="rounded-2xl bg-violet-600 px-4 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-violet-700">
+            <button id="downloadBtn" type="button" class="rounded-2xl bg-violet-600 px-4 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-violet-700">
               Download
             </button>
-            <button id="resetBtn" class="rounded-2xl border border-slate-300 bg-white px-4 py-3 text-sm font-bold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700">
+            <button id="resetBtn" type="button" class="rounded-2xl border border-slate-300 bg-white px-4 py-3 text-sm font-bold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700">
               Reset
             </button>
           </div>
 
-          <p id="copyFeedback" class="hidden rounded-2xl bg-emerald-50 px-4 py-3 text-sm font-semibold text-emerald-700">
+          <p id="copyFeedback" role="status" aria-live="polite" class="hidden rounded-2xl bg-emerald-50 px-4 py-3 text-sm font-semibold text-emerald-700">
             Copied!
           </p>
         </div>
@@ -175,7 +210,7 @@
 
         <div class="mobile-preview mt-6 rounded-3xl border border-indigo-100 bg-gradient-to-br from-indigo-50 via-white to-violet-50 p-6">
           <p class="text-sm font-bold uppercase tracking-wide text-indigo-700">Hours of Work Required</p>
-          <p id="hoursRequired" class="safe-break mt-3 text-5xl font-extrabold tracking-tight text-indigo-700">0.00 Hours</p>
+          <p id="hoursRequired" aria-live="polite" class="safe-break mt-3 text-5xl font-extrabold tracking-tight text-indigo-700">0.00 Hours</p>
           <p id="workSentence" class="mt-4 text-base leading-7 text-slate-700">Enter values to calculate the time cost.</p>
 
           <div class="mt-6 grid gap-3 sm:grid-cols-2">
@@ -202,11 +237,7 @@
             <p id="realityCheck" class="mt-3 text-xl font-extrabold leading-8 text-slate-950">Is this purchase worth your time?</p>
           </div>
 
-          <div id="warningBox" class="mt-5 hidden rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm font-semibold leading-6 text-amber-800"></div>
-        </div>
-
-        <div class="ad-box mt-6">
-          AdSense Responsive Ad Area - Below Tool
+          <div id="warningBox" role="alert" aria-live="polite" class="mt-5 hidden rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm font-semibold leading-6 text-amber-800"></div>
         </div>
 
         <p class="mt-5 text-xs leading-5 text-slate-500">
@@ -214,10 +245,6 @@
         </p>
       </div>
     </section>
-
-    <div class="ad-box mt-8">
-      AdSense Responsive Ad Area - Below Main Section
-    </div>
 
     <article class="mt-10 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-10">
       <span class="inline-flex rounded-full bg-indigo-100 px-4 py-2 text-sm font-bold text-indigo-700">SEO Guide</span>
@@ -242,10 +269,6 @@
         <p>
           The money is time philosophy is not about guilt, punishment, or refusing every enjoyable purchase. It is about intentional spending. Some purchases are absolutely worth the time they cost. A good mattress, a reliable laptop, a tool that saves hours every week, or a family experience may provide value far beyond the price. Other purchases may only provide a short emotional boost and then become clutter, waste, or another monthly bill. A time cost calculator helps you separate meaningful purchases from automatic spending.
         </p>
-
-        <div class="ad-box">
-          AdSense Responsive Ad Area - Middle Content
-        </div>
 
         <h3 class="text-2xl font-extrabold text-slate-950">How the Time Cost Calculator Works</h3>
 
@@ -297,10 +320,6 @@
         <p>
           You can also use the calculator as part of a monthly budgeting routine. Review recent purchases and convert each one into work hours. This can reveal patterns that are hard to see in a bank statement. A few small purchases may add up to several hours of work. A collection of unused subscriptions may cost one or two full workdays every month. A habit that seems harmless may become expensive when measured in time.
         </p>
-
-        <div class="ad-box">
-          AdSense Responsive Ad Area - Bottom Content
-        </div>
 
         <h3 class="text-2xl font-extrabold text-slate-950">Using Time Cost to Reduce Impulse Buying</h3>
 
@@ -468,16 +487,16 @@
                 </p>
             </a>
 
-            <a href="/inflation"
+            <a href="/salestax"
                class="group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:border-indigo-300 hover:shadow-lg">
                 <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-50 text-2xl transition group-hover:bg-indigo-600 group-hover:text-white">
-                    📉
+                    🧾
                 </div>
                 <h3 class="mt-5 text-lg font-extrabold text-slate-950 group-hover:text-indigo-700">
-                    Inflation Calculator
+                    Sales Tax Calculator
                 </h3>
                 <p class="mt-2 text-sm leading-6 text-slate-600">
-                    Measure how inflation affects purchasing power over time.
+                    Calculate sales tax, tax-inclusive prices, and the final amount paid at checkout.
                 </p>
             </a>
 
@@ -512,10 +531,6 @@
         </p>
       </div>
     </section>
-
-    <div class="ad-box mt-8">
-      AdSense Responsive Ad Area - Bottom
-    </div>
   </main>
 
   <script>
@@ -606,8 +621,8 @@
         const hourLabel = Math.abs(hoursRequired - 1) < 0.005 ? "hour" : "hours";
         const dayLabel = Math.abs(daysRequired - 1) < 0.005 ? "day" : "days";
 
-        hoursRequiredEl.textContent = `${formatNumber(hoursRequired, 2)} ${hoursRequired === 1 ? "Hour" : "Hours"}`;
-        workSentenceEl.innerHTML = `You need to work <strong>${formatNumber(hoursRequired, 2)} ${hourLabel}</strong> to afford this purchase.`;
+        hoursRequiredEl.textContent = `${formatNumber(hoursRequired, 2)} ${Math.abs(hoursRequired - 1) < 0.005 ? "Hour" : "Hours"}`;
+        workSentenceEl.textContent = `You need to work ${formatNumber(hoursRequired, 2)} ${hourLabel} to afford this purchase.`;
         displayHourlyWageEl.textContent = formatCurrency(hourlyWage);
         displayItemPriceEl.textContent = formatCurrency(itemPrice);
         displayMinutesRequiredEl.textContent = `${formatNumber(minutesRequired, 0)} ${Math.round(minutesRequired) === 1 ? "Minute" : "Minutes"}`;
@@ -629,12 +644,26 @@
     }
 
     async function copyResult() {
+      const textToCopy = latestResultText || "No result available.";
       try {
-        await navigator.clipboard.writeText(latestResultText || "No result available.");
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(textToCopy);
+        } else {
+          const textArea = document.createElement("textarea");
+          textArea.value = textToCopy;
+          textArea.setAttribute("readonly", "");
+          textArea.style.position = "fixed";
+          textArea.style.opacity = "0";
+          document.body.appendChild(textArea);
+          textArea.select();
+          const copied = document.execCommand("copy");
+          textArea.remove();
+          if (!copied) throw new Error("Copy command failed");
+        }
         copyFeedback.classList.remove("hidden");
         setTimeout(() => copyFeedback.classList.add("hidden"), 1600);
       } catch (error) {
-        updateWarning("Copy failed. Your browser may not allow clipboard access.");
+        updateWarning("Copy failed. Please select the result and copy it manually.");
       }
     }
 
@@ -671,7 +700,6 @@
     downloadBtn.addEventListener("click", downloadResult);
     resetBtn.addEventListener("click", resetTool);
 
-    window.addEventListener("resize", calculateTimeCost);
     calculateTimeCost();
   </script>
 </body>
