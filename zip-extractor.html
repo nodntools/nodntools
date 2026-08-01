@@ -8,13 +8,16 @@
   <title>Online ZIP Extractor | Unzip Files in Browser</title>
   <meta name="description" content="Free online ZIP extractor to open, preview, and download files from ZIP archives directly in your browser." />
   <meta name="keywords" content="online zip extractor, unzip files online, extract zip file, open zip in browser, free zip extractor, client-side zip extractor, private zip opener, secure zip extractor, browser unzip tool, download files from zip, JSZip extractor, no upload zip extractor, archive utility, compressed file extractor, ZIP file viewer, NodnWebTools" />
-  <meta name="robots" content="index, follow" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="bingbot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <link rel="canonical" href="https://nodntools.com/zip-extractor" />
   <meta name="author" content="NodnWebTools" />
 
   <meta property="og:title" content="Online ZIP Extractor | Unzip Files in Browser" />
   <meta property="og:description" content="Open ZIP archives locally in your browser, view file contents, and download individual extracted files without server uploads." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://nodntools.com/zip-extractor.html" />
+  <meta property="og:url" content="https://nodntools.com/zip-extractor" />
   <meta property="og:site_name" content="NodnWebTools" />
 
   <meta name="twitter:card" content="summary_large_image" />
@@ -25,7 +28,7 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404" crossorigin="anonymous"></script>
 
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
   <script type="application/ld+json">
   {
@@ -34,7 +37,7 @@
     "name": "Online ZIP Extractor",
     "applicationCategory": "UtilitiesApplication",
     "operatingSystem": "Any",
-    "url": "https://nodntools.com/zip-extractor.html",
+    "url": "https://nodntools.com/zip-extractor",
     "description": "A free browser-based ZIP extractor that opens ZIP archives locally, displays archive file lists, and lets users download individual files without intentional server uploads.",
     "featureList": [
       "Open ZIP files in the browser",
@@ -54,6 +57,63 @@
       "name": "NodnWebTools",
       "url": "https://nodntools.com"
     }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Does this ZIP extractor upload my file?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. The ZIP file is processed locally in your browser using client-side JavaScript. The tool does not intentionally upload the archive to a backend extraction server."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I extract every file at once?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "This tool focuses on viewing and extracting individual files. For extracting very large archives or complete folder structures, desktop archive software may be more suitable."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does it support password-protected ZIP files?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. This tool is intended for standard ZIP archives and does not decrypt password-protected archives."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are extracted files automatically safe?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Extracting a file does not guarantee that it is safe. Be careful with unknown files and scan suspicious downloads before opening them."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does a ZIP file fail to open?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The archive may be corrupted, incomplete, password-protected, too large for browser memory, or created with unsupported compression features."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use this on mobile?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. The page is responsive and mobile-safe, but very large ZIP archives may work better on a desktop browser with more memory."
+        }
+      }
+    ]
   }
   </script>
 
@@ -90,8 +150,7 @@
     .mobile-card,
     .mobile-panel,
     .mobile-preview,
-    .mobile-code,
-    .ad-box {
+    .mobile-code {
       max-width: 100%;
       overflow-x: hidden;
     }
@@ -103,20 +162,6 @@
       word-break: break-word;
     }
 
-    .ad-box {
-      min-height: 90px;
-      border: 2px dashed #cbd5e1;
-      background: #f8fafc;
-      color: #94a3b8;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      border-radius: 1rem;
-      padding: 1rem;
-      font-size: 0.875rem;
-      line-height: 1.5;
-    }
 
     .drop-active {
       border-color: #4f46e5 !important;
@@ -165,12 +210,6 @@
         max-height: 420px;
       }
 
-      .ad-box {
-        min-height: 90px;
-        border-radius: 0.875rem;
-        padding: 0.875rem;
-        font-size: 0.75rem;
-      }
     }
 
     @media (max-width: 380px) {
@@ -193,9 +232,6 @@
         font-size: 0.875rem !important;
       }
 
-      .ad-box {
-        font-size: 0.7rem;
-      }
     }
   </style>
 </head>
@@ -203,19 +239,15 @@
 <body class="min-h-screen bg-slate-50 text-slate-900">
   <header class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
     <nav class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-      <a href="https://nodntools.com" class="inline-flex items-center gap-1 text-2xl font-extrabold tracking-tight transition hover:opacity-80" aria-label="NodnWebTools Home">
+      <a href="/" class="inline-flex items-center gap-1 text-2xl font-extrabold tracking-tight transition hover:opacity-80" aria-label="NodnWebTools Home">
         <span>Nodn</span><span class="text-indigo-600">WebTools</span>
       </a>
 
-      <a href="https://nodntools.com" class="inline-flex w-fit rounded-full border border-slate-200 bg-white px-5 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-indigo-200 hover:text-indigo-700">
+      <a href="/" class="inline-flex w-fit rounded-full border border-slate-200 bg-white px-5 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-indigo-200 hover:text-indigo-700">
         Home
       </a>
     </nav>
-
-    <div class="ad-box mt-6">
-      AdSense Responsive Ad Area - Top
-    </div>
-  </header>
+</header>
 
   <main class="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
     <section class="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
@@ -234,7 +266,7 @@
 
         <div class="mt-8 space-y-5">
           <div class="mobile-panel rounded-2xl border border-slate-200 bg-slate-50 p-4">
-            <label class="mb-3 block text-sm font-bold text-slate-700">Select ZIP file</label>
+            <label for="fileInput" class="mb-3 block text-sm font-bold text-slate-700">Select ZIP file</label>
 
             <div id="dropZone" class="relative flex min-h-[190px] w-full cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed border-slate-300 bg-white p-5 text-center transition hover:border-indigo-300 hover:bg-indigo-50/40">
               <input type="file" id="fileInput" accept=".zip,application/zip,application/x-zip-compressed" class="absolute inset-0 z-20 h-full w-full cursor-pointer opacity-0" aria-label="Choose ZIP file" />
@@ -264,7 +296,7 @@
             </div>
           </div>
 
-          <div id="errorNotification" class="hidden rounded-2xl border border-red-200 bg-red-50 p-4 text-sm font-semibold leading-6 text-red-700"></div>
+          <div id="errorNotification" class="hidden rounded-2xl border border-red-200 bg-red-50 p-4 text-sm font-semibold leading-6 text-red-700" role="alert" aria-live="assertive"></div>
 
           <div id="archiveInfoBox" class="rounded-2xl bg-indigo-50 p-4 text-sm leading-6 text-slate-700">
             Your ZIP file is read in this browser tab using JSZip. For sensitive files, use a trusted device and browser environment.
@@ -279,7 +311,7 @@
             </button>
           </div>
 
-          <p id="actionFeedback" class="hidden rounded-2xl bg-emerald-50 px-4 py-3 text-sm font-bold text-emerald-700">
+          <p id="actionFeedback" class="hidden rounded-2xl bg-emerald-50 px-4 py-3 text-sm font-bold text-emerald-700" role="status" aria-live="polite">
             Copied!
           </p>
         </div>
@@ -295,7 +327,7 @@
               </p>
             </div>
 
-            <span id="statusBadge" class="inline-flex w-fit rounded-full bg-slate-100 px-4 py-2 text-sm font-bold text-slate-600">
+            <span id="statusBadge" class="inline-flex w-fit rounded-full bg-slate-100 px-4 py-2 text-sm font-bold text-slate-600" role="status" aria-live="polite">
               Waiting for ZIP
             </span>
           </div>
@@ -329,23 +361,13 @@
 
             <div id="fileRowsDeck" class="file-list-scroll mt-4 space-y-3"></div>
           </div>
-
-          <div class="ad-box mt-6">
-            AdSense Responsive Ad Area - Result
-          </div>
-
-          <p class="mt-5 text-xs leading-5 text-slate-500">
+<p class="mt-5 text-xs leading-5 text-slate-500">
             This tool extracts individual files from ZIP archives. It does not repair corrupted archives, remove malware, bypass passwords, or verify whether extracted files are safe to open.
           </p>
         </div>
       </section>
     </section>
-
-    <div class="ad-box mt-8">
-      AdSense Responsive Ad Area - Below Main Tool
-    </div>
-
-    <article class="mt-10 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-10">
+<article class="mt-10 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-10">
       <span class="inline-flex rounded-full bg-indigo-100 px-4 py-2 text-sm font-bold text-indigo-700">
         ZIP Extraction Guide
       </span>
@@ -375,12 +397,7 @@
         <p>
           ZIP files are convenient, but they must be extracted before the internal files can be used normally. An operating system may include a built-in unzip feature, but users sometimes prefer an online ZIP opener when they are on a shared computer, Chromebook, restricted work device, mobile browser, or temporary environment where installing extra software is not possible. A browser-based ZIP viewer can also be faster when the goal is only to inspect or download a specific file from inside the archive.
         </p>
-
-        <div class="ad-box">
-          AdSense Responsive Ad Area - Middle Content
-        </div>
-
-        <h3 class="text-2xl font-extrabold text-slate-950">How This Browser ZIP Extractor Works</h3>
+<h3 class="text-2xl font-extrabold text-slate-950">How This Browser ZIP Extractor Works</h3>
         <p>
           This tool uses a client-side JavaScript library to read the selected ZIP archive as an ArrayBuffer. After the file is loaded into browser memory, the ZIP structure is parsed locally. The tool then lists the internal files, ignores folder-only entries, and builds an extraction button for each file. When a user clicks Extract, the selected file is converted into a browser Blob and downloaded through a temporary local object URL.
         </p>
@@ -426,12 +443,7 @@
         <p>
           To download a file from the archive, click Extract next to that file. The tool creates a temporary local download link and saves the file through the browser. You can extract multiple files one by one. If you need every file at once, a desktop archive application may be faster for large archives. This tool is optimized for quick inspection and selective extraction.
         </p>
-
-        <div class="ad-box">
-          AdSense Responsive Ad Area - Bottom Content
-        </div>
-
-        <h3 class="text-2xl font-extrabold text-slate-950">Privacy and Security Considerations</h3>
+<h3 class="text-2xl font-extrabold text-slate-950">Privacy and Security Considerations</h3>
         <p>
           A browser-based ZIP extractor can reduce unnecessary file uploads, but users should still follow safe file handling practices. ZIP archives can contain executable files, scripts, macros, unknown documents, or suspicious content. Extracting a file does not mean it is safe to open. Be cautious with archives from unknown senders, unexpected email attachments, downloaded software bundles, or files that ask you to enable macros or run installers.
         </p>
@@ -624,11 +636,7 @@
         </p>
       </div>
     </section>
-
-    <div class="ad-box mt-8">
-      AdSense Responsive Ad Area - Bottom
-    </div>
-  </main>
+</main>
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -654,6 +662,15 @@
       let activeFileList = [];
       let activeArchiveName = "";
       let activeArchiveSize = 0;
+
+      function escapeHtml(value) {
+        return String(value ?? "")
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#039;");
+      }
 
       function formatBytes(bytes, decimals = 2) {
         if (!Number.isFinite(bytes) || bytes <= 0) return "0 Bytes";
@@ -704,7 +721,7 @@
       function validateZipFile(file) {
         if (!file) return false;
         const name = String(file.name || "").toLowerCase();
-        const acceptedTypes = ["application/zip", "application/x-zip-compressed", "application/octet-stream"];
+        const acceptedTypes = ["application/zip", "application/x-zip-compressed"];
         return name.endsWith(".zip") || acceptedTypes.includes(file.type);
       }
 
@@ -725,8 +742,16 @@
         activeFileList = [];
 
         const fragment = document.createDocumentFragment();
+        const archiveEntries = Object.keys(zip.files);
+        const maxEntries = 5000;
 
-        Object.keys(zip.files).forEach(function (relativePath) {
+        if (archiveEntries.length > maxEntries) {
+          displayErrorState("This archive contains more than 5,000 entries and was not opened to protect browser performance.");
+          switchLoadingState(false);
+          return;
+        }
+
+        archiveEntries.forEach(function (relativePath) {
           const fileMetadata = zip.files[relativePath];
           if (fileMetadata.dir) return;
 
@@ -748,12 +773,12 @@
             <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <div class="min-w-0 flex-1">
                 <div class="flex flex-wrap items-center gap-2">
-                  <span class="rounded-full bg-indigo-50 px-3 py-1 text-xs font-extrabold text-indigo-700">${fileExtension}</span>
+                  <span class="rounded-full bg-indigo-50 px-3 py-1 text-xs font-extrabold text-indigo-700">${escapeHtml(fileExtension)}</span>
                   <span class="text-xs font-semibold text-slate-500">${formatBytes(uncompressedSize)}</span>
                 </div>
-                <p class="safe-break mt-2 font-mono text-sm font-bold leading-6 text-slate-950">${relativePath}</p>
+                <p class="safe-break mt-2 font-mono text-sm font-bold leading-6 text-slate-950">${escapeHtml(relativePath)}</p>
               </div>
-              <button type="button" class="extract-btn inline-flex w-full items-center justify-center gap-2 rounded-xl bg-indigo-600 px-4 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-indigo-700 sm:w-auto" aria-label="Extract ${relativePath}">
+              <button type="button" class="extract-btn inline-flex w-full items-center justify-center gap-2 rounded-xl bg-indigo-600 px-4 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-indigo-700 sm:w-auto" aria-label="Extract ${escapeHtml(relativePath)}">
                 <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h14a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                 </svg>
@@ -791,6 +816,13 @@
       function triggerIncomingArchive(file) {
         if (!file) return;
 
+        const maxArchiveBytes = 250 * 1024 * 1024;
+
+        if (file.size > maxArchiveBytes) {
+          displayErrorState("This ZIP file is larger than 250 MB. Use a desktop archive manager for very large archives.");
+          return;
+        }
+
         if (!validateZipFile(file)) {
           displayErrorState("Please select a valid .zip archive file.");
           return;
@@ -806,6 +838,12 @@
 
         reader.onload = function (event) {
           const rawBufferPayload = event.target.result;
+
+          if (typeof JSZip === "undefined") {
+            displayErrorState("The ZIP library could not be loaded. Check your internet connection and refresh the page.");
+            switchLoadingState(false);
+            return;
+          }
 
           JSZip.loadAsync(rawBufferPayload)
             .then(function (zip) {
@@ -849,7 +887,9 @@
             document.body.appendChild(downloadLink);
             downloadLink.click();
             downloadLink.remove();
-            URL.revokeObjectURL(localBlobUrl);
+            setTimeout(function () {
+              URL.revokeObjectURL(localBlobUrl);
+            }, 1000);
 
             buttonElement.disabled = false;
             buttonElement.classList.remove("bg-slate-500", "cursor-wait");
