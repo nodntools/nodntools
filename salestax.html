@@ -9,12 +9,14 @@
  <meta name="description" content="Estimate state sales tax, purchase total, and tax amount with a free browser-based US sales tax calculator." />
   <meta name="keywords" content="US sales tax calculator, state sales tax calculator, sales tax by state, sales tax rate calculator, purchase total calculator, state tax calculator, online sales tax calculator, retail tax calculator, California sales tax calculator, Texas sales tax calculator, New York sales tax calculator, Florida sales tax calculator, Washington sales tax calculator, Illinois sales tax calculator, checkout tax calculator, estimated sales tax calculator" />
   <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow" />
   <meta name="author" content="NodnWebTools" />
+  <link rel="canonical" href="https://nodntools.com/salestax" />
 
   <meta property="og:title" content="US Sales Tax Calculator by State" />
   <meta property="og:description" content="Estimate purchase price, state sales tax, and final total by selecting a US state." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://nodntools.com/salestax.html" />
+  <meta property="og:url" content="https://nodntools.com/salestax" />
   <meta property="og:site_name" content="NodnWebTools" />
 
   <meta name="twitter:card" content="summary_large_image" />
@@ -51,7 +53,7 @@
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "US Sales Tax Calculator by State",
-    "url": "https://nodntools.com/salestax.html",
+    "url": "https://nodntools.com/salestax",
     "applicationCategory": "FinanceApplication",
     "operatingSystem": "Any modern web browser",
     "description": "A free client-side US sales tax calculator that estimates state-level sales tax, tax amount, and final purchase total.",
@@ -77,6 +79,56 @@
     ]
   }
   </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is sales tax?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sales tax is a transaction tax added to certain purchases of goods or services. In the United States, rates and rules usually vary by state and local jurisdiction."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I calculate sales tax?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Multiply the purchase price by the tax rate. For example, a $100 item at 6% tax has $6 in sales tax and a total price of $106."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this calculator include local city and county tax?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Not automatically. It uses simplified state-level rates. Use the custom rate field if you know the exact combined local rate."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is online sales tax different from store sales tax?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Online sales tax may depend on shipping destination, marketplace collection rules, seller nexus, product category, and local tax rates."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which states have no statewide general sales tax?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Oregon, Delaware, Montana, New Hampshire, and Alaska are commonly listed as states with no statewide general sales tax, though local or special taxes may still apply in some cases."
+        }
+      }
+    ]
+  }
+  </script>
+
 
   <style>
     html, body {
@@ -131,22 +183,6 @@
       overflow-x: auto;
     }
 
-    .ad-box {
-      width: 100%;
-      max-width: 100%;
-      min-height: 90px;
-      overflow: hidden;
-      border: 1px dashed #cbd5e1;
-      background: #f8fafc;
-      color: #94a3b8;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      border-radius: 1.25rem;
-      padding: 1rem;
-    }
-
     @media (max-width: 640px) {
       .mobile-card,
       .mobile-panel,
@@ -161,13 +197,6 @@
 
       button {
         width: 100%;
-      }
-
-      .ad-box {
-        min-height: 90px;
-        border-radius: 1rem;
-        padding: .875rem;
-        font-size: .875rem;
       }
 
       h1 {
@@ -197,11 +226,6 @@
         border-radius: 1rem !important;
       }
 
-      .ad-box {
-        min-height: 82px;
-        font-size: .8rem;
-      }
-
       h1 {
         font-size: 1.75rem !important;
       }
@@ -222,9 +246,6 @@
   </header>
 
   <main class="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
-    <div class="ad-box mb-6">
-      Top Ad Area
-    </div>
 
     <section class="grid grid-cols-1 gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
       <aside class="mobile-card rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-8 lg:sticky lg:top-8">
@@ -250,6 +271,7 @@
                 id="purchasePrice"
                 inputmode="decimal"
                 min="0"
+                max="1000000000"
                 step="0.01"
                 value="100"
                 placeholder="100.00"
@@ -278,13 +300,15 @@
                 id="customRate"
                 inputmode="decimal"
                 min="0"
+                max="25"
                 step="0.001"
+                aria-describedby="customRateHelp"
                 placeholder="Leave blank to use selected state rate"
                 class="w-full rounded-2xl border border-slate-200 bg-slate-50 py-4 pl-4 pr-12 text-base font-bold text-slate-950 outline-none transition focus:border-accent-400 focus:bg-white focus:ring-4 focus:ring-accent-100"
               />
               <span class="absolute right-4 top-1/2 -translate-y-1/2 text-sm font-bold text-slate-400">%</span>
             </div>
-            <p class="mt-2 text-sm leading-6 text-slate-500">
+            <p id="customRateHelp" class="mt-2 text-sm leading-6 text-slate-500">
               Use this field when you know a combined local rate. It overrides the state selector rate.
             </p>
           </div>
@@ -352,10 +376,6 @@
               <strong id="displayRateSource" class="text-slate-950">No state selected</strong>
             </div>
           </div>
-
-          <div class="ad-box mt-6">
-            Ad Area Below Result
-          </div>
         </div>
 
         <section class="mobile-card rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-8">
@@ -381,10 +401,6 @@
         </section>
       </section>
     </section>
-
-    <div class="ad-box my-8">
-      Ad Area Below Main Tool and Result Section
-    </div>
 
     <article class="mobile-card rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-8 lg:p-10">
       <div class="mx-auto max-w-4xl">
@@ -413,10 +429,6 @@
           <p>
             Sales tax is usually calculated as a percentage of the taxable purchase price. For example, if an item costs $100 and the applicable sales tax rate is 6%, the tax amount is $6 and the final total is $106. For a $1,000 purchase at 7.25%, the sales tax is $72.50 and the total is $1,072.50. A calculator makes this math quick and reduces the chance of manual errors, especially when the purchase amount includes decimals or when comparing multiple states.
           </p>
-
-          <div class="ad-box my-8">
-            Middle Content Ad Area
-          </div>
 
           <h3 class="text-2xl font-black text-slate-950">Why Sales Tax Varies by State</h3>
           <p>
@@ -493,10 +505,6 @@
           <p>
             If you are buying for a business, reselling goods, purchasing exempt items, or managing tax compliance, verify the rules with official state tax agencies or a qualified professional. If you are a consumer, the retailer’s checkout system will usually determine whether the item is taxable. The calculator is best used for general estimation, not legal or compliance decisions.
           </p>
-
-          <div class="ad-box my-8">
-            Bottom Content Ad Area
-          </div>
 
           <h3 class="text-2xl font-black text-slate-950">No-Sales-Tax States and Important Caveats</h3>
           <p>
@@ -701,15 +709,12 @@
         </div>
       </div>
     </section>
-
-    <div class="ad-box mt-8">
-      Bottom Ad Area
-    </div>
   </main>
 
   <footer class="mt-10 border-t border-slate-200 bg-white">
     <div class="mx-auto flex w-full max-w-7xl flex-col gap-3 px-4 py-6 text-sm text-slate-500 sm:px-6 lg:px-8">
       <div class="font-extrabold text-slate-900">Nodn<span class="text-accent-600">WebTools</span></div>
+      <p>© <span id="currentYear"></span> NodnWebTools. All rights reserved.</p>
       <p class="leading-6">Free browser-based utilities designed for practical calculations, productivity, and everyday financial planning support.</p>
     </div>
   </footer>
@@ -807,7 +812,7 @@
 
       function sanitizeNumber(value, fallback) {
         const number = parseFloat(String(value).replace(/,/g, ''));
-        return isNaN(number) || number < 0 ? fallback : number;
+        return !Number.isFinite(number) || number < 0 ? fallback : number;
       }
 
       function populateStateOptions() {
@@ -824,9 +829,9 @@
       function getAppliedRate() {
         const customRate = sanitizeNumber(customRateInput.value, NaN);
 
-        if (!isNaN(customRate)) {
+        if (Number.isFinite(customRate)) {
           return {
-            rate: customRate,
+            rate: Math.min(25, customRate),
             source: 'Custom combined rate entered by user'
           };
         }
@@ -841,7 +846,8 @@
       }
 
       function calculateSalesTax() {
-        const purchasePrice = sanitizeNumber(purchasePriceInput.value, 0);
+        try {
+          const purchasePrice = Math.min(1000000000, sanitizeNumber(purchasePriceInput.value, 0));
         const selectedState = stateSelect.value;
         const applied = getAppliedRate();
         const taxRate = applied.rate;
@@ -867,6 +873,13 @@
           '',
           'Disclaimer: This is a simplified estimate only. Actual sales tax may vary by address, local jurisdiction, product category, exemption status, retailer policy, marketplace rules, and updated tax laws.'
         ].join('\n');
+        } catch (error) {
+          console.error('Sales tax calculation error:', error);
+          latestReport = '';
+          totalPriceEl.textContent = '$0.00';
+          displaySalesTaxEl.textContent = '$0.00';
+          displayRateSourceEl.textContent = 'Unable to calculate. Check the entered values.';
+        }
       }
 
       function showCopyFeedback(message) {
@@ -882,6 +895,10 @@
         try {
           const textarea = document.createElement('textarea');
           textarea.value = text;
+          textarea.setAttribute('readonly', '');
+          textarea.style.position = 'fixed';
+          textarea.style.left = '-9999px';
+          textarea.style.opacity = '0';
           document.body.appendChild(textarea);
           textarea.select();
           document.execCommand('copy');
@@ -921,7 +938,9 @@
           document.body.appendChild(link);
           link.click();
           document.body.removeChild(link);
-          URL.revokeObjectURL(url);
+          setTimeout(function () {
+            URL.revokeObjectURL(url);
+          }, 1000);
         } catch (error) {
           showCopyFeedback('Download failed. Please copy the result instead.');
         }
@@ -951,10 +970,7 @@
         });
       });
 
-      window.addEventListener('resize', function () {
-        document.body.style.overflowX = 'hidden';
-      });
-
+      document.getElementById('currentYear').textContent = new Date().getFullYear();
       populateStateOptions();
       calculateSalesTax();
     });
