@@ -5,16 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link rel="icon" type="image/png" href="/favicon.png">
 
-  <title>Global Stock Market Tracker | Live Charts</title>
-  <meta name="description" content="Track global stocks with live TradingView charts, technical analysis, company profiles, and financial widgets." />
+  <title>Global Stock Tracker | Charts & Market Analysis</title>
+  <meta name="description" content="Search global stocks and review TradingView charts, technical analysis, company profiles, and financial data in one responsive dashboard." />
   <meta name="keywords" content="global stock market tracker, stock tracker, live stock chart, stock market dashboard, TradingView stock chart, stock technical analysis, company profile widget, financial overview widget, AAPL stock chart, TSLA stock chart, NVDA stock chart, MSFT stock chart, AMZN stock chart, GOOGL stock chart, META stock chart, Samsung stock chart, Shopify stock chart, global stock search, stock research tool, market chart tool, online stock tracker, free stock dashboard, live market widget, investment research tool, stock price chart, equity research dashboard, stock analysis page, technical indicator widget, company fundamentals, financial statements widget" />
   <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow" />
+  <link rel="canonical" href="https://nodntools.com/stock-tracker" />
   <meta name="author" content="NodnWebTools" />
 
-  <meta property="og:title" content="Global Stock Market Tracker | Live Charts" />
-  <meta property="og:description" content="Track global stocks with live TradingView charts, technical analysis, company profiles, and financial widgets." />
+  <meta property="og:title" content="Global Stock Tracker | Charts & Market Analysis" />
+  <meta property="og:description" content="Search global stocks and review TradingView charts, technical analysis, company profiles, and financial data in one dashboard." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://nodntools.com/stock-tracker.html" />
+  <meta property="og:url" content="https://nodntools.com/stock-tracker" />
   <meta property="og:site_name" content="NodnWebTools" />
 
   <meta name="twitter:card" content="summary_large_image" />
@@ -51,7 +53,7 @@
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "Global Stock Market Tracker",
-    "url": "https://nodntools.com/stock-tracker.html",
+    "url": "https://nodntools.com/stock-tracker",
     "applicationCategory": "FinanceApplication",
     "operatingSystem": "Any modern web browser",
     "description": "A browser-based global stock market tracker that embeds TradingView-powered charts, ticker tape, technical analysis, company profile, and financial overview widgets for stock research.",
@@ -76,6 +78,63 @@
       "International market symbol support",
       "Responsive mobile-safe stock dashboard",
       "Client-side widget loading"
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is this stock market tracker free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. This page is free to use and displays stock research widgets directly in your browser."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this tool provide real-time market data?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Market data is provided through third-party embedded widgets and may be delayed, limited, or unavailable depending on the exchange, symbol, and widget provider."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does a symbol not load?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Some TradingView widgets may not support every exchange symbol. Try using a full exchange prefix, such as NASDAQ:AAPL, TSX:SHOP, or KRX:005930."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I buy or sell stocks from this page?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. This is an informational chart and research dashboard. It does not connect to brokerage accounts or execute trades."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is technical analysis a guarantee?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Technical analysis can help organize price and volume information, but it cannot predict the future with certainty and should not be used alone."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is this financial advice?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. This page is for general informational and educational purposes only. It is not financial, investment, trading, tax, accounting, or legal advice."
+        }
+      }
     ]
   }
   </script>
@@ -125,22 +184,6 @@
       overflow-x: auto;
     }
 
-    .ad-box {
-      width: 100%;
-      max-width: 100%;
-      min-height: 90px;
-      overflow: hidden;
-      border: 1px dashed #cbd5e1;
-      background: #f8fafc;
-      color: #94a3b8;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      border-radius: 1.25rem;
-      padding: 1rem;
-    }
-
     .tv-box {
       width: 100%;
       max-width: 100%;
@@ -180,13 +223,6 @@
         width: 100%;
       }
 
-      .ad-box {
-        min-height: 90px;
-        border-radius: 1rem;
-        padding: .875rem;
-        font-size: .875rem;
-      }
-
       .tv-box {
         border-radius: 1rem;
       }
@@ -218,11 +254,6 @@
         border-radius: 1rem !important;
       }
 
-      .ad-box {
-        min-height: 82px;
-        font-size: .8rem;
-      }
-
       h1 {
         font-size: 1.75rem !important;
       }
@@ -243,9 +274,6 @@
   </header>
 
   <main class="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
-    <div class="ad-box mb-6">
-      Top Ad Area
-    </div>
 
     <section class="overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-slate-200">
       <div class="bg-gradient-to-br from-slate-950 via-accent-900 to-indigo-700 px-5 py-8 text-white sm:px-8 sm:py-10">
@@ -277,6 +305,10 @@
               <input
                 id="stockInput"
                 type="text"
+                maxlength="30"
+                autocomplete="off"
+                autocapitalize="characters"
+                spellcheck="false"
                 value="NASDAQ:AAPL"
                 placeholder="AAPL, TSLA, NVDA, KRX:005930..."
                 class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-4 text-base font-black uppercase text-slate-950 outline-none transition placeholder:text-slate-400 focus:border-accent-400 focus:ring-4 focus:ring-accent-100"
@@ -294,6 +326,7 @@
             <p class="mt-3 text-xs leading-5 text-slate-500">
               Examples: AAPL, TSLA, NVDA, MSFT, AMZN, GOOGL, META, NASDAQ:AAPL, NYSE:BRK.B, TSX:SHOP, KRX:005930.
             </p>
+            <p id="searchStatus" class="mt-3 hidden rounded-xl border border-amber-200 bg-amber-50 px-3 py-2 text-xs font-semibold leading-5 text-amber-800" role="status" aria-live="polite"></p>
           </div>
 
           <div>
@@ -302,7 +335,7 @@
                 Large Cap Shortcuts
               </p>
 
-              <span id="selectedSymbolLabel" class="safe-break w-fit rounded-full bg-accent-50 px-3 py-1 text-xs font-black text-accent-700 ring-1 ring-accent-100">
+              <span id="selectedSymbolLabel" aria-live="polite" class="safe-break w-fit rounded-full bg-accent-50 px-3 py-1 text-xs font-black text-accent-700 ring-1 ring-accent-100">
                 NASDAQ:AAPL
               </span>
             </div>
@@ -381,7 +414,7 @@
                 Selected Symbol
               </p>
 
-              <h2 id="mainSymbolTitle" class="mt-1 safe-break text-3xl font-black tracking-tight text-white sm:text-5xl">
+              <h2 id="mainSymbolTitle" aria-live="polite" class="mt-1 safe-break text-3xl font-black tracking-tight text-white sm:text-5xl">
                 NASDAQ:AAPL
               </h2>
             </div>
@@ -392,10 +425,6 @@
           </div>
 
           <div id="advancedChartWrap" class="tv-box h-[460px] sm:h-[560px] lg:h-[620px]"></div>
-
-          <div class="ad-box mt-6 bg-slate-900 text-slate-500">
-            Ad Area Below Chart
-          </div>
         </section>
       </div>
     </section>
@@ -422,10 +451,6 @@
       </h2>
       <div id="financialsWrap" class="tv-box h-[560px]"></div>
     </section>
-
-    <div class="ad-box my-8">
-      Ad Area Below Main Tool and Result Section
-    </div>
 
     <article class="mobile-card rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-8 lg:p-10">
       <div class="mx-auto max-w-4xl">
@@ -463,10 +488,6 @@
           <p>
             Different users read charts differently. A short-term trader may focus on intraday candles, volume spikes, moving averages, and momentum indicators. A long-term investor may prefer daily, weekly, or monthly views to evaluate whether the stock is in a durable trend. A student may use charts to learn how markets respond to earnings, interest rates, economic data, or sector rotation. The purpose of a chart is not to predict the future with certainty, but to organize price information in a way that is easier to interpret.
           </p>
-
-          <div class="ad-box my-8">
-            Middle Content Ad Area
-          </div>
 
           <h3 class="text-2xl font-black text-slate-950">Popular Uses for a Global Stock Market Tracker</h3>
           <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
@@ -525,10 +546,6 @@
           <p>
             Indicator summaries can change quickly, especially during volatile markets. A stock may show bullish momentum in the morning and weaken later in the day. A daily technical summary may differ from a weekly or monthly trend. For this reason, users should review multiple time frames and avoid relying on a single signal. Technical analysis is one input among many, not a complete investment decision system.
           </p>
-
-          <div class="ad-box my-8">
-            Bottom Content Ad Area
-          </div>
 
           <h3 class="text-2xl font-black text-slate-950">Company Profile and Financial Overview</h3>
           <p>
@@ -747,10 +764,6 @@
         </div>
       </div>
     </section>
-
-    <div class="ad-box mt-8">
-      Bottom Ad Area
-    </div>
   </main>
 
   <footer class="mt-10 border-t border-slate-200 bg-white">
@@ -766,6 +779,7 @@
       const searchBtn = document.getElementById('searchBtn');
       const selectedSymbolLabel = document.getElementById('selectedSymbolLabel');
       const mainSymbolTitle = document.getElementById('mainSymbolTitle');
+      const searchStatus = document.getElementById('searchStatus');
 
       const tickerTapeWrap = document.getElementById('tickerTapeWrap');
       const advancedChartWrap = document.getElementById('advancedChartWrap');
@@ -797,10 +811,36 @@
         'BRK-B': 'NYSE:BRK.B'
       };
 
+      function setSearchStatus(message) {
+        if (!message) {
+          searchStatus.textContent = '';
+          searchStatus.classList.add('hidden');
+          return;
+        }
+
+        searchStatus.textContent = message;
+        searchStatus.classList.remove('hidden');
+      }
+
       function normalizeSymbol(value) {
         const clean = String(value || '').trim().toUpperCase();
 
-        if (!clean) return 'NASDAQ:AAPL';
+        if (!clean) {
+          setSearchStatus('Enter a stock symbol such as AAPL, TSX:SHOP, or KRX:005930.');
+          return null;
+        }
+
+        if (!/^[A-Z0-9._:-]{1,30}$/.test(clean)) {
+          setSearchStatus('Use only letters, numbers, periods, hyphens, underscores, and one exchange separator.');
+          return null;
+        }
+
+        if ((clean.match(/:/g) || []).length > 1 || clean.startsWith(':') || clean.endsWith(':')) {
+          setSearchStatus('Use the exchange format EXCHANGE:SYMBOL, for example NASDAQ:AAPL.');
+          return null;
+        }
+
+        setSearchStatus('');
         if (symbolMap[clean]) return symbolMap[clean];
         if (clean.includes(':')) return clean;
 
@@ -958,6 +998,7 @@
 
       function updateDashboard(rawSymbol) {
         const symbol = normalizeSymbol(rawSymbol);
+        if (!symbol) return;
 
         input.value = symbol;
         selectedSymbolLabel.textContent = symbol;
