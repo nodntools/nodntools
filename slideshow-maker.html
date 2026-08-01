@@ -9,12 +9,14 @@
   <meta name="description" content="Create photo slideshows from images, preview transitions, and download a browser-based HTML slideshow file." />
   <meta name="keywords" content="photo slideshow maker, image slideshow generator, online slideshow creator, picture slideshow download, HTML slideshow maker, photo presentation maker, create slideshow from photos, browser slideshow tool, client-side slideshow maker, downloadable slideshow, family photo slideshow, travel slideshow maker, wedding slideshow maker, portfolio slideshow, image gallery slideshow, photo album slideshow, slideshow HTML download" />
   <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow" />
+  <link rel="canonical" href="https://nodntools.com/slideshow-maker" />
   <meta name="author" content="NodnWebTools" />
 
   <meta property="og:title" content="Photo Slideshow Maker | HTML Slideshow Tool" />
   <meta property="og:description" content="Create photo slideshows from images, preview transitions, and download a browser-based HTML slideshow file." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://nodntools.com/slideshow-maker.html" />
+  <meta property="og:url" content="https://nodntools.com/slideshow-maker" />
   <meta property="og:site_name" content="NodnWebTools" />
 
   <meta name="twitter:card" content="summary_large_image" />
@@ -51,7 +53,7 @@
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "Photo Slideshow Maker",
-    "url": "https://nodntools.com/slideshow-maker.html",
+    "url": "https://nodntools.com/slideshow-maker",
     "applicationCategory": "MultimediaApplication",
     "operatingSystem": "Any modern web browser",
     "description": "A free client-side photo slideshow maker that creates previewable and downloadable HTML slideshows from uploaded images without sending files to a backend server.",
@@ -76,6 +78,71 @@
       "Standalone HTML slideshow download",
       "Client-side browser processing",
       "Mobile-safe responsive layout"
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Does this tool upload my photos to a server?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. The slideshow preview and export process run locally in your browser. Your selected images are not uploaded to a backend server by this tool."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What file does the download button create?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The download button creates a standalone HTML slideshow file that includes your selected images, title, timing, and transition settings."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I make an MP4 video with this version?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. This version focuses on live preview and downloadable HTML slideshow export. MP4 video export requires more advanced browser encoding technology."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How many images can I use?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "This version accepts up to 30 images per slideshow. The practical performance limit also depends on device memory, browser performance, and image file sizes."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which image formats are supported?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The file picker accepts common browser-readable image formats such as JPG, PNG, WebP, and GIF. Actual support depends on your browser."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I share the downloaded slideshow file?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, but the downloaded HTML file may contain the selected images. Only share it when you have permission to distribute those photos."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is my downloaded slideshow file large?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The HTML file includes embedded image data. Large photos or many photos can make the file large. Compressing images before upload can reduce the file size."
+        }
+      }
     ]
   }
   </script>
@@ -121,22 +188,6 @@
     .mobile-preview {
       max-width: 100%;
       overflow-x: auto;
-    }
-
-    .ad-box {
-      width: 100%;
-      max-width: 100%;
-      min-height: 90px;
-      overflow: hidden;
-      border: 1px dashed #cbd5e1;
-      background: #f8fafc;
-      color: #94a3b8;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      border-radius: 1.25rem;
-      padding: 1rem;
     }
 
     .slideshow-stage {
@@ -195,13 +246,6 @@
         width: 100%;
       }
 
-      .ad-box {
-        min-height: 90px;
-        border-radius: 1rem;
-        padding: .875rem;
-        font-size: .875rem;
-      }
-
       .slideshow-stage {
         aspect-ratio: 4 / 3;
       }
@@ -233,11 +277,6 @@
         border-radius: 1rem !important;
       }
 
-      .ad-box {
-        min-height: 82px;
-        font-size: .8rem;
-      }
-
       .slideshow-stage {
         aspect-ratio: 1 / 1;
       }
@@ -262,9 +301,6 @@
   </header>
 
   <main class="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
-    <div class="ad-box mb-6">
-      Top Ad Area
-    </div>
 
     <section class="grid grid-cols-1 gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
       <aside class="mobile-card rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-8 lg:sticky lg:top-8">
@@ -285,7 +321,7 @@
             <label for="imageInput" class="mb-2 block text-sm font-bold text-slate-700">Upload Photos</label>
             <input id="imageInput" type="file" accept="image/*" multiple class="block w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm file:mr-4 file:rounded-full file:border-0 file:bg-accent-600 file:px-4 file:py-2 file:text-sm file:font-bold file:text-white hover:file:bg-accent-700" />
             <p class="mt-2 text-sm leading-6 text-slate-500">
-              Select JPG, PNG, WebP, or GIF images. Files are read locally by your browser.
+              Select up to 30 JPG, PNG, WebP, or GIF images. Each image must be 15 MB or smaller. Files are read locally by your browser.
             </p>
           </div>
 
@@ -345,11 +381,11 @@
         <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
           <div>
             <h2 class="text-2xl font-black text-slate-950">Live Preview</h2>
-            <p id="statusText" class="safe-break mt-1 text-sm leading-6 text-slate-500">
+            <p id="statusText" class="safe-break mt-1 text-sm leading-6 text-slate-500" role="status" aria-live="polite">
               Upload at least two images to build your slideshow.
             </p>
           </div>
-          <span id="countBadge" class="inline-flex w-fit rounded-full bg-slate-100 px-3 py-1 text-sm font-bold text-slate-600">
+          <span id="countBadge" aria-live="polite" class="inline-flex w-fit rounded-full bg-slate-100 px-3 py-1 text-sm font-bold text-slate-600">
             0 photos
           </span>
         </div>
@@ -374,20 +410,12 @@
           </button>
         </div>
 
-        <div class="ad-box mt-6">
-          Ad Area Below Preview
-        </div>
-
         <div class="mt-5">
           <h3 class="mb-3 text-sm font-black uppercase tracking-wide text-slate-500">Uploaded Photos</h3>
           <div id="thumbGrid" class="grid grid-cols-2 gap-3 sm:grid-cols-3"></div>
         </div>
       </section>
     </section>
-
-    <div class="ad-box my-8">
-      Ad Area Below Main Tool and Result Section
-    </div>
 
     <article class="mobile-card rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-8 lg:p-10">
       <div class="mx-auto max-w-4xl">
@@ -425,10 +453,6 @@
           <p>
             Privacy is another important benefit. This slideshow maker processes files locally in your browser for the core slideshow creation workflow. Your selected images are not uploaded to a backend server by this tool. This can be helpful for personal family photos, private event images, work-in-progress design samples, or images you simply do not want to send to an external service. You should still use good judgment when handling sensitive files, but local browser processing is a practical design choice for a simple photo utility.
           </p>
-
-          <div class="ad-box my-8">
-            Middle Content Ad Area
-          </div>
 
           <h3 class="text-2xl font-black text-slate-950">Popular Uses for a Photo Slideshow Maker</h3>
           <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
@@ -487,10 +511,6 @@
           <p>
             Organize the images before uploading if the order matters. Many browsers load selected files in the order provided by the file picker, but naming files with numbers such as 01, 02, 03 can help keep a clear sequence. Use meaningful titles when downloading the slideshow so the exported file is easy to identify later. If you plan to display the slideshow on a large screen, use high-quality images but avoid extremely large files that may slow down loading. Compressing images before uploading can improve browser performance and reduce the size of the downloaded HTML file.
           </p>
-
-          <div class="ad-box my-8">
-            Bottom Content Ad Area
-          </div>
 
           <h3 class="text-2xl font-black text-slate-950">Photo Slideshows for Family, Weddings and Personal Memories</h3>
           <p>
@@ -562,7 +582,7 @@
 
           <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
             <summary class="cursor-pointer font-black text-slate-950">How many images can I use?</summary>
-            <p class="mt-3 leading-7 text-slate-600">The practical limit depends on your device memory, browser performance, and image file sizes. For smoother performance, use optimized images and avoid extremely large files.</p>
+            <p class="mt-3 leading-7 text-slate-600">This version accepts up to 30 images per slideshow. Performance also depends on device memory, browser capability, and image size. Each selected image must be 15 MB or smaller.</p>
           </details>
 
           <details class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
@@ -699,10 +719,6 @@
         </div>
       </div>
     </section>
-
-    <div class="ad-box mt-8">
-      Bottom Ad Area
-    </div>
   </main>
 
   <footer class="mt-10 border-t border-slate-200 bg-white">
@@ -732,6 +748,8 @@
       let slides = [];
       let currentIndex = 0;
       let timer = null;
+      const MAX_FILES = 30;
+      const MAX_FILE_SIZE = 15 * 1024 * 1024;
 
       function escapeHtml(text) {
         return String(text || '')
@@ -848,12 +866,31 @@
 
       async function handleImages(files) {
         clearTimer();
-        const validFiles = Array.from(files || []).filter(function (file) {
+        const selectedFiles = Array.from(files || []);
+
+        if (selectedFiles.length > MAX_FILES) {
+          setStatus('Please select no more than ' + MAX_FILES + ' images at a time.');
+          imageInput.value = '';
+          return;
+        }
+
+        const oversizedFiles = selectedFiles.filter(function (file) {
+          return file && file.size > MAX_FILE_SIZE;
+        });
+
+        if (oversizedFiles.length) {
+          setStatus('One or more images exceed the 15 MB per-file limit. Choose smaller images.');
+          imageInput.value = '';
+          return;
+        }
+
+        const validFiles = selectedFiles.filter(function (file) {
           return file && file.type && file.type.startsWith('image/');
         });
 
-        if (!validFiles.length) {
-          setStatus('Please choose valid image files.');
+        if (!validFiles.length || validFiles.length !== selectedFiles.length) {
+          setStatus('Please choose only valid image files.');
+          imageInput.value = '';
           return;
         }
 
@@ -999,7 +1036,9 @@ if(slides.length>1)start();
           document.body.appendChild(a);
           a.click();
           a.remove();
-          URL.revokeObjectURL(url);
+          setTimeout(function () {
+            URL.revokeObjectURL(url);
+          }, 1000);
 
           const originalText = downloadBtn.textContent;
           downloadBtn.textContent = 'Downloaded!';
@@ -1030,15 +1069,6 @@ if(slides.length>1)start();
       });
 
       transitionInput.addEventListener('change', renderSlides);
-
-      window.addEventListener('resize', function () {
-        document.body.style.overflowX = 'hidden';
-        try {
-          renderSlides();
-        } catch (error) {
-          setStatus('Preview resized safely.');
-        }
-      });
 
       renderSlides();
     });
