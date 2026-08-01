@@ -8,13 +8,21 @@
   <title>YouTube Video ID Extractor | Free URL Parser</title>
   <meta name="description" content="Extract YouTube video IDs instantly from watch, Shorts, live, embed, and youtu.be URLs with this free browser-based tool." />
   <meta name="keywords" content="YouTube video ID extractor, extract YouTube video ID, YouTube URL parser, YouTube video ID finder, get video ID from YouTube URL, YouTube Shorts ID extractor, youtu.be ID extractor, YouTube embed ID, YouTube live video ID, YouTube developer tool, parse YouTube URL, YouTube link extractor" />
-  <meta name="robots" content="index, follow" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="bingbot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <link rel="canonical" href="https://nodntools.com/youtube-video-id-extractor" />
   <meta name="theme-color" content="#4f46e5" />
 
   <meta property="og:title" content="YouTube Video ID Extractor | Free URL Parser" />
   <meta property="og:description" content="Paste one or multiple YouTube links and extract valid video IDs instantly in your browser." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://nodntools.com/youtube-video-id-extractor" />
+  <meta property="og:site_name" content="NodnWebTools" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="YouTube Video ID Extractor | Free URL Parser" />
+  <meta name="twitter:description" content="Extract valid YouTube video IDs from watch, Shorts, live, embed, mobile, and youtu.be links." />
 
   <meta name="google-adsense-account" content="ca-pub-5282672325821404" />
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5282672325821404" crossorigin="anonymous"></script>
@@ -46,6 +54,79 @@
   }
   </script>
 
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the video ID in a YouTube URL?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The video ID is the unique eleven-character identifier assigned to a YouTube video. In a standard watch URL, it usually appears after v=. In a youtu.be link, it appears after the domain."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this tool support YouTube Shorts?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Paste a URL using the youtube.com/shorts/VIDEO_ID format and the tool will extract the underlying video ID."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I extract IDs from multiple YouTube URLs?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Paste multiple URLs or raw IDs with one entry per line. The tool processes the list and provides copy and export options."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does a valid ID mean the video exists?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Structural validation only confirms that the value matches the expected character pattern. A video may still be private, deleted, restricted, unavailable, or nonexistent."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is an API key required?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. The tool extracts identifiers already present in YouTube URLs and runs entirely in the browser without using the YouTube Data API."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I create an embed URL from the result?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Each result includes standard and privacy-enhanced embed URLs. Embedding still depends on the video owner's settings and YouTube policies."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I export the extracted video IDs?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. You can download the results as TXT, CSV, or JSON files, or copy all values in the selected output format."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is my input uploaded anywhere?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No custom backend upload is required. Parsing is performed in your browser. Opening a result or thumbnail will connect to YouTube or Google image servers."
+        }
+      }
+    ]
+  }
+  </script>
+
   <style>
     html, body {
       width: 100%;
@@ -67,7 +148,6 @@
     .mobile-panel,
     .mobile-preview,
     .mobile-code,
-    .ad-box,
     table,
     canvas,
     img,
@@ -83,19 +163,6 @@
       word-break: break-word;
     }
 
-    .ad-box {
-      min-height: 90px;
-      border: 2px dashed #cbd5e1;
-      background: #f8fafc;
-      color: #64748b;
-      border-radius: 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 1rem;
-      text-align: center;
-      overflow: hidden;
-    }
 
     .tool-link-card {
       transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
@@ -143,10 +210,6 @@
         line-height: 2rem !important;
       }
 
-      .ad-box {
-        min-height: 86px;
-        font-size: 0.875rem;
-      }
     }
 
     @media (max-width: 380px) {
@@ -165,10 +228,6 @@
         line-height: 2.05rem !important;
       }
 
-      .ad-box {
-        min-height: 78px;
-        font-size: 0.8rem;
-      }
     }
   </style>
 </head>
@@ -176,20 +235,17 @@
 <body class="bg-slate-50 text-slate-800 antialiased">
   <header class="border-b border-slate-200 bg-white">
     <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-5 sm:px-6 lg:px-8">
-      <a href="https://nodntools.com" class="text-xl font-extrabold tracking-tight text-slate-900" aria-label="NodnWebTools Home">
+      <a href="/" class="text-xl font-extrabold tracking-tight text-slate-900" aria-label="NodnWebTools Home">
         Nodn<span class="text-indigo-600">WebTools</span>
       </a>
 
-      <a href="https://nodntools.com" class="rounded-full border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700">
+      <a href="/" class="rounded-full border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700">
         Home
       </a>
     </div>
   </header>
 
   <main class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-    <section class="ad-box mb-8" aria-label="Advertisement">
-      Top Advertisement Area
-    </section>
 
     <section class="grid gap-8 lg:grid-cols-[0.96fr_1.04fr]">
       <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
@@ -214,6 +270,7 @@
             <textarea
               id="urlInput"
               rows="9"
+              aria-describedby="urlInputHelp"
               class="w-full resize-y rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100"
               placeholder="Paste one or multiple links, one per line.
 
@@ -224,6 +281,9 @@ https://www.youtube.com/shorts/dQw4w9WgXcQ
 dQw4w9WgXcQ"
               spellcheck="false"
             ></textarea>
+            <p id="urlInputHelp" class="mt-2 text-xs leading-5 text-slate-500">
+              Enter one supported YouTube URL or raw 11-character video ID per line.
+            </p>
           </div>
 
           <div>
@@ -264,11 +324,11 @@ dQw4w9WgXcQ"
           </div>
 
           <div class="grid gap-3 sm:grid-cols-2 mobile-button-grid">
-            <button id="extractBtn" class="rounded-2xl bg-indigo-600 px-5 py-3 font-bold text-white shadow-sm transition hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-200">
+            <button type="button" id="extractBtn" class="rounded-2xl bg-indigo-600 px-5 py-3 font-bold text-white shadow-sm transition hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-200">
               Extract Video IDs
             </button>
 
-            <button id="resetBtn" class="rounded-2xl border border-slate-300 bg-white px-5 py-3 font-bold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700 focus:outline-none focus:ring-4 focus:ring-slate-100">
+            <button type="button" id="resetBtn" class="rounded-2xl border border-slate-300 bg-white px-5 py-3 font-bold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700 focus:outline-none focus:ring-4 focus:ring-slate-100">
               Reset
             </button>
           </div>
@@ -300,7 +360,7 @@ dQw4w9WgXcQ"
             <p class="mt-1 text-sm text-slate-500">Review, copy, open, and export detected video IDs.</p>
           </div>
 
-          <button id="copyAllBtn" class="rounded-2xl border border-indigo-200 bg-indigo-50 px-4 py-2 text-sm font-bold text-indigo-700 transition hover:bg-indigo-100 disabled:cursor-not-allowed disabled:opacity-50" disabled>
+          <button type="button" id="copyAllBtn" class="rounded-2xl border border-indigo-200 bg-indigo-50 px-4 py-2 text-sm font-bold text-indigo-700 transition hover:bg-indigo-100 disabled:cursor-not-allowed disabled:opacity-50" disabled>
             Copy All
           </button>
         </div>
@@ -340,28 +400,24 @@ dQw4w9WgXcQ"
 
         <div id="exportArea" class="mt-6 hidden">
           <div class="grid gap-3 sm:grid-cols-2 mobile-button-grid">
-            <button id="downloadTextBtn" class="rounded-2xl border border-slate-300 bg-white px-4 py-3 font-bold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700">
+            <button type="button" id="downloadTextBtn" class="rounded-2xl border border-slate-300 bg-white px-4 py-3 font-bold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700">
               Download TXT
             </button>
 
-            <button id="downloadCsvBtn" class="rounded-2xl border border-slate-300 bg-white px-4 py-3 font-bold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700">
+            <button type="button" id="downloadCsvBtn" class="rounded-2xl border border-slate-300 bg-white px-4 py-3 font-bold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-700">
               Download CSV
             </button>
 
-            <button id="downloadJsonBtn" class="rounded-2xl bg-slate-900 px-4 py-3 font-bold text-white transition hover:bg-slate-800">
+            <button type="button" id="downloadJsonBtn" class="rounded-2xl bg-slate-900 px-4 py-3 font-bold text-white transition hover:bg-slate-800">
               Download JSON
             </button>
 
-            <button id="copyJsonBtn" class="rounded-2xl bg-indigo-600 px-4 py-3 font-bold text-white transition hover:bg-indigo-700">
+            <button type="button" id="copyJsonBtn" class="rounded-2xl bg-indigo-600 px-4 py-3 font-bold text-white transition hover:bg-indigo-700">
               Copy JSON
             </button>
           </div>
         </div>
       </section>
-    </section>
-
-    <section class="ad-box my-8" aria-label="Advertisement">
-      Advertisement Area Below Tool
     </section>
 
     <section class="mobile-card rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
@@ -409,10 +465,6 @@ dQw4w9WgXcQ"
         <p class="mt-4 leading-8 text-slate-700">
           The tool also identifies invalid entries. An invalid result may be a non-YouTube URL, incomplete link, unsupported address, missing video identifier, channel URL, playlist URL without a video ID, or text that does not match the expected eleven-character pattern. Invalid entries are not silently converted into guessed results. They remain separate so you can review and correct the source data.
         </p>
-
-        <div class="ad-box my-8" aria-label="Advertisement">
-          Middle Content Advertisement Area
-        </div>
 
         <h2 class="mt-12 text-3xl font-extrabold tracking-tight text-slate-950">
           Supported YouTube URL Formats
@@ -563,10 +615,6 @@ dQw4w9WgXcQ"
         <p class="mt-4 leading-8 text-slate-700">
           YouTube thumbnail image paths can be generated from a video ID. A common maximum-resolution path is <code>https://img.youtube.com/vi/VIDEO_ID/maxresdefault.jpg</code>. Other common filenames include <code>sddefault.jpg</code>, <code>hqdefault.jpg</code>, <code>mqdefault.jpg</code>, and <code>default.jpg</code>. Not every video provides every thumbnail size. If the maximum-resolution image is unavailable, try a smaller version.
         </p>
-
-        <div class="ad-box my-8" aria-label="Advertisement">
-          Bottom Content Advertisement Area
-        </div>
 
         <h2 class="mt-12 text-3xl font-extrabold tracking-tight text-slate-950">
           Benefits of Client-Side YouTube URL Parsing
@@ -722,13 +770,13 @@ dQw4w9WgXcQ"
               </p>
             </a>
 
-            <a href="/json-yaml-converter" class="tool-link-card group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm hover:border-cyan-300 hover:shadow-md">
+            <a href="/youtube-timestamp-link-generator" class="tool-link-card group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm hover:border-cyan-300 hover:shadow-md">
               <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-cyan-50 text-cyan-600 group-hover:bg-cyan-600 group-hover:text-white">
-                <span class="text-lg font-black">{ }</span>
+                <span class="text-lg font-black">T</span>
               </div>
-              <h3 class="mt-4 text-lg font-bold text-slate-950 group-hover:text-cyan-600">JSON ↔ YAML Converter</h3>
+              <h3 class="mt-4 text-lg font-bold text-slate-950 group-hover:text-cyan-600">YouTube Timestamp Link Generator</h3>
               <p class="mt-2 text-sm leading-6 text-slate-500">
-                Convert structured developer data between JSON and YAML with browser-side validation.
+                Create a YouTube link that opens a video at an exact hour, minute, and second.
               </p>
             </a>
 
@@ -764,10 +812,6 @@ dQw4w9WgXcQ"
           </p>
         </section>
       </article>
-    </section>
-
-    <section class="ad-box my-8" aria-label="Advertisement">
-      Bottom Advertisement Area
     </section>
   </main>
 
@@ -999,7 +1043,7 @@ dQw4w9WgXcQ"
                 <p class="text-xs font-bold uppercase tracking-wide text-slate-400">${escapeHtml(label)}</p>
                 <p class="safe-break mt-1 font-mono text-sm text-slate-700">${escapeHtml(value)}</p>
               </div>
-              <button class="copy-value rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs font-bold text-slate-600 transition hover:border-indigo-300 hover:text-indigo-700" data-copy="${escapeHtml(value)}">
+              <button type="button" class="copy-value rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs font-bold text-slate-600 transition hover:border-indigo-300 hover:text-indigo-700" data-copy="${escapeHtml(value)}">
                 ${escapeHtml(copyLabel)}
               </button>
             </div>
@@ -1075,7 +1119,7 @@ dQw4w9WgXcQ"
               </div>
 
               <div class="flex flex-col gap-2 sm:flex-row">
-                <button class="copy-id rounded-xl border border-indigo-200 bg-indigo-50 px-4 py-2 text-sm font-bold text-indigo-700 transition hover:bg-indigo-100" data-copy="${escapeHtml(result.videoId)}">
+                <button type="button" class="copy-id rounded-xl border border-indigo-200 bg-indigo-50 px-4 py-2 text-sm font-bold text-indigo-700 transition hover:bg-indigo-100" data-copy="${escapeHtml(result.videoId)}">
                   Copy ID
                 </button>
                 <a href="${escapeHtml(result.watchUrl)}" target="_blank" rel="noopener noreferrer" class="rounded-xl bg-indigo-600 px-4 py-2 text-center text-sm font-bold text-white transition hover:bg-indigo-700">
@@ -1181,7 +1225,26 @@ dQw4w9WgXcQ"
 
       async function copyText(text, button) {
         try {
-          await navigator.clipboard.writeText(String(text || ''));
+          const value = String(text || '');
+
+          if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(value);
+          } else {
+            const textarea = document.createElement('textarea');
+            textarea.value = value;
+            textarea.setAttribute('readonly', '');
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.select();
+
+            const copied = document.execCommand('copy');
+            textarea.remove();
+
+            if (!copied) {
+              throw new Error('Copy command failed');
+            }
+          }
 
           if (button) {
             const original = button.textContent;
@@ -1282,6 +1345,13 @@ dQw4w9WgXcQ"
 
       extractBtn.addEventListener('click', extractResults);
       resetBtn.addEventListener('click', resetTool);
+
+      urlInput.addEventListener('keydown', (event) => {
+        if ((event.ctrlKey || event.metaKey) && event.key === 'Enter') {
+          event.preventDefault();
+          extractResults();
+        }
+      });
 
       urlInput.addEventListener('input', () => {
         if (!liveUpdate.checked) {
