@@ -9,12 +9,14 @@
   <meta name="description" content="Free unit converter for metric and imperial length, weight, volume, area, speed, time, and temperature conversions." />
   <meta name="keywords" content="unit converter, metric to imperial converter, imperial to metric converter, measurement converter, length converter, weight converter, volume converter, temperature converter, area converter, speed converter, time converter, kg to lbs converter, inches to cm calculator, feet to meters, liters to gallons, Celsius to Fahrenheit, online unit conversion calculator, measurement conversion chart, NodnWebTools" />
   <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow" />
+  <link rel="canonical" href="https://nodntools.com/unit-converter" />
   <meta name="author" content="NodnWebTools" />
 
   <meta property="og:title" content="Unit Converter | Metric Imperial Calculator" />
   <meta property="og:description" content="Convert metric and imperial units for length, weight, volume, area, speed, time, and temperature directly in your browser." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://nodntools.com/unit-converter.html" />
+  <meta property="og:url" content="https://nodntools.com/unit-converter" />
   <meta property="og:site_name" content="NodnWebTools" />
 
   <meta name="twitter:card" content="summary_large_image" />
@@ -33,7 +35,7 @@
     "name": "Unit Converter",
     "applicationCategory": "UtilitiesApplication",
     "operatingSystem": "Any",
-    "url": "https://nodntools.com/unit-converter.html",
+    "url": "https://nodntools.com/unit-converter",
     "description": "A free browser-based unit converter for metric and imperial length, weight, volume, area, speed, time, and temperature conversions.",
     "offers": {
       "@type": "Offer",
@@ -45,6 +47,63 @@
       "name": "NodnWebTools",
       "url": "https://nodntools.com"
     }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is a unit converter?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A unit converter is a calculator that changes a measurement from one unit to another, such as inches to centimeters, kilograms to pounds, liters to gallons, or Celsius to Fahrenheit."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I convert metric to imperial units?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. This tool supports common metric-to-imperial and imperial-to-metric conversions for length, weight, volume, area, speed, time, and temperature."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this converter work on mobile?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. The layout is responsive and designed to avoid horizontal overflow on mobile screens."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are the conversions exact?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The tool uses standard conversion factors for general use. Some results are rounded for readability, and specialized fields may require additional verification."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this tool send my data to a server?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. The calculation runs in your browser. Your entered values are not sent to a backend server by this tool."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use this for engineering or medical work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Use this tool for general reference only. For engineering, medical, scientific, aviation, legal, or safety-critical work, verify values with authoritative sources and professional standards."
+        }
+      }
+    ]
   }
   </script>
 
@@ -69,7 +128,6 @@
     .mobile-panel,
     .mobile-preview,
     .mobile-code,
-    .ad-box,
     table,
     canvas,
     img,
@@ -83,20 +141,6 @@
       overflow-x: auto;
       white-space: pre-wrap;
       overflow-wrap: anywhere;
-    }
-
-    .ad-box {
-      min-height: 90px;
-      border: 1px dashed #cbd5e1;
-      background: #f8fafc;
-      color: #94a3b8;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      border-radius: 1rem;
-      padding: 1rem;
-      line-height: 1.5;
     }
 
     .tab-scroll {
@@ -176,11 +220,7 @@
         Home
       </a>
     </nav>
-
-    <div class="ad-box mt-6">
-      AdSense Responsive Ad Area - Top
-    </div>
-  </header>
+</header>
 
   <main class="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
     <section class="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
@@ -198,7 +238,7 @@
         </p>
 
         <div class="mt-8">
-          <div id="tabsContainer" class="tab-scroll flex gap-2 rounded-2xl bg-slate-100 p-1.5"></div>
+          <div id="tabsContainer" class="tab-scroll flex gap-2 rounded-2xl bg-slate-100 p-1.5" role="tablist" aria-label="Conversion categories"></div>
         </div>
 
         <div class="mt-6 space-y-5">
@@ -208,6 +248,7 @@
               id="inputValue"
               type="number"
               inputmode="decimal"
+              step="any"
               value="1"
               placeholder="Enter a number"
               class="w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-4 text-lg font-bold text-slate-900 outline-none transition focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-100"
@@ -247,11 +288,11 @@
             </button>
           </div>
 
-          <p id="copyFeedback" class="hidden rounded-2xl bg-emerald-50 px-4 py-3 text-sm font-bold text-emerald-700">
+          <p id="copyFeedback" class="hidden rounded-2xl bg-emerald-50 px-4 py-3 text-sm font-bold text-emerald-700" role="status" aria-live="polite">
             Copied!
           </p>
 
-          <div id="warningBox" class="hidden rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm font-semibold leading-6 text-amber-800"></div>
+          <div id="warningBox" class="hidden rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm font-semibold leading-6 text-amber-800" role="alert" aria-live="assertive"></div>
 
           <div class="rounded-2xl bg-indigo-50 p-4 text-sm leading-6 text-slate-700">
             All conversions run directly in your browser. No value is uploaded to a backend server.
@@ -268,7 +309,7 @@
 
           <div class="mobile-preview mt-6 rounded-3xl border border-indigo-100 bg-gradient-to-br from-indigo-50 via-white to-violet-50 p-6">
             <p class="text-sm font-bold uppercase tracking-wide text-indigo-700">Converted Output</p>
-            <p id="outputValue" class="mobile-result-text safe-break mt-3 text-5xl font-extrabold tracking-tight text-indigo-700">0</p>
+            <p id="outputValue" class="mobile-result-text safe-break mt-3 text-5xl font-extrabold tracking-tight text-indigo-700" aria-live="polite">0</p>
             <p id="summarySentence" class="mt-4 text-base leading-7 text-slate-700">Enter a value to convert.</p>
 
             <div class="mt-6 grid gap-3 sm:grid-cols-2">
@@ -288,12 +329,7 @@
               <div id="quickMatrixList" class="mt-4 space-y-2"></div>
             </div>
           </div>
-
-          <div class="ad-box mt-6">
-            AdSense Responsive Ad Area - Below Result
-          </div>
-
-          <p class="mt-5 text-xs leading-5 text-slate-500">
+<p class="mt-5 text-xs leading-5 text-slate-500">
             This converter is for general informational and convenience purposes. Always verify critical engineering, medical, scientific, construction, aviation, legal, or safety-related measurements with an authoritative source.
           </p>
         </div>
@@ -321,12 +357,7 @@
         </section>
       </section>
     </section>
-
-    <div class="ad-box mt-8">
-      AdSense Responsive Ad Area - Below Main Tool
-    </div>
-
-    <article class="mt-10 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-10">
+<article class="mt-10 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-10">
       <span class="inline-flex rounded-full bg-indigo-100 px-4 py-2 text-sm font-bold text-indigo-700">
         Measurement Conversion Guide
       </span>
@@ -363,12 +394,7 @@
         <p>
           The imperial and US customary systems use units such as inches, feet, yards, miles, ounces, pounds, cups, pints, quarts, gallons, square feet, and miles per hour. These units remain common in the United States and appear frequently in product descriptions, construction, recipes, travel directions, body measurements, and consumer goods. Because the relationships between imperial units are not always based on powers of ten, manual conversion can be less intuitive. For example, 12 inches equals 1 foot, 3 feet equals 1 yard, and 5,280 feet equals 1 mile. A metric to imperial converter makes these comparisons much easier.
         </p>
-
-        <div class="ad-box">
-          AdSense Responsive Ad Area - Middle Content
-        </div>
-
-        <h3 class="text-2xl font-extrabold text-slate-950">Length Conversion: Inches, Feet, Meters, Centimeters, and Miles</h3>
+<h3 class="text-2xl font-extrabold text-slate-950">Length Conversion: Inches, Feet, Meters, Centimeters, and Miles</h3>
 
         <p>
           Length conversion is one of the most common uses of a unit converter. People frequently need to convert inches to centimeters, centimeters to inches, feet to meters, meters to feet, miles to kilometers, and kilometers to miles. These conversions are useful for clothing sizes, room layouts, furniture dimensions, screen sizes, home improvement projects, vehicle travel, maps, sports distances, and international product specifications.
@@ -417,12 +443,7 @@
         <p>
           For example, an apartment listed as 75 square meters may be difficult to visualize if you normally think in square feet. A flooring project may require square feet of material, while the room dimensions were measured in meters. A land parcel may be described in acres, hectares, or square meters. A unit converter with an area category helps make these comparisons faster and clearer.
         </p>
-
-        <div class="ad-box">
-          AdSense Responsive Ad Area - Bottom Content
-        </div>
-
-        <h3 class="text-2xl font-extrabold text-slate-950">Speed Conversion for Travel, Vehicles, Sports, and Weather</h3>
+<h3 class="text-2xl font-extrabold text-slate-950">Speed Conversion for Travel, Vehicles, Sports, and Weather</h3>
 
         <p>
           Speed conversion is useful when comparing kilometers per hour, miles per hour, meters per second, feet per second, and knots. Drivers traveling between countries may need to understand speed limits in kilometers per hour or miles per hour. Weather reports may describe wind speed in kilometers per hour, miles per hour, meters per second, or knots. Sports data may use different speed units depending on the event, device, or country.
@@ -658,11 +679,7 @@
         </p>
       </div>
     </section>
-
-    <div class="ad-box mt-8">
-      AdSense Responsive Ad Area - Bottom
-    </div>
-  </main>
+</main>
 
   <script>
     const conversionData = {
@@ -828,7 +845,7 @@
         const classes = active
           ? "flex-none rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-xs font-extrabold uppercase tracking-wide text-indigo-700 shadow-sm"
           : "flex-none rounded-xl px-4 py-2.5 text-xs font-extrabold uppercase tracking-wide text-slate-500 transition hover:bg-white hover:text-indigo-700";
-        return '<button type="button" data-category="' + category + '" class="category-tab ' + classes + '">' + label + '</button>';
+        return '<button type="button" role="tab" aria-selected="' + active + '" data-category="' + category + '" class="category-tab ' + classes + '">' + label + '</button>';
       }).join("");
 
       document.querySelectorAll(".category-tab").forEach(function(button) {
@@ -906,6 +923,21 @@
         const value = sanitizeInput(rawValue);
         const fromUnit = fromUnitSelect.value;
         const toUnit = toUnitSelect.value;
+
+        if (currentCategory === "temperature") {
+          const celsiusValue = temperatureToCelsius(value, fromUnit);
+          if (celsiusValue < -273.15) {
+            outputValueEl.textContent = "Invalid";
+            summarySentenceEl.textContent = "Temperature cannot be below absolute zero.";
+            displayOriginalValEl.textContent = formatNumber(value) + " " + fromUnit;
+            displayCategoryEl.textContent = conversionData[currentCategory].label;
+            quickMatrixListEl.innerHTML = "";
+            updateWarning("Enter a temperature at or above absolute zero (-273.15 °C, -459.67 °F, or 0 K).");
+            latestResultText = "No valid conversion result yet.";
+            return;
+          }
+        }
+
         const result = executeConversion(value, fromUnit, toUnit, currentCategory);
         const fromName = conversionData[currentCategory].units[fromUnit].name;
         const toName = conversionData[currentCategory].units[toUnit].name;
@@ -1002,7 +1034,6 @@
     copyBtn.addEventListener("click", copyResult);
     downloadBtn.addEventListener("click", downloadResult);
     resetBtn.addEventListener("click", resetTool);
-    window.addEventListener("resize", calculateUnits);
 
     exampleButtons.forEach(function(button) {
       button.addEventListener("click", function() {
